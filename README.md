@@ -1,3 +1,5 @@
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/korotkevics/ships.svg?columns=all)](https://waffle.io/korotkevics/ships)
+
 ## Project ships
 
 Online battleships game. Guessing game for 2 players with simple gui.
