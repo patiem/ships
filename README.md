@@ -1,6 +1,6 @@
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/korotkevics/ships.svg?columns=all)](https://waffle.io/korotkevics/ships)
 ![Travis](https://travis-ci.org/korotkevics/ships.svg?branch=int)
-[![Build Status](https://travis-ci.org/korotkevics/ships.svg?branch=int)]()
+![Build Status](https://travis-ci.org/korotkevics/ships.svg?branch=int)
 
 ## Project ships
 
