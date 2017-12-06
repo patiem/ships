@@ -22,7 +22,11 @@ We also integrated Waffle.io with our Slack channel to notify team members whene
 
 ### Installing 
     
-    mvn install
+    mvn clean install
+
+### Packaging
+
+    mvn clean package
 
 ### Running Tests
 

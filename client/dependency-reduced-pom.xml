@@ -38,7 +38,7 @@
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>6.13.1</version>
-      <scope>provided</scope>
+      <scope>test</scope>
       <exclusions>
         <exclusion>
           <artifactId>jcommander</artifactId>
