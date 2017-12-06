@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 public class DummyTest {
    
    @Test
-   public void dummyTest() {
+   public void testDummy() {
        assertTrue(true);
    }
 }
