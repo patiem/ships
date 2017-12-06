@@ -15,7 +15,16 @@
         <jacocoVersion>0.7.9</jacocoVersion>
         <!--Testing-->
         <testngVersion>6.13.1</testngVersion>
-        <mockitoVersion>2.12.0</mockitoVersion>
+        <mockitoVersion>2.13.0</mockitoVersion>
+        <!--Logging-->
+        <!--The newest version 2.10.0 gives a warning such as
+
+        [WARNING] Unable to process class module-info.class in JarAnalyzer File
+        /home/sandor/.m2/repository/org/apache/logging/log4j/log4j-api/2.10.0/log4j-api-2.10.0.jar
+        org.apache.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 19
+
+        Therefore an older version is preferred.-->
+        <log4jVersion>2.9.1</log4jVersion>
         <!--Maven-->
         <surefireVersion>2.20.1</surefireVersion>
         <jarVersion>3.0.2</jarVersion>
@@ -64,12 +73,23 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commonsLang3Version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4jVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4jVersion}</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
         <pluginManagement>
-
-
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
