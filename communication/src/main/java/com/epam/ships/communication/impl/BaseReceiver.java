@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 public class BaseReceiver implements Receiver {
 
-    public static Logger logger = LogManager.getLogger(BaseReceiver.class);
+    private static Logger logger = LogManager.getLogger(BaseReceiver.class);
 
     private final InputStream inputStream;
 
@@ -24,12 +24,12 @@ public class BaseReceiver implements Receiver {
 
     @Override
     public JSONObject receive() {
-        OutputStream outputStream = new ByteArrayOutputStream();
-        try {
+        try (OutputStream outputStream = new ByteArrayOutputStream()) {
             IOUtils.copy(inputStream, outputStream);
+            return new JSONObject(outputStream.toString());
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
-        return new JSONObject(outputStream.toString());
+        return new JSONObject();
     }
 }
