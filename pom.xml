@@ -23,6 +23,7 @@
     <distributionManagement>
         <site>
             <id>${project.artifactId}</id>
+            <!--Minimal URL required for site to be staged-->
             <url>scp:///</url>
         </site>
     </distributionManagement>
@@ -83,10 +84,19 @@
         <skipSite>false</skipSite>
         <!--Utils-->
         <commonsLang3Version>3.7</commonsLang3Version>
+        <orgJsonVersion>20171018</orgJsonVersion>
+        <commonsIoVersion>2.5</commonsIoVersion>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!--Communication-->
+            <dependency>
+                <groupId>com.epam.ships</groupId>
+                <artifactId>communication</artifactId>
+                <version>${project.version}</version>
+                <scope>provided</scope>
+            </dependency>
             <!--Testing-->
             <dependency>
                 <groupId>org.testng</groupId>
@@ -111,14 +121,14 @@
             <dependency>
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
-                <version>20171018</version>
+                <version>${orgJsonVersion}</version>
                 <scope>provided</scope>
             </dependency>
             <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>2.5</version>
+                <version>${commonsIoVersion}</version>
                 <scope>provided</scope>
             </dependency>
             <!--Logging-->

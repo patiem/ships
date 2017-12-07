@@ -1,6 +1,5 @@
 package com.epam.ships.client;
 
-import com.epam.ships.communication.api.Receiver;
 import com.epam.ships.communication.api.Sender;
 import com.epam.ships.communication.impl.BaseSender;
 import org.apache.logging.log4j.LogManager;
