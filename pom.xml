@@ -28,7 +28,7 @@
     </distributionManagement>
 
     <!--To silence a warning if mvn site is executed-->
-    <url>.</url>
+    <url>./index.html</url>
 
     <modules>
         <module>client</module>
