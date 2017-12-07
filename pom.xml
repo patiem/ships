@@ -332,29 +332,29 @@
         <name>Java Academy</name>
     </organization>
 
-    <contributors>
-        <contributor>
+    <developers>
+        <developer>
             <name>Magda</name>
             <roles>
                 <role>Developer</role>
             </roles>
             <properties/>
-        </contributor>
-        <contributor>
+        </developer>
+        <developer>
             <name>Piotr</name>
             <roles>
                 <role>Developer</role>
             </roles>
             <properties/>
-        </contributor>
-        <contributor>
+        </developer>
+        <developer>
             <name>Sandor</name>
             <roles>
                 <role>Developer</role>
             </roles>
             <properties/>
-        </contributor>
-    </contributors>
+        </developer>
+    </developers>
 
     <licenses>
         <license>
