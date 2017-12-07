@@ -17,6 +17,17 @@
     <groupId>com.epam</groupId>
     <modelVersion>4.0.0</modelVersion>
 
+    <!--Site - it makes links to sub-modules work!
+    (we use mvn site && mvn site:stage to generate a site)
+    -->
+    <distributionManagement>
+        <site>
+            <id>${project.artifactId}</id>
+            <url>scp:///</url>
+        </site>
+    </distributionManagement>
+
+    <!--To silence a warning if mvn site is executed-->
     <url>.</url>
 
     <modules>
@@ -299,5 +310,44 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <!--Non-technical info goes below-->
+
+    <organization>
+        <name>Java Academy</name>
+    </organization>
+
+    <contributors>
+        <contributor>
+            <name>Magda</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <properties/>
+        </contributor>
+        <contributor>
+            <name>Piotr</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <properties/>
+        </contributor>
+        <contributor>
+            <name>Sandor</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <properties/>
+        </contributor>
+    </contributors>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>Open Source Project</comments>
+        </license>
+    </licenses>
 
 </project>

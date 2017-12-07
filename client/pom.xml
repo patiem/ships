@@ -14,6 +14,8 @@
         - it independently defines its packaging
     </description>
 
+    <url>${project.distributionManagement.site.url}/${project.artifactId}</url>
+
     <parent>
         <artifactId>ships</artifactId>
         <groupId>com.epam</groupId>

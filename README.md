@@ -34,7 +34,13 @@ We also integrated Waffle.io with our Slack channel to notify team members whene
 
 ### Generating a Site
 
-    mvn site
+    mvn site && mvn site:stage
+
+### Viewing a Site
+
+Ex. with Firefox, while in the root folder,
+
+    firefox target/staging/index.html     
 
 ### Validating Dependency Convergence
 
