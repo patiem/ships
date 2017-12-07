@@ -11,10 +11,12 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.epam.ships.client.StartWindowController">
     <children>
-        <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <GridPane fx:id="gridPane" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -32,7 +34,7 @@
                         <Insets top="10.0" />
                      </padding>
                       </Label>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imPolandFlag" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="180.0" top="5.0" />
                      </HBox.margin>
@@ -40,7 +42,7 @@
                         <Image url="@../images/poland_flag.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imEnglandFlag" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
@@ -63,9 +65,9 @@
               </rowConstraints>
                <children>
                   <TextField prefHeight="38.0" prefWidth="302.0" promptText="Server Addres" />
-                  <Button maxWidth="120.0" mnemonicParsing="false" prefHeight="38.0" text="Connect" GridPane.rowIndex="2" />
+                  <Button maxWidth="120.0" mnemonicParsing="false" onAction="#onConnectPressed" prefHeight="38.0" text="Connect" GridPane.rowIndex="2" />
                   <TextField prefHeight="38.0" prefWidth="336.0" promptText="Server Port" GridPane.rowIndex="1" />
-                  <ImageView fitHeight="268.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <ImageView fx:id="imCannon" fitHeight="268.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <image>
                         <Image url="@../images/cannon.png" />
                      </image>
@@ -74,5 +76,25 @@
             </GridPane>
             </children>
         </GridPane>
+      <VBox fx:id="vbWheel" layoutX="200.0" layoutY="100.0" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/wheel.gif" />
+               </image>
+               <VBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="200.0" text="Waiting for oponent" textAlignment="CENTER" textFill="#063483" textOverrun="CLIP">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>
