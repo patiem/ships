@@ -9,7 +9,7 @@
     <artifactId>ships</artifactId>
     <groupId>com.epam</groupId>
     <modelVersion>4.0.0</modelVersion>
-    
+
     <modules>
         <module>client</module>
         <module>server</module>
@@ -256,10 +256,6 @@
                             <report>dependencies</report>
                             <report>project-team</report>
                             <report>license</report>
-                            <report>scm</report>
-                            <report>cim</report>
-                            <report>mailing-list</report>
-                            <report>issue-tracking</report>
                         </reports>
                     </reportSet>
                 </reportSets>
