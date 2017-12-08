@@ -43,6 +43,7 @@
         <findbugsVersion>3.0.5</findbugsVersion>
         <checkstyleVersion>2.17</checkstyleVersion>
         <jacocoVersion>0.7.9</jacocoVersion>
+        <sonarSourceVersion>3.4.0.905</sonarSourceVersion>
         <!--Testing-->
         <testngVersion>6.13.1</testngVersion>
         <mockitoVersion>2.13.0</mockitoVersion>
@@ -233,6 +234,11 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonarSourceVersion}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
