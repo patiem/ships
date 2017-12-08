@@ -29,7 +29,7 @@
             <children>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1">
                <children>
-                      <Label fx:id="titleLabel" alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-font-size: 30; -fx-font-family: monospace;" text="Battelships" textAlignment="CENTER">
+                      <Label fx:id="titleLabel" alignment="TOP_LEFT" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-font-size: 30; -fx-font-family: monospace;" text="Battleships" textAlignment="CENTER">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
