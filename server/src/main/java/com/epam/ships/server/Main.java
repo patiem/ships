@@ -11,9 +11,18 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         CommunicationBus communicationBus = new CommunicationBus();
-        communicationBus.start();
-        logger.info("Communication Bus started");
-        Game game = new Game(communicationBus);
-        game.letsChatALittleBit();
+
+        while (true) {
+            communicationBus.start();
+            logger.info("Communication Bus started");
+            Game game = new Game(communicationBus);
+            game.letsChatALittleBit();
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            communicationBus.stop();
+        }
     }
 }

@@ -3,6 +3,8 @@ package com.epam.ships.communication.api;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
+
 public interface Receiver {
-    JSONObject receive();
+    JSONObject receive() throws IOException;
 }

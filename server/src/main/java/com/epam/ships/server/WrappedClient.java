@@ -34,7 +34,12 @@ class WrappedClient {
     }
 
     JSONObject receive() {
-        return this.in.receive();
+        try {
+            return this.in.receive();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new JSONObject();
     }
 
     void close() {

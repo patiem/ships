@@ -24,6 +24,7 @@ public class BaseSender implements Sender {
     public void send(JSONObject jsonObject) {
         try {
             this.outputStream.write(jsonObject.toString().getBytes(ENCODING));
+            this.outputStream.flush();
         } catch (IOException e) {
             logger.error(e.getMessage());
         }

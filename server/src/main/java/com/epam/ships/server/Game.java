@@ -13,9 +13,10 @@ class Game {
 
     void letsChatALittleBit() throws IOException {
         while (true) {
-            if(communicationBus.hasClient()) {
-                JSONObject jsonObject = communicationBus.receive();
-                communicationBus.closeClient();
+            JSONObject jsonRecived = communicationBus.receive();
+            System.out.println(jsonRecived);
+            if(jsonRecived.has("end") && jsonRecived.getBoolean("end")) {
+                break;
             }
             try {
                 Thread.sleep(250);

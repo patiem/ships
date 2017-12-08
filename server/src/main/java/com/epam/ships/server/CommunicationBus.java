@@ -34,10 +34,7 @@ class CommunicationBus {
     }
 
     JSONObject receive() {
-        if(!clients.isEmpty()) {
-            return this.clients.get(0).receive();
-        }
-        return null;
+        return this.clients.get(0).receive();
     }
 
     void closeClient() {
@@ -48,5 +45,12 @@ class CommunicationBus {
 
     boolean hasClient() {
         return !clients.isEmpty();
+    }
+
+    void stop() {
+        for(WrappedClient c : clients) {
+            c.close();
+        }
+        clients.removeAll(clients);
     }
 }

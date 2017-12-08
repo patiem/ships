@@ -4,10 +4,9 @@ import com.epam.ships.communication.api.Receiver;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,13 +22,35 @@ public class BaseReceiver implements Receiver {
     }
 
     @Override
-    public JSONObject receive() {
-        OutputStream outputStream = new ByteArrayOutputStream();
-        try {
-            IOUtils.copy(inputStream, outputStream);
-        } catch (IOException e) {
-            logger.error(e.getMessage());
+    public JSONObject receive() throws IOException {
+//        StringWriter writer = new StringWriter();
+// InputStreamReader reader = new InputStreamReader(inputStream);
+//        int result = reader.read();
+//
+//        System.out.println(result);
+//        String theString = writer.toString();
+//        if(theString == null || theString.isEmpty()) {
+//            return new JSONObject("{ \"kupa\":\"dupa\"}");
+//        }
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+        byte[] buffer = new byte[1024];
+        int readBytes = bufferedInputStream.read(buffer, 0 , buffer.length);
+
+        if(readBytes < 0) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("end", "true");
+            return jsonObject;
         }
-        return new JSONObject(outputStream.toString());
+        while(readBytes  > 1){
+            baos.write(buffer,0,readBytes);
+            if(inputStream.available() <= 0) {
+                break;
+            }
+        }
+
+        //System.out.println(theString);
+        return new JSONObject(baos.toString());
     }
 }
