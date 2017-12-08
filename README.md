@@ -1,6 +1,5 @@
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/korotkevics/ships.svg?columns=all)](https://waffle.io/korotkevics/ships)
 [![Build Status](https://travis-ci.org/korotkevics/ships.svg?branch=int)](https://travis-ci.org/korotkevics/ships)
-[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=com.epam%3Aships%3Aint)](https://sonarcloud.io/dashboard/index/com.epam%3Aships%3Aint)
 
 ## Project ships
 
