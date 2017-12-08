@@ -13,11 +13,16 @@ public class Main extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
-        primaryStage.setTitle("Battleships");
-        primaryStage.setScene(new Scene(root, 600, 400));
-        primaryStage.setMinHeight(400);
-        primaryStage.setMinWidth(600);
+        final String fxmlMainWindowPath = "/fxml/sample.fxml";
+        final String windowTitle = "Battleships";
+
+        int sceneWidth = 600;
+        int sceneHeight = 400;
+
+        Parent root = FXMLLoader.load(getClass().getResource(fxmlMainWindowPath));
+        primaryStage.setTitle(windowTitle);
+        primaryStage.setScene(new Scene(root, sceneWidth, sceneHeight));
+        primaryStage.setResizable(false);
 
         primaryStage.show();
     }

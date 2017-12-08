@@ -1,6 +1,7 @@
 package com.epam.ships.client;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -25,10 +26,12 @@ public class StartWindowController {
 
     @FXML
     private void onConnectPressed() {
+        final double imageCapacity = 0.4;
+
         gridPane.setDisable(true);
-        imPolandFlag.setOpacity(0.4);
-        imEnglandFlag.setOpacity(0.4);
-        imCannon.setOpacity(0.4);
+        imPolandFlag.setOpacity(imageCapacity);
+        imEnglandFlag.setOpacity(imageCapacity);
+        imCannon.setOpacity(imageCapacity);
         vbWheel.setVisible(true);
     }
 }
