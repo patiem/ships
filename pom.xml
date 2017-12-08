@@ -3,32 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <description>
-        It's a root POM:
-        - it defines constants (versions mostly)
-        - it has dependency and plug-in management configured
-        - it has reporting configured
-    </description>
-
     <!--Coordinates-->
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <artifactId>ships</artifactId>
     <groupId>com.epam</groupId>
     <modelVersion>4.0.0</modelVersion>
-
-    <!--Site - it makes links to sub-modules work!
-    (we use mvn site && mvn site:stage to generate a site)
-    -->
-    <distributionManagement>
-        <site>
-            <id>${project.artifactId}</id>
-            <url>scp:///</url>
-        </site>
-    </distributionManagement>
-
-    <url>./index.html</url>
-
+    
     <modules>
         <module>client</module>
         <module>server</module>
@@ -92,33 +73,28 @@
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
                 <version>${testngVersion}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>${mockitoVersion}</version>
-                <scope>provided</scope>
             </dependency>
             <!--Utils-->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commonsLang3Version}</version>
-                <scope>provided</scope>
             </dependency>
             <!--Logging-->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-api</artifactId>
                 <version>${log4jVersion}</version>
-                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-core</artifactId>
                 <version>${log4jVersion}</version>
-                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -316,7 +292,26 @@
         </plugins>
     </reporting>
 
+    <!--Site - it makes links to sub-modules work!
+    (we use mvn site && mvn site:stage to generate a site)
+    -->
+    <distributionManagement>
+        <site>
+            <id>${project.artifactId}</id>
+            <url>scp:///</url>
+        </site>
+    </distributionManagement>
+
+    <url>./index.html</url>
+
     <!--Non-technical info goes below-->
+
+    <description>
+        It's a root POM:
+        - it defines constants (versions mostly)
+        - it has dependency and plug-in management configured
+        - it has reporting configured
+    </description>
 
     <organization>
         <name>Java Academy</name>
