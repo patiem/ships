@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd ..
 echo "Executing <mvn clean>.."
 mvn clean
