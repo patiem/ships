@@ -11,7 +11,7 @@ import java.net.Socket;
 
 public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
-    
+
     public static void main(String[] args) {
         logger.info("Client is up and running.");
         Socket socket = null;
@@ -39,6 +39,5 @@ public class Main {
                 e.printStackTrace();
             }
         }
-
     }
 }

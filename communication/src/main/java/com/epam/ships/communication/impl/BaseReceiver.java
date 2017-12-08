@@ -1,19 +1,18 @@
 package com.epam.ships.communication.impl;
 
 import com.epam.ships.communication.api.Receiver;
-import org.apache.commons.io.IOUtils;
-import org.json.JSONObject;
-
-import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class BaseReceiver implements Receiver {
 
-    public static Logger logger = LogManager.getLogger(BaseReceiver.class);
+    private static Logger logger = LogManager.getLogger(BaseReceiver.class);
 
     private final InputStream inputStream;
 

@@ -2,14 +2,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <description>
+        It's a root POM:
+        - it defines constants (versions mostly)
+        - it has dependency and plug-in management configured
+        - it has reporting configured
+    </description>
+
+    <!--Coordinates-->
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <artifactId>ships</artifactId>
+    <groupId>com.epam</groupId>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.epam</groupId>
-    <artifactId>ships</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <!--Site - it makes links to sub-modules work!
+    (we use mvn site && mvn site:stage to generate a site)
+    -->
+    <distributionManagement>
+        <site>
+            <id>${project.artifactId}</id>
+            <!--Minimal URL required for site to be staged-->
+            <url>scp:///</url>
+        </site>
+    </distributionManagement>
 
-    <url>.</url>
+    <url>./index.html</url>
 
     <modules>
         <module>client</module>
@@ -65,10 +84,19 @@
         <skipSite>false</skipSite>
         <!--Utils-->
         <commonsLang3Version>3.7</commonsLang3Version>
+        <orgJsonVersion>20171018</orgJsonVersion>
+        <commonsIoVersion>2.5</commonsIoVersion>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!--Communication-->
+            <dependency>
+                <groupId>com.epam.ships</groupId>
+                <artifactId>communication</artifactId>
+                <version>${project.version}</version>
+                <scope>provided</scope>
+            </dependency>
             <!--Testing-->
             <dependency>
                 <groupId>org.testng</groupId>
@@ -93,14 +121,7 @@
             <dependency>
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
-                <version>20171018</version>
-                <scope>provided</scope>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-            <dependency>
-                <groupId>commons-io</groupId>
-                <artifactId>commons-io</artifactId>
-                <version>2.5</version>
+                <version>${orgJsonVersion}</version>
                 <scope>provided</scope>
             </dependency>
             <!--Logging-->
@@ -306,5 +327,44 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <!--Non-technical info goes below-->
+
+    <organization>
+        <name>Java Academy</name>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Magda</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <properties/>
+        </developer>
+        <developer>
+            <name>Piotr</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <properties/>
+        </developer>
+        <developer>
+            <name>Sandor</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <properties/>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>Open Source Project</comments>
+        </license>
+    </licenses>
 
 </project>
