@@ -14,14 +14,14 @@ class AppServer {
     private static final Logger logger = LogManager.getLogger(AppServer.class);
 
     private ServerSocket serverSocket;
-    List<Socket> clients;
+    private List<Socket> clients;
 
     public AppServer(int port) throws IOException {
         this.serverSocket = new ServerSocket(port);
-        clients = new ArrayList<>();
     }
 
     public void connectClients() throws IOException {
+        clients = new ArrayList<>();
         logger.info("Waiting for a 1 Client... ");
         acceptClient();
 //        logger.info("waiting for a 2 Client...");

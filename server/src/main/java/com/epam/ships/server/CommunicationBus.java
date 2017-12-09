@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ class CommunicationBus {
 
     private static final Logger logger = LogManager.getLogger(CommunicationBus.class);
     private final AppServer appServer;
-    private final List<WrappedClient> clients;
+    private List<WrappedClient> clients;
 
     CommunicationBus() throws IOException {
         appServer = new AppServer(8189);
@@ -52,5 +53,9 @@ class CommunicationBus {
             c.close();
         }
         clients.removeAll(clients);
+    }
+
+    public void send(JSONObject response) throws UnsupportedEncodingException {
+        this.clients.get(0).send(response);
     }
 }

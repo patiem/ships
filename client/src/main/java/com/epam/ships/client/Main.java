@@ -1,6 +1,8 @@
 package com.epam.ships.client;
 
+import com.epam.ships.communication.api.Receiver;
 import com.epam.ships.communication.api.Sender;
+import com.epam.ships.communication.impl.BaseReceiver;
 import com.epam.ships.communication.impl.BaseSender;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,11 +24,14 @@ public class Main {
             jsonObject.put("name", "Magda");
             sender.send(jsonObject);
 
-            Thread.sleep(5000);
+            Receiver receiver = new BaseReceiver(socket.getInputStream());
+            JSONObject serverResponse = receiver.receive();
+            System.out.println(serverResponse);
+            Thread.sleep(300);
 
-            JSONObject jsonObject2 = new JSONObject();
-            jsonObject2.put("name", "Piotr");
-            sender.send(jsonObject2);
+            jsonObject.put("name", "piotr");
+            sender.send(jsonObject);
+            System.out.println(receiver.receive());
 
         } catch (IOException e) {
             e.printStackTrace();

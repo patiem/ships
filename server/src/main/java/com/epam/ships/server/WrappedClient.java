@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 
 class WrappedClient {
@@ -48,5 +49,9 @@ class WrappedClient {
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
+    }
+
+    public void send(JSONObject response) throws UnsupportedEncodingException {
+        this.out.send(response);
     }
 }

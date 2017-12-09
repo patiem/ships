@@ -5,8 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 public class BaseSender implements Sender {
 
@@ -21,12 +20,9 @@ public class BaseSender implements Sender {
     }
 
     @Override
-    public void send(JSONObject jsonObject) {
-        try {
-            this.outputStream.write(jsonObject.toString().getBytes(ENCODING));
-            this.outputStream.flush();
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
+    public void send(JSONObject jsonObject) throws UnsupportedEncodingException {
+        PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(outputStream, ENCODING), true);
+        printWriter.println(jsonObject.toString());
+
     }
 }
