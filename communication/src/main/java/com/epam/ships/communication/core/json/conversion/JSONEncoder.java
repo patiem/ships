@@ -12,7 +12,7 @@ import org.json.JSONObject;
 /**
  * @author Sandor
  * @since 2017-12-10
- * @see com.epam.ships.communication.api.conversion.Encoder
+ * @see Encoder
  * @see Message
  * @see BaseMessage
  *
