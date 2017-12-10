@@ -59,7 +59,7 @@ public class JSONReceiver implements Receiver {
                     .withStatement("End of a message")
                     .build();
         }
-        Decoder jsonDecoder = new JSONDecoder();
+        Decoder<JSONObject> jsonDecoder = new JSONDecoder();
         return jsonDecoder.decode(new JSONObject(stringBuilder.toString()));
     }
 }
