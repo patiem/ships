@@ -1,7 +1,7 @@
 package com.epam.ships.communication.core.json;
 
-import com.epam.ships.communication.api.json.JSONDecoder;
 import com.epam.ships.communication.api.Message;
+import com.epam.ships.communication.api.conversion.Decoder;
 import com.epam.ships.communication.core.message.BaseMessage;
 import com.epam.ships.communication.core.message.MessageBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,20 +13,20 @@ import java.io.IOException;
 
 /**
  * @author Sandor
- * @since 2017-12-10
- * @see JSONDecoder
+ * @see com.epam.ships.communication.api.conversion.Decoder
  * @see BaseMessage
  * @see Message
- *
+ * <p>
  * It converts a JSONObject into a BaseMessage instance.
+ * @since 2017-12-10
  */
-public class BaseDecoder implements JSONDecoder {
+public class JSONDecoder implements Decoder<JSONObject> {
 
-    Logger logger = LogManager.getLogger(BaseEncoder.class);
+    private Logger logger = LogManager.getLogger(JSONEncoder.class);
 
     /**
-     *It converts a JSONObject instance into a BaseMessage
-     *instance.
+     * It converts a JSONObject instance into a BaseMessage
+     * instance.
      *
      * @param jsonObject a JSONObject instance representing
      *                   a BaseMessage.

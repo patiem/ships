@@ -1,6 +1,6 @@
 package com.epam.ships.communication.core.json;
 
-import com.epam.ships.communication.api.json.JSONEncoder;
+import com.epam.ships.communication.api.conversion.Encoder;
 import com.epam.ships.communication.api.Message;
 import com.epam.ships.communication.core.message.MessageBuilder;
 import org.json.JSONObject;
@@ -8,12 +8,12 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class BaseEncoderTest {
+public class JSONEncoderTest {
 
     @Test
     public void itEncodesAsExpected() {
         //given
-        JSONEncoder baseEncoder = new BaseEncoder();
+        Encoder<JSONObject> baseEncoder = new JSONEncoder();
         Message message = new MessageBuilder()
                 .withAuthor("Sandor")
                 .withHeader("Connection")

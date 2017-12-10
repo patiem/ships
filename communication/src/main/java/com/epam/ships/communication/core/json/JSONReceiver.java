@@ -1,9 +1,8 @@
-package com.epam.ships.communication.core;
+package com.epam.ships.communication.core.json;
 
 import com.epam.ships.communication.api.Message;
-import com.epam.ships.communication.api.Receiver;
-import com.epam.ships.communication.api.json.JSONDecoder;
-import com.epam.ships.communication.core.json.BaseDecoder;
+import com.epam.ships.communication.api.io.Receiver;
+import com.epam.ships.communication.api.conversion.Decoder;
 import com.epam.ships.communication.core.message.MessageBuilder;
 import org.json.JSONObject;
 
@@ -14,15 +13,15 @@ import java.util.Scanner;
  * @author Piotr, Magda, Sandor
  * @since 2017-12-07
  * @see Receiver
- * @see BaseReceiver
+ * @see JSONReceiver
+ * @see Decoder
  * @see JSONDecoder
- * @see BaseDecoder
  * @see Message
  *
  * It receives a message from an input stream.
  */
 
-public class BaseReceiver implements Receiver {
+public class JSONReceiver implements Receiver {
 
     private final InputStream inputStream;
 
@@ -30,7 +29,7 @@ public class BaseReceiver implements Receiver {
      *
      * @param inputStream it will read from this stream.
      */
-    public BaseReceiver(InputStream inputStream) {
+    public JSONReceiver(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
@@ -59,7 +58,7 @@ public class BaseReceiver implements Receiver {
                     .withStatement("End of a message")
                     .build();
         }
-        JSONDecoder baseDecoder = new BaseDecoder();
-        return baseDecoder.decode(new JSONObject(stringBuilder.toString()));
+        Decoder jsonDecoder = new JSONDecoder();
+        return jsonDecoder.decode(new JSONObject(stringBuilder.toString()));
     }
 }

@@ -1,4 +1,6 @@
-package com.epam.ships.communication.api;
+package com.epam.ships.communication.api.io;
+
+import com.epam.ships.communication.api.Message;
 
 /**
  * @author Piotr, Magda, Sandor

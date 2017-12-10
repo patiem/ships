@@ -1,10 +1,10 @@
 package com.epam.ships.client;
 
 import com.epam.ships.communication.api.Message;
-import com.epam.ships.communication.api.Receiver;
-import com.epam.ships.communication.api.Sender;
-import com.epam.ships.communication.core.BaseReceiver;
-import com.epam.ships.communication.core.BaseSender;
+import com.epam.ships.communication.api.io.Receiver;
+import com.epam.ships.communication.api.io.Sender;
+import com.epam.ships.communication.core.json.JSONReceiver;
+import com.epam.ships.communication.core.json.JSONSender;
 import com.epam.ships.communication.core.message.MessageBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,7 +26,7 @@ public class Main {
 
         try (Socket socket = new Socket(IP_ADDRESS, PORT)) {
 
-            Sender sender = new BaseSender(socket.getOutputStream());
+            Sender sender = new JSONSender(socket.getOutputStream());
 
             //Imitating the 1st client
 
@@ -38,7 +38,7 @@ public class Main {
                     .build();
             sender.send(firstMessage);
 
-            Receiver receiver = new BaseReceiver(socket.getInputStream());
+            Receiver receiver = new JSONReceiver(socket.getInputStream());
 
             logger.info(receiver.receive());
 

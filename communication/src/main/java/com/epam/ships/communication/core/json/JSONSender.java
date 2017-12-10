@@ -1,12 +1,8 @@
-package com.epam.ships.communication.core;
+package com.epam.ships.communication.core.json;
 
 import com.epam.ships.communication.api.Message;
-import com.epam.ships.communication.api.Receiver;
-import com.epam.ships.communication.api.Sender;
-import com.epam.ships.communication.api.json.JSONDecoder;
-import com.epam.ships.communication.api.json.JSONEncoder;
-import com.epam.ships.communication.core.json.BaseDecoder;
-import com.epam.ships.communication.core.json.BaseEncoder;
+import com.epam.ships.communication.api.io.Sender;
+import com.epam.ships.communication.api.conversion.Encoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,19 +15,19 @@ import java.io.UnsupportedEncodingException;
  * @author Piotr, Magda, Sandor
  * @since 2017-12-07
  * @see Sender
- * @see BaseSender
+ * @see JSONSender
+ * @see Encoder
  * @see JSONEncoder
- * @see BaseEncoder
  * @see Message
  *
  * It sends a message to an output stream.
  */
 
-public class BaseSender implements Sender {
+public class JSONSender implements Sender {
 
     private static final String ENCODING = "UTF-8";
 
-    private static Logger logger = LogManager.getLogger(BaseSender.class);
+    private static Logger logger = LogManager.getLogger(JSONSender.class);
 
     private final OutputStream outputStream;
 
@@ -39,7 +35,7 @@ public class BaseSender implements Sender {
      *
      * @param outputStream it will write to this stream.
      */
-    public BaseSender(OutputStream outputStream) {
+    public JSONSender(OutputStream outputStream) {
         this.outputStream = outputStream;
     }
 
@@ -56,8 +52,8 @@ public class BaseSender implements Sender {
         PrintWriter printWriter = null;
         try {
             printWriter = new PrintWriter(new OutputStreamWriter(outputStream, ENCODING), true);
-            JSONEncoder jsonEncoder = new BaseEncoder();
-            printWriter.println(jsonEncoder.encode(message));
+            Encoder encoder = new JSONEncoder();
+            printWriter.println(encoder.encode(message));
         } catch (UnsupportedEncodingException e) {
             logger.error(e.getMessage());
         }

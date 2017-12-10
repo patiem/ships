@@ -1,5 +1,8 @@
 package com.epam.ships.communication.api;
 
+import com.epam.ships.communication.api.io.Receiver;
+import com.epam.ships.communication.api.io.Sender;
+
 /**
  * @author Sandor
  * @since 2017-12-10

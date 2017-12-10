@@ -1,6 +1,6 @@
 package com.epam.ships.communication.core.json;
 
-import com.epam.ships.communication.api.json.JSONDecoder;
+import com.epam.ships.communication.api.conversion.Decoder;
 import com.epam.ships.communication.api.Message;
 import com.epam.ships.communication.core.message.MessageBuilder;
 import org.json.JSONObject;
@@ -8,12 +8,12 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class BaseDecoderTest {
+public class JSONDecoderTest {
 
     @Test
     public void itDecodesAsExpected() {
         //given
-        JSONDecoder baseDecoder = new BaseDecoder();
+        Decoder baseDecoder = new JSONDecoder();
         JSONObject jsonObject = new JSONObject("{\"author\":\"Sandor\",\"statement\":\"The first real test in this project:-)\",\"header\":\"Connection\",\"status\":\"OK\"}");
         Message messageExpected = new MessageBuilder()
                 .withAuthor("Sandor")

@@ -1,10 +1,10 @@
 package com.epam.ships.server;
 
 import com.epam.ships.communication.api.Message;
-import com.epam.ships.communication.api.Receiver;
-import com.epam.ships.communication.api.Sender;
-import com.epam.ships.communication.core.BaseReceiver;
-import com.epam.ships.communication.core.BaseSender;
+import com.epam.ships.communication.api.io.Receiver;
+import com.epam.ships.communication.api.io.Sender;
+import com.epam.ships.communication.core.json.JSONReceiver;
+import com.epam.ships.communication.core.json.JSONSender;
 import com.epam.ships.communication.core.message.MessageBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,8 +27,8 @@ class WrappedClient {
 
     private void setUpIO() {
         try {
-            this.out = new BaseSender(socket.getOutputStream());
-            this.in = new BaseReceiver(socket.getInputStream());
+            this.out = new JSONSender(socket.getOutputStream());
+            this.in = new JSONReceiver(socket.getInputStream());
         } catch (IOException e) {
             logger.error(e.getMessage());
         }

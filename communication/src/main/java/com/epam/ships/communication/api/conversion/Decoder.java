@@ -1,7 +1,6 @@
-package com.epam.ships.communication.api.json;
+package com.epam.ships.communication.api.conversion;
 
 import com.epam.ships.communication.api.Message;
-import org.json.JSONObject;
 
 /**
  * @author Sandor
@@ -9,15 +8,15 @@ import org.json.JSONObject;
  * @see Message
  *
  * An implementing class has to ensure that
- * a JSONObject is converted into a class
+ * T is converted into a class
  * instance implementing Message interface.
  */
-public interface JSONDecoder {
+public interface Decoder<T> {
     /**
      *
-     * @param jsonObject a JSONObject instance
+     * @param t it decodes from this type.
      * @return Message an instance of a class
      * implementing Message interface.
      */
-    Message decode(JSONObject jsonObject);
+    Message decode(T t);
 }
