@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!--Coordinates-->
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <artifactId>ships</artifactId>
+    <groupId>com.epam</groupId>
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>client</module>
+        <module>server</module>
+    </modules>
+
+    <properties>
+        <!--Encoding-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.targetEncoding>UTF-8</project.build.targetEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!--Code Static Analysis-->
+        <findbugsVersion>3.0.5</findbugsVersion>
+        <checkstyleVersion>2.17</checkstyleVersion>
+        <jacocoVersion>0.7.9</jacocoVersion>
+        <sonarSourceVersion>3.4.0.905</sonarSourceVersion>
+        <!--Testing-->
+        <testngVersion>6.13.1</testngVersion>
+        <mockitoVersion>2.13.0</mockitoVersion>
+        <!--Logging-->
+        <!--The newest version 2.10.0 gives a warning such as
+
+        [WARNING] Unable to process class module-info.class in JarAnalyzer File
+        /home/sandor/.m2/repository/org/apache/logging/log4j/log4j-api/2.10.0/log4j-api-2.10.0.jar
+        org.apache.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 19
+
+        Therefore an older version is preferred.-->
+        <log4jVersion>2.9.1</log4jVersion>
+        <!--Maven-->
+        <surefireVersion>2.20.1</surefireVersion>
+        <shadeVersion>3.1.0</shadeVersion>
+        <!--The newest version is M1, therefore an older
+        version of Enforcer Plugin was chosen.-->
+        <enforcerVersion>1.4.1</enforcerVersion>
+        <mavenVersions>2.5</mavenVersions>
+        <projectInfoVersion>2.9</projectInfoVersion>
+        <dependency.locations.enabled>false</dependency.locations.enabled>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <mavenVersion>2.5.2</mavenVersion>
+        <compilerVersion>3.7.0</compilerVersion>
+        <cleanVersion>3.0.0</cleanVersion>
+        <deployVersion>2.8.2</deployVersion>
+        <installVersion>2.5.2</installVersion>
+        <siteVersion>3.6</siteVersion>
+        <resourceVersion>3.0.2</resourceVersion>
+        <releaseVersion>2.5.3</releaseVersion>
+        <antrunVersion>1.8</antrunVersion>
+        <assemblyVersion>3.1.0</assemblyVersion>
+        <dependencyVersion>3.0.2</dependencyVersion>
+        <jxrVersion>2.5</jxrVersion>
+        <!--switch to true if willing to generate a site-->
+        <skipSite>false</skipSite>
+        <!--Utils-->
+        <commonsLang3Version>3.7</commonsLang3Version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--Testing-->
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>${testngVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockitoVersion}</version>
+            </dependency>
+            <!--Utils-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commonsLang3Version}</version>
+            </dependency>
+            <!--Logging-->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4jVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4jVersion}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${enforcerVersion}</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-maven</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <rules>
+                            <requireMavenVersion>
+                                <version>${mavenVersion}</version>
+                            </requireMavenVersion>
+                            <requireJavaVersion>
+                                <version>${maven.compiler.source}</version>
+                            </requireJavaVersion>
+                            <dependencyConvergence>
+                                <uniqueVersions>true</uniqueVersions>
+                            </dependencyConvergence>
+                        </rules>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${compilerVersion}</version>
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${cleanVersion}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${deployVersion}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${installVersion}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${surefireVersion}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${siteVersion}</version>
+                    <configuration>
+                        <skip>${skipSite}</skip>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${resourceVersion}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>${releaseVersion}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${antrunVersion}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${assemblyVersion}</version>
+                </plugin>
+                <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${dependencyVersion}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacocoVersion}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonarSourceVersion}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugsVersion}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${mavenVersions}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>dependency-updates-report</report>
+                            <report>plugin-updates-report</report>
+                            <report>property-updates-report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${projectInfoVersion}</version>
+                <configuration>
+                    <dependencyLocationsEnabled>${dependency.locations.enabled}</dependencyLocationsEnabled>
+                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>summary</report>
+                            <report>index</report>
+                            <report>dependencies</report>
+                            <report>project-team</report>
+                            <report>license</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacocoVersion}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report-aggregate</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>${jxrVersion}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyleVersion}</version>
+                <configuration>
+                    <configLocation>google_checks.xml</configLocation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <!--Site - it makes links to sub-modules work!
+    (we use mvn site && mvn site:stage to generate a site)
+    -->
+    <distributionManagement>
+        <site>
+            <id>${project.artifactId}</id>
+            <url>scp:///</url>
+        </site>
+    </distributionManagement>
+
+    <url>./index.html</url>
+
+    <!--Non-technical info goes below-->
+
+    <description>
+        It's a root POM:
+        - it defines constants (versions mostly)
+        - it has dependency and plug-in management configured
+        - it has reporting configured
+    </description>
+
+    <organization>
+        <name>Java Academy</name>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Magda</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <properties/>
+        </developer>
+        <developer>
+            <name>Piotr</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <properties/>
+        </developer>
+        <developer>
+            <name>Sandor</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <properties/>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>Open Source Project</comments>
+        </license>
+    </licenses>
+
+</project>

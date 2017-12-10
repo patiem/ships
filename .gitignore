@@ -1,0 +1,9 @@
+.class
+.idea/
+.classpath
+.project
+*.log
+*.jar
+target/
+myScripts/
+*.iml

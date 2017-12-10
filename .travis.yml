@@ -1,0 +1,19 @@
+language: java
+install: true
+jdk:
+  - oraclejdk8
+sudo: required
+script:
+  - mvn clean install
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+addons:
+  sonarcloud:
+    organization: "mp5-team"
+    token:
+      secure: "599389432fc8ad1e74b138e04479683ecefeb22c"
+    branches:
+      - int
+    cache:
+      directories:
+        - '$HOME/.m2/repository'
+        - '$HOME/.sonar/cache'
