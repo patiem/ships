@@ -2,6 +2,7 @@ package com.epam.ships.communication.core.json;
 
 import com.epam.ships.communication.api.conversion.Decoder;
 import com.epam.ships.communication.api.Message;
+import com.epam.ships.communication.core.json.conversion.JSONDecoder;
 import com.epam.ships.communication.core.message.MessageBuilder;
 import org.json.JSONObject;
 import org.testng.annotations.Test;

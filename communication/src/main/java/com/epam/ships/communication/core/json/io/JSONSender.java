@@ -1,8 +1,9 @@
-package com.epam.ships.communication.core.json;
+package com.epam.ships.communication.core.json.io;
 
 import com.epam.ships.communication.api.Message;
 import com.epam.ships.communication.api.io.Sender;
 import com.epam.ships.communication.api.conversion.Encoder;
+import com.epam.ships.communication.core.json.conversion.JSONEncoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

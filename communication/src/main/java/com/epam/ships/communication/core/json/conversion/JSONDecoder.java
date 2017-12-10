@@ -1,4 +1,4 @@
-package com.epam.ships.communication.core.json;
+package com.epam.ships.communication.core.json.conversion;
 
 import com.epam.ships.communication.api.Message;
 import com.epam.ships.communication.api.conversion.Decoder;
