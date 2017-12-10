@@ -4,17 +4,29 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+/**
+ * @author Piotr, Magda
+ * @since 2017-12-09
+ *
+ * It starts a communication bus
+ * and receives messages from it.
+ */
 class Game {
+
     private CommunicationBus communicationBus;
 
-    Game(CommunicationBus communicationBus) {
+    Game (CommunicationBus communicationBus) {
         this.communicationBus = communicationBus;
     }
 
+    /**
+     * A draft dummy method used for demo.
+     *
+     * @throws IOException
+     */
     void letsChatALittleBit() throws IOException {
         while (true) {
             JSONObject jsonReceived = communicationBus.receive();
-            System.out.println(jsonReceived);
 
             if (jsonReceived.has("name")) {
                 String name = jsonReceived.get("name").toString();

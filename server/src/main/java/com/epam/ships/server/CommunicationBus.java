@@ -10,10 +10,20 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Piotr, Magda
+ * @since 2017-12-09
+ *
+ * It starts a server, gets its client sockets
+ * and adds them wrapped into own list.
+ */
+
 class CommunicationBus {
 
     private static final Logger logger = LogManager.getLogger(CommunicationBus.class);
+
     private final AppServer appServer;
+
     private List<WrappedClient> clients;
 
     CommunicationBus() throws IOException {
@@ -23,36 +33,26 @@ class CommunicationBus {
     }
 
     void start() throws IOException {
-         appServer.connectClients();
-         for(Socket socketClient : appServer.getClients()){
-             wrapClient(socketClient);
-         }
+        appServer.connectClients();
+        for (Socket socketClient : appServer.getClientSockets()) {
+            wrapClient(socketClient);
+        }
     }
 
-    private void wrapClient(Socket socketClient) throws IOException {
+    private void wrapClient(Socket socketClient) {
         WrappedClient wrappedClient = new WrappedClient(socketClient);
         clients.add(wrappedClient);
     }
 
-    JSONObject receive() {
-        return this.clients.get(0).receive();
-    }
-
-    void closeClient() {
-        System.out.println("close client connetction");
-        clients.get(0).close();
-        clients.remove(0);
-    }
-
-    boolean hasClient() {
-        return !clients.isEmpty();
-    }
-
     void stop() {
-        for(WrappedClient c : clients) {
+        for (WrappedClient c : clients) {
             c.close();
         }
         clients.removeAll(clients);
+    }
+
+    JSONObject receive() {
+        return this.clients.get(0).receive();
     }
 
     public void send(JSONObject response) throws UnsupportedEncodingException {

@@ -9,32 +9,55 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Piotr, Magda
+ * @since 2017-12-09
+ *
+ * It starts a server socket and
+ * accepts two client sockets.
+ */
+
 class AppServer {
 
     private static final Logger logger = LogManager.getLogger(AppServer.class);
 
-    private ServerSocket serverSocket;
-    private List<Socket> clients;
+    private final ServerSocket serverSocket;
 
-    public AppServer(int port) throws IOException {
+    private List<Socket> clientSockets;
+
+    AppServer(int port) throws IOException {
         this.serverSocket = new ServerSocket(port);
     }
 
+    /**
+     * It connects two clients.
+     *
+     * @throws IOException
+     */
     public void connectClients() throws IOException {
-        clients = new ArrayList<>();
-        logger.info("Waiting for a 1 Client... ");
+        clientSockets = new ArrayList<>();
+        logger.info("Waiting for the 1st client... ");
         acceptClient();
-//        logger.info("waiting for a 2 Client...");
-//        acceptClient();
-        logger.info("Clients connected");
+        logger.info("waiting for the 2nd client...");
+        acceptClient();
+        logger.info("Clients are connected");
     }
 
-    public void acceptClient() throws IOException {
+    /**
+     * It accepts a client socket
+     * while storing it in a list.
+     *
+     * @throws IOException
+     */
+    private void acceptClient() throws IOException {
         Socket client = serverSocket.accept();
-        clients.add(client);
+        clientSockets.add(client);
     }
 
-    public List<Socket> getClients() {
-        return clients;
+    /**
+     * @return a list of stored client sockets.
+     */
+    public List<Socket> getClientSockets() {
+        return clientSockets;
     }
 }
