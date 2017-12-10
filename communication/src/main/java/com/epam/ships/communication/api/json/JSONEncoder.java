@@ -13,5 +13,12 @@ import org.json.JSONObject;
  * into JSONObject.
  */
 public interface JSONEncoder {
+
+    /**
+     *
+     * @param message an instance of a class implementing
+     *                Message interface.
+     * @return JSONObject an instance of a JSONObject.
+     */
     JSONObject encode(Message message);
 }

@@ -24,6 +24,15 @@ public class BaseDecoder implements JSONDecoder {
 
     Logger logger = LogManager.getLogger(BaseEncoder.class);
 
+    /**
+     *It converts a JSONObject instance into a BaseMessage
+     *instance.
+     *
+     * @param jsonObject a JSONObject instance representing
+     *                   a BaseMessage.
+     * @return Message a result of conversion of JSONObject
+     * into BaseMessage
+     */
     @Override
     public Message decode(JSONObject jsonObject) {
         ObjectMapper objectMapper = new ObjectMapper();

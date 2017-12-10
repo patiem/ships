@@ -13,5 +13,11 @@ import org.json.JSONObject;
  * instance implementing Message interface.
  */
 public interface JSONDecoder {
+    /**
+     *
+     * @param jsonObject a JSONObject instance
+     * @return Message an instance of a class
+     * implementing Message interface.
+     */
     Message decode(JSONObject jsonObject);
 }

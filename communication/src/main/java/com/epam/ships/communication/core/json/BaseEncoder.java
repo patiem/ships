@@ -22,6 +22,16 @@ public class BaseEncoder implements JSONEncoder {
 
     private static Logger logger = LogManager.getLogger(BaseEncoder.class);
 
+    /**
+     *
+     * It converts an instance of a class implementing
+     * Message interface into a JSONObject instance.
+     *
+     * @param message an instance of a class implementing
+     *                Message interface.
+     * @return a result of conversion of an instance of a class
+     * implementing Message interface into a JSONObject instance.
+     */
     @Override
     public JSONObject encode(Message message) {
         ObjectMapper objectMapper = new ObjectMapper();
