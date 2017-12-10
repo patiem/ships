@@ -1,8 +1,8 @@
-package com.epam.ships.communication.impl.json;
+package com.epam.ships.communication.core.json;
 
 import com.epam.ships.communication.api.json.JSONEncoder;
 import com.epam.ships.communication.api.Message;
-import com.epam.ships.communication.impl.message.MessageBuilder;
+import com.epam.ships.communication.core.message.MessageBuilder;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
 

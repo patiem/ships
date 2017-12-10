@@ -1,4 +1,4 @@
-package com.epam.ships.communication.impl.message;
+package com.epam.ships.communication.core.message;
 
 import com.epam.ships.communication.api.Message;
 
