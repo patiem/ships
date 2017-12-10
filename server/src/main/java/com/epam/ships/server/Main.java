@@ -14,7 +14,6 @@ public class Main {
 
         while (true) {
             communicationBus.start();
-            logger.info("Communication Bus started");
             Game game = new Game(communicationBus);
             game.letsChatALittleBit();
             try {

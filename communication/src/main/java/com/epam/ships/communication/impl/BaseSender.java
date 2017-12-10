@@ -1,6 +1,9 @@
 package com.epam.ships.communication.impl;
 
+import com.epam.ships.communication.api.Message;
 import com.epam.ships.communication.api.Sender;
+import com.epam.ships.communication.api.json.JSONEncoder;
+import com.epam.ships.communication.impl.json.BaseEncoder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
@@ -20,9 +23,14 @@ public class BaseSender implements Sender {
     }
 
     @Override
-    public void send(JSONObject jsonObject) throws UnsupportedEncodingException {
-        PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(outputStream, ENCODING), true);
-        printWriter.println(jsonObject.toString());
-
+    public void send (Message message) {
+        PrintWriter printWriter = null;
+        try {
+            printWriter = new PrintWriter(new OutputStreamWriter(outputStream, ENCODING), true);
+            JSONEncoder jsonEncoder = new BaseEncoder();
+            printWriter.println(jsonEncoder.encode(message));
+        } catch (UnsupportedEncodingException e) {
+            logger.error(e.getMessage());
+        }
     }
 }

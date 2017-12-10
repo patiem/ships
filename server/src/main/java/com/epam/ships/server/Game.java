@@ -1,45 +1,62 @@
 package com.epam.ships.server;
 
-import org.json.JSONObject;
-
-import java.io.IOException;
+import com.epam.ships.communication.api.Message;
+import com.epam.ships.communication.impl.message.MessageBuilder;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Piotr, Magda
  * @since 2017-12-09
- *
+ * <p>
  * It starts a communication bus
  * and receives messages from it.
  */
 class Game {
 
     private CommunicationBus communicationBus;
+    private Logger logger = LogManager.getLogger(Game.class);
 
-    Game (CommunicationBus communicationBus) {
+    Game(CommunicationBus communicationBus) {
         this.communicationBus = communicationBus;
     }
 
     /**
      * A draft dummy method used for demo.
-     *
-     * @throws IOException
      */
-    void letsChatALittleBit() throws IOException {
+    void letsChatALittleBit() {
         while (true) {
-            JSONObject jsonReceived = communicationBus.receive();
 
-            if (jsonReceived.has("name")) {
-                String name = jsonReceived.get("name").toString();
-                JSONObject response = new JSONObject();
-                if (Character.isUpperCase(name.charAt(0))) {
-                    response.put("name", "ok");
+            Message messageReceived = communicationBus.receive();
+
+            logger.info(messageReceived);
+
+            if (StringUtils.isNotEmpty(messageReceived.getAuthor())) {
+                String author = messageReceived.getAuthor();
+
+                MessageBuilder messageBuilder = new MessageBuilder()
+                        .withAuthor("Name Validation")
+                        .withHeader("Server");
+
+                Message message;
+
+                if (Character.isUpperCase(author.charAt(0))) {
+                    message = messageBuilder
+                            .withStatus("OK")
+                            .withStatement("No warnings")
+                            .build();
                 } else {
-                    response.put("error", "name should begin with capital letter");
+                    message = messageBuilder
+                            .withStatus("ERR")
+                            .withStatement("Name should begin with a capital letter")
+                            .build();
                 }
-                communicationBus.send(response);
+
+                communicationBus.send(message);
             }
 
-            if (jsonReceived.has("end") && jsonReceived.getBoolean("end")) {
+            if ("Connection".equals(messageReceived.getHeader()) && "END".equals(messageReceived.getStatus())) {
                 break;
             }
             try {

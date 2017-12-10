@@ -26,6 +26,7 @@ class AppServer {
     private List<Socket> clientSockets;
 
     AppServer(int port) throws IOException {
+        logger.info("Server is up and waiting for clients..");
         this.serverSocket = new ServerSocket(port);
     }
 
@@ -36,10 +37,10 @@ class AppServer {
      */
     public void connectClients() throws IOException {
         clientSockets = new ArrayList<>();
-        logger.info("Waiting for the 1st client... ");
+        logger.info("Waiting for the 1st client.. ");
         acceptClient();
-        logger.info("waiting for the 2nd client...");
-        acceptClient();
+//        logger.info("waiting for the 2nd client..");
+//        acceptClient();
         logger.info("Clients are connected");
     }
 

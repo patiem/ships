@@ -1,15 +1,16 @@
 package com.epam.ships.server;
 
+import com.epam.ships.communication.api.Message;
 import com.epam.ships.communication.api.Receiver;
 import com.epam.ships.communication.api.Sender;
 import com.epam.ships.communication.impl.BaseReceiver;
 import com.epam.ships.communication.impl.BaseSender;
+import com.epam.ships.communication.impl.message.MessageBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 
 class WrappedClient {
@@ -34,13 +35,13 @@ class WrappedClient {
         }
     }
 
-    JSONObject receive() {
+    Message receive() {
         try {
             return this.in.receive();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new JSONObject();
+        return new MessageBuilder().build();
     }
 
     void close() {
@@ -51,7 +52,7 @@ class WrappedClient {
         }
     }
 
-    public void send(JSONObject response) throws UnsupportedEncodingException {
-        this.out.send(response);
+    public void send(Message message) {
+        this.out.send(message);
     }
 }

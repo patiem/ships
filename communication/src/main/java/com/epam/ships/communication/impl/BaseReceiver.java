@@ -1,6 +1,10 @@
 package com.epam.ships.communication.impl;
 
+import com.epam.ships.communication.api.Message;
 import com.epam.ships.communication.api.Receiver;
+import com.epam.ships.communication.api.json.JSONDecoder;
+import com.epam.ships.communication.impl.json.BaseDecoder;
+import com.epam.ships.communication.impl.message.MessageBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
@@ -13,8 +17,6 @@ import java.util.Scanner;
 
 public class BaseReceiver implements Receiver {
 
-    private static Logger logger = LogManager.getLogger(BaseReceiver.class);
-
     private final InputStream inputStream;
 
     public BaseReceiver(InputStream inputStream) {
@@ -22,16 +24,21 @@ public class BaseReceiver implements Receiver {
     }
 
     @Override
-    public JSONObject receive() throws IOException {
-
+    public Message receive() {
         Scanner scanner = new Scanner(inputStream, "UTF-8");
-        String message = "";
+        StringBuilder stringBuilder = new StringBuilder();
         if(scanner.hasNextLine()) {
-            message= scanner.nextLine();
+            stringBuilder.append(scanner.nextLine());
         }
         else {
-            message = "{end:true}";
+            return new MessageBuilder()
+                    .withHeader("Connection")
+                    .withStatus("END")
+                    .withAuthor("Auto")
+                    .withStatement("End of a message")
+                    .build();
         }
-        return new JSONObject(message);
+        JSONDecoder baseDecoder = new BaseDecoder();
+        return baseDecoder.decode(new JSONObject(stringBuilder.toString()));
     }
 }

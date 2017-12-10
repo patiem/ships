@@ -5,5 +5,5 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 
 public interface Sender {
-    void send(JSONObject jsonObject) throws UnsupportedEncodingException;
+    void send(Message message);
 }

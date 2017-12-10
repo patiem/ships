@@ -1,5 +1,6 @@
 package com.epam.ships.server;
 
+import com.epam.ships.communication.api.Message;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
@@ -29,7 +30,6 @@ class CommunicationBus {
     CommunicationBus() throws IOException {
         appServer = new AppServer(8189);
         clients = new ArrayList<>();
-        logger.info("Server is up and connectClients.");
     }
 
     void start() throws IOException {
@@ -37,6 +37,7 @@ class CommunicationBus {
         for (Socket socketClient : appServer.getClientSockets()) {
             wrapClient(socketClient);
         }
+        logger.info("Communication bus started..");
     }
 
     private void wrapClient(Socket socketClient) {
@@ -51,11 +52,11 @@ class CommunicationBus {
         clients.removeAll(clients);
     }
 
-    JSONObject receive() {
+    Message receive() {
         return this.clients.get(0).receive();
     }
 
-    public void send(JSONObject response) throws UnsupportedEncodingException {
+    public void send(Message response) {
         this.clients.get(0).send(response);
     }
 }
