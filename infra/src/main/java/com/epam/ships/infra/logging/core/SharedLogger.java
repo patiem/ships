@@ -41,7 +41,7 @@ public class SharedLogger implements Target {
      */
     @Override
     public void info(final Object message) {
-        this.logger.info(this.clazz.getSimpleName() + ": " + message);
+        this.logger.info(this.prepareMessage(message));
     }
 
     /**
@@ -57,6 +57,10 @@ public class SharedLogger implements Target {
      */
     @Override
     public void error(final Object message) {
-        this.logger.error(message);
+        this.logger.error(this.prepareMessage(message));
+    }
+
+    private String prepareMessage(Object message) {
+        return this.clazz.getSimpleName() + ": " + message;
     }
 }
