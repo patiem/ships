@@ -1,7 +1,7 @@
 package com.epam.ships.server;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -19,7 +19,7 @@ import java.util.List;
 
 class AppServer {
 
-    private static final Logger logger = LogManager.getLogger(AppServer.class);
+    private final Target logger = new SharedLogger(AppServer.class);
 
     private final ServerSocket serverSocket;
 
@@ -39,7 +39,7 @@ class AppServer {
         clientSockets = new ArrayList<>();
         logger.info("Waiting for the 1st client.. ");
         acceptClient();
-//        logger.info("waiting for the 2nd client..");
+//        logging.info("waiting for the 2nd client..");
 //        acceptClient();
         logger.info("Clients are connected");
     }

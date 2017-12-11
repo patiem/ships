@@ -1,12 +1,10 @@
 package com.epam.ships.server;
 
-import com.epam.ships.communication.api.Message;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
+import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,7 @@ import java.util.List;
 
 class CommunicationBus {
 
-    private static final Logger logger = LogManager.getLogger(CommunicationBus.class);
+    private final Target logger = new SharedLogger(CommunicationBus.class);
 
     private final AppServer appServer;
 

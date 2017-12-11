@@ -33,7 +33,7 @@
     <modules>
         <module>client</module>
         <module>server</module>
-        <module>communication</module>
+        <module>infra</module>
     </modules>
 
     <properties>
@@ -86,6 +86,7 @@
         <commonsLang3Version>3.7</commonsLang3Version>
         <orgJsonVersion>20171018</orgJsonVersion>
         <commonsIoVersion>2.5</commonsIoVersion>
+        <jacksonVersion>2.9.3</jacksonVersion>
     </properties>
 
     <dependencyManagement>
@@ -93,7 +94,7 @@
             <!--Communication-->
             <dependency>
                 <groupId>com.epam.ships</groupId>
-                <artifactId>communication</artifactId>
+                <artifactId>infra</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Testing-->
@@ -107,17 +108,22 @@
                 <artifactId>mockito-core</artifactId>
                 <version>${mockitoVersion}</version>
             </dependency>
-            <!--Utils-->
+            <!--Else-->
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commonsLang3Version}</version>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/org.json/json -->
+            <!--JSON-->
             <dependency>
                 <groupId>org.json</groupId>
                 <artifactId>json</artifactId>
                 <version>${orgJsonVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jacksonVersion}</version>
             </dependency>
             <!--Logging-->
             <dependency>
@@ -129,12 +135,6 @@
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-core</artifactId>
                 <version>${log4jVersion}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.9.3</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

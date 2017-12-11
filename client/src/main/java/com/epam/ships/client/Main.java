@@ -1,20 +1,20 @@
 package com.epam.ships.client;
 
-import com.epam.ships.communication.api.Message;
-import com.epam.ships.communication.api.io.Receiver;
-import com.epam.ships.communication.api.io.Sender;
-import com.epam.ships.communication.core.json.io.JSONReceiver;
-import com.epam.ships.communication.core.json.io.JSONSender;
-import com.epam.ships.communication.core.message.MessageBuilder;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.communication.api.io.Receiver;
+import com.epam.ships.infra.communication.api.io.Sender;
+import com.epam.ships.infra.communication.core.json.io.JSONReceiver;
+import com.epam.ships.infra.communication.core.json.io.JSONSender;
+import com.epam.ships.infra.communication.core.message.MessageBuilder;
+import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
 import java.net.Socket;
 
 public class Main {
 
-    private static final Logger logger = LogManager.getLogger(Main.class);
+    private final static Target logger = new SharedLogger(Main.class);
 
     private final static String IP_ADDRESS = "127.0.0.1";
 

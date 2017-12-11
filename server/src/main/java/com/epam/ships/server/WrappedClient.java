@@ -1,20 +1,20 @@
 package com.epam.ships.server;
 
-import com.epam.ships.communication.api.Message;
-import com.epam.ships.communication.api.io.Receiver;
-import com.epam.ships.communication.api.io.Sender;
-import com.epam.ships.communication.core.json.io.JSONReceiver;
-import com.epam.ships.communication.core.json.io.JSONSender;
-import com.epam.ships.communication.core.message.MessageBuilder;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.communication.api.io.Receiver;
+import com.epam.ships.infra.communication.api.io.Sender;
+import com.epam.ships.infra.communication.core.json.io.JSONReceiver;
+import com.epam.ships.infra.communication.core.json.io.JSONSender;
+import com.epam.ships.infra.communication.core.message.MessageBuilder;
+import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
 import java.net.Socket;
 
 class WrappedClient {
 
-    private static Logger logger = LogManager.getLogger(WrappedClient.class);
+    private final Target logger = new SharedLogger(this.getClass());
 
     private final Socket socket;
     private Sender out;

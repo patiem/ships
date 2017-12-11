@@ -1,10 +1,10 @@
 package com.epam.ships.server;
 
-import com.epam.ships.communication.api.Message;
-import com.epam.ships.communication.core.message.MessageBuilder;
+import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.communication.core.message.MessageBuilder;
+import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.infra.logging.core.SharedLogger;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
  * @author Piotr, Magda
@@ -16,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 class Game {
 
     private CommunicationBus communicationBus;
-    private Logger logger = LogManager.getLogger(Game.class);
+    private final Target logger = new SharedLogger(Game.class);
 
     Game(CommunicationBus communicationBus) {
         this.communicationBus = communicationBus;

@@ -1,0 +1,16 @@
+<configuration>
+    <appenders>
+        <File name="A1" fileName="report-generator.log" append="false">
+            <PatternLayout pattern="%d %-5p - %m%n"/>
+        </File>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d %-5p - %m%n"/>
+        </Console>
+    </appenders>
+    <loggers>
+        <root level="debug">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="A1"/>
+        </root>
+    </loggers>
+</configuration>
