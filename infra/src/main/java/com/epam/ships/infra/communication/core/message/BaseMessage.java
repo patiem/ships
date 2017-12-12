@@ -6,14 +6,13 @@ import java.util.Objects;
 
 /**
  * @author Sandor
- * @since 2017-12-10
  * @see MessageBuilder
  * @see Message
- *
+ * <p>
  * Value-object used as a communication mean.
- *
+ * <p>
  * Setters are only available to MessageBuilder.
- *
+ * @since 2017-12-10
  */
 
 public class BaseMessage implements Message {
@@ -31,7 +30,6 @@ public class BaseMessage implements Message {
     }
 
     /**
-     *
      * @return header String value.
      */
     public final String getHeader() {
@@ -39,7 +37,6 @@ public class BaseMessage implements Message {
     }
 
     /**
-     *
      * @return status String value.
      */
     public final String getStatus() {
@@ -47,7 +44,6 @@ public class BaseMessage implements Message {
     }
 
     /**
-     *
      * @return author String value.
      */
     public final String getAuthor() {
@@ -55,7 +51,6 @@ public class BaseMessage implements Message {
     }
 
     /**
-     *
      * @return statement String value.
      */
     public final String getStatement() {
@@ -64,6 +59,7 @@ public class BaseMessage implements Message {
 
     /**
      * It has to be exclusively used by MessageBuilder.
+     *
      * @param header String value.
      */
     void setHeader(String header) {
@@ -72,6 +68,7 @@ public class BaseMessage implements Message {
 
     /**
      * It has to be exclusively used by MessageBuilder.
+     *
      * @param status String value.
      */
     void setStatus(String status) {
@@ -80,6 +77,7 @@ public class BaseMessage implements Message {
 
     /**
      * It has to be exclusively used by MessageBuilder.
+     *
      * @param author String value.
      */
     void setAuthor(String author) {
@@ -88,6 +86,7 @@ public class BaseMessage implements Message {
 
     /**
      * It has to be exclusively used by MessageBuilder.
+     *
      * @param statement String value.
      */
     void setStatement(String statement) {

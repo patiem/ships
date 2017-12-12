@@ -5,14 +5,14 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Sandor
- * @since 2017-12-10
  * @see BaseMessage
  * @see Message
- *
+ * <p>
  * It builds a message with given or/and
  * default values.
  * Along with Message interface it allows
  * to encapsulate BaseMessage class.
+ * @since 2017-12-10
  */
 
 public class MessageBuilder {
@@ -38,7 +38,6 @@ public class MessageBuilder {
     }
 
     /**
-     *
      * @param header String value.
      * @return a chain instance of MessageBuilder.
      */
@@ -48,7 +47,6 @@ public class MessageBuilder {
     }
 
     /**
-     *
      * @param status String value.
      * @return a chain instance of MessageBuilder.
      */
@@ -58,7 +56,6 @@ public class MessageBuilder {
     }
 
     /**
-     *
      * @param author String value.
      * @return a chain instance of MessageBuilder.
      */
@@ -68,7 +65,6 @@ public class MessageBuilder {
     }
 
     /**
-     *
      * @param statement a String value.
      * @return a chain instance of MessageBuilder.
      */

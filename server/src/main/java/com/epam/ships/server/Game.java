@@ -26,7 +26,8 @@ class Game {
      * A draft dummy method used for demo.
      */
     void letsChatALittleBit() {
-        while (true) {
+        boolean flag = true;
+        while (flag) {
 
             Message messageReceived = communicationBus.receive();
 
@@ -57,12 +58,12 @@ class Game {
             }
 
             if ("Connection".equals(messageReceived.getHeader()) && "END".equals(messageReceived.getStatus())) {
-                break;
+                flag = false;
             }
             try {
                 Thread.sleep(250);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
             }
         }
     }

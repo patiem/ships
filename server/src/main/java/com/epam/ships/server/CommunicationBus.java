@@ -20,13 +20,13 @@ import java.util.List;
 class CommunicationBus {
 
     private final Target logger = new SharedLogger(CommunicationBus.class);
-
+    private static final int SERVER_PORT = 8189;
     private final AppServer appServer;
 
     private List<WrappedClient> clients;
 
     CommunicationBus() throws IOException {
-        appServer = new AppServer(8189);
+        appServer = new AppServer(SERVER_PORT);
         clients = new ArrayList<>();
     }
 

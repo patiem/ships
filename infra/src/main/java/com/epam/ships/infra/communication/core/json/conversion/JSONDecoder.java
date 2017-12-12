@@ -16,7 +16,7 @@ import java.io.IOException;
  * @see Decoder
  * @see BaseMessage
  * @see Message
- *
+ * <p>
  * It converts a JSONObject into a BaseMessage instance.
  * @since 2017-12-10
  */

@@ -12,14 +12,14 @@ import java.util.Scanner;
 
 /**
  * @author Piotr, Magda, Sandor
- * @since 2017-12-07
  * @see Receiver
  * @see JSONReceiver
  * @see Decoder
  * @see JSONDecoder
  * @see Message
- *
+ * <p>
  * It receives a message from an input stream.
+ * @since 2017-12-07
  */
 
 public class JSONReceiver implements Receiver {
@@ -27,7 +27,6 @@ public class JSONReceiver implements Receiver {
     private final InputStream inputStream;
 
     /**
-     *
      * @param inputStream it will read from this stream.
      */
     public JSONReceiver(InputStream inputStream) {
@@ -35,10 +34,9 @@ public class JSONReceiver implements Receiver {
     }
 
     /**
-     *
      * It reads from input stream, coverts it first
      * to a JSONObject and the to a Message.
-     *
+     * <p>
      * If there is nothing to read from an input stream,
      * it returns an corresponding Message as well.
      *
@@ -48,10 +46,9 @@ public class JSONReceiver implements Receiver {
     public Message receive() {
         Scanner scanner = new Scanner(inputStream, "UTF-8");
         StringBuilder stringBuilder = new StringBuilder();
-        if(scanner.hasNextLine()) {
+        if (scanner.hasNextLine()) {
             stringBuilder.append(scanner.nextLine());
-        }
-        else {
+        } else {
             return new MessageBuilder()
                     .withHeader("Connection")
                     .withStatus("END")

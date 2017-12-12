@@ -4,11 +4,11 @@ import com.epam.ships.infra.communication.api.Message;
 
 /**
  * @author Piotr, Magda, Sandor
- * @since 2017-12-07
  * @see Message
- *
+ * <p>
  * An implementing class sends an instance of
  * a class implementing Message interface.
+ * @since 2017-12-07
  */
 public interface Sender {
     void send(Message message);

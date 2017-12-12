@@ -14,14 +14,14 @@ import java.io.UnsupportedEncodingException;
 
 /**
  * @author Piotr, Magda, Sandor
- * @since 2017-12-07
  * @see Sender
  * @see JSONSender
  * @see Encoder
  * @see JSONEncoder
  * @see Message
- *
+ * <p>
  * It sends a message to an output stream.
+ * @since 2017-12-07
  */
 
 public class JSONSender implements Sender {
@@ -33,7 +33,6 @@ public class JSONSender implements Sender {
     private final OutputStream outputStream;
 
     /**
-     *
      * @param outputStream it will write to this stream.
      */
     public JSONSender(OutputStream outputStream) {
@@ -41,7 +40,6 @@ public class JSONSender implements Sender {
     }
 
     /**
-     *
      * It converts a message into a JSONObject,
      * and then sends it to an output stream.
      *

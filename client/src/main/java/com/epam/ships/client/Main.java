@@ -12,6 +12,12 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ * @author Piotr, Magda, Sandor
+ * @since 2017-12-09
+ *
+ */
+
 public class Main {
 
     private final static Target logger = new SharedLogger(Main.class);
@@ -28,7 +34,7 @@ public class Main {
 
             Sender sender = new JSONSender(socket.getOutputStream());
 
-            //Imitating the 1st client
+            //First Message
 
             Message firstMessage = new MessageBuilder()
                     .withHeader("Connection")
@@ -44,7 +50,7 @@ public class Main {
 
             Thread.sleep(300);
 
-            //Imitating the 2nd client
+            //Second message
 
             Message secondMessage = new MessageBuilder()
                     .withHeader("Connection")
@@ -56,12 +62,13 @@ public class Main {
 
             logger.info(receiver.receive());
 
-            while(true) {
+            boolean flag = true;
+            while(flag) {
                 Thread.sleep(300);
             }
 
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 }

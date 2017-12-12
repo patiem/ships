@@ -21,7 +21,7 @@ class WrappedClient {
     private Receiver in;
 
     WrappedClient(Socket socketClient) {
-        socket = socketClient;
+        this.socket = socketClient;
         this.setUpIO();
     }
 
@@ -38,7 +38,7 @@ class WrappedClient {
         try {
             return this.in.receive();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return new MessageBuilder().build();
     }

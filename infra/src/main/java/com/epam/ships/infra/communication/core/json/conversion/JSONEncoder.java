@@ -11,19 +11,18 @@ import org.json.JSONObject;
 
 /**
  * @author Sandor
- * @since 2017-12-10
  * @see Encoder
  * @see Message
  * @see BaseMessage
- *
+ * <p>
  * It converts a BaseMessage instance into a JSONObject.
+ * @since 2017-12-10
  */
 public class JSONEncoder implements Encoder<JSONObject> {
 
     private final Target logger = new SharedLogger(JSONEncoder.class);
 
     /**
-     *
      * It converts an instance of a class implementing
      * Message interface into a JSONObject instance.
      *
