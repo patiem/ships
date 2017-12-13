@@ -4,8 +4,6 @@ echo ""
 echo "<<< AUTO SUMMARY >>>"
 echo ""
 
-jshell packages.jsh --feedback concise
-
 # Go to the root directory and switch to master branch quietly
 cd ..
 git checkout master --quiet
