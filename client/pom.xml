@@ -18,16 +18,11 @@
     </parent>
 
     <dependencies>
-        <!--Logging-->
+        <!--Communication-->
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>${log4jVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4jVersion}</version>
+            <groupId>com.epam.ships</groupId>
+            <artifactId>infra</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <!--Testing-->
         <dependency>
@@ -38,6 +33,8 @@
         </dependency>
     </dependencies>
 
+    <!--Maven Shade Plug-in is used instead of Maven Jar Plug-in
+     in order to include Target into JAR file-->
     <build>
         <plugins>
             <plugin>
