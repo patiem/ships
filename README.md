@@ -1,6 +1,11 @@
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/korotkevics/ships.svg?columns=all)](https://waffle.io/korotkevics/ships)
 [![Build Status](https://travis-ci.org/korotkevics/ships.svg?branch=int)](https://travis-ci.org/korotkevics/ships)
 
+
+### Awards
+
+ * **2017-12-08**: we received two awards since Magda & Piotr wrote scripts allowing to clone our repo into a given folder. 
+
 ## Project ships
 
 On-line battleships game. Guessing game for 2 players with simple GUI.
@@ -62,7 +67,7 @@ Stable release branch is 'master'. See 'Code Quality & Team Setup'.
  * Piotr Czyż
 
  * Magdalena Aarsman
-
+ 
 ### Non-functional Specs
 
     - It must work: if one cannot play, it doesn't work.
