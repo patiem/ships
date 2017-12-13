@@ -21,11 +21,13 @@ class Game {
     Game(CommunicationBus communicationBus) {
         this.communicationBus = communicationBus;
     }
-
+    
+    
     /**
      * A draft dummy method used for demo.
      */
     void letsChatALittleBit() {
+    
         boolean flag = true;
         while (flag) {
 
