@@ -1,4 +1,4 @@
-package com.epam.ships.client;
+package com.epam.ships.client.gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
