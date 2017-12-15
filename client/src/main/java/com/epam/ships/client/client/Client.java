@@ -10,26 +10,56 @@ import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.UnknownHostException;
 
 public class Client implements Runnable {
-    private final String ipAddress;
-    private final int port;
-    //private final Socket clientSocket;
+    private String ipAddress;
+    private int port;
+    private final Socket clientSocket;
 
     private static final Target logger = new SharedLogger(Client.class);
 
-    public Client(String ipAddress, int port) {
+    public Client() {
+        this.clientSocket = new Socket();
+    }
+
+    public boolean connect(String ipAddress, int port) {
         this.ipAddress = ipAddress;
         this.port = port;
-        //this.clientSocket = new Socket();
+
+        InetAddress address = null;
+
+        try {
+            address = InetAddress.getByName(this.ipAddress);
+        } catch (UnknownHostException e) {
+            logger.error(e.getMessage());
+            return false;
+        }
+
+        try {
+            clientSocket.connect(new InetSocketAddress(address, this.port));
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
     public void run() {
-        try (Socket socket = new Socket(ipAddress, port)) {
-            Sender sender = new JSONSender(socket.getOutputStream());
+        Sender sender = null;
+        try {
+            sender = new JSONSender(clientSocket.getOutputStream());
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            //TODO: handle
+        }
 
-            //First Message
+        //First Message
             Message firstMessage = new MessageBuilder()
                     .withHeader("Connection")
                     .withStatus("OK")
@@ -37,11 +67,23 @@ public class Client implements Runnable {
                     .withStatement("Hey, it's Magda :-)")
                     .build();
             sender.send(firstMessage);
-            Receiver receiver = new JSONReceiver(socket.getInputStream());
-            logger.info(receiver.receive());
-            Thread.sleep(300);
+        Receiver receiver = null;
 
-            //Second message
+        try {
+            receiver = new JSONReceiver(clientSocket.getInputStream());
+            logger.info(receiver.receive());
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            logger.error(e.getMessage());
+            //TODO: handle
+        }
+
+        //Second message
             Message secondMessage = new MessageBuilder()
                     .withHeader("Connection")
                     .withStatus("OK")
@@ -50,17 +92,21 @@ public class Client implements Runnable {
                     .build();
             sender.send(secondMessage);
 
+        try {
             logger.info(receiver.receive());
-
-            boolean flag = true;
-            while(flag) {
-                Thread.sleep(300);
-            }
-
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             logger.error(e.getMessage());
+            //TODO: handle
+        }
+
+        boolean flag = true;
+        while(flag) {
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                logger.error(e.getMessage());
+                //TODO: handle
+            }
         }
     }
-
-
 }

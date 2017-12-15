@@ -1,14 +1,19 @@
 package com.epam.ships.client.gui;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class StartWindowController {
+
+    private static final Target logger = new SharedLogger(Client.class);
 
     @FXML
     private GridPane gridPane;
@@ -31,6 +36,8 @@ public class StartWindowController {
     @FXML
     private TextField tServerPort;
 
+    private Client client;
+
     @FXML
     private void onConnectPressed() {
         final double imageCapacity = 0.4;
@@ -42,14 +49,23 @@ public class StartWindowController {
         vbWheel.setVisible(true);
 
         String serverAddress = tServerAddress.getText();
-        System.out.println("server address: " + serverAddress);
+
+        logger.info("server address: " + serverAddress);
 
         int serverPort = Integer.parseInt(tServerPort.getText());
 
-        System.out.println("server port: " + serverPort);
+        logger.info("server port: " + serverPort);
 
-        Client client = new Client(serverAddress, serverPort);
+        //TODO:check if client != null
+
+        client.connect(serverAddress, serverPort);
         Thread clientThread = new Thread(client);
         clientThread.start();
+    }
+
+    void initialize(ImageView imPolandFlag, ImageView imEnglandFlag, Client client) {
+        this.imPolandFlag = imPolandFlag;
+        this.imEnglandFlag = imEnglandFlag;
+        this.client = client;
     }
 }
