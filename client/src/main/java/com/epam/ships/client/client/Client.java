@@ -41,6 +41,7 @@ public class Client implements Runnable {
     }
 
     public void run() {
+        final int sleepTimeMs = 300;
         try {
             Sender sender = new JSONSender(clientSocket.getOutputStream());
             //First Message
@@ -55,7 +56,7 @@ public class Client implements Runnable {
             Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
             logger.info(receiver.receive());
 
-            Thread.sleep(300);
+            Thread.sleep(sleepTimeMs);
 
             //Second message
             Message secondMessage = new MessageBuilder()
@@ -77,7 +78,7 @@ public class Client implements Runnable {
 
         while(flag) {
             try {
-                Thread.sleep(300);
+                Thread.sleep(sleepTimeMs);
             } catch (InterruptedException e) {
                 logger.error(e.getMessage());
                 //TODO: handle
