@@ -18,7 +18,6 @@ import java.net.UnknownHostException;
 
 public class Client implements Runnable {
     private final Socket clientSocket;
-
     private static final Target logger = new SharedLogger(Client.class);
 
     public Client() {
@@ -41,39 +40,32 @@ public class Client implements Runnable {
     }
 
     public void run() {
-        final int sleepTimeMs = 300;
         try {
             Sender sender = new JSONSender(clientSocket.getOutputStream());
-            //First Message
-            Message firstMessage = new MessageBuilder()
-                    .withHeader("Connection")
-                    .withStatus("OK")
-                    .withAuthor("Magda")
-                    .withStatement("Hey, it's Magda :-)")
-                    .build();
+
+            Message firstMessage = getMessage("Connection", "OK",
+                    "Magda", "Hey, it's Magda :)");
             sender.send(firstMessage);
 
             Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
             logger.info(receiver.receive());
 
-            Thread.sleep(sleepTimeMs);
-
-            //Second message
-            Message secondMessage = new MessageBuilder()
-                    .withHeader("Connection")
-                    .withStatus("OK")
-                    .withAuthor("piotr")
-                    .withStatement("Hey, it's Piotr :-)")
-                    .build();
+            Message secondMessage = getMessage("Connection", "OK",
+                    "piotr", "Hey, it's Piotr :)");
             sender.send(secondMessage);
 
             logger.info(receiver.receive());
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             logger.error(e.getMessage());
             //TODO: handle
         }
 
+        endLoop();
+    }
+
+    private void endLoop() {
+        final int sleepTimeMs = 300;
         boolean flag = true;
 
         while(flag) {
@@ -84,5 +76,14 @@ public class Client implements Runnable {
                 //TODO: handle
             }
         }
+    }
+
+    private Message getMessage(final String header, final String status, final String author, final String statement) {
+        return new MessageBuilder()
+                        .withHeader(header)
+                        .withStatus(status)
+                        .withAuthor(author)
+                        .withStatement(statement)
+                        .build();
     }
 }

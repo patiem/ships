@@ -5,9 +5,7 @@ import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -21,14 +19,10 @@ public class StartWindowController {
 
     private static final Target logger = new SharedLogger(Client.class);
 
+    private Client client;
+
     @FXML
     private GridPane gridPane;
-
-    @FXML
-    private ImageView imPolandFlag;
-
-    @FXML
-    private ImageView imEnglandFlag;
 
     @FXML
     private ImageView imCannon;
@@ -42,20 +36,16 @@ public class StartWindowController {
     @FXML
     private TextField tServerPort;
 
-    private Client client;
-
     @FXML
     private AnchorPane mainAnchorPane;
 
+    void initialize(final Client client) {
+        this.client = client;
+    }
+
     @FXML
     private void onConnectPressed() {
-        final double imageCapacity = 0.4;
-
-        gridPane.setDisable(true);
-        imPolandFlag.setOpacity(imageCapacity);
-        imEnglandFlag.setOpacity(imageCapacity);
-        imCannon.setOpacity(imageCapacity);
-        vbWheel.setVisible(true);
+        showLoadingWheel();
 
         final String serverAddress = tServerAddress.getText();
 
@@ -71,28 +61,35 @@ public class StartWindowController {
         final boolean isConnect = client.connect(serverAddress, serverPort);
 
         if(!isConnect) {
-            try {
-                String serverNotRespondingURL = "/fxml/serverNotResponse.fxml";
-                FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource(serverNotRespondingURL));
-                Parent notResponse = notResponseLoader.load();
-                Pane mainPane = (Pane) mainAnchorPane.getParent();
-
-                mainPane.getChildren().clear();
-                mainPane.getChildren().setAll(notResponse);
-
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-                //TODO: handle
-            }
+            loadServerNotResponseView();
         } else {
             Thread clientThread = new Thread(client);
             clientThread.start();
         }
     }
 
-    void initialize(final ImageView imPolandFlag, final ImageView imEnglandFlag, final Client client) {
-        this.imPolandFlag = imPolandFlag;
-        this.imEnglandFlag = imEnglandFlag;
-        this.client = client;
+    private void showLoadingWheel() {
+        final double opacity = 0.4;
+
+        gridPane.setDisable(true);
+        gridPane.setOpacity(opacity);
+        imCannon.setOpacity(opacity);
+        vbWheel.setVisible(true);
+    }
+
+    private void loadServerNotResponseView() {
+        try {
+            String serverNotRespondingURL = "/fxml/serverNotResponse.fxml";
+            FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource(serverNotRespondingURL));
+            Parent notResponse = notResponseLoader.load();
+            Pane mainPane = (Pane) mainAnchorPane.getParent();
+
+            mainPane.getChildren().clear();
+            mainPane.getChildren().setAll(notResponse);
+
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+            //TODO: handle
+        }
     }
 }

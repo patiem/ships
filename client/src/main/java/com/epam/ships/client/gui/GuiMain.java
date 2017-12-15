@@ -14,9 +14,8 @@ public class GuiMain extends Application {
         final String fxmlMainWindowPath = "/fxml/root.fxml";
         final String windowTitle = "Battleships";
         final Client client = new Client();
-
-        int sceneWidth = 600;
-        int sceneHeight = 400;
+        final int sceneWidth = 600;
+        final int sceneHeight = 400;
 
         FXMLLoader rootLoader = new FXMLLoader(getClass().getResource(fxmlMainWindowPath));
         Parent root = rootLoader.load();
@@ -26,7 +25,7 @@ public class GuiMain extends Application {
         primaryStage.setTitle(windowTitle);
         primaryStage.setScene(new Scene(root, sceneWidth, sceneHeight));
         primaryStage.setResizable(false);
-        
         primaryStage.show();
     }
+
 }
