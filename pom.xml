@@ -64,6 +64,7 @@
         <orgJsonVersion>20171018</orgJsonVersion>
         <commonsIoVersion>2.5</commonsIoVersion>
         <jacksonVersion>2.9.3</jacksonVersion>
+        <lombokVersion>1.16.18</lombokVersion>
     </properties>
 
     <dependencyManagement>
@@ -112,6 +113,12 @@
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-core</artifactId>
                 <version>${log4jVersion}</version>
+            </dependency>
+            <!--Lombok-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombokVersion}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

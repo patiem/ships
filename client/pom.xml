@@ -31,6 +31,12 @@
             <scope>test</scope>
             <version>${testngVersion}</version>
         </dependency>
+        <!--Lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombokVersion}</version>
+            <scope>provided</scope> </dependency>
     </dependencies>
 
     <!--Maven Shade Plug-in is used instead of Maven Jar Plug-in
