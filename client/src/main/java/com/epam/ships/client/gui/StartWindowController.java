@@ -4,12 +4,18 @@ import com.epam.ships.client.client.Client;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 public class StartWindowController {
 
@@ -39,6 +45,9 @@ public class StartWindowController {
     private Client client;
 
     @FXML
+    private AnchorPane mainAnchorPane;
+
+    @FXML
     private void onConnectPressed() {
         final double imageCapacity = 0.4;
 
@@ -58,9 +67,25 @@ public class StartWindowController {
 
         //TODO:check if client != null
 
-        client.connect(serverAddress, serverPort);
-        Thread clientThread = new Thread(client);
-        clientThread.start();
+        boolean isConnect = client.connect(serverAddress, serverPort);
+
+        if(!isConnect) {
+            try {
+                String serverNotRespondingURL = "/fxml/serverNotResponse.fxml";
+                FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource(serverNotRespondingURL));
+                Parent notResponse = notResponseLoader.load();
+                Pane mainPane = (Pane) mainAnchorPane.getParent();
+
+                mainPane.getChildren().clear();
+                mainPane.getChildren().setAll(notResponse);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Thread clientThread = new Thread(client);
+            clientThread.start();
+        }
     }
 
     void initialize(ImageView imPolandFlag, ImageView imEnglandFlag, Client client) {

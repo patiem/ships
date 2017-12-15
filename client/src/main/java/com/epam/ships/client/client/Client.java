@@ -45,6 +45,9 @@ public class Client implements Runnable {
         } catch (IOException e) {
             logger.error(e.getMessage());
             return false;
+        } catch (IllegalArgumentException e) {
+            logger.error(e.getMessage());
+            return false;
         }
 
         return true;
