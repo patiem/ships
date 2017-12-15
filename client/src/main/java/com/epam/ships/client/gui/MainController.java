@@ -27,11 +27,11 @@ public class MainController {
 
     @FXML
     void initialize(final Client client) {
-        String connectWindowURL = "/fxml/connectWindow.fxml";
+        final String connectWindowURL = "/fxml/connectWindow.fxml";
 
         try {
-            FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowURL));
-            Parent connect = connectLoader.load();
+            final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowURL));
+            final Parent connect = connectLoader.load();
             StartWindowController startWindowController = connectLoader.getController();
             startWindowController.initialize(imPolandFlag, imEnglandFlag, client);
 

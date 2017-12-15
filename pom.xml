@@ -64,7 +64,7 @@
         <orgJsonVersion>20171018</orgJsonVersion>
         <commonsIoVersion>2.5</commonsIoVersion>
         <jacksonVersion>2.9.3</jacksonVersion>
-        <lombokVersion>1.16.16</lombokVersion>
+        <lombokVersion>1.16.18</lombokVersion>
     </properties>
 
     <dependencyManagement>

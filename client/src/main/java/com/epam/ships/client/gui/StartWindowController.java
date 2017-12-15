@@ -57,17 +57,18 @@ public class StartWindowController {
         imCannon.setOpacity(imageCapacity);
         vbWheel.setVisible(true);
 
-        String serverAddress = tServerAddress.getText();
+        final String serverAddress = tServerAddress.getText();
 
         logger.info("server address: " + serverAddress);
 
-        int serverPort = Integer.parseInt(tServerPort.getText());
+        final int serverPort = Integer.valueOf(tServerPort.getText());
+        //TODO: check
 
         logger.info("server port: " + serverPort);
 
         //TODO:check if client != null
 
-        boolean isConnect = client.connect(serverAddress, serverPort);
+        final boolean isConnect = client.connect(serverAddress, serverPort);
 
         if(!isConnect) {
             try {
@@ -80,7 +81,8 @@ public class StartWindowController {
                 mainPane.getChildren().setAll(notResponse);
 
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error(e.getMessage());
+                //TODO: handle
             }
         } else {
             Thread clientThread = new Thread(client);
@@ -88,7 +90,7 @@ public class StartWindowController {
         }
     }
 
-    void initialize(ImageView imPolandFlag, ImageView imEnglandFlag, Client client) {
+    void initialize(final ImageView imPolandFlag, final ImageView imEnglandFlag, final Client client) {
         this.imPolandFlag = imPolandFlag;
         this.imEnglandFlag = imEnglandFlag;
         this.client = client;
