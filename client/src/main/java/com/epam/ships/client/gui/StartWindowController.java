@@ -6,7 +6,6 @@ import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -58,20 +57,20 @@ public class StartWindowController {
         portValidator = new PortValidator();
     }
 
-    private boolean getClient() {
+    private void initializeClient() {
         MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
         this.client = mainController.getClient();
         if(client == null) {
-            logger.error("client is not initialized!");
-            return false;
+            throw new IllegalStateException("client is not initialized!");
         }
-
-        return true;
     }
 
     @FXML
     private void onConnectPressed() {
-        if (!getClient()) {
+        try {
+            initializeClient();
+        } catch (IllegalStateException e) {
+            logger.error(e.getMessage());
             return;
         }
 
@@ -110,10 +109,10 @@ public class StartWindowController {
 
     private void loadServerNotResponseView() {
         try {
-            String serverNotRespondingURL = "/fxml/serverNotResponding.fxml";
-            FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource(serverNotRespondingURL));
-            Parent notResponse = notResponseLoader.load();
-            Pane mainPane = (Pane) mainAnchorPane.getParent();
+            final String serverNotRespondingURL = "/fxml/serverNotResponding.fxml";
+            final FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource(serverNotRespondingURL));
+            final Parent notResponse = notResponseLoader.load();
+            final Pane mainPane = (Pane) mainAnchorPane.getParent();
             mainPane.getChildren().clear();
             mainPane.getChildren().setAll(notResponse);
         } catch (IOException e) {

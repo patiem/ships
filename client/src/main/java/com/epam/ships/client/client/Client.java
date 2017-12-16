@@ -15,16 +15,19 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class Client implements Runnable {
-    private final Socket clientSocket;
     private static final Target logger = new SharedLogger(Client.class);
+
+    private final Socket clientSocket;
+    private volatile boolean shouldRun;
 
     public Client() {
         this.clientSocket = new Socket();
+        shouldRun = true;
     }
 
     public boolean connect(final String ipAddress, final int port) {
         try {
-            InetAddress address = InetAddress.getByName(ipAddress);
+            final InetAddress address = InetAddress.getByName(ipAddress);
             clientSocket.connect(new InetSocketAddress(address, port));
         } catch (IOException | IllegalArgumentException e) {
             logger.error(e.getMessage());
@@ -58,11 +61,14 @@ public class Client implements Runnable {
         endLoop();
     }
 
+    public void closeClient() {
+        this.shouldRun = false;
+    }
+
     private void endLoop() {
         final int sleepTimeMs = 300;
-        boolean flag = true;
 
-        while(flag) {
+        while(shouldRun) {
             try {
                 Thread.sleep(sleepTimeMs);
             } catch (InterruptedException e) {

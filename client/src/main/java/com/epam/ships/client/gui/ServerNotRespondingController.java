@@ -16,15 +16,15 @@ public class ServerNotRespondingController {
     private static final Target logger = new SharedLogger(Client.class);
 
     @FXML
-    AnchorPane mainAnchorPane;
+    private AnchorPane mainAnchorPane;
 
     @FXML
     private void onTryAgainPressed() {
         try {
-            String connectWindowURL = "/fxml/connectWindow.fxml";
-            FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowURL));
-            Parent connectWindow = connectLoader.load();
-            Pane mainPane = (Pane) mainAnchorPane.getParent();
+            final String connectWindowURL = "/fxml/connectWindow.fxml";
+            final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowURL));
+            final Parent connectWindow = connectLoader.load();
+            final Pane mainPane = (Pane) mainAnchorPane.getParent();
             mainPane.getChildren().clear();
             mainPane.getChildren().setAll(connectWindow);
         } catch (IOException e) {

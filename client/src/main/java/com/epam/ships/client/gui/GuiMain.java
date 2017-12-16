@@ -25,6 +25,8 @@ public class GuiMain extends Application {
         primaryStage.setScene(new Scene(root, sceneWidth, sceneHeight));
         primaryStage.setResizable(false);
         primaryStage.show();
+
+        primaryStage.setOnHiding( event -> client.closeClient() );
     }
 
 }
