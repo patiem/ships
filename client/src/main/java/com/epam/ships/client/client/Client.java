@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
-import java.net.UnknownHostException;
 
 public class Client implements Runnable {
     private final Socket clientSocket;
@@ -28,10 +26,7 @@ public class Client implements Runnable {
         try {
             InetAddress address = InetAddress.getByName(ipAddress);
             clientSocket.connect(new InetSocketAddress(address, port));
-        } catch (UnknownHostException | IllegalArgumentException e) {
-            logger.error(e.getMessage());
-            return false;
-        } catch (IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
             logger.error(e.getMessage());
             return false;
         }
@@ -58,7 +53,6 @@ public class Client implements Runnable {
 
         } catch (IOException e) {
             logger.error(e.getMessage());
-            //TODO: handle
         }
 
         endLoop();
@@ -73,7 +67,6 @@ public class Client implements Runnable {
                 Thread.sleep(sleepTimeMs);
             } catch (InterruptedException e) {
                 logger.error(e.getMessage());
-                //TODO: handle
             }
         }
     }

@@ -1,11 +1,14 @@
 package com.epam.ships.client.gui;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.validators.PortValidator;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -39,32 +42,60 @@ public class StartWindowController {
     @FXML
     private AnchorPane mainAnchorPane;
 
-    void initialize(final Client client) {
-        this.client = client;
+    @FXML
+    private Label lInvalidPort;
+
+    private PortValidator portValidator;
+
+    @FXML
+    void initialize() {
+        tServerPort.textProperty().addListener((observableValue, s, t1) -> {
+            if(!lInvalidPort.getText().isEmpty()) {
+                lInvalidPort.setText("");
+            }
+        });
+
+        portValidator = new PortValidator();
+    }
+
+    private boolean getClient() {
+        MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
+        this.client = mainController.getClient();
+        if(client == null) {
+            logger.error("client is not initialized!");
+            return false;
+        }
+
+        return true;
     }
 
     @FXML
     private void onConnectPressed() {
-        showLoadingWheel();
+        if (!getClient()) {
+            return;
+        }
 
         final String serverAddress = tServerAddress.getText();
-
         logger.info("server address: " + serverAddress);
 
-        final int serverPort = Integer.valueOf(tServerPort.getText());
-        //TODO: check
+        int port;
+        try {
+            port = portValidator.asInt(tServerPort.getText());
+        } catch (IllegalArgumentException e) {
+            lInvalidPort.setText("invalid port number");
+            return;
+        }
+        logger.info("server port: " + port);
 
-        logger.info("server port: " + serverPort);
+        showLoadingWheel();
+        final boolean isConnected = client.connect(serverAddress, port);
 
-        //TODO:check if client != null
-
-        final boolean isConnect = client.connect(serverAddress, serverPort);
-
-        if(!isConnect) {
+        if (!isConnected) {
             loadServerNotResponseView();
         } else {
             Thread clientThread = new Thread(client);
             clientThread.start();
+
         }
     }
 
@@ -79,17 +110,14 @@ public class StartWindowController {
 
     private void loadServerNotResponseView() {
         try {
-            String serverNotRespondingURL = "/fxml/serverNotResponse.fxml";
+            String serverNotRespondingURL = "/fxml/serverNotResponding.fxml";
             FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource(serverNotRespondingURL));
             Parent notResponse = notResponseLoader.load();
             Pane mainPane = (Pane) mainAnchorPane.getParent();
-
             mainPane.getChildren().clear();
             mainPane.getChildren().setAll(notResponse);
-
         } catch (IOException e) {
             logger.error(e.getMessage());
-            //TODO: handle
         }
     }
 }
