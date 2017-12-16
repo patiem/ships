@@ -41,15 +41,13 @@ public class Client implements Runnable {
         try {
             Sender sender = new JSONSender(clientSocket.getOutputStream());
 
-            Message firstMessage = getMessage("Connection", "OK",
-                    "Magda", "Hey, it's Magda :)");
+            Message firstMessage = getMessage("Magda", "Hey, it's Magda :)");
             sender.send(firstMessage);
 
             Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
             logger.info(receiver.receive());
 
-            Message secondMessage = getMessage("Connection", "OK",
-                    "piotr", "Hey, it's Piotr :)");
+            Message secondMessage = getMessage("piotr", "Hey, it's Piotr :)");
             sender.send(secondMessage);
 
             logger.info(receiver.receive());
@@ -77,10 +75,10 @@ public class Client implements Runnable {
         }
     }
 
-    private Message getMessage(final String header, final String status, final String author, final String statement) {
+    private Message getMessage(final String author, final String statement) {
         return new MessageBuilder()
-                        .withHeader(header)
-                        .withStatus(status)
+                        .withHeader("Connection")
+                        .withStatus("OK")
                         .withAuthor(author)
                         .withStatement(statement)
                         .build();

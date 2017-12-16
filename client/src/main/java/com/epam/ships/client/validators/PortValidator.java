@@ -2,19 +2,9 @@ package com.epam.ships.client.validators;
 
 public class PortValidator {
 
-    public int asInt (String providedPort) throws IllegalArgumentException {
-        int port = convertToInt(providedPort);
+    public int asInt (String providedPort) throws IllegalArgumentException{
+        int port = Integer.valueOf(providedPort);
         checkRange(port);
-        return port;
-    }
-
-    private  int convertToInt (String providedPort) {
-        int port = 0;
-        try {
-            port = Integer.valueOf(providedPort);
-        } catch (NumberFormatException e) {
-            throw e;
-        }
         return port;
     }
 
