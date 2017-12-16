@@ -6,32 +6,27 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import lombok.Getter;
 
 import java.io.IOException;
 
-public class MainController {
+public class ServerNotRespondingController {
 
     private static final Target logger = new SharedLogger(Client.class);
 
     @FXML
-    private Pane mainPane;
-
-    @Getter
-    private Client client;
+    private AnchorPane mainAnchorPane;
 
     @FXML
-    void initialize(final Client client) {
-        final String connectWindowURL = "/fxml/connectWindow.fxml";
-        this.client = client;
-
+    private void onTryAgainPressed() {
         try {
+            final String connectWindowURL = "/fxml/connectWindow.fxml";
             final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowURL));
-            final Parent connect = connectLoader.load();
-
+            final Parent connectWindow = connectLoader.load();
+            final Pane mainPane = (Pane) mainAnchorPane.getParent();
             mainPane.getChildren().clear();
-            mainPane.getChildren().add(connect);
+            mainPane.getChildren().setAll(connectWindow);
         } catch (IOException e) {
             logger.error(e.getMessage());
         }

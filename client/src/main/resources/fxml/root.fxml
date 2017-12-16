@@ -47,6 +47,12 @@
                 <Image url="@../images/united_kingdom_flag.png" />
             </ImageView>
         </HBox>
-      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="mainPane"/>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="mainPane">
+        <userData>
+            <fx:reference source="controller" />
+        </userData>
+      </Pane>
+
+
     </GridPane>
 </AnchorPane>
