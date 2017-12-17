@@ -28,14 +28,14 @@ class Game {
      */
     void play() {
         notifyPlayersThatTheyCanStartGame();
-//        TODO: notifyUsers they have to place fleet
-//        TODO: notifyUsers both are ready
+//        TODO: notify Users they have to place fleet
+//        TODO: notify Users both are ready
         boolean isGameFinished = false;
         while (!isGameFinished ){
             exchangeGreetings();
             turnManager.switchPlayer();
 //            TODO: game loop until we will find winner
-//            isGameFinished = Some referee method?
+//            isGameFinished = some referee method?
             waitAWhile();
         }
     }
