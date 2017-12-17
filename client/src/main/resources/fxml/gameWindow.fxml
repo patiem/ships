@@ -6,12 +6,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" style="-fx-background-color: #0000ff;" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.epam.ships.client.gui.controllers.GameController">
+<AnchorPane fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.epam.ships.client.gui.controllers.GameController">
    <children>
-            <GridPane fx:id="gridPane" gridLinesVisible="true" prefHeight="700.0" prefWidth="1200.0"
-                      AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                      AnchorPane.topAnchor="0.0">
+            <GridPane fx:id="gridPane" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="49.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="2.0" prefWidth="100.0" />
@@ -24,7 +23,7 @@
                </rowConstraints>
                <children>
                   <Button fx:id="eventButton" mnemonicParsing="false" visible="false" GridPane.rowIndex="2" />
-                  <GridPane gridLinesVisible="true" GridPane.rowIndex="1">
+                  <GridPane fx:id="yourBoard" gridLinesVisible="true" GridPane.rowIndex="1">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -50,7 +49,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                   </GridPane>
-                  <GridPane gridLinesVisible="true" layoutX="10.0" layoutY="59.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                  <GridPane fx:id="opponentBoard" gridLinesVisible="true" layoutX="10.0" layoutY="59.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -76,8 +75,14 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <Label text="Your Board" />
-                  <Label text="Opponent Board" GridPane.columnIndex="2" />
+                  <Label text="Your Board">
+               <font>
+                  <Font name="FreeMono Bold" size="25.0" />
+               </font></Label>
+                  <Label text="Opponent Board" GridPane.columnIndex="2">
+               <font>
+                  <Font name="FreeMono Bold" size="25.0" />
+               </font></Label>
                </children>
             </GridPane>
    </children>
