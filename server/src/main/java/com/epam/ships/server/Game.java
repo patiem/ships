@@ -4,6 +4,7 @@ import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Piotr, Magda
