@@ -51,7 +51,7 @@ class WrappedClient {
         }
     }
 
-    public void send(Message message) {
+    void send(Message message) {
         this.out.send(message);
     }
 }
