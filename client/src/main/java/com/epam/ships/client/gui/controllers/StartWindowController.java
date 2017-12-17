@@ -1,13 +1,20 @@
 package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.client.OpponentConnectedTrigger;
 import com.epam.ships.client.gui.controllers.MainController;
+import com.epam.ships.client.gui.events.OpponentConnectedEvent;
 import com.epam.ships.client.validators.PortValidator;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -16,6 +23,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -60,6 +69,13 @@ public class StartWindowController {
         });
 
         portValidator = new PortValidator();
+
+        eventButton.addEventHandler(OpponentConnectedEvent.OPONENT_CONNECTED, new EventHandler<Event>() {
+            @Override
+            public void handle(Event event) {
+                loadGameWindow();
+            }
+        });
     }
 
     private void initializeClient() throws IllegalStateException {
@@ -124,6 +140,31 @@ public class StartWindowController {
             mainPane.getChildren().setAll(notResponse);
         } catch (IOException e) {
             logger.error(e.getMessage());
+        }
+    }
+
+    private void loadGameWindow() {
+        try {
+            final String gameWindowURL = "/fxml/gameWindow.fxml";
+            final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowURL));
+            final Parent gameWindow = gameWindowLoader.load();
+            final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
+
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+            Stage stage = (Stage) mainPane.getScene().getWindow();
+            stage.setMinHeight(screenBounds.getHeight());
+            stage.setMinWidth(screenBounds.getWidth());
+
+            mainPane.getChildren().clear();
+            mainPane.getChildren().setAll(gameWindow);
+            mainPane.setTopAnchor(gameWindow, 0.0);
+            mainPane.setBottomAnchor(gameWindow, 0.0);
+            mainPane.setLeftAnchor(gameWindow, 0.0);
+            mainPane.setRightAnchor(gameWindow, 0.0);
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
