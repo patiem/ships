@@ -1,29 +1,26 @@
 package com.epam.ships.client.client;
 
 import com.epam.ships.infra.communication.api.Message;
-import com.epam.ships.infra.logging.api.Target;
-import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.scene.control.Button;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MessageHandler {
-
-    private static final Target logger = new SharedLogger(Client.class);
+class MessageHandler {
 
     private Button eventButton = null;
-    private Map<String, EventTrigger> triggers = new HashMap<>();
+    private final Map<String, EventTrigger> triggers;
 
-    public MessageHandler() {
-        triggers.put("opponentConnected", new OpponentConnectedTrigger());
+    MessageHandler() {
+        this.triggers = new HashMap<>();
+        this.triggers.put("opponentConnected", new OpponentConnectedTrigger());
     }
 
-    public void setCurrentEventButton(Button eventButton) {
+    void setCurrentEventButton(Button eventButton) {
         this.eventButton = eventButton;
     }
 
-    public void handle(Message message) throws IllegalStateException{
+    void handle(Message message) throws IllegalStateException{
         if(eventButton == null) {
             throw new IllegalStateException("there is no object on which there can be fire event on");
         }

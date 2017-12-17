@@ -70,12 +70,8 @@ public class StartWindowController {
 
         portValidator = new PortValidator();
 
-        eventButton.addEventHandler(OpponentConnectedEvent.OPONENT_CONNECTED, new EventHandler<Event>() {
-            @Override
-            public void handle(Event event) {
-                loadGameWindow();
-            }
-        });
+        eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED,
+                (EventHandler<Event>) event -> loadGameWindow());
     }
 
     private void initializeClient() throws IllegalStateException {
@@ -158,13 +154,13 @@ public class StartWindowController {
 
             mainPane.getChildren().clear();
             mainPane.getChildren().setAll(gameWindow);
-            mainPane.setTopAnchor(gameWindow, 0.0);
-            mainPane.setBottomAnchor(gameWindow, 0.0);
-            mainPane.setLeftAnchor(gameWindow, 0.0);
-            mainPane.setRightAnchor(gameWindow, 0.0);
+            AnchorPane.setTopAnchor(gameWindow, 0.0);
+            AnchorPane.setBottomAnchor(gameWindow, 0.0);
+            AnchorPane.setLeftAnchor(gameWindow, 0.0);
+            AnchorPane.setRightAnchor(gameWindow, 0.0);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 }

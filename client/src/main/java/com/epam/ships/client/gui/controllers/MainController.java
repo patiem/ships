@@ -19,16 +19,13 @@ public class MainController {
     @FXML
     private Pane mainPane;
 
-    @FXML
-    private Button mainEventButton;
-
     @Getter
     private Client client;
 
     @FXML
     public void initialize(final Client client) {
         final String connectWindowURL = "/fxml/connectWindow.fxml";
-        this.client = client;;
+        this.client = client;
 
         try {
             final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowURL));

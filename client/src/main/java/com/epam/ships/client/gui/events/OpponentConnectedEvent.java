@@ -4,10 +4,10 @@ import javafx.event.Event;
 import javafx.event.EventType;
 
 public class OpponentConnectedEvent extends Event{
-    public static final EventType<OpponentConnectedEvent> OPONENT_CONNECTED =
-            new EventType<>(Event.ANY, "OPONENT_CONNECTED");
+    public static final EventType<OpponentConnectedEvent> OPPONENT_CONNECTED =
+            new EventType<>(Event.ANY, "OPPONENT_CONNECTED");
 
     public OpponentConnectedEvent() {
-        super(OPONENT_CONNECTED);
+        super(OPPONENT_CONNECTED);
     }
 }

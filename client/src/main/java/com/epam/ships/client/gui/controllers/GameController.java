@@ -20,13 +20,17 @@ public class GameController {
 
     @FXML
     public void initialize() {
-        NumberBinding yourBoardRectsAreaSize = Bindings.min(yourBoard.heightProperty(), yourBoard.widthProperty().add(-50));
-        NumberBinding yourBoardRectsAreaSizeH = Bindings.min(yourBoard.heightProperty(), yourBoard.widthProperty()).add(-50);
+        final NumberBinding yourBoardRectsAreaSize = Bindings.min(yourBoard.heightProperty(),
+                yourBoard.widthProperty().add(-50));
+        final NumberBinding yourBoardRectsAreaSizeH = Bindings.min(yourBoard.heightProperty(),
+                yourBoard.widthProperty()).add(-50);
 
-        NumberBinding opponentBoardRectsAreaSize = Bindings.min(yourBoard.heightProperty(), yourBoard.widthProperty().add(-50));
-        NumberBinding opponentBoardRectsAreaSizeH = Bindings.min(yourBoard.heightProperty(), yourBoard.widthProperty()).add(-50);
+        final NumberBinding opponentBoardRectsAreaSize = Bindings.min(yourBoard.heightProperty(),
+                yourBoard.widthProperty().add(-50));
+        final NumberBinding opponentBoardRectsAreaSizeH = Bindings.min(yourBoard.heightProperty(),
+                yourBoard.widthProperty()).add(-50);
 
-        int boardSize = 10;
+        final int boardSize = 10;
 
         for(int i = 0; i < boardSize; i++ ) {
             for(int j = 0; j < boardSize; j++) {
