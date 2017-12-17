@@ -57,7 +57,7 @@ public class StartWindowController {
         portValidator = new PortValidator();
     }
 
-    private void initializeClient() {
+    private void initializeClient() throws IllegalStateException {
         MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
         this.client = mainController.getClient();
         if(client == null) {

@@ -9,7 +9,7 @@ public class PortValidator {
     }
 
     private void checkRange(int port) throws IllegalArgumentException {
-        if(port < 0 || port > 0xFFFF) {
+        if(port <= 0 || port > 0xFFFF) {
             throw new IllegalArgumentException("port value is out of range");
         }
     }
