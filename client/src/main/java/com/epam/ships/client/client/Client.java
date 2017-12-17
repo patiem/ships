@@ -13,26 +13,23 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
-import java.net.UnknownHostException;
 
 public class Client implements Runnable {
-    private final Socket clientSocket;
-
     private static final Target logger = new SharedLogger(Client.class);
+
+    private final Socket clientSocket;
+    private volatile boolean shouldRun;
 
     public Client() {
         this.clientSocket = new Socket();
+        shouldRun = true;
     }
 
     public boolean connect(final String ipAddress, final int port) {
         try {
-            InetAddress address = InetAddress.getByName(ipAddress);
+            final InetAddress address = InetAddress.getByName(ipAddress);
             clientSocket.connect(new InetSocketAddress(address, port));
-        } catch (UnknownHostException | IllegalArgumentException e) {
-            logger.error(e.getMessage());
-            return false;
-        } catch (IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
             logger.error(e.getMessage());
             return false;
         }
@@ -43,45 +40,47 @@ public class Client implements Runnable {
     public void run() {
         try {
             Sender sender = new JSONSender(clientSocket.getOutputStream());
-            //First Message
-            Message firstMessage = new MessageBuilder()
-                    .withHeader("Connection")
-                    .withStatus("OK")
-                    .withAuthor("Magda")
-                    .withStatement("Hey, it's Magda :-)")
-                    .build();
+
+            Message firstMessage = getMessage("Magda", "Hey, it's Magda :)");
             sender.send(firstMessage);
 
             Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
             logger.info(receiver.receive());
 
-            Thread.sleep(300);
-
-            //Second message
-            Message secondMessage = new MessageBuilder()
-                    .withHeader("Connection")
-                    .withStatus("OK")
-                    .withAuthor("piotr")
-                    .withStatement("Hey, it's Piotr :-)")
-                    .build();
+            Message secondMessage = getMessage("piotr", "Hey, it's Piotr :)");
             sender.send(secondMessage);
 
             logger.info(receiver.receive());
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             logger.error(e.getMessage());
-            //TODO: handle
         }
 
-        boolean flag = true;
+        endLoop();
+    }
 
-        while(flag) {
+    public void closeClient() {
+        this.shouldRun = false;
+    }
+
+    private void endLoop() {
+        final int sleepTimeMs = 300;
+
+        while(shouldRun) {
             try {
-                Thread.sleep(300);
+                Thread.sleep(sleepTimeMs);
             } catch (InterruptedException e) {
                 logger.error(e.getMessage());
-                //TODO: handle
             }
         }
+    }
+
+    private Message getMessage(final String author, final String statement) {
+        return new MessageBuilder()
+                        .withHeader("Connection")
+                        .withStatus("OK")
+                        .withAuthor(author)
+                        .withStatement(statement)
+                        .build();
     }
 }
