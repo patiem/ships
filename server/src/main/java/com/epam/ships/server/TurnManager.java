@@ -11,7 +11,7 @@ class TurnManager {
         currentPlayer = firstPlayer;
     }
 
-    public WrappedClient getCurrentPlayer() {
+    WrappedClient getCurrentPlayer() {
         return currentPlayer;
     }
 
