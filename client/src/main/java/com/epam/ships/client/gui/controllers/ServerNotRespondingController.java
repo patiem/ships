@@ -11,6 +11,11 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
+/**
+ * @author Magda
+ * @since 2017-12-17
+ */
+
 public class ServerNotRespondingController {
 
     private static final Target logger = new SharedLogger(Client.class);

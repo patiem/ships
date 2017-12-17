@@ -10,6 +10,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * @author Magda
+ * @since 2017-12-10
+ */
+
 public class GameController {
 
     @FXML

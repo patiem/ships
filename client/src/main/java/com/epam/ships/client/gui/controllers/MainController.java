@@ -12,6 +12,11 @@ import lombok.Getter;
 
 import java.io.IOException;
 
+/**
+ * @author Magda
+ * @since 2017-12-14
+ */
+
 public class MainController {
 
     private static final Target logger = new SharedLogger(Client.class);

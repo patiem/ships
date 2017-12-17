@@ -28,6 +28,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * @author Magda
+ * @since 2017-12-14
+ */
+
 public class StartWindowController {
 
     private static final Target logger = new SharedLogger(Client.class);
