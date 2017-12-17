@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.epam.ships.client.gui.StartWindowController">
+<AnchorPane fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.epam.ships.client.gui.controllers.StartWindowController">
    <children>
       <GridPane fx:id="gridPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -44,6 +44,7 @@
                   <Image url="@../images/cannon.png" />
                </image>
             </ImageView>
+            <Button fx:id="eventButton" mnemonicParsing="false" visible="false" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <VBox fx:id="vbWheel" alignment="CENTER" prefHeight="320.0" prefWidth="498.0" visible="false">

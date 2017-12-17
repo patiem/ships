@@ -1,6 +1,7 @@
 package com.epam.ships.client.gui;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.gui.controllers.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

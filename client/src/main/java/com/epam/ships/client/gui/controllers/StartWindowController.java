@@ -1,12 +1,14 @@
-package com.epam.ships.client.gui;
+package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.gui.controllers.MainController;
 import com.epam.ships.client.validators.PortValidator;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -44,6 +46,9 @@ public class StartWindowController {
     @FXML
     private Label lInvalidPort;
 
+    @FXML
+    private Button eventButton;
+
     private PortValidator portValidator;
 
     @FXML
@@ -63,6 +68,8 @@ public class StartWindowController {
         if(client == null) {
             throw new IllegalStateException("client is not initialized!");
         }
+
+        client.setEventTrigger(eventButton);
     }
 
     @FXML
@@ -94,7 +101,7 @@ public class StartWindowController {
         } else {
             Thread clientThread = new Thread(client);
             clientThread.start();
-
+            client.sendMessage();
         }
     }
 
