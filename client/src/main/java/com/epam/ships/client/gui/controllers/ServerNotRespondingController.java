@@ -1,4 +1,4 @@
-package com.epam.ships.client.gui;
+package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
 import com.epam.ships.infra.logging.api.Target;
@@ -10,6 +10,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+
+/**
+ * @author Magda
+ * @since 2017-12-17
+ */
 
 public class ServerNotRespondingController {
 

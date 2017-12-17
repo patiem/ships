@@ -1,5 +1,10 @@
 package com.epam.ships.client.validators;
 
+/**
+ * @author Magda
+ * @since 2017-12-16
+ */
+
 public class PortValidator {
 
     public int asInt (String providedPort) throws IllegalArgumentException{

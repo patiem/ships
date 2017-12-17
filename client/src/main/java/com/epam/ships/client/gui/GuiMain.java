@@ -1,11 +1,17 @@
 package com.epam.ships.client.gui;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.gui.controllers.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+/**
+ * @author Magda
+ * @since 2017-12-17
+ */
 
 public class GuiMain extends Application {
     @Override
