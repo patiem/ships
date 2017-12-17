@@ -4,7 +4,6 @@ import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Piotr, Magda
@@ -27,53 +26,47 @@ class Game {
     /**
      * A draft dummy method used for demo.
      */
-    void letsChatALittleBit() {
-        boolean flag = true;
-        while (flag) {
-
-            simpleConversation();
+    void play() {
+        notifyPlayersThatTheyCanStartGame();
+//        TODO: notifyUsers they have to place fleet
+//        TODO: notifyUsers both are ready
+        boolean isGameFinished = false;
+        while (!isGameFinished ){
+            exchangeGreetings();
             turnManager.switchPlayer();
-            simpleConversation();
+//            TODO: game loop until we will find winner
+//            isGameFinished = Some referee method?
+            waitAWhile();
         }
     }
 
-    private boolean simpleConversation() {
-        boolean flag = true;
-        Message messageReceived = communicationBus.receive(turnManager.getCurrentPlayer());
 
-        logger.info(messageReceived);
+    private void exchangeGreetings(){
+        MessageBuilder messageBuilder = new MessageBuilder();
+        Message message = messageBuilder.withAuthor("server").withHeader("greetings").withStatus("OK").withStatement("Welcome on board").build();
+        communicationBus.send(turnManager.getCurrentPlayer(), message);
+        Message greetings = communicationBus.receive(turnManager.getCurrentPlayer());
+        logger.info(greetings);
+    }
 
-        if (StringUtils.isNotEmpty(messageReceived.getAuthor())) {
-            String author = messageReceived.getAuthor();
+    private void notifyPlayersThatTheyCanStartGame(){
+       opponentConnected();
+       turnManager.switchPlayer();
+       opponentConnected();
+   }
 
-            MessageBuilder messageBuilder = new MessageBuilder()
-                    .withAuthor("Name Validation")
-                    .withHeader("Server");
+    private void opponentConnected(){
+        MessageBuilder messageBuilder = new MessageBuilder();
+        Message message = messageBuilder.withAuthor("server").withHeader("opponentConnected").withStatus("OK").withStatement("true").build();
+        communicationBus.send(turnManager.getCurrentPlayer(), message);
+    }
 
-            Message message;
-
-            if (Character.isUpperCase(author.charAt(0))) {
-                message = messageBuilder
-                        .withStatus("OK")
-                        .withStatement("No warnings")
-                        .build();
-            } else {
-                message = messageBuilder
-                        .withStatus("ERR")
-                        .withStatement("Name should begin with a capital letter")
-                        .build();
-            }
-
-            communicationBus.send(turnManager.getCurrentPlayer(), message);
-        }
-        if ("Connection".equals(messageReceived.getHeader()) && "END".equals(messageReceived.getStatus())) {
-            flag = false;
-        }
+    private void waitAWhile() {
+        final long aWhile = 300;
         try {
-            Thread.sleep(250);
+            Thread.sleep(aWhile);
         } catch (InterruptedException e) {
             logger.error(e.getMessage());
         }
-        return flag;
     }
 }
