@@ -1,11 +1,13 @@
 package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.gui.events.OpponentShotEvent;
 import com.epam.ships.client.gui.events.OpponentWithdrawEvent;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.scene.control.Button;
@@ -43,6 +45,8 @@ public class GameController {
     public void initialize() {
         initializeBoard();
         eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent -> opponentWithdraw());
+        eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,
+                opponentShotEvent -> setOpponentShot(opponentShotEvent.getShotIndex()));
     }
 
     void initializeClient() {
@@ -107,5 +111,10 @@ public class GameController {
     private void loadWithdrawScreen() {
         MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
         mainController.loadWithdrawScreen();
+    }
+
+    private void setOpponentShot(int shotIndex) {
+        Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndex + 1));
+        rec.setFill(Color.BLACK);
     }
 }
