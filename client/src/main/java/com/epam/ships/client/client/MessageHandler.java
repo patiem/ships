@@ -14,6 +14,7 @@ class MessageHandler {
     MessageHandler() {
         this.triggers = new HashMap<>();
         this.triggers.put("opponentConnected", new OpponentConnectedTrigger());
+        this.triggers.put("shot", new OpponentShotTrigger());
     }
 
     void setCurrentEventButton(Button eventButton) {

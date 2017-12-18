@@ -120,7 +120,6 @@ public class StartWindowController {
         } else {
             Thread clientThread = new Thread(client);
             clientThread.start();
-            client.sendMessage();
         }
     }
 

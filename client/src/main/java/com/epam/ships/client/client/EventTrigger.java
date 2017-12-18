@@ -7,6 +7,6 @@ import javafx.scene.control.Button;
  * @since 2017-12-17
  */
 
-public interface EventTrigger {
+interface EventTrigger {
     void fire(Button button, String messageStatement);
 }
