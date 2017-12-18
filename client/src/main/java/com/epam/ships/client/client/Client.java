@@ -8,6 +8,7 @@ import com.epam.ships.infra.communication.core.json.io.JSONSender;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
@@ -53,8 +54,9 @@ public class Client implements Runnable {
         this.shouldRun = false;
         try {
             clientSocket.close();
+            Platform.exit();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
@@ -69,8 +71,6 @@ public class Client implements Runnable {
                 logger.error(e.getMessage());
             }
         }
-
-        logger.info("socket close");
     }
 
     public void sendShot(int shotIndex) {

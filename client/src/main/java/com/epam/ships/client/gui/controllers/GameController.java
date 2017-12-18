@@ -22,6 +22,8 @@ public class GameController {
 
     private static final Target logger = new SharedLogger(Client.class);
 
+    private static final int BOARD_SIZE = 10;
+
     @FXML
     private GridPane yourBoard;
 
@@ -34,31 +36,17 @@ public class GameController {
 
     @FXML
     public void initialize() {
-        final NumberBinding rectanglesSize = Bindings.min(yourBoard.heightProperty(),
+        final NumberBinding allRectanglesWidth = Bindings.min(yourBoard.heightProperty(),
                 yourBoard.widthProperty().add(-50));
-        final NumberBinding rectanglesSizeH = Bindings.min(yourBoard.heightProperty(),
+        final NumberBinding allRectanglesHeight = Bindings.min(yourBoard.heightProperty(),
                 yourBoard.widthProperty()).add(-50);
 
-        final int boardSize = 10;
+        for(int i = 0; i < BOARD_SIZE; i++ ) {
+            for(int j = 0; j < BOARD_SIZE; j++) {
+                final int shotIndex = j * BOARD_SIZE + i;
 
-        for(int i = 0; i < boardSize; i++ ) {
-            for(int j = 0; j < boardSize; j++) {
-                final int shotIndex = j * boardSize + i;
-
-                Rectangle yourRect = new Rectangle(15, 15, Color.GRAY);
-                Rectangle opponentRect = new Rectangle(15, 15, Color.GRAY);
-
-                opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -> {
-                    opponentRect.setFill(Color.BLACK);
-                    logger.info(shotIndex);
-                    getClient().sendShot(shotIndex);
-                });
-
-                yourRect.widthProperty().bind(rectanglesSize.divide(boardSize));
-                yourRect.heightProperty().bind(rectanglesSizeH.divide(boardSize));
-
-                opponentRect.widthProperty().bind(rectanglesSize.divide(boardSize));
-                opponentRect.heightProperty().bind(rectanglesSizeH.divide(boardSize));
+                Rectangle yourRect = getYourRect(allRectanglesWidth, allRectanglesHeight);
+                Rectangle opponentRect = getOpponentRectangle(allRectanglesWidth, allRectanglesHeight, shotIndex);
 
                 yourBoard.add(yourRect, i, j);
                 opponentBoard.add(opponentRect, i, j);
@@ -72,6 +60,30 @@ public class GameController {
     private Client getClient() {
         MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
         return mainController.getClient();
+    }
+
+    private Rectangle getYourRect(NumberBinding allRectanglesWidth, NumberBinding allRectanglesHeight) {
+        Rectangle yourRect = new Rectangle(15, 15, Color.GRAY);
+        yourRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
+        yourRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));
+
+        return yourRect;
+    }
+
+    private Rectangle getOpponentRectangle(NumberBinding allRectanglesWidth, NumberBinding allRectanglesHeight,
+                                           final int opponentShotIndex) {
+        Rectangle opponentRect = new Rectangle(15, 15, Color.GRAY);
+
+        opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -> {
+            opponentRect.setFill(Color.BLACK);
+            logger.info(opponentShotIndex);
+            getClient().sendShot(opponentShotIndex);
+        });
+
+        opponentRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
+        opponentRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));
+
+        return opponentRect;
     }
 
 }
