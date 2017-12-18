@@ -34,6 +34,9 @@ git rev-list --all --count
 echo "[ Q ] How many packages do we have.."
 grep -r "package" --include=*.java . --no-filename | sort -u | wc -l
 
+echo "[ Q ] How many interfaces do we have.."
+grep -r " interface " --include=*.java . --no-filename | sort -u | grep -i "{" | wc -l
+
 echo "[ Q ] How many lines of code do we have.."
 ( find ./ -name '*.java' -print0 | xargs -0 cat ) | wc -l
 
@@ -43,7 +46,7 @@ echo "[ Q ] How many design patterns do we have.."
 echo "1 "
 
 echo "[ Q ] How many public APIs do we have.."
-echo "1 if to consider 'communication' as one, 5 if to count each interface individually"
+echo "1 if to consider 'communication' as one, or 5 if to count each interface individually"
 
 echo "[ Q ] How many package-private APIs do we have.."
 echo "0"
