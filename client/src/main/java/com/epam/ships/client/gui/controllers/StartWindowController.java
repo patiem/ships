@@ -77,6 +77,8 @@ public class StartWindowController {
 
         eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED,
                 (EventHandler<Event>) event -> loadGameWindow());
+        tServerAddress.setText("127.0.0.1");
+        tServerPort.setText("8189");
     }
 
     private void initializeClient() throws IllegalStateException {
