@@ -11,7 +11,7 @@ public class PortValidatorTest {
     @DataProvider(name = "properValues")
     public static Object[][] properData() {
         return new Object[][] {
-                {"1", 1},
+                {"1025", 1025},
                 {"1234", 1234},
                 {"8189", 8189},
                 {"65535", 65535}

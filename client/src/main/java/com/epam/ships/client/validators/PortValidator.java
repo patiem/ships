@@ -14,7 +14,9 @@ public class PortValidator {
     }
 
     private void checkRange(int port) throws IllegalArgumentException {
-        if(port <= 0 || port > 0xFFFF) {
+        final int maxValidPort = 0xFFFF;
+        final int minValidPort = 1024;
+        if(port <= minValidPort || port > maxValidPort) {
             throw new IllegalArgumentException("port value is out of range");
         }
     }
