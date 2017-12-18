@@ -12,13 +12,12 @@
 #
 # [Description]
 #
-# It installs server with mvn clean install and executes
+# It installs client with mvn clean install and executes
 # a generated .jar file.
 #
 
 set -e
-cd ../server
+cd ../client
 mvn clean install -q
 echo "Installed, now attempting to deploy.."
-java -jar target/server-1.0-SNAPSHOT.jar
-
+java -jar target/client-1.0-SNAPSHOT.jar
