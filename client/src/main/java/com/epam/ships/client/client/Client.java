@@ -34,7 +34,7 @@ public class Client implements Runnable {
             final int connectionTimeout = 500;
             clientSocket.connect(new InetSocketAddress(address, port), connectionTimeout);
         } catch (IOException | IllegalArgumentException e) {
-            logger.error(e.getMessage());
+            e.printStackTrace();
             return false;
         }
         return true;
@@ -45,7 +45,7 @@ public class Client implements Runnable {
         try {
             listenLoop();
         } catch (final IOException e) {
-            logger.error(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -60,10 +60,9 @@ public class Client implements Runnable {
         try {
             messageHandler.handle(opponentConnect);
         } catch (IllegalStateException e) {
-            logger.error(e.getMessage());
+            e.printStackTrace();
         }
 
-        sendMessage();
         Message greetings = receiver.receive();
         logger.info(greetings);
         //TODO: in the future receiving in loop and no end loop
@@ -77,20 +76,19 @@ public class Client implements Runnable {
             try {
                 Thread.sleep(sleepTimeMs);
             } catch (InterruptedException e) {
-                logger.error(e.getMessage());
+                e.printStackTrace();
             }
         }
     }
 
-    public void sendMessage() {
+    public void sendShot(int shotIndex) {
         try {
             Sender sender = new JSONSender(clientSocket.getOutputStream());
-            Message testMessage = new MessageBuilder().withHeader("greetings")
-                    .withAuthor("Magda").withStatus("OK").withStatement("hey :)").build();
-
-            sender.send(testMessage);
+            Message shot = new MessageBuilder().withHeader("shot")
+                    .withAuthor("client").withStatus("OK").withStatement(String.valueOf(shotIndex)).build();
+            sender.send(shot);
         } catch (IOException e) {
-            logger.error(e.getMessage());
+            e.printStackTrace();
         }
     }
 

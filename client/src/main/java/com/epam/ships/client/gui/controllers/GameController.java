@@ -1,9 +1,12 @@
 package com.epam.ships.client.gui.controllers;
 
+import com.epam.ships.client.client.Client;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -22,6 +25,10 @@ public class GameController {
     private GridPane opponentBoard;
 
     @FXML
+    private AnchorPane mainAnchorPane;
+
+
+    @FXML
     public void initialize() {
         final NumberBinding yourBoardRectsAreaSize = Bindings.min(yourBoard.heightProperty(),
                 yourBoard.widthProperty().add(-50));
@@ -38,10 +45,19 @@ public class GameController {
         for(int i = 0; i < boardSize; i++ ) {
             for(int j = 0; j < boardSize; j++) {
 
+                //hack
+                final int ii = i;
+                final int jj = j;
+
                 Rectangle yourRect = new Rectangle(15, 15, Color.GRAY);
                 Rectangle opponentRect = new Rectangle(15, 15, Color.GRAY);
 
-                opponentRect.setOnMouseClicked(mouseEvent -> opponentRect.setFill(Color.BLACK));
+                opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -> {
+                    opponentRect.setFill(Color.BLACK);
+                    final int shotIndex = jj * boardSize + ii;
+                    System.out.println(shotIndex);
+                    getClient().sendShot(shotIndex);
+                });
 
                 yourRect.widthProperty().bind(yourBoardRectsAreaSize.divide(boardSize));
                 yourRect.heightProperty().bind(yourBoardRectsAreaSizeH.divide(boardSize));
@@ -57,4 +73,10 @@ public class GameController {
             }
         }
     }
+
+    private Client getClient() {
+        MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
+        return mainController.getClient();
+    }
+
 }
