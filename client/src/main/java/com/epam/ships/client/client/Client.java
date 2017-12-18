@@ -18,20 +18,21 @@ import java.net.Socket;
 public class Client implements Runnable {
     private static final Target logger = new SharedLogger(Client.class);
 
-    private final Socket clientSocket;
+    private Socket clientSocket;
     private final MessageHandler messageHandler;
     private volatile boolean shouldRun;
 
     public Client() {
-        this.clientSocket = new Socket();
         this.messageHandler = new MessageHandler();
         shouldRun = true;
     }
 
     public boolean connect(final String ipAddress, final int port) {
         try {
+            clientSocket = new Socket();
             final InetAddress address = InetAddress.getByName(ipAddress);
-            clientSocket.connect(new InetSocketAddress(address, port));
+            final int connectionTimeout = 500;
+            clientSocket.connect(new InetSocketAddress(address, port), connectionTimeout);
         } catch (IOException | IllegalArgumentException e) {
             logger.error(e.getMessage());
             return false;
@@ -52,7 +53,7 @@ public class Client implements Runnable {
         this.shouldRun = false;
     }
 
-    public void listenLoop() throws IOException {
+    private void listenLoop() throws IOException {
         Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
         Message opponentConnect = receiver.receive();
         logger.info(opponentConnect);

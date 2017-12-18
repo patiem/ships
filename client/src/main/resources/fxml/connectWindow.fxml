@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.epam.ships.client.gui.controllers.StartWindowController">
+<AnchorPane fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.epam.ships.client.gui.controllers.StartWindowController">
    <children>
       <GridPane fx:id="gridPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
@@ -28,7 +28,6 @@
          </rowConstraints>
          <children>
             <TextField fx:id="tServerAddress" prefHeight="38.0" prefWidth="302.0" promptText="Server Addres" />
-            <Button maxWidth="120.0" mnemonicParsing="false" onAction="#onConnectPressed" prefHeight="38.0" text="Connect" GridPane.rowIndex="2" />
             <VBox GridPane.rowIndex="1">
                <children>
                   <TextField fx:id="tServerPort" prefHeight="38.0" prefWidth="336.0" promptText="Server Port">
@@ -39,6 +38,7 @@
                   <Label fx:id="lInvalidPort" prefHeight="16.0" prefWidth="311.0" textFill="#e80808" />
                </children>
             </VBox>
+            <Button maxWidth="120.0" mnemonicParsing="false" onAction="#onConnectPressed" prefHeight="38.0" text="Connect" GridPane.rowIndex="2" />
             <ImageView fx:id="imCannon" fitHeight="224.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <image>
                   <Image url="@../images/cannon.png" />
