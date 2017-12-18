@@ -40,7 +40,10 @@ echo "[ Q ] How many lines of code do we have.."
 #[!] Manual output
 
 echo "[ Q ] How many design patterns do we have.."
-echo "1"
+echo "1 "
+
+echo "[ Q ] How many public APIs do we have.."
+echo "1 if to consider 'communication' as one, 5 if to count each interface individually"
 
 #Used only when enhancing the script
 #TODO - remove once script is done
