@@ -1,20 +1,16 @@
 package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
-import com.epam.ships.client.client.OpponentConnectedTrigger;
-import com.epam.ships.client.gui.controllers.MainController;
 import com.epam.ships.client.gui.events.OpponentConnectedEvent;
 import com.epam.ships.client.validators.PortValidator;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

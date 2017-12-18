@@ -8,10 +8,12 @@ import com.epam.ships.infra.communication.core.json.io.JSONSender;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
+import lombok.EqualsAndHashCode;
 
 import java.io.IOException;
 import java.net.Socket;
 
+@EqualsAndHashCode
 class WrappedClient {
 
     private final Target logger = new SharedLogger(this.getClass());
