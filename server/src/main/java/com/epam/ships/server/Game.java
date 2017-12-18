@@ -32,14 +32,25 @@ class Game {
         boolean isGameFinished = false;
         boolean isClientConnected = true;
         while (!isGameFinished && isClientConnected) {
-            Message messageReceived = exchangeGreetings();
-            isClientConnected = isClientConnected(messageReceived);
+            Message receivedShot = receiveShot();
+            isClientConnected = isClientConnected(receivedShot);
             turnManager.switchPlayer();
+            if(isClientConnected){
+                sendOpponentShot(receivedShot);
+            }
 //            TODO: game loop until we will find winner
 //            isGameFinished = some referee method?
-
             rest();
         }
+    }
+
+    private void sendOpponentShot(Message receivedShot) {
+        this.communicationBus.send(this.turnManager.getCurrentPlayer(), receivedShot);
+    }
+
+    private Message receiveShot() {
+        final Message shot = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
+        return shot;
     }
 
     private boolean isClientConnected(final Message messageReceived) {
