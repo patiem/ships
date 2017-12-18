@@ -11,8 +11,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         CommunicationBus communicationBus = new CommunicationBus();
-
-        while (true) {
+        boolean shouldRun = true;
+        while (shouldRun) {
             communicationBus.start();
             final Game game = new Game(communicationBus);
             game.play();
