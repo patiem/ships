@@ -4,7 +4,6 @@ import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Piotr, Magda
@@ -15,56 +14,55 @@ import org.apache.commons.lang3.StringUtils;
  */
 class Game {
 
-    private CommunicationBus communicationBus;
+    private final CommunicationBus communicationBus;
     private final Target logger = new SharedLogger(Game.class);
+    private final TurnManager turnManager;
 
     Game(CommunicationBus communicationBus) {
         this.communicationBus = communicationBus;
+        this.turnManager = new TurnManager(communicationBus.getFirstClient(), communicationBus.getSecondClient());
     }
 
     /**
      * A draft dummy method used for demo.
      */
-    void letsChatALittleBit() {
-        boolean flag = true;
-        while (flag) {
+    void play() {
+        notifyPlayersThatTheyCanStartGame();
+//        TODO: notify Users both are ready
+        boolean isGameFinished = false;
+        while (!isGameFinished) {
+            exchangeGreetings();
+            turnManager.switchPlayer();
+//            TODO: game loop until we will find winner
+//            isGameFinished = some referee method?
+            rest();
+        }
+    }
 
-            Message messageReceived = communicationBus.receive();
+    private void exchangeGreetings() {
+        final Message message = new MessageBuilder().withAuthor("server").withHeader("greetings").withStatus("OK").withStatement("Welcome on board").build();
+        this.communicationBus.send(this.turnManager.getCurrentPlayer(), message);
+        final Message greetings = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
+        logger.info(greetings);
+    }
 
-            logger.info(messageReceived);
+    private void notifyPlayersThatTheyCanStartGame() {
+        this.opponentConnected();
+        this.turnManager.switchPlayer();
+        this.opponentConnected();
+    }
 
-            if (StringUtils.isNotEmpty(messageReceived.getAuthor())) {
-                String author = messageReceived.getAuthor();
+    private void opponentConnected() {
+        final Message message = new MessageBuilder().withAuthor("server").withHeader("opponentConnected").withStatus("OK").withStatement("true").build();
+        this.communicationBus.send(this.turnManager.getCurrentPlayer(), message);
+    }
 
-                MessageBuilder messageBuilder = new MessageBuilder()
-                        .withAuthor("Name Validation")
-                        .withHeader("Server");
-
-                Message message;
-
-                if (Character.isUpperCase(author.charAt(0))) {
-                    message = messageBuilder
-                            .withStatus("OK")
-                            .withStatement("No warnings")
-                            .build();
-                } else {
-                    message = messageBuilder
-                            .withStatus("ERR")
-                            .withStatement("Name should begin with a capital letter")
-                            .build();
-                }
-
-                communicationBus.send(message);
-            }
-
-            if ("Connection".equals(messageReceived.getHeader()) && "END".equals(messageReceived.getStatus())) {
-                flag = false;
-            }
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                logger.error(e.getMessage());
-            }
+    private void rest() {
+        final long restTime = 300;
+        try {
+            Thread.sleep(restTime);
+        } catch (final InterruptedException e) {
+            logger.error(e.getMessage());
         }
     }
 }

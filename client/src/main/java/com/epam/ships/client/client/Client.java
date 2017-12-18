@@ -36,41 +36,36 @@ public class Client implements Runnable {
             logger.error(e.getMessage());
             return false;
         }
-
         return true;
     }
 
     @Override
     public void run() {
-        listenLoop();
+        try {
+            listenLoop();
+        } catch (final IOException e) {
+            logger.error(e.getMessage());
+        }
     }
 
     public void closeClient() {
         this.shouldRun = false;
     }
 
-    public void listenLoop() {
-        //Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
-        //Message message = receiver.receive()
-        //logger.info(receiver.receive());
-
-        //mock respond from server
-        final int timeWaitingForOtherPlayer = 2000;
-        try {
-            Thread.sleep(timeWaitingForOtherPlayer);
-        } catch (InterruptedException e) {
-            logger.error(e.getMessage());
-        }
-        Message opponentConnect = new MessageBuilder().withHeader("opponentConnected")
-                .withStatus("OK").withAuthor("server").withStatement("true").build();
+    public void listenLoop() throws IOException {
+        Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
+        Message opponentConnect = receiver.receive();
+        logger.info(opponentConnect);
         try {
             messageHandler.handle(opponentConnect);
         } catch (IllegalStateException e) {
             logger.error(e.getMessage());
         }
 
-        //TODO:
-        //in the future receiving in loop and no end loop
+        sendMessage();
+        Message greetings = receiver.receive();
+        logger.info(greetings);
+        //TODO: in the future receiving in loop and no end loop
         endLoop();
     }
 
@@ -89,7 +84,7 @@ public class Client implements Runnable {
     public void sendMessage() {
         try {
             Sender sender = new JSONSender(clientSocket.getOutputStream());
-            Message testMessage = new MessageBuilder().withHeader("Connection")
+            Message testMessage = new MessageBuilder().withHeader("greetings")
                     .withAuthor("Magda").withStatus("OK").withStatement("hey :)").build();
 
             sender.send(testMessage);

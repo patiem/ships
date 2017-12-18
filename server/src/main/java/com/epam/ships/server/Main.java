@@ -14,11 +14,11 @@ public class Main {
 
         while (true) {
             communicationBus.start();
-            Game game = new Game(communicationBus);
-            game.letsChatALittleBit();
+            final Game game = new Game(communicationBus);
+            game.play();
             try {
                 Thread.sleep(300);
-            } catch (InterruptedException e) {
+            } catch (final InterruptedException e) {
                 logger.error(e.getMessage());
             }
             communicationBus.stop();
