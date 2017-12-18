@@ -51,6 +51,11 @@ public class Client implements Runnable {
 
     public void closeClient() {
         this.shouldRun = false;
+        try {
+            clientSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void listenLoop() throws IOException {
@@ -64,6 +69,8 @@ public class Client implements Runnable {
                 logger.error(e.getMessage());
             }
         }
+
+        logger.info("socket close");
     }
 
     public void sendShot(int shotIndex) {

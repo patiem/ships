@@ -1,12 +1,16 @@
 package com.epam.ships.client.client;
 
 import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.scene.control.Button;
 
 import java.util.HashMap;
 import java.util.Map;
 
 class MessageHandler {
+
+    private static final Target logger = new SharedLogger(Client.class);
 
     private Button eventButton = null;
     private final Map<String, EventTrigger> triggers;
@@ -15,6 +19,7 @@ class MessageHandler {
         this.triggers = new HashMap<>();
         this.triggers.put("opponentConnected", new OpponentConnectedTrigger());
         this.triggers.put("shot", new OpponentShotTrigger());
+        this.triggers.put("Connection", new ConnectionEndTigger());
 
         //TODO: react to end!
     }
@@ -29,6 +34,11 @@ class MessageHandler {
         }
 
         String header = message.getHeader();
+        if(!triggers.containsKey(header)) {
+            logger.error("message header: " + header +" is unknown");
+            return;
+        }
+
         triggers.get(header).fire(eventButton, message.getStatement());
     }
 }
