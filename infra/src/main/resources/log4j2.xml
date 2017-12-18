@@ -16,8 +16,9 @@
             - [d] - date, no date format specifier is given, therefore ISO8601 format is assumed;
             - [p] - the priority of the logging event should be left justified to a width of * characters;
             - [m] - used to output the application supplied message associated with the logging event;
+            - [n] - used to add a new line.
             -->
-            <PatternLayout pattern="%d %-5p - %m"/>
+            <PatternLayout pattern="%d %-5p - %m%n"/>
         </File>
         <!--
         "Console Logger":
@@ -30,8 +31,9 @@
             - [d] - date, no date format specifier is given, therefore ISO8601 format is assumed;
             - [p] - the priority of the logging event should be left justified to a width of * characters;
             - [m] - used to output the application supplied message associated with the logging event;
+            - [n] - used to add a new line.
             -->
-            <PatternLayout pattern="%d %-5p - %m"/>
+            <PatternLayout pattern="%d %-5p - %m%n"/>
         </Console>
     </appenders>
 
