@@ -34,7 +34,7 @@ public class Client implements Runnable {
             final int connectionTimeout = 500;
             clientSocket.connect(new InetSocketAddress(address, port), connectionTimeout);
         } catch (IOException | IllegalArgumentException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
             return false;
         }
         return true;
@@ -45,7 +45,7 @@ public class Client implements Runnable {
         try {
             listenLoop();
         } catch (final IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
@@ -54,29 +54,14 @@ public class Client implements Runnable {
     }
 
     private void listenLoop() throws IOException {
-        Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
-        Message opponentConnect = receiver.receive();
-        logger.info(opponentConnect);
-        try {
-            messageHandler.handle(opponentConnect);
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-
-        Message greetings = receiver.receive();
-        logger.info(greetings);
-        //TODO: in the future receiving in loop and no end loop
-        endLoop();
-    }
-
-    private void endLoop() {
-        final int sleepTimeMs = 300;
-
-        while(shouldRun) {
+        while (shouldRun) {
+            Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
+            Message message = receiver.receive();
+            logger.info(message);
             try {
-                Thread.sleep(sleepTimeMs);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                messageHandler.handle(message);
+            } catch (IllegalStateException e) {
+                logger.error(e.getMessage());
             }
         }
     }
@@ -88,7 +73,7 @@ public class Client implements Runnable {
                     .withAuthor("client").withStatus("OK").withStatement(String.valueOf(shotIndex)).build();
             sender.send(shot);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
