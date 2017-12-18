@@ -81,7 +81,7 @@ public class StartWindowController {
         final String defaultHost = "127.0.0.1";
         final String defaultPort = "8189";
 
-                tServerAddress.setText(defaultHost);
+        tServerAddress.setText(defaultHost);
         tServerPort.setText(defaultPort);
     }
 
