@@ -44,7 +44,7 @@ public class Client implements Runnable {
     public void run() {
         try {
             listenLoop();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             logger.error(e.getMessage());
         }
     }

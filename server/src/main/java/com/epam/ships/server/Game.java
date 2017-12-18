@@ -14,7 +14,7 @@ import com.epam.ships.infra.logging.core.SharedLogger;
  */
 class Game {
 
-    private CommunicationBus communicationBus;
+    private final CommunicationBus communicationBus;
     private final Target logger = new SharedLogger(Game.class);
     private final TurnManager turnManager;
 
@@ -35,36 +35,34 @@ class Game {
             turnManager.switchPlayer();
 //            TODO: game loop until we will find winner
 //            isGameFinished = some referee method?
-            waitAWhile();
+            rest();
         }
     }
 
 
     private void exchangeGreetings(){
-        MessageBuilder messageBuilder = new MessageBuilder();
-        Message message = messageBuilder.withAuthor("server").withHeader("greetings").withStatus("OK").withStatement("Welcome on board").build();
-        communicationBus.send(turnManager.getCurrentPlayer(), message);
-        Message greetings = communicationBus.receive(turnManager.getCurrentPlayer());
+        final Message message =  new MessageBuilder().withAuthor("server").withHeader("greetings").withStatus("OK").withStatement("Welcome on board").build();
+        this.communicationBus.send(this.turnManager.getCurrentPlayer(), message);
+        final Message greetings = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
         logger.info(greetings);
     }
 
     private void notifyPlayersThatTheyCanStartGame(){
-       opponentConnected();
-       turnManager.switchPlayer();
-       opponentConnected();
+       this.opponentConnected();
+       this.turnManager.switchPlayer();
+       this.opponentConnected();
    }
 
     private void opponentConnected(){
-        MessageBuilder messageBuilder = new MessageBuilder();
-        Message message = messageBuilder.withAuthor("server").withHeader("opponentConnected").withStatus("OK").withStatement("true").build();
-        communicationBus.send(turnManager.getCurrentPlayer(), message);
+        final Message message = new MessageBuilder().withAuthor("server").withHeader("opponentConnected").withStatus("OK").withStatement("true").build();
+        this.communicationBus.send(this.turnManager.getCurrentPlayer(), message);
     }
 
-    private void waitAWhile() {
-        final long aWhile = 300;
+    private void rest() {
+        final long restTime = 300;
         try {
-            Thread.sleep(aWhile);
-        } catch (InterruptedException e) {
+            Thread.sleep(restTime);
+        } catch (final InterruptedException e) {
             logger.error(e.getMessage());
         }
     }

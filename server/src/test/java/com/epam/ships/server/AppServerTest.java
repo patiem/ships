@@ -25,19 +25,14 @@ public class AppServerTest {
 
     private void connectClient() throws IOException, InterruptedException {
         new Thread(() -> {
-
-
             try {
                 Thread.sleep(10);
                 new Socket("127.0.0.1", 8989);
-            } catch (InterruptedException e) {
+            } catch (final InterruptedException e) {
                 e.printStackTrace();
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 e.printStackTrace();
             }
-
-
         }).start();
     }
-
 }

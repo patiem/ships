@@ -54,15 +54,15 @@ class CommunicationBus {
         return sender.receive();
     }
 
-    void send(WrappedClient recipient, Message response) {
+    void send(final WrappedClient recipient,final Message response) {
         recipient.send(response);
     }
 
-    WrappedClient getFirstClient(){
-        return clients.get(0);
+    final WrappedClient getFirstClient(){
+        return this.clients.get(0);
     }
 
-    WrappedClient getSecondClient(){
-        return clients.get(1);
+    final WrappedClient getSecondClient() {
+        return this.clients.get(1);
     }
 }

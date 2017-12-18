@@ -5,21 +5,21 @@ class TurnManager {
     private final WrappedClient secondPlayer;
     private WrappedClient currentPlayer;
 
-    TurnManager(WrappedClient firstPlayer, WrappedClient secondPlayer) {
+    TurnManager(final WrappedClient firstPlayer,final WrappedClient secondPlayer) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
         this.currentPlayer = firstPlayer;
     }
 
     WrappedClient getCurrentPlayer() {
-        return currentPlayer;
+        return this.currentPlayer;
     }
 
     void switchPlayer() {
-        if (currentPlayer.equals(firstPlayer)) {
-            currentPlayer = secondPlayer;
+        if (this.currentPlayer.equals(this.firstPlayer)) {
+            this.currentPlayer = this.secondPlayer;
         } else {
-            currentPlayer = firstPlayer;
+            this.currentPlayer = this.firstPlayer;
         }
     }
 }
