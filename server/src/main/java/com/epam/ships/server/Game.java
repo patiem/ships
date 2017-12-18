@@ -29,7 +29,6 @@ class Game {
      */
     void play() {
         notifyPlayersThatTheyCanStartGame();
-//        TODO: notify Users they have to place fleet
 //        TODO: notify Users both are ready
         boolean isGameFinished = false;
         while (!isGameFinished ){
