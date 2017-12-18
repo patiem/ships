@@ -39,8 +39,10 @@ class AppServer {
         clientSockets = new ArrayList<>();
         logger.info("Waiting for the 1st client.. ");
         acceptClient();
-//        logging.info("waiting for the 2nd client..");
-//        acceptClient();
+        logger.info("1st client connected... ");
+        logger.info("waiting for the 2nd client..");
+        acceptClient();
+        logger.info("2nd client connected... ");
         logger.info("Clients are connected");
     }
 
