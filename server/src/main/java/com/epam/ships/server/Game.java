@@ -30,20 +30,32 @@ class Game {
         notifyPlayersThatTheyCanStartGame();
 //        TODO: notify Users both are ready
         boolean isGameFinished = false;
-        while (!isGameFinished) {
-            exchangeGreetings();
+        boolean isClientConnected = true;
+        while (!isGameFinished && isClientConnected) {
+            Message messageReceived = exchangeGreetings();
+            isClientConnected = isClientConnected(messageReceived);
             turnManager.switchPlayer();
 //            TODO: game loop until we will find winner
 //            isGameFinished = some referee method?
+
             rest();
         }
     }
 
-    private void exchangeGreetings() {
+    private final boolean isClientConnected(final Message messageReceived) {
+        boolean isClientConnected = true;
+        if ("Connection".equals(messageReceived.getHeader()) && "END".equals(messageReceived.getStatus())) {
+                isClientConnected = false;
+            }
+        return isClientConnected;
+    }
+
+    private final Message exchangeGreetings() {
         final Message message = new MessageBuilder().withAuthor("server").withHeader("greetings").withStatus("OK").withStatement("Welcome on board").build();
         this.communicationBus.send(this.turnManager.getCurrentPlayer(), message);
         final Message greetings = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
         logger.info(greetings);
+        return greetings;
     }
 
     private void notifyPlayersThatTheyCanStartGame() {
