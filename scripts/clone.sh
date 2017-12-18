@@ -11,8 +11,8 @@
 # Have our remote git repository (https://github.com/korotkevics/ships/)
 # cloned into a [your_dir_name].
 #
-
+set -e
 git clone https://github.com/korotkevics/ships $1 --quiet
 cd $1
 git checkout master --quiet
-echo "Done"
+echo "Done cloning"
