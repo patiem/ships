@@ -160,6 +160,10 @@ public class StartWindowController {
 
             mainPane.getChildren().clear();
             mainPane.getChildren().setAll(gameWindow);
+
+            GameController mainController = gameWindowLoader.getController();
+            mainController.initializeClient();
+
             AnchorPane.setTopAnchor(gameWindow, 0.0);
             AnchorPane.setBottomAnchor(gameWindow, 0.0);
             AnchorPane.setLeftAnchor(gameWindow, 0.0);

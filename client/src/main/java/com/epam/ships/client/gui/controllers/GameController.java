@@ -1,17 +1,20 @@
 package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.gui.events.OpponentWithdrawEvent;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
 
 /**
  * @author Magda
@@ -33,9 +36,20 @@ public class GameController {
     @FXML
     private AnchorPane mainAnchorPane;
 
+    @FXML
+    private Button eventButton;
 
     @FXML
     public void initialize() {
+        initializeBoard();
+        eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent -> opponentWithdraw());
+    }
+
+    void initializeClient() {
+        getClient().setEventTrigger(eventButton);
+    }
+
+    private void initializeBoard() {
         final NumberBinding allRectanglesWidth = Bindings.min(yourBoard.heightProperty(),
                 yourBoard.widthProperty().add(-50));
         final NumberBinding allRectanglesHeight = Bindings.min(yourBoard.heightProperty(),
@@ -84,5 +98,14 @@ public class GameController {
         opponentRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));
 
         return opponentRect;
+    }
+
+    private void opponentWithdraw() {
+        loadWithdrawScreen();
+    }
+
+    private void loadWithdrawScreen() {
+        MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
+        mainController.loadWithdrawScreen();
     }
 }

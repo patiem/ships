@@ -19,7 +19,7 @@ import java.net.Socket;
 public class Client implements Runnable {
     private static final Target logger = new SharedLogger(Client.class);
 
-    private Socket clientSocket;
+    private Socket clientSocket = null;
     private final MessageHandler messageHandler;
     private volatile boolean shouldRun;
 
@@ -52,19 +52,37 @@ public class Client implements Runnable {
 
     public void closeClient() {
         this.shouldRun = false;
+        if(clientSocket == null) {
+            return;
+        }
+
         try {
             clientSocket.close();
             Platform.exit();
+            System.exit(0);
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
     }
 
     private void listenLoop() throws IOException {
+        int endCount = 0;
         while (shouldRun) {
+            if(endCount > 0 ) {
+                break;
+            }
             Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
             Message message = receiver.receive();
+
+            if(!shouldRun) {
+                break;
+            }
+
             logger.info(message);
+            if(message.getStatus().equalsIgnoreCase("end")) {
+                //TODO: do int in wise way
+                endCount++;
+            }
             try {
                 messageHandler.handle(message);
             } catch (IllegalStateException e) {

@@ -41,4 +41,16 @@ public class MainController {
             logger.error(e.getMessage());
         }
     }
+
+    public void loadWithdrawScreen() {
+        try {
+            final String serverNotRespondingURL = "/fxml/opponentWithdraw.fxml";
+            final FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource(serverNotRespondingURL));
+            final Parent notResponse = notResponseLoader.load();
+            mainPane.getChildren().clear();
+            mainPane.getChildren().setAll(notResponse);
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+    }
 }
