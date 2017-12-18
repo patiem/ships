@@ -50,8 +50,3 @@ echo "1 if to consider 'communication' as one, or 5 if to count each interface i
 
 echo "[ Q ] How many package-private APIs do we have.."
 echo "0"
-
-#Used only when enhancing the script
-#TODO - remove once script is done
-cd scripts
-git checkout dev_sandor_minor_fixes --quiet
