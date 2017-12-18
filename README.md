@@ -36,11 +36,11 @@ We also integrated Waffle.io with our Slack channel to notify team members whene
 
     mvn test
 
-### Generating a Site
+### Generating Site
 
     mvn site && mvn site:stage
 
-### Viewing a Site
+### Viewing Site
 
 Ex. with Firefox, while in the root folder,
 
