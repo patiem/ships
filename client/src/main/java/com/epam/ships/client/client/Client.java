@@ -8,6 +8,7 @@ import com.epam.ships.infra.communication.core.json.io.JSONSender;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -18,10 +19,12 @@ public class Client implements Runnable {
     private static final Target logger = new SharedLogger(Client.class);
 
     private final Socket clientSocket;
+    private final MessageHandler messageHandler;
     private volatile boolean shouldRun;
 
     public Client() {
         this.clientSocket = new Socket();
+        this.messageHandler = new MessageHandler();
         shouldRun = true;
     }
 
@@ -37,30 +40,38 @@ public class Client implements Runnable {
         return true;
     }
 
+    @Override
     public void run() {
-        try {
-            Sender sender = new JSONSender(clientSocket.getOutputStream());
-
-            Message firstMessage = getMessage("Magda", "Hey, it's Magda :)");
-            sender.send(firstMessage);
-
-            Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
-            logger.info(receiver.receive());
-
-            Message secondMessage = getMessage("piotr", "Hey, it's Piotr :)");
-            sender.send(secondMessage);
-
-            logger.info(receiver.receive());
-
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
-
-        endLoop();
+        listenLoop();
     }
 
     public void closeClient() {
         this.shouldRun = false;
+    }
+
+    public void listenLoop() {
+        //Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
+        //Message message = receiver.receive()
+        //logger.info(receiver.receive());
+
+        //mock respond from server
+        final int timeWaitingForOtherPlayer = 2000;
+        try {
+            Thread.sleep(timeWaitingForOtherPlayer);
+        } catch (InterruptedException e) {
+            logger.error(e.getMessage());
+        }
+        Message opponentConnect = new MessageBuilder().withHeader("opponentConnected")
+                .withStatus("OK").withAuthor("server").withStatement("true").build();
+        try {
+            messageHandler.handle(opponentConnect);
+        } catch (IllegalStateException e) {
+            logger.error(e.getMessage());
+        }
+
+        //TODO:
+        //in the future receiving in loop and no end loop
+        endLoop();
     }
 
     private void endLoop() {
@@ -75,12 +86,19 @@ public class Client implements Runnable {
         }
     }
 
-    private Message getMessage(final String author, final String statement) {
-        return new MessageBuilder()
-                        .withHeader("Connection")
-                        .withStatus("OK")
-                        .withAuthor(author)
-                        .withStatement(statement)
-                        .build();
+    public void sendMessage() {
+        try {
+            Sender sender = new JSONSender(clientSocket.getOutputStream());
+            Message testMessage = new MessageBuilder().withHeader("Connection")
+                    .withAuthor("Magda").withStatus("OK").withStatement("hey :)").build();
+
+            sender.send(testMessage);
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+    }
+
+    public void setEventTrigger(Button button) {
+        messageHandler.setCurrentEventButton(button);
     }
 }

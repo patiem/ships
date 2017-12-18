@@ -1,4 +1,4 @@
-package com.epam.ships.client.gui;
+package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
 import com.epam.ships.infra.logging.api.Target;
@@ -6,10 +6,16 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import lombok.Getter;
 
 import java.io.IOException;
+
+/**
+ * @author Magda
+ * @since 2017-12-14
+ */
 
 public class MainController {
 
@@ -22,7 +28,7 @@ public class MainController {
     private Client client;
 
     @FXML
-    void initialize(final Client client) {
+    public void initialize(final Client client) {
         final String connectWindowURL = "/fxml/connectWindow.fxml";
         this.client = client;
 
