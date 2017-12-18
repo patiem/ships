@@ -17,9 +17,11 @@
 # Some of output is automated, the remainder of values
 # has to be pre-defined manually.
 #
-
+#
 #Go to the root directory and switch to master branch quietly.
 #Won't work properly if there are uncommitted changes (see above).
+#
+
 cd ..
 git checkout master --quiet
 
