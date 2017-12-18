@@ -8,17 +8,17 @@ class TurnManager {
     TurnManager(WrappedClient firstPlayer, WrappedClient secondPlayer) {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
-        currentPlayer = firstPlayer;
+        this.currentPlayer = firstPlayer;
     }
 
     WrappedClient getCurrentPlayer() {
         return currentPlayer;
     }
 
-    void switchPlayer(){
-        if(currentPlayer.equals(firstPlayer)){
+    void switchPlayer() {
+        if (currentPlayer.equals(firstPlayer)) {
             currentPlayer = secondPlayer;
-        }else {
+        } else {
             currentPlayer = firstPlayer;
         }
     }
