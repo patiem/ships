@@ -19,7 +19,7 @@ class MessageHandler {
         this.triggers = new HashMap<>();
         this.triggers.put("opponentConnected", new OpponentConnectedTrigger());
         this.triggers.put("shot", new OpponentShotTrigger());
-        this.triggers.put("Connection", new ConnectionEndTigger());8
+        this.triggers.put("Connection", new ConnectionEndTigger());
 
         //TODO: react to end!
     }
