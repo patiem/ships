@@ -44,9 +44,9 @@ class Game {
 
     private final boolean isClientConnected(final Message messageReceived) {
         boolean isClientConnected = true;
-        if ("Connection".equals(messageReceived.getHeader()) && "END".equals(messageReceived.getStatus())) {
-                isClientConnected = false;
-            }
+        if ("Connection".equals(messageReceived.getHeader()) && "END".equals(messageReceived.getStatus())){
+            isClientConnected = false;
+        }
         return isClientConnected;
     }
 
