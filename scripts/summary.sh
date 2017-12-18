@@ -13,8 +13,8 @@
 # [Description]
 #
 # It gives a quick summary of what a project has.
-# Most of output is automated, however some values
-# do have to be pre-defined manually.
+# Some of output is automated, the remainder of values
+# has to be pre-defined manually.
 #
 
 
@@ -37,13 +37,16 @@ grep -r "package" --include=*.java . --no-filename | sort -u | wc -l
 echo "[ Q ] How many lines of code do we have.."
 ( find ./ -name '*.java' -print0 | xargs -0 cat ) | wc -l
 
-#[!] Manual output
+#[] Manual output
 
 echo "[ Q ] How many design patterns do we have.."
 echo "1 "
 
 echo "[ Q ] How many public APIs do we have.."
 echo "1 if to consider 'communication' as one, 5 if to count each interface individually"
+
+echo "[ Q ] How many package-private APIs do we have.."
+echo "0"
 
 #Used only when enhancing the script
 #TODO - remove once script is done
