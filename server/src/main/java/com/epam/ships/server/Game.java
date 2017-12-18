@@ -42,7 +42,7 @@ class Game {
         }
     }
 
-    private final boolean isClientConnected(final Message messageReceived) {
+    private boolean isClientConnected(final Message messageReceived) {
         boolean isClientConnected = true;
         if ("Connection".equals(messageReceived.getHeader()) && "END".equals(messageReceived.getStatus())){
             isClientConnected = false;
@@ -50,7 +50,7 @@ class Game {
         return isClientConnected;
     }
 
-    private final Message exchangeGreetings() {
+    private Message exchangeGreetings() {
         final Message message = new MessageBuilder().withAuthor("server").withHeader("greetings").withStatus("OK").withStatement("Welcome on board").build();
         this.communicationBus.send(this.turnManager.getCurrentPlayer(), message);
         final Message greetings = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
