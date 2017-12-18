@@ -30,7 +30,7 @@ class Game {
         notifyPlayersThatTheyCanStartGame();
 //        TODO: notify Users both are ready
         boolean isGameFinished = false;
-        while (!isGameFinished ){
+        while (!isGameFinished) {
             exchangeGreetings();
             turnManager.switchPlayer();
 //            TODO: game loop until we will find winner
@@ -39,21 +39,20 @@ class Game {
         }
     }
 
-
-    private void exchangeGreetings(){
-        final Message message =  new MessageBuilder().withAuthor("server").withHeader("greetings").withStatus("OK").withStatement("Welcome on board").build();
+    private void exchangeGreetings() {
+        final Message message = new MessageBuilder().withAuthor("server").withHeader("greetings").withStatus("OK").withStatement("Welcome on board").build();
         this.communicationBus.send(this.turnManager.getCurrentPlayer(), message);
         final Message greetings = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
         logger.info(greetings);
     }
 
-    private void notifyPlayersThatTheyCanStartGame(){
-       this.opponentConnected();
-       this.turnManager.switchPlayer();
-       this.opponentConnected();
-   }
+    private void notifyPlayersThatTheyCanStartGame() {
+        this.opponentConnected();
+        this.turnManager.switchPlayer();
+        this.opponentConnected();
+    }
 
-    private void opponentConnected(){
+    private void opponentConnected() {
         final Message message = new MessageBuilder().withAuthor("server").withHeader("opponentConnected").withStatus("OK").withStatement("true").build();
         this.communicationBus.send(this.turnManager.getCurrentPlayer(), message);
     }

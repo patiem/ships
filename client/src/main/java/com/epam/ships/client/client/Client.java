@@ -36,7 +36,6 @@ public class Client implements Runnable {
             logger.error(e.getMessage());
             return false;
         }
-
         return true;
     }
 

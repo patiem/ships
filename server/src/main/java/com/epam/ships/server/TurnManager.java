@@ -11,7 +11,7 @@ class TurnManager {
         this.currentPlayer = firstPlayer;
     }
 
-    WrappedClient getCurrentPlayer() {
+    final WrappedClient getCurrentPlayer() {
         return this.currentPlayer;
     }
 
