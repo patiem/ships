@@ -1,6 +1,8 @@
 package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.fxml.FXML;
@@ -18,6 +20,8 @@ import javafx.scene.shape.Rectangle;
 
 public class GameController {
 
+    private static final Target logger = new SharedLogger(Client.class);
+
     @FXML
     private GridPane yourBoard;
 
@@ -30,40 +34,31 @@ public class GameController {
 
     @FXML
     public void initialize() {
-        final NumberBinding yourBoardRectsAreaSize = Bindings.min(yourBoard.heightProperty(),
+        final NumberBinding rectanglesSize = Bindings.min(yourBoard.heightProperty(),
                 yourBoard.widthProperty().add(-50));
-        final NumberBinding yourBoardRectsAreaSizeH = Bindings.min(yourBoard.heightProperty(),
-                yourBoard.widthProperty()).add(-50);
-
-        final NumberBinding opponentBoardRectsAreaSize = Bindings.min(yourBoard.heightProperty(),
-                yourBoard.widthProperty().add(-50));
-        final NumberBinding opponentBoardRectsAreaSizeH = Bindings.min(yourBoard.heightProperty(),
+        final NumberBinding rectanglesSizeH = Bindings.min(yourBoard.heightProperty(),
                 yourBoard.widthProperty()).add(-50);
 
         final int boardSize = 10;
 
         for(int i = 0; i < boardSize; i++ ) {
             for(int j = 0; j < boardSize; j++) {
-
-                //hack
-                final int ii = i;
-                final int jj = j;
+                final int shotIndex = j * boardSize + i;
 
                 Rectangle yourRect = new Rectangle(15, 15, Color.GRAY);
                 Rectangle opponentRect = new Rectangle(15, 15, Color.GRAY);
 
                 opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -> {
                     opponentRect.setFill(Color.BLACK);
-                    final int shotIndex = jj * boardSize + ii;
-                    System.out.println(shotIndex);
+                    logger.info(shotIndex);
                     getClient().sendShot(shotIndex);
                 });
 
-                yourRect.widthProperty().bind(yourBoardRectsAreaSize.divide(boardSize));
-                yourRect.heightProperty().bind(yourBoardRectsAreaSizeH.divide(boardSize));
+                yourRect.widthProperty().bind(rectanglesSize.divide(boardSize));
+                yourRect.heightProperty().bind(rectanglesSizeH.divide(boardSize));
 
-                opponentRect.widthProperty().bind(opponentBoardRectsAreaSize.divide(boardSize));
-                opponentRect.heightProperty().bind(opponentBoardRectsAreaSizeH.divide(boardSize));
+                opponentRect.widthProperty().bind(rectanglesSize.divide(boardSize));
+                opponentRect.heightProperty().bind(rectanglesSizeH.divide(boardSize));
 
                 yourBoard.add(yourRect, i, j);
                 opponentBoard.add(opponentRect, i, j);

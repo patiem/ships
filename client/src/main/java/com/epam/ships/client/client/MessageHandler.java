@@ -15,6 +15,8 @@ class MessageHandler {
         this.triggers = new HashMap<>();
         this.triggers.put("opponentConnected", new OpponentConnectedTrigger());
         this.triggers.put("shot", new OpponentShotTrigger());
+
+        //TODO: react to end!
     }
 
     void setCurrentEventButton(Button eventButton) {
