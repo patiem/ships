@@ -42,22 +42,16 @@ public class GameController {
     @FXML
     private Button eventButton;
 
-    private boolean myTurn = false;
-
     @FXML
     public void initialize() {
         initializeBoard();
         eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent -> opponentWithdraw());
         eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,
                 opponentShotEvent -> setOpponentShot(opponentShotEvent.getShotIndex()));
-        eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, new EventHandler<TurnChangeEvent>() {
-            @Override
-            public void handle(TurnChangeEvent event) {
-                setMyTurn();
-            }
-        });
+        eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
 
         opponentBoard.setDisable(true);
+        opponentBoard.setOpacity(0.4);
     }
 
     void initializeClient() {
@@ -107,8 +101,8 @@ public class GameController {
             opponentRect.setFill(Color.BLACK);
             logger.info(opponentShotIndex);
             getClient().sendShot(opponentShotIndex);
-            myTurn = false;
             opponentBoard.setDisable(true);
+            opponentBoard.setOpacity(0.4);
         });
 
         opponentRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
@@ -134,10 +128,11 @@ public class GameController {
         Rectangle rec = (Rectangle) (yourBoard.getChildren().get(newShotIndex + 1));
         rec.setFill(Color.BLACK);
         opponentBoard.setDisable(false);
+        opponentBoard.setOpacity(1);
     }
 
     private void setMyTurn() {
-        myTurn = true;
         opponentBoard.setDisable(false);
+        opponentBoard.setOpacity(1);
     }
 }
