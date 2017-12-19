@@ -14,7 +14,7 @@ import java.util.Map;
  */
 @EqualsAndHashCode
 @RequiredArgsConstructor(staticName = "fleet", access = AccessLevel.PRIVATE)
-class Fleet {
+public class Fleet {
     private final Map<Mast, Ship> fleet;
 
     public static Fleet ofShips(Ship... ships) {

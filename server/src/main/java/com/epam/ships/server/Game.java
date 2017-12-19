@@ -1,5 +1,6 @@
 package com.epam.ships.server;
 
+import com.epam.ships.fleet.Fleet;
 import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
@@ -18,6 +19,8 @@ class Game {
     private final Target logger = new SharedLogger(Game.class);
     private final TurnManager turnManager;
     private final ShotHandler shotHandler;
+    private Fleet firstPlayerFleet;
+    private Fleet secondPlayerFleet;
 
     Game(CommunicationBus communicationBus) {
         this.communicationBus = communicationBus;
@@ -49,16 +52,17 @@ class Game {
     }
 
     private void receiveFleetFromBothPlayers() {
-        this.receiveFloat();
+        this.firstPlayerFleet = this.receiveFloat();
         this.turnManager.switchPlayer();
-        this.receiveFloat();
+        this.secondPlayerFleet = this.receiveFloat();
         this.turnManager.switchPlayer();
     }
 
-    private Message receiveFloat() {
+    private Fleet receiveFloat() {
         final Message fleet = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
         logger.info("Fleet received");
-        return fleet;
+        //TODO unwrap fleet
+        return null;
     }
 
     private void askPlayersForPlaceFleet() {
