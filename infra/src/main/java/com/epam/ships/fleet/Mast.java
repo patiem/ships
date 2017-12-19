@@ -9,6 +9,6 @@ import lombok.EqualsAndHashCode;
  */
 @AllArgsConstructor
 @EqualsAndHashCode
-class Index {
+class Mast {
     private final Integer value;
 }

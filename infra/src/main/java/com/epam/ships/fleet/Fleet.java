@@ -7,5 +7,5 @@ import com.google.common.collect.BiMap;
  * @since 2017-12-19
  */
 public class Fleet {
-    private BiMap<Index, Ship> fleet;
+    private BiMap<Mast, Ship> fleet;
 }

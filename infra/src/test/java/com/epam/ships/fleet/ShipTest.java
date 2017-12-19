@@ -10,8 +10,8 @@ public class ShipTest {
     @Test
     public void itShouldCreateEqualShipsWithGivenIndices() {
         //given - when
-        Ship firstShip = new ShipBuilder().withIndices(new Index(3), new Index(2)).build();
-        Ship secondShip = new ShipBuilder().withIndices(new Index(3), new Index(2)).build();
+        Ship firstShip = Ship.ofMasts(new Mast(3), new Mast(2));
+        Ship secondShip = Ship.ofMasts(new Mast(3), new Mast(2));
         //then
         assertEquals(firstShip, secondShip);
     }
@@ -19,8 +19,8 @@ public class ShipTest {
     @Test
     public void itShouldCreateNotEqualShipsWithDifferentGivenIndices() {
         //given - when
-        Ship firstShip = new ShipBuilder().withIndices(new Index(4), new Index(2)).build();
-        Ship secondShip = new ShipBuilder().withIndices(new Index(3), new Index(2)).build();
+        Ship firstShip = Ship.ofMasts(new Mast(4), new Mast(2));
+        Ship secondShip = Ship.ofMasts(new Mast(3), new Mast(2));
         //then
         assertNotEquals(firstShip, secondShip);
     }
