@@ -20,8 +20,6 @@ class MessageHandler {
         this.triggers.put("opponentConnected", new OpponentConnectedTrigger());
         this.triggers.put("shot", new OpponentShotTrigger());
         this.triggers.put("Connection", new ConnectionEndTrigger());
-
-        //TODO: react to end!
     }
 
     void setCurrentEventButton(Button eventButton) {

@@ -155,8 +155,8 @@ public class StartWindowController {
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
             Stage stage = (Stage) mainPane.getScene().getWindow();
-            stage.setMinHeight(screenBounds.getHeight());
-            stage.setMinWidth(screenBounds.getWidth());
+            stage.setMinHeight(screenBounds.getHeight() - 300);
+            stage.setMinWidth(screenBounds.getWidth() - 300);
 
             mainPane.getChildren().clear();
             mainPane.getChildren().setAll(gameWindow);
