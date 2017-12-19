@@ -31,10 +31,11 @@ class Game {
 //        TODO: notify Users both are ready
         boolean isGameFinished = false;
         boolean isClientConnected = true;
+        this.rest();
         this.yourTurnMessage();
         while (!isGameFinished && isClientConnected) {
             Message receivedShot = receiveShot();
-            isClientConnected = isClientConnected(receivedShot);
+            isClientConnected = this.isClientConnected(receivedShot);
             turnManager.switchPlayer();
             if(isClientConnected){
                 this.sendOpponentShot(receivedShot);
