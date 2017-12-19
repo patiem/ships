@@ -66,11 +66,8 @@ public class Client implements Runnable {
     }
 
     private void listenLoop() throws IOException {
-        int endCount = 0;
-        while (shouldRun) {
-            if(endCount > 0 ) {
-                break;
-            }
+        int endTriggerCount = 0;
+        while (shouldRun && endTriggerCount < 1) {
             Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
             Message message = receiver.receive();
 
@@ -79,16 +76,20 @@ public class Client implements Runnable {
             }
 
             logger.info(message);
-            if(message.getStatus().equalsIgnoreCase("end")) {
-                //TODO: do int in wise way
-                endCount++;
+            if(endWillBeTriggered(message)) {
+                endTriggerCount++;
             }
+
             try {
                 messageHandler.handle(message);
             } catch (IllegalStateException e) {
                 logger.error(e.getMessage());
             }
         }
+    }
+
+    private boolean endWillBeTriggered(Message message) {
+        return message.getStatus().equalsIgnoreCase("end");
     }
 
     public void sendShot(int shotIndex) {
