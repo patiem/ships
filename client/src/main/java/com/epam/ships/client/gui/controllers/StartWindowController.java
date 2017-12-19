@@ -120,7 +120,6 @@ public class StartWindowController {
         } else {
             Thread clientThread = new Thread(client);
             clientThread.start();
-            client.sendMessage();
         }
     }
 
@@ -156,11 +155,15 @@ public class StartWindowController {
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
             Stage stage = (Stage) mainPane.getScene().getWindow();
-            stage.setMinHeight(screenBounds.getHeight());
-            stage.setMinWidth(screenBounds.getWidth());
+            stage.setMinHeight(screenBounds.getHeight() - 300);
+            stage.setMinWidth(screenBounds.getWidth() - 300);
 
             mainPane.getChildren().clear();
             mainPane.getChildren().setAll(gameWindow);
+
+            GameController mainController = gameWindowLoader.getController();
+            mainController.initializeClient();
+
             AnchorPane.setTopAnchor(gameWindow, 0.0);
             AnchorPane.setBottomAnchor(gameWindow, 0.0);
             AnchorPane.setLeftAnchor(gameWindow, 0.0);
