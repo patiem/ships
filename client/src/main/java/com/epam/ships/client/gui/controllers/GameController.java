@@ -93,8 +93,8 @@ public class GameController {
     }
 
     private Rectangle getYourRect(NumberBinding allRectanglesWidth, NumberBinding allRectanglesHeight) {
-        final int magicNumberWhichNoMattersAfterAll = 15;
-        Rectangle yourRect = new Rectangle(magicNumberWhichNoMattersAfterAll, magicNumberWhichNoMattersAfterAll, Color.GRAY);
+        final int initialSize = 15;
+        Rectangle yourRect = new Rectangle(initialSize, initialSize, Color.GRAY);
         yourRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
         yourRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));
 
@@ -103,8 +103,8 @@ public class GameController {
 
     private Rectangle getOpponentRectangle(NumberBinding allRectanglesWidth, NumberBinding allRectanglesHeight,
                                            final int opponentShotIndex) {
-        final int magicNumberWhichNoMattersAfterAll = 15;
-        Rectangle opponentRect = new Rectangle(magicNumberWhichNoMattersAfterAll, magicNumberWhichNoMattersAfterAll, Color.GRAY);
+        final int initialSize = 15;
+        Rectangle opponentRect = new Rectangle(initialSize, initialSize, Color.GRAY);
 
         opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -> {
             opponentRect.setFill(Color.BLACK);
