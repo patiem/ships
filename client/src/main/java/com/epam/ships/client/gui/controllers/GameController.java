@@ -114,7 +114,11 @@ public class GameController {
     }
 
     private void setOpponentShot(int shotIndex) {
-        Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndex + 1));
+        int column = shotIndex / BOARD_SIZE;
+        int row = shotIndex - (column * BOARD_SIZE);
+        int newShotIndex = row * BOARD_SIZE + column;
+        logger.info("new shotIndex: " + newShotIndex);
+        Rectangle rec = (Rectangle) (yourBoard.getChildren().get(newShotIndex + 1));
         rec.setFill(Color.BLACK);
     }
 }
