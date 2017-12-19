@@ -43,11 +43,7 @@ public class Client implements Runnable {
 
     @Override
     public void run() {
-        try {
-            listenLoop();
-        } catch (final IOException e) {
-            logger.error(e.getMessage());
-        }
+        listenLoop();
     }
 
     public void closeClient() {
@@ -65,24 +61,25 @@ public class Client implements Runnable {
         }
     }
 
-    private void listenLoop() throws IOException {
+    private void listenLoop() {
         int endTriggerCount = 0;
         while (shouldRun && endTriggerCount < 1) {
-            Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
-            Message message = receiver.receive();
-
-            if(!shouldRun) {
-                break;
-            }
-
-            logger.info(message);
-            if(endWillBeTriggered(message)) {
-                endTriggerCount++;
-            }
-
             try {
+                Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
+                Message message = receiver.receive();
+
+                if(!shouldRun) {
+                    break;
+                }
+
+                logger.info(message);
+                if(endWillBeTriggered(message)) {
+                    endTriggerCount++;
+                }
+
                 messageHandler.handle(message);
-            } catch (IllegalStateException e) {
+
+            } catch (IOException | IllegalStateException e ) {
                 logger.error(e.getMessage());
             }
         }

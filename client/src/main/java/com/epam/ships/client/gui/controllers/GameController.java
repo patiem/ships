@@ -26,7 +26,7 @@ import java.io.IOException;
 
 /**
  * @author Magda
- * @since 2017-12-10
+ * @since 2017-12-15
  */
 
 public class GameController {

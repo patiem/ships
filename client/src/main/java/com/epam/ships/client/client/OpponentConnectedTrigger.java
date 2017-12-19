@@ -12,7 +12,7 @@ import javafx.scene.control.Button;
 class OpponentConnectedTrigger implements EventTrigger {
 
     @Override
-    public void fire(Button button, String messageStatement) {
+    public void fire(final Button button, final String messageStatement) {
         Platform.runLater(() -> button.fireEvent(new OpponentConnectedEvent()));
     }
 }

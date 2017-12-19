@@ -6,12 +6,16 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 
+/**
+ * @author Magda
+ * @since 2017-12-18
+ */
 public class ConnectionEndTrigger implements EventTrigger {
 
     private static final Target logger = new SharedLogger(Client.class);
 
     @Override
-    public void fire(Button button, String messageStatement) {
+    public void fire(final Button button, final String messageStatement) {
         Platform.runLater(() -> button.fireEvent(new OpponentWithdrawEvent()));
         logger.info("WIN because 2 client leave");
 

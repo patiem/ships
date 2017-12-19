@@ -8,6 +8,11 @@ import javafx.scene.control.Button;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Magda
+ * @since 2017-12-16
+ */
+
 class MessageHandler {
 
     private static final Target logger = new SharedLogger(Client.class);
@@ -27,7 +32,7 @@ class MessageHandler {
         this.eventButton = eventButton;
     }
 
-    void handle(Message message) throws IllegalStateException{
+    void handle(Message message) {
         if(eventButton == null) {
             throw new IllegalStateException("there is no object on which there can be fire event on");
         }
