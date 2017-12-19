@@ -20,6 +20,7 @@ class MessageHandler {
         this.triggers.put("opponentConnected", new OpponentConnectedTrigger());
         this.triggers.put("shot", new OpponentShotTrigger());
         this.triggers.put("Connection", new ConnectionEndTrigger());
+        this.triggers.put("yourTurn", new TurnTrigger());
     }
 
     void setCurrentEventButton(Button eventButton) {

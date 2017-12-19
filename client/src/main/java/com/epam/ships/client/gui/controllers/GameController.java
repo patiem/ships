@@ -3,6 +3,7 @@ package com.epam.ships.client.gui.controllers;
 import com.epam.ships.client.client.Client;
 import com.epam.ships.client.gui.events.OpponentShotEvent;
 import com.epam.ships.client.gui.events.OpponentWithdrawEvent;
+import com.epam.ships.client.gui.events.TurnChangeEvent;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
@@ -41,12 +42,22 @@ public class GameController {
     @FXML
     private Button eventButton;
 
+    private boolean myTurn = false;
+
     @FXML
     public void initialize() {
         initializeBoard();
         eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent -> opponentWithdraw());
         eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,
                 opponentShotEvent -> setOpponentShot(opponentShotEvent.getShotIndex()));
+        eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, new EventHandler<TurnChangeEvent>() {
+            @Override
+            public void handle(TurnChangeEvent event) {
+                setMyTurn();
+            }
+        });
+
+        opponentBoard.setDisable(true);
     }
 
     void initializeClient() {
@@ -96,6 +107,8 @@ public class GameController {
             opponentRect.setFill(Color.BLACK);
             logger.info(opponentShotIndex);
             getClient().sendShot(opponentShotIndex);
+            myTurn = false;
+            opponentBoard.setDisable(true);
         });
 
         opponentRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
@@ -120,5 +133,11 @@ public class GameController {
         logger.info("new shotIndex: " + newShotIndex);
         Rectangle rec = (Rectangle) (yourBoard.getChildren().get(newShotIndex + 1));
         rec.setFill(Color.BLACK);
+        opponentBoard.setDisable(false);
+    }
+
+    private void setMyTurn() {
+        myTurn = true;
+        opponentBoard.setDisable(false);
     }
 }
