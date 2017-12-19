@@ -5,6 +5,11 @@ import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.application.Application;
 
+/**
+ * @author Magda
+ * @since 2017-12-14
+ */
+
 public class Main {
     private static final Target logger = new SharedLogger(Main.class);
 

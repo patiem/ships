@@ -9,10 +9,10 @@ import javafx.scene.control.Button;
  * @since 2017-12-17
  */
 
-public class OpponentConnectedTrigger implements EventTrigger {
+class OpponentConnectedTrigger implements EventTrigger {
 
     @Override
-    public void fire(Button button, String messageStatement) {
+    public void fire(final Button button, final String messageStatement) {
         Platform.runLater(() -> button.fireEvent(new OpponentConnectedEvent()));
     }
 }
