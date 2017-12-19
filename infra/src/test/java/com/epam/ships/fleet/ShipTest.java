@@ -8,7 +8,7 @@ import static org.testng.Assert.assertNotEquals;
 public class ShipTest {
 
     @Test
-    public void itShouldCreateEqualShipsWithGivenIndices() {
+    public void itShouldCreateEqualShipsWhenGivenSameIndices() {
         //given - when
         Ship firstShip = Ship.ofMasts(Mast.ofIndex(3), Mast.ofIndex(2));
         Ship secondShip = Ship.ofMasts(Mast.ofIndex(3), Mast.ofIndex(2));
@@ -17,7 +17,7 @@ public class ShipTest {
     }
 
     @Test
-    public void itShouldCreateNotEqualShipsWithDifferentGivenIndices() {
+    public void itShouldCreateNotEqualShipsWhenGivenDifferentIndices() {
         //given - when
         Ship firstShip = Ship.ofMasts(Mast.ofIndex(4), Mast.ofIndex(2));
         Ship secondShip = Ship.ofMasts(Mast.ofIndex(3), Mast.ofIndex(2));

@@ -1,9 +1,13 @@
 package com.epam.ships.fleet;
 
 import com.google.common.collect.BiMap;
+import com.google.common.collect.Maps;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * @author Piotr,Sandor
@@ -11,6 +15,11 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Fleet {
-    private BiMap<Mast, Ship> fleet;
+class Fleet {
+    private final BiMap<Mast, Ship> fleet;
+
+    public static Fleet ofShips(Ship... ships) {
+        
+    }
+
 }
