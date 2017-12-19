@@ -1,25 +1,29 @@
 package com.epam.ships.fleet;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.Maps;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Piotr,Sandor
  * @since 2017-12-19
  */
 @EqualsAndHashCode
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@RequiredArgsConstructor(staticName = "fleet", access = AccessLevel.PRIVATE)
 class Fleet {
-    private final BiMap<Mast, Ship> fleet;
+    private final Map<Mast, Ship> fleet;
 
     public static Fleet ofShips(Ship... ships) {
-        
+        Map<Mast, Ship> fleet = new HashMap<>();
+        Arrays.stream(ships).forEach(ship -> ship.getMasts().forEach(mast -> fleet.put(mast, ship)));
+        return new Fleet(fleet);
     }
 
+    public boolean isEmpty() {
+        return this.fleet.isEmpty();
+    }
 }
