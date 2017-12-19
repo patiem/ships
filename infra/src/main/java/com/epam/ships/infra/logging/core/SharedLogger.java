@@ -60,6 +60,20 @@ public class SharedLogger implements Target {
         this.logger.error(this.prepareMessage(message));
     }
 
+    /**
+     *
+     * It is used  for logging debug messages.
+     *
+     * @param message a message to be logged.
+     *                Extra information will be
+     *                appended (such as class name,
+     *                datetime, level).
+     */
+    @Override
+    public void debug(Object message) {
+        this.logger.debug(this.prepareMessage(message));
+    }
+
     private String prepareMessage(Object message) {
         return this.clazz.getSimpleName() + ": " + message;
     }

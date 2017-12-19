@@ -1,0 +1,61 @@
+<!--Log4j2 Configuration:
+    used across the application-->
+<configuration>
+
+    <!--Here one can define various loggers-->
+    <appenders>
+        <!--
+        "File Logger":
+
+        - This logger is given with a unique name as in [name]
+        - Logs are collected in the file named as in [fileName] attribute;
+        - Logs are overwritten each time if [append] attribute is set to [false].
+        -->
+        <File name="FILE_LOGGER" fileName="report-generator.log" append="false">
+            <!--
+            - [d] - date, no date format specifier is given, therefore ISO8601 format is assumed;
+            - [p] - the priority of the logging event should be left justified to a width of * characters;
+            - [m] - used to output the application supplied message associated with the logging event;
+            - [n] - used to add a new line.
+            -->
+            <PatternLayout pattern="%d %-5p - %m%n"/>
+        </File>
+        <!--
+        "Console Logger":
+
+        - This logger is given with a unique name as in [name]
+        - [target] is Either "SYSTEM_OUT" or "SYSTEM_ERR". The default is "SYSTEM_ERR".
+        -->
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <!--
+            - [d] - date, no date format specifier is given, therefore ISO8601 format is assumed;
+            - [p] - the priority of the logging event should be left justified to a width of * characters;
+            - [m] - used to output the application supplied message associated with the logging event;
+            - [n] - used to add a new line.
+            -->
+            <PatternLayout pattern="%d %-5p - %m%n"/>
+        </Console>
+    </appenders>
+
+    <!--Here one can add loggers defined above-->
+    <loggers>
+        <!--
+        [level] - ALL / DEBUG / ERROR / FATAL / INFO / OFF / TRACE / WARN
+
+        Ex. DEBUG = designates fine-grained informational
+        events that are most useful to debug an application.
+
+        Levels are prioritized, so if there were more levels output would
+        have been printed in the order of priority.
+        The priority is:
+        ALL < DEBUG < INFO < WARN < ERROR < FATAL < OFF.
+        -->
+        <root level="warn">
+            <!--Add our "Console Logger"-->
+            <appender-ref ref="STDOUT"/>
+            <!--Add our "File Logger"-->
+            <appender-ref ref="FILE_LOGGER"/>
+        </root>
+    </loggers>
+
+</configuration>

@@ -27,4 +27,12 @@ public interface Target {
      *                directed.
      */
     void error(Object message);
+
+    /**
+     * Directing a debug message to
+     * a configurable target.
+     * @param message a message to be
+     *                directed.
+     */
+    void debug(Object message);
 }
