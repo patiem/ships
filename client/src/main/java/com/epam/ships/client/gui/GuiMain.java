@@ -3,10 +3,12 @@ package com.epam.ships.client.gui;
 import com.epam.ships.client.client.Client;
 import com.epam.ships.client.gui.controllers.MainController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * @author Magda
@@ -32,7 +34,10 @@ public class GuiMain extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        primaryStage.setOnHiding( event -> client.closeClient() );
+        primaryStage.setOnHiding( (WindowEvent event) -> {
+            client.closeClient();
+            Platform.exit();
+        });
     }
 
 }

@@ -155,8 +155,9 @@ public class StartWindowController {
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
             Stage stage = (Stage) mainPane.getScene().getWindow();
-            stage.setMinHeight(screenBounds.getHeight() - 300);
-            stage.setMinWidth(screenBounds.getWidth() - 300);
+            final int shrinkSize = 300;
+            stage.setMinHeight(screenBounds.getHeight() - shrinkSize);
+            stage.setMinWidth(screenBounds.getWidth() - shrinkSize);
 
             mainPane.getChildren().clear();
             mainPane.getChildren().setAll(gameWindow);
@@ -164,10 +165,11 @@ public class StartWindowController {
             GameController mainController = gameWindowLoader.getController();
             mainController.initializeClient();
 
-            AnchorPane.setTopAnchor(gameWindow, 0.0);
-            AnchorPane.setBottomAnchor(gameWindow, 0.0);
-            AnchorPane.setLeftAnchor(gameWindow, 0.0);
-            AnchorPane.setRightAnchor(gameWindow, 0.0);
+            final double margin = 0.0;
+            AnchorPane.setTopAnchor(gameWindow, margin);
+            AnchorPane.setBottomAnchor(gameWindow, margin);
+            AnchorPane.setLeftAnchor(gameWindow, margin);
+            AnchorPane.setRightAnchor(gameWindow, margin);
 
         } catch (IOException e) {
             logger.error(e.getMessage());
