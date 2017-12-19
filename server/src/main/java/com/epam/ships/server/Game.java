@@ -28,7 +28,6 @@ class Game {
      */
     void play() {
         notifyPlayersThatTheyCanStartGame();
-//        TODO: notify Users both are ready
         boolean isGameFinished = false;
         boolean isClientConnected = true;
         this.rest();
