@@ -31,26 +31,32 @@ class Game {
 //        TODO: notify Users both are ready
         boolean isGameFinished = false;
         boolean isClientConnected = true;
+        this.yourTurnMessage();
         while (!isGameFinished && isClientConnected) {
             Message receivedShot = receiveShot();
             isClientConnected = isClientConnected(receivedShot);
             turnManager.switchPlayer();
             if(isClientConnected){
-                sendOpponentShot(receivedShot);
+                this.sendOpponentShot(receivedShot);
             }
-//            TODO: game loop until we will find winner
-//            isGameFinished = some referee method?
             rest();
         }
     }
 
     private void sendOpponentShot(Message receivedShot) {
         this.communicationBus.send(this.turnManager.getCurrentPlayer(), receivedShot);
+        logger.info("Shot send");
     }
 
     private Message receiveShot() {
         final Message shot = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
+        logger.info(shot);
         return shot;
+    }
+
+    private void yourTurnMessage(){
+        final Message turn = new MessageBuilder().withAuthor("server").withHeader("yourTurn").withStatus("OK").build();
+        this.communicationBus.send(turnManager.getCurrentPlayer(), turn);
     }
 
     private boolean isClientConnected(final Message messageReceived) {
@@ -61,18 +67,11 @@ class Game {
         return isClientConnected;
     }
 
-    private Message exchangeGreetings() {
-        final Message message = new MessageBuilder().withAuthor("server").withHeader("greetings").withStatus("OK").withStatement("Welcome on board").build();
-        this.communicationBus.send(this.turnManager.getCurrentPlayer(), message);
-        final Message greetings = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
-        logger.info(greetings);
-        return greetings;
-    }
-
     private void notifyPlayersThatTheyCanStartGame() {
         this.opponentConnected();
         this.turnManager.switchPlayer();
         this.opponentConnected();
+        this.turnManager.switchPlayer();
     }
 
     private void opponentConnected() {
