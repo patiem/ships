@@ -10,13 +10,18 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 
 /**
@@ -116,8 +121,27 @@ public class GameController {
     }
 
     private void loadWithdrawScreen() {
-        MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
-        mainController.loadWithdrawScreen();
+        try {
+            final String opponentWithdrawURL = "/fxml/opponentWithdraw.fxml";
+            final FXMLLoader opponentWithdrawLoader = new FXMLLoader(getClass().getResource(opponentWithdrawURL));
+            final Parent opponentWithdraw = opponentWithdrawLoader.load();
+            final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
+
+            Stage stage = (Stage) mainPane.getScene().getWindow();
+            stage.setHeight(400);
+            stage.setWidth(600);
+
+            mainPane.getChildren().clear();
+            mainPane.getChildren().setAll(opponentWithdraw);
+
+            AnchorPane.setTopAnchor(opponentWithdraw, 0.0);
+            AnchorPane.setBottomAnchor(opponentWithdraw, 0.0);
+            AnchorPane.setLeftAnchor(opponentWithdraw, 0.0);
+            AnchorPane.setRightAnchor(opponentWithdraw, 0.0);
+
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
     }
 
     private void setOpponentShot(int shotIndex) {

@@ -6,6 +6,7 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import lombok.Getter;
 
@@ -37,18 +38,6 @@ public class MainController {
 
             mainPane.getChildren().clear();
             mainPane.getChildren().add(connect);
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
-    }
-
-    public void loadWithdrawScreen() {
-        try {
-            final String serverNotRespondingURL = "/fxml/opponentWithdraw.fxml";
-            final FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource(serverNotRespondingURL));
-            final Parent notResponse = notResponseLoader.load();
-            mainPane.getChildren().clear();
-            mainPane.getChildren().setAll(notResponse);
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
