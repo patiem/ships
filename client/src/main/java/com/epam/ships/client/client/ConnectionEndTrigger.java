@@ -12,12 +12,8 @@ import javafx.scene.control.Button;
  */
 public class ConnectionEndTrigger implements EventTrigger {
 
-    private static final Target logger = new SharedLogger(Client.class);
-
     @Override
     public void fire(final Button button, final String messageStatement) {
         Platform.runLater(() -> button.fireEvent(new OpponentWithdrawEvent()));
-        logger.info("WIN because 2 client leave");
-
     }
 }

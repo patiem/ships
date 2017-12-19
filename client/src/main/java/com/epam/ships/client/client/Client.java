@@ -19,7 +19,7 @@ import java.net.Socket;
 public class Client implements Runnable {
     private static final Target logger = new SharedLogger(Client.class);
 
-    private Socket clientSocket = null;
+    private Socket clientSocket;
     private final MessageHandler messageHandler;
     private volatile boolean shouldRun;
 
@@ -54,28 +54,19 @@ public class Client implements Runnable {
 
         try {
             clientSocket.close();
-            Platform.exit();
-            System.exit(0);
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
     }
 
     private void listenLoop() {
-        int endTriggerCount = 0;
-        while (shouldRun && endTriggerCount < 1) {
+
+        while (shouldRun && !messageHandler.isEndConnectionTriggered()) {
             try {
                 Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
                 Message message = receiver.receive();
 
-                if(!shouldRun) {
-                    break;
-                }
-
                 logger.info(message);
-                if(endWillBeTriggered(message)) {
-                    endTriggerCount++;
-                }
 
                 messageHandler.handle(message);
 
@@ -83,10 +74,6 @@ public class Client implements Runnable {
                 logger.error(e.getMessage());
             }
         }
-    }
-
-    private boolean endWillBeTriggered(Message message) {
-        return message.getStatus().equalsIgnoreCase("end");
     }
 
     public void sendShot(int shotIndex) {
