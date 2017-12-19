@@ -56,7 +56,8 @@ public class GameController {
         eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
 
         opponentBoard.setDisable(true);
-        opponentBoard.setOpacity(0.4);
+        final double opacity = 0.4;
+        opponentBoard.setOpacity(opacity);
     }
 
     void initializeClient() {
@@ -64,10 +65,11 @@ public class GameController {
     }
 
     private void initializeBoard() {
+        final int margin = 50;
         final NumberBinding allRectanglesWidth = Bindings.min(yourBoard.heightProperty(),
-                yourBoard.widthProperty().add(-50));
+                yourBoard.widthProperty().add(-margin));
         final NumberBinding allRectanglesHeight = Bindings.min(yourBoard.heightProperty(),
-                yourBoard.widthProperty()).add(-50);
+                yourBoard.widthProperty()).add(-margin);
 
         for(int i = 0; i < BOARD_SIZE; i++ ) {
             for(int j = 0; j < BOARD_SIZE; j++) {
@@ -91,7 +93,8 @@ public class GameController {
     }
 
     private Rectangle getYourRect(NumberBinding allRectanglesWidth, NumberBinding allRectanglesHeight) {
-        Rectangle yourRect = new Rectangle(15, 15, Color.GRAY);
+        final int initialSize = 15;
+        Rectangle yourRect = new Rectangle(initialSize, initialSize, Color.GRAY);
         yourRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
         yourRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));
 
@@ -100,14 +103,16 @@ public class GameController {
 
     private Rectangle getOpponentRectangle(NumberBinding allRectanglesWidth, NumberBinding allRectanglesHeight,
                                            final int opponentShotIndex) {
-        Rectangle opponentRect = new Rectangle(15, 15, Color.GRAY);
+        final int initialSize = 15;
+        Rectangle opponentRect = new Rectangle(initialSize, initialSize, Color.GRAY);
 
         opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -> {
             opponentRect.setFill(Color.BLACK);
             logger.info(opponentShotIndex);
             getClient().sendShot(opponentShotIndex);
             opponentBoard.setDisable(true);
-            opponentBoard.setOpacity(0.4);
+            final double opacity = 0.4;
+            opponentBoard.setOpacity(opacity);
         });
 
         opponentRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
@@ -117,6 +122,7 @@ public class GameController {
     }
 
     private void opponentWithdraw() {
+        getClient().closeClient();
         loadWithdrawScreen();
     }
 
@@ -126,18 +132,22 @@ public class GameController {
             final FXMLLoader opponentWithdrawLoader = new FXMLLoader(getClass().getResource(opponentWithdrawURL));
             final Parent opponentWithdraw = opponentWithdrawLoader.load();
             final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
+            final int sceneHeight = 400;
+            final int sceneWidth = 600;
+            final double margin = 0.0;
 
             Stage stage = (Stage) mainPane.getScene().getWindow();
-            stage.setHeight(400);
-            stage.setWidth(600);
+            stage.setHeight(sceneHeight);
+            stage.setWidth(sceneWidth);
 
             mainPane.getChildren().clear();
             mainPane.getChildren().setAll(opponentWithdraw);
 
-            AnchorPane.setTopAnchor(opponentWithdraw, 0.0);
-            AnchorPane.setBottomAnchor(opponentWithdraw, 0.0);
-            AnchorPane.setLeftAnchor(opponentWithdraw, 0.0);
-            AnchorPane.setRightAnchor(opponentWithdraw, 0.0);
+
+            AnchorPane.setTopAnchor(opponentWithdraw, margin);
+            AnchorPane.setBottomAnchor(opponentWithdraw, margin);
+            AnchorPane.setLeftAnchor(opponentWithdraw, margin);
+            AnchorPane.setRightAnchor(opponentWithdraw, margin);
 
         } catch (IOException e) {
             logger.error(e.getMessage());
@@ -148,15 +158,17 @@ public class GameController {
         int column = shotIndex / BOARD_SIZE;
         int row = shotIndex - (column * BOARD_SIZE);
         int newShotIndex = row * BOARD_SIZE + column;
+        final double noOpacity = 1.0;
         logger.info("new shotIndex: " + newShotIndex);
         Rectangle rec = (Rectangle) (yourBoard.getChildren().get(newShotIndex + 1));
         rec.setFill(Color.BLACK);
         opponentBoard.setDisable(false);
-        opponentBoard.setOpacity(1);
+        opponentBoard.setOpacity(noOpacity);
     }
 
     private void setMyTurn() {
+        final double noOpacity = 1.0;
         opponentBoard.setDisable(false);
-        opponentBoard.setOpacity(1);
+        opponentBoard.setOpacity(noOpacity);
     }
 }
