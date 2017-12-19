@@ -17,30 +17,60 @@ class Game {
     private final CommunicationBus communicationBus;
     private final Target logger = new SharedLogger(Game.class);
     private final TurnManager turnManager;
+    private final ShotHandler shotHandler;
 
     Game(CommunicationBus communicationBus) {
         this.communicationBus = communicationBus;
         this.turnManager = new TurnManager(communicationBus.getFirstClient(), communicationBus.getSecondClient());
+        this.shotHandler = new ShotHandler();
     }
 
     /**
      * A draft dummy method used for demo.
      */
     void play() {
-        notifyPlayersThatTheyCanStartGame();
+        this.notifyPlayersThatTheyCanStartGame();
         boolean isGameFinished = false;
         boolean isClientConnected = true;
         this.rest();
+        this.askPlayersForPlaceFleet();
+        this.receiveFleetFromBothPlayers();
         this.yourTurnMessage();
         while (!isGameFinished && isClientConnected) {
-            Message receivedShot = receiveShot();
+            Message receivedShot = this.receiveShot();
+            this.shotHandler.handle(receivedShot);
             isClientConnected = this.isClientConnected(receivedShot);
-            turnManager.switchPlayer();
+            this.turnManager.switchPlayer();
             if(isClientConnected){
                 this.sendOpponentShot(receivedShot);
             }
-            rest();
+            this.rest();
         }
+    }
+
+    private void receiveFleetFromBothPlayers() {
+        this.receiveFloat();
+        this.turnManager.switchPlayer();
+        this.receiveFloat();
+        this.turnManager.switchPlayer();
+    }
+
+    private Message receiveFloat() {
+        final Message fleet = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
+        logger.info("Fleet received");
+        return fleet;
+    }
+
+    private void askPlayersForPlaceFleet() {
+        this.askForPlaceFleet();
+        this.turnManager.switchPlayer();
+        this.askForPlaceFleet();
+        this.turnManager.switchPlayer();
+    }
+
+    private void askForPlaceFleet() {
+        final Message message = new MessageBuilder().withAuthor("server").withHeader("PlaceFleet").withStatus("OK").build();
+        this.communicationBus.send(turnManager.getCurrentPlayer(), message);
     }
 
     private void sendOpponentShot(Message receivedShot) {
