@@ -23,7 +23,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
 /**
  * @author Magda
  * @since 2017-12-15
@@ -148,7 +147,6 @@ public class GameController {
 
             mainPane.getChildren().clear();
             mainPane.getChildren().setAll(opponentWithdraw);
-
 
             AnchorPane.setTopAnchor(opponentWithdraw, margin);
             AnchorPane.setBottomAnchor(opponentWithdraw, margin);

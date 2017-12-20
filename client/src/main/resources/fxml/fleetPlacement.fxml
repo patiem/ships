@@ -71,10 +71,10 @@
                      <children>
                         <HBox prefHeight="59.0" prefWidth="588.0">
                            <children>
-                              <Group>
+                              <Group fx:id="gFourMastShip">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                    <Rectangle fx:id="testRec" arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="120.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="180.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                  </children>
@@ -83,22 +83,23 @@
                         </HBox>
                         <HBox prefHeight="60.0" prefWidth="588.0">
                            <children>
-                              <Group>
+                              <Group fx:id="gThreeMastShips">
                                  <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="120.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                    <Group fx:id="gFirstThreeMastShip">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="120.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="gSecondThreeMastShip" layoutX="200.0">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="120.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                       </children>
+                                    </Group>
                                  </children>
-                              </Group>
-                              <Group>
-                                 <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="120.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
                               </Group>
                            </children>
                            <VBox.margin>
@@ -110,32 +111,27 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                            <children>
-                              <Group>
+                              <Group fx:id="gTwoMastShips">
                                  <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                    <Group fx:id="gFirstTwoMastShip">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="gSecondTwoMastShip" layoutX="140.0">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="gThirdTwoMastShip" layoutX="280.0">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                       </children>
+                                    </Group>
                                  </children>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Group>
-                              <Group>
-                                 <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </Group>
-                              <Group>
-                                 <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
                               </Group>
                            </children>
                         </HBox>
@@ -144,34 +140,29 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                            <children>
-                              <Group>
+                              <Group fx:id="gOneMastShips">
                                  <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                    <Group fx:id="gFirstOneMastShip">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="gSecondOneMastShip" layoutX="80.0">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="gThirdOneMastShip" layoutX="160.0">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                       </children>
+                                    </Group>
+                                    <Group fx:id="gFourthOneMastShip" layoutX="240.0">
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                       </children>
+                                    </Group>
                                  </children>
-                              </Group>
-                              <Group>
-                                 <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </Group>
-                              <Group>
-                                 <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
-                              </Group>
-                              <Group>
-                                 <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                 </children>
-                                 <HBox.margin>
-                                    <Insets left="20.0" />
-                                 </HBox.margin>
                               </Group>
                            </children>
                         </HBox>
