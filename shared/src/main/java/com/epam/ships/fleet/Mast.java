@@ -1,6 +1,9 @@
 package com.epam.ships.fleet;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
  * @author Piotr, Sandor

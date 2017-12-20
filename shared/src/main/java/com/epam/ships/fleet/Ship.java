@@ -8,7 +8,6 @@ import lombok.Getter;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
 /**
  * @author Piotr,Sandor
@@ -20,8 +19,8 @@ import java.util.stream.Stream;
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Ship {
+    @Getter(AccessLevel.PACKAGE)
     private final Set<Mast> masts;
-
     /**
      * Static factory method.
      *
