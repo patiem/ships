@@ -1,7 +1,9 @@
 package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.client.TurnTrigger;
 import com.epam.ships.client.gui.events.OpponentConnectedEvent;
+import com.epam.ships.client.gui.events.TurnChangeEvent;
 import com.epam.ships.client.validators.PortValidator;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
@@ -70,9 +72,7 @@ public class StartWindowController {
         });
 
         portValidator = new PortValidator();
-
-        eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED,
-                (EventHandler<Event>) event -> loadFleetPlacementWindow());
+        eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED, event -> loadFleetPlacementWindow());
 
         final String defaultHost = "127.0.0.1";
         final String defaultPort = "8189";

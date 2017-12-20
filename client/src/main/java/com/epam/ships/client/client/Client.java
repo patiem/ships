@@ -72,6 +72,16 @@ public class Client implements Runnable {
             } catch (IOException | IllegalStateException e ) {
                 logger.error(e.getMessage());
             }
+
+            rest();
+        }
+    }
+
+    private void rest() {
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            logger.info(e.getMessage());
         }
     }
 

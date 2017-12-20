@@ -58,7 +58,7 @@ public class FleetPlacementController {
     @FXML
     private GridPane yourBoard;
 
-    private boolean myTurn;
+    private volatile boolean myTurn;
 
     //Events Handlers
     private EventHandler<MouseEvent> onMouseEnteredOnShip =
@@ -239,8 +239,8 @@ public class FleetPlacementController {
             mainPane.getChildren().setAll(gameWindow);
 
             GameController gameController = gameWindowLoader.getController();
-            gameController.initializeClient();
             gameController.initializeTurn(myTurn);
+            gameController.initializeClient();
             gameController.initializeBoards(yourBoard);
 
             final double margin = 0.0;
@@ -255,7 +255,7 @@ public class FleetPlacementController {
     }
 
     private void setMyTurn() {
-        logger.info("set my turn");
-        myTurn = true;
+        logger.info("set my turn fleet");
+        this.myTurn = true;
     }
 }
