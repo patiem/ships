@@ -85,7 +85,7 @@ public class FleetPlacementController {
                 event.consume();
             };
 
-    private EventHandler<DragEvent> shipOnDragEnetered =
+    private EventHandler<DragEvent> shipOnDragEntered =
             event -> {
                 for (Node child : ((Group)event.getSource()).getChildren()) {
                     Rectangle rec = (Rectangle) child;
@@ -115,6 +115,20 @@ public class FleetPlacementController {
                 ((Group)event.getSource()).setDisable(true);
             };
 
+    private EventHandler<DragEvent> boardOnDragOver =
+            event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasString()) {
+                    event.acceptTransferModes(TransferMode.COPY);
+                }
+                event.consume();
+            };
+
+    private EventHandler<DragEvent> boardOnDragExited =
+            event -> {
+                ((Rectangle)event.getSource()).setOpacity(1);
+                event.consume();
+            };
 
     @FXML
     public void initialize() {
@@ -133,61 +147,12 @@ public class FleetPlacementController {
 
         for(int i = 0; i < BOARD_SIZE; i++ ) {
             for(int j = 0; j < BOARD_SIZE; j++) {
-                final int recIndex = j * BOARD_SIZE + i;;
+                final int recIndex = j * BOARD_SIZE + i;
                 final int fillIndex = i * BOARD_SIZE + j;
 
                 Rectangle yourRect = getYourRect(allRectanglesWidth, allRectanglesHeight);
                 yourBoard.add(yourRect, i, j);
-
-                yourRect.setOnDragEntered(boardOnDragEntered);
-
-                yourRect.setOnDragOver(new EventHandler<DragEvent>() {
-                    @Override
-                    public void handle(DragEvent event) {
-                        Dragboard db = event.getDragboard();
-                        if (db.hasString()) {
-                            event.acceptTransferModes(TransferMode.COPY);
-                        }
-                        event.consume();
-                    }
-                });
-
-                yourRect.setOnDragExited(new EventHandler<DragEvent>() {
-                    @Override
-                    public void handle(DragEvent event) {
-                        yourRect.setOpacity(1);
-                        event.consume();
-                    }
-                });
-
-                yourRect.setOnDragDropped(new EventHandler<DragEvent>() {
-                    @Override
-                    public void handle(DragEvent event) {
-
-                        Dragboard db = event.getDragboard();
-                        boolean success = false;
-                        if (db.hasString()) {
-                            success = true;
-                        }
-
-                        int mast  = ((Group)event.getGestureSource()).getChildren().size();
-                        event.setDropCompleted(success);
-
-                        yourRect.setFill(Color.GREEN);
-
-                        int index = fillIndex + 1;
-
-                        for(int i = 1; i < mast; i++) {
-                            ((Rectangle) yourBoard.getChildren().get(index + i)).setFill(Color.GREEN);
-                        }
-
-                        logger.info("first ship index " + recIndex);
-                        logger.info("n mast " + mast);
-                        event.consume();
-                    }
-                });
-
-
+                setEventsOnField(yourRect, recIndex, fillIndex);
                 GridPane.setHalignment(yourRect, HPos.CENTER);
             }
         }
@@ -198,40 +163,58 @@ public class FleetPlacementController {
         Rectangle yourRect = new Rectangle(initialSize, initialSize, Color.GRAY);
         yourRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
         yourRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));
-
         return yourRect;
+    }
+
+    private void setEventsOnField(Rectangle rectangle, final int recIndex, final int fillIndex) {
+        rectangle.setOnDragEntered(boardOnDragEntered);
+        rectangle.setOnDragOver(boardOnDragOver);
+        rectangle.setOnDragExited(boardOnDragExited);
+
+        rectangle.setOnDragDropped(event -> {
+            Dragboard db = event.getDragboard();
+            boolean success = false;
+            if (db.hasString()) {
+                success = true;
+            }
+
+            int mast  = ((Group)event.getGestureSource()).getChildren().size();
+            event.setDropCompleted(success);
+
+            rectangle.setFill(Color.GREEN);
+
+            int index = fillIndex + 1;
+
+            for(int i1 = 1; i1 < mast; i1++) {
+                ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
+            }
+
+            logger.info("first ship index " + recIndex);
+            logger.info("n mast " + mast);
+            event.consume();
+        });
     }
 
     private void addDragEventsToShips() {
 
         gFourMastShip.setOnMouseEntered(onMouseEnteredOnShip);
         gFourMastShip.setOnMouseExited(onMouseExitFromShip);
-        gFourMastShip.setOnDragEntered(shipOnDragEnetered);
+        gFourMastShip.setOnDragEntered(shipOnDragEntered);
         gFourMastShip.setOnDragDetected(shipOnDragDetected);
         gFourMastShip.setOnDragDone(shipOnDragDone);
 
-        for (Node threeMastShip : gThreeMastShips.getChildren()) {
-            threeMastShip.setOnMouseEntered(onMouseEnteredOnShip);
-            threeMastShip.setOnMouseExited(onMouseExitFromShip);
-            threeMastShip.setOnDragEntered(shipOnDragEnetered);
-            threeMastShip.setOnDragDetected(shipOnDragDetected);
-            threeMastShip.setOnDragDone(shipOnDragDone);
-        }
+        setEventsOnShips(gThreeMastShips);
+        setEventsOnShips(gTwoMastShips);
+        setEventsOnShips(gOneMastShips);
+    }
 
-        for (Node twoMastShip : gTwoMastShips.getChildren()) {
-            twoMastShip.setOnMouseEntered(onMouseEnteredOnShip);
-            twoMastShip.setOnMouseExited(onMouseExitFromShip);
-            twoMastShip.setOnDragEntered(shipOnDragEnetered);
-            twoMastShip.setOnDragDetected(shipOnDragDetected);
-            twoMastShip.setOnDragDone(shipOnDragDone);
-        }
-
-        for (Node oneMastShip : gOneMastShips.getChildren()) {
-            oneMastShip.setOnMouseEntered(onMouseEnteredOnShip);
-            oneMastShip.setOnMouseExited(onMouseExitFromShip);
-            oneMastShip.setOnDragEntered(shipOnDragEnetered);
-            oneMastShip.setOnDragDetected(shipOnDragDetected);
-            oneMastShip.setOnDragDone(shipOnDragDone);
+    private void setEventsOnShips(Group shipsGroup) {
+        for (Node ship : shipsGroup.getChildren()) {
+            ship.setOnMouseEntered(onMouseEnteredOnShip);
+            ship.setOnMouseExited(onMouseExitFromShip);
+            ship.setOnDragEntered(shipOnDragEntered);
+            ship.setOnDragDetected(shipOnDragDetected);
+            ship.setOnDragDone(shipOnDragDone);
         }
     }
 
