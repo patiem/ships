@@ -1,9 +1,6 @@
 package com.epam.ships.fleet;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 
 /**
  * @author Piotr, Sandor
@@ -11,6 +8,7 @@ import lombok.Getter;
  */
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString
 public class Mast {
     private int index;
 
