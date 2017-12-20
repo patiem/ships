@@ -2,6 +2,9 @@ package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
 import com.epam.ships.client.gui.events.TurnChangeEvent;
+import com.epam.ships.fleet.Fleet;
+import com.epam.ships.fleet.Mast;
+import com.epam.ships.fleet.Ship;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
@@ -28,6 +31,8 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FleetPlacementController {
 
@@ -59,6 +64,10 @@ public class FleetPlacementController {
     private GridPane yourBoard;
 
     private volatile boolean myTurn;
+
+    private Fleet fleet;
+
+    private List<Ship> ships;
 
     //Events Handlers
     private EventHandler<MouseEvent> onMouseEnteredOnShip =
@@ -136,6 +145,7 @@ public class FleetPlacementController {
         bReady.setOnAction(event -> loadGameWindow());
         initializeBoard();
         addDragEventsToShips();
+        ships = new ArrayList<>(10);
     }
 
     private void initializeBoard() {
@@ -185,9 +195,15 @@ public class FleetPlacementController {
 
             int index = fillIndex + 1;
 
+            Mast[] masts = new Mast[mast];
+            masts[0] = Mast.ofIndex(String.valueOf(recIndex));
+
             for(int i1 = 1; i1 < mast; i1++) {
                 ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
+                masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));
             }
+
+            ships.add(Ship.ofMasts(masts));
 
             logger.info("first ship index " + recIndex);
             logger.info("n mast " + mast);
@@ -223,6 +239,9 @@ public class FleetPlacementController {
 
     private void loadGameWindow() {
         try {
+
+            getClient().sendFleet(Fleet.ofShips((Ship[])ships.toArray()));
+
             final String gameWindowURL = "/fxml/gameWindow.fxml";
             final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowURL));
             final Parent gameWindow = gameWindowLoader.load();
