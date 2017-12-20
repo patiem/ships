@@ -10,9 +10,9 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 public class Mast {
-    private int index;
+    private String index;
 
-    public static Mast ofIndex(int index) {
+    public static Mast ofIndex(String index) {
         return new Mast(index);
     }
 }

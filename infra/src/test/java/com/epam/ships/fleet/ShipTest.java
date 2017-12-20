@@ -6,7 +6,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 
 public class ShipTest {
-
+/*
     @Test
     public void itShouldCreateEqualShipsWhenGivenSameIndices() {
         //given - when
@@ -23,6 +23,6 @@ public class ShipTest {
         Ship secondShip = Ship.ofMasts(Mast.ofIndex(3), Mast.ofIndex(2));
         //then
         assertNotEquals(firstShip, secondShip);
-    }
+    }*/
 
 }

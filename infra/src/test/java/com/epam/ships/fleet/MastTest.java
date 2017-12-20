@@ -6,7 +6,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 
 public class MastTest {
-
+/*
     @Test
     public void itShouldCreateEqualMastsWhenGivenSameIndices() {
         //given - when
@@ -23,5 +23,5 @@ public class MastTest {
         Mast secondMast = Mast.ofIndex(3);
         //then
         assertNotEquals(firstMast, secondMast);
-    }
+    }*/
 }

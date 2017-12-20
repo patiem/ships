@@ -1,6 +1,7 @@
 package com.epam.ships.fleet;
 
 import com.epam.ships.infra.communication.api.Attachable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.MapSerializer;
@@ -9,6 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,10 +19,17 @@ import java.util.Map;
  * @since 2017-12-19
  */
 @EqualsAndHashCode
-@RequiredArgsConstructor(staticName = "fleet", access = AccessLevel.PRIVATE)
+//@RequiredArgsConstructor(staticName = "fleet", access = AccessLevel.PRIVATE)
 public class Fleet implements Attachable {
     
-    @JsonSerialize(keyUsing = MapSerializer.class)
+    Fleet(final Map<Mast, Ship> fleet) {
+        this.fleet = fleet;
+    }
+    
+    Fleet() {
+        this.fleet = Collections.emptyMap();
+    }
+    
     private final Map<Mast, Ship> fleet;
     
     public static Fleet ofShips(Ship... ships) {
@@ -29,6 +38,7 @@ public class Fleet implements Attachable {
         return new Fleet(fleet);
     }
 
+    @JsonIgnore
     public boolean isEmpty() {
         return this.fleet.isEmpty();
     }
