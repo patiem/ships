@@ -264,6 +264,7 @@ public class FleetPlacementController {
             GameController gameController = gameWindowLoader.getController();
             gameController.initializeClient();
             gameController.initializeTurn(myTurn);
+            gameController.initializeBoards(yourBoard);
 
             final double margin = 0.0;
             AnchorPane.setTopAnchor(gameWindow, margin);

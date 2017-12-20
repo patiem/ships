@@ -48,7 +48,6 @@ public class GameController {
 
     @FXML
     public void initialize() {
-        initializeBoard();
         eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent -> opponentWithdraw());
         eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,
                 opponentShotEvent -> setOpponentShot(opponentShotEvent.getShotIndex()));
@@ -69,12 +68,12 @@ public class GameController {
         getClient().setEventTrigger(eventButton);
     }
 
-    private void initializeBoard() {
+    void initializeBoards(GridPane yourBoard) {
         final int margin = 50;
-        final NumberBinding allRectanglesWidth = Bindings.min(yourBoard.heightProperty(),
-                yourBoard.widthProperty().add(-margin));
-        final NumberBinding allRectanglesHeight = Bindings.min(yourBoard.heightProperty(),
-                yourBoard.widthProperty()).add(-margin);
+        final NumberBinding allRectanglesWidth = Bindings.min(this.yourBoard.heightProperty(),
+                this.yourBoard.widthProperty().add(-margin));
+        final NumberBinding allRectanglesHeight = Bindings.min(this.yourBoard.heightProperty(),
+                this.yourBoard.widthProperty()).add(-margin);
 
         for(int i = 0; i < BOARD_SIZE; i++ ) {
             for(int j = 0; j < BOARD_SIZE; j++) {
@@ -83,11 +82,17 @@ public class GameController {
                 Rectangle yourRect = getYourRect(allRectanglesWidth, allRectanglesHeight);
                 Rectangle opponentRect = getOpponentRectangle(allRectanglesWidth, allRectanglesHeight, shotIndex);
 
-                yourBoard.add(yourRect, i, j);
+                this.yourBoard.add(yourRect, i, j);
                 opponentBoard.add(opponentRect, i, j);
 
                 GridPane.setHalignment(yourRect, HPos.CENTER);
                 GridPane.setHalignment(opponentRect, HPos.CENTER);
+            }
+        }
+
+        for(int i =1; i < yourBoard.getChildren().size(); i++) {
+            if(((Rectangle) yourBoard.getChildren().get(i)).getFill() == Color.GREEN) {
+                ((Rectangle) this.yourBoard.getChildren().get(i)).setFill(Color.GREEN);
             }
         }
     }
