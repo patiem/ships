@@ -1,13 +1,7 @@
 package com.epam.ships.fleet;
 
-import com.epam.ships.infra.communication.api.Attachable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.MapSerializer;
-import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
-import lombok.RequiredArgsConstructor;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,7 +14,7 @@ import java.util.Map;
  */
 @EqualsAndHashCode
 //@RequiredArgsConstructor(staticName = "fleet", access = AccessLevel.PRIVATE)
-public class Fleet implements Attachable {
+public class Fleet {
     
     Fleet(final Map<Mast, Ship> fleet) {
         this.fleet = fleet;

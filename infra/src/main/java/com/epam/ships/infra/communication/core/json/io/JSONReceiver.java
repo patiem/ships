@@ -4,7 +4,10 @@ import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.api.conversion.Decoder;
 import com.epam.ships.infra.communication.api.io.Receiver;
 import com.epam.ships.infra.communication.core.json.conversion.JSONDecoder;
+import com.epam.ships.infra.communication.core.message.BaseMessage;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import org.json.JSONObject;
 
 import java.io.InputStream;
@@ -56,7 +59,8 @@ public class JSONReceiver implements Receiver {
                     .withStatement("End of a message")
                     .build();
         }
-        Decoder<JSONObject> jsonDecoder = new JSONDecoder();
-        return jsonDecoder.decode(new JSONObject(stringBuilder.toString()));
+        Decoder<JsonElement> jsonDecoder = new JSONDecoder();
+        Gson gson = new Gson();
+        return jsonDecoder.decode(gson.toJsonTree(stringBuilder.toString()));
     }
 }

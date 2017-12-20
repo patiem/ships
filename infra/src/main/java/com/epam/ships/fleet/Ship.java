@@ -8,6 +8,7 @@ import lombok.Getter;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * @author Piotr,Sandor
@@ -22,4 +23,5 @@ public class Ship {
     public static Ship ofMasts(Mast... masts) {
         return new Ship(new HashSet<>(Arrays.asList(masts)));
     }
+    
 }

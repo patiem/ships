@@ -1,10 +1,8 @@
 package com.epam.ships.infra.communication.core.message;
 
-import com.epam.ships.infra.communication.api.Attachable;
+import com.epam.ships.fleet.Fleet;
 import com.epam.ships.infra.communication.api.Message;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.function.Supplier;
 
 /**
  * @author Sandor
@@ -24,7 +22,7 @@ public class MessageBuilder {
     private String status = StringUtils.EMPTY;
     private String author = StringUtils.EMPTY;
     private String statement = StringUtils.EMPTY;
-    private Attachable attachable = EmptyAttachment.create();
+    private Fleet fleet = null;
     
     /**
      * It builds a message (BaseMessage).
@@ -38,7 +36,7 @@ public class MessageBuilder {
         baseMessage.setStatus(this.status);
         baseMessage.setAuthor(this.author);
         baseMessage.setStatement(this.statement);
-        baseMessage.setAttachment(this.attachable);
+        baseMessage.setFleet(this.fleet);
         return baseMessage;
     }
 
@@ -79,11 +77,11 @@ public class MessageBuilder {
     }
     
     /**
-     * @param attachment an object implementing Attachable interface.
+     * @param fleet an object implementing Attachable interface.
      * @return a chain instance of MessageBuilder.
      */
-    public MessageBuilder withAttachment(final Attachable attachment) {
-        this.attachable = attachment;
+    public MessageBuilder withFleet(final Fleet fleet) {
+        this.fleet = fleet;
         return this;
     }
 }

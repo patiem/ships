@@ -1,5 +1,6 @@
 package com.epam.ships.infra.communication.api;
 
+import com.epam.ships.fleet.Fleet;
 import com.epam.ships.infra.communication.api.io.Receiver;
 import com.epam.ships.infra.communication.api.io.Sender;
 
@@ -37,6 +38,6 @@ public interface Message {
     /**
      * @return Object implementing Attachable interface.
      */
-    Attachable getAttachment();
+    Fleet getFleet();
     
 }

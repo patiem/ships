@@ -65,6 +65,7 @@
         <commonsIoVersion>2.5</commonsIoVersion>
         <jacksonVersion>2.9.3</jacksonVersion>
         <lombokVersion>1.16.18</lombokVersion>
+        <gsonVersion>2.8.2</gsonVersion>
     </properties>
 
     <dependencyManagement>
@@ -94,9 +95,9 @@
             </dependency>
             <!--JSON-->
             <dependency>
-                <groupId>org.json</groupId>
-                <artifactId>json</artifactId>
-                <version>${orgJsonVersion}</version>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gsonVersion}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>

@@ -1,10 +1,8 @@
 package com.epam.ships.infra.communication.core.message;
 
-import com.epam.ships.infra.communication.api.Attachable;
+import com.epam.ships.fleet.Fleet;
 import com.epam.ships.infra.communication.api.Message;
 import lombok.*;
-
-import java.util.Objects;
 
 /**
  * @author Sandor
@@ -27,7 +25,7 @@ public class BaseMessage implements Message {
     private String status;
     private String author;
     private String statement;
-    private Attachable attachment;
+    private Fleet fleet;
     
     /**
      * It is declared explicitly to
