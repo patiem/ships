@@ -44,7 +44,7 @@ public class FleetPlacementController {
     private Button eventButton;
 
     @FXML
-    private Group gFourMastShip;
+    private Group gFourMastShips;
 
     @FXML
     private Group gThreeMastShips;
@@ -196,13 +196,7 @@ public class FleetPlacementController {
     }
 
     private void addDragEventsToShips() {
-
-        gFourMastShip.setOnMouseEntered(onMouseEnteredOnShip);
-        gFourMastShip.setOnMouseExited(onMouseExitFromShip);
-        gFourMastShip.setOnDragEntered(shipOnDragEntered);
-        gFourMastShip.setOnDragDetected(shipOnDragDetected);
-        gFourMastShip.setOnDragDone(shipOnDragDone);
-
+        setEventsOnShips(gFourMastShips);
         setEventsOnShips(gThreeMastShips);
         setEventsOnShips(gTwoMastShips);
         setEventsOnShips(gOneMastShips);
