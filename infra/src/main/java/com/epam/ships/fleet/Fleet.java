@@ -43,7 +43,15 @@ public class Fleet implements Attachable {
         return this.fleet.isEmpty();
     }
     
-    public boolean hasMast(Mast mast) {
-        return this.fleet.containsKey(mast);
+    public Damage handleDamage(Mast mast) {
+        if (!this.fleet.containsKey(mast)) {
+            return Damage.MISSED;
+        }
+        Ship shipHit = this.fleet.get(mast);
+        this.fleet.remove(mast);
+        if (!this.fleet.containsValue(shipHit)) {
+            return Damage.DESTRUCTED;
+        }
+        return Damage.HIT;
     }
 }

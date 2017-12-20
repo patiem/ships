@@ -56,7 +56,7 @@ class Game {
 
     private void handleShot(Message receivedShot, Fleet fleet) {
         final Mast mast = Mast.ofIndex(Integer.valueOf(receivedShot.getStatement()));
-        if (fleet.hasMast(mast)) {
+        if (fleet.handleDamage(mast)) {
             this.handleHit(receivedShot);
         } else {
             this.handleMiss(receivedShot);
