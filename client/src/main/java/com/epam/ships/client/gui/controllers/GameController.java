@@ -54,10 +54,16 @@ public class GameController {
         eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,
                 opponentShotEvent -> setOpponentShot(opponentShotEvent.getShotIndex()));
         eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
+    }
 
-        opponentBoard.setDisable(true);
-        final double opacity = 0.4;
-        opponentBoard.setOpacity(opacity);
+    void initializeTurn(boolean myTurn) {
+        logger.info("initialize turn: " + myTurn);
+
+        if(!myTurn) {
+            opponentBoard.setDisable(true);
+            final double opacity = 0.4;
+            opponentBoard.setOpacity(opacity);
+        }
     }
 
     void initializeClient() {
