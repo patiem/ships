@@ -90,6 +90,10 @@ public class GameController {
             }
         }
 
+        copyYourBoard(yourBoard);
+    }
+
+    private void copyYourBoard(GridPane yourBoard) {
         for(int i =1; i < yourBoard.getChildren().size(); i++) {
             if(((Rectangle) yourBoard.getChildren().get(i)).getFill() == Color.GREEN) {
                 ((Rectangle) this.yourBoard.getChildren().get(i)).setFill(Color.GREEN);

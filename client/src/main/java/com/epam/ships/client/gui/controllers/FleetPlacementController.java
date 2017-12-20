@@ -132,8 +132,8 @@ public class FleetPlacementController {
 
     @FXML
     public void initialize() {
-        bReady.setOnAction(event -> loadGameWindow());
         eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
+        bReady.setOnAction(event -> loadGameWindow());
         initializeBoard();
         addDragEventsToShips();
     }
