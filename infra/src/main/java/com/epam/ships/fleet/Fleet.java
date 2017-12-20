@@ -1,5 +1,6 @@
 package com.epam.ships.fleet;
 
+import com.epam.ships.infra.communication.api.Attachable;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.Map;
  */
 @EqualsAndHashCode
 @RequiredArgsConstructor(staticName = "fleet", access = AccessLevel.PRIVATE)
-public class Fleet {
+public class Fleet implements Attachable {
     private final Map<Mast, Ship> fleet;
 
     public static Fleet ofShips(Ship... ships) {

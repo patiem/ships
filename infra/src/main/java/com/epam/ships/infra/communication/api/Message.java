@@ -33,4 +33,10 @@ public interface Message {
      * @return statement String value.
      */
     String getStatement();
+    
+    /**
+     * @return Object implementing Attachable interface.
+     */
+    Attachable getAttachment();
+    
 }
