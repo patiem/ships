@@ -14,14 +14,7 @@ import lombok.Getter;
 public class Mast {
     private int index;
 
-    @Getter
-    private boolean isHit;
-
     public static Mast ofIndex(int index) {
-        return new Mast(index, false);
-    }
-
-    public void markHit() {
-        this.isHit = true;
+        return new Mast(index);
     }
 }

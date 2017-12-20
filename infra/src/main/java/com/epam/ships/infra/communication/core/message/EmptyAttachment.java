@@ -5,7 +5,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-class EmptyAttachment implements Attachable {
+public class EmptyAttachment implements Attachable {
     static EmptyAttachment create() {
         return new EmptyAttachment();
     }

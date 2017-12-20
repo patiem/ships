@@ -38,6 +38,7 @@ public class MessageBuilder {
         baseMessage.setStatus(this.status);
         baseMessage.setAuthor(this.author);
         baseMessage.setStatement(this.statement);
+        baseMessage.setAttachment(this.attachable);
         return baseMessage;
     }
 

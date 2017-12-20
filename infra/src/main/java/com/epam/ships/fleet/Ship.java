@@ -22,14 +22,4 @@ public class Ship {
     public static Ship ofMasts(Mast... masts) {
         return new Ship(new HashSet<>(Arrays.asList(masts)));
     }
-
-    public boolean isSank(){
-        boolean result = true;
-        for(Mast mast : masts){
-            if(mast.isHit()) {
-                result = false;
-            }
-        }
-        return result;
-    }
 }

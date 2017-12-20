@@ -2,7 +2,9 @@ package com.epam.ships.fleet;
 
 import com.epam.ships.infra.communication.api.Attachable;
 import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.communication.api.conversion.Decoder;
 import com.epam.ships.infra.communication.api.conversion.Encoder;
+import com.epam.ships.infra.communication.core.json.conversion.JSONDecoder;
 import com.epam.ships.infra.communication.core.json.conversion.JSONEncoder;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import org.json.JSONObject;
@@ -25,9 +27,16 @@ public class FleetTest {
     @Test
     public void temp() {
         Ship ship = Ship.ofMasts(Mast.ofIndex(3), Mast.ofIndex(2));
-        Attachable fleet = Fleet.ofShips(ship);
-        Message message = new MessageBuilder().withAttachment(fleet).build();
+        Attachable fleetSent = Fleet.ofShips(ship);
+        
+        Message messageSent = new MessageBuilder().withAttachment(fleetSent).build();
         Encoder<JSONObject> baseEncoder = new JSONEncoder();
-        JSONObject jsonObject = baseEncoder.encode(message);
+        JSONObject jsonObject = baseEncoder.encode(messageSent);
+        
+        Decoder<JSONObject> baseDecoder = new JSONDecoder();
+        Message messageReceived = baseDecoder.decode(jsonObject);
+        
+        Attachable attachable = messageReceived.getAttachment();
+        /*System.out.println(fleetReceived.isEmpty())*/;
     }
 }
