@@ -1,6 +1,7 @@
 package com.epam.ships.server;
 
 import com.epam.ships.fleet.Fleet;
+import com.epam.ships.fleet.Mast;
 import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
@@ -18,14 +19,12 @@ class Game {
     private final CommunicationBus communicationBus;
     private final Target logger = new SharedLogger(Game.class);
     private final TurnManager turnManager;
-    private final ShotHandler shotHandler;
     private Fleet firstPlayerFleet;
     private Fleet secondPlayerFleet;
 
     Game(CommunicationBus communicationBus) {
         this.communicationBus = communicationBus;
         this.turnManager = new TurnManager(communicationBus.getFirstClient(), communicationBus.getSecondClient());
-        this.shotHandler = new ShotHandler();
     }
 
     /**
@@ -38,17 +37,52 @@ class Game {
         this.rest();
         this.askPlayersForPlaceFleet();
         this.receiveFleetFromBothPlayers();
-        this.yourTurnMessage();
+        this.sendYourTurnMessage();
         while (!isGameFinished && isClientConnected) {
             Message receivedShot = this.receiveShot();
-            this.shotHandler.handle(receivedShot);
             isClientConnected = this.isClientConnected(receivedShot);
-            this.turnManager.switchPlayer();
-            if(isClientConnected){
-                this.sendOpponentShot(receivedShot);
+//            this.shotHandler.handle(receivedShot);
+//            this.turnManager.switchPlayer();
+            if (isClientConnected) {
+                if (this.turnManager.isCurrentPlayerFirstPlayer()) {
+                    this.handleShot(receivedShot, secondPlayerFleet);
+                }else {
+                    this.handleShot(receivedShot, firstPlayerFleet);
+                }
             }
             this.rest();
         }
+    }
+
+    private void handleShot(Message receivedShot, Fleet fleet) {
+        final Mast mast = Mast.ofIndex(Integer.valueOf(receivedShot.getStatement()));
+        if (fleet.hasMast(mast)) {
+            this.handleHit(receivedShot);
+        } else {
+            this.handleMiss(receivedShot);
+        }
+    }
+
+    private void handleHit(Message receivedShot) {
+        this.sendHitMessage();
+        this.sendOpponentShot(receivedShot);
+    }
+
+    private void sendHitMessage() {
+        final Message turn = new MessageBuilder().withAuthor("server").withHeader("youHit").withStatus("OK").build();
+        this.communicationBus.send(turnManager.getCurrentPlayer(), turn);
+    }
+
+    private void handleMiss(Message receivedShot) {
+        this.sendMissMessage();
+        this.sendOpponentShot(receivedShot);
+        this.turnManager.switchPlayer();
+        this.sendYourTurnMessage();
+    }
+
+    private void sendMissMessage() {
+        final Message turn = new MessageBuilder().withAuthor("server").withHeader("youMissed").withStatus("OK").build();
+        this.communicationBus.send(turnManager.getCurrentPlayer(), turn);
     }
 
     private void receiveFleetFromBothPlayers() {
@@ -78,7 +112,7 @@ class Game {
     }
 
     private void sendOpponentShot(Message receivedShot) {
-        this.communicationBus.send(this.turnManager.getCurrentPlayer(), receivedShot);
+        this.communicationBus.send(this.turnManager.getOtherPlayer(), receivedShot);
         logger.info("Shot send");
     }
 
@@ -88,14 +122,14 @@ class Game {
         return shot;
     }
 
-    private void yourTurnMessage(){
+    private void sendYourTurnMessage() {
         final Message turn = new MessageBuilder().withAuthor("server").withHeader("yourTurn").withStatus("OK").build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), turn);
     }
 
     private boolean isClientConnected(final Message messageReceived) {
         boolean isClientConnected = true;
-        if ("Connection".equals(messageReceived.getHeader()) && "END".equals(messageReceived.getStatus())){
+        if ("Connection".equals(messageReceived.getHeader()) && "END".equals(messageReceived.getStatus())) {
             isClientConnected = false;
         }
         return isClientConnected;
