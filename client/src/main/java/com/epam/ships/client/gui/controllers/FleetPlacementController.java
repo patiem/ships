@@ -33,6 +33,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class FleetPlacementController {
 
@@ -240,7 +241,18 @@ public class FleetPlacementController {
     private void loadGameWindow() {
         try {
 
-            getClient().sendFleet(Fleet.ofShips((Ship[])ships.toArray()));
+
+
+            getClient().sendFleet(Fleet.ofShips(ships.get(0),
+                    ships.get(1),
+                    ships.get(2),
+                    ships.get(3),
+                    ships.get(4),
+                    ships.get(5),
+                    ships.get(6),
+                    ships.get(7),
+                    ships.get(8),
+                    ships.get(9)));
 
             final String gameWindowURL = "/fxml/gameWindow.fxml";
             final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowURL));
