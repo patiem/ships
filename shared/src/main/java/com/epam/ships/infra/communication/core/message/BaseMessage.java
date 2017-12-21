@@ -2,7 +2,11 @@ package com.epam.ships.infra.communication.core.message;
 
 import com.epam.ships.fleet.Fleet;
 import com.epam.ships.infra.communication.api.Message;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * @author Sandor

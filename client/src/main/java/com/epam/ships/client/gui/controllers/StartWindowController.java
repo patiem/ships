@@ -1,14 +1,10 @@
 package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
-import com.epam.ships.client.client.TurnTrigger;
 import com.epam.ships.client.gui.events.OpponentConnectedEvent;
-import com.epam.ships.client.gui.events.TurnChangeEvent;
 import com.epam.ships.client.validators.PortValidator;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
