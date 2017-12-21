@@ -4,10 +4,7 @@ import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Piotr,Sandor
@@ -31,9 +28,9 @@ public class Fleet {
      * @param ships
      * @return Fleet
      */
-    public static Fleet ofShips(Ship... ships) {
+    public static Fleet ofShips(List<Ship> ships) {
         Map<Mast, Ship> fleet = new HashMap<>();
-        Arrays.stream(ships).forEach(ship -> ship.getMasts().forEach(mast -> fleet.put(mast, ship)));
+        ships.forEach(ship -> ship.getMasts().forEach(mast -> fleet.put(mast, ship)));
         return new Fleet(fleet);
     }
 
