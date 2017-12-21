@@ -3,6 +3,7 @@ package com.epam.ships.fleet;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,6 +19,7 @@ import java.util.Map;
  */
 @EqualsAndHashCode
 @RequiredArgsConstructor(staticName = "fleet", access = AccessLevel.PRIVATE)
+@ToString
 public class Fleet {
 
     Fleet() {
@@ -63,4 +65,5 @@ public class Fleet {
         }
         return Damage.HIT;
     }
+
 }
