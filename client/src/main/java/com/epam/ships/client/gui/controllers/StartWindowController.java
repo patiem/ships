@@ -1,7 +1,9 @@
 package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.client.TurnTrigger;
 import com.epam.ships.client.gui.events.OpponentConnectedEvent;
+import com.epam.ships.client.gui.events.TurnChangeEvent;
 import com.epam.ships.client.validators.PortValidator;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
@@ -70,9 +72,7 @@ public class StartWindowController {
         });
 
         portValidator = new PortValidator();
-
-        eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED,
-                (EventHandler<Event>) event -> loadGameWindow());
+        eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED, event -> loadFleetPlacementWindow());
 
         final String defaultHost = "127.0.0.1";
         final String defaultPort = "8189";
@@ -81,7 +81,7 @@ public class StartWindowController {
         tServerPort.setText(defaultPort);
     }
 
-    private void initializeClient() throws IllegalStateException {
+    private void initializeClient() {
         MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
         this.client = mainController.getClient();
         if(client == null) {
@@ -145,9 +145,9 @@ public class StartWindowController {
         }
     }
 
-    private void loadGameWindow() {
+    private void loadFleetPlacementWindow() {
         try {
-            final String gameWindowURL = "/fxml/gameWindow.fxml";
+            final String gameWindowURL = "/fxml/fleetPlacement.fxml";
             final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowURL));
             final Parent gameWindow = gameWindowLoader.load();
             final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
@@ -162,8 +162,8 @@ public class StartWindowController {
             mainPane.getChildren().clear();
             mainPane.getChildren().setAll(gameWindow);
 
-            GameController mainController = gameWindowLoader.getController();
-            mainController.initializeClient();
+            FleetPlacementController fleetPlacementController = gameWindowLoader.getController();
+            fleetPlacementController.initializeClient();
 
             final double margin = 0.0;
             AnchorPane.setTopAnchor(gameWindow, margin);

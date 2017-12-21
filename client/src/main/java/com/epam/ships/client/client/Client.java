@@ -8,7 +8,6 @@ import com.epam.ships.infra.communication.core.json.io.JSONSender;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
-import javafx.application.Platform;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
@@ -73,6 +72,16 @@ public class Client implements Runnable {
             } catch (IOException | IllegalStateException e ) {
                 logger.error(e.getMessage());
             }
+
+            rest();
+        }
+    }
+
+    private void rest() {
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            logger.info(e.getMessage());
         }
     }
 
