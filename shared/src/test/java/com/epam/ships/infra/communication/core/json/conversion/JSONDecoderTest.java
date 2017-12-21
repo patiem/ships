@@ -14,18 +14,22 @@ import com.google.gson.JsonElement;
 import org.json.JSONObject;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.testng.Assert.assertEquals;
 
 public class JSONDecoderTest {
 
     @Test
     public void itDecodesMessageWithFleetAsExpected() {
+        List<Ship> ships = Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"),
+                Mast.ofIndex("2"), Mast.ofIndex("1")));
         Message sent = new MessageBuilder()
                                       .withAuthor("Client")
                                       .withHeader("Placement")
                                       .withStatus("OK")
-                                      .withFleet(Fleet.ofShips(Ship.ofMasts(Mast.ofIndex("3"),
-                                              Mast.ofIndex("2"), Mast.ofIndex("1"))))
+                                      .withFleet(Fleet.ofShips(ships))
                                       .build();
         Encoder<JsonElement> encoder = new JSONEncoder();
         JsonElement encoded = encoder.encode(sent);

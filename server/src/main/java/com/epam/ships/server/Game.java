@@ -35,9 +35,9 @@ class Game {
         this.notifyPlayersThatTheyCanStartGame();
         boolean isGameFinished = false;
         boolean isClientConnected = true;
-        this.rest();
         this.askPlayersForPlaceFleet();
         this.receiveFleetFromBothPlayers();
+        this.rest();
         this.sendYourTurnMessage();
         while (!isGameFinished && isClientConnected) {
             Message receivedShot = this.receiveShot();
