@@ -11,7 +11,7 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 /**
  * @author Piotr, Magd`a
  * @since 2017-12-09
- * <p>
+ *
  * It starts a communication bus
  * and receives messages from it.
  */
@@ -81,12 +81,12 @@ class Game {
     }
     
     private void sendWonMessage() {
-        final Message won = new MessageBuilder().withAuthor("server").withHeader("youWon").withStatus("OK").build();
+        final Message won = new MessageBuilder().withAuthor("server").withHeader("win").withStatus("OK").build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), won);
     }
     
     private void sendLostMessage() {
-        final Message lost = new MessageBuilder().withAuthor("server").withHeader("youLost").withStatus("OK").build();
+        final Message lost = new MessageBuilder().withAuthor("server").withHeader("lose").withStatus("OK").build();
         this.communicationBus.send(turnManager.getOtherPlayer(), lost);
     }
     
@@ -101,7 +101,7 @@ class Game {
     }
     
     private void sendHitMessage() {
-        final Message hit = new MessageBuilder().withAuthor("server").withHeader("youHit").withStatus("OK").build();
+        final Message hit = new MessageBuilder().withAuthor("server").withHeader("hit").withStatus("OK").build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), hit);
     }
     
@@ -113,7 +113,7 @@ class Game {
     }
     
     private void sendMissMessage() {
-        final Message miss = new MessageBuilder().withAuthor("server").withHeader("youMissed").withStatus("OK").build();
+        final Message miss = new MessageBuilder().withAuthor("server").withHeader("miss").withStatus("OK").build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), miss);
     }
     
@@ -138,7 +138,7 @@ class Game {
     }
     
     private void askForPlaceFleet() {
-        final Message message = new MessageBuilder().withAuthor("server").withHeader("PlaceFleet").withStatus("OK").build();
+        final Message message = new MessageBuilder().withAuthor("server").withHeader("placement2").withStatus("OK").build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), message);
     }
     
