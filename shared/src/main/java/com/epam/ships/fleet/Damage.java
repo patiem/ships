@@ -7,6 +7,6 @@ package com.epam.ships.fleet;
  *
  * Damage caused to a ship.
  */
-enum Damage {
+public enum Damage {
     MISSED, HIT, DESTRUCTED
 }
