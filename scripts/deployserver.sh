@@ -18,7 +18,8 @@
 
 set -e
 cd ../server
-mvn clean install -q
+mvn clean -q
+mvn install -q
 echo "Installed, now attempting to deploy.."
-java -jar target/server-1.0-SNAPSHOT.jar
+java -jar ../server/target/server-1.0-SNAPSHOT.jar
 

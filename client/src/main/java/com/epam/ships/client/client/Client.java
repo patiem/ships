@@ -42,53 +42,55 @@ public class Client implements Runnable {
 
     @Override
     public void run() {
-        try {
-            listenLoop();
-        } catch (final IOException e) {
-            logger.error(e.getMessage());
-        }
+        listenLoop();
     }
 
     public void closeClient() {
         this.shouldRun = false;
-    }
+        if(clientSocket == null) {
+            return;
+        }
 
-    private void listenLoop() throws IOException {
-        Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
-        Message opponentConnect = receiver.receive();
-        logger.info(opponentConnect);
         try {
-            messageHandler.handle(opponentConnect);
-        } catch (IllegalStateException e) {
+            clientSocket.close();
+        } catch (IOException e) {
             logger.error(e.getMessage());
         }
-
-        sendMessage();
-        Message greetings = receiver.receive();
-        logger.info(greetings);
-        //TODO: in the future receiving in loop and no end loop
-        endLoop();
     }
 
-    private void endLoop() {
-        final int sleepTimeMs = 300;
+    private void listenLoop() {
 
-        while(shouldRun) {
+        while (shouldRun && !messageHandler.isEndConnectionTriggered()) {
             try {
-                Thread.sleep(sleepTimeMs);
-            } catch (InterruptedException e) {
+                Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
+                Message message = receiver.receive();
+
+                logger.info(message);
+
+                messageHandler.handle(message);
+
+            } catch (IOException | IllegalStateException e ) {
                 logger.error(e.getMessage());
             }
+
+            rest();
         }
     }
 
-    public void sendMessage() {
+    private void rest() {
+        try {
+            Thread.sleep(300);
+        } catch (InterruptedException e) {
+            logger.info(e.getMessage());
+        }
+    }
+
+    public void sendShot(int shotIndex) {
         try {
             Sender sender = new JSONSender(clientSocket.getOutputStream());
-            Message testMessage = new MessageBuilder().withHeader("greetings")
-                    .withAuthor("Magda").withStatus("OK").withStatement("hey :)").build();
-
-            sender.send(testMessage);
+            Message shot = new MessageBuilder().withHeader("shot")
+                    .withAuthor("client").withStatus("OK").withStatement(String.valueOf(shotIndex)).build();
+            sender.send(shot);
         } catch (IOException e) {
             logger.error(e.getMessage());
         }

@@ -20,4 +20,4 @@ set -e
 cd ../client
 mvn clean install -q
 echo "Installed, now attempting to deploy.."
-java -jar target/client-1.0-SNAPSHOT.jar
+java -jar ../client/target/client-1.0-SNAPSHOT.jar
