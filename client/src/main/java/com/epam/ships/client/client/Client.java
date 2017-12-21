@@ -43,6 +43,7 @@ public class Client implements Runnable {
 
     @Override
     public void run() {
+        Thread.currentThread().setName("Client listen Thread");
         listenLoop();
     }
 

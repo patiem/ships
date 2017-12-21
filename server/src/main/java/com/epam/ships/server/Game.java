@@ -126,7 +126,7 @@ class Game {
     
     private Fleet receiveFloat() {
         final Message fleet = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
-        logger.info("Fleet received");
+        logger.info("Fleet received: " + fleet);
         return fleet.getFleet();
     }
     
