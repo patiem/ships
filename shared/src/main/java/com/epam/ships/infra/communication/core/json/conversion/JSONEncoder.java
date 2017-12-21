@@ -5,12 +5,9 @@ import com.epam.ships.infra.communication.api.conversion.Encoder;
 import com.epam.ships.infra.communication.core.message.BaseMessage;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
-import org.json.JSONObject;
 
 /**
  * @author Sandor

@@ -19,7 +19,7 @@ import static org.testng.Assert.assertEquals;
 public class JSONDecoderTest {
 
     @Test
-    public void itDecodesAsExpected() {
+    public void itDecodesMessageWithFleetAsExpected() {
         Message sent = new MessageBuilder()
                                       .withAuthor("Client")
                                       .withHeader("Placement")
@@ -27,6 +27,21 @@ public class JSONDecoderTest {
                                       .withFleet(Fleet.ofShips(Ship.ofMasts(Mast.ofIndex("3"),
                                               Mast.ofIndex("2"), Mast.ofIndex("1"))))
                                       .build();
+        Encoder<JsonElement> encoder = new JSONEncoder();
+        JsonElement encoded = encoder.encode(sent);
+        Decoder<JsonElement> decoder = new JSONDecoder();
+        Message received = decoder.decode(encoded);
+        assertEquals(sent, received);
+    }
+    
+    @Test
+    public void itDecodesMessageWithoutFleetAsExpected() {
+        final Message sent = new MessageBuilder()
+                                        .withAuthor("server")
+                                        .withHeader("opponentConnected")
+                                        .withStatus("OK")
+                                        .withStatement("true")
+                                        .build();
         Encoder<JsonElement> encoder = new JSONEncoder();
         JsonElement encoded = encoder.encode(sent);
         Decoder<JsonElement> decoder = new JSONDecoder();

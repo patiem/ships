@@ -3,18 +3,11 @@ package com.epam.ships.infra.communication.core.json.conversion;
 import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.api.conversion.Decoder;
 import com.epam.ships.infra.communication.core.message.BaseMessage;
-import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
-import com.google.gson.reflect.TypeToken;
-import org.json.JSONObject;
-
-import java.io.*;
-import java.lang.reflect.Type;
 
 /**
  * @author Sandor
@@ -26,7 +19,8 @@ import java.lang.reflect.Type;
  * @since 2017-12-10
  */
 public class JSONDecoder implements Decoder<JsonElement> {
-
+    
+    public static final Gson GSON = new GsonBuilder().enableComplexMapKeySerialization().create();
     private Target logger = new SharedLogger(JSONDecoder.class);
 
     /**
@@ -40,7 +34,6 @@ public class JSONDecoder implements Decoder<JsonElement> {
      */
     @Override
     public Message decode(JsonElement jsonElement) {
-        Gson gson = new GsonBuilder().create();
-        return gson.fromJson(jsonElement, BaseMessage.class);
+        return GSON.fromJson(jsonElement, BaseMessage.class);
     }
 }
