@@ -6,12 +6,8 @@ import com.epam.ships.fleet.Ship;
 import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.api.conversion.Decoder;
 import com.epam.ships.infra.communication.api.conversion.Encoder;
-import com.epam.ships.infra.communication.core.message.BaseMessage;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
-import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;

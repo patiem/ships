@@ -184,6 +184,7 @@ class Game {
             Thread.sleep(restTime);
         } catch (final InterruptedException e) {
             logger.error(e.getMessage());
+            Thread.currentThread().interrupt();
         }
     }
 }
