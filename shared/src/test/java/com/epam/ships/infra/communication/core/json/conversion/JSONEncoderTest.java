@@ -4,7 +4,6 @@ import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.api.conversion.Encoder;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.google.gson.JsonElement;
-import org.json.JSONObject;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
