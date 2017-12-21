@@ -188,17 +188,17 @@ public class FleetPlacementController {
                 success = true;
             }
 
-            int mast  = ((Group)event.getGestureSource()).getChildren().size();
+            int mastCount  = ((Group)event.getGestureSource()).getChildren().size();
             event.setDropCompleted(success);
 
             rectangle.setFill(Color.GREEN);
 
             int index = fillIndex + 1;
 
-            Mast[] masts = new Mast[mast];
+            Mast[] masts = new Mast[mastCount];
             masts[0] = Mast.ofIndex(String.valueOf(recIndex));
 
-            for(int i1 = 1; i1 < mast; i1++) {
+            for(int i1 = 1; i1 < mastCount; i1++) {
                 ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
                 masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));
             }
@@ -206,7 +206,7 @@ public class FleetPlacementController {
             ships.add(Ship.ofMasts(masts));
 
             logger.info("first ship index " + recIndex);
-            logger.info("n mast " + mast);
+            logger.info("n mast " + mastCount);
             event.consume();
         });
     }
