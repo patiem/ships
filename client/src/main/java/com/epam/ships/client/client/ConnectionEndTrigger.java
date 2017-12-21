@@ -1,8 +1,6 @@
 package com.epam.ships.client.client;
 
 import com.epam.ships.client.gui.events.OpponentWithdrawEvent;
-import com.epam.ships.infra.logging.api.Target;
-import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 

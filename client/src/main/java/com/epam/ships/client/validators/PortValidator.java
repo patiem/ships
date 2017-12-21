@@ -7,13 +7,13 @@ package com.epam.ships.client.validators;
 
 public class PortValidator {
 
-    public int asInt (String providedPort) throws IllegalArgumentException{
+    public int asInt (String providedPort) {
         int port = Integer.valueOf(providedPort);
         checkRange(port);
         return port;
     }
 
-    private void checkRange(int port) throws IllegalArgumentException {
+    private void checkRange(int port) {
         final int maxValidPort = 0xFFFF;
         final int minValidPort = 1024;
         if(port <= minValidPort || port > maxValidPort) {

@@ -20,6 +20,7 @@ public class Main {
                 Thread.sleep(300);
             } catch (final InterruptedException e) {
                 logger.error(e.getMessage());
+                Thread.currentThread().interrupt();
             }
             communicationBus.stop();
         }

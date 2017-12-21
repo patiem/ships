@@ -82,6 +82,7 @@ public class Client implements Runnable {
             Thread.sleep(300);
         } catch (InterruptedException e) {
             logger.info(e.getMessage());
+            Thread.currentThread().interrupt();
         }
     }
 
