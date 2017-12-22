@@ -45,10 +45,10 @@ echo "[ Q ] How many lines of code do we have.."
 #[] Manual output
 
 echo "[ Q ] How many design patterns do we have.."
-echo "1 "
+echo "3 (Builder, Factory Method in Shared module, and MVC in Client module - since we use JavaFX)"
 
 echo "[ Q ] How many public APIs do we have.."
-echo "1 if to consider 'communication' as one, or 5 if to count each interface individually"
+echo "3: communication, conversion and fleet in Shared module"
 
 echo "[ Q ] How many package-private APIs do we have.."
-echo "0"
+echo "2: event triggers, message handlers in Client module"
