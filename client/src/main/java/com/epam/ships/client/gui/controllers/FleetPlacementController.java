@@ -9,6 +9,8 @@ import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,9 +20,12 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
@@ -65,7 +70,15 @@ public class FleetPlacementController {
     @FXML
     private GridPane yourBoard;
 
+    @FXML
+    private GridPane rightGrid;
+
+    @FXML
+    private ChoiceBox choiceBox;
+
     private List<Ship> ships;
+
+    private Orientation shipOrientation;
 
     //Events Handlers
     private EventHandler<MouseEvent> onMouseEnteredOnShip =
@@ -83,12 +96,6 @@ public class FleetPlacementController {
                     Rectangle rec = (Rectangle) child;
                     rec.setFill(Color.web("#7A16C2"));
                 }
-                event.consume();
-            };
-
-    private EventHandler<DragEvent> boardOnDragEntered =
-            event -> {
-                ((Rectangle) event.getSource()).setOpacity(0.5);
                 event.consume();
             };
 
@@ -131,24 +138,26 @@ public class FleetPlacementController {
                 event.consume();
             };
 
-    private EventHandler<DragEvent> boardOnDragExited =
-            event -> {
-                ((Rectangle)event.getSource()).setOpacity(1);
-                event.consume();
-            };
-
     @FXML
     public void initialize() {
         bReady.setOnAction(event -> loadGameWindow());
         bReady.setDisable(true);
         initializeBoard();
         addDragEventsToShips();
-        ships = new ArrayList<>(10);
+        ships = new ArrayList<>(SHIPS_COUNT);
+        shipOrientation = Orientation.VERTICAL;
+        choiceBox.setItems(FXCollections.observableArrayList("Vertical", "Horizontal"));
+        choiceBox.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+            shipOrientation = Orientation.valueOf((String)newValue);
+            logger.info((String)newValue);
+                });
     }
 
     private void initializeBoard() {
         final int margin = 50;
-        final NumberBinding allRectanglesWidth = Bindings.min(yourBoard.heightProperty(),
+        final NumberBinding allRectanglesWidth = Bindings.min(yourBoard.widthProperty(),
                 yourBoard.widthProperty().add(-margin));
         final NumberBinding allRectanglesHeight = Bindings.min(yourBoard.heightProperty(),
                 yourBoard.widthProperty()).add(-margin);
@@ -175,10 +184,45 @@ public class FleetPlacementController {
     }
 
     private void setEventsOnField(Rectangle rectangle, final int recIndex, final int fillIndex) {
-        rectangle.setOnDragEntered(boardOnDragEntered);
+        rectangle.setOnDragEntered(event -> {
+                double opacity = 0.5;
+                ((Rectangle) event.getSource()).setOpacity(opacity);
+                int mastCount  = ((Group)event.getGestureSource()).getChildren().size();
+                logger.info("mast drag enetered: " + mastCount);
+                int index = fillIndex + 1;
+                if(shipOrientation.equals(Orientation.VERTICAL)) {
+                    for(int i = 1; i < mastCount; i++) {
+                        ((Rectangle) yourBoard.getChildren().get(index + i)).setOpacity(opacity);
+                    }
+                } else {
+                    for(int i = 1; i < mastCount; i++) {
+                        ((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(opacity);
+                    }
+                }
+                event.consume();
+            });
         rectangle.setOnDragOver(boardOnDragOver);
-        rectangle.setOnDragExited(boardOnDragExited);
+        rectangle.setOnDragExited(
+                event -> {
+                    double noOpacity = 1.0;
+                    ((Rectangle)event.getSource()).setOpacity(1);
+                    int mastCount  = ((Group)event.getGestureSource()).getChildren().size();
+                    int index = fillIndex + 1;
+                    if(shipOrientation.equals(Orientation.VERTICAL)) {
+                        for(int i = 1; i < mastCount; i++) {
+                            ((Rectangle) yourBoard.getChildren().get(index + i)).setOpacity(noOpacity);
+                        }
+                    } else {
+                        for(int i = 1; i < mastCount; i++) {
+                            ((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(noOpacity);
+                        }
+                    }
+                    event.consume();
+                });
+        setFieldOnDragDropped(rectangle, recIndex, fillIndex);
+    }
 
+    private void setFieldOnDragDropped(Rectangle rectangle, final int recIndex, final int fillIndex) {
         rectangle.setOnDragDropped(event -> {
             Dragboard db = event.getDragboard();
             boolean success = false;
