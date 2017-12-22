@@ -33,6 +33,7 @@ class MessageHandler {
         this.triggers.put("yourTurn", new TurnTrigger());
         this.triggers.put("miss", new MissShotTrigger());
         this.triggers.put("hit", new HitShotTrigger());
+        this.triggers.put("shipDestructed", new HitShotTrigger());
     }
 
     void setCurrentEventButton(Button eventButton) {
