@@ -192,6 +192,7 @@ public class FleetPlacementController {
                 double opacity = 0.5;
                 int mastCount  = ((Group)event.getGestureSource()).getChildren().size();
                 int index = fillIndex;
+                logger.info("index = " + fillIndex);
                 if(shipOrientation.equals(Orientation.VERTICAL)) {
                     index += 1;
                     ((Rectangle) event.getSource()).setOpacity(opacity);
@@ -199,7 +200,7 @@ public class FleetPlacementController {
                         ((Rectangle) yourBoard.getChildren().get(index + i)).setOpacity(opacity);
                     }
                 } else {
-                    if(index + mastCount * BOARD_SIZE > yourBoard.getChildren().size()) {
+                    if(index + (mastCount-1) * BOARD_SIZE > yourBoard.getChildren().size() - 2) {
                         return;
                     }
                     ((Rectangle) event.getSource()).setOpacity(opacity);
@@ -223,7 +224,7 @@ public class FleetPlacementController {
                             ((Rectangle) yourBoard.getChildren().get(index + i)).setOpacity(noOpacity);
                         }
                     } else {
-                        if(index + mastCount * BOARD_SIZE > yourBoard.getChildren().size()) {
+                        if(index + (mastCount-1) * BOARD_SIZE > yourBoard.getChildren().size() - 2) {
                             return;
                         }
                         index += 1;
@@ -260,7 +261,7 @@ public class FleetPlacementController {
                 }
             } else {
                 masts[0] = Mast.ofIndex(String.valueOf(recIndex));
-                if(index + mastCount * BOARD_SIZE > yourBoard.getChildren().size()) {
+                if(index + (mastCount -1) * BOARD_SIZE > yourBoard.getChildren().size() - 2) {
                     shipPlacementSuccess = false;
                     return;
                 }

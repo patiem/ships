@@ -47,7 +47,7 @@ class CommunicationBus {
         for (WrappedClient c : clients) {
             c.close();
         }
-        clients.removeAll(clients);
+        clients.clear();
     }
 
     Message receive(WrappedClient sender) {
