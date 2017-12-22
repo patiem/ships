@@ -12,9 +12,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockingDetails;
+
 @Test
 public class WrappedClientTest {
-
+    private static final String ENCODING = "UTF-8";
 
     public void wrappedClientShouldBeAbleToSendMessageToServer() throws IOException{
         //given
@@ -29,39 +32,6 @@ public class WrappedClientTest {
         String expectedMessage = "{\"header\":\"\",\"status\":\"\",\"author\":\"testMessage\",\"statement\":\"\"}";
         //then
         Assert.assertEquals(receivedMessage, expectedMessage);
-    }
-
-    public void shouldBeAbleToReceiveMessageFromServer() throws IOException {
-        //given
-        int port = 10990;
-        this.appServer(port);
-        WrappedClient receiver = new WrappedClient(new Socket("127.0.0.1", port));
-        dumpClient(port);
-        Message expectedMessage = new MessageBuilder().withAuthor("testMessage").build();
-        Message receivedMessage = receiver.receive();
-        //then
-        Assert.assertEquals(receivedMessage, expectedMessage);
-
-    }
-
-    private void appServer(int port) {
-        new Thread(() -> {
-            try {
-                AppServer appServer = new AppServer(port);
-                System.out.println("Client can connect");
-                appServer.connectClients();
-
-                OutputStream outputStream = appServer.getClientSockets().get(0).getOutputStream();
-                PrintWriter printWriter = new PrintWriter(new OutputStreamWriter(outputStream, "UTF-8"), true);
-                printWriter.println("{\"header\":\"\",\"status\":\"\",\"author\":\"testMessage\",\"statement\":\"\"}");
-                while (true){
-                    System.out.println("alive");
-                }
-            } catch (IOException /*| InterruptedException*/ e) {
-                e.printStackTrace();
-            }
-        }).start();
-
     }
 
     private void dumpClient(int port){
