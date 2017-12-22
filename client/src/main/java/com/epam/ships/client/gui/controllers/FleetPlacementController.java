@@ -9,6 +9,8 @@ import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,9 +20,12 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
@@ -65,7 +70,17 @@ public class FleetPlacementController {
     @FXML
     private GridPane yourBoard;
 
+    @FXML
+    private GridPane rightGrid;
+
+    @FXML
+    private ChoiceBox choiceBox;
+
     private List<Ship> ships;
+
+    private Orientation shipOrientation;
+
+    private boolean shipPlacementSuccess;
 
     //Events Handlers
     private EventHandler<MouseEvent> onMouseEnteredOnShip =
@@ -83,12 +98,6 @@ public class FleetPlacementController {
                     Rectangle rec = (Rectangle) child;
                     rec.setFill(Color.web("#7A16C2"));
                 }
-                event.consume();
-            };
-
-    private EventHandler<DragEvent> boardOnDragEntered =
-            event -> {
-                ((Rectangle) event.getSource()).setOpacity(0.5);
                 event.consume();
             };
 
@@ -112,14 +121,16 @@ public class FleetPlacementController {
 
     private EventHandler<DragEvent> shipOnDragDone =
             event -> {
-                for (Node child : ((Group)event.getSource()).getChildren()) {
-                    Rectangle rec = (Rectangle) child;
-                    rec.setFill(Color.GRAY);
+                if(shipPlacementSuccess) {
+                    for (Node child : ((Group) event.getSource()).getChildren()) {
+                        Rectangle rec = (Rectangle) child;
+                        rec.setFill(Color.GRAY);
+                    }
+                    logger.info("end drag");
+                    ((Group) event.getSource()).setDisable(true);
                 }
-                logger.info("end drag");
+                shipPlacementSuccess = false;
                 event.consume();
-
-                ((Group)event.getSource()).setDisable(true);
             };
 
     private EventHandler<DragEvent> boardOnDragOver =
@@ -131,24 +142,26 @@ public class FleetPlacementController {
                 event.consume();
             };
 
-    private EventHandler<DragEvent> boardOnDragExited =
-            event -> {
-                ((Rectangle)event.getSource()).setOpacity(1);
-                event.consume();
-            };
-
     @FXML
     public void initialize() {
         bReady.setOnAction(event -> loadGameWindow());
         bReady.setDisable(true);
         initializeBoard();
         addDragEventsToShips();
-        ships = new ArrayList<>(10);
+        ships = new ArrayList<>(SHIPS_COUNT);
+        shipOrientation = Orientation.VERTICAL;
+        choiceBox.setItems(FXCollections.observableArrayList("VERTICAL", "HORIZONTAL"));
+        choiceBox.getSelectionModel()
+                .selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {
+            shipOrientation = Orientation.valueOf((String)newValue);
+            logger.info((String)newValue);
+                });
     }
 
     private void initializeBoard() {
         final int margin = 50;
-        final NumberBinding allRectanglesWidth = Bindings.min(yourBoard.heightProperty(),
+        final NumberBinding allRectanglesWidth = Bindings.min(yourBoard.widthProperty(),
                 yourBoard.widthProperty().add(-margin));
         final NumberBinding allRectanglesHeight = Bindings.min(yourBoard.heightProperty(),
                 yourBoard.widthProperty()).add(-margin);
@@ -175,10 +188,56 @@ public class FleetPlacementController {
     }
 
     private void setEventsOnField(Rectangle rectangle, final int recIndex, final int fillIndex) {
-        rectangle.setOnDragEntered(boardOnDragEntered);
+        rectangle.setOnDragEntered(event -> {
+                double opacity = 0.5;
+                int mastCount  = ((Group)event.getGestureSource()).getChildren().size();
+                int index = fillIndex;
+                if(shipOrientation.equals(Orientation.VERTICAL)) {
+                    index += 1;
+                    ((Rectangle) event.getSource()).setOpacity(opacity);
+                    for(int i = 1; i < mastCount; i++) {
+                        ((Rectangle) yourBoard.getChildren().get(index + i)).setOpacity(opacity);
+                    }
+                } else {
+                    if(index + mastCount * BOARD_SIZE > yourBoard.getChildren().size()) {
+                        return;
+                    }
+                    ((Rectangle) event.getSource()).setOpacity(opacity);
+                    index += 1;
+                    for(int i = 1; i < mastCount; i++) {
+                        ((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(opacity);
+                    }
+                }
+                event.consume();
+            });
         rectangle.setOnDragOver(boardOnDragOver);
-        rectangle.setOnDragExited(boardOnDragExited);
+        rectangle.setOnDragExited(
+                event -> {
+                    double noOpacity = 1.0;
+                    int mastCount  = ((Group)event.getGestureSource()).getChildren().size();
+                    int index = fillIndex;
+                    if(shipOrientation.equals(Orientation.VERTICAL)) {
+                        index += 1;
+                        ((Rectangle)event.getSource()).setOpacity(1);
+                        for(int i = 1; i < mastCount; i++) {
+                            ((Rectangle) yourBoard.getChildren().get(index + i)).setOpacity(noOpacity);
+                        }
+                    } else {
+                        if(index + mastCount * BOARD_SIZE > yourBoard.getChildren().size()) {
+                            return;
+                        }
+                        index += 1;
+                        ((Rectangle)event.getSource()).setOpacity(1);
+                        for(int i = 1; i < mastCount; i++) {
+                            ((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(noOpacity);
+                        }
+                    }
+                    event.consume();
+                });
+        setFieldOnDragDropped(rectangle, recIndex, fillIndex);
+    }
 
+    private void setFieldOnDragDropped(Rectangle rectangle, final int recIndex, final int fillIndex) {
         rectangle.setOnDragDropped(event -> {
             Dragboard db = event.getDragboard();
             boolean success = false;
@@ -186,17 +245,31 @@ public class FleetPlacementController {
                 success = true;
             }
             event.setDropCompleted(success);
-
-            rectangle.setFill(Color.GREEN);
-            int index = fillIndex + 1;
+            int index = fillIndex;
 
             int mastCount  = ((Group)event.getGestureSource()).getChildren().size();
             Mast[] masts = new Mast[mastCount];
-            masts[0] = Mast.ofIndex(String.valueOf(recIndex));
 
-            for(int i1 = 1; i1 < mastCount; i1++) {
-                ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
-                masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));
+            if(shipOrientation.equals(Orientation.VERTICAL)) {
+                masts[0] = Mast.ofIndex(String.valueOf(recIndex));
+                rectangle.setFill(Color.GREEN);
+                index += 1;
+                for (int i1 = 1; i1 < mastCount; i1++) {
+                    ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
+                    masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));
+                }
+            } else {
+                masts[0] = Mast.ofIndex(String.valueOf(recIndex));
+                if(index + mastCount * BOARD_SIZE > yourBoard.getChildren().size()) {
+                    shipPlacementSuccess = false;
+                    return;
+                }
+                index += 1;
+                rectangle.setFill(Color.GREEN);
+                for (int i1 = 1; i1 < mastCount; i1++) {
+                    ((Rectangle) yourBoard.getChildren().get(index + i1 * BOARD_SIZE)).setFill(Color.GREEN);
+                    masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1));
+                }
             }
             ships.add(Ship.ofMasts(masts));
             if(ships.size() == SHIPS_COUNT) {
@@ -205,6 +278,7 @@ public class FleetPlacementController {
 
             logger.info("first index of ship " + recIndex);
             logger.info("ship has " + mastCount + " masts");
+            shipPlacementSuccess = true;
             event.consume();
         });
     }

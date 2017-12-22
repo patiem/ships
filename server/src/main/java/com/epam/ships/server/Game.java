@@ -127,6 +127,7 @@ class Game {
         this.sendMissMessage();
         this.sendShotToOpponent(receivedShot);
         this.turnManager.switchPlayer();
+        rest();
         this.sendYourTurnMessage();
     }
     
@@ -183,6 +184,7 @@ class Game {
                                      .withHeader(Header.YOUR_TURN)
                                      .build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), turn);
+        logger.info("send your turn");
     }
     
     private boolean isClientConnected(final Message messageReceived) {
