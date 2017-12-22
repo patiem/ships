@@ -3,6 +3,9 @@ package com.epam.ships.infra.communication.api;
 import com.epam.ships.fleet.Fleet;
 import com.epam.ships.infra.communication.api.io.Receiver;
 import com.epam.ships.infra.communication.api.io.Sender;
+import com.epam.ships.infra.communication.api.message.Author;
+import com.epam.ships.infra.communication.api.message.Header;
+import com.epam.ships.infra.communication.api.message.Status;
 
 /**
  * @author Sandor
@@ -18,17 +21,17 @@ public interface Message {
     /**
      * @return header String value.
      */
-    String getHeader();
+    Header getHeader();
 
     /**
      * @return status String value.
      */
-    String getStatus();
+    Status getStatus();
 
     /**
      * @return author String value.
      */
-    String getAuthor();
+    Author getAuthor();
 
     /**
      * @return statement String value.

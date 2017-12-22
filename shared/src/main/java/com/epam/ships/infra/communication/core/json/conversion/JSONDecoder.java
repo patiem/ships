@@ -10,15 +10,13 @@ import com.google.gson.JsonElement;
 /**
  * @author Sandor
  * @see Decoder
- * @see BaseMessage
  * @see Message
- * <p>
+ * @see com.epam.ships.infra.communication.api.Message
+ *
  * It converts a JsonElement into a BaseMessage instance.
  * @since 2017-12-10
  */
 public class JSONDecoder implements Decoder<JsonElement> {
-    
-    public static final Gson GSON = new GsonBuilder().enableComplexMapKeySerialization().create();
 
     /**
      * It converts a JsonElement instance into a BaseMessage
@@ -26,11 +24,12 @@ public class JSONDecoder implements Decoder<JsonElement> {
      *
      * @param jsonElement a JsonElement instance representing
      *                   a BaseMessage.
-     * @return Message a result of conversion of JsonElement
+     * @return BaseMessage a result of conversion of JsonElement
      * into BaseMessage
      */
     @Override
     public Message decode(JsonElement jsonElement) {
-        return GSON.fromJson(jsonElement, BaseMessage.class);
+        Gson gson = new GsonBuilder().create();
+        return gson.fromJson(jsonElement, BaseMessage.class);
     }
 }

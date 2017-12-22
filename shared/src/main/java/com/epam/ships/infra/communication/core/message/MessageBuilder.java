@@ -1,28 +1,29 @@
 package com.epam.ships.infra.communication.core.message;
 
 import com.epam.ships.fleet.Fleet;
-import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.communication.api.message.Author;
+import com.epam.ships.infra.communication.api.message.Header;
+import com.epam.ships.infra.communication.api.message.Status;
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author Sandor
  * @see BaseMessage
- * @see Message
- * <p>
+ *
  * It builds a message with given or/and
  * default values.
- * Along with Message interface it allows
+ * Along with BaseMessage interface it allows
  * to encapsulate BaseMessage class.
  * @since 2017-12-10
  */
 
 public class MessageBuilder {
 
-    private String header = StringUtils.EMPTY;
-    private String status = StringUtils.EMPTY;
-    private String author = StringUtils.EMPTY;
+    private Header header = Header.DEFAULT;
+    private Status status = Status.OK;
+    private Author author = Author.AUTO;
     private String statement = StringUtils.EMPTY;
-    private Fleet fleet = null;
+    private Fleet fleet = Fleet.empty();
     
     /**
      * It builds a message (BaseMessage).
@@ -30,39 +31,39 @@ public class MessageBuilder {
      *
      * @return an unmodifiable BaseMessage instance.
      */
-    public final Message build() {
-        final BaseMessage baseMessage = new BaseMessage();
-        baseMessage.setHeader(this.header);
-        baseMessage.setStatus(this.status);
-        baseMessage.setAuthor(this.author);
-        baseMessage.setStatement(this.statement);
-        baseMessage.setFleet(this.fleet);
-        return baseMessage;
+    public final BaseMessage build() {
+        final BaseMessage message = new BaseMessage();
+        message.setHeader(this.header);
+        message.setStatus(this.status);
+        message.setAuthor(this.author);
+        message.setStatement(this.statement);
+        message.setFleet(this.fleet);
+        return message;
     }
 
     /**
-     * @param header String value.
+     * @param header Header value.
      * @return a chain instance of MessageBuilder.
      */
-    public MessageBuilder withHeader(final String header) {
+    public MessageBuilder withHeader(final Header header) {
         this.header = header;
         return this;
     }
 
     /**
-     * @param status String value.
+     * @param status Status value.
      * @return a chain instance of MessageBuilder.
      */
-    public MessageBuilder withStatus(final String status) {
+    public MessageBuilder withStatus(final Status status) {
         this.status = status;
         return this;
     }
 
     /**
-     * @param author String value.
+     * @param author Author value.
      * @return a chain instance of MessageBuilder.
      */
-    public MessageBuilder withAuthor(final String author) {
+    public MessageBuilder withAuthor(final Author author) {
         this.author = author;
         return this;
     }
@@ -77,7 +78,7 @@ public class MessageBuilder {
     }
     
     /**
-     * @param fleet an object implementing Attachable interface.
+     * @param fleet a Fleet object.
      * @return a chain instance of MessageBuilder.
      */
     public MessageBuilder withFleet(final Fleet fleet) {

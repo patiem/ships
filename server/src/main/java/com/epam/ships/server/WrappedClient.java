@@ -37,12 +37,7 @@ class WrappedClient {
     }
 
     Message receive() {
-        try {
-            return this.in.receive();
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
-        return new MessageBuilder().build();
+        return this.in.receive();
     }
 
     void close() {

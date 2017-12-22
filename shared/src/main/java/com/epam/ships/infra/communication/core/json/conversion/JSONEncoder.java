@@ -11,7 +11,6 @@ import com.google.gson.JsonElement;
  * @author Sandor
  * @see Encoder
  * @see Message
- * @see BaseMessage
  * <p>
  * It converts a BaseMessage instance into a JsonElement.
  * @since 2017-12-10
@@ -20,16 +19,19 @@ public class JSONEncoder implements Encoder<JsonElement> {
 
     /**
      * It converts an instance of a class implementing
-     * Message interface into a JsonElement instance.
+     * BaseMessage interface into a JsonElement instance.
      *
      * @param message an instance of a class implementing
-     *                Message interface.
+     *                BaseMessage interface.
      * @return a result of conversion of an instance of a class
-     * implementing Message interface into a JsonElement instance.
+     * implementing BaseMessage interface into a JsonElement instance.
      */
     @Override
     public JsonElement encode(Message message) {
-        Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();
+        Gson gson = new GsonBuilder()
+                            .enableComplexMapKeySerialization()
+                            .create();
         return gson.toJsonTree(message, BaseMessage.class);
     }
+
 }
