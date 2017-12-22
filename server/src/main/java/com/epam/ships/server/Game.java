@@ -4,6 +4,9 @@ import com.epam.ships.fleet.Damage;
 import com.epam.ships.fleet.Fleet;
 import com.epam.ships.fleet.Mast;
 import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.communication.api.message.Author;
+import com.epam.ships.infra.communication.api.message.Header;
+import com.epam.ships.infra.communication.api.message.Status;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
@@ -84,17 +87,26 @@ class Game {
     }
     
     private void sendWonMessage() {
-        final Message won = new MessageBuilder().withAuthor("server").withHeader("win").withStatus("OK").build();
+        final Message won = new MessageBuilder()
+                                    .withAuthor(Author.SERVER)
+                                    .withHeader(Header.WIN)
+                                    .build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), won);
     }
     
     private void sendLostMessage() {
-        final Message lost = new MessageBuilder().withAuthor("server").withHeader("lose").withStatus("OK").build();
+        final Message lost = new MessageBuilder()
+                                     .withAuthor(Author.SERVER)
+                                     .withHeader(Header.LOSE)
+                                     .build();
         this.communicationBus.send(turnManager.getOtherPlayer(), lost);
     }
     
     private void sendShipDestructedMessage() {
-        final Message hit = new MessageBuilder().withAuthor("server").withHeader("shipDestructed").withStatus("OK").build();
+        final Message hit = new MessageBuilder()
+                                    .withAuthor(Author.SERVER)
+                                    .withHeader(Header.SHIP_DESTRUCTED)
+                                    .build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), hit);
     }
     
@@ -104,7 +116,10 @@ class Game {
     }
     
     private void sendHitMessage() {
-        final Message hit = new MessageBuilder().withAuthor("server").withHeader("hit").withStatus("OK").build();
+        final Message hit = new MessageBuilder()
+                                    .withAuthor(Author.SERVER)
+                                    .withHeader(Header.HIT)
+                                    .build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), hit);
     }
     
@@ -116,7 +131,10 @@ class Game {
     }
     
     private void sendMissMessage() {
-        final Message miss = new MessageBuilder().withAuthor("server").withHeader("miss").withStatus("OK").build();
+        final Message miss = new MessageBuilder()
+                                     .withAuthor(Author.SERVER)
+                                     .withHeader(Header.MISS)
+                                     .build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), miss);
     }
     
@@ -141,7 +159,10 @@ class Game {
     }
     
     private void askForPlaceFleet() {
-        final Message message = new MessageBuilder().withAuthor("server").withHeader("placement2").withStatus("OK").build();
+        final Message message = new MessageBuilder()
+                                        .withAuthor(Author.SERVER)
+                                        .withHeader(Header.PLACEMENT)
+                                        .build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), message);
     }
     
@@ -157,13 +178,17 @@ class Game {
     }
     
     private void sendYourTurnMessage() {
-        final Message turn = new MessageBuilder().withAuthor("server").withHeader("yourTurn").withStatus("OK").build();
+        final Message turn = new MessageBuilder()
+                                     .withAuthor(Author.SERVER)
+                                     .withHeader(Header.YOUR_TURN)
+                                     .build();
         this.communicationBus.send(turnManager.getCurrentPlayer(), turn);
     }
     
     private boolean isClientConnected(final Message messageReceived) {
         boolean isClientConnected = true;
-        if ("Connection".equals(messageReceived.getHeader()) && "END".equals(messageReceived.getStatus())) {
+        if (Header.CONNECTION.equals(messageReceived.getHeader()) &&
+                    Status.END.equals(messageReceived.getStatus())) {
             isClientConnected = false;
         }
         return isClientConnected;
@@ -177,7 +202,11 @@ class Game {
     }
     
     private void opponentConnected() {
-        final Message message = new MessageBuilder().withAuthor("server").withHeader("opponentConnected").withStatus("OK").withStatement("true").build();
+        final Message message = new MessageBuilder()
+                                        .withAuthor(Author.SERVER)
+                                        .withHeader(Header.OPPONENT_CONNECTED)
+                                        .withStatement("true")
+                                        .build();
         this.communicationBus.send(this.turnManager.getCurrentPlayer(), message);
     }
     

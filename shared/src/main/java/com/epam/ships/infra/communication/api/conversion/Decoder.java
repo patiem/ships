@@ -8,14 +8,14 @@ import com.epam.ships.infra.communication.api.Message;
  *
  * An implementing class has to ensure that
  * T is converted into a class
- * instance implementing Message interface.
+ * instance implementing BaseMessage interface.
  * @since 2017-12-10
  */
 public interface Decoder<T> {
     /**
      * @param t it decodes from this type.
-     * @return Message an instance of a class
-     * implementing Message interface.
+     * @return BaseMessage an instance of a class
+     * implementing BaseMessage interface.
      */
     Message decode(T t);
 }

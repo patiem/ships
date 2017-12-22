@@ -6,8 +6,6 @@ import com.epam.ships.infra.communication.api.io.Sender;
 import com.epam.ships.infra.communication.core.json.conversion.JSONEncoder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonSyntaxException;
 
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -53,9 +51,9 @@ public class JSONSender implements Sender {
         PrintWriter printWriter = null;
         try {
             printWriter = new PrintWriter(new OutputStreamWriter(outputStream, ENCODING), true);
-            Encoder<JsonElement> encoder = new JSONEncoder();
+            Encoder encoder = new JSONEncoder();
             printWriter.println(encoder.encode(message));
-        } catch (UnsupportedEncodingException | JsonSyntaxException e) {
+        } catch (UnsupportedEncodingException e) {
             logger.error(e.getMessage());
         }
     }

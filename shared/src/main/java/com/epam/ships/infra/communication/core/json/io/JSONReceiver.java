@@ -3,8 +3,12 @@ package com.epam.ships.infra.communication.core.json.io;
 import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.api.conversion.Decoder;
 import com.epam.ships.infra.communication.api.io.Receiver;
+import com.epam.ships.infra.communication.api.message.Author;
+import com.epam.ships.infra.communication.api.message.Header;
+import com.epam.ships.infra.communication.api.message.Status;
 import com.epam.ships.infra.communication.core.json.conversion.JSONDecoder;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 
@@ -36,12 +40,12 @@ public class JSONReceiver implements Receiver {
 
     /**
      * It reads from input stream, coverts it first
-     * to a JsonElement and the to a Message.
-     *
+     * to a JsonElement and the to a BaseMessage.
+     * <p>
      * If there is nothing to read from an input stream,
-     * it returns an corresponding Message as well.
+     * it returns an corresponding BaseMessage as well.
      *
-     * @return Message input interpreted as a message.
+     * @return BaseMessage input interpreted as a message.
      */
     @Override
     public Message receive() {
@@ -51,11 +55,10 @@ public class JSONReceiver implements Receiver {
             stringBuilder.append(scanner.nextLine());
         } else {
             return new MessageBuilder()
-                    .withHeader("Connection")
-                    .withStatus("END")
-                    .withAuthor("Auto")
-                    .withStatement("End of a message")
-                    .build();
+                           .withHeader(Header.CONNECTION)
+                           .withStatus(Status.END)
+                           .withStatement("End of a message")
+                           .build();
         }
         Decoder<JsonElement> jsonDecoder = new JSONDecoder();
         JsonParser jsonParser = new JsonParser();

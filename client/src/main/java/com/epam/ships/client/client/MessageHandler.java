@@ -1,6 +1,8 @@
 package com.epam.ships.client.client;
 
 import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.communication.api.message.Header;
+import com.epam.ships.infra.communication.api.message.Status;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.scene.control.Button;
@@ -19,7 +21,7 @@ class MessageHandler {
     private static final Target logger = new SharedLogger(Client.class);
 
     private Button eventButton = null;
-    private final Map<String, EventTrigger> triggers;
+    private final Map<Header, EventTrigger> triggers;
 
     @Getter
     private boolean endConnectionTriggered;
@@ -27,15 +29,15 @@ class MessageHandler {
     MessageHandler() {
         endConnectionTriggered = false;
         this.triggers = new HashMap<>();
-        this.triggers.put("opponentConnected", new OpponentConnectedTrigger());
-        this.triggers.put("shot", new OpponentShotTrigger());
-        this.triggers.put("Connection", new ConnectionEndTrigger());
-        this.triggers.put("yourTurn", new TurnTrigger());
-        this.triggers.put("miss", new MissShotTrigger());
-        this.triggers.put("hit", new HitShotTrigger());
-        this.triggers.put("shipDestructed", new HitShotTrigger());
-        this.triggers.put("win", new WinTrigger());
-        this.triggers.put("lose", new LoseTrigger());
+        this.triggers.put(Header.OPPONENT_CONNECTED, new OpponentConnectedTrigger());
+        this.triggers.put(Header.SHOT, new OpponentShotTrigger());
+        this.triggers.put(Header.CONNECTION, new ConnectionEndTrigger());
+        this.triggers.put(Header.YOUR_TURN, new TurnTrigger());
+        this.triggers.put(Header.MISS, new MissShotTrigger());
+        this.triggers.put(Header.HIT, new HitShotTrigger());
+        this.triggers.put(Header.SHIP_DESTRUCTED, new HitShotTrigger());
+        this.triggers.put(Header.WIN, new WinTrigger());
+        this.triggers.put(Header.LOSE, new LoseTrigger());
     }
 
     void setCurrentEventButton(Button eventButton) {
@@ -47,7 +49,7 @@ class MessageHandler {
             throw new IllegalStateException("there is no object on which there can be fire event on");
         }
 
-        String header = message.getHeader();
+        Header header = message.getHeader();
 
         if(!triggers.containsKey(header)) {
             logger.error("message header: " + header +" is unknown");
@@ -58,7 +60,7 @@ class MessageHandler {
     }
 
     private void checkIfEndWillBeTriggered(Message message) {
-        if(message.getStatus().equalsIgnoreCase("end")) {
+        if(Status.END.equals(message.getStatus())) {
                endConnectionTriggered = true;
         }
     }
