@@ -80,6 +80,8 @@ public class FleetPlacementController {
 
     private Orientation shipOrientation;
 
+    private boolean shipPlacementSuccess;
+
     //Events Handlers
     private EventHandler<MouseEvent> onMouseEnteredOnShip =
             event -> {
@@ -119,14 +121,16 @@ public class FleetPlacementController {
 
     private EventHandler<DragEvent> shipOnDragDone =
             event -> {
-                for (Node child : ((Group)event.getSource()).getChildren()) {
-                    Rectangle rec = (Rectangle) child;
-                    rec.setFill(Color.GRAY);
+                if(shipPlacementSuccess) {
+                    for (Node child : ((Group) event.getSource()).getChildren()) {
+                        Rectangle rec = (Rectangle) child;
+                        rec.setFill(Color.GRAY);
+                    }
+                    logger.info("end drag");
+                    ((Group) event.getSource()).setDisable(true);
                 }
-                logger.info("end drag");
+                shipPlacementSuccess = false;
                 event.consume();
-
-                ((Group)event.getSource()).setDisable(true);
             };
 
     private EventHandler<DragEvent> boardOnDragOver =
@@ -257,6 +261,7 @@ public class FleetPlacementController {
             } else {
                 masts[0] = Mast.ofIndex(String.valueOf(recIndex));
                 if(index + mastCount * BOARD_SIZE > yourBoard.getChildren().size()) {
+                    shipPlacementSuccess = false;
                     return;
                 }
                 index += 1;
@@ -273,6 +278,7 @@ public class FleetPlacementController {
 
             logger.info("first index of ship " + recIndex);
             logger.info("ship has " + mastCount + " masts");
+            shipPlacementSuccess = true;
             event.consume();
         });
     }
