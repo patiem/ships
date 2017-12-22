@@ -131,9 +131,9 @@ public class GameController {
             logger.info(shotIndex);
             this.shotIndex = shotIndex;
             getClient().sendShot(shotIndex);
-            opponentBoard.setDisable(true);
-            final double opacity = 0.4;
-            opponentBoard.setOpacity(opacity);
+            //opponentBoard.setDisable(true);
+            //final double opacity = 0.4;
+            //opponentBoard.setOpacity(opacity);
         });
 
         opponentRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
@@ -178,7 +178,6 @@ public class GameController {
         int column = shotIndex / BOARD_SIZE;
         int row = shotIndex - (column * BOARD_SIZE);
         int newShotIndex = row * BOARD_SIZE + column;
-        //final double noOpacity = 1.0;
         logger.info("new shotIndex: " + newShotIndex);
         Rectangle rec = (Rectangle) (yourBoard.getChildren().get(newShotIndex + 1));
         if(rec.getFill()==Color.GREEN) {
@@ -186,8 +185,6 @@ public class GameController {
         } else {
             rec.setFill(Color.BLACK);
         }
-        //opponentBoard.setDisable(false);
-        //opponentBoard.setOpacity(noOpacity);
     }
 
     private void changeTurn() {
