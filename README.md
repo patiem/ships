@@ -30,9 +30,9 @@ We also integrated Waffle.io with our Slack channel to notify team members whene
 
 ### Launching 
 
-To launch server and client programs on single machine run the below script while in the root project directory.
+To launch server and client programs on single machine run the below script while you are in the scripts directory.
     
-    ./scripts/deployserverandclients.sh 
+    ./deployserverandclients.sh 
 
 If you wish to play on many computers use other scripts located in scripts directory.
 
