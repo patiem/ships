@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
  * @since 2017-12-18
  */
 
-public class TurnTrigger implements EventTrigger {
+class TurnTrigger implements EventTrigger {
 
     private static final Target logger = new SharedLogger(Client.class);
 

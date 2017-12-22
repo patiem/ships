@@ -34,6 +34,8 @@ class MessageHandler {
         this.triggers.put("miss", new MissShotTrigger());
         this.triggers.put("hit", new HitShotTrigger());
         this.triggers.put("shipDestructed", new HitShotTrigger());
+        this.triggers.put("win", new WinTrigger());
+        this.triggers.put("lose", new LoseTrigger());
     }
 
     void setCurrentEventButton(Button eventButton) {

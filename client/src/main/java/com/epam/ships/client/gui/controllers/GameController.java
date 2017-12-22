@@ -2,10 +2,12 @@ package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
 import com.epam.ships.client.gui.events.HitShotEvent;
+import com.epam.ships.client.gui.events.LooseEvent;
 import com.epam.ships.client.gui.events.MissShotEvent;
 import com.epam.ships.client.gui.events.OpponentShotEvent;
 import com.epam.ships.client.gui.events.OpponentWithdrawEvent;
 import com.epam.ships.client.gui.events.TurnChangeEvent;
+import com.epam.ships.client.gui.events.WinEvent;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
@@ -15,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -47,6 +50,9 @@ public class GameController {
     @FXML
     private Button eventButton;
 
+    @FXML
+    private Label winLabel;
+
     private int shotIndex;
 
     @FXML
@@ -57,6 +63,9 @@ public class GameController {
         eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
         eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -> changeTurn());
         eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> setHit());
+        eventButton.addEventHandler(WinEvent.GAME_WIN, event -> setWin());
+        eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> setLose());
+
         initializeTurn(false);
     }
 
@@ -131,9 +140,6 @@ public class GameController {
             logger.info(shotIndex);
             this.shotIndex = shotIndex;
             getClient().sendShot(shotIndex);
-            //opponentBoard.setDisable(true);
-            //final double opacity = 0.4;
-            //opponentBoard.setOpacity(opacity);
         });
 
         opponentRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
@@ -206,5 +212,29 @@ public class GameController {
         final double noOpacity = 1.0;
         opponentBoard.setDisable(false);
         opponentBoard.setOpacity(noOpacity);
+    }
+
+    private void setWin() {
+        getClient().closeClient();
+        eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent -> opponentWithdraw());
+        winLabel.setStyle("-fx-color: green");
+        winLabel.setText("YOU WIN!");
+        final double opacity = 0.4;
+        yourBoard.setDisable(true);
+        yourBoard.setOpacity(opacity);
+        opponentBoard.setDisable(true);
+        opponentBoard.setOpacity(opacity);
+    }
+
+    private void setLose() {
+        getClient().closeClient();
+        eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent -> opponentWithdraw());
+        winLabel.setStyle("-fx-color: green");
+        winLabel.setText("YOU LOSE!");
+        final double opacity = 0.4;
+        yourBoard.setDisable(true);
+        yourBoard.setOpacity(opacity);
+        opponentBoard.setDisable(true);
+        opponentBoard.setOpacity(opacity);
     }
 }
