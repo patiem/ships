@@ -3,6 +3,7 @@ package com.epam.ships.fleet;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.util.*;
 
@@ -15,6 +16,7 @@ import java.util.*;
  */
 @EqualsAndHashCode
 @RequiredArgsConstructor(staticName = "fleet", access = AccessLevel.PRIVATE)
+@ToString
 public class Fleet {
 
     private Fleet() {
