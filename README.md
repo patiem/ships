@@ -28,6 +28,14 @@ We also integrated Waffle.io with our Slack channel to notify team members whene
     
     mvn clean install
 
+### Launching 
+
+To launch server and client programs on single machine run the below script while in the root project directory.
+    
+    ./scripts/deployserverandclients.sh 
+
+If you wish to play on many computers use other scripts located in scripts directory.
+
 ### Packaging
 
     mvn clean package
