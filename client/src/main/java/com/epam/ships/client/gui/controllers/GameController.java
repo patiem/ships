@@ -1,6 +1,8 @@
 package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.gui.events.HitShotEvent;
+import com.epam.ships.client.gui.events.MissShotEvent;
 import com.epam.ships.client.gui.events.OpponentShotEvent;
 import com.epam.ships.client.gui.events.OpponentWithdrawEvent;
 import com.epam.ships.client.gui.events.TurnChangeEvent;
@@ -45,12 +47,16 @@ public class GameController {
     @FXML
     private Button eventButton;
 
+    private int shotIndex;
+
     @FXML
     public void initialize() {
         eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent -> opponentWithdraw());
         eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,
                 opponentShotEvent -> setOpponentShot(opponentShotEvent.getShotIndex()));
         eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
+        eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -> changeTurn());
+        eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> setHit());
         initializeTurn(false);
     }
 
@@ -116,14 +122,15 @@ public class GameController {
     }
 
     private Rectangle getOpponentRectangle(NumberBinding allRectanglesWidth, NumberBinding allRectanglesHeight,
-                                           final int opponentShotIndex) {
+                                           final int shotIndex) {
         final int initialSize = 15;
         Rectangle opponentRect = new Rectangle(initialSize, initialSize, Color.GRAY);
 
         opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -> {
             opponentRect.setFill(Color.BLACK);
-            logger.info(opponentShotIndex);
-            getClient().sendShot(opponentShotIndex);
+            logger.info(shotIndex);
+            this.shotIndex = shotIndex;
+            getClient().sendShot(shotIndex);
             opponentBoard.setDisable(true);
             final double opacity = 0.4;
             opponentBoard.setOpacity(opacity);
@@ -171,12 +178,30 @@ public class GameController {
         int column = shotIndex / BOARD_SIZE;
         int row = shotIndex - (column * BOARD_SIZE);
         int newShotIndex = row * BOARD_SIZE + column;
-        final double noOpacity = 1.0;
+        //final double noOpacity = 1.0;
         logger.info("new shotIndex: " + newShotIndex);
         Rectangle rec = (Rectangle) (yourBoard.getChildren().get(newShotIndex + 1));
-        rec.setFill(Color.BLACK);
+        if(rec.getFill()==Color.GREEN) {
+            rec.setFill(Color.RED);
+        } else {
+            rec.setFill(Color.BLACK);
+        }
+        //opponentBoard.setDisable(false);
+        //opponentBoard.setOpacity(noOpacity);
+    }
+
+    private void changeTurn() {
+        final double noOpacity = 1.0;
         opponentBoard.setDisable(false);
         opponentBoard.setOpacity(noOpacity);
+    }
+
+    private void setHit() {
+        int column = shotIndex / BOARD_SIZE;
+        int row = shotIndex - (column * BOARD_SIZE);
+        int newShotIndex = row * BOARD_SIZE + column;
+        Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(newShotIndex + 1));
+        rec.setFill(Color.RED);
     }
 
     private void setMyTurn() {
