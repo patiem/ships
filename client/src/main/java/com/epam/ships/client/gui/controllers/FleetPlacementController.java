@@ -186,15 +186,20 @@ public class FleetPlacementController {
     private void setEventsOnField(Rectangle rectangle, final int recIndex, final int fillIndex) {
         rectangle.setOnDragEntered(event -> {
                 double opacity = 0.5;
-                ((Rectangle) event.getSource()).setOpacity(opacity);
                 int mastCount  = ((Group)event.getGestureSource()).getChildren().size();
-                logger.info("mast drag enetered: " + mastCount);
-                int index = fillIndex + 1;
+                int index = fillIndex;
                 if(shipOrientation.equals(Orientation.VERTICAL)) {
+                    index += 1;
+                    ((Rectangle) event.getSource()).setOpacity(opacity);
                     for(int i = 1; i < mastCount; i++) {
                         ((Rectangle) yourBoard.getChildren().get(index + i)).setOpacity(opacity);
                     }
                 } else {
+                    if(index + mastCount * BOARD_SIZE > yourBoard.getChildren().size()) {
+                        return;
+                    }
+                    ((Rectangle) event.getSource()).setOpacity(opacity);
+                    index += 1;
                     for(int i = 1; i < mastCount; i++) {
                         ((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(opacity);
                     }
@@ -205,14 +210,20 @@ public class FleetPlacementController {
         rectangle.setOnDragExited(
                 event -> {
                     double noOpacity = 1.0;
-                    ((Rectangle)event.getSource()).setOpacity(1);
                     int mastCount  = ((Group)event.getGestureSource()).getChildren().size();
-                    int index = fillIndex + 1;
+                    int index = fillIndex;
                     if(shipOrientation.equals(Orientation.VERTICAL)) {
+                        index += 1;
+                        ((Rectangle)event.getSource()).setOpacity(1);
                         for(int i = 1; i < mastCount; i++) {
                             ((Rectangle) yourBoard.getChildren().get(index + i)).setOpacity(noOpacity);
                         }
                     } else {
+                        if(index + mastCount * BOARD_SIZE > yourBoard.getChildren().size()) {
+                            return;
+                        }
+                        index += 1;
+                        ((Rectangle)event.getSource()).setOpacity(1);
                         for(int i = 1; i < mastCount; i++) {
                             ((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(noOpacity);
                         }
@@ -230,20 +241,26 @@ public class FleetPlacementController {
                 success = true;
             }
             event.setDropCompleted(success);
-
-            rectangle.setFill(Color.GREEN);
-            int index = fillIndex + 1;
+            int index = fillIndex;
 
             int mastCount  = ((Group)event.getGestureSource()).getChildren().size();
             Mast[] masts = new Mast[mastCount];
-            masts[0] = Mast.ofIndex(String.valueOf(recIndex));
 
             if(shipOrientation.equals(Orientation.VERTICAL)) {
+                masts[0] = Mast.ofIndex(String.valueOf(recIndex));
+                rectangle.setFill(Color.GREEN);
+                index += 1;
                 for (int i1 = 1; i1 < mastCount; i1++) {
                     ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
                     masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));
                 }
             } else {
+                masts[0] = Mast.ofIndex(String.valueOf(recIndex));
+                if(index + mastCount * BOARD_SIZE > yourBoard.getChildren().size()) {
+                    return;
+                }
+                index += 1;
+                rectangle.setFill(Color.GREEN);
                 for (int i1 = 1; i1 < mastCount; i1++) {
                     ((Rectangle) yourBoard.getChildren().get(index + i1 * BOARD_SIZE)).setFill(Color.GREEN);
                     masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1));
