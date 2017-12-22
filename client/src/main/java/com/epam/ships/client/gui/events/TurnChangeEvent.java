@@ -15,7 +15,4 @@ public class TurnChangeEvent extends Event {
     public TurnChangeEvent() {
         super(TURN_EVENT);
     }
-
-
-
 }
