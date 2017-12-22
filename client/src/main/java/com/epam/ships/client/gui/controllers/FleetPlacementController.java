@@ -146,7 +146,7 @@ public class FleetPlacementController {
         addDragEventsToShips();
         ships = new ArrayList<>(SHIPS_COUNT);
         shipOrientation = Orientation.VERTICAL;
-        choiceBox.setItems(FXCollections.observableArrayList("Vertical", "Horizontal"));
+        choiceBox.setItems(FXCollections.observableArrayList("VERTICAL", "HORIZONTAL"));
         choiceBox.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
