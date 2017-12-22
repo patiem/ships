@@ -238,9 +238,16 @@ public class FleetPlacementController {
             Mast[] masts = new Mast[mastCount];
             masts[0] = Mast.ofIndex(String.valueOf(recIndex));
 
-            for(int i1 = 1; i1 < mastCount; i1++) {
-                ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
-                masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));
+            if(shipOrientation.equals(Orientation.VERTICAL)) {
+                for (int i1 = 1; i1 < mastCount; i1++) {
+                    ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
+                    masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));
+                }
+            } else {
+                for (int i1 = 1; i1 < mastCount; i1++) {
+                    ((Rectangle) yourBoard.getChildren().get(index + i1 * BOARD_SIZE)).setFill(Color.GREEN);
+                    masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1));
+                }
             }
             ships.add(Ship.ofMasts(masts));
             if(ships.size() == SHIPS_COUNT) {
