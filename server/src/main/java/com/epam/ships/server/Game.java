@@ -58,16 +58,19 @@ class Game {
     
     private boolean handleShot(Message receivedShot, Fleet fleet) {
         final Mast mast = Mast.ofIndex(receivedShot.getStatement());
-        boolean isGameFinished = false;
-        if (fleet.handleDamage(mast).equals(Damage.MISSED)) {
+        logger.debug(receivedShot.getStatement());
+        Damage damage = fleet.handleDamage(mast);
+        if (damage.equals(Damage.MISSED)) {
+            logger.debug("got here: missed");
             this.handleMiss(receivedShot);
-        } else if (fleet.handleDamage(mast).equals(Damage.HIT)) {
+        } else if (damage.equals(Damage.HIT)) {
+            logger.debug("got here: hit");
             this.handleHit(receivedShot);
-        } else {
+        } else if (damage.equals(Damage.DESTRUCTED)){
+            logger.debug("got here: destructed");
             this.handleDamageShot(receivedShot);
-            isGameFinished = fleet.isDefeated();
         }
-        return isGameFinished;
+        return fleet.isDefeated();
     }
     
     private void handleDamageShot(Message receivedShot) {
