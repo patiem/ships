@@ -10,6 +10,7 @@ class TurnManager {
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
         this.currentPlayer = firstPlayer;
+        this.otherPlayer = secondPlayer;
     }
 
     final WrappedClient getCurrentPlayer() {
