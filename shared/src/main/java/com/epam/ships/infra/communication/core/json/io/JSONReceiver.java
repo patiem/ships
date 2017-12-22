@@ -5,8 +5,8 @@ import com.epam.ships.infra.communication.api.conversion.Decoder;
 import com.epam.ships.infra.communication.api.io.Receiver;
 import com.epam.ships.infra.communication.core.json.conversion.JSONDecoder;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -37,7 +37,7 @@ public class JSONReceiver implements Receiver {
     /**
      * It reads from input stream, coverts it first
      * to a JsonElement and the to a Message.
-     * <p>
+     *
      * If there is nothing to read from an input stream,
      * it returns an corresponding Message as well.
      *
@@ -58,7 +58,8 @@ public class JSONReceiver implements Receiver {
                     .build();
         }
         Decoder<JsonElement> jsonDecoder = new JSONDecoder();
-        Gson gson = new Gson();
-        return jsonDecoder.decode(gson.toJsonTree(stringBuilder.toString()));
+        JsonParser jsonParser = new JsonParser();
+        JsonElement jsonElement = jsonParser.parse(stringBuilder.toString());
+        return jsonDecoder.decode(jsonElement);
     }
 }

@@ -2,6 +2,9 @@ package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
 import com.epam.ships.client.gui.events.TurnChangeEvent;
+import com.epam.ships.fleet.Fleet;
+import com.epam.ships.fleet.Mast;
+import com.epam.ships.fleet.Ship;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
@@ -28,11 +31,15 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class FleetPlacementController {
 
     private static final Target logger = new SharedLogger(Client.class);
     private static final int BOARD_SIZE = 10;
+    private static final int SHIPS_COUNT = 10;
 
     @FXML
     private AnchorPane mainAnchorPane;
@@ -58,7 +65,7 @@ public class FleetPlacementController {
     @FXML
     private GridPane yourBoard;
 
-    private volatile boolean myTurn;
+    private List<Ship> ships;
 
     //Events Handlers
     private EventHandler<MouseEvent> onMouseEnteredOnShip =
@@ -132,10 +139,11 @@ public class FleetPlacementController {
 
     @FXML
     public void initialize() {
-        eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
         bReady.setOnAction(event -> loadGameWindow());
+        bReady.setDisable(true);
         initializeBoard();
         addDragEventsToShips();
+        ships = new ArrayList<>(10);
     }
 
     private void initializeBoard() {
@@ -177,20 +185,26 @@ public class FleetPlacementController {
             if (db.hasString()) {
                 success = true;
             }
-
-            int mast  = ((Group)event.getGestureSource()).getChildren().size();
             event.setDropCompleted(success);
 
             rectangle.setFill(Color.GREEN);
-
             int index = fillIndex + 1;
 
-            for(int i1 = 1; i1 < mast; i1++) {
+            int mastCount  = ((Group)event.getGestureSource()).getChildren().size();
+            Mast[] masts = new Mast[mastCount];
+            masts[0] = Mast.ofIndex(String.valueOf(recIndex));
+
+            for(int i1 = 1; i1 < mastCount; i1++) {
                 ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
+                masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));
+            }
+            ships.add(Ship.ofMasts(masts));
+            if(ships.size() == SHIPS_COUNT) {
+                bReady.setDisable(false);
             }
 
-            logger.info("first ship index " + recIndex);
-            logger.info("n mast " + mast);
+            logger.info("first index of ship " + recIndex);
+            logger.info("ship has " + mastCount + " masts");
             event.consume();
         });
     }
@@ -223,6 +237,8 @@ public class FleetPlacementController {
 
     private void loadGameWindow() {
         try {
+            getClient().sendFleet(Fleet.ofShips(ships));
+
             final String gameWindowURL = "/fxml/gameWindow.fxml";
             final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowURL));
             final Parent gameWindow = gameWindowLoader.load();
@@ -239,7 +255,6 @@ public class FleetPlacementController {
             mainPane.getChildren().setAll(gameWindow);
 
             GameController gameController = gameWindowLoader.getController();
-            gameController.initializeTurn(myTurn);
             gameController.initializeClient();
             gameController.initializeBoards(yourBoard);
 
@@ -252,10 +267,5 @@ public class FleetPlacementController {
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
-    }
-
-    private void setMyTurn() {
-        logger.info("set my turn fleet");
-        this.myTurn = true;
     }
 }

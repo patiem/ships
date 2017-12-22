@@ -18,6 +18,7 @@ import javafx.stage.WindowEvent;
 public class GuiMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
+        Thread.currentThread().setName("gui - thread");
         final String fxmlMainWindowPath = "/fxml/root.fxml";
         final String windowTitle = "Battleships";
         final Client client = new Client();
