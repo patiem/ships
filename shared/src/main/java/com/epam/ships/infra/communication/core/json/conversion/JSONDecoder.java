@@ -30,6 +30,7 @@ public class JSONDecoder implements Decoder<JsonElement> {
     @Override
     public Message decode(JsonElement jsonElement) {
         Gson gson = new GsonBuilder().create();
+        
         return gson.fromJson(jsonElement, BaseMessage.class);
     }
 }
