@@ -10,9 +10,9 @@ import java.io.IOException;
  * @see Message
  * <p>
  * An implementing class receives an instance of
- * a class implementing Message interface.
+ * a class implementing BaseMessage interface.
  * @since 2017-12-07
  */
 public interface Receiver {
-    Message receive() throws IOException;
+    Message receive();
 }

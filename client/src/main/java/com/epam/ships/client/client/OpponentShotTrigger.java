@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
  * @since 2017-12-17
  */
 
-public class OpponentShotTrigger implements EventTrigger {
+class OpponentShotTrigger implements EventTrigger {
 
     private static final Target logger = new SharedLogger(Client.class);
 

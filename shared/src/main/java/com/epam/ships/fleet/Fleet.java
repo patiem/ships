@@ -5,10 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Piotr,Sandor
@@ -22,7 +19,7 @@ import java.util.Map;
 @ToString
 public class Fleet {
 
-    Fleet() {
+    private Fleet() {
         this.fleet = Collections.emptyMap();
     }
     
@@ -37,6 +34,10 @@ public class Fleet {
         Map<Mast, Ship> fleet = new HashMap<>();
         ships.forEach(ship -> ship.getMasts().forEach(mast -> fleet.put(mast, ship)));
         return new Fleet(fleet);
+    }
+    
+    public static Fleet empty() {
+        return new Fleet();
     }
 
     /**
@@ -65,5 +66,4 @@ public class Fleet {
         }
         return Damage.HIT;
     }
-
 }

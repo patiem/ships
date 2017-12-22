@@ -66,6 +66,7 @@
         <jacksonVersion>2.9.3</jacksonVersion>
         <lombokVersion>1.16.18</lombokVersion>
         <gsonVersion>2.8.2</gsonVersion>
+        <sonarSourceVersion>3.4.0.905</sonarSourceVersion>
     </properties>
 
     <dependencyManagement>
