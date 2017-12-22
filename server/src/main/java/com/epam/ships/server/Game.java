@@ -35,9 +35,9 @@ class Game {
         this.notifyPlayersThatTheyCanStartGame();
         boolean isGameFinished = false;
         boolean isClientConnected = true;
-        this.rest();
         this.askPlayersForPlaceFleet();
         this.receiveFleetFromBothPlayers();
+        this.rest();
         this.sendYourTurnMessage();
         while (!isGameFinished && isClientConnected) {
             Message receivedShot = this.receiveShot();
@@ -126,7 +126,7 @@ class Game {
     
     private Fleet receiveFloat() {
         final Message fleet = this.communicationBus.receive(this.turnManager.getCurrentPlayer());
-        logger.info("Fleet received");
+        logger.info("Fleet received: " + fleet);
         return fleet.getFleet();
     }
     

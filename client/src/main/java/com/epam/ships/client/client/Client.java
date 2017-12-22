@@ -1,5 +1,6 @@
 package com.epam.ships.client.client;
 
+import com.epam.ships.fleet.Fleet;
 import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.api.io.Receiver;
 import com.epam.ships.infra.communication.api.io.Sender;
@@ -42,6 +43,7 @@ public class Client implements Runnable {
 
     @Override
     public void run() {
+        Thread.currentThread().setName("Client listen Thread");
         listenLoop();
     }
 
@@ -90,8 +92,26 @@ public class Client implements Runnable {
         try {
             Sender sender = new JSONSender(clientSocket.getOutputStream());
             Message shot = new MessageBuilder().withHeader("shot")
-                    .withAuthor("client").withStatus("OK").withStatement(String.valueOf(shotIndex)).build();
+                    .withAuthor("client")
+                    .withStatus("OK")
+                    .withStatement(String.valueOf(shotIndex))
+                    .build();
             sender.send(shot);
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+    }
+
+    public void sendFleet(Fleet fleet) {
+        try {
+            Sender sender = new JSONSender(clientSocket.getOutputStream());
+            Message fleetMsg = new MessageBuilder()
+                    .withHeader("placement")
+                    .withAuthor("client")
+                    .withStatus("OK")
+                    .withFleet(fleet)
+                    .build();
+            sender.send(fleetMsg);
         } catch (IOException e) {
             logger.error(e.getMessage());
         }

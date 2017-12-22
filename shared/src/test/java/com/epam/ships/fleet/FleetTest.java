@@ -2,6 +2,9 @@ package com.epam.ships.fleet;
 
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
@@ -12,14 +15,16 @@ public class FleetTest {
         Ship firstShip = Ship.ofMasts(Mast.ofIndex("3"), Mast.ofIndex("2"));
         Ship secondShip = Ship.ofMasts(Mast.ofIndex("4"), Mast.ofIndex("1"));
         //when
-        Fleet fleet = Fleet.ofShips(firstShip, secondShip);
+        List<Ship> ships = Arrays.asList(firstShip, secondShip);
+        Fleet fleet = Fleet.ofShips(ships);
         //then
         assertFalse(fleet.isDefeated());
     }
     @Test
     public void shipIsDestructed() {
         //given
-        Fleet fleet = Fleet.ofShips(Ship.ofMasts(Mast.ofIndex("3"), Mast.ofIndex("2"), Mast.ofIndex("1")));
+        List<Ship> ships = Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"), Mast.ofIndex("2"), Mast.ofIndex("1")));
+        Fleet fleet = Fleet.ofShips(ships);
         //when
         Mast firstHit = Mast.ofIndex("3");
         Mast secondHit = Mast.ofIndex("2");

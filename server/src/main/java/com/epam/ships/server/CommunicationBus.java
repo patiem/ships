@@ -54,7 +54,7 @@ class CommunicationBus {
         return sender.receive();
     }
 
-    void send(final WrappedClient recipient,final Message response) {
+    void send(final WrappedClient recipient, final Message response) {
         recipient.send(response);
     }
 
