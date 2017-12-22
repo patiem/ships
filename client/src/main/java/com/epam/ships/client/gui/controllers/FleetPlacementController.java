@@ -39,6 +39,7 @@ public class FleetPlacementController {
 
     private static final Target logger = new SharedLogger(Client.class);
     private static final int BOARD_SIZE = 10;
+    private static final int SHIPS_COUNT = 10;
 
     @FXML
     private AnchorPane mainAnchorPane;
@@ -198,12 +199,12 @@ public class FleetPlacementController {
                 masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));
             }
             ships.add(Ship.ofMasts(masts));
-            if(ships.size() == 10) {
+            if(ships.size() == SHIPS_COUNT) {
                 bReady.setDisable(false);
             }
 
-            logger.info("first ship index " + recIndex);
-            logger.info("n mast " + mastCount);
+            logger.info("first index of ship " + recIndex);
+            logger.info("ship has " + mastCount + " masts");
             event.consume();
         });
     }
