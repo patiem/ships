@@ -7,7 +7,7 @@ import com.epam.ships.infra.communication.api.Message;
  * @see Message
  * <p>
  * An implementing class sends an instance of
- * a class implementing Message interface.
+ * a class implementing BaseMessage interface.
  * @since 2017-12-07
  */
 public interface Sender {
