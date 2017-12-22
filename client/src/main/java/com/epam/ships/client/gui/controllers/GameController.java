@@ -188,9 +188,9 @@ public class GameController {
     }
 
     private void changeTurn() {
-        final double noOpacity = 1.0;
-        opponentBoard.setDisable(false);
-        opponentBoard.setOpacity(noOpacity);
+        final double opacity = 0.4;
+        opponentBoard.setDisable(true);
+        opponentBoard.setOpacity(opacity);
     }
 
     private void setHit() {
