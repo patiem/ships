@@ -146,6 +146,7 @@ public class FleetPlacementController {
         ships = new ArrayList<>(SHIPS_COUNT);
         shipOrientation = Orientation.VERTICAL;
         choiceBox.setItems(FXCollections.observableArrayList("VERTICAL", "HORIZONTAL"));
+        choiceBox.setValue("VERTICAL");
         choiceBox.getSelectionModel()
                 .selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> {
@@ -305,32 +306,104 @@ public class FleetPlacementController {
             int index = fillIndex;
             logger.info("index = " + fillIndex);
             if(shipOrientation.equals(Orientation.VERTICAL)) {
-                if(!checkForVertical(index, mastCount)) {
+                if(!checkForVertical(index, mastCount) || !checkIfNotSnaking(index, mastCount)) {
                     return;
                 }
-
-                if(!checkIfNotSnaking(index, mastCount)) {
-                    return;
-                }
-
                 setVerticalOpacity(index, mastCount, opacity);
                 ((Rectangle) event.getSource()).setOpacity(opacity);
-
             } else {
-                if(index + (mastCount-1) * BOARD_SIZE > yourBoard.getChildren().size() - 2) {
+                if(isOutOfBound(index, mastCount) || !checkForHorizontal(index, mastCount)) {
                     return;
-                }
-
-                for(int i = 0; i< mastCount; i++) {
-                    if (((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).getFill().equals(Color.GREEN)) {
-                        return;
-                    }
                 }
                 ((Rectangle) event.getSource()).setOpacity(opacity);
                 setHorizontalOpacity(index, mastCount, opacity);
             }
             event.consume();
         });
+    }
+
+    private boolean isNotShipOnShipHorizontal(int index, int mastCount) {
+        for(int i = 0; i< mastCount; i++) {
+            if (((Rectangle) yourBoard.getChildren().get(index + 1 + i * BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isNotShipBelowShipHorizontal(int index, int mastCount) {
+        for(int i = 0; i< mastCount; i++) {
+            if((index + 1 + i * BOARD_SIZE) % BOARD_SIZE == 0) {
+                return true;
+            }
+
+            if(index + 2 + i * BOARD_SIZE >= yourBoard.getChildren().size()) {
+                return true;
+            }
+
+            if (((Rectangle) yourBoard.getChildren().get(index + 2 + i * BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isNotShipAboveShipHorizontal(int index, int mastCount) {
+        for(int i = 0; i< mastCount; i++) {
+            if((index + 1 + i * BOARD_SIZE) % BOARD_SIZE == 9) {
+                return true;
+            }
+            if(index +  i * BOARD_SIZE >= yourBoard.getChildren().size() || index +  i * BOARD_SIZE < 1) {
+                return true;
+            }
+
+            if (((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private boolean isNotShipOnTheRightHorizontal(int index, int mastCount) {
+        if(index + 1 + mastCount * BOARD_SIZE >= yourBoard.getChildren().size()) {
+            return true;
+        }
+
+        if (((Rectangle) yourBoard.getChildren().get(index + 1 + mastCount * BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isNotShipOnTheLeftHorizontal(int index, int mastCount) {
+        if(index + 1 - mastCount * BOARD_SIZE < 1) {
+            return true;
+        }
+
+        if (((Rectangle) yourBoard.getChildren().get(index + 1 - mastCount * BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean checkForHorizontal(int index, int mastCount) {
+        return isNotShipOnShipHorizontal(index, mastCount) &&
+                isNotShipBelowShipHorizontal(index, mastCount) &&
+                isNotShipAboveShipHorizontal(index, mastCount) &&
+                isNotShipOnTheRightHorizontal(index, mastCount) &&
+                isNotShipOnTheLeftHorizontal(index, mastCount);
+    }
+
+    private boolean isOutOfBound(int index, int mastCount) {
+        final int notRectangleChildCount = 2;
+        if(index + (mastCount-1) * BOARD_SIZE > yourBoard.getChildren().size() - notRectangleChildCount) {
+            return true;
+        }
+
+        return false;
     }
 
     private void setFieldOnDragDropped(Rectangle rectangle, final int recIndex, final int fillIndex) {
@@ -383,10 +456,6 @@ public class FleetPlacementController {
             shipPlacementSuccess = true;
             event.consume();
         });
-    }
-
-    private void dropVerticalShip() {
-
     }
 
     private void addDragEventsToShips() {
