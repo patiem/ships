@@ -1,6 +1,7 @@
 package com.epam.ships.server;
 
 import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.communication.api.message.Author;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -17,7 +18,6 @@ import static org.mockito.Mockito.mockingDetails;
 
 @Test
 public class WrappedClientTest {
-    private static final String ENCODING = "UTF-8";
 
     public void wrappedClientShouldBeAbleToSendMessageToServer() throws IOException{
         //given
@@ -29,7 +29,7 @@ public class WrappedClientTest {
         appServer.connectClients();
         Scanner scanner = new Scanner(appServer.getClientSockets().get(0).getInputStream());
         String receivedMessage = scanner.nextLine();
-        String expectedMessage = "{\"header\":\"\",\"status\":\"\",\"author\":\"testMessage\",\"statement\":\"\"}";
+        String expectedMessage = "{\"header\":\"DEFAULT\",\"status\":\"OK\",\"author\":\"SERVER\",\"statement\":\"\",\"fleet\":{\"fleet\":{}}}";
         //then
         Assert.assertEquals(receivedMessage, expectedMessage);
     }
@@ -51,7 +51,7 @@ public class WrappedClientTest {
                 Thread.sleep(10);
                 WrappedClient wrappedClient = new WrappedClient(new Socket("127.0.0.1", testPort));
                 Thread.sleep(10);
-                wrappedClient.send(new MessageBuilder().withAuthor("testMessage").build());
+                wrappedClient.send(new MessageBuilder().withAuthor(Author.SERVER).build());
             } catch (final InterruptedException | IOException e) {
                 e.printStackTrace();
             }
