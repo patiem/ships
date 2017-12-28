@@ -17,21 +17,21 @@ import com.google.gson.JsonElement;
  */
 public class JSONEncoder implements Encoder<JsonElement> {
 
-    /**
-     * It converts an instance of a class implementing
-     * BaseMessage interface into a JsonElement instance.
-     *
-     * @param message an instance of a class implementing
-     *                BaseMessage interface.
-     * @return a result of conversion of an instance of a class
-     * implementing BaseMessage interface into a JsonElement instance.
-     */
-    @Override
-    public JsonElement encode(Message message) {
-        Gson gson = new GsonBuilder()
-                            .enableComplexMapKeySerialization()
-                            .create();
-        return gson.toJsonTree(message, BaseMessage.class);
-    }
+  /**
+   * It converts an instance of a class implementing
+   * BaseMessage interface into a JsonElement instance.
+   *
+   * @param message an instance of a class implementing
+   *                BaseMessage interface.
+   * @return a result of conversion of an instance of a class
+   * implementing BaseMessage interface into a JsonElement instance.
+   */
+  @Override
+  public JsonElement encode(Message message) {
+    Gson gson = new GsonBuilder()
+        .enableComplexMapKeySerialization()
+        .create();
+    return gson.toJsonTree(message, BaseMessage.class);
+  }
 
 }

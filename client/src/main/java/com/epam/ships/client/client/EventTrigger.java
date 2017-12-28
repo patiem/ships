@@ -8,5 +8,5 @@ import javafx.scene.control.Button;
  */
 
 interface EventTrigger {
-    void fire(final Button button, final String messageStatement);
+  void fire(final Button button, final String messageStatement);
 }

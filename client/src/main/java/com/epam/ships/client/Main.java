@@ -11,11 +11,11 @@ import javafx.application.Application;
  */
 
 public class Main {
-    private static final Target logger = new SharedLogger(Main.class);
+  private static final Target logger = new SharedLogger(Main.class);
 
-    public static void main(String[] args) {
-        logger.info("Client is up and running.");
-        new Thread(() -> Application.launch(GuiMain.class)).start();
-    }
+  public static void main(String[] args) {
+    logger.info("Client is up and running.");
+    new Thread(() -> Application.launch(GuiMain.class)).start();
+  }
 }
 

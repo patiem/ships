@@ -18,50 +18,48 @@ import java.util.Map;
 
 class MessageHandler {
 
-    private static final Target logger = new SharedLogger(Client.class);
+  private static final Target logger = new SharedLogger(Client.class);
+  private final Map<Header, EventTrigger> triggers;
+  private Button eventButton = null;
+  @Getter
+  private boolean endConnectionTriggered;
 
-    private Button eventButton = null;
-    private final Map<Header, EventTrigger> triggers;
+  MessageHandler() {
+    endConnectionTriggered = false;
+    this.triggers = new HashMap<>();
+    this.triggers.put(Header.OPPONENT_CONNECTED, new OpponentConnectedTrigger());
+    this.triggers.put(Header.SHOT, new OpponentShotTrigger());
+    this.triggers.put(Header.CONNECTION, new ConnectionEndTrigger());
+    this.triggers.put(Header.YOUR_TURN, new TurnTrigger());
+    this.triggers.put(Header.MISS, new MissShotTrigger());
+    this.triggers.put(Header.HIT, new HitShotTrigger());
+    this.triggers.put(Header.SHIP_DESTRUCTED, new HitShotTrigger());
+    this.triggers.put(Header.WIN, new WinTrigger());
+    this.triggers.put(Header.LOSE, new LoseTrigger());
+  }
 
-    @Getter
-    private boolean endConnectionTriggered;
+  void setCurrentEventButton(Button eventButton) {
+    this.eventButton = eventButton;
+  }
 
-    MessageHandler() {
-        endConnectionTriggered = false;
-        this.triggers = new HashMap<>();
-        this.triggers.put(Header.OPPONENT_CONNECTED, new OpponentConnectedTrigger());
-        this.triggers.put(Header.SHOT, new OpponentShotTrigger());
-        this.triggers.put(Header.CONNECTION, new ConnectionEndTrigger());
-        this.triggers.put(Header.YOUR_TURN, new TurnTrigger());
-        this.triggers.put(Header.MISS, new MissShotTrigger());
-        this.triggers.put(Header.HIT, new HitShotTrigger());
-        this.triggers.put(Header.SHIP_DESTRUCTED, new HitShotTrigger());
-        this.triggers.put(Header.WIN, new WinTrigger());
-        this.triggers.put(Header.LOSE, new LoseTrigger());
+  void handle(Message message) {
+    if (eventButton == null) {
+      throw new IllegalStateException("there is no object on which there can be fire event on");
     }
 
-    void setCurrentEventButton(Button eventButton) {
-        this.eventButton = eventButton;
+    Header header = message.getHeader();
+
+    if (!triggers.containsKey(header)) {
+      logger.error("message header: " + header + " is unknown");
+      return;
     }
+    checkIfEndWillBeTriggered(message);
+    triggers.get(header).fire(eventButton, message.getStatement());
+  }
 
-    void handle(Message message) {
-        if(eventButton == null) {
-            throw new IllegalStateException("there is no object on which there can be fire event on");
-        }
-
-        Header header = message.getHeader();
-
-        if(!triggers.containsKey(header)) {
-            logger.error("message header: " + header +" is unknown");
-            return;
-        }
-        checkIfEndWillBeTriggered(message);
-        triggers.get(header).fire(eventButton, message.getStatement());
+  private void checkIfEndWillBeTriggered(Message message) {
+    if (Status.END.equals(message.getStatus())) {
+      endConnectionTriggered = true;
     }
-
-    private void checkIfEndWillBeTriggered(Message message) {
-        if(Status.END.equals(message.getStatus())) {
-               endConnectionTriggered = true;
-        }
-    }
+  }
 }
