@@ -21,5 +21,5 @@ cd ../server
 mvn clean -q
 mvn install -q
 echo "Installed, now attempting to deploy.."
-java -jar ./target/server-1.0-SNAPSHOT.jar
+java -jar ./target/server*.jar
 
