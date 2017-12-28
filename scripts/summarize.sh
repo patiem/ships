@@ -29,7 +29,7 @@ git checkout master --quiet
 echo "[ Q ] How many tests do we have.."
 ./scripts/countTests.sh
 echo "[ Q ] How many commits do we have.."
-git rev-list --all --count
+git rev-list HEAD ^master --count
 
 echo "[ Q ] How many packages do we have.."
 grep -r "package" --include=*.java . --no-filename | sort -u | wc -l
