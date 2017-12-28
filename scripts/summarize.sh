@@ -24,12 +24,10 @@
 
 cd ..
 git checkout master --quiet
-
 #[] Auto output
 
 echo "[ Q ] How many tests do we have.."
-mvn test | grep -o "Tests run: [0-9]" | sed 's/[^0-9]*//g' | awk '{ SUM += $1} END { print SUM }'
-
+./scripts/countTests.sh
 echo "[ Q ] How many commits do we have.."
 git rev-list --all --count
 
