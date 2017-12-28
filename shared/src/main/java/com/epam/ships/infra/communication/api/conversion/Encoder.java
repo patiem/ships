@@ -13,10 +13,10 @@ import com.epam.ships.infra.communication.api.Message;
  */
 public interface Encoder<T> {
 
-    /**
-     * @param message an instance of a class implementing
-     *                BaseMessage interface.
-     * @return T it encodes into this type.
-     */
-    T encode(Message message);
+  /**
+   * @param message an instance of a class implementing
+   *                BaseMessage interface.
+   * @return T it encodes into this type.
+   */
+  T encode(Message message);
 }

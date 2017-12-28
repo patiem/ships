@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 
 class LoseTrigger implements EventTrigger {
 
-    @Override
-    public void fire(Button button, String messageStatement) {
-        Platform.runLater(() -> button.fireEvent(new LooseEvent()));
-    }
+  @Override
+  public void fire(Button button, String messageStatement) {
+    Platform.runLater(() -> button.fireEvent(new LooseEvent()));
+  }
 }

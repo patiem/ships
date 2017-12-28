@@ -6,7 +6,6 @@ import com.epam.ships.infra.communication.api.io.Receiver;
 import com.epam.ships.infra.communication.api.io.Sender;
 import com.epam.ships.infra.communication.api.message.Author;
 import com.epam.ships.infra.communication.api.message.Header;
-import com.epam.ships.infra.communication.api.message.Status;
 import com.epam.ships.infra.communication.core.json.io.JSONReceiver;
 import com.epam.ships.infra.communication.core.json.io.JSONSender;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
@@ -20,105 +19,104 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 public class Client implements Runnable {
-    private static final Target logger = new SharedLogger(Client.class);
+  private static final Target logger = new SharedLogger(Client.class);
+  private final MessageHandler messageHandler;
+  private Socket clientSocket;
+  private volatile boolean shouldRun;
 
-    private Socket clientSocket;
-    private final MessageHandler messageHandler;
-    private volatile boolean shouldRun;
+  public Client() {
+    this.messageHandler = new MessageHandler();
+    shouldRun = true;
+  }
 
-    public Client() {
-        this.messageHandler = new MessageHandler();
-        shouldRun = true;
+  public boolean connect(final String ipAddress, final int port) {
+    try {
+      clientSocket = new Socket();
+      final InetAddress address = InetAddress.getByName(ipAddress);
+      final int connectionTimeout = 500;
+      clientSocket.connect(new InetSocketAddress(address, port), connectionTimeout);
+    } catch (IOException | IllegalArgumentException e) {
+      logger.error(e.getMessage());
+      return false;
+    }
+    return true;
+  }
+
+  @Override
+  public void run() {
+    Thread.currentThread().setName("Client listen Thread");
+    listenLoop();
+  }
+
+  public void closeClient() {
+    this.shouldRun = false;
+    if (clientSocket == null) {
+      return;
     }
 
-    public boolean connect(final String ipAddress, final int port) {
-        try {
-            clientSocket = new Socket();
-            final InetAddress address = InetAddress.getByName(ipAddress);
-            final int connectionTimeout = 500;
-            clientSocket.connect(new InetSocketAddress(address, port), connectionTimeout);
-        } catch (IOException | IllegalArgumentException e) {
-            logger.error(e.getMessage());
-            return false;
-        }
-        return true;
+    try {
+      clientSocket.close();
+    } catch (IOException e) {
+      logger.error(e.getMessage());
     }
+  }
 
-    @Override
-    public void run() {
-        Thread.currentThread().setName("Client listen Thread");
-        listenLoop();
+  private void listenLoop() {
+
+    while (shouldRun && !messageHandler.isEndConnectionTriggered()) {
+      try {
+        Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
+        Message message = receiver.receive();
+
+        logger.info(message);
+
+        messageHandler.handle(message);
+
+      } catch (IOException | IllegalStateException e) {
+        logger.error(e.getMessage());
+      }
+
+      rest();
     }
+  }
 
-    public void closeClient() {
-        this.shouldRun = false;
-        if(clientSocket == null) {
-            return;
-        }
-
-        try {
-            clientSocket.close();
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
+  private void rest() {
+    try {
+      Thread.sleep(300);
+    } catch (InterruptedException e) {
+      logger.info(e.getMessage());
+      Thread.currentThread().interrupt();
     }
+  }
 
-    private void listenLoop() {
-
-        while (shouldRun && !messageHandler.isEndConnectionTriggered()) {
-            try {
-                Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
-                Message message = receiver.receive();
-
-                logger.info(message);
-
-                messageHandler.handle(message);
-
-            } catch (IOException | IllegalStateException e ) {
-                logger.error(e.getMessage());
-            }
-
-            rest();
-        }
+  public void sendShot(int shotIndex) {
+    try {
+      Sender sender = new JSONSender(clientSocket.getOutputStream());
+      Message shot = new MessageBuilder().withHeader(Header.SHOT)
+          .withAuthor(Author.CLIENT)
+          .withStatement(String.valueOf(shotIndex))
+          .build();
+      sender.send(shot);
+    } catch (IOException e) {
+      logger.error(e.getMessage());
     }
+  }
 
-    private void rest() {
-        try {
-            Thread.sleep(300);
-        } catch (InterruptedException e) {
-            logger.info(e.getMessage());
-            Thread.currentThread().interrupt();
-        }
+  public void sendFleet(Fleet fleet) {
+    try {
+      Sender sender = new JSONSender(clientSocket.getOutputStream());
+      Message fleetMsg = new MessageBuilder()
+          .withHeader(Header.PLACEMENT)
+          .withAuthor(Author.CLIENT)
+          .withFleet(fleet)
+          .build();
+      sender.send(fleetMsg);
+    } catch (IOException e) {
+      logger.error(e.getMessage());
     }
+  }
 
-    public void sendShot(int shotIndex) {
-        try {
-            Sender sender = new JSONSender(clientSocket.getOutputStream());
-            Message shot = new MessageBuilder().withHeader(Header.SHOT)
-                    .withAuthor(Author.CLIENT)
-                    .withStatement(String.valueOf(shotIndex))
-                    .build();
-            sender.send(shot);
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
-    }
-
-    public void sendFleet(Fleet fleet) {
-        try {
-            Sender sender = new JSONSender(clientSocket.getOutputStream());
-            Message fleetMsg = new MessageBuilder()
-                    .withHeader(Header.PLACEMENT)
-                    .withAuthor(Author.CLIENT)
-                    .withFleet(fleet)
-                    .build();
-            sender.send(fleetMsg);
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
-    }
-
-    public void setEventTrigger(Button button) {
-        messageHandler.setCurrentEventButton(button);
-    }
+  public void setEventTrigger(Button button) {
+    messageHandler.setCurrentEventButton(button);
+  }
 }

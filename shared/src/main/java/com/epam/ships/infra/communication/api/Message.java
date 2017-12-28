@@ -11,36 +11,36 @@ import com.epam.ships.infra.communication.api.message.Status;
  * @author Sandor
  * @see Receiver
  * @see Sender
- *
+ * <p>
  * It is communication mean contract between
  * Receiver and Sender.
  * @since 2017-12-10
  */
 public interface Message {
 
-    /**
-     * @return header String value.
-     */
-    Header getHeader();
+  /**
+   * @return header String value.
+   */
+  Header getHeader();
 
-    /**
-     * @return status String value.
-     */
-    Status getStatus();
+  /**
+   * @return status String value.
+   */
+  Status getStatus();
 
-    /**
-     * @return author String value.
-     */
-    Author getAuthor();
+  /**
+   * @return author String value.
+   */
+  Author getAuthor();
 
-    /**
-     * @return statement String value.
-     */
-    String getStatement();
-    
-    /**
-     * @return Object implementing Attachable interface.
-     */
-    Fleet getFleet();
-    
+  /**
+   * @return statement String value.
+   */
+  String getStatement();
+
+  /**
+   * @return Object implementing Attachable interface.
+   */
+  Fleet getFleet();
+
 }
