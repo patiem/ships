@@ -69,6 +69,10 @@
         </dependency>
     </dependencies>
 
+    <!--Non-technical info goes below-->
+
+    <name>Ships - SHARED</name>
+
     <description>
         It's Battleships game infra API + Core.
         It is an isolated module having network utils and logging

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd ">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.epam</groupId>
@@ -45,7 +45,7 @@
         <dependency.locations.enabled>false</dependency.locations.enabled>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <mavenVersion>2.5.2</mavenVersion>
+        <mavenVersion>3.5.2</mavenVersion>
         <compilerVersion>3.7.0</compilerVersion>
         <cleanVersion>3.0.0</cleanVersion>
         <deployVersion>2.8.2</deployVersion>
@@ -57,7 +57,6 @@
         <assemblyVersion>3.1.0</assemblyVersion>
         <dependencyVersion>3.0.2</dependencyVersion>
         <jxrVersion>2.5</jxrVersion>
-        <jdependVersion>2.0</jdependVersion>
         <jdocVersion>3.0.0</jdocVersion>
         <!--switch to true if not willing to generate a site-->
         <skipSite>false</skipSite>
@@ -124,6 +123,11 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombokVersion}</version>
             </dependency>
+            <dependency>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>2.0</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -156,7 +160,6 @@
                         </rules>
                     </configuration>
                 </plugin>
-
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -325,22 +328,22 @@
                     <configLocation>google_checks.xml</configLocation>
                 </configuration>
             </plugin>
-            <!--JDepend is visible on module level-->
+            <!--            <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>${jdocVersion}</version>
+                        </plugin>-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jdepend-maven-plugin</artifactId>
-                <version>${jdependVersion}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${jdocVersion}</version>
+                <version>2.0</version>
             </plugin>
         </plugins>
     </reporting>
 
-
     <!--Non-technical info goes below-->
+
+    <name>Ships - ROOT</name>
 
     <description>
         It's a root POM:
