@@ -31,7 +31,7 @@ class TurnManager {
     }
   }
 
-  public boolean isCurrentPlayerFirstPlayer() {
+  boolean isCurrentPlayerFirstPlayer() {
     return currentPlayer.equals(firstPlayer);
   }
 }

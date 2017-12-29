@@ -6,10 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
- * @author Piotr, Sandor
- * @see Ship
- * <p>
  * Mast of a ship.
+ * @author Piotr Czyż, Sandor Korotkevics
+ * @see Ship
  * @since 2017-12-19
  */
 @EqualsAndHashCode

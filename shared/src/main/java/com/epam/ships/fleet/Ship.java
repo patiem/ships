@@ -11,10 +11,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author Piotr, Sandor
- * @see Mast
- * <p>
  * Ship consisting of masts.
+ * @author Piotr Czyż, Sandor Korotkevics
+ * @see Mast
  * @since 2017-12-19
  */
 @EqualsAndHashCode
@@ -27,7 +26,7 @@ public class Ship {
   /**
    * Static factory method.
    *
-   * @param masts
+   * @param masts - masts of ship
    * @return Ship
    */
   public static Ship ofMasts(Mast... masts) {

@@ -12,13 +12,11 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * @author Sandor
+ * Value-object used as a communication mean.
+ * Setters are only available to MessageBuilder.
+ * @author Sandor Korotkevics
  * @see MessageBuilder
  * @see BaseMessage
- * <p>
- * Value-object used as a communication mean.
- * <p>
- * Setters are only available to MessageBuilder.
  * @since 2017-12-10
  */
 
@@ -27,7 +25,6 @@ import lombok.ToString;
 @Getter(AccessLevel.PUBLIC)
 @Setter(AccessLevel.PACKAGE)
 public class BaseMessage implements Message {
-  //TODO introduce enums?
   private Header header;
   private Status status;
   private Author author;

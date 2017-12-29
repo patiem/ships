@@ -3,19 +3,18 @@ package com.epam.ships.infra.communication.api.conversion;
 import com.epam.ships.infra.communication.api.Message;
 
 /**
- * @author Sandor
- * @see Message
- * <p>
  * An implementing class has to ensure that
  * T is converted into a class
  * instance implementing BaseMessage interface.
+ * @author Sandor Korotkevics
+ * @see Message
  * @since 2017-12-10
  */
 public interface Decoder<T> {
   /**
+   * Implementing BaseMessage interface.
    * @param t it decodes from this type.
    * @return BaseMessage an instance of a class
-   * implementing BaseMessage interface.
    */
   Message decode(T t);
 }
