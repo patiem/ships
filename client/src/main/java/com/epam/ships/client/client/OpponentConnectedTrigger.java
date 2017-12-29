@@ -5,10 +5,11 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 
 /**
- * @author Magda
+ * Enable to fire event reacting to opponent connecting.
+ *
+ * @author Magdalena Aarsman
  * @since 2017-12-17
  */
-
 class OpponentConnectedTrigger implements EventTrigger {
 
   @Override

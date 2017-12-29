@@ -3,7 +3,9 @@ package com.epam.ships.client.client;
 import javafx.scene.control.Button;
 
 /**
- * @author Magda
+ * Enable fire gui event from client listen thread.
+ *
+ * @author Magdalena Aarsman
  * @since 2017-12-17
  */
 
