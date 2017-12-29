@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -57,6 +57,8 @@
         <assemblyVersion>3.1.0</assemblyVersion>
         <dependencyVersion>3.0.2</dependencyVersion>
         <jxrVersion>2.5</jxrVersion>
+        <jdependVersion>2.0</jdependVersion>
+        <javadocVersion>3.0.0</javadocVersion>
         <!--switch to true if not willing to generate a site-->
         <skipSite>false</skipSite>
         <!--Utils-->
@@ -71,10 +73,10 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--Communication-->
+            <!--Communication, Serialization, Fleet-->
             <dependency>
                 <groupId>com.epam.ships</groupId>
-                <artifactId>infra</artifactId>
+                <artifactId>shared</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Testing-->
@@ -294,7 +296,7 @@
                             <report>dependencies</report>
                             <report>project-team</report>
                             <report>license</report>
-		        </reports>
+                        </reports>
                     </reportSet>
                 </reportSets>
             </plugin>
@@ -323,9 +325,19 @@
                     <configLocation>google_checks.xml</configLocation>
                 </configuration>
             </plugin>
+            <!--JDepend is visible on module level-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>${jdependVersion}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${javadocVersion}</version>
+            </plugin>
         </plugins>
     </reporting>
-
 
 
     <!--Non-technical info goes below-->

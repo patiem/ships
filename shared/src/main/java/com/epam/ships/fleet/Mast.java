@@ -7,18 +7,18 @@ import lombok.ToString;
 
 /**
  * @author Piotr, Sandor
- * @since 2017-12-19
  * @see Ship
- *
+ * <p>
  * Mast of a ship.
+ * @since 2017-12-19
  */
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 public class Mast {
-    private String index;
+  private String index;
 
-    public static Mast ofIndex(String index) {
-        return new Mast(index);
-    }
+  public static Mast ofIndex(String index) {
+    return new Mast(index);
+  }
 }

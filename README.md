@@ -24,10 +24,6 @@ We use Milestones for estimation. GitHub is integrated with Waffle.io. With Waff
 Milestones have realistic (default), optimistic and pessimistic (both mentioned in a milestone description) deadlines. Once a goal is achieved we close such a milestone.
 We also integrated Waffle.io with our Slack channel to notify team members whenever an issue changes its status. 
 
-### Installing 
-    
-    mvn clean install
-
 ### Launching 
 
 To launch server and client programs on single machine run the below script while you are in the scripts directory.
@@ -36,25 +32,31 @@ To launch server and client programs on single machine run the below script whil
 
 If you wish to play on many computers use other scripts located in scripts directory.
 
-### Packaging
+### Fully Supported Maven Commands 
+
+#### Installation
+    
+    mvn clean install
+
+#### Packaging
 
     mvn clean package
 
-### Running Tests
+#### Running Tests
 
     mvn test
 
-### Generating Site
+#### Generating Site
 
     mvn site && mvn site:stage
 
-### Viewing Site
+#### * ALSO: Viewing Site
 
 Ex. with Firefox, while in the root folder,
 
     firefox target/staging/index.html     
 
-### Validating Dependency Convergence
+#### Validating Dependency Convergence
 
     mvn enforcer:force
 

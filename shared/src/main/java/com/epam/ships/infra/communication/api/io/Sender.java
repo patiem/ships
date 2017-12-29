@@ -11,5 +11,5 @@ import com.epam.ships.infra.communication.api.Message;
  * @since 2017-12-07
  */
 public interface Sender {
-    void send(Message message);
+  void send(Message message);
 }
