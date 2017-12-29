@@ -12,10 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Magda
+ * Handling message, enable to react in proper way to server messages.
+ *
+ * @author Magdalena Aarsman
  * @since 2017-12-16
  */
-
 class MessageHandler {
 
   private static final Target logger = new SharedLogger(Client.class);

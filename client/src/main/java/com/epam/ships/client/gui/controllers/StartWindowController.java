@@ -23,10 +23,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * @author Magda
+ * Connecting window controller.
+ * @author Magdalena Aarsman
  * @since 2017-12-14
  */
-
 public class StartWindowController {
 
   private static final Target logger = new SharedLogger(Client.class);
@@ -43,16 +43,16 @@ public class StartWindowController {
   private VBox vbWheel;
 
   @FXML
-  private TextField tServerAddress;
+  private TextField textFieldServerAddress;
 
   @FXML
-  private TextField tServerPort;
+  private TextField textFieldServerPort;
 
   @FXML
   private AnchorPane mainAnchorPane;
 
   @FXML
-  private Label lInvalidPort;
+  private Label labelInvalidPort;
 
   @FXML
   private Button eventButton;
@@ -61,20 +61,21 @@ public class StartWindowController {
 
   @FXML
   void initialize() {
-    tServerPort.textProperty().addListener((observableValue, s, t1) -> {
-      if (!lInvalidPort.getText().isEmpty()) {
-        lInvalidPort.setText("");
+    textFieldServerPort.textProperty().addListener((observableValue, s1, t1) -> {
+      if (!labelInvalidPort.getText().isEmpty()) {
+        labelInvalidPort.setText("");
       }
     });
 
     portValidator = new PortValidator();
-    eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED, event -> loadFleetPlacementWindow());
+    eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED,
+        event -> loadFleetPlacementWindow());
 
     final String defaultHost = "127.0.0.1";
     final String defaultPort = "8189";
 
-    tServerAddress.setText(defaultHost);
-    tServerPort.setText(defaultPort);
+    textFieldServerAddress.setText(defaultHost);
+    textFieldServerPort.setText(defaultPort);
   }
 
   private void initializeClient() {
@@ -96,14 +97,14 @@ public class StartWindowController {
       return;
     }
 
-    final String serverAddress = tServerAddress.getText();
+    final String serverAddress = textFieldServerAddress.getText();
     logger.info("server address: " + serverAddress);
 
     int port;
     try {
-      port = portValidator.asInt(tServerPort.getText());
+      port = portValidator.asInt(textFieldServerPort.getText());
     } catch (IllegalArgumentException e) {
-      lInvalidPort.setText("invalid port number");
+      labelInvalidPort.setText("invalid port number");
       return;
     }
     logger.info("server port: " + port);
@@ -130,8 +131,9 @@ public class StartWindowController {
 
   private void loadServerNotResponseView() {
     try {
-      final String serverNotRespondingURL = "/fxml/serverNotResponding.fxml";
-      final FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource(serverNotRespondingURL));
+      final String serverNotRespondingUrl = "/fxml/serverNotResponding.fxml";
+      final FXMLLoader notResponseLoader =
+          new FXMLLoader(getClass().getResource(serverNotRespondingUrl));
       final Parent notResponse = notResponseLoader.load();
       final Pane mainPane = (Pane) mainAnchorPane.getParent();
       mainPane.getChildren().clear();
@@ -143,8 +145,8 @@ public class StartWindowController {
 
   private void loadFleetPlacementWindow() {
     try {
-      final String gameWindowURL = "/fxml/fleetPlacement.fxml";
-      final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowURL));
+      final String gameWindowUrl = "/fxml/fleetPlacement.fxml";
+      final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));
       final Parent gameWindow = gameWindowLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
 

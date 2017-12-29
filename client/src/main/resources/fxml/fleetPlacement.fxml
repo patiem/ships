@@ -74,7 +74,7 @@
                             <children>
                                 <HBox prefHeight="59.0" prefWidth="588.0">
                                     <children>
-                                        <Group fx:id="gFourMastShips">
+                                        <Group fx:id="groupFourMastShips">
                                             <children>
                                                 <Group fx:id="gFourMastShip">
                                                     <children>
@@ -98,7 +98,7 @@
                                 </HBox>
                                 <HBox prefHeight="60.0" prefWidth="588.0">
                                     <children>
-                                        <Group fx:id="gThreeMastShips">
+                                        <Group fx:id="groupThreeMastShips">
                                             <children>
                                                 <Group fx:id="gFirstThreeMastShip">
                                                     <children>
@@ -138,7 +138,7 @@
                                         <Insets top="20.0"/>
                                     </VBox.margin>
                                     <children>
-                                        <Group fx:id="gTwoMastShips">
+                                        <Group fx:id="groupTwoMastShips">
                                             <children>
                                                 <Group fx:id="gFirstTwoMastShip">
                                                     <children>
@@ -179,7 +179,7 @@
                                         <Insets top="20.0"/>
                                     </VBox.margin>
                                     <children>
-                                        <Group fx:id="gOneMastShips">
+                                        <Group fx:id="groupOneMastShips">
                                             <children>
                                                 <Group fx:id="gFirstOneMastShip">
                                                     <children>
@@ -222,7 +222,8 @@
                         </VBox>
                         <HBox alignment="CENTER_RIGHT" GridPane.rowIndex="1">
                             <children>
-                                <Button fx:id="bReady" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false"
+                                <Button fx:id="buttonReady" alignment="CENTER" contentDisplay="RIGHT"
+                                        mnemonicParsing="false"
                                         prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: seagreen;"
                                         text="Ready" textAlignment="CENTER">
                                     <font>

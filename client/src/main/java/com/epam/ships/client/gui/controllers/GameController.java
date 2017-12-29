@@ -28,7 +28,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * @author Magda
+ * Game window controller.
+ * @author Magdalena Aarsman
  * @since 2017-12-15
  */
 
@@ -56,8 +57,9 @@ public class GameController {
   private int shotIndex;
 
   @FXML
-  public void initialize() {
-    eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent -> opponentWithdraw());
+  void initialize() {
+    eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
+        opponentConnectedEvent -> opponentWithdraw());
     eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,
         opponentShotEvent -> setOpponentShot(opponentShotEvent.getShotIndex()));
     eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
@@ -95,7 +97,8 @@ public class GameController {
         final int shotIndex = j * BOARD_SIZE + i;
 
         Rectangle yourRect = getYourRect(allRectanglesWidth, allRectanglesHeight);
-        Rectangle opponentRect = getOpponentRectangle(allRectanglesWidth, allRectanglesHeight, shotIndex);
+        Rectangle opponentRect = getOpponentRectangle(allRectanglesWidth,
+            allRectanglesHeight, shotIndex);
 
         this.yourBoard.add(yourRect, i, j);
         opponentBoard.add(opponentRect, i, j);
@@ -121,7 +124,8 @@ public class GameController {
     return mainController.getClient();
   }
 
-  private Rectangle getYourRect(NumberBinding allRectanglesWidth, NumberBinding allRectanglesHeight) {
+  private Rectangle getYourRect(NumberBinding allRectanglesWidth,
+                                NumberBinding allRectanglesHeight) {
     final int initialSize = 15;
     Rectangle yourRect = new Rectangle(initialSize, initialSize, Color.GRAY);
     yourRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
@@ -130,7 +134,8 @@ public class GameController {
     return yourRect;
   }
 
-  private Rectangle getOpponentRectangle(NumberBinding allRectanglesWidth, NumberBinding allRectanglesHeight,
+  private Rectangle getOpponentRectangle(NumberBinding allRectanglesWidth,
+                                         NumberBinding allRectanglesHeight,
                                          final int shotIndex) {
     final int initialSize = 15;
     Rectangle opponentRect = new Rectangle(initialSize, initialSize, Color.GRAY);
@@ -155,8 +160,9 @@ public class GameController {
 
   private void loadWithdrawScreen() {
     try {
-      final String opponentWithdrawURL = "/fxml/opponentWithdraw.fxml";
-      final FXMLLoader opponentWithdrawLoader = new FXMLLoader(getClass().getResource(opponentWithdrawURL));
+      final String opponentWithdrawUrl = "/fxml/opponentWithdraw.fxml";
+      final FXMLLoader opponentWithdrawLoader =
+          new FXMLLoader(getClass().getResource(opponentWithdrawUrl));
       final Parent opponentWithdraw = opponentWithdrawLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
       final int sceneHeight = 400;
@@ -216,7 +222,8 @@ public class GameController {
 
   private void setWin() {
     getClient().closeClient();
-    eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent -> opponentWithdraw());
+    eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
+        opponentConnectedEvent -> opponentWithdraw());
     winLabel.setStyle("-fx-color: green");
     winLabel.setText("YOU WIN!");
     final double opacity = 0.4;
@@ -228,7 +235,8 @@ public class GameController {
 
   private void setLose() {
     getClient().closeClient();
-    eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent -> opponentWithdraw());
+    eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
+        opponentConnectedEvent -> opponentWithdraw());
     winLabel.setStyle("-fx-color: green");
     winLabel.setText("YOU LOSE!");
     final double opacity = 0.4;
