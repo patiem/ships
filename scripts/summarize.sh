@@ -24,14 +24,12 @@
 
 cd ..
 git checkout master --quiet
-
 #[] Auto output
 
 echo "[ Q ] How many tests do we have.."
-mvn test | grep -o "Tests run: [0-9]" | sed 's/[^0-9]*//g' | awk '{ SUM += $1} END { print SUM }'
-
+./scripts/countTests.sh
 echo "[ Q ] How many commits do we have.."
-git rev-list --all --count
+git rev-list HEAD ^master --count
 
 echo "[ Q ] How many packages do we have.."
 grep -r "package" --include=*.java . --no-filename | sort -u | wc -l
