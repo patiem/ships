@@ -73,10 +73,10 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--Communication-->
+            <!--Communication, Serialization, Fleet-->
             <dependency>
                 <groupId>com.epam.ships</groupId>
-                <artifactId>infra</artifactId>
+                <artifactId>shared</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!--Testing-->
