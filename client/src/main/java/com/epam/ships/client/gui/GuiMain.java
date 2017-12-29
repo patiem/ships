@@ -16,29 +16,29 @@ import javafx.stage.WindowEvent;
  */
 
 public class GuiMain extends Application {
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Thread.currentThread().setName("gui - thread");
-        final String fxmlMainWindowPath = "/fxml/root.fxml";
-        final String windowTitle = "Battleships";
-        final Client client = new Client();
-        final int sceneWidth = 600;
-        final int sceneHeight = 400;
+  @Override
+  public void start(Stage primaryStage) throws Exception {
+    Thread.currentThread().setName("gui - thread");
+    final String fxmlMainWindowPath = "/fxml/root.fxml";
+    final String windowTitle = "Battleships";
+    final Client client = new Client();
+    final int sceneWidth = 600;
+    final int sceneHeight = 400;
 
-        FXMLLoader rootLoader = new FXMLLoader(getClass().getResource(fxmlMainWindowPath));
-        Parent root = rootLoader.load();
-        MainController mainController = rootLoader.getController();
-        mainController.initialize(client);
+    FXMLLoader rootLoader = new FXMLLoader(getClass().getResource(fxmlMainWindowPath));
+    Parent root = rootLoader.load();
+    MainController mainController = rootLoader.getController();
+    mainController.initialize(client);
 
-        primaryStage.setTitle(windowTitle);
-        primaryStage.setScene(new Scene(root, sceneWidth, sceneHeight));
-        primaryStage.setResizable(false);
-        primaryStage.show();
+    primaryStage.setTitle(windowTitle);
+    primaryStage.setScene(new Scene(root, sceneWidth, sceneHeight));
+    primaryStage.setResizable(false);
+    primaryStage.show();
 
-        primaryStage.setOnHiding( (WindowEvent event) -> {
-            client.closeClient();
-            Platform.exit();
-        });
-    }
+    primaryStage.setOnHiding((WindowEvent event) -> {
+      client.closeClient();
+      Platform.exit();
+    });
+  }
 
 }

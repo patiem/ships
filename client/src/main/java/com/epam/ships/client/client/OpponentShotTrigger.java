@@ -13,11 +13,11 @@ import javafx.scene.control.Button;
 
 class OpponentShotTrigger implements EventTrigger {
 
-    private static final Target logger = new SharedLogger(Client.class);
+  private static final Target logger = new SharedLogger(Client.class);
 
-    @Override
-    public void fire(final Button button, final String messageStatement) {
-        Platform.runLater(() -> button.fireEvent(new OpponentShotEvent(Integer.valueOf(messageStatement))));
-        logger.info("shot index: " + messageStatement);
-    }
+  @Override
+  public void fire(final Button button, final String messageStatement) {
+    Platform.runLater(() -> button.fireEvent(new OpponentShotEvent(Integer.valueOf(messageStatement))));
+    logger.info("shot index: " + messageStatement);
+  }
 }

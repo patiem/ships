@@ -29,146 +29,146 @@ import java.io.IOException;
 
 public class StartWindowController {
 
-    private static final Target logger = new SharedLogger(Client.class);
+  private static final Target logger = new SharedLogger(Client.class);
 
-    private Client client;
+  private Client client;
 
-    @FXML
-    private GridPane gridPane;
+  @FXML
+  private GridPane gridPane;
 
-    @FXML
-    private ImageView imCannon;
+  @FXML
+  private ImageView imCannon;
 
-    @FXML
-    private VBox vbWheel;
+  @FXML
+  private VBox vbWheel;
 
-    @FXML
-    private TextField tServerAddress;
+  @FXML
+  private TextField tServerAddress;
 
-    @FXML
-    private TextField tServerPort;
+  @FXML
+  private TextField tServerPort;
 
-    @FXML
-    private AnchorPane mainAnchorPane;
+  @FXML
+  private AnchorPane mainAnchorPane;
 
-    @FXML
-    private Label lInvalidPort;
+  @FXML
+  private Label lInvalidPort;
 
-    @FXML
-    private Button eventButton;
+  @FXML
+  private Button eventButton;
 
-    private PortValidator portValidator;
+  private PortValidator portValidator;
 
-    @FXML
-    void initialize() {
-        tServerPort.textProperty().addListener((observableValue, s, t1) -> {
-            if(!lInvalidPort.getText().isEmpty()) {
-                lInvalidPort.setText("");
-            }
-        });
+  @FXML
+  void initialize() {
+    tServerPort.textProperty().addListener((observableValue, s, t1) -> {
+      if (!lInvalidPort.getText().isEmpty()) {
+        lInvalidPort.setText("");
+      }
+    });
 
-        portValidator = new PortValidator();
-        eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED, event -> loadFleetPlacementWindow());
+    portValidator = new PortValidator();
+    eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED, event -> loadFleetPlacementWindow());
 
-        final String defaultHost = "127.0.0.1";
-        final String defaultPort = "8189";
+    final String defaultHost = "127.0.0.1";
+    final String defaultPort = "8189";
 
-        tServerAddress.setText(defaultHost);
-        tServerPort.setText(defaultPort);
+    tServerAddress.setText(defaultHost);
+    tServerPort.setText(defaultPort);
+  }
+
+  private void initializeClient() {
+    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
+    this.client = mainController.getClient();
+    if (client == null) {
+      throw new IllegalStateException("client is not initialized!");
     }
 
-    private void initializeClient() {
-        MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
-        this.client = mainController.getClient();
-        if(client == null) {
-            throw new IllegalStateException("client is not initialized!");
-        }
+    client.setEventTrigger(eventButton);
+  }
 
-        client.setEventTrigger(eventButton);
+  @FXML
+  private void onConnectPressed() {
+    try {
+      initializeClient();
+    } catch (IllegalStateException e) {
+      logger.error(e.getMessage());
+      return;
     }
 
-    @FXML
-    private void onConnectPressed() {
-        try {
-            initializeClient();
-        } catch (IllegalStateException e) {
-            logger.error(e.getMessage());
-            return;
-        }
+    final String serverAddress = tServerAddress.getText();
+    logger.info("server address: " + serverAddress);
 
-        final String serverAddress = tServerAddress.getText();
-        logger.info("server address: " + serverAddress);
-
-        int port;
-        try {
-            port = portValidator.asInt(tServerPort.getText());
-        } catch (IllegalArgumentException e) {
-            lInvalidPort.setText("invalid port number");
-            return;
-        }
-        logger.info("server port: " + port);
-
-        showLoadingWheel();
-        final boolean isConnected = client.connect(serverAddress, port);
-
-        if (!isConnected) {
-            loadServerNotResponseView();
-        } else {
-            Thread clientThread = new Thread(client);
-            clientThread.start();
-        }
+    int port;
+    try {
+      port = portValidator.asInt(tServerPort.getText());
+    } catch (IllegalArgumentException e) {
+      lInvalidPort.setText("invalid port number");
+      return;
     }
+    logger.info("server port: " + port);
 
-    private void showLoadingWheel() {
-        final double opacity = 0.4;
+    showLoadingWheel();
+    final boolean isConnected = client.connect(serverAddress, port);
 
-        gridPane.setDisable(true);
-        gridPane.setOpacity(opacity);
-        imCannon.setOpacity(opacity);
-        vbWheel.setVisible(true);
+    if (!isConnected) {
+      loadServerNotResponseView();
+    } else {
+      Thread clientThread = new Thread(client);
+      clientThread.start();
     }
+  }
 
-    private void loadServerNotResponseView() {
-        try {
-            final String serverNotRespondingURL = "/fxml/serverNotResponding.fxml";
-            final FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource(serverNotRespondingURL));
-            final Parent notResponse = notResponseLoader.load();
-            final Pane mainPane = (Pane) mainAnchorPane.getParent();
-            mainPane.getChildren().clear();
-            mainPane.getChildren().setAll(notResponse);
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
+  private void showLoadingWheel() {
+    final double opacity = 0.4;
+
+    gridPane.setDisable(true);
+    gridPane.setOpacity(opacity);
+    imCannon.setOpacity(opacity);
+    vbWheel.setVisible(true);
+  }
+
+  private void loadServerNotResponseView() {
+    try {
+      final String serverNotRespondingURL = "/fxml/serverNotResponding.fxml";
+      final FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource(serverNotRespondingURL));
+      final Parent notResponse = notResponseLoader.load();
+      final Pane mainPane = (Pane) mainAnchorPane.getParent();
+      mainPane.getChildren().clear();
+      mainPane.getChildren().setAll(notResponse);
+    } catch (IOException e) {
+      logger.error(e.getMessage());
     }
+  }
 
-    private void loadFleetPlacementWindow() {
-        try {
-            final String gameWindowURL = "/fxml/fleetPlacement.fxml";
-            final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowURL));
-            final Parent gameWindow = gameWindowLoader.load();
-            final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
+  private void loadFleetPlacementWindow() {
+    try {
+      final String gameWindowURL = "/fxml/fleetPlacement.fxml";
+      final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowURL));
+      final Parent gameWindow = gameWindowLoader.load();
+      final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
 
-            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+      Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 
-            Stage stage = (Stage) mainPane.getScene().getWindow();
-            final int shrinkSize = 300;
-            stage.setMinHeight(screenBounds.getHeight() - shrinkSize);
-            stage.setMinWidth(screenBounds.getWidth() - shrinkSize);
+      Stage stage = (Stage) mainPane.getScene().getWindow();
+      final int shrinkSize = 300;
+      stage.setMinHeight(screenBounds.getHeight() - shrinkSize);
+      stage.setMinWidth(screenBounds.getWidth() - shrinkSize);
 
-            mainPane.getChildren().clear();
-            mainPane.getChildren().setAll(gameWindow);
+      mainPane.getChildren().clear();
+      mainPane.getChildren().setAll(gameWindow);
 
-            FleetPlacementController fleetPlacementController = gameWindowLoader.getController();
-            fleetPlacementController.initializeClient();
+      FleetPlacementController fleetPlacementController = gameWindowLoader.getController();
+      fleetPlacementController.initializeClient();
 
-            final double margin = 0.0;
-            AnchorPane.setTopAnchor(gameWindow, margin);
-            AnchorPane.setBottomAnchor(gameWindow, margin);
-            AnchorPane.setLeftAnchor(gameWindow, margin);
-            AnchorPane.setRightAnchor(gameWindow, margin);
+      final double margin = 0.0;
+      AnchorPane.setTopAnchor(gameWindow, margin);
+      AnchorPane.setBottomAnchor(gameWindow, margin);
+      AnchorPane.setLeftAnchor(gameWindow, margin);
+      AnchorPane.setRightAnchor(gameWindow, margin);
 
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
+    } catch (IOException e) {
+      logger.error(e.getMessage());
     }
+  }
 }
