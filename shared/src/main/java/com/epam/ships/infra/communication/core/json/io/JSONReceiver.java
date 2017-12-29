@@ -14,14 +14,13 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 /**
- * @author Piotr, Magda, Sandor
+ * It receives a message from an input stream.
+ * @author Piotr Czyż, Magda Aarsman, Sandor Korotkevics
  * @see Receiver
  * @see JSONReceiver
  * @see Decoder
  * @see JSONDecoder
  * @see Message
- * <p>
- * It receives a message from an input stream.
  * @since 2017-12-07
  */
 
@@ -39,7 +38,6 @@ public class JSONReceiver implements Receiver {
   /**
    * It reads from input stream, coverts it first
    * to a JsonElement and the to a BaseMessage.
-   * <p>
    * If there is nothing to read from an input stream,
    * it returns an corresponding BaseMessage as well.
    *

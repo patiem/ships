@@ -23,10 +23,10 @@ class WrappedClient {
 
   WrappedClient(Socket socketClient) {
     this.socket = socketClient;
-    this.setUpIO();
+    this.setUpIo();
   }
 
-  private void setUpIO() {
+  private void setUpIo() {
     try {
       this.out = new JSONSender(socket.getOutputStream());
       this.in = new JSONReceiver(socket.getInputStream());

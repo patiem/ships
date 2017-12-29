@@ -13,14 +13,13 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 /**
- * @author Piotr, Magda, Sandor
+ * It sends a message to an output stream.
+ * @author Piotr Czyż, Magda Aarsman, Sandor Korotkevics
  * @see Sender
  * @see JSONSender
  * @see Encoder
  * @see JSONEncoder
  * @see Message
- * <p>
- * It sends a message to an output stream.
  * @since 2017-12-07
  */
 
@@ -47,7 +46,6 @@ public class JSONSender implements Sender {
    */
   @Override
   public void send(Message message) {
-        /*TODO connection is never closed, think of an elegant solution (try-with-resources won't help here, since it closes socket)*/
     PrintWriter printWriter = null;
     try {
       printWriter = new PrintWriter(new OutputStreamWriter(outputStream, ENCODING), true);

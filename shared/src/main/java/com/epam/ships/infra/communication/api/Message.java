@@ -8,12 +8,11 @@ import com.epam.ships.infra.communication.api.message.Header;
 import com.epam.ships.infra.communication.api.message.Status;
 
 /**
- * @author Sandor
- * @see Receiver
- * @see Sender
- * <p>
  * It is communication mean contract between
  * Receiver and Sender.
+ * @author Sandor Korotkevics
+ * @see Receiver
+ * @see Sender
  * @since 2017-12-10
  */
 public interface Message {
