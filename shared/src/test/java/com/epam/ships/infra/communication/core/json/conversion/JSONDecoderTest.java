@@ -26,9 +26,9 @@ public class JSONDecoderTest {
         .withFleet(Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"),
             Mast.ofIndex("2"), Mast.ofIndex("1")))))
         .build();
-    Encoder<JsonElement> encoder = new JSONEncoder();
+    Encoder<JsonElement> encoder = new JsonEncoder();
     JsonElement encoded = encoder.encode(sent);
-    Decoder<JsonElement> decoder = new JSONDecoder();
+    Decoder<JsonElement> decoder = new JsonDecoder();
     Message received = decoder.decode(encoded);
     assertEquals(sent, received);
   }

@@ -1,21 +1,23 @@
 package com.epam.ships.infra.communication.core.json.conversion;
 
-import com.epam.ships.infra.communication.api.Message;
-import com.epam.ships.infra.communication.api.conversion.Decoder;
-import com.epam.ships.infra.communication.core.message.BaseMessage;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 
+import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.communication.api.conversion.Decoder;
+import com.epam.ships.infra.communication.core.message.BaseMessage;
+
 /**
  * It converts a JsonElement into a BaseMessage instance.
+ *
  * @author Sandor Korotkevics
  * @see Decoder
  * @see Message
  * @see com.epam.ships.infra.communication.api.Message
  * @since 2017-12-10
  */
-public class JSONDecoder implements Decoder<JsonElement> {
+public class JsonDecoder implements Decoder<JsonElement> {
 
   /**
    * It converts a JsonElement instance into a BaseMessage

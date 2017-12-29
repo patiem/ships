@@ -1,14 +1,15 @@
 package com.epam.ships.infra.communication.core.json.io;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.api.conversion.Decoder;
 import com.epam.ships.infra.communication.api.io.Receiver;
 import com.epam.ships.infra.communication.api.message.Header;
 import com.epam.ships.infra.communication.api.message.Status;
-import com.epam.ships.infra.communication.core.json.conversion.JSONDecoder;
+import com.epam.ships.infra.communication.core.json.conversion.JsonDecoder;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -17,21 +18,21 @@ import java.util.Scanner;
  * It receives a message from an input stream.
  * @author Piotr Czyż, Magda Aarsman, Sandor Korotkevics
  * @see Receiver
- * @see JSONReceiver
+ * @see JsonReceiver
  * @see Decoder
- * @see JSONDecoder
+ * @see JsonDecoder
  * @see Message
  * @since 2017-12-07
  */
 
-public class JSONReceiver implements Receiver {
+public class JsonReceiver implements Receiver {
 
   private final InputStream inputStream;
 
   /**
    * @param inputStream it will read from this stream.
    */
-  public JSONReceiver(InputStream inputStream) {
+  public JsonReceiver(InputStream inputStream) {
     this.inputStream = inputStream;
   }
 
@@ -56,7 +57,7 @@ public class JSONReceiver implements Receiver {
           .withStatement("End of a message")
           .build();
     }
-    Decoder<JsonElement> jsonDecoder = new JSONDecoder();
+    Decoder<JsonElement> jsonDecoder = new JsonDecoder();
     JsonParser jsonParser = new JsonParser();
     JsonElement jsonElement = jsonParser.parse(stringBuilder.toString());
     return jsonDecoder.decode(jsonElement);

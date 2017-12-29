@@ -3,8 +3,8 @@ package com.epam.ships.server;
 import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.api.io.Receiver;
 import com.epam.ships.infra.communication.api.io.Sender;
-import com.epam.ships.infra.communication.core.json.io.JSONReceiver;
-import com.epam.ships.infra.communication.core.json.io.JSONSender;
+import com.epam.ships.infra.communication.core.json.io.JsonReceiver;
+import com.epam.ships.infra.communication.core.json.io.JsonSender;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import lombok.EqualsAndHashCode;
@@ -28,8 +28,8 @@ class WrappedClient {
 
   private void setUpIo() {
     try {
-      this.out = new JSONSender(socket.getOutputStream());
-      this.in = new JSONReceiver(socket.getInputStream());
+      this.out = new JsonSender(socket.getOutputStream());
+      this.in = new JsonReceiver(socket.getInputStream());
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
