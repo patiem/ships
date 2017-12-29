@@ -60,6 +60,28 @@ Ex. with Firefox, while in the root folder,
 
     mvn enforcer:force
 
+## Alternative Way of Importing Testing Dependencies
+
+On a dedicated branch it is made possible to import testing dependencies all at once from an external project.
+
+Clone external 'testing' project,
+
+    git clone https://github.com/korotkevics/testing; cd testing
+
+Install 'testing' project (so it becomes available in .m2),
+
+    mvn install
+
+While in the 'ships' project, checkout to the dedicated branch,
+
+    git checkout dev_sandor_extracttestingdeptodedicatedproject
+
+Install 'ships' project (so it will use 'testing' previously installed into .m2),
+
+    mvn install
+    
+No error should appear.
+
 ### Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
