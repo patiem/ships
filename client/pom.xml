@@ -4,8 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <!--Coordinates-->
-    <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <artifactId>client</artifactId>
     <groupId>com.epam.ships</groupId>
     <modelVersion>4.0.0</modelVersion>
@@ -13,7 +12,7 @@
     <parent>
         <artifactId>ships</artifactId>
         <groupId>com.epam</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -28,13 +27,11 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <scope>test</scope>
-            <version>${testngVersion}</version>
         </dependency>
         <!--Lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombokVersion}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
