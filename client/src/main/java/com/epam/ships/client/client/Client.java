@@ -18,17 +18,33 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+/**
+ * Enable communication with server side.
+ *
+ * @author Magdalena Aarsman
+ * @since 2017-12-13
+ */
 public class Client implements Runnable {
   private static final Target logger = new SharedLogger(Client.class);
   private final MessageHandler messageHandler;
   private Socket clientSocket;
   private volatile boolean shouldRun;
 
+  /**
+   * Creates the Client instance.
+   */
   public Client() {
     this.messageHandler = new MessageHandler();
     shouldRun = true;
   }
 
+  /**
+   * Connecting client with server using providing address and port.
+   *
+   * @param ipAddress - server ip address
+   * @param port      - server port
+   * @return true if success, false on failure
+   */
   public boolean connect(final String ipAddress, final int port) {
     try {
       clientSocket = new Socket();
@@ -42,12 +58,19 @@ public class Client implements Runnable {
     return true;
   }
 
+  /**
+   * Override run method of Runnable interface.
+   * Setting name of thread to "Client listen Thread" and start listen loop.
+   */
   @Override
   public void run() {
     Thread.currentThread().setName("Client listen Thread");
     listenLoop();
   }
 
+  /**
+   * Closing client, stopping listen thread.
+   */
   public void closeClient() {
     this.shouldRun = false;
     if (clientSocket == null) {
@@ -89,6 +112,11 @@ public class Client implements Runnable {
     }
   }
 
+  /**
+   * Sending message containing shot index to server.
+   *
+   * @param shotIndex - index of last shot
+   */
   public void sendShot(int shotIndex) {
     try {
       Sender sender = new JSONSender(clientSocket.getOutputStream());
@@ -102,6 +130,11 @@ public class Client implements Runnable {
     }
   }
 
+  /**
+   * Sending message containing fleet placement to server.
+   *
+   * @param fleet - Fleet object representing user fleet.
+   */
   public void sendFleet(Fleet fleet) {
     try {
       Sender sender = new JSONSender(clientSocket.getOutputStream());
@@ -116,6 +149,11 @@ public class Client implements Runnable {
     }
   }
 
+  /**
+   * Set handle to gui to trigger some events in response for server message.
+   *
+   * @param button - gui handler as button.
+   */
   public void setEventTrigger(Button button) {
     messageHandler.setCurrentEventButton(button);
   }

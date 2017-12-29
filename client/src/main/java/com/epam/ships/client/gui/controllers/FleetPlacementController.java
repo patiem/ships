@@ -35,6 +35,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Fleet Placement window controller.
+ * @author Magdalena Aarsman
+ * @since 2017-12-19
+ */
 public class FleetPlacementController {
 
   private static final Target logger = new SharedLogger(Client.class);
@@ -45,28 +50,25 @@ public class FleetPlacementController {
   private AnchorPane mainAnchorPane;
 
   @FXML
-  private Button bReady;
+  private Button buttonReady;
 
   @FXML
   private Button eventButton;
 
   @FXML
-  private Group gFourMastShips;
+  private Group groupFourMastShips;
 
   @FXML
-  private Group gThreeMastShips;
+  private Group groupThreeMastShips;
 
   @FXML
-  private Group gTwoMastShips;
+  private Group groupTwoMastShips;
 
   @FXML
-  private Group gOneMastShips;
+  private Group groupOneMastShips;
 
   @FXML
   private GridPane yourBoard;
-
-  @FXML
-  private GridPane rightGrid;
 
   @FXML
   private ChoiceBox choiceBox;
@@ -138,9 +140,9 @@ public class FleetPlacementController {
       };
 
   @FXML
-  public void initialize() {
-    bReady.setOnAction(event -> loadGameWindow());
-    bReady.setDisable(true);
+  void initialize() {
+    buttonReady.setOnAction(event -> loadGameWindow());
+    buttonReady.setDisable(true);
     initializeBoard();
     addDragEventsToShips();
     ships = new ArrayList<>(SHIPS_COUNT);
@@ -175,7 +177,8 @@ public class FleetPlacementController {
     }
   }
 
-  private Rectangle getYourRect(NumberBinding allRectanglesWidth, NumberBinding allRectanglesHeight) {
+  private Rectangle getYourRect(NumberBinding allRectanglesWidth,
+                                NumberBinding allRectanglesHeight) {
     final int initialSize = 15;
     Rectangle yourRect = new Rectangle(initialSize, initialSize, Color.GRAY);
     yourRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
@@ -199,13 +202,14 @@ public class FleetPlacementController {
             }
           } else {
             final int notRectangleChild = 2;
-            if (index + (mastCount - 1) * BOARD_SIZE > yourBoard.getChildren().size() - notRectangleChild) {
+            if (index + (mastCount - 1) * BOARD_SIZE
+                > yourBoard.getChildren().size() - notRectangleChild) {
               return;
             }
             index += 1;
             ((Rectangle) event.getSource()).setOpacity(1);
             for (int i = 1; i < mastCount; i++) {
-              ((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(noOpacity);
+              yourBoard.getChildren().get(index + i * BOARD_SIZE).setOpacity(noOpacity);
             }
           }
           event.consume();
@@ -238,11 +242,11 @@ public class FleetPlacementController {
   }
 
   private boolean checkForVertical(int index, int mastCount) {
-    return isNotShipOnShip(index, mastCount) &&
-        isNotShipAboveShip(index, mastCount) &&
-        isNotShipBelowShip(index, mastCount) &&
-        isNotShipOnTheRight(index, mastCount) &&
-        isNotShipOnTheLeft(index, mastCount);
+    return isNotShipOnShip(index, mastCount)
+        && isNotShipAboveShip(index, mastCount)
+        && isNotShipBelowShip(index)
+        && isNotShipOnTheRight(index, mastCount)
+        && isNotShipOnTheLeft(index, mastCount);
   }
 
   private boolean isNotShipOnShip(int index, int mastCount) {
@@ -260,7 +264,8 @@ public class FleetPlacementController {
 
   private boolean isNotShipAboveShip(int index, int mastCount) {
     if (index + mastCount + 1 < yourBoard.getChildren().size()) {
-      if (((Rectangle) yourBoard.getChildren().get(index + mastCount + 1)).getFill().equals(Color.GREEN)) {
+      if (((Rectangle) yourBoard.getChildren().get(index + mastCount + 1)).getFill()
+          .equals(Color.GREEN)) {
         return false;
       }
     }
@@ -268,7 +273,7 @@ public class FleetPlacementController {
     return true;
   }
 
-  private boolean isNotShipBelowShip(int index, int mastCount) {
+  private boolean isNotShipBelowShip(int index) {
     if (index > 1 && index % BOARD_SIZE != 0) {
       if (((Rectangle) yourBoard.getChildren().get(index)).getFill().equals(Color.GREEN)) {
         return false;
@@ -281,7 +286,8 @@ public class FleetPlacementController {
   private boolean isNotShipOnTheRight(int index, int mastCount) {
     for (int i = 1; i < mastCount + 1; i++) {
       if (index + i - BOARD_SIZE > 1) {
-        if (((Rectangle) yourBoard.getChildren().get(index + i - BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+        if (((Rectangle) yourBoard.getChildren().get(index + i - BOARD_SIZE)).getFill()
+            .equals(Color.GREEN)) {
           return false;
         }
       }
@@ -292,7 +298,8 @@ public class FleetPlacementController {
   private boolean isNotShipOnTheLeft(int index, int mastCount) {
     for (int i = 1; i < mastCount + 1; i++) {
       if (index + i + BOARD_SIZE < yourBoard.getChildren().size()) {
-        if (((Rectangle) yourBoard.getChildren().get(index + i + BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+        if (((Rectangle) yourBoard.getChildren().get(index + i + BOARD_SIZE)).getFill()
+            .equals(Color.GREEN)) {
           return false;
         }
       }
@@ -300,12 +307,11 @@ public class FleetPlacementController {
     return true;
   }
 
-  private void setFieldOnDragEntered(Rectangle rectangle, final int fillIndex) {
+  private void setFieldOnDragEntered(Rectangle rectangle, final int index) {
     rectangle.setOnDragEntered(event -> {
       double opacity = 0.5;
       int mastCount = ((Group) event.getGestureSource()).getChildren().size();
-      int index = fillIndex;
-      logger.info("index = " + fillIndex);
+      logger.info("index = " + index);
       if (shipOrientation.equals(Orientation.VERTICAL)) {
         if (!checkForVertical(index, mastCount) || !checkIfNotSnaking(index, mastCount)) {
           return;
@@ -326,7 +332,8 @@ public class FleetPlacementController {
   private boolean isNotShipOnShipHorizontal(int index, int mastCount) {
     index += 1;
     for (int i = 0; i < mastCount; i++) {
-      if (((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+      if (((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).getFill()
+          .equals(Color.GREEN)) {
         return false;
       }
     }
@@ -344,7 +351,8 @@ public class FleetPlacementController {
         return true;
       }
 
-      if (((Rectangle) yourBoard.getChildren().get(index + oneRowBelow + i * BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+      if (((Rectangle) yourBoard.getChildren().get(index + oneRowBelow + i * BOARD_SIZE)).getFill()
+          .equals(Color.GREEN)) {
         return false;
       }
     }
@@ -361,7 +369,8 @@ public class FleetPlacementController {
         return true;
       }
 
-      if (((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+      if (((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).getFill()
+          .equals(Color.GREEN)) {
         return false;
       }
     }
@@ -375,20 +384,22 @@ public class FleetPlacementController {
       return true;
     }
 
-    if (((Rectangle) yourBoard.getChildren().get(index + mastCount * BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+    if (((Rectangle) yourBoard.getChildren().get(index + mastCount * BOARD_SIZE)).getFill()
+        .equals(Color.GREEN)) {
       return false;
     }
 
     return true;
   }
 
-  private boolean isNotShipOnTheLeftHorizontal(int index, int mastCount) {
+  private boolean isNotShipOnTheLeftHorizontal(int index) {
     index += 1;
     if (index - BOARD_SIZE < 1) {
       return true;
     }
 
-    if (((Rectangle) yourBoard.getChildren().get(index - BOARD_SIZE)).getFill().equals(Color.GREEN)) {
+    if (((Rectangle) yourBoard.getChildren().get(index - BOARD_SIZE)).getFill()
+        .equals(Color.GREEN)) {
       return false;
     }
 
@@ -396,16 +407,17 @@ public class FleetPlacementController {
   }
 
   private boolean checkForHorizontal(int index, int mastCount) {
-    return isNotShipOnShipHorizontal(index, mastCount) &&
-        isNotShipBelowShipHorizontal(index, mastCount) &&
-        isNotShipAboveShipHorizontal(index, mastCount) &&
-        isNotShipOnTheRightHorizontal(index, mastCount) &&
-        isNotShipOnTheLeftHorizontal(index, mastCount);
+    return isNotShipOnShipHorizontal(index, mastCount)
+        && isNotShipBelowShipHorizontal(index, mastCount)
+        && isNotShipAboveShipHorizontal(index, mastCount)
+        && isNotShipOnTheRightHorizontal(index, mastCount)
+        && isNotShipOnTheLeftHorizontal(index);
   }
 
   private boolean isOutOfBound(int index, int mastCount) {
     final int notRectangleChildCount = 2;
-    if (index + (mastCount - 1) * BOARD_SIZE > yourBoard.getChildren().size() - notRectangleChildCount) {
+    if (index + (mastCount - 1) * BOARD_SIZE
+        > yourBoard.getChildren().size() - notRectangleChildCount) {
       return true;
     }
 
@@ -455,7 +467,7 @@ public class FleetPlacementController {
       }
       ships.add(Ship.ofMasts(masts));
       if (ships.size() == SHIPS_COUNT) {
-        bReady.setDisable(false);
+        buttonReady.setDisable(false);
       }
       logger.info("first index of ship " + recIndex);
       logger.info("ship has " + mastCount + " masts");
@@ -465,10 +477,10 @@ public class FleetPlacementController {
   }
 
   private void addDragEventsToShips() {
-    setEventsOnShips(gFourMastShips);
-    setEventsOnShips(gThreeMastShips);
-    setEventsOnShips(gTwoMastShips);
-    setEventsOnShips(gOneMastShips);
+    setEventsOnShips(groupFourMastShips);
+    setEventsOnShips(groupThreeMastShips);
+    setEventsOnShips(groupTwoMastShips);
+    setEventsOnShips(groupOneMastShips);
   }
 
   private void setEventsOnShips(Group shipsGroup) {
@@ -494,8 +506,8 @@ public class FleetPlacementController {
     try {
       getClient().sendFleet(Fleet.ofShips(ships));
 
-      final String gameWindowURL = "/fxml/gameWindow.fxml";
-      final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowURL));
+      final String gameWindowUrl = "/fxml/gameWindow.fxml";
+      final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));
       final Parent gameWindow = gameWindowLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
 

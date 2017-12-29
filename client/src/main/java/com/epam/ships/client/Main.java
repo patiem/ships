@@ -6,10 +6,10 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.application.Application;
 
 /**
- * @author Magda
+ * Main class of client application.
+ * @author Magdalena Aarsman
  * @since 2017-12-14
  */
-
 public class Main {
   private static final Target logger = new SharedLogger(Main.class);
 

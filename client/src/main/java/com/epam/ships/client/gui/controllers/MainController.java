@@ -12,7 +12,8 @@ import lombok.Getter;
 import java.io.IOException;
 
 /**
- * @author Magda
+ * Main window, which contains title etc. controller.
+ * @author Magdalena Aarsman
  * @since 2017-12-14
  */
 
@@ -26,13 +27,17 @@ public class MainController {
   @Getter
   private Client client;
 
+  /**
+   * Initialize main controller.
+   * @param client - Instance of Client, which communicate with server.
+   */
   @FXML
   public void initialize(final Client client) {
-    final String connectWindowURL = "/fxml/connectWindow.fxml";
+    final String connectWindowUrl = "/fxml/connectWindow.fxml";
     this.client = client;
 
     try {
-      final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowURL));
+      final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowUrl));
       final Parent connect = connectLoader.load();
 
       mainPane.getChildren().clear();

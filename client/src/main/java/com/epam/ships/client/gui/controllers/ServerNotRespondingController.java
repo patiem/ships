@@ -12,7 +12,8 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 /**
- * @author Magda
+ * Server not responding window.
+ * @author Magdalena Aarsman
  * @since 2017-12-17
  */
 
@@ -26,8 +27,8 @@ public class ServerNotRespondingController {
   @FXML
   private void onTryAgainPressed() {
     try {
-      final String connectWindowURL = "/fxml/connectWindow.fxml";
-      final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowURL));
+      final String connectWindowUrl = "/fxml/connectWindow.fxml";
+      final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowUrl));
       final Parent connectWindow = connectLoader.load();
       final Pane mainPane = (Pane) mainAnchorPane.getParent();
       mainPane.getChildren().clear();

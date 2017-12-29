@@ -4,10 +4,10 @@ import javafx.event.Event;
 import javafx.event.EventType;
 
 /**
- * @author Magda
+ * Event firing when opponent connected.
+ * @author Magdalena Aarsman
  * @since 2017-12-17
  */
-
 public class OpponentConnectedEvent extends Event {
   public static final EventType<OpponentConnectedEvent> OPPONENT_CONNECTED =
       new EventType<>(Event.ANY, "OPPONENT_CONNECTED");

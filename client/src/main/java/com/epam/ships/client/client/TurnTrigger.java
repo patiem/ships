@@ -7,10 +7,11 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 
 /**
- * @author Magda
+ * Enable to fire event reacting changing turn.
+ *
+ * @author Magdalena Aarsman
  * @since 2017-12-18
  */
-
 class TurnTrigger implements EventTrigger {
 
   private static final Target logger = new SharedLogger(Client.class);

@@ -11,10 +11,10 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 /**
- * @author Magda
+ * Main class of gui to initialize and start gui thread.
+ * @author Magdalena Aarsman
  * @since 2017-12-17
  */
-
 public class GuiMain extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {

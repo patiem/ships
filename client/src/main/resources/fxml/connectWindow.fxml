@@ -28,15 +28,15 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <TextField fx:id="tServerAddress" prefHeight="38.0" prefWidth="302.0" promptText="Server Addres"/>
+                <TextField fx:id="textFieldServerAddress" prefHeight="38.0" prefWidth="302.0" promptText="Server Addres"/>
                 <VBox GridPane.rowIndex="1">
                     <children>
-                        <TextField fx:id="tServerPort" prefHeight="38.0" prefWidth="336.0" promptText="Server Port">
+                        <TextField fx:id="textFieldServerPort" prefHeight="38.0" prefWidth="336.0" promptText="Server Port">
                             <VBox.margin>
                                 <Insets top="15.0"/>
                             </VBox.margin>
                         </TextField>
-                        <Label fx:id="lInvalidPort" prefHeight="16.0" prefWidth="311.0" textFill="#e80808"/>
+                        <Label fx:id="labelInvalidPort" prefHeight="16.0" prefWidth="311.0" textFill="#e80808"/>
                     </children>
                 </VBox>
                 <Button maxWidth="120.0" mnemonicParsing="false" onAction="#onConnectPressed" prefHeight="38.0"
