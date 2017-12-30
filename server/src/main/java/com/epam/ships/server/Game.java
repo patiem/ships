@@ -12,11 +12,10 @@ import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 
 /**
- * @author Piotr, Magd`a
- * @since 2017-12-09
- * <p>
- * It starts a communication bus
+ * * It starts a communication bus
  * and receives messages from it.
+ * @author Piotr Czyż
+ * @since 2017-12-09
  */
 class Game {
 
@@ -28,20 +27,18 @@ class Game {
 
   Game(CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
-    this.turnManager = new TurnManager(communicationBus.getFirstClient(), communicationBus.getSecondClient());
+    this.turnManager = new TurnManager(communicationBus.getFirstClient(),
+        communicationBus.getSecondClient());
   }
 
-  /**
-   * A draft dummy method used for demo.
-   */
   void play() {
     this.notifyPlayersThatTheyCanStartGame();
-    boolean isGameFinished = false;
-    boolean isClientConnected = true;
     this.askPlayersForPlaceFleet();
     this.receiveFleetFromBothPlayers();
     this.rest();
     this.sendYourTurnMessage();
+    boolean isClientConnected = true;
+    boolean isGameFinished = false;
     while (!isGameFinished && isClientConnected) {
       Message receivedShot = this.receiveShot();
       isClientConnected = this.isClientConnected(receivedShot);
@@ -53,7 +50,7 @@ class Game {
         }
       }
       if (isGameFinished) {
-        this.handleEndOFGame();
+        this.handleEndOfGame();
       }
       this.rest();
     }
@@ -81,7 +78,7 @@ class Game {
     this.sendShotToOpponent(receivedShot);
   }
 
-  private void handleEndOFGame() {
+  private void handleEndOfGame() {
     this.sendWonMessage();
     this.sendLostMessage();
   }
@@ -189,8 +186,8 @@ class Game {
 
   private boolean isClientConnected(final Message messageReceived) {
     boolean isClientConnected = true;
-    if (Header.CONNECTION.equals(messageReceived.getHeader()) &&
-        Status.END.equals(messageReceived.getStatus())) {
+    if (Header.CONNECTION.equals(messageReceived.getHeader())
+        && Status.END.equals(messageReceived.getStatus())) {
       isClientConnected = false;
     }
     return isClientConnected;
