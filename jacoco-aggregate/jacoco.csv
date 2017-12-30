@@ -1,1 +1,15 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Ships - CLIENT/shared,com.epam.ships.infra.communication.api.message,Author,48,0,0,0,2,0,4,0,4,0
+Ships - CLIENT/shared,com.epam.ships.infra.communication.api.message,Status,48,0,0,0,2,0,4,0,4,0
+Ships - CLIENT/shared,com.epam.ships.infra.communication.api.message,Header,128,0,0,0,4,0,4,0,4,0
+Ships - CLIENT/shared,com.epam.ships.infra.communication.core.json.io,JsonReceiver,54,0,2,0,16,0,3,0,2,0
+Ships - CLIENT/shared,com.epam.ships.infra.communication.core.json.io,JsonSender,42,0,0,0,12,0,2,0,2,0
+Ships - CLIENT/shared,com.epam.ships.infra.logging.core,SharedLogger,43,0,0,0,11,0,5,0,5,0
+Ships - CLIENT/shared,com.epam.ships.fleet,Fleet,152,0,18,0,18,0,22,0,13,0
+Ships - CLIENT/shared,com.epam.ships.fleet,Damage,48,0,0,0,2,0,4,0,4,0
+Ships - CLIENT/shared,com.epam.ships.fleet,Mast,84,0,14,0,4,0,13,0,6,0
+Ships - CLIENT/shared,com.epam.ships.fleet,Ship,91,0,14,0,5,0,14,0,7,0
+Ships - CLIENT/shared,com.epam.ships.infra.communication.core.message,MessageBuilder,69,0,0,0,23,0,7,0,7,0
+Ships - CLIENT/shared,com.epam.ships.infra.communication.core.message,BaseMessage,255,0,46,0,10,0,38,0,15,0
+Ships - CLIENT/shared,com.epam.ships.infra.communication.core.json.conversion,JsonEncoder,14,0,0,0,5,0,2,0,2,0
+Ships - CLIENT/shared,com.epam.ships.infra.communication.core.json.conversion,JsonDecoder,14,0,0,0,3,0,2,0,2,0

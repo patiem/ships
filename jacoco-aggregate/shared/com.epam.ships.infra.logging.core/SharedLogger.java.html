@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>SharedLogger.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">Ships - CLIENT</a> &gt; <a href="../index.html" class="el_bundle">shared</a> &gt; <a href="index.source.html" class="el_package">com.epam.ships.infra.logging.core</a> &gt; <span class="el_source">SharedLogger.java</span></div><h1>SharedLogger.java</h1><pre class="source lang-java linenums">package com.epam.ships.infra.logging.core;
+
+import com.epam.ships.infra.logging.api.Target;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+/**
+ * A logger shared across modules.
+ * It is a Log4J wrapper.
+ * Log4J can be configured with log4j2.xml.
+ * @author Sandor Korotkevics
+ * @see Target
+ * @since 2017-12-10
+ */
+public class SharedLogger implements Target {
+
+  private final Logger logger;
+  private final Class&lt;?&gt; clazz;
+
+  /**
+   * @param clazz a classname used in log messages.
+   */
+<span class="nc" id="L23">  public SharedLogger(final Class&lt;?&gt; clazz) {</span>
+<span class="nc" id="L24">    this.logger = LogManager.getLogger();</span>
+<span class="nc" id="L25">    this.clazz = clazz;</span>
+<span class="nc" id="L26">  }</span>
+
+  /**
+   * It is used for logging normal (neutral)
+   * messages.
+   *
+   * @param message a message to be logged.
+   *                Extra information will be
+   *                appended (such as class name,
+   *                datetime, level).
+   */
+  @Override
+  public void info(final Object message) {
+<span class="nc" id="L39">    this.logger.info(this.prepareMessage(message));</span>
+<span class="nc" id="L40">  }</span>
+
+  /**
+   * It is used  for logging error messages
+   * (for example, when logging an exception
+   * message).
+   *
+   * @param message a message to be logged.
+   *                Extra information will be
+   *                appended (such as class name,
+   *                datetime, level).
+   */
+  @Override
+  public void error(final Object message) {
+<span class="nc" id="L54">    this.logger.error(this.prepareMessage(message));</span>
+<span class="nc" id="L55">  }</span>
+
+  /**
+   * It is used  for logging debug messages.
+   *
+   * @param message a message to be logged.
+   *                Extra information will be
+   *                appended (such as class name,
+   *                datetime, level).
+   */
+  @Override
+  public void debug(Object message) {
+<span class="nc" id="L67">    this.logger.debug(this.prepareMessage(message));</span>
+<span class="nc" id="L68">  }</span>
+
+  private String prepareMessage(Object message) {
+<span class="nc" id="L71">    return this.clazz.getSimpleName() + &quot;: &quot; + message;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
