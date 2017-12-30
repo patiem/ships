@@ -44,21 +44,31 @@ If you wish to play on many computers use other scripts located in scripts direc
 
 #### Running Tests
 
-    mvn test
-
-#### Generating Site
-
-    mvn site && mvn site:stage
-
-#### * ALSO: Viewing Site
-
-Ex. with Firefox, while in the root folder,
-
-    firefox target/staging/index.html     
+    mvn test   
 
 #### Validating Dependency Convergence
 
     mvn enforcer:force
+    
+### Site
+
+You could either view site locally or remotely,
+
+#### Local Site
+
+Generate site with,
+
+    mvn site && mvn site:stage
+
+To view site with Firefox, while in the root folder,
+
+    firefox target/staging/index.html 
+
+#### Remote Site
+
+Copy the below link to see our website on-line (keep in mind that we do not update it too often),
+
+    https://korotkevics.github.io/ships/
 
 ## Alternative Way of Importing Testing Dependencies
 

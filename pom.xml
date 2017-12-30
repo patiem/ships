@@ -349,7 +349,6 @@
                     <configLocation>google_checks.xml</configLocation>
                 </configuration>
             </plugin>
-            <!--jdeps-->
             <plugin>
                 <groupId>com.github.marschall</groupId>
                 <artifactId>jdeps-maven-plugin</artifactId>
