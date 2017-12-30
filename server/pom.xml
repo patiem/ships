@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <!--Coordinates-->
-    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <artifactId>server</artifactId>
     <groupId>com.epam.ships</groupId>
@@ -49,6 +48,10 @@
      in order to include Target into JAR file-->
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
