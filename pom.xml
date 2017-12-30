@@ -350,13 +350,12 @@
 
             Warning: /home/sandor/.m2/repository/org/apache/logging/log4j/log4j-api/2.9.1/log4j-api-2.9.1.jar
             is a multi-release jar file All versioned entries are analyzed. To analyze the entries for a specific
-            version, use a newer version of jdeps (JDK 9 or later) "--multi-release" option.
+            version, use a newer version of jdeps (JDK 9 or later) "- -multi-release" option.
             -->
             <plugin>
                 <groupId>com.github.marschall</groupId>
                 <artifactId>jdeps-maven-plugin</artifactId>
                 <version>${jdepsVersion}</version>
-                <!---->
                 <configuration>
                     <!--More info on configuration:
                     http://marschall.github.io/jdeps-maven-plugin/jdeps-report-mojo.html
@@ -422,32 +421,32 @@
 
     <developers>
         <developer>
-            <name>Magda</name>
+            <name>Magdalena Aarsman</name>
             <timezone>Europe/Warsaw</timezone>
             <url>https://github.com/M-Aarsman</url>
             <email>magdalena_aarsman@epam.com</email>
             <roles>
-                <role>Developer</role>
+                <role>Developer (client)</role>
             </roles>
             <properties/>
         </developer>
         <developer>
-            <name>Piotr</name>
+            <name>Piotr Czyż</name>
             <timezone>Europe/Warsaw</timezone>
             <url>https://github.com/sabath91</url>
             <email>piotr_czyz@epam.com</email>
             <roles>
-                <role>Developer</role>
+                <role>Developer (server/scripts)</role>
             </roles>
             <properties/>
         </developer>
         <developer>
-            <name>Sandor</name>
+            <name>Sandor Korotkevics</name>
             <timezone>Europe/Warsaw</timezone>
             <url>https://github.com/korotkevics</url>
             <email>sandor_korotkevics@epam.com</email>
             <roles>
-                <role>Developer</role>
+                <role>Developer (shared/docs/configs/scripts/pm)</role>
             </roles>
             <properties/>
         </developer>
