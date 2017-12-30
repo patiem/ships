@@ -380,11 +380,9 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>${jdocVersion}</version>
                 <configuration>
+                    <!--Description:
+                    https://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html-->
                     <quiet>true</quiet>
-                    <charset>${project.reporting.outputEncoding}</charset>
-                    <defaultVersion>${project.version}</defaultVersion>
-                    <defaultSince>not specified</defaultSince>
-                    <defaultAuthor>Piotr Czyż, Magdalena Aarsman, Sandor Korotkevics</defaultAuthor>
                     <show>public</show>
                     <linksource>true</linksource>
                 </configuration>
