@@ -6,8 +6,8 @@ import com.epam.ships.infra.communication.api.io.Receiver;
 import com.epam.ships.infra.communication.api.io.Sender;
 import com.epam.ships.infra.communication.api.message.Author;
 import com.epam.ships.infra.communication.api.message.Header;
-import com.epam.ships.infra.communication.core.json.io.JSONReceiver;
-import com.epam.ships.infra.communication.core.json.io.JSONSender;
+import com.epam.ships.infra.communication.core.json.io.JsonReceiver;
+import com.epam.ships.infra.communication.core.json.io.JsonSender;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
@@ -88,7 +88,7 @@ public class Client implements Runnable {
 
     while (shouldRun && !messageHandler.isEndConnectionTriggered()) {
       try {
-        Receiver receiver = new JSONReceiver(clientSocket.getInputStream());
+        Receiver receiver = new JsonReceiver(clientSocket.getInputStream());
         Message message = receiver.receive();
 
         logger.info(message);
@@ -119,7 +119,7 @@ public class Client implements Runnable {
    */
   public void sendShot(int shotIndex) {
     try {
-      Sender sender = new JSONSender(clientSocket.getOutputStream());
+      Sender sender = new JsonSender(clientSocket.getOutputStream());
       Message shot = new MessageBuilder().withHeader(Header.SHOT)
           .withAuthor(Author.CLIENT)
           .withStatement(String.valueOf(shotIndex))
@@ -137,7 +137,7 @@ public class Client implements Runnable {
    */
   public void sendFleet(Fleet fleet) {
     try {
-      Sender sender = new JSONSender(clientSocket.getOutputStream());
+      Sender sender = new JsonSender(clientSocket.getOutputStream());
       Message fleetMsg = new MessageBuilder()
           .withHeader(Header.PLACEMENT)
           .withAuthor(Author.CLIENT)

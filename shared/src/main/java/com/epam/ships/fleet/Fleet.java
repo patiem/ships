@@ -11,10 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Piotr, Sandor
- * @see Ship
- * <p>
  * Fleet of ships.
+ * @author Piotr Czyż, Sandor Korotkevics
+ * @see Ship
  * @since 2017-12-19
  */
 @EqualsAndHashCode
@@ -31,7 +30,7 @@ public class Fleet {
   /**
    * Static factory method.
    *
-   * @param ships
+   * @param ships - list of ships
    * @return Fleet
    */
   public static Fleet ofShips(List<Ship> ships) {
