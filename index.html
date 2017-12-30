@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Ships - ROOT &#x2013; About</title>
+    <title>Ships - SHARED &#x2013; About</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -16,7 +16,7 @@
   <body class="composite">
     <div id="banner">
                     <div id="bannerLeft">
-                Ships - ROOT
+                Ships - SHARED
                 </div>
                     <div class="clear">
         <hr/>
@@ -28,7 +28,7 @@
         <span id="publishDate">Last Published: 2017-12-30</span>
                   &nbsp;| <span id="projectVersion">Version: 1.0-SNAPSHOT</span>
                       </div>
-            <div class="xright">                    <a href="./index.html" title="Ships - ROOT">Ships - ROOT</a>
+            <div class="xright">                    <a href="./" title="Ships - SHARED">Ships - SHARED</a>
             
       </div>
       <div class="clear">
@@ -38,21 +38,15 @@
     <div id="leftColumn">
       <div id="navcolumn">
            
-                                          <h5>Modules</h5>
+                                <h5>Parent Project</h5>
                   <ul>
                   <li class="none">
-                          <a href="client/index.html" title="Ships - CLIENT">Ships - CLIENT</a>
-            </li>
-                  <li class="none">
-                          <a href="server/index.html" title="Ships - SERVER">Ships - SERVER</a>
-            </li>
-                  <li class="none">
-                          <a href="shared/index.html" title="Ships - SHARED">Ships - SHARED</a>
+                          <a href="../index.html" title="Ships - ROOT">Ships - ROOT</a>
             </li>
           </ul>
                        <h5>Project Documentation</h5>
                   <ul>
-                                                                                                                                                                        <li class="expanded">
+                                                                                                                                                                                          <li class="expanded">
                           <a href="project-info.html" title="Project Information">Project Information</a>
                     <ul>
                       <li class="none">
@@ -61,6 +55,9 @@
                       <li class="none">
             <strong>About</strong>
           </li>
+                      <li class="none">
+                          <a href="dependencies.html" title="Dependencies">Dependencies</a>
+            </li>
                       <li class="none">
                           <a href="team-list.html" title="Team">Team</a>
             </li>
@@ -75,7 +72,7 @@
             </li>
               </ul>
         </li>
-                                                                                                                                                                                <li class="collapsed">
+                                                                                                                                                                                                  <li class="collapsed">
                           <a href="project-reports.html" title="Project Reports">Project Reports</a>
                   </li>
           </ul>
@@ -88,47 +85,14 @@
     <div id="bodyColumn">
       <div id="contentBox">
         <div class="section">
-<h2><a name="About_Ships_-_ROOT"></a>About Ships - ROOT</h2><a name="About_Ships_-_ROOT"></a>
-<p>It's a root POM:
-        - it defines constants (versions mostly)
-        - it has dependency and plug-in management configured
-        - it has reporting configured</p>
-<div class="section">
-<h3><a name="Project_Modules"></a>Project Modules</h3><a name="Project_Modules"></a>
-<p>This project has declared the following modules:</p>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Name</th>
-<th>Description</th></tr>
-<tr class="b">
-<td><a href="client/index.html">Ships - CLIENT</a></td>
-<td>It's Battleships game client.
-        It is an isolated module having
-        a light-weight client logic and GUI (JavaFX).
-
-        It's a child POM:
-        - it explicitly defines dependencies inherited from
-        the parent POM
-        - it independently defines its packaging</td></tr>
-<tr class="a">
-<td><a href="server/index.html">Ships - SERVER</a></td>
-<td>It's Battleships game client.
-        It is an isolated module having
-        a light-weight client logic and GUI (JavaFX).
-
-        It's a child POM:
-        - it explicitly defines dependencies inherited from
-        the parent POM
-        - it independently defines its packaging</td></tr>
-<tr class="b">
-<td><a href="shared/index.html">Ships - SHARED</a></td>
-<td>It's Battleships game infra API + Core.
+<h2><a name="About_Ships_-_SHARED"></a>About Ships - SHARED</h2><a name="About_Ships_-_SHARED"></a>
+<p>It's Battleships game infra API + Core.
         It is an isolated module having network utils and logging
         used both by server and client modules.
 
         It's a child POM:
         - it explicitly defines dependencies inherited from
-        the parent POM</td></tr></table></div></div>
+        the parent POM</p></div>
       </div>
     </div>
     <div class="clear">

@@ -19,20 +19,20 @@ under the License.
 -->
 <rss version="0.91">
   <channel>
-    <title>Ships - ROOT - Checkstyle report</title>
-    <link>./index.html</link>
-    <description>Ships - ROOT - Checkstyle report</description>
+    <title>Ships - SHARED - Checkstyle report</title>
+    <link>scp:///shared//shared</link>
+    <description>Ships - SHARED - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2017 Java Academy</copyright>
     <item>
-      <title>File: 54,
+      <title>File: 20,
              Errors: 0,
-             Warnings: 2,
+             Warnings: 1,
              Infos: 0
       </title>
-            <link>./index.html/checkstyle.html</link>
+            <link>scp:///shared//shared/checkstyle.html</link>
       <description>
-        <p>Click <a href="./index.html/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="scp:///shared//shared/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.conversion.Encoder.java">com/epam/ships/infra/communication/api/conversion/Encoder.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.Message.java">com/epam/ships/infra/communication/api/Message.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.json.conversion.JsonDecoder.java">com/epam/ships/infra/communication/core/json/conversion/JsonDecoder.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.conversion.Encoder.java">com/epam/ships/infra/communication/api/conversion/Encoder.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.Main.java">com/epam/ships/client/Main.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.conversion.JsonDecoder.java">com/epam/ships/infra/communication/core/json/conversion/JsonDecoder.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.message.Status.java">com/epam/ships/infra/communication/api/message/Status.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.message.Author.java">com/epam/ships/infra/communication/api/message/Author.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.OpponentWithdrawEvent.java">com/epam/ships/client/gui/events/OpponentWithdrawEvent.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.io.Sender.java">com/epam/ships/infra/communication/api/io/Sender.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +116,91 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.conversion.Decoder.java">com/epam/ships/infra/communication/api/conversion/Decoder.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Mast.java">com/epam/ships/fleet/Mast.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonSender.java">com/epam/ships/infra/communication/core/json/io/JsonSender.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Fleet.java">com/epam/ships/fleet/Fleet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.message.Status.java">com/epam/ships/infra/communication/api/message/Status.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.io.Receiver.java">com/epam/ships/infra/communication/api/io/Receiver.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.message.Header.java">com/epam/ships/infra/communication/api/message/Header.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.conversion.Decoder.java">com/epam/ships/infra/communication/api/conversion/Decoder.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +214,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.message.BaseMessage.java">com/epam/ships/infra/communication/core/message/BaseMessage.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Ship.java">com/epam/ships/fleet/Ship.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +228,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.CommunicationBus.java">com/epam/ships/server/CommunicationBus.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonReceiver.java">com/epam/ships/infra/communication/core/json/io/JsonReceiver.java</a>
                 </td>
                 <td>
                   0
@@ -158,7 +242,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.LoseTrigger.java">com/epam/ships/client/client/LoseTrigger.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.message.BaseMessage.java">com/epam/ships/infra/communication/core/message/BaseMessage.java</a>
                 </td>
                 <td>
                   0
@@ -172,7 +256,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.GuiMain.java">com/epam/ships/client/gui/GuiMain.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.logging.core.SharedLogger.java">com/epam/ships/infra/logging/core/SharedLogger.java</a>
                 </td>
                 <td>
                   0
@@ -186,7 +270,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.WinEvent.java">com/epam/ships/client/gui/events/WinEvent.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.logging.api.Target.java">com/epam/ships/infra/logging/api/Target.java</a>
                 </td>
                 <td>
                   0
@@ -200,7 +284,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.json.conversion.JsonEncoder.java">com/epam/ships/infra/communication/core/json/conversion/JsonEncoder.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Damage.java">com/epam/ships/fleet/Damage.java</a>
                 </td>
                 <td>
                   0
@@ -214,7 +298,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.Game.java">com/epam/ships/server/Game.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.message.MessageBuilder.java">com/epam/ships/infra/communication/core/message/MessageBuilder.java</a>
                 </td>
                 <td>
                   0
@@ -228,567 +312,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.message.Author.java">com/epam/ships/infra/communication/api/message/Author.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.OpponentShotTrigger.java">com/epam/ships/client/client/OpponentShotTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.ServerNotRespondingController.java">com/epam/ships/client/gui/controllers/ServerNotRespondingController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.HitShotEvent.java">com/epam/ships/client/gui/events/HitShotEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.OpponentConnectedTrigger.java">com/epam/ships/client/client/OpponentConnectedTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.WinTrigger.java">com/epam/ships/client/client/WinTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.StartWindowController.java">com/epam/ships/client/gui/controllers/StartWindowController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.HitShotTrigger.java">com/epam/ships/client/client/HitShotTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.MissShotTrigger.java">com/epam/ships/client/client/MissShotTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.MessageHandler.java">com/epam/ships/client/client/MessageHandler.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.fleet.Damage.java">com/epam/ships/fleet/Damage.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.TurnChangeEvent.java">com/epam/ships/client/gui/events/TurnChangeEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.TurnTrigger.java">com/epam/ships/client/client/TurnTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.Main.java">com/epam/ships/server/Main.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.Message.java">com/epam/ships/infra/communication/api/Message.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.EventTrigger.java">com/epam/ships/client/client/EventTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.io.Sender.java">com/epam/ships/infra/communication/api/io/Sender.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.GameController.java">com/epam/ships/client/gui/controllers/GameController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.fleet.Mast.java">com/epam/ships/fleet/Mast.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonSender.java">com/epam/ships/infra/communication/core/json/io/JsonSender.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.io.Receiver.java">com/epam/ships/infra/communication/api/io/Receiver.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.LooseEvent.java">com/epam/ships/client/gui/events/LooseEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.logging.api.Target.java">com/epam/ships/infra/logging/api/Target.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.MissShotEvent.java">com/epam/ships/client/gui/events/MissShotEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.validators.PortValidator.java">com/epam/ships/client/validators/PortValidator.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.ConnectionEndTrigger.java">com/epam/ships/client/client/ConnectionEndTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.Client.java">com/epam/ships/client/client/Client.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.TurnManager.java">com/epam/ships/server/TurnManager.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.OpponentConnectedEvent.java">com/epam/ships/client/gui/events/OpponentConnectedEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.AppServer.java">com/epam/ships/server/AppServer.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.fleet.Fleet.java">com/epam/ships/fleet/Fleet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.FleetPlacementController.java">com/epam/ships/client/gui/controllers/FleetPlacementController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.message.Header.java">com/epam/ships/infra/communication/api/message/Header.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.fleet.Ship.java">com/epam/ships/fleet/Ship.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonReceiver.java">com/epam/ships/infra/communication/core/json/io/JsonReceiver.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.Orientation.java">com/epam/ships/client/gui/controllers/Orientation.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.logging.core.SharedLogger.java">com/epam/ships/infra/logging/core/SharedLogger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.MainController.java">com/epam/ships/client/gui/controllers/MainController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.OpponentShotEvent.java">com/epam/ships/client/gui/events/OpponentShotEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.WrappedClient.java">com/epam/ships/server/WrappedClient.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.message.MessageBuilder.java">com/epam/ships/infra/communication/core/message/MessageBuilder.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.conversion.JsonEncoder.java">com/epam/ships/infra/communication/core/json/conversion/JsonEncoder.java</a>
                 </td>
                 <td>
                   0
