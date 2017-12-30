@@ -3,12 +3,11 @@ package com.epam.ships.infra.communication.api.conversion;
 import com.epam.ships.infra.communication.api.Message;
 
 /**
- * @author Sandor
- * @see Message
- * <p>
  * An implementing class has to ensure that a class
  * instance implementing BaseMessage interface is converted
  * into T.
+ * @author Sandor Korotkevics
+ * @see Message
  * @since 2017-12-10
  */
 public interface Encoder<T> {

@@ -1,12 +1,11 @@
 package com.epam.ships.infra.logging.api;
 
 /**
- * @author Sandor
- * @since 2017-12-10
- * <p>
  * An implementing class has to ensure
  * it is possible to direct given messages
  * to a configurable target.
+ * @author Sandor Korotkevics
+ * @since 2017-12-10
  */
 
 public interface Target {

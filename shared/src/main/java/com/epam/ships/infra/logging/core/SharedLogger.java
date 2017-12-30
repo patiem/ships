@@ -5,13 +5,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * @author Sandor
- * @see Target
- * <p>
  * A logger shared across modules.
- * <p>
  * It is a Log4J wrapper.
  * Log4J can be configured with log4j2.xml.
+ * @author Sandor Korotkevics
+ * @see Target
  * @since 2017-12-10
  */
 public class SharedLogger implements Target {

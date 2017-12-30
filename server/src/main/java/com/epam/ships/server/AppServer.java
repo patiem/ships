@@ -10,13 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Piotr, Magda
+ * It starts a server socket and accepts two client sockets.
+ * @author Piotr Czyż
  * @since 2017-12-09
- * <p>
- * It starts a server socket and
- * accepts two client sockets.
- */
-
+  */
 class AppServer {
 
   private final Target logger = new SharedLogger(AppServer.class);
@@ -32,10 +29,9 @@ class AppServer {
 
   /**
    * It connects two clients.
-   *
-   * @throws IOException
+   * @throws IOException - if accepting client failed
    */
-  public void connectClients() throws IOException {
+  void connectClients() throws IOException {
     clientSockets = new ArrayList<>();
     logger.info("Waiting for the 1st client.. ");
     acceptClient();
@@ -50,7 +46,7 @@ class AppServer {
    * It accepts a client socket
    * while storing it in a list.
    *
-   * @throws IOException
+   * @throws IOException on failure
    */
   private void acceptClient() throws IOException {
     Socket client = serverSocket.accept();
@@ -60,7 +56,7 @@ class AppServer {
   /**
    * @return a list of stored client sockets.
    */
-  public List<Socket> getClientSockets() {
+  List<Socket> getClientSockets() {
     return clientSockets;
   }
 }

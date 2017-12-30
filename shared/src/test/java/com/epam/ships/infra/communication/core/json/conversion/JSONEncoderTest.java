@@ -15,7 +15,7 @@ public class JSONEncoderTest {
   @Test
   public void itEncodesAsExpected() {
     //given
-    Encoder<JsonElement> baseEncoder = new JSONEncoder();
+    Encoder<JsonElement> baseEncoder = new JsonEncoder();
     Message message = new MessageBuilder()
         .withAuthor(Author.SERVER)
         .withHeader(Header.CONNECTION)

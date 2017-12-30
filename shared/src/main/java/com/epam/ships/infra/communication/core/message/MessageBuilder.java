@@ -7,13 +7,12 @@ import com.epam.ships.infra.communication.api.message.Status;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author Sandor
- * @see BaseMessage
- * <p>
  * It builds a message with given or/and
  * default values.
  * Along with BaseMessage interface it allows
  * to encapsulate BaseMessage class.
+ * @author Sandor Korotkevics
+ * @see BaseMessage
  * @since 2017-12-10
  */
 

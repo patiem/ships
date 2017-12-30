@@ -10,11 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Piotr, Magda
- * @since 2017-12-09
- * <p>
  * It starts a server, gets its client sockets
  * and adds them wrapped into own list.
+ * @author Piotr Czyż
+ * @since 2017-12-09
  */
 
 class CommunicationBus {

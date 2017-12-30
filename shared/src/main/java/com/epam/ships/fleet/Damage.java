@@ -1,10 +1,9 @@
 package com.epam.ships.fleet;
 
 /**
- * @author Piotr, Sandor
- * @see Ship
- * <p>
  * Damage caused to a ship.
+ * @author Piotr Czyż, Sandor Korotkevics
+ * @see Ship
  * @since 2017-12-20
  */
 public enum Damage {
