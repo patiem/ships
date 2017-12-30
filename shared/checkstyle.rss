@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>shared - Checkstyle report</title>
+    <link>scp:///shared//shared</link>
+    <description>shared - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2017 Java Academy</copyright>
+    <item>
+      <title>File: 20,
+             Errors: 0,
+             Warnings: 1,
+             Infos: 0
+      </title>
+            <link>scp:///shared//shared/checkstyle.html</link>
+      <description>
+        <p>Click <a href="scp:///shared//shared/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.Message.java">com/epam/ships/infra/communication/api/Message.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.conversion.Encoder.java">com/epam/ships/infra/communication/api/conversion/Encoder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.conversion.JsonDecoder.java">com/epam/ships/infra/communication/core/json/conversion/JsonDecoder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.message.Author.java">com/epam/ships/infra/communication/api/message/Author.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.io.Sender.java">com/epam/ships/infra/communication/api/io/Sender.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Mast.java">com/epam/ships/fleet/Mast.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonSender.java">com/epam/ships/infra/communication/core/json/io/JsonSender.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Fleet.java">com/epam/ships/fleet/Fleet.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.message.Status.java">com/epam/ships/infra/communication/api/message/Status.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.io.Receiver.java">com/epam/ships/infra/communication/api/io/Receiver.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.message.Header.java">com/epam/ships/infra/communication/api/message/Header.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.conversion.Decoder.java">com/epam/ships/infra/communication/api/conversion/Decoder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Ship.java">com/epam/ships/fleet/Ship.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonReceiver.java">com/epam/ships/infra/communication/core/json/io/JsonReceiver.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.message.BaseMessage.java">com/epam/ships/infra/communication/core/message/BaseMessage.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.logging.core.SharedLogger.java">com/epam/ships/infra/logging/core/SharedLogger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.logging.api.Target.java">com/epam/ships/infra/logging/api/Target.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Damage.java">com/epam/ships/fleet/Damage.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.message.MessageBuilder.java">com/epam/ships/infra/communication/core/message/MessageBuilder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.conversion.JsonEncoder.java">com/epam/ships/infra/communication/core/json/conversion/JsonEncoder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

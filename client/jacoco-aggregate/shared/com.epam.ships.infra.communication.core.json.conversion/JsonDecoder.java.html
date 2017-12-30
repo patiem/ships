@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>JsonDecoder.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">client</a> &gt; <a href="../index.html" class="el_bundle">shared</a> &gt; <a href="index.source.html" class="el_package">com.epam.ships.infra.communication.core.json.conversion</a> &gt; <span class="el_source">JsonDecoder.java</span></div><h1>JsonDecoder.java</h1><pre class="source lang-java linenums">package com.epam.ships.infra.communication.core.json.conversion;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+
+import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.communication.api.conversion.Decoder;
+import com.epam.ships.infra.communication.core.message.BaseMessage;
+
+/**
+ * It converts a JsonElement into a BaseMessage instance.
+ *
+ * @author Sandor Korotkevics
+ * @see Decoder
+ * @see Message
+ * @see com.epam.ships.infra.communication.api.Message
+ * @since 2017-12-10
+ */
+<span class="nc" id="L20">public class JsonDecoder implements Decoder&lt;JsonElement&gt; {</span>
+
+  /**
+   * It converts a JsonElement instance into a BaseMessage
+   * instance.
+   *
+   * @param jsonElement a JsonElement instance representing
+   *                    a BaseMessage.
+   * @return BaseMessage a result of conversion of JsonElement into BaseMessage
+   */
+  @Override
+  public Message decode(JsonElement jsonElement) {
+<span class="nc" id="L32">    Gson gson = new GsonBuilder().create();</span>
+
+<span class="nc" id="L34">    return gson.fromJson(jsonElement, BaseMessage.class);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

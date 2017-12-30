@@ -1,0 +1,10 @@
+com.epam.ships.fleet
+com.epam.ships.infra.communication.api
+com.epam.ships.infra.communication.api.conversion
+com.epam.ships.infra.communication.api.io
+com.epam.ships.infra.communication.api.message
+com.epam.ships.infra.communication.core.json.conversion
+com.epam.ships.infra.communication.core.json.io
+com.epam.ships.infra.communication.core.message
+com.epam.ships.infra.logging.api
+com.epam.ships.infra.logging.core

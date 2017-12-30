@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Ships - SERVER &#x2013; Property Updates Report</title>
+    <title>ships &#x2013; Property Updates Report</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -16,7 +16,7 @@
   <body class="composite">
     <div id="banner">
                     <div id="bannerLeft">
-                Ships - SERVER
+                ships
                 </div>
                     <div class="clear">
         <hr/>
@@ -28,7 +28,7 @@
         <span id="publishDate">Last Published: 2017-12-30</span>
                   &nbsp;| <span id="projectVersion">Version: 1.0-SNAPSHOT</span>
                       </div>
-            <div class="xright">                    <a href="./" title="Ships - SERVER">Ships - SERVER</a>
+            <div class="xright">                    <a href="./index.html" title="ships">ships</a>
             
       </div>
       <div class="clear">
@@ -38,18 +38,24 @@
     <div id="leftColumn">
       <div id="navcolumn">
            
-                                <h5>Parent Project</h5>
+                                          <h5>Modules</h5>
                   <ul>
                   <li class="none">
-                          <a href="../index.html" title="Ships - ROOT">Ships - ROOT</a>
+                          <a href="client/index.html" title="client">client</a>
+            </li>
+                  <li class="none">
+                          <a href="server/index.html" title="server">server</a>
+            </li>
+                  <li class="none">
+                          <a href="shared/index.html" title="shared">shared</a>
             </li>
           </ul>
                        <h5>Project Documentation</h5>
                   <ul>
-                                                                                                                                                                                <li class="collapsed">
+                                                                                                                          <li class="collapsed">
                           <a href="project-info.html" title="Project Information">Project Information</a>
                   </li>
-                                                                                                                                                                                                            <li class="expanded">
+                                                                                                                                                                                                                              <li class="expanded">
                           <a href="project-reports.html" title="Project Reports">Project Reports</a>
                     <ul>
                       <li class="none">
@@ -71,10 +77,13 @@
                           <a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a>
             </li>
                       <li class="none">
-                          <a href="checkstyle.html" title="Checkstyle">Checkstyle</a>
+                          <a href="checkstyle-aggregate.html" title="Checkstyle">Checkstyle</a>
             </li>
                       <li class="none">
-                          <a href="jdeps-report.html" title="JDeps Report">JDeps Report</a>
+                          <a href="apidocs/index.html" title="Javadoc">Javadoc</a>
+            </li>
+                      <li class="none">
+                          <a href="testapidocs/index.html" title="Test Javadoc">Test Javadoc</a>
             </li>
               </ul>
         </li>
@@ -94,7 +103,7 @@
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td># of properties using the latest version available</td>
-<td>0</td></tr>
+<td>26</td></tr>
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td># of properties where the next version available is smaller than an incremental version update</td>
@@ -106,17 +115,1103 @@
 <tr class="b">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td># of properties where the next version available is a minor version update</td>
-<td>0</td></tr>
+<td>1</td></tr>
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
 <td># of properties where the next version available is a major version update</td>
-<td>0</td></tr></table>
+<td>1</td></tr></table>
 <div class="section">
 <h3><a name="Summary_of_properties_associated_with_artifact_versions"></a>Summary of properties associated with artifact versions</h3>
-<p>No properties associated with artifacts have been defined.</p></div></div>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th>Status</th>
+<th>Property</th>
+<th>Current Version</th>
+<th>Next Version</th>
+<th>Next Incremental</th>
+<th>Next Minor</th>
+<th>Next Major</th></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${javadocVersion}</td>
+<td>3.0.0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${sonarSourceVersion}</td>
+<td>3.4.0.905</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td>${log4jVersion}</td>
+<td>2.9.1</td>
+<td></td>
+<td></td>
+<td><b>2.10.0</b></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${lombokVersion}</td>
+<td>1.16.18</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${cleanVersion}</td>
+<td>3.0.0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${jdependVersion}</td>
+<td>2.0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${findbugsVersion}</td>
+<td>3.0.5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${gsonVersion}</td>
+<td>2.8.2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${surefireVersion}</td>
+<td>2.20.1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${jacksonVersion}</td>
+<td>2.9.3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td>${enforcerVersion}</td>
+<td>1.4.1</td>
+<td></td>
+<td></td>
+<td></td>
+<td><b>3.0.0-M1</b></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${jxrVersion}</td>
+<td>2.5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${mockitoVersion}</td>
+<td>2.13.0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${projectInfoVersion}</td>
+<td>2.9</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${releaseVersion}</td>
+<td>2.5.3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${deployVersion}</td>
+<td>2.8.2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${resourceVersion}</td>
+<td>3.0.2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${mavenVersions}</td>
+<td>2.5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${jacocoVersion}</td>
+<td>0.7.9</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${testngVersion}</td>
+<td>6.13.1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${installVersion}</td>
+<td>2.5.2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${antrunVersion}</td>
+<td>1.8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${siteVersion}</td>
+<td>3.6</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${compilerVersion}</td>
+<td>3.7.0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${checkstyleVersion}</td>
+<td>2.17</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${assemblyVersion}</td>
+<td>3.1.0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${commonsLang3Version}</td>
+<td>3.7</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>${dependencyVersion}</td>
+<td>3.0.2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<th>Status</th>
+<th>Property</th>
+<th>Current Version</th>
+<th>Next Version</th>
+<th>Next Incremental</th>
+<th>Next Minor</th>
+<th>Next Major</th></tr></table></div></div>
 <div class="section">
 <h2><a name="Properties_associated_with_artifact_versions"></a>Properties associated with artifact versions</h2>
-<p></p></div>
+<p></p>
+<div class="section">
+<h3><a name="aantrunVersion"></a>${antrunVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="b">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="a">
+<th width="80%">Property</th>
+<td>${antrunVersion}</td></tr>
+<tr class="b">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-antrun-plugin</td></tr>
+<tr class="a">
+<th width="80%">Current Version</th>
+<td>1.8</td></tr>
+<tr class="b">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="a">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="b">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="a">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="b">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="aassemblyVersion"></a>${assemblyVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${assemblyVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-assembly-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>3.1.0</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="acheckstyleVersion"></a>${checkstyleVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${checkstyleVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-checkstyle-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.17</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="acleanVersion"></a>${cleanVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${cleanVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-clean-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>3.0.0</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="acommonsLang3Version"></a>${commonsLang3Version</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${commonsLang3Version}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.commons:commons-lang3</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>3.7</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="acompilerVersion"></a>${compilerVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${compilerVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-compiler-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>3.7.0</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="adependencyVersion"></a>${dependencyVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${dependencyVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-dependency-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>3.0.2</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="adeployVersion"></a>${deployVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${deployVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-deploy-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.8.2</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="aenforcerVersion"></a>${enforcerVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${enforcerVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-enforcer-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>1.4.1</td></tr>
+<tr class="a">
+<th width="80%">Newer versions</th>
+<td><b>3.0.0-M1</b>&#160;<i>Next Major</i></td></tr>
+<tr class="b">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="a">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="b">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="a">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="b">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="afindbugsVersion"></a>${findbugsVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${findbugsVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.codehaus.mojo:findbugs-maven-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>3.0.5</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="agsonVersion"></a>${gsonVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${gsonVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>com.google.code.gson:gson</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.8.2</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="ainstallVersion"></a>${installVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${installVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-install-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.5.2</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="ajacksonVersion"></a>${jacksonVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${jacksonVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>com.fasterxml.jackson.core:jackson-databind</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.9.3</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="ajacocoVersion"></a>${jacocoVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${jacocoVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.jacoco:jacoco-maven-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>0.7.9</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="ajavadocVersion"></a>${javadocVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${javadocVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-javadoc-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>3.0.0</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="ajdependVersion"></a>${jdependVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${jdependVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.codehaus.mojo:jdepend-maven-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.0</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="ajxrVersion"></a>${jxrVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${jxrVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-jxr-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.5</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="alog4jVersion"></a>${log4jVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${log4jVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.logging.log4j:log4j-api<br />org.apache.logging.log4j:log4j-core</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.9.1</td></tr>
+<tr class="a">
+<th width="80%">Newer versions</th>
+<td><b>2.10.0</b>&#160;<i>Next Minor</i></td></tr>
+<tr class="b">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="a">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="b">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="a">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="b">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="alombokVersion"></a>${lombokVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${lombokVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.projectlombok:lombok</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>1.16.18</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="amavenVersions"></a>${mavenVersions</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${mavenVersions}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.codehaus.mojo:versions-maven-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.5</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="amockitoVersion"></a>${mockitoVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${mockitoVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.mockito:mockito-core</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.13.0</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="aprojectInfoVersion"></a>${projectInfoVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${projectInfoVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-project-info-reports-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.9</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="areleaseVersion"></a>${releaseVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${releaseVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-release-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.5.3</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="aresourceVersion"></a>${resourceVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${resourceVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-resources-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>3.0.2</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="asiteVersion"></a>${siteVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${siteVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-site-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>3.6</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="asonarSourceVersion"></a>${sonarSourceVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${sonarSourceVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.sonarsource.scanner.maven:sonar-maven-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>3.4.0.905</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="asurefireVersion"></a>${surefireVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${surefireVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.apache.maven.plugins:maven-surefire-plugin</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>2.20.1</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div>
+<div class="section">
+<h3><a name="atestngVersion"></a>${testngVersion</h3>
+<table border="0" class="bodyTable">
+<tr class="a">
+<th width="80%">Status</th>
+<td><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<tr class="b">
+<th width="80%">Property</th>
+<td>${testngVersion}</td></tr>
+<tr class="a">
+<th width="80%">Associated artifacts</th>
+<td>org.testng:testng</td></tr>
+<tr class="b">
+<th width="80%">Current Version</th>
+<td>6.13.1</td></tr>
+<tr class="a">
+<th width="80%">Allowed version range</th>
+<td>[,)</td></tr>
+<tr class="b">
+<th width="80%">Infer associations from project</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Only use release versions</th>
+<td>No</td></tr>
+<tr class="b">
+<th width="80%">Include projects from reactor</th>
+<td>Yes</td></tr>
+<tr class="a">
+<th width="80%">Always use reactor projects (even if older or -SNAPSHOT)</th>
+<td>Yes</td></tr></table></div></div>
       </div>
     </div>
     <div class="clear">

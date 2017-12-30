@@ -23,11 +23,11 @@
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  @EqualsAndHashCode
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">class</strong> <a href="../../../../com/epam/ships/server/WrappedClient.html">WrappedClient</a> {
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Target logger = <strong class="jxr_keyword">new</strong> SharedLogger(<strong class="jxr_keyword">this</strong>.getClass());
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/infra/logging/api/Target.html">Target</a> logger = <strong class="jxr_keyword">new</strong> <a href="../../../../com/epam/ships/infra/logging/core/SharedLogger.html">SharedLogger</a>(<strong class="jxr_keyword">this</strong>.getClass());
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Socket socket;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>    <strong class="jxr_keyword">private</strong> Sender out;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>    <strong class="jxr_keyword">private</strong> Receiver in;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>    <strong class="jxr_keyword">private</strong> <a href="../../../../com/epam/ships/infra/communication/api/io/Sender.html">Sender</a> out;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>    <strong class="jxr_keyword">private</strong> <a href="../../../../com/epam/ships/infra/communication/api/io/Receiver.html">Receiver</a> in;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>    <a href="../../../../com/epam/ships/server/WrappedClient.html">WrappedClient</a>(Socket socketClient) {
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>      <strong class="jxr_keyword">this</strong>.socket = socketClient;
@@ -36,14 +36,14 @@
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpIo() {
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>      <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>        <strong class="jxr_keyword">this</strong>.out = <strong class="jxr_keyword">new</strong> JsonSender(socket.getOutputStream());
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>        <strong class="jxr_keyword">this</strong>.in = <strong class="jxr_keyword">new</strong> JsonReceiver(socket.getInputStream());
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>        <strong class="jxr_keyword">this</strong>.out = <strong class="jxr_keyword">new</strong> <a href="../../../../com/epam/ships/infra/communication/core/json/io/JsonSender.html">JsonSender</a>(socket.getOutputStream());
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>        <strong class="jxr_keyword">this</strong>.in = <strong class="jxr_keyword">new</strong> <a href="../../../../com/epam/ships/infra/communication/core/json/io/JsonReceiver.html">JsonReceiver</a>(socket.getInputStream());
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>      } <strong class="jxr_keyword">catch</strong> (IOException e) {
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>        logger.error(e.getMessage());
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>      }
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>    }
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>    Message receive() {
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>    <a href="../../../../com/epam/ships/infra/communication/api/Message.html">Message</a> receive() {
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.in.receive();
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>    }
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  
@@ -55,7 +55,7 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      }
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>    }
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>    <strong class="jxr_keyword">void</strong> send(<strong class="jxr_keyword">final</strong> Message message) {
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>    <strong class="jxr_keyword">void</strong> send(<strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/infra/communication/api/Message.html">Message</a> message) {
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      <strong class="jxr_keyword">this</strong>.out.send(message);
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>    }
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  }

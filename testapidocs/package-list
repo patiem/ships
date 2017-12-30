@@ -1,0 +1,5 @@
+com.epam.ships.client.validators
+com.epam.ships.fleet
+com.epam.ships.infra.communication.core.json.conversion
+com.epam.ships.infra.communication.core.message
+com.epam.ships.server

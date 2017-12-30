@@ -1,0 +1,6 @@
+com.epam.ships.client
+com.epam.ships.client.client
+com.epam.ships.client.gui
+com.epam.ships.client.gui.controllers
+com.epam.ships.client.gui.events
+com.epam.ships.client.validators
