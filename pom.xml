@@ -213,32 +213,10 @@
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>${assemblyVersion}</version>
                 </plugin>
-
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>${dependencyVersion}</version>
-                    <executions>
-                        <!--Effect: dependencies used in the project
-                        will be copied into [module]/target/copiedDependencies
-                        Why? To include them into classpath when executing a jdeps
-                        command such as (just an example):
-                        jdeps -cp 'copiedDependencies' -recursive client-1.0-SNAPSHOT.jar > temp
-                        -->
-                        <execution>
-                            <id>copy-dependencies</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>copy-dependencies</goal>
-                            </goals>
-                            <configuration>
-                                <outputDirectory>${project.build.directory}/copiedDependencies</outputDirectory>
-                                <overWriteReleases>false</overWriteReleases>
-                                <overWriteSnapshots>false</overWriteSnapshots>
-                                <overWriteIfNewer>true</overWriteIfNewer>
-                            </configuration>
-                        </execution>
-                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>org.jacoco</groupId>
@@ -349,10 +327,36 @@
                     <configLocation>google_checks.xml</configLocation>
                 </configuration>
             </plugin>
+            <!--JDepend plug-in isn't present because it throws some
+            unresolvable warnings, as it seems not to be 100% compatible
+            with Java 1.8, although reports produced are mostly fine.
+            If it turns out to be necessary, we can include it as well.
+            In general, JDepend reports summarize dependencies quite well.
+
+            For now, we've added the newer JDeps plug-in only.
+            When it comes to reporting, it simply lists dependencies.
+            It also has some drawbacks:
+            - jdeps-maven-plugin by Apache isn't compatible with
+           reporting (only with build) so we went for the one created
+           by com.github.marschall
+            - we've found no option of adding external dependencies to
+            classpath with this plug-in as it can be simply done in
+            command line with jdeps, so occasionally we get 'not found'
+            in reports
+            - we receive the below warning in report produced for the shared
+            module which is dependent on log4j, and we couldn't resolve it -
+            there isn't much info on-line, and we would'nt upgrade to JDK9
+            just because of that
+
+            Warning: /home/sandor/.m2/repository/org/apache/logging/log4j/log4j-api/2.9.1/log4j-api-2.9.1.jar
+            is a multi-release jar file All versioned entries are analyzed. To analyze the entries for a specific
+            version, use a newer version of jdeps (JDK 9 or later) "--multi-release" option.
+            -->
             <plugin>
                 <groupId>com.github.marschall</groupId>
                 <artifactId>jdeps-maven-plugin</artifactId>
                 <version>${jdepsVersion}</version>
+                <!---->
                 <configuration>
                     <!--More info on configuration:
                     http://marschall.github.io/jdeps-maven-plugin/jdeps-report-mojo.html

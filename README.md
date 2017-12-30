@@ -34,19 +34,19 @@ If you wish to play on many computers use other scripts located in scripts direc
 
 ### Fully Supported Maven Commands 
 
-#### Installation
+Installation
     
     mvn clean install
 
-#### Packaging
+Packaging
 
     mvn clean package
 
-#### Running Tests
+Running tests
 
     mvn test   
 
-#### Validating Dependency Convergence
+Validating Dependency Convergence
 
     mvn enforcer:force
     
