@@ -5,7 +5,17 @@
 #
 # Since: 2017-12-31
 #
-# TODO: add extra info
+# [How to use]
+# Execute it with no params ./updateRemoteSite.sh
+#
+# Have our remote site updated: https://korotkevics.github.io/ships/
+#
+# [Important]
+#
+# * It is dependent on clone.sh script
+# * It requires write access within a dir one level above the project root dir
+# * It takes a few minutes to execute
+# * It requires a user to provide his credentials at some stage (when performing git push)
 #
 
 mkdir ../../tempUpdateRemoteSite
