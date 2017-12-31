@@ -23,7 +23,8 @@
         <!--Code Static Analysis-->
         <findbugsVersion>3.0.5</findbugsVersion>
         <checkstyleVersion>2.17</checkstyleVersion>
-        <coberturaVersion>2.7</coberturaVersion>
+        <sonarSourceVersion>3.4.0.905</sonarSourceVersion>
+        <jacocoVersion>0.7.9</jacocoVersion>
         <!--Testing-->
         <testngVersion>6.13.1</testngVersion>
         <mockitoVersion>2.13.0</mockitoVersion>
@@ -69,11 +70,9 @@
         <skipSite>false</skipSite>
         <!--Utils-->
         <commonsLang3Version>3.7</commonsLang3Version>
-        <orgJsonVersion>20171018</orgJsonVersion>
         <commonsIoVersion>2.5</commonsIoVersion>
         <lombokVersion>1.16.18</lombokVersion>
         <gsonVersion>2.8.2</gsonVersion>
-        <sonarSourceVersion>3.4.0.905</sonarSourceVersion>
     </properties>
 
     <dependencyManagement>
@@ -223,8 +222,29 @@
                     <artifactId>sonar-maven-plugin</artifactId>
                     <version>${sonarSourceVersion}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacocoVersion}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
+        <!--Necessary to generate datafiles which can
+        be later used by jacoco reporting-->
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 
 
@@ -353,12 +373,32 @@
                     <linksource>true</linksource>
                 </configuration>
             </plugin>
-            <!--We went for Cobertura instead of JaCoCo
-            because it is easier to configure-->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>${coberturaVersion}</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>${surefireVersion}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report-only</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <!--Important: it's necessary to run mvn clean install
+            in order to generate jacoco datafiles based on which
+            this report can be generated-->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacocoVersion}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
         </plugins>
     </reporting>
