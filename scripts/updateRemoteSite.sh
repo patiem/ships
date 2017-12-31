@@ -36,7 +36,7 @@ echo "Adding.. Committing.. Pushing (your credentials will be required).."
 cd to
 git add .
 git commit -m 'Trigger site update' -q
-#git push origin gh-pages
+git push origin gh-pages
 echo "Done updating remote site. Cleaning up.."
 cd ../..
 rm -rf tempUpdateRemoteSite
