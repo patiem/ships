@@ -33,8 +33,8 @@ public class Client implements Runnable {
   /**
    * Creates the Client instance.
    */
-  public Client() {
-    this.messageHandler = new MessageHandler();
+  public Client(MessageHandler messageHandler) {
+    this.messageHandler = messageHandler;
     shouldRun = true;
   }
 
@@ -45,9 +45,9 @@ public class Client implements Runnable {
    * @param port      - server port
    * @return true if success, false on failure
    */
-  public boolean connect(final String ipAddress, final int port) {
+  public boolean connect(final String ipAddress, final int port, Socket socket) {
     try {
-      clientSocket = new Socket();
+      clientSocket = socket;
       final InetAddress address = InetAddress.getByName(ipAddress);
       final int connectionTimeout = 500;
       clientSocket.connect(new InetSocketAddress(address, port), connectionTimeout);

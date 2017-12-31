@@ -1,6 +1,7 @@
 package com.epam.ships.client.gui;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.client.MessageHandler;
 import com.epam.ships.client.gui.controllers.MainController;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -21,7 +22,7 @@ public class GuiMain extends Application {
     Thread.currentThread().setName("gui - thread");
     final String fxmlMainWindowPath = "/fxml/root.fxml";
     final String windowTitle = "Battleships";
-    final Client client = new Client();
+    final Client client = new Client(new MessageHandler());
     final int sceneWidth = 600;
     final int sceneHeight = 400;
 

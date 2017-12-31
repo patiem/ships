@@ -458,6 +458,12 @@ public class FleetPlacementController {
           shipPlacementSuccess = false;
           return;
         }
+
+        if (!checkForHorizontal(index, mastCount)) {
+          shipPlacementSuccess = false;
+          return;
+        }
+
         index += 1;
         rectangle.setFill(Color.GREEN);
         for (int i1 = 1; i1 < mastCount; i1++) {

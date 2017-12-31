@@ -17,7 +17,7 @@ import java.util.Map;
  * @author Magdalena Aarsman
  * @since 2017-12-16
  */
-class MessageHandler {
+public class MessageHandler {
 
   private static final Target logger = new SharedLogger(Client.class);
   private final Map<Header, EventTrigger> triggers;
@@ -25,7 +25,7 @@ class MessageHandler {
   @Getter
   private boolean endConnectionTriggered;
 
-  MessageHandler() {
+  public MessageHandler() {
     endConnectionTriggered = false;
     this.triggers = new HashMap<>();
     this.triggers.put(Header.OPPONENT_CONNECTED, new OpponentConnectedTrigger());
