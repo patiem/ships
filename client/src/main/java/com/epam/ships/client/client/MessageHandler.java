@@ -8,7 +8,6 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import javafx.scene.control.Button;
 import lombok.Getter;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -25,22 +24,20 @@ public class MessageHandler {
   @Getter
   private boolean endConnectionTriggered;
 
-  public MessageHandler() {
+  /**
+   * Creates an instance of MessageHandler and configures all possible triggers types.
+   */
+  MessageHandler(Map<Header, EventTrigger> triggerMap) {
+    this.triggers = triggerMap;
     endConnectionTriggered = false;
-    this.triggers = new HashMap<>();
-    this.triggers.put(Header.OPPONENT_CONNECTED, new OpponentConnectedTrigger());
-    this.triggers.put(Header.SHOT, new OpponentShotTrigger());
-    this.triggers.put(Header.CONNECTION, new ConnectionEndTrigger());
-    this.triggers.put(Header.YOUR_TURN, new TurnTrigger());
-    this.triggers.put(Header.MISS, new MissShotTrigger());
-    this.triggers.put(Header.HIT, new HitShotTrigger());
-    this.triggers.put(Header.SHIP_DESTRUCTED, new HitShotTrigger());
-    this.triggers.put(Header.WIN, new WinTrigger());
-    this.triggers.put(Header.LOSE, new LoseTrigger());
   }
 
   void setCurrentEventButton(Button eventButton) {
     this.eventButton = eventButton;
+  }
+
+  Button getCurrentEventButton() {
+    return eventButton;
   }
 
   void handle(Message message) {

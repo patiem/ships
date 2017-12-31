@@ -22,7 +22,7 @@ public class GuiMain extends Application {
     Thread.currentThread().setName("gui - thread");
     final String fxmlMainWindowPath = "/fxml/root.fxml";
     final String windowTitle = "Battleships";
-    final Client client = new Client(new MessageHandler());
+    final Client client = new Client();
     final int sceneWidth = 600;
     final int sceneHeight = 400;
 

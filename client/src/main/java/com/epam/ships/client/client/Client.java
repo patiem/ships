@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * Enable communication with server side.
@@ -30,11 +32,18 @@ public class Client implements Runnable {
   private Socket clientSocket;
   private volatile boolean shouldRun;
 
-  /**
-   * Creates the Client instance.
-   */
-  public Client(MessageHandler messageHandler) {
-    this.messageHandler = messageHandler;
+  public Client() {
+    Map<Header, EventTrigger> eventTriggerMap = new EnumMap<>(Header.class);
+    eventTriggerMap.put(Header.OPPONENT_CONNECTED, new OpponentConnectedTrigger());
+    eventTriggerMap.put(Header.SHOT, new OpponentShotTrigger());
+    eventTriggerMap.put(Header.CONNECTION, new ConnectionEndTrigger());
+    eventTriggerMap.put(Header.YOUR_TURN, new TurnTrigger());
+    eventTriggerMap.put(Header.MISS, new MissShotTrigger());
+    eventTriggerMap.put(Header.HIT, new HitShotTrigger());
+    eventTriggerMap.put(Header.SHIP_DESTRUCTED, new HitShotTrigger());
+    eventTriggerMap.put(Header.WIN, new WinTrigger());
+    eventTriggerMap.put(Header.LOSE, new LoseTrigger());
+    this.messageHandler = new MessageHandler(eventTriggerMap);
     shouldRun = true;
   }
 
