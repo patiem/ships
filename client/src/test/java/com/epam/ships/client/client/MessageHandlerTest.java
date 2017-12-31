@@ -14,6 +14,7 @@ import java.util.Map;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.testng.Assert.assertTrue;
 
 public class MessageHandlerTest {
 
@@ -42,5 +43,26 @@ public class MessageHandlerTest {
 
     //then
     verify(connectionEndTrigger, times(1)).fire(messageHandler.getCurrentEventButton(), message.getStatement());
+  }
+
+  @Test
+  public void shouldReturnTrueAfterTriggerOpponentWithdrawEven() {
+    //given
+    Map<Header, EventTrigger> triggers = new EnumMap<>(Header.class);
+    ConnectionEndTrigger connectionEndTrigger = mock(ConnectionEndTrigger.class);
+    triggers.put(Header.CONNECTION, connectionEndTrigger);
+    Message message = new MessageBuilder()
+        .withHeader(Header.CONNECTION)
+        .withStatus(Status.END)
+        .withStatement("End of a message")
+        .build();
+
+    MessageHandler messageHandler = new MessageHandler(triggers);
+    messageHandler.setCurrentEventButton(new Button());
+
+    //when
+    messageHandler.handle(message);
+
+    assertTrue(messageHandler.isEndConnectionTriggered());
   }
 }
