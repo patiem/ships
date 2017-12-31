@@ -1,6 +1,6 @@
 [![Waffle.io - Columns and their card count](https://badge.waffle.io/korotkevics/ships.svg?columns=all)](https://waffle.io/korotkevics/ships)
 [![Build Status](https://travis-ci.org/korotkevics/ships.svg?branch=int)](https://travis-ci.org/korotkevics/ships)
-
+[![License](http://img.shields.io/:license-Apache%202-red.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 ### Awards
 
@@ -34,31 +34,41 @@ If you wish to play on many computers use other scripts located in scripts direc
 
 ### Fully Supported Maven Commands 
 
-#### Installation
+Installation
     
     mvn clean install
 
-#### Packaging
+Packaging
 
     mvn clean package
 
-#### Running Tests
+Running tests
 
-    mvn test
+    mvn test   
 
-#### Generating Site
+Validating Dependency Convergence
+
+    mvn enforcer:force
+    
+### Site
+
+You could either view site locally or remotely,
+
+#### Local Site
+
+Generate site with,
 
     mvn site && mvn site:stage
 
-#### * ALSO: Viewing Site
+To view site with Firefox, while in the root folder,
 
-Ex. with Firefox, while in the root folder,
+    firefox target/staging/index.html 
 
-    firefox target/staging/index.html     
+#### Remote Site
 
-#### Validating Dependency Convergence
+Copy the below link to see our website on-line (keep in mind that we do not update it too often),
 
-    mvn enforcer:force
+    https://korotkevics.github.io/ships/
 
 ## Alternative Way of Importing Testing Dependencies
 

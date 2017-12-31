@@ -67,6 +67,10 @@
         </plugins>
     </build>
 
+    <!--Non-technical info goes below-->
+
+    <name>Ships - CLIENT</name>
+
     <description>
         It's Battleships game client.
         It is an isolated module having

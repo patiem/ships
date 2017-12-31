@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd ">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.epam</groupId>
@@ -23,7 +23,7 @@
         <!--Code Static Analysis-->
         <findbugsVersion>3.0.5</findbugsVersion>
         <checkstyleVersion>2.17</checkstyleVersion>
-        <jacocoVersion>0.7.9</jacocoVersion>
+        <coberturaVersion>2.7</coberturaVersion>
         <!--Testing-->
         <testngVersion>6.13.1</testngVersion>
         <mockitoVersion>2.13.0</mockitoVersion>
@@ -45,7 +45,7 @@
         <dependency.locations.enabled>false</dependency.locations.enabled>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <mavenVersion>2.5.2</mavenVersion>
+        <mavenVersion>3.5.2</mavenVersion>
         <compilerVersion>3.7.0</compilerVersion>
         <cleanVersion>3.0.0</cleanVersion>
         <deployVersion>2.8.2</deployVersion>
@@ -57,15 +57,20 @@
         <assemblyVersion>3.1.0</assemblyVersion>
         <dependencyVersion>3.0.2</dependencyVersion>
         <jxrVersion>2.5</jxrVersion>
-        <jdependVersion>2.0</jdependVersion>
-        <javadocVersion>3.0.0</javadocVersion>
+        <!-- The newest released javadoc plugin version is 3.0.0,
+        however an older version is preferred since the newest
+        version throws an error complaining about a missing
+        module descriptor and there no info available online which
+        could help to solve this issue.
+        -->
+        <jdocVersion>2.10.4</jdocVersion>
+        <jdepsVersion>0.4.0</jdepsVersion>
         <!--switch to true if not willing to generate a site-->
         <skipSite>false</skipSite>
         <!--Utils-->
         <commonsLang3Version>3.7</commonsLang3Version>
         <orgJsonVersion>20171018</orgJsonVersion>
         <commonsIoVersion>2.5</commonsIoVersion>
-        <jacksonVersion>2.9.3</jacksonVersion>
         <lombokVersion>1.16.18</lombokVersion>
         <gsonVersion>2.8.2</gsonVersion>
         <sonarSourceVersion>3.4.0.905</sonarSourceVersion>
@@ -151,7 +156,6 @@
                         </rules>
                     </configuration>
                 </plugin>
-
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
@@ -209,59 +213,34 @@
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>${assemblyVersion}</version>
                 </plugin>
-                <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-dependency-plugin -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>${dependencyVersion}</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacocoVersion}</version>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>prepare-agent</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>report</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>report</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
                     <version>${sonarSourceVersion}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>${findbugsVersion}</version>
-                    <configuration>
-                        <!--
-                            Enables analysis which takes more memory but finds more bugs.
-                            If you run out of memory, changes the value of the effort element
-                            to 'low'.
-                        -->
-                        <effort>Max</effort>
-                        <!-- Reports all bugs (other values are medium and max) -->
-                        <threshold>Low</threshold>
-                        <!-- Produces XML report -->
-                        <xmlOutput>false</xmlOutput>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
+
     <reporting>
         <plugins>
+            <!--Visible only in child module reports-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${findbugsVersion}</version>
+                <configuration>
+                    <xmlOutput>false</xmlOutput>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
@@ -290,19 +269,10 @@
                             <report>index</report>
                             <report>dependencies</report>
                             <report>project-team</report>
+                            <report>cim</report>
+                            <report>issue-tracking</report>
+                            <report>mailing-list</report>
                             <report>license</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacocoVersion}</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>report-aggregate</report>
                         </reports>
                     </reportSet>
                 </reportSets>
@@ -320,22 +290,82 @@
                     <configLocation>google_checks.xml</configLocation>
                 </configuration>
             </plugin>
-            <!--JDepend is visible on module level-->
+            <!--JDepend plug-in isn't present because it throws some
+            unresolvable warnings, as it seems not to be 100% compatible
+            with Java 1.8, although reports produced are mostly fine.
+            If it turns out to be necessary, we can include it as well.
+            In general, JDepend reports summarize dependencies quite well.
+
+            For now, we've added the newer JDeps plug-in only.
+            When it comes to reporting, it simply lists dependencies.
+            It also has some drawbacks:
+            - jdeps-maven-plugin by Apache isn't compatible with
+           reporting (only with build) so we went for the one created
+           by com.github.marschall
+            - we've found no option of adding external dependencies to
+            classpath with this plug-in as it can be simply done in
+            command line with jdeps, so occasionally we get 'not found'
+            in reports
+            - we receive the below warning in report produced for the shared
+            module which is dependent on log4j, and we couldn't resolve it -
+            there isn't much info on-line, and we would'nt upgrade to JDK9
+            just because of that
+
+            Warning: /home/sandor/.m2/repository/org/apache/logging/log4j/log4j-api/2.9.1/log4j-api-2.9.1.jar
+            is a multi-release jar file All versioned entries are analyzed. To analyze the entries for a specific
+            version, use a newer version of jdeps (JDK 9 or later) "- -multi-release" option.
+            -->
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>jdepend-maven-plugin</artifactId>
-                <version>${jdependVersion}</version>
+                <groupId>com.github.marschall</groupId>
+                <artifactId>jdeps-maven-plugin</artifactId>
+                <version>${jdepsVersion}</version>
+                <configuration>
+                    <!--More info on configuration:
+                    http://marschall.github.io/jdeps-maven-plugin/jdeps-report-mojo.html
+                    -->
+                    <!--Show profile or the file containing a package.-->
+                    <profile>true</profile>
+                    <!--Recursively traverse all dependencies.-->
+                    <recursive>true</recursive>
+                    <!--Print all class level dependencies.-->
+                    <verbose>true</verbose>
+                    <!--Version information.-->
+                    <version>true</version>
+                </configuration>
+                <!--The below segment disables a report generation
+                 for the root module since no classes are
+                 available there-->
+                <reportSets>
+                    <reportSet>
+                        <inherited>false</inherited>
+                    </reportSet>
+                </reportSets>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${javadocVersion}</version>
+                <version>${jdocVersion}</version>
+                <configuration>
+                    <!--Description:
+                    https://maven.apache.org/plugins/maven-javadoc-plugin/javadoc-mojo.html-->
+                    <quiet>true</quiet>
+                    <show>public</show>
+                    <linksource>true</linksource>
+                </configuration>
+            </plugin>
+            <!--We went for Cobertura instead of JaCoCo
+            because it is easier to configure-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>${coberturaVersion}</version>
             </plugin>
         </plugins>
     </reporting>
 
-
     <!--Non-technical info goes below-->
+
+    <name>Ships - ROOT</name>
 
     <description>
         It's a root POM:
@@ -361,27 +391,46 @@
 
     <developers>
         <developer>
-            <name>Magda</name>
+            <name>Magdalena Aarsman</name>
+            <timezone>Europe/Warsaw</timezone>
+            <url>https://github.com/M-Aarsman</url>
+            <email>magdalena_aarsman@epam.com</email>
             <roles>
-                <role>Developer</role>
+                <role>Developer (client)</role>
             </roles>
             <properties/>
         </developer>
         <developer>
-            <name>Piotr</name>
+            <name>Piotr Czyż</name>
+            <timezone>Europe/Warsaw</timezone>
+            <url>https://github.com/sabath91</url>
+            <email>piotr_czyz@epam.com</email>
             <roles>
-                <role>Developer</role>
+                <role>Developer (server/scripts)</role>
             </roles>
             <properties/>
         </developer>
         <developer>
-            <name>Sandor</name>
+            <name>Sandor Korotkevics</name>
+            <timezone>Europe/Warsaw</timezone>
+            <url>https://github.com/korotkevics</url>
+            <email>sandor_korotkevics@epam.com</email>
             <roles>
-                <role>Developer</role>
+                <role>Developer (shared/docs/configs/scripts/pm)</role>
             </roles>
             <properties/>
         </developer>
     </developers>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/korotkevics/ships/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>Travis CI</system>
+        <url>https://travis-ci.org/korotkevics/ships</url>
+    </ciManagement>
 
     <licenses>
         <license>
