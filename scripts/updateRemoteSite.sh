@@ -16,7 +16,7 @@ echo "Clonning repo [to].."
 echo "Checking out to master branch on [from].."
 cd ../../tempUpdateRemoteSite/from
 git checkout master -q
-echo "Checking out to gh_pages branch on [to].."
+echo "Checking out to gh-pages branch on [to].."
 cd ../to
 git checkout gh-pages -q
 echo "Generating JaCoCo datafiles on [from].."
@@ -33,13 +33,11 @@ echo "Copying staged site from [from] to [to].."
 cd ..
 cp from/target/staging/. to/. -r
 echo "Adding.. Committing.. Pushing (your credentials will be required).."
-git add . &
+cd to
+git add .
 git commit -m 'Trigger site update' -q
 #git push origin gh-pages
 echo "Done updating remote site. Cleaning up.."
-cd ..
-echo "Removing [from].."
-rm -rf from
-echo "Removing [to].."
-rm -rf to
+cd ../..
+rm -rf tempUpdateRemoteSite
 echo "Done cleaning."
