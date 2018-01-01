@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - CLIENT</a> &gt; <a href="index.source.html" class="el_package">com.epam.ships.client.gui.controllers</a> &gt; <span class="el_source">MainController.java</span></div><h1>MainController.java</h1><pre class="source lang-java linenums">package com.epam.ships.client.gui.controllers;
+
+import com.epam.ships.client.client.Client;
+import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.infra.logging.core.SharedLogger;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.Pane;
+import lombok.Getter;
+
+import java.io.IOException;
+
+/**
+ * Main window, which contains title etc. controller.
+ * @author Magdalena Aarsman
+ * @since 2017-12-14
+ */
+
+<span class="nc" id="L20">public class MainController {</span>
+
+<span class="nc" id="L22">  private static final Target logger = new SharedLogger(Client.class);</span>
+
+  @FXML
+  private Pane mainPane;
+
+<span class="nc" id="L27">  @Getter</span>
+  private Client client;
+
+  /**
+   * Initialize main controller.
+   * @param client - Instance of Client, which communicate with server.
+   */
+  @FXML
+  public void initialize(final Client client) {
+<span class="nc" id="L36">    final String connectWindowUrl = &quot;/fxml/connectWindow.fxml&quot;;</span>
+<span class="nc" id="L37">    this.client = client;</span>
+
+    try {
+<span class="nc" id="L40">      final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowUrl));</span>
+<span class="nc" id="L41">      final Parent connect = connectLoader.load();</span>
+
+<span class="nc" id="L43">      mainPane.getChildren().clear();</span>
+<span class="nc" id="L44">      mainPane.getChildren().add(connect);</span>
+<span class="nc" id="L45">    } catch (IOException e) {</span>
+<span class="nc" id="L46">      logger.error(e.getMessage());</span>
+<span class="nc" id="L47">    }</span>
+<span class="nc" id="L48">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

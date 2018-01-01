@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Fleet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SHARED</a> &gt; <a href="index.source.html" class="el_package">com.epam.ships.fleet</a> &gt; <span class="el_source">Fleet.java</span></div><h1>Fleet.java</h1><pre class="source lang-java linenums">package com.epam.ships.fleet;
+
+import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Fleet of ships.
+ * @author Piotr Czyż, Sandor Korotkevics
+ * @see Ship
+ * @since 2017-12-19
+ */
+<span class="pc bpc" id="L19" title="9 of 14 branches missed.">@EqualsAndHashCode</span>
+<span class="pc" id="L20">@RequiredArgsConstructor(staticName = &quot;fleet&quot;, access = AccessLevel.PRIVATE)</span>
+<span class="fc" id="L21">@ToString</span>
+public class Fleet {
+
+  private final Map&lt;Mast, Ship&gt; fleet;
+
+<span class="fc" id="L26">  private Fleet() {</span>
+<span class="fc" id="L27">    this.fleet = Collections.emptyMap();</span>
+<span class="fc" id="L28">  }</span>
+
+  /**
+   * Static factory method.
+   *
+   * @param ships - list of ships
+   * @return Fleet
+   */
+  public static Fleet ofShips(List&lt;Ship&gt; ships) {
+<span class="fc" id="L37">    Map&lt;Mast, Ship&gt; fleet = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L38">    ships.forEach(ship -&gt; ship.getMasts().forEach(mast -&gt; fleet.put(mast, ship)));</span>
+<span class="fc" id="L39">    return new Fleet(fleet);</span>
+  }
+
+  public static Fleet empty() {
+<span class="fc" id="L43">    return new Fleet();</span>
+  }
+
+  /**
+   * @return true if a fleet is defeated.
+   */
+  public boolean isDefeated() {
+<span class="fc" id="L50">    return this.fleet.isEmpty();</span>
+  }
+
+  /**
+   * It handles an attack
+   * returning an output of such.
+   *
+   * @param mast attacked
+   * @return Damage caused
+   */
+  public Damage handleDamage(Mast mast) {
+<span class="fc bfc" id="L61" title="All 2 branches covered.">    if (!this.fleet.containsKey(mast)) {</span>
+<span class="fc" id="L62">      return Damage.MISSED;</span>
+    }
+<span class="fc" id="L64">    Ship shipHit = this.fleet.get(mast);</span>
+<span class="fc" id="L65">    this.fleet.remove(mast);</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">    if (!this.fleet.containsValue(shipHit)) {</span>
+<span class="fc" id="L67">      return Damage.DESTRUCTED;</span>
+    }
+<span class="fc" id="L69">    return Damage.HIT;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

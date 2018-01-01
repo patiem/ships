@@ -19,11 +19,11 @@ under the License.
 -->
 <rss version="0.91">
   <channel>
-    <title>shared - Checkstyle report</title>
+    <title>Ships - SHARED - Checkstyle report</title>
     <link>scp:///shared//shared</link>
-    <description>shared - Checkstyle report</description>
+    <description>Ships - SHARED - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2017 Java Academy</copyright>
+    <copyright>&#169;2018 Java Academy</copyright>
     <item>
       <title>File: 20,
              Errors: 0,

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TurnManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SERVER</a> &gt; <a href="index.source.html" class="el_package">com.epam.ships.server</a> &gt; <span class="el_source">TurnManager.java</span></div><h1>TurnManager.java</h1><pre class="source lang-java linenums">package com.epam.ships.server;
+
+class TurnManager {
+  private final WrappedClient firstPlayer;
+  private final WrappedClient secondPlayer;
+  private WrappedClient currentPlayer;
+  private WrappedClient otherPlayer;
+
+<span class="fc" id="L9">  TurnManager(final WrappedClient firstPlayer, final WrappedClient secondPlayer) {</span>
+<span class="fc" id="L10">    this.firstPlayer = firstPlayer;</span>
+<span class="fc" id="L11">    this.secondPlayer = secondPlayer;</span>
+<span class="fc" id="L12">    this.currentPlayer = firstPlayer;</span>
+<span class="fc" id="L13">    this.otherPlayer = secondPlayer;</span>
+<span class="fc" id="L14">  }</span>
+
+  final WrappedClient getCurrentPlayer() {
+<span class="fc" id="L17">    return this.currentPlayer;</span>
+  }
+
+  final WrappedClient getOtherPlayer() {
+<span class="fc" id="L21">    return this.otherPlayer;</span>
+  }
+
+  void switchPlayer() {
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">    if (this.currentPlayer.equals(this.firstPlayer)) {</span>
+<span class="fc" id="L26">      this.currentPlayer = this.secondPlayer;</span>
+<span class="fc" id="L27">      this.otherPlayer = this.firstPlayer;</span>
+    } else {
+<span class="nc" id="L29">      this.currentPlayer = this.firstPlayer;</span>
+<span class="nc" id="L30">      this.otherPlayer = secondPlayer;</span>
+    }
+<span class="fc" id="L32">  }</span>
+
+  boolean isCurrentPlayerFirstPlayer() {
+<span class="fc" id="L35">    return currentPlayer.equals(firstPlayer);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

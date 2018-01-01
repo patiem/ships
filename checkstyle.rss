@@ -19,11 +19,11 @@ under the License.
 -->
 <rss version="0.91">
   <channel>
-    <title>ships - Checkstyle report</title>
+    <title>Ships - ROOT - Checkstyle report</title>
     <link>./index.html</link>
-    <description>ships - Checkstyle report</description>
+    <description>Ships - ROOT - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2017 Java Academy</copyright>
+    <copyright>&#169;2018 Java Academy</copyright>
     <item>
       <title>File: 54,
              Errors: 0,

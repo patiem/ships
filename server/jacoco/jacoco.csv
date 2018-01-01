@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Ships - SERVER,com.epam.ships.server,CommunicationBus,92,0,4,0,24,0,10,0,8,0
+Ships - SERVER,com.epam.ships.server,Game,409,0,20,0,139,0,33,0,23,0
+Ships - SERVER,com.epam.ships.server,Main,40,0,2,0,16,0,4,0,3,0
+Ships - SERVER,com.epam.ships.server,TurnManager,8,43,1,1,2,13,1,5,0,5
+Ships - SERVER,com.epam.ships.server,WrappedClient,175,38,38,0,9,11,24,3,5,3
+Ships - SERVER,com.epam.ships.server,AppServer,0,62,0,0,0,18,0,4,0,4
