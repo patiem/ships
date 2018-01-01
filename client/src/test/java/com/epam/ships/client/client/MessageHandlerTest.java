@@ -28,6 +28,9 @@ public class MessageHandlerTest {
 
   @Test
   public void shouldCallConnectionEndTrigger() {
+    if(!JavaFxInitializer.enable) {
+      return;
+    }
     //given
     Map<Header, EventTrigger> triggers = new EnumMap<>(Header.class);
     ConnectionEndTrigger connectionEndTrigger = mock(ConnectionEndTrigger.class);
@@ -50,6 +53,9 @@ public class MessageHandlerTest {
 
   @Test
   public void shouldReturnTrueAfterTriggerOpponentWithdrawEven() {
+    if(!JavaFxInitializer.enable) {
+      return;
+    }
     //given
     Map<Header, EventTrigger> triggers = new EnumMap<>(Header.class);
     ConnectionEndTrigger connectionEndTrigger = mock(ConnectionEndTrigger.class);

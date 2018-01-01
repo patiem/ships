@@ -18,6 +18,9 @@ public class EventsTest {
 
   @Test
   public void shouldCreateNewOpponentWithdrawEvent() throws InterruptedException {
+    if(!JavaFxInitializer.enable) {
+      return;
+    }
     //given
     Button eventTestButton = new Button();
     eventTestButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentWithdrawEvent
@@ -31,6 +34,9 @@ public class EventsTest {
 
   @Test
   public void shouldCreateNewHitShotEvent() throws InterruptedException {
+    if(!JavaFxInitializer.enable) {
+      return;
+    }
     //given
     Button eventTestButton = new Button();
     eventTestButton.addEventHandler(HitShotEvent.HIT_SHOT, opponentWithdrawEvent
@@ -44,6 +50,9 @@ public class EventsTest {
 
   @Test
   public void shouldCreateNewLooseEvent() throws InterruptedException {
+    if(!JavaFxInitializer.enable) {
+      return;
+    }
     //given
     Button eventTestButton = new Button();
     eventTestButton.addEventHandler(LooseEvent.GAME_LOSE, opponentWithdrawEvent
@@ -57,6 +66,9 @@ public class EventsTest {
 
   @Test
   public void shouldCreateNewMissShotEvent() throws InterruptedException {
+    if(!JavaFxInitializer.enable) {
+      return;
+    }
     //given
     Button eventTestButton = new Button();
     eventTestButton.addEventHandler(MissShotEvent.MISS_SHOT, opponentWithdrawEvent
@@ -70,6 +82,9 @@ public class EventsTest {
 
   @Test
   public void shouldCreateNewOpponentConnectedEvent() throws InterruptedException {
+    if(!JavaFxInitializer.enable) {
+      return;
+    }
     //given
     Button eventTestButton = new Button();
     eventTestButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED, opponentWithdrawEvent
@@ -83,6 +98,9 @@ public class EventsTest {
 
   @Test
   public void shouldCreateNewOpponentShotEvent() throws InterruptedException {
+    if(!JavaFxInitializer.enable) {
+      return;
+    }
     //given
     Button eventTestButton = new Button();
     eventTestButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT, opponentWithdrawEvent
@@ -96,7 +114,9 @@ public class EventsTest {
 
   @Test
   public void shouldCreateNewTurnChangeEvent() throws InterruptedException {
-    //given
+    if(!JavaFxInitializer.enable) {
+      return;
+    }//given
     Button eventTestButton = new Button();
     eventTestButton.addEventHandler(TurnChangeEvent.TURN_EVENT, opponentWithdrawEvent
         -> eventTestButton.setOpacity(0.5));
@@ -109,6 +129,9 @@ public class EventsTest {
 
   @Test
   public void shouldCreateNewWinEvent() throws InterruptedException {
+    if(!JavaFxInitializer.enable) {
+      return;
+    }
     //given
     Button eventTestButton = new Button();
     eventTestButton.addEventHandler(WinEvent.GAME_WIN, opponentWithdrawEvent
