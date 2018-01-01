@@ -126,7 +126,6 @@ public class FleetPlacementController {
             Rectangle rec = (Rectangle) child;
             rec.setFill(Color.GRAY);
           }
-          logger.info("end drag");
           ((Group) event.getSource()).setDisable(true);
         }
         shipPlacementSuccess = false;
@@ -228,7 +227,6 @@ public class FleetPlacementController {
     rectangle.setOnDragEntered(event -> {
       double opacity = 0.5;
       int mastCount = ((Group) event.getGestureSource()).getChildren().size();
-      logger.info("index = " + index);
       if (shipOrientation.equals(ShipOrientation.HORIZONTAL) && isOutOfBound(index, mastCount)) {
         return;
       }
@@ -293,8 +291,6 @@ public class FleetPlacementController {
       if (ships.size() == SHIPS_COUNT) {
         buttonReady.setDisable(false);
       }
-      logger.info("first index of ship " + recIndex);
-      logger.info("ship has " + mastCount + " masts");
       shipPlacementSuccess = true;
       event.consume();
     });

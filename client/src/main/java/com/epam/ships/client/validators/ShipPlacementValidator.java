@@ -59,21 +59,15 @@ public class ShipPlacementValidator {
   }
 
   private boolean isNotShipBelowShip(int index) {
-    if (index > 1 && index % BOARD_SIZE != 0) {
-      if (board[index -1].equals(FieldState.OCCUPIED)) {
-        return false;
-      }
-    }
-
-    return true;
+    return !(index > 1 && index % BOARD_SIZE != 0
+        && (board[index -1].equals(FieldState.OCCUPIED)));
   }
 
   private boolean isNotShipOnTheRight(int index, int mastCount) {
     for (int i = 0; i < mastCount; i++) {
-      if (index + i - BOARD_SIZE > 0) {
-        if (board[index + i - BOARD_SIZE].equals(FieldState.OCCUPIED)) {
-          return false;
-        }
+      if (index + i - BOARD_SIZE > 0
+          && (board[index + i - BOARD_SIZE].equals(FieldState.OCCUPIED))) {
+        return false;
       }
     }
     return true;
@@ -81,10 +75,9 @@ public class ShipPlacementValidator {
 
   private boolean isNotShipOnTheLeft(int index, int mastCount) {
     for (int i = 0; i < mastCount; i++) {
-      if (index + i + BOARD_SIZE < board.length) {
-        if (board[index + i + BOARD_SIZE].equals(FieldState.OCCUPIED)) {
-          return false;
-        }
+      if (index + i + BOARD_SIZE < board.length
+          && (board[index + i + BOARD_SIZE].equals(FieldState.OCCUPIED))) {
+        return false;
       }
     }
     return true;
