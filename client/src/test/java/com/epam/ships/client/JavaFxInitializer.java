@@ -1,11 +1,12 @@
-package com.epam.ships.client.client;
+package com.epam.ships.client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class JavaFxInitializer extends Application {
 
-  private static Object barrier = new Object();
+  private final static Object barrier = new Object();
+  public static boolean launched = false;
 
   @Override
   public void start(Stage primaryStage) throws Exception {
@@ -17,6 +18,7 @@ public class JavaFxInitializer extends Application {
   public static void initialize() throws InterruptedException {
     Thread t = new Thread("JavaFX Init Thread") {
       public void run() {
+        launched = true;
         Application.launch(JavaFxInitializer.class, new String[0]);
       }
     };
