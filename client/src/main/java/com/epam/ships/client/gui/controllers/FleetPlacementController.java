@@ -196,16 +196,6 @@ public class FleetPlacementController {
     setFieldOnDragDropped(rectangle, recIndex, fillIndex);
   }
 
-  private boolean checkIfNotSnaking(int index, int mastCount) {
-    int startIndexMod = index % BOARD_SIZE;
-    for (int i = 1; i < mastCount; i++) {
-      if ((index + i) % BOARD_SIZE < startIndexMod) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   private void setOpacity(int index, int mastCount, double opacity) {
     index += 1;
 
@@ -225,18 +215,11 @@ public class FleetPlacementController {
         event -> {
           double noOpacity = 1.0;
           int mastCount = ((Group) event.getGestureSource()).getChildren().size();
-          if (shipOrientation.equals(ShipOrientation.VERTICAL)) {
-            ((Rectangle) event.getSource()).setOpacity(noOpacity);
-            setOpacity(fillIndex, mastCount ,noOpacity);
-          } else {
-            final int notRectangleChild = 2;
-            if (fillIndex + (mastCount - 1) * BOARD_SIZE
-                > yourBoard.getChildren().size() - notRectangleChild) {
-              return;
-            }
-            ((Rectangle) event.getSource()).setOpacity(1);
-            setOpacity(fillIndex, mastCount ,noOpacity);
+          if (isOutOfBound(fillIndex, mastCount)) {
+            return;
           }
+          ((Rectangle) event.getSource()).setOpacity(noOpacity);
+          setOpacity(fillIndex, mastCount ,noOpacity);
           event.consume();
         });
   }
@@ -246,43 +229,40 @@ public class FleetPlacementController {
       double opacity = 0.5;
       int mastCount = ((Group) event.getGestureSource()).getChildren().size();
       logger.info("index = " + index);
-      if (shipOrientation.equals(ShipOrientation.VERTICAL)) {
-        GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);
-        ShipPlacementValidator shipPlacementValidator =
-            new ShipPlacementValidator(shipOrientation, index, mastCount,
-                gridToBoardConverter.convert());
-        if(!shipPlacementValidator.isPlacementValid()) {
-          return;
-        }
-
-        setOpacity(index, mastCount, opacity);
-        ((Rectangle) event.getSource()).setOpacity(opacity);
-      } else {
-        GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);
-        ShipPlacementValidator shipPlacementValidator =
-            new ShipPlacementValidator(shipOrientation, index, mastCount,
-                gridToBoardConverter.convert());
-        if (isOutOfBound(index, mastCount) || !shipPlacementValidator.isPlacementValid()) {
-          return;
-        }
-        ((Rectangle) event.getSource()).setOpacity(opacity);
-        setOpacity(index, mastCount, opacity);
+      if (shipOrientation.equals(ShipOrientation.HORIZONTAL) && isOutOfBound(index, mastCount)) {
+        return;
       }
+      GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);
+      ShipPlacementValidator shipPlacementValidator =
+          new ShipPlacementValidator(shipOrientation, index, mastCount,
+              gridToBoardConverter.convert());
+      if(!shipPlacementValidator.isPlacementValid()) {
+        return;
+      }
+
+      ((Rectangle) event.getSource()).setOpacity(opacity);
+      setOpacity(index, mastCount, opacity);
       event.consume();
     });
   }
 
   private boolean isOutOfBound(int index, int mastCount) {
     final int notRectangleChildCount = 2;
-    if (index + (mastCount - 1) * BOARD_SIZE
-        > yourBoard.getChildren().size() - notRectangleChildCount) {
-      return true;
+    if(shipOrientation.equals(ShipOrientation.HORIZONTAL)) {
+      if (index + (mastCount - 1) * BOARD_SIZE
+          > yourBoard.getChildren().size() - notRectangleChildCount) {
+        return true;
+      }
+      return false;
+    } else {
+      if(index + mastCount >= yourBoard.getChildren().size()) {
+        return true;
+      }
     }
-
     return false;
   }
 
-  private void setFieldOnDragDropped(Rectangle rectangle, final int recIndex, final int fillIndex) {
+  private void setFieldOnDragDropped(Rectangle rectangle, final int recIndex, final int index) {
     rectangle.setOnDragDropped(event -> {
       Dragboard db = event.getDragboard();
       boolean success = false;
@@ -290,54 +270,25 @@ public class FleetPlacementController {
         success = true;
       }
       event.setDropCompleted(success);
-      int index = fillIndex;
       int mastCount = ((Group) event.getGestureSource()).getChildren().size();
       Mast[] masts = new Mast[mastCount];
 
-      if (shipOrientation.equals(ShipOrientation.VERTICAL)) {
-        GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);
-        ShipPlacementValidator shipPlacementValidator =
-            new ShipPlacementValidator(shipOrientation, index, mastCount,
-                gridToBoardConverter.convert());
-        if(!shipPlacementValidator.isPlacementValid()) {
-          shipPlacementSuccess = false;
-          return;
-        }
-
-        if (!checkIfNotSnaking(index, mastCount)) {
-          shipPlacementSuccess = false;
-          return;
-        }
-        masts[0] = Mast.ofIndex(String.valueOf(recIndex));
-        rectangle.setFill(Color.GREEN);
-        index += 1;
-        for (int i1 = 1; i1 < mastCount; i1++) {
-          ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
-          masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));
-        }
-      } else {
-        masts[0] = Mast.ofIndex(String.valueOf(recIndex));
-        if (index + (mastCount - 1) * BOARD_SIZE > yourBoard.getChildren().size() - 2) {
-          shipPlacementSuccess = false;
-          return;
-        }
-
-        GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);
-        ShipPlacementValidator shipPlacementValidator =
-            new ShipPlacementValidator(shipOrientation, index, mastCount,
-                gridToBoardConverter.convert());
-        if(!shipPlacementValidator.isPlacementValid()) {
-          shipPlacementSuccess = false;
-          return;
-        }
-
-        index += 1;
-        rectangle.setFill(Color.GREEN);
-        for (int i1 = 1; i1 < mastCount; i1++) {
-          ((Rectangle) yourBoard.getChildren().get(index + i1 * BOARD_SIZE)).setFill(Color.GREEN);
-          masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1));
-        }
+      if (shipOrientation.equals(ShipOrientation.HORIZONTAL) && isOutOfBound(index, mastCount)) {
+        shipPlacementSuccess = false;
+        return;
       }
+
+      GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);
+      ShipPlacementValidator shipPlacementValidator =
+          new ShipPlacementValidator(shipOrientation, index, mastCount,
+              gridToBoardConverter.convert());
+      if(!shipPlacementValidator.isPlacementValid()) {
+        shipPlacementSuccess = false;
+        return;
+      }
+      masts[0] = Mast.ofIndex(String.valueOf(recIndex));
+      rectangle.setFill(Color.GREEN);
+      placeShip(index, masts, mastCount, recIndex);
       ships.add(Ship.ofMasts(masts));
       if (ships.size() == SHIPS_COUNT) {
         buttonReady.setDisable(false);
@@ -347,6 +298,22 @@ public class FleetPlacementController {
       shipPlacementSuccess = true;
       event.consume();
     });
+  }
+
+  private void placeShip(int index, Mast[] masts, int mastCount, int recIndex) {
+    index += 1;
+
+    if(shipOrientation.equals(ShipOrientation.VERTICAL)) {
+      for (int i1 = 1; i1 < mastCount; i1++) {
+        ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
+        masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));
+      }
+    } else {
+      for (int i1 = 1; i1 < mastCount; i1++) {
+        ((Rectangle) yourBoard.getChildren().get(index + i1 * BOARD_SIZE)).setFill(Color.GREEN);
+        masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1));
+      }
+    }
   }
 
   private void addDragEventsToShips() {

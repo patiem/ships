@@ -21,12 +21,23 @@ public class ShipPlacementValidator {
     }
   }
 
+  private boolean checkIfNotSnaking(int index, int mastCount) {
+    int startIndexMod = index % BOARD_SIZE;
+    for (int i = 1; i < mastCount; i++) {
+      if ((index + i) % BOARD_SIZE < startIndexMod) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   private boolean checkForVertical() {
     return isNotShipOnShip(shipStartIndex, mastCount)
         && isNotShipAboveShip(shipStartIndex, mastCount)
         && isNotShipBelowShip(shipStartIndex)
         && isNotShipOnTheRight(shipStartIndex, mastCount)
-        && isNotShipOnTheLeft(shipStartIndex, mastCount);
+        && isNotShipOnTheLeft(shipStartIndex, mastCount)
+        && checkIfNotSnaking(shipStartIndex, mastCount);
   }
 
   private boolean isNotShipOnShip(int index, int mastCount) {
