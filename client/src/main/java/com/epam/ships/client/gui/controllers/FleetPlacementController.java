@@ -206,17 +206,17 @@ public class FleetPlacementController {
     return true;
   }
 
-  private void setHorizontalOpacity(int index, int mastCount, double opacity) {
+  private void setOpacity(int index, int mastCount, double opacity) {
     index += 1;
-    for (int i = 1; i < mastCount; i++) {
-      (yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(opacity);
-    }
-  }
 
-  private void setVerticalOpacity(int index, int mastCount, double opacity) {
-    index += 1;
-    for (int i = 1; i < mastCount; i++) {
-      (yourBoard.getChildren().get(index + i)).setOpacity(opacity);
+    if(shipOrientation.equals(ShipOrientation.HORIZONTAL)) {
+      for (int i = 1; i < mastCount; i++) {
+        (yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(opacity);
+      }
+    } else {
+      for (int i = 1; i < mastCount; i++) {
+        (yourBoard.getChildren().get(index + i)).setOpacity(opacity);
+      }
     }
   }
 
@@ -227,7 +227,7 @@ public class FleetPlacementController {
           int mastCount = ((Group) event.getGestureSource()).getChildren().size();
           if (shipOrientation.equals(ShipOrientation.VERTICAL)) {
             ((Rectangle) event.getSource()).setOpacity(noOpacity);
-            setVerticalOpacity(fillIndex, mastCount ,noOpacity);
+            setOpacity(fillIndex, mastCount ,noOpacity);
           } else {
             final int notRectangleChild = 2;
             if (fillIndex + (mastCount - 1) * BOARD_SIZE
@@ -235,7 +235,7 @@ public class FleetPlacementController {
               return;
             }
             ((Rectangle) event.getSource()).setOpacity(1);
-            setHorizontalOpacity(fillIndex, mastCount ,noOpacity);
+            setOpacity(fillIndex, mastCount ,noOpacity);
           }
           event.consume();
         });
@@ -251,106 +251,25 @@ public class FleetPlacementController {
         ShipPlacementValidator shipPlacementValidator =
             new ShipPlacementValidator(shipOrientation, index, mastCount,
                 gridToBoardConverter.convert());
-        if(!shipPlacementValidator.isPlacemntValid()) {
+        if(!shipPlacementValidator.isPlacementValid()) {
           return;
         }
 
-        setVerticalOpacity(index, mastCount, opacity);
+        setOpacity(index, mastCount, opacity);
         ((Rectangle) event.getSource()).setOpacity(opacity);
       } else {
-        if (isOutOfBound(index, mastCount) || !checkForHorizontal(index, mastCount)) {
+        GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);
+        ShipPlacementValidator shipPlacementValidator =
+            new ShipPlacementValidator(shipOrientation, index, mastCount,
+                gridToBoardConverter.convert());
+        if (isOutOfBound(index, mastCount) || !shipPlacementValidator.isPlacementValid()) {
           return;
         }
         ((Rectangle) event.getSource()).setOpacity(opacity);
-        setHorizontalOpacity(index, mastCount, opacity);
+        setOpacity(index, mastCount, opacity);
       }
       event.consume();
     });
-  }
-
-  private boolean isNotShipOnShipHorizontal(int index, int mastCount) {
-    index += 1;
-    for (int i = 0; i < mastCount; i++) {
-      if (((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).getFill()
-          .equals(Color.GREEN)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  private boolean isNotShipBelowShipHorizontal(int index, int mastCount) {
-    index += 1;
-    for (int i = 0; i < mastCount; i++) {
-      if ((index + i * BOARD_SIZE) % BOARD_SIZE == 0) {
-        return true;
-      }
-      final int oneRowBelow = 1;
-      if (index + oneRowBelow + i * BOARD_SIZE >= yourBoard.getChildren().size()) {
-        return true;
-      }
-
-      if (((Rectangle) yourBoard.getChildren().get(index + oneRowBelow + i * BOARD_SIZE)).getFill()
-          .equals(Color.GREEN)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  private boolean isNotShipAboveShipHorizontal(int index, int mastCount) {
-    for (int i = 0; i < mastCount; i++) {
-      final int lastRow = 9;
-      if ((index + 1 + i * BOARD_SIZE) % BOARD_SIZE == lastRow) {
-        return true;
-      }
-      if (index + i * BOARD_SIZE >= yourBoard.getChildren().size() || index + i * BOARD_SIZE < 1) {
-        return true;
-      }
-
-      if (((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).getFill()
-          .equals(Color.GREEN)) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  private boolean isNotShipOnTheRightHorizontal(int index, int mastCount) {
-    index += 1;
-    if (index + mastCount * BOARD_SIZE >= yourBoard.getChildren().size()) {
-      return true;
-    }
-
-    if (((Rectangle) yourBoard.getChildren().get(index + mastCount * BOARD_SIZE)).getFill()
-        .equals(Color.GREEN)) {
-      return false;
-    }
-
-    return true;
-  }
-
-  private boolean isNotShipOnTheLeftHorizontal(int index) {
-    index += 1;
-    if (index - BOARD_SIZE < 1) {
-      return true;
-    }
-
-    if (((Rectangle) yourBoard.getChildren().get(index - BOARD_SIZE)).getFill()
-        .equals(Color.GREEN)) {
-      return false;
-    }
-
-    return true;
-  }
-
-  private boolean checkForHorizontal(int index, int mastCount) {
-    return isNotShipOnShipHorizontal(index, mastCount)
-        && isNotShipBelowShipHorizontal(index, mastCount)
-        && isNotShipAboveShipHorizontal(index, mastCount)
-        && isNotShipOnTheRightHorizontal(index, mastCount)
-        && isNotShipOnTheLeftHorizontal(index);
   }
 
   private boolean isOutOfBound(int index, int mastCount) {
@@ -380,7 +299,7 @@ public class FleetPlacementController {
         ShipPlacementValidator shipPlacementValidator =
             new ShipPlacementValidator(shipOrientation, index, mastCount,
                 gridToBoardConverter.convert());
-        if(!shipPlacementValidator.isPlacemntValid()) {
+        if(!shipPlacementValidator.isPlacementValid()) {
           shipPlacementSuccess = false;
           return;
         }
@@ -403,7 +322,11 @@ public class FleetPlacementController {
           return;
         }
 
-        if (!checkForHorizontal(index, mastCount)) {
+        GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);
+        ShipPlacementValidator shipPlacementValidator =
+            new ShipPlacementValidator(shipOrientation, index, mastCount,
+                gridToBoardConverter.convert());
+        if(!shipPlacementValidator.isPlacementValid()) {
           shipPlacementSuccess = false;
           return;
         }
