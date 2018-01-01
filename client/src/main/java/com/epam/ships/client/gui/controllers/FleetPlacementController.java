@@ -1,6 +1,9 @@
 package com.epam.ships.client.gui.controllers;
 
 import com.epam.ships.client.client.Client;
+import com.epam.ships.client.gui.util.GridToBoardConverter;
+import com.epam.ships.client.gui.util.ShipOrientation;
+import com.epam.ships.client.validators.ShipPlacementValidator;
 import com.epam.ships.fleet.Fleet;
 import com.epam.ships.fleet.Mast;
 import com.epam.ships.fleet.Ship;
@@ -75,7 +78,7 @@ public class FleetPlacementController {
 
   private List<Ship> ships;
 
-  private Orientation shipOrientation;
+  private ShipOrientation shipOrientation;
 
   private boolean shipPlacementSuccess;
 
@@ -146,14 +149,14 @@ public class FleetPlacementController {
     initializeBoard();
     addDragEventsToShips();
     ships = new ArrayList<>(SHIPS_COUNT);
-    shipOrientation = Orientation.VERTICAL;
+    shipOrientation = ShipOrientation.VERTICAL;
     choiceBox.setItems(FXCollections.observableArrayList("VERTICAL", "HORIZONTAL"));
     choiceBox.setValue("VERTICAL");
     choiceBox.getSelectionModel()
         .selectedItemProperty()
         .addListener((observable, oldValue, newValue) -> {
-          shipOrientation = Orientation.valueOf((String) newValue);
-          logger.info((String) newValue);
+          shipOrientation = ShipOrientation.valueOf((String) newValue);
+          logger.info(newValue);
         });
   }
 
@@ -189,31 +192,7 @@ public class FleetPlacementController {
   private void setEventsOnField(Rectangle rectangle, final int recIndex, final int fillIndex) {
     setFieldOnDragEntered(rectangle, fillIndex);
     rectangle.setOnDragOver(boardOnDragOver);
-    rectangle.setOnDragExited(
-        event -> {
-          double noOpacity = 1.0;
-          int mastCount = ((Group) event.getGestureSource()).getChildren().size();
-          int index = fillIndex;
-          if (shipOrientation.equals(Orientation.VERTICAL)) {
-            index += 1;
-            ((Rectangle) event.getSource()).setOpacity(1);
-            for (int i = 1; i < mastCount; i++) {
-              ((Rectangle) yourBoard.getChildren().get(index + i)).setOpacity(noOpacity);
-            }
-          } else {
-            final int notRectangleChild = 2;
-            if (index + (mastCount - 1) * BOARD_SIZE
-                > yourBoard.getChildren().size() - notRectangleChild) {
-              return;
-            }
-            index += 1;
-            ((Rectangle) event.getSource()).setOpacity(1);
-            for (int i = 1; i < mastCount; i++) {
-              yourBoard.getChildren().get(index + i * BOARD_SIZE).setOpacity(noOpacity);
-            }
-          }
-          event.consume();
-        });
+    setFieldOnDragExited(rectangle, fillIndex);
     setFieldOnDragDropped(rectangle, recIndex, fillIndex);
   }
 
@@ -230,81 +209,36 @@ public class FleetPlacementController {
   private void setHorizontalOpacity(int index, int mastCount, double opacity) {
     index += 1;
     for (int i = 1; i < mastCount; i++) {
-      ((Rectangle) yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(opacity);
+      (yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(opacity);
     }
   }
 
   private void setVerticalOpacity(int index, int mastCount, double opacity) {
     index += 1;
     for (int i = 1; i < mastCount; i++) {
-      ((Rectangle) yourBoard.getChildren().get(index + i)).setOpacity(opacity);
+      (yourBoard.getChildren().get(index + i)).setOpacity(opacity);
     }
   }
 
-  private boolean checkForVertical(int index, int mastCount) {
-    return isNotShipOnShip(index, mastCount)
-        && isNotShipAboveShip(index, mastCount)
-        && isNotShipBelowShip(index)
-        && isNotShipOnTheRight(index, mastCount)
-        && isNotShipOnTheLeft(index, mastCount);
-  }
-
-  private boolean isNotShipOnShip(int index, int mastCount) {
-    for (int i = 1; i < mastCount + 1; i++) {
-      if (index + i >= yourBoard.getChildren().size()) {
-        return false;
-      }
-
-      if (((Rectangle) yourBoard.getChildren().get(index + i)).getFill().equals(Color.GREEN)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  private boolean isNotShipAboveShip(int index, int mastCount) {
-    if (index + mastCount + 1 < yourBoard.getChildren().size()) {
-      if (((Rectangle) yourBoard.getChildren().get(index + mastCount + 1)).getFill()
-          .equals(Color.GREEN)) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  private boolean isNotShipBelowShip(int index) {
-    if (index > 1 && index % BOARD_SIZE != 0) {
-      if (((Rectangle) yourBoard.getChildren().get(index)).getFill().equals(Color.GREEN)) {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  private boolean isNotShipOnTheRight(int index, int mastCount) {
-    for (int i = 1; i < mastCount + 1; i++) {
-      if (index + i - BOARD_SIZE > 1) {
-        if (((Rectangle) yourBoard.getChildren().get(index + i - BOARD_SIZE)).getFill()
-            .equals(Color.GREEN)) {
-          return false;
-        }
-      }
-    }
-    return true;
-  }
-
-  private boolean isNotShipOnTheLeft(int index, int mastCount) {
-    for (int i = 1; i < mastCount + 1; i++) {
-      if (index + i + BOARD_SIZE < yourBoard.getChildren().size()) {
-        if (((Rectangle) yourBoard.getChildren().get(index + i + BOARD_SIZE)).getFill()
-            .equals(Color.GREEN)) {
-          return false;
-        }
-      }
-    }
-    return true;
+  private void setFieldOnDragExited(Rectangle rectangle, int fillIndex) {
+    rectangle.setOnDragExited (
+        event -> {
+          double noOpacity = 1.0;
+          int mastCount = ((Group) event.getGestureSource()).getChildren().size();
+          if (shipOrientation.equals(ShipOrientation.VERTICAL)) {
+            ((Rectangle) event.getSource()).setOpacity(noOpacity);
+            setVerticalOpacity(fillIndex, mastCount ,noOpacity);
+          } else {
+            final int notRectangleChild = 2;
+            if (fillIndex + (mastCount - 1) * BOARD_SIZE
+                > yourBoard.getChildren().size() - notRectangleChild) {
+              return;
+            }
+            ((Rectangle) event.getSource()).setOpacity(1);
+            setHorizontalOpacity(fillIndex, mastCount ,noOpacity);
+          }
+          event.consume();
+        });
   }
 
   private void setFieldOnDragEntered(Rectangle rectangle, final int index) {
@@ -312,10 +246,15 @@ public class FleetPlacementController {
       double opacity = 0.5;
       int mastCount = ((Group) event.getGestureSource()).getChildren().size();
       logger.info("index = " + index);
-      if (shipOrientation.equals(Orientation.VERTICAL)) {
-        if (!checkForVertical(index, mastCount) || !checkIfNotSnaking(index, mastCount)) {
+      if (shipOrientation.equals(ShipOrientation.VERTICAL)) {
+        GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);
+        ShipPlacementValidator shipPlacementValidator =
+            new ShipPlacementValidator(shipOrientation, index, mastCount,
+                gridToBoardConverter.convert());
+        if(!shipPlacementValidator.isPlacemntValid()) {
           return;
         }
+
         setVerticalOpacity(index, mastCount, opacity);
         ((Rectangle) event.getSource()).setOpacity(opacity);
       } else {
@@ -436,11 +375,16 @@ public class FleetPlacementController {
       int mastCount = ((Group) event.getGestureSource()).getChildren().size();
       Mast[] masts = new Mast[mastCount];
 
-      if (shipOrientation.equals(Orientation.VERTICAL)) {
-        if (!checkForVertical(index, mastCount)) {
+      if (shipOrientation.equals(ShipOrientation.VERTICAL)) {
+        GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);
+        ShipPlacementValidator shipPlacementValidator =
+            new ShipPlacementValidator(shipOrientation, index, mastCount,
+                gridToBoardConverter.convert());
+        if(!shipPlacementValidator.isPlacemntValid()) {
           shipPlacementSuccess = false;
           return;
         }
+
         if (!checkIfNotSnaking(index, mastCount)) {
           shipPlacementSuccess = false;
           return;
