@@ -5,15 +5,18 @@ import com.epam.ships.server.gamestates.GameState;
 public class Game {
   private GameState currentState;
 
-  public Game(GameState initialState) {
+  Game(GameState initialState) {
     currentState = initialState;
   }
 
-  public void loop() {
+  void loop() {
     boolean shouldBeContinued = true;
+    GameState nextState;
     while (shouldBeContinued) {
-      currentState = currentState.process();
+      nextState = currentState.process();
       shouldBeContinued = currentState.shouldBeContinued();
+
+      currentState = nextState;
     }
   }
 

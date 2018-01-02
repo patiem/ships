@@ -17,6 +17,7 @@ public class GameTest {
 
     when(initState.process()).thenReturn(secondState);
     when(secondState.process()).thenReturn(thirdState);
+    when(thirdState.process()).thenReturn(thirdState);
 
     when(initState.shouldBeContinued()).thenReturn(true);
     when(secondState.shouldBeContinued()).thenReturn(true);
@@ -27,7 +28,9 @@ public class GameTest {
     new Game(initState).loop();
 
     //then
-    verify(initState);
+    verify(initState, times(1)).process();
+    verify(secondState, times(1)).process();
+    verify(thirdState, times(1)).process();
   }
 
 }
