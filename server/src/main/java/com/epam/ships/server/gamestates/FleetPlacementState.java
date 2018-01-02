@@ -10,8 +10,8 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import com.epam.ships.server.CommunicationBus;
 import com.epam.ships.server.TurnManager;
 import com.epam.ships.server.WrappedClient;
+import com.epam.ships.server.gamestates.play.PlayState;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

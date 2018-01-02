@@ -7,11 +7,11 @@ import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.server.CommunicationBus;
 import com.epam.ships.server.TurnManager;
 
-public class EndGameState implements GameState {
+public class GameEndWithWinState implements GameState {
   private CommunicationBus communicationBus;
   private TurnManager turnManager;
 
-  public EndGameState(CommunicationBus communicationBus, TurnManager turnManager) {
+  public GameEndWithWinState(CommunicationBus communicationBus, TurnManager turnManager) {
     this.communicationBus = communicationBus;
 
     this.turnManager = turnManager;
