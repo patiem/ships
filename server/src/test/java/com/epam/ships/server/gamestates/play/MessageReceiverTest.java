@@ -27,7 +27,7 @@ public class MessageReceiverTest {
     verify(communicationBus, times(1)).receive(wrappedClient);
   }
 
-  public void shouldBeTrueIfLastMessageWasShot() {
+  public void shouldBeAShotIfLastMessageWasShot() {
     //given
     Message lastMessage = new MessageBuilder()
         .withAuthor(Author.SERVER)
@@ -47,7 +47,7 @@ public class MessageReceiverTest {
     assertTrue(result);
   }
 
-  public void shouldBeFalseIfLastMessageWasNotShot() {
+  public void shouldNotBeAShotIfLastMessageWasNotShot() {
     //given
     Message lastMessage = new MessageBuilder()
         .withAuthor(Author.AUTO)

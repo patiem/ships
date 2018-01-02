@@ -10,7 +10,7 @@ abstract class DamageNotifier {
   protected TurnManager turnManager;
   protected Header header;
 
-  public DamageNotifier(MessageSender messageSender, TurnManager turnManager) {
+  DamageNotifier(MessageSender messageSender, TurnManager turnManager) {
     this.messageSender = messageSender;
     this.turnManager = turnManager;
   }
