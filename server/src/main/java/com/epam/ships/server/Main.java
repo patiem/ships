@@ -33,7 +33,6 @@ public class Main {
         logger.error(e.getMessage());
         Thread.currentThread().interrupt();
       }
-//      communicationBus.stop();
     }
   }
 }
