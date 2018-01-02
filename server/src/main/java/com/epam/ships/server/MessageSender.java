@@ -17,16 +17,17 @@ public class MessageSender {
   }
 
   public void send(WrappedClient addressee, Header header) {
-    this.communicationBus.send(addressee, messages.getMessage(header));
+    communicationBus.send(addressee, messages.getMessage(header));
     logger.info("Send message with header: " + header);
   }
 
   public void send(WrappedClient addressee, Message message) {
-    this.communicationBus.send(addressee, message);
+    communicationBus.send(addressee, message);
     logger.info("Send message with header: " + message.getHeader());
   }
 
   public void sendToAll(Header header) {
     communicationBus.sendToAll(messages.getMessage(header));
+    logger.info("Send message to both players " + header);
   }
 }
