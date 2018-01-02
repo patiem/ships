@@ -8,6 +8,7 @@ import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import javafx.scene.control.Button;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.EnumMap;
@@ -21,10 +22,15 @@ import static org.testng.Assert.assertTrue;
 public class MessageHandlerTest {
 
   @BeforeClass
-  public void setup() throws InterruptedException {
+  public void setUp() throws InterruptedException {
     if(!JavaFxInitializer.isLaunched()) {
       JavaFxInitializer.initialize();
-    } else if (!JavaFxInitializer.isEnable()){
+    }
+  }
+
+  @BeforeMethod
+  public void skipTestIfThereIsNoGraphicsSupport() {
+    if (!JavaFxInitializer.isEnable()){
       throw new SkipException("skipping test because of lack of support for graphics");
     }
   }
