@@ -14,8 +14,8 @@ public class Main {
 
     boolean shouldRun = true;
     while (shouldRun) {
-
-      GameState initialState = new WaitingForPlayersState();
+      CommunicationBus communicationBus = new CommunicationBus();
+      GameState initialState = new WaitingForPlayersState(communicationBus);
       new Game(initialState).loop();
 
       try {

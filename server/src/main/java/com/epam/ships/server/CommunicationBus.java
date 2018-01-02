@@ -7,6 +7,7 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,7 +30,7 @@ public class CommunicationBus {
     clients = new ArrayList<>();
   }
 
-  public void start() throws IOException {
+  public void start() {
     appServer.connectClients();
     for (Socket socketClient : appServer.getClientSockets()) {
       wrapClient(socketClient);
