@@ -462,8 +462,13 @@
             <!--
             We deploy site with a script (updateRemoteSite.sh),
             therefore scp is left empty.
+            We do not have a server, and it would be also
+            troublesome to configure with settings.xml for each
+            computer.
             The reason it is mentioned at all is to make local
             site staging possible.
+            More info here:
+            https://maven.apache.org/plugins/maven-site-plugin/usage.html
             -->
             <url>scp:///</url>
         </site>
