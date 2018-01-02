@@ -33,4 +33,9 @@ public class GameEndWithWinState implements GameState {
     messageSender.send(turnManager.getCurrentPlayer(), Header.WIN);
     messageSender.send(turnManager.getOtherPlayer(), Header.LOSE);
   }
+
+  @Override
+  public boolean shouldBeContinued() {
+    return false;
+  }
 }

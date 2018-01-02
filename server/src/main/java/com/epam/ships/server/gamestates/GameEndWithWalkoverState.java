@@ -16,4 +16,9 @@ public class GameEndWithWalkoverState implements GameState {
     //TODO
     return null;
   }
+
+  @Override
+  public boolean shouldBeContinued() {
+    return false;
+  }
 }

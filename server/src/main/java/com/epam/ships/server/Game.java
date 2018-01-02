@@ -10,8 +10,10 @@ public class Game {
   }
 
   public void loop() {
-    while (true) {
+    boolean shouldBeContinued = true;
+    while (shouldBeContinued) {
       currentState = currentState.process();
+      shouldBeContinued = currentState.shouldBeContinued();
     }
   }
 
