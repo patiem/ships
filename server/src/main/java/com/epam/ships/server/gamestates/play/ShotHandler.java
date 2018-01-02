@@ -4,36 +4,31 @@ import com.epam.ships.fleet.Damage;
 import com.epam.ships.fleet.Fleet;
 import com.epam.ships.fleet.Mast;
 import com.epam.ships.infra.communication.api.Message;
-import com.epam.ships.infra.communication.api.message.Author;
 import com.epam.ships.infra.communication.api.message.Header;
-import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import com.epam.ships.server.CommunicationBus;
+import com.epam.ships.server.MessageSender;
 import com.epam.ships.server.TurnManager;
-
 
 import java.util.List;
 
 class ShotHandler {
-  private CommunicationBus communicationBus;
   private TurnManager turnManager;
   private List<Fleet> fleets;
   private final Target logger = new SharedLogger(ShotHandler.class);
+  MessageSender messageSender;
+
 
   public ShotHandler(CommunicationBus communicationBus, TurnManager turnManager, List<Fleet> fleets) {
-    this.communicationBus = communicationBus;
     this.turnManager = turnManager;
-
     this.fleets = fleets;
+    messageSender = new MessageSender(communicationBus, logger);
   }
 
   public boolean handle(boolean isShotByFirstPlayer, Message shot) {
-    if (isShotByFirstPlayer) {
-      return this.handleShot(shot, fleets.get(1));
-    } else {
-      return handleShot(shot, fleets.get(0));
-    }
+    Fleet fleet = getRightFleet(isShotByFirstPlayer);
+    return handleShot(shot, fleet);
   }
 
   private boolean handleShot(Message receivedShot, Fleet fleet) {
@@ -51,77 +46,33 @@ class ShotHandler {
   }
 
   private void handleDamageShot(Message receivedShot) {
-    this.sendShipDestructedMessage();
-    this.sendShotToOpponent(receivedShot);
+    messageSender.send(turnManager.getCurrentPlayer(), Header.HIT);
+    this.informOpponentAboutShot(receivedShot);
   }
 
 
   private void handleHit(Message receivedShot) {
-    this.sendHitMessage();
-    this.sendShotToOpponent(receivedShot);
+    messageSender.send(turnManager.getCurrentPlayer(), Header.HIT);
+    this.informOpponentAboutShot(receivedShot);
   }
 
-  private void sendHitMessage() {
-    final Message hit = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.HIT)
-        .build();
-    this.communicationBus.send(turnManager.getCurrentPlayer(), hit);
-  }
 
   private void handleMiss(Message receivedShot) {
-    this.sendMissMessage();
-    this.sendShotToOpponent(receivedShot);
+    messageSender.send(turnManager.getCurrentPlayer(), Header.MISS);
+    this.informOpponentAboutShot(receivedShot);
     this.turnManager.switchPlayer();
-    rest();
-    this.sendYourTurnMessage();
-  }
-
-  private void sendMissMessage() {
-    final Message miss = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.MISS)
-        .build();
-    this.communicationBus.send(turnManager.getCurrentPlayer(), miss);
   }
 
 
-
-  private void sendShotToOpponent(Message receivedShot) {
-    this.communicationBus.send(this.turnManager.getOtherPlayer(), receivedShot);
-    logger.info("Shot send");
+  private void informOpponentAboutShot(Message receivedShot) {
+    messageSender.send(this.turnManager.getOtherPlayer(), receivedShot);
   }
 
-
-
-  private void sendShipDestructedMessage() {
-    final Message hit = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.SHIP_DESTRUCTED)
-        .build();
-    this.communicationBus.send(turnManager.getCurrentPlayer(), hit);
-  }
-
-
-  //TODO remove
-  private void sendYourTurnMessage() {
-    final Message turn = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.YOUR_TURN)
-        .build();
-    this.communicationBus.send(turnManager.getCurrentPlayer(), turn);
-    logger.info("send your turn");
-  }
-
-
-  //TODO remove
-  private void rest() {
-    final long restTime = 300;
-    try {
-      Thread.sleep(restTime);
-    } catch (final InterruptedException e) {
-      logger.error(e.getMessage());
-      Thread.currentThread().interrupt();
+  private Fleet getRightFleet(boolean isShotByFirstPlayer) {
+    if (isShotByFirstPlayer) {
+      return fleets.get(1);
+    } else {
+      return fleets.get(0);
     }
   }
 }

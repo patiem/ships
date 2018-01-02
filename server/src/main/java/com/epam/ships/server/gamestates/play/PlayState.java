@@ -2,12 +2,11 @@ package com.epam.ships.server.gamestates.play;
 
 import com.epam.ships.fleet.Fleet;
 import com.epam.ships.infra.communication.api.Message;
-import com.epam.ships.infra.communication.api.message.Author;
 import com.epam.ships.infra.communication.api.message.Header;
-import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import com.epam.ships.server.CommunicationBus;
+import com.epam.ships.server.MessageSender;
 import com.epam.ships.server.TurnManager;
 import com.epam.ships.server.gamestates.GameEndWithWalkoverState;
 import com.epam.ships.server.gamestates.GameEndWithWinState;
@@ -17,8 +16,8 @@ import java.util.List;
 
 public class PlayState implements GameState {
   private CommunicationBus communicationBus;
-  MessageReceiver messageReceiver;
-  ShotHandler shotHandler;
+  private final MessageReceiver messageReceiver;
+  private final ShotHandler shotHandler;
   private boolean isGameWon;
   private final Target logger = new SharedLogger(PlayState.class);
   private final TurnManager turnManager;
@@ -55,12 +54,8 @@ public class PlayState implements GameState {
 
 
   private void sendYourTurnMessage() {
-    final Message turn = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.YOUR_TURN)
-        .build();
-    this.communicationBus.send(turnManager.getCurrentPlayer(), turn);
-    logger.info("send your turn");
+    MessageSender messageSender = new MessageSender(communicationBus, logger);
+    messageSender.send(turnManager.getCurrentPlayer(), Header.YOUR_TURN);
   }
 
   private void rest() {

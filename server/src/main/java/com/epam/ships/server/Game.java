@@ -2,8 +2,6 @@ package com.epam.ships.server;
 
 import com.epam.ships.server.gamestates.GameState;
 
-import java.io.IOException;
-
 public class Game {
   private GameState currentState;
 
