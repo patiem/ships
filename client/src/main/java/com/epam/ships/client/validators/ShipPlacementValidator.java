@@ -21,7 +21,7 @@ public class ShipPlacementValidator {
     }
   }
 
-  private boolean checkIfNotSnaking(int index, int mastCount) {
+  private boolean checkIfNotPassingToOtherSide(final int index, final int mastCount) {
     int startIndexMod = index % BOARD_SIZE;
     for (int i = 1; i < mastCount; i++) {
       if ((index + i) % BOARD_SIZE < startIndexMod) {
@@ -37,10 +37,10 @@ public class ShipPlacementValidator {
         && isNotShipBelowShip(shipStartIndex)
         && isNotShipOnTheRight(shipStartIndex, mastCount)
         && isNotShipOnTheLeft(shipStartIndex, mastCount)
-        && checkIfNotSnaking(shipStartIndex, mastCount);
+        && checkIfNotPassingToOtherSide(shipStartIndex, mastCount);
   }
 
-  private boolean isNotShipOnShip(int index, int mastCount) {
+  private boolean isNotShipOnShip(final int index, final int mastCount) {
     for (int i = 0; i < mastCount; i++) {
       if (index + i >= board.length) {
         return false;
@@ -53,17 +53,17 @@ public class ShipPlacementValidator {
     return true;
   }
 
-  private boolean isNotShipAboveShip(int index, int mastCount) {
+  private boolean isNotShipAboveShip(final int index, final int mastCount) {
     return !((index + mastCount < board.length)
         && (board[index + mastCount].equals(FieldState.OCCUPIED)));
   }
 
-  private boolean isNotShipBelowShip(int index) {
+  private boolean isNotShipBelowShip(final int index) {
     return !(index > 1 && index % BOARD_SIZE != 0
         && (board[index -1].equals(FieldState.OCCUPIED)));
   }
 
-  private boolean isNotShipOnTheRight(int index, int mastCount) {
+  private boolean isNotShipOnTheRight(final int index, final int mastCount) {
     for (int i = 0; i < mastCount; i++) {
       if (index + i - BOARD_SIZE > 0
           && (board[index + i - BOARD_SIZE].equals(FieldState.OCCUPIED))) {
@@ -73,7 +73,7 @@ public class ShipPlacementValidator {
     return true;
   }
 
-  private boolean isNotShipOnTheLeft(int index, int mastCount) {
+  private boolean isNotShipOnTheLeft(final int index, final int mastCount) {
     for (int i = 0; i < mastCount; i++) {
       if (index + i + BOARD_SIZE < board.length
           && (board[index + i + BOARD_SIZE].equals(FieldState.OCCUPIED))) {
@@ -91,7 +91,7 @@ public class ShipPlacementValidator {
         && isNotShipOnTheLeftHorizontal(shipStartIndex);
   }
 
-  private boolean isNotShipOnShipHorizontal(int index, int mastCount) {
+  private boolean isNotShipOnShipHorizontal(final int index, final int mastCount) {
     for (int i = 0; i < mastCount; i++) {
       if (board[index + i * BOARD_SIZE].equals(FieldState.OCCUPIED)) {
         return false;
@@ -100,7 +100,7 @@ public class ShipPlacementValidator {
     return true;
   }
 
-  private boolean isNotShipBelowShipHorizontal(int index, int mastCount) {
+  private boolean isNotShipBelowShipHorizontal(final int index, final int mastCount) {
     for (int i = 0; i < mastCount; i++) {
       if ((index + i * BOARD_SIZE) % BOARD_SIZE == 9) {
         return true;
@@ -117,7 +117,7 @@ public class ShipPlacementValidator {
     return true;
   }
 
-  private boolean isNotShipAboveShipHorizontal(int index, int mastCount) {
+  private boolean isNotShipAboveShipHorizontal(final int index, final int mastCount) {
     for (int i = 0; i < mastCount; i++) {
       if ((index + i * BOARD_SIZE) % BOARD_SIZE == 0) {
         return true;
@@ -134,7 +134,7 @@ public class ShipPlacementValidator {
     return true;
   }
 
-  private boolean isNotShipOnTheRightHorizontal(int index, int mastCount) {
+  private boolean isNotShipOnTheRightHorizontal(final int index, final int mastCount) {
     if (index + mastCount * BOARD_SIZE >= board.length) {
       return true;
     }
@@ -146,7 +146,7 @@ public class ShipPlacementValidator {
     return true;
   }
 
-  private boolean isNotShipOnTheLeftHorizontal(int index) {
+  private boolean isNotShipOnTheLeftHorizontal(final int index) {
     if (index - BOARD_SIZE < 1) {
       return true;
     }

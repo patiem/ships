@@ -20,7 +20,7 @@ class MessageHandler {
 
   private static final Target logger = new SharedLogger(Client.class);
   private final Map<Header, EventTrigger> triggers;
-  private Button eventButton = null;
+  private Button eventButton;
   @Getter
   private boolean endConnectionTriggered;
 
@@ -29,7 +29,6 @@ class MessageHandler {
    */
   MessageHandler(Map<Header, EventTrigger> triggerMap) {
     this.triggers = triggerMap;
-    endConnectionTriggered = false;
   }
 
   void setCurrentEventButton(Button eventButton) {
