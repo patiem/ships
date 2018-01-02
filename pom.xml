@@ -297,7 +297,7 @@
                 <configuration>
                     <xmlOutput>false</xmlOutput>
                     <effort>Max</effort>
-                    <threshold>Low</threshold>
+                    <threshold>Medium</threshold>
                 </configuration>
             </plugin>
             <plugin>
