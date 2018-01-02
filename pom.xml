@@ -459,6 +459,12 @@
     <distributionManagement>
         <site>
             <id>${project.artifactId}</id>
+            <!--
+            We deploy site with a script (updateRemoteSite.sh),
+            therefore scp is left empty.
+            The reason it is mentioned at all is to make local
+            site staging possible.
+            -->
             <url>scp:///</url>
         </site>
     </distributionManagement>
