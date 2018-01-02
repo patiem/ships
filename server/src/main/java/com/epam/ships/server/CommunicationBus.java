@@ -7,12 +7,12 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * It starts a server, gets its client sockets
  * and adds them wrapped into own list.
+ *
  * @author Piotr Czyż
  * @since 2017-12-09
  */

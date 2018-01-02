@@ -13,10 +13,10 @@ import com.epam.ships.server.TurnManager;
 import java.util.List;
 
 class ShotHandler {
-  private TurnManager turnManager;
-  private List<Fleet> fleets;
   private final Target logger = new SharedLogger(ShotHandler.class);
   private final MessageSender messageSender;
+  private TurnManager turnManager;
+  private List<Fleet> fleets;
 
 
   ShotHandler(CommunicationBus communicationBus, TurnManager turnManager, List<Fleet> fleets) {

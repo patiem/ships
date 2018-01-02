@@ -8,8 +8,8 @@ import com.epam.ships.server.CommunicationBus;
 import com.epam.ships.server.WrappedClient;
 
 public class MessageReceiver {
-  private CommunicationBus communicationBus;
   private final Target logger = new SharedLogger(MessageReceiver.class);
+  private CommunicationBus communicationBus;
   private Message lastMessage;
 
   MessageReceiver(CommunicationBus communicationBus) {

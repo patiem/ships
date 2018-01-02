@@ -8,10 +8,10 @@ import com.epam.ships.server.MessageSender;
 import com.epam.ships.server.TurnManager;
 
 public class GameEndWithWinState implements GameState {
-  private CommunicationBus communicationBus;
-  private TurnManager turnManager;
   private final MessageSender messageSender;
   private final Target logger = new SharedLogger(GameEndWithWinState.class);
+  private CommunicationBus communicationBus;
+  private TurnManager turnManager;
 
   public GameEndWithWinState(CommunicationBus communicationBus, TurnManager turnManager) {
     this.communicationBus = communicationBus;
