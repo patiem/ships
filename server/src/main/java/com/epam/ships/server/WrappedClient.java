@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 @EqualsAndHashCode
-class WrappedClient {
+public class WrappedClient {
 
   private final Target logger = new SharedLogger(this.getClass());
 

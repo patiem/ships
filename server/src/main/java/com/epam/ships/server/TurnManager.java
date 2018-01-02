@@ -1,27 +1,27 @@
 package com.epam.ships.server;
 
-class TurnManager {
+public class TurnManager {
   private final WrappedClient firstPlayer;
   private final WrappedClient secondPlayer;
   private WrappedClient currentPlayer;
   private WrappedClient otherPlayer;
 
-  TurnManager(final WrappedClient firstPlayer, final WrappedClient secondPlayer) {
+  public TurnManager(final WrappedClient firstPlayer, final WrappedClient secondPlayer) {
     this.firstPlayer = firstPlayer;
     this.secondPlayer = secondPlayer;
     this.currentPlayer = firstPlayer;
     this.otherPlayer = secondPlayer;
   }
 
-  final WrappedClient getCurrentPlayer() {
+  public final WrappedClient getCurrentPlayer() {
     return this.currentPlayer;
   }
 
-  final WrappedClient getOtherPlayer() {
+  public final WrappedClient getOtherPlayer() {
     return this.otherPlayer;
   }
 
-  void switchPlayer() {
+  public void switchPlayer() {
     if (this.currentPlayer.equals(this.firstPlayer)) {
       this.currentPlayer = this.secondPlayer;
       this.otherPlayer = this.firstPlayer;
@@ -31,7 +31,7 @@ class TurnManager {
     }
   }
 
-  boolean isCurrentPlayerFirstPlayer() {
+  public boolean isCurrentPlayerFirstPlayer() {
     return currentPlayer.equals(firstPlayer);
   }
 }
