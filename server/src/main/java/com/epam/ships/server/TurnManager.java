@@ -13,11 +13,11 @@ public class TurnManager {
     this.otherPlayer = secondPlayer;
   }
 
-  public final WrappedClient getCurrentPlayer() {
+  public WrappedClient getCurrentPlayer() {
     return this.currentPlayer;
   }
 
-  public final WrappedClient getOtherPlayer() {
+  public WrappedClient getOtherPlayer() {
     return this.otherPlayer;
   }
 
