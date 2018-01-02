@@ -6,6 +6,7 @@ import com.epam.ships.infra.communication.api.message.Header;
 import com.epam.ships.infra.communication.api.message.Status;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import javafx.scene.control.Button;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -21,16 +22,15 @@ public class MessageHandlerTest {
 
   @BeforeClass
   public void setup() throws InterruptedException {
-    if(!JavaFxInitializer.launched) {
+    if(!JavaFxInitializer.isLaunched()) {
       JavaFxInitializer.initialize();
+    } else if (!JavaFxInitializer.isEnable()){
+      throw new SkipException("skipping test because of lack of support for graphics");
     }
   }
 
   @Test
   public void shouldCallConnectionEndTrigger() {
-    if(!JavaFxInitializer.enable) {
-      return;
-    }
     //given
     Map<Header, EventTrigger> triggers = new EnumMap<>(Header.class);
     ConnectionEndTrigger connectionEndTrigger = mock(ConnectionEndTrigger.class);
@@ -53,9 +53,6 @@ public class MessageHandlerTest {
 
   @Test
   public void shouldReturnTrueAfterTriggerOpponentWithdrawEven() {
-    if(!JavaFxInitializer.enable) {
-      return;
-    }
     //given
     Map<Header, EventTrigger> triggers = new EnumMap<>(Header.class);
     ConnectionEndTrigger connectionEndTrigger = mock(ConnectionEndTrigger.class);

@@ -2,14 +2,17 @@ package com.epam.ships.client;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import lombok.Getter;
 
 import java.awt.GraphicsEnvironment;
 
 public class JavaFxInitializer extends Application {
 
   private final static Object barrier = new Object();
-  public static boolean launched = false;
-  public static boolean enable = true;
+  @Getter
+  private static boolean launched = false;
+  @Getter
+  private static boolean enable = true;
 
   @Override
   public void start(Stage primaryStage) throws Exception {
