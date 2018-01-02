@@ -46,10 +46,9 @@ class ShotHandler {
   }
 
   private void handleDamageShot(Message receivedShot) {
-    messageSender.send(turnManager.getCurrentPlayer(), Header.HIT);
+    messageSender.send(turnManager.getCurrentPlayer(), Header.SHIP_DESTRUCTED);
     this.informOpponentAboutShot(receivedShot);
   }
-
 
   private void handleHit(Message receivedShot) {
     messageSender.send(turnManager.getCurrentPlayer(), Header.HIT);
