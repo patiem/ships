@@ -15,18 +15,16 @@ public class GameEndWithWinState implements GameState {
 
   public GameEndWithWinState(CommunicationBus communicationBus, TurnManager turnManager) {
     this.communicationBus = communicationBus;
-
     this.turnManager = turnManager;
-
     messageSender = new MessageSender(communicationBus, logger);
-
   }
 
   @Override
   public GameState process() {
     handleEndOfGame();
     communicationBus.stop();
-    return null;
+    logger.info("Game ended");
+    return this;
   }
 
   private void handleEndOfGame() {
