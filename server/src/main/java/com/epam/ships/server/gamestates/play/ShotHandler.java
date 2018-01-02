@@ -22,7 +22,7 @@ class ShotHandler {
   ShotHandler(CommunicationBus communicationBus, TurnManager turnManager, List<Fleet> fleets) {
     this.turnManager = turnManager;
     this.fleets = fleets;
-    messageSender = new MessageSender(communicationBus, logger);
+    this.messageSender = new MessageSender(communicationBus, logger);
   }
 
   public boolean handle(boolean isShotByFirstPlayer, Message shot) {
@@ -31,10 +31,10 @@ class ShotHandler {
   }
 
   private boolean handleShot(Message receivedShot, Fleet fleet) {
+    logger.debug("Handling shot at " + receivedShot.getStatement());
     final Mast mast = Mast.ofIndex(receivedShot.getStatement());
     Damage damage = fleet.handleDamage(mast);
-
-    DamageNotifier damageNotifier = null;
+    DamageNotifier damageNotifier = new DamageMissNotifier(messageSender, turnManager);
     if (damage.equals(Damage.MISSED)) {
       damageNotifier = new DamageMissNotifier(messageSender, turnManager);
     } else if (damage.equals(Damage.HIT)) {

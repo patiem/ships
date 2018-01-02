@@ -5,15 +5,14 @@ import com.epam.ships.infra.communication.api.message.Author;
 import com.epam.ships.infra.communication.api.message.Header;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.EnumMap;
 
 public class MessageRepository {
 
-  private Map<Header, Message> messages;
+  private EnumMap<Header, Message> messages;
 
-  public MessageRepository() {
-    this.messages = new HashMap<>();
+  MessageRepository() {
+    this.messages = new EnumMap<>(Header.class);
     messages.put(Header.OPPONENT_CONNECTED, this.opponentConnectedMessage());
     messages.put(Header.WIN, this.winMessage());
     messages.put(Header.LOSE, this.loseMessage());

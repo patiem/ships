@@ -16,7 +16,6 @@ import java.net.Socket;
 public class WrappedClient {
 
   private final Target logger = new SharedLogger(this.getClass());
-
   private final Socket socket;
   private Sender out;
   private Receiver in;

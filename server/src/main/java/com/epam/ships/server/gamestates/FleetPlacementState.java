@@ -20,8 +20,7 @@ public class FleetPlacementState implements GameState {
   private final Target logger = new SharedLogger(FleetPlacementState.class);
   private final List<Fleet> fleets;
 
-  public FleetPlacementState(CommunicationBus communicationBus) {
-
+  FleetPlacementState(CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
     this.turnManager = new TurnManager(communicationBus.getFirstClient(),
         communicationBus.getSecondClient());
@@ -36,12 +35,10 @@ public class FleetPlacementState implements GameState {
     return new PlayState(communicationBus, fleets);
   }
 
-
   private void askPlayersForPlaceFleet() {
     MessageSender messageSender = new MessageSender(communicationBus, logger);
     messageSender.sendToAll(Header.PLACEMENT);
   }
-
 
   private void receiveFleetFromBothPlayers() {
     fleets.add(receiveFloat(turnManager.getCurrentPlayer()));

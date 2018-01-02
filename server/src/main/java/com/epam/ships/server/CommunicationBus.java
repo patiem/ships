@@ -63,11 +63,11 @@ public class CommunicationBus {
     clients.forEach(wrappedClient -> send(wrappedClient, message));
   }
 
-  public final WrappedClient getFirstClient() {
+  public WrappedClient getFirstClient() {
     return this.clients.get(0);
   }
 
-  public final WrappedClient getSecondClient() {
+  public WrappedClient getSecondClient() {
     return this.clients.get(1);
   }
 }

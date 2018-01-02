@@ -37,21 +37,16 @@ public class PlayState implements GameState {
     messageReceiver.receive(turnManager.getCurrentPlayer());
     if (messageReceiver.isAShot()) {
       Message shot = messageReceiver.getMessage();
-
       isGameWon = shotHandler.handle(turnManager.isCurrentPlayerFirstPlayer(), shot);
-
     } else {
       return new GameEndWithWalkoverState(communicationBus, turnManager);
     }
-
     if (isGameWon) {
       return new GameEndWithWinState(communicationBus, turnManager);
     }
-
     rest();
     return this;
   }
-
 
   private void sendYourTurnMessage() {
     MessageSender messageSender = new MessageSender(communicationBus, logger);
@@ -67,6 +62,4 @@ public class PlayState implements GameState {
       Thread.currentThread().interrupt();
     }
   }
-
-
 }

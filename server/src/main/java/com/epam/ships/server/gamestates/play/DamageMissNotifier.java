@@ -11,6 +11,7 @@ class DamageMissNotifier extends DamageNotifier {
     this.header = Header.MISS;
   }
 
+  @Override
   protected void notify(Message receivedShot) {
     messageSender.send(turnManager.getCurrentPlayer(), header);
     informOpponentAboutShot(receivedShot);
