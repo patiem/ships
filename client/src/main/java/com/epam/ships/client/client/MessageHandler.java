@@ -27,7 +27,7 @@ class MessageHandler {
   /**
    * Creates an instance of MessageHandler and configures all possible triggers types.
    */
-  MessageHandler(Map<Header, EventTrigger> triggerMap) {
+  MessageHandler(final Map<Header, EventTrigger> triggerMap) {
     this.triggers = triggerMap;
   }
 

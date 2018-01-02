@@ -32,7 +32,12 @@ public class Client implements Runnable {
   private Socket clientSocket;
   private volatile boolean shouldRun;
 
-  public Client(MessageHandler messageHandler, boolean shouldRun) {
+  /**
+   * Creates Client instance.
+   * @param messageHandler - messageHandler instance
+   * @param shouldRun - flag informing if client should start/run
+   */
+  public Client(final MessageHandler messageHandler, boolean shouldRun) {
     this.messageHandler = messageHandler;
     this.shouldRun = shouldRun;
   }
