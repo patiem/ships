@@ -7,8 +7,7 @@
 #
 # [Description]
 #
-# Part of summarize script.
-# It's run mvn test, and basing on results counts number of unit tests in project.
+# It runs mvn test, and basing on results it counts number of unit tests in project.
 #
 
 mvn test --log-file logFile
