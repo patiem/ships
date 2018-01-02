@@ -1,20 +1,25 @@
 package com.epam.ships.server.gamestates;
 
-import com.epam.ships.infra.communication.api.Message;
-import com.epam.ships.infra.communication.api.message.Author;
 import com.epam.ships.infra.communication.api.message.Header;
-import com.epam.ships.infra.communication.core.message.MessageBuilder;
+import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.infra.logging.core.SharedLogger;
 import com.epam.ships.server.CommunicationBus;
+import com.epam.ships.server.MessageSender;
 import com.epam.ships.server.TurnManager;
 
 public class GameEndWithWinState implements GameState {
   private CommunicationBus communicationBus;
   private TurnManager turnManager;
+  private final MessageSender messageSender;
+  private final Target logger = new SharedLogger(GameEndWithWinState.class);
 
   public GameEndWithWinState(CommunicationBus communicationBus, TurnManager turnManager) {
     this.communicationBus = communicationBus;
 
     this.turnManager = turnManager;
+
+    messageSender = new MessageSender(communicationBus, logger);
+
   }
 
   @Override
@@ -25,23 +30,7 @@ public class GameEndWithWinState implements GameState {
   }
 
   private void handleEndOfGame() {
-    this.sendWonMessage();
-    this.sendLostMessage();
-  }
-
-  private void sendWonMessage() {
-    final Message won = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.WIN)
-        .build();
-    this.communicationBus.send(turnManager.getCurrentPlayer(), won);
-  }
-
-  private void sendLostMessage() {
-    final Message lost = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.LOSE)
-        .build();
-    this.communicationBus.send(turnManager.getOtherPlayer(), lost);
+    messageSender.send(turnManager.getCurrentPlayer(), Header.WIN);
+    messageSender.send(turnManager.getOtherPlayer(), Header.LOSE);
   }
 }

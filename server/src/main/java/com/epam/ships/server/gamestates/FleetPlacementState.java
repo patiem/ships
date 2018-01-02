@@ -2,12 +2,11 @@ package com.epam.ships.server.gamestates;
 
 import com.epam.ships.fleet.Fleet;
 import com.epam.ships.infra.communication.api.Message;
-import com.epam.ships.infra.communication.api.message.Author;
 import com.epam.ships.infra.communication.api.message.Header;
-import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import com.epam.ships.server.CommunicationBus;
+import com.epam.ships.server.MessageSender;
 import com.epam.ships.server.TurnManager;
 import com.epam.ships.server.WrappedClient;
 import com.epam.ships.server.gamestates.play.PlayState;
@@ -39,12 +38,8 @@ public class FleetPlacementState implements GameState {
 
 
   private void askPlayersForPlaceFleet() {
-    final Message message = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.PLACEMENT)
-        .build();
-
-    communicationBus.sendToAll(message);
+    MessageSender messageSender = new MessageSender(communicationBus, logger);
+    messageSender.sendToAll(Header.PLACEMENT);
   }
 
 

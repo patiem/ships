@@ -54,11 +54,11 @@ public class CommunicationBus {
     return sender.receive();
   }
 
-  public void send(final WrappedClient recipient, final Message response) {
+  void send(final WrappedClient recipient, final Message response) {
     recipient.send(response);
   }
 
-  public void sendToAll(final Message message) {
+  void sendToAll(final Message message) {
     clients.forEach(wrappedClient -> send(wrappedClient, message));
   }
 
