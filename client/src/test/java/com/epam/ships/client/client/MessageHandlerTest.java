@@ -38,17 +38,9 @@ public class MessageHandlerTest {
   @Test
   public void shouldCallConnectionEndTrigger() {
     //given
-    Map<Header, EventTrigger> triggers = new EnumMap<>(Header.class);
     ConnectionEndTrigger connectionEndTrigger = mock(ConnectionEndTrigger.class);
-    triggers.put(Header.CONNECTION, connectionEndTrigger);
-    Message message = new MessageBuilder()
-        .withHeader(Header.CONNECTION)
-        .withStatus(Status.END)
-        .withStatement("End of a message")
-        .build();
-
-    MessageHandler messageHandler = new MessageHandler(triggers);
-    messageHandler.setCurrentEventButton(new Button());
+    MessageHandler messageHandler = produceMessageHandler(connectionEndTrigger);
+    Message message = connectionEndMessage();
 
     //when
     messageHandler.handle(message);
@@ -60,21 +52,29 @@ public class MessageHandlerTest {
   @Test
   public void shouldReturnTrueAfterTriggerOpponentWithdrawEven() {
     //given
-    Map<Header, EventTrigger> triggers = new EnumMap<>(Header.class);
     ConnectionEndTrigger connectionEndTrigger = mock(ConnectionEndTrigger.class);
-    triggers.put(Header.CONNECTION, connectionEndTrigger);
-    Message message = new MessageBuilder()
-        .withHeader(Header.CONNECTION)
-        .withStatus(Status.END)
-        .withStatement("End of a message")
-        .build();
-
-    MessageHandler messageHandler = new MessageHandler(triggers);
-    messageHandler.setCurrentEventButton(new Button());
+    MessageHandler messageHandler = produceMessageHandler(connectionEndTrigger);
+    Message message = connectionEndMessage();
 
     //when
     messageHandler.handle(message);
 
     assertTrue(messageHandler.isEndConnectionTriggered());
+  }
+
+  private Message connectionEndMessage() {
+    return new MessageBuilder()
+        .withHeader(Header.CONNECTION)
+        .withStatus(Status.END)
+        .withStatement("End of a message")
+        .build();
+  }
+
+  private MessageHandler produceMessageHandler(EventTrigger eventTrigger) {
+    Map<Header, EventTrigger> triggers = new EnumMap<>(Header.class);
+    triggers.put(Header.CONNECTION, eventTrigger);
+    MessageHandler messageHandler = new MessageHandler(triggers);
+    messageHandler.setCurrentEventButton(new Button());
+    return messageHandler;
   }
 }

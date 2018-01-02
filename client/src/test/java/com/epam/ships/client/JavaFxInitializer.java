@@ -6,6 +6,11 @@ import lombok.Getter;
 
 import java.awt.GraphicsEnvironment;
 
+/**
+ * Class using to initialize javafx thread to tests.
+ * @author Magdalena Aarsman
+ * @since 2018-01-01
+ */
 public class JavaFxInitializer extends Application {
 
   private final static Object barrier = new Object();
@@ -26,7 +31,10 @@ public class JavaFxInitializer extends Application {
     }
   }
 
-  public static void initialize() throws InterruptedException {
+  /**
+   * Launch javafx application.
+   */
+  public static void initialize() {
     if (GraphicsEnvironment.isHeadless()) {
       // non gui mode
       enable = false;
@@ -41,7 +49,11 @@ public class JavaFxInitializer extends Application {
       t.setDaemon(true);
       t.start();
       synchronized (barrier) {
-        barrier.wait();
+        try {
+          barrier.wait();
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+        }
       }
   }
 }
