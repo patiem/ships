@@ -4,7 +4,6 @@ import com.epam.ships.fleet.Damage;
 import com.epam.ships.fleet.Fleet;
 import com.epam.ships.fleet.Mast;
 import com.epam.ships.infra.communication.api.Message;
-import com.epam.ships.infra.communication.api.message.Header;
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
 import com.epam.ships.server.CommunicationBus;
@@ -17,10 +16,10 @@ class ShotHandler {
   private TurnManager turnManager;
   private List<Fleet> fleets;
   private final Target logger = new SharedLogger(ShotHandler.class);
-  MessageSender messageSender;
+  private final MessageSender messageSender;
 
 
-  public ShotHandler(CommunicationBus communicationBus, TurnManager turnManager, List<Fleet> fleets) {
+  ShotHandler(CommunicationBus communicationBus, TurnManager turnManager, List<Fleet> fleets) {
     this.turnManager = turnManager;
     this.fleets = fleets;
     messageSender = new MessageSender(communicationBus, logger);
@@ -35,36 +34,16 @@ class ShotHandler {
     final Mast mast = Mast.ofIndex(receivedShot.getStatement());
     Damage damage = fleet.handleDamage(mast);
 
+    DamageNotifier damageNotifier = null;
     if (damage.equals(Damage.MISSED)) {
-      this.handleMiss(receivedShot);
+      damageNotifier = new DamageMissNotifier(messageSender, turnManager);
     } else if (damage.equals(Damage.HIT)) {
-      this.handleHit(receivedShot);
+      damageNotifier = new DamageHitNotifier(messageSender, turnManager);
     } else if (damage.equals(Damage.DESTRUCTED)) {
-      this.handleDamageShot(receivedShot);
+      damageNotifier = new DamageDestructedNotifier(messageSender, turnManager);
     }
+    damageNotifier.notify(receivedShot);
     return fleet.isDefeated();
-  }
-
-  private void handleDamageShot(Message receivedShot) {
-    messageSender.send(turnManager.getCurrentPlayer(), Header.SHIP_DESTRUCTED);
-    this.informOpponentAboutShot(receivedShot);
-  }
-
-  private void handleHit(Message receivedShot) {
-    messageSender.send(turnManager.getCurrentPlayer(), Header.HIT);
-    this.informOpponentAboutShot(receivedShot);
-  }
-
-
-  private void handleMiss(Message receivedShot) {
-    messageSender.send(turnManager.getCurrentPlayer(), Header.MISS);
-    this.informOpponentAboutShot(receivedShot);
-    this.turnManager.switchPlayer();
-  }
-
-
-  private void informOpponentAboutShot(Message receivedShot) {
-    messageSender.send(this.turnManager.getOtherPlayer(), receivedShot);
   }
 
   private Fleet getRightFleet(boolean isShotByFirstPlayer) {
