@@ -18,6 +18,8 @@
 # * It requires a user to provide his credentials at some stage (when performing git push)
 #
 
+set -e
+
 mkdir ../../tempUpdateRemoteSite
 echo "Clonning first repo [from].."
 ./clone.sh ../../tempUpdateRemoteSite/from
