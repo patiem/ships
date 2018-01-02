@@ -5,9 +5,9 @@ import com.epam.ships.infra.communication.api.message.Header;
 import com.epam.ships.infra.logging.api.Target;
 
 public class MessageSender {
+  private final MessageRepository messages;
   private CommunicationBus communicationBus;
   private Target logger;
-  private final MessageRepository messages;
 
   public MessageSender(CommunicationBus communicationBus, Target logger) {
 

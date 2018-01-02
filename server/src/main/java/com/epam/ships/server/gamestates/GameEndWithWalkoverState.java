@@ -8,6 +8,7 @@ import com.epam.ships.server.TurnManager;
 public class GameEndWithWalkoverState implements GameState {
 
   private final Target logger = new SharedLogger(GameEndWithWalkoverState.class);
+
   public GameEndWithWalkoverState(CommunicationBus communicationBus, TurnManager turnManager) {
   }
 

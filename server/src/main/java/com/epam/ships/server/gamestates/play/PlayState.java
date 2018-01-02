@@ -15,12 +15,12 @@ import com.epam.ships.server.gamestates.GameState;
 import java.util.List;
 
 public class PlayState implements GameState {
-  private CommunicationBus communicationBus;
   private final MessageReceiver messageReceiver;
   private final ShotHandler shotHandler;
-  private boolean isGameWon;
   private final Target logger = new SharedLogger(PlayState.class);
   private final TurnManager turnManager;
+  private CommunicationBus communicationBus;
+  private boolean isGameWon;
 
   public PlayState(CommunicationBus communicationBus, List<Fleet> fleets) {
     this.communicationBus = communicationBus;
