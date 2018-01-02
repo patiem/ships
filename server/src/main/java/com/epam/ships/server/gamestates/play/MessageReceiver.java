@@ -12,7 +12,7 @@ public class MessageReceiver {
   private final Target logger = new SharedLogger(MessageReceiver.class);
   private Message lastMessage;
 
-  public MessageReceiver(CommunicationBus communicationBus) {
+  MessageReceiver(CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
   }
 
@@ -21,11 +21,11 @@ public class MessageReceiver {
     logger.info(lastMessage);
   }
 
-  public boolean isAShot() {
+  boolean isAShot() {
     return Header.SHOT.equals(lastMessage.getHeader());
   }
 
-  public Message getMessage() {
+  Message getMessage() {
     return lastMessage;
   }
 }
