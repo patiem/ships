@@ -4,17 +4,26 @@ import com.epam.ships.client.gui.util.FieldState;
 import com.epam.ships.client.gui.util.ShipOrientation;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Enable validation of ships placement.
+ * @author Magdalena Aarsman
+ * @since 2017-12-31
+ */
 @RequiredArgsConstructor
 public class ShipPlacementValidator {
-  private final static int BOARD_SIZE = 10;
+  private static final int BOARD_SIZE = 10;
 
   private final ShipOrientation shipOrientation;
   private final int shipStartIndex;
   private final int mastCount;
   private final FieldState[] board;
 
+  /**
+   * Check if ship placement is valid.
+   * @return true if it is valid, false if not.
+   */
   public boolean isPlacementValid() {
-    if(shipOrientation.equals(ShipOrientation.HORIZONTAL)) {
+    if (shipOrientation.equals(ShipOrientation.HORIZONTAL)) {
       return checkForHorizontal();
     } else {
       return checkForVertical();
@@ -60,7 +69,7 @@ public class ShipPlacementValidator {
 
   private boolean isNotShipBelowShip(final int index) {
     return !(index > 1 && index % BOARD_SIZE != 0
-        && (board[index -1].equals(FieldState.OCCUPIED)));
+        && (board[index - 1].equals(FieldState.OCCUPIED)));
   }
 
   private boolean isNotShipOnTheRight(final int index, final int mastCount) {
@@ -122,11 +131,11 @@ public class ShipPlacementValidator {
       if ((index + i * BOARD_SIZE) % BOARD_SIZE == 0) {
         return true;
       }
-      if (index + i * BOARD_SIZE >= board.length|| index + i * BOARD_SIZE < 1) {
+      if (index + i * BOARD_SIZE >= board.length || index + i * BOARD_SIZE < 1) {
         return true;
       }
 
-      if (board[index -1 + i * BOARD_SIZE].equals(FieldState.OCCUPIED)) {
+      if (board[index - 1 + i * BOARD_SIZE].equals(FieldState.OCCUPIED)) {
         return false;
       }
     }

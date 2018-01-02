@@ -24,7 +24,7 @@ public class GuiMain extends Application {
     final String windowTitle = "Battleships";
     final boolean clientShouldRun = true;
     final Client client =
-        new Client(new MessageHandlerBuilder().withEnumMap().withDefouldSetsOfTriggers().build(),
+        new Client(new MessageHandlerBuilder().withEnumMap().withDefaultSetsOfTriggers().build(),
             clientShouldRun);
     final int sceneWidth = 600;
     final int sceneHeight = 400;

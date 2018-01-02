@@ -198,7 +198,7 @@ public class FleetPlacementController {
   private void setOpacity(int index, int mastCount, double opacity) {
     index += 1;
 
-    if(shipOrientation.equals(ShipOrientation.HORIZONTAL)) {
+    if (shipOrientation.equals(ShipOrientation.HORIZONTAL)) {
       for (int i = 1; i < mastCount; i++) {
         (yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(opacity);
       }
@@ -210,7 +210,7 @@ public class FleetPlacementController {
   }
 
   private void setFieldOnDragExited(Rectangle rectangle, int fillIndex) {
-    rectangle.setOnDragExited (
+    rectangle.setOnDragExited(
         event -> {
           double noOpacity = 1.0;
           int mastCount = ((Group) event.getGestureSource()).getChildren().size();
@@ -234,7 +234,7 @@ public class FleetPlacementController {
       ShipPlacementValidator shipPlacementValidator =
           new ShipPlacementValidator(shipOrientation, index, mastCount,
               gridToBoardConverter.convert());
-      if(!shipPlacementValidator.isPlacementValid()) {
+      if (!shipPlacementValidator.isPlacementValid()) {
         return;
       }
 
@@ -246,14 +246,14 @@ public class FleetPlacementController {
 
   private boolean isOutOfBound(int index, int mastCount) {
     final int notRectangleChildCount = 2;
-    if(shipOrientation.equals(ShipOrientation.HORIZONTAL)) {
+    if (shipOrientation.equals(ShipOrientation.HORIZONTAL)) {
       if (index + (mastCount - 1) * BOARD_SIZE
           > yourBoard.getChildren().size() - notRectangleChildCount) {
         return true;
       }
       return false;
     } else {
-      if(index + mastCount >= yourBoard.getChildren().size()) {
+      if (index + mastCount >= yourBoard.getChildren().size()) {
         return true;
       }
     }
@@ -280,7 +280,7 @@ public class FleetPlacementController {
       ShipPlacementValidator shipPlacementValidator =
           new ShipPlacementValidator(shipOrientation, index, mastCount,
               gridToBoardConverter.convert());
-      if(!shipPlacementValidator.isPlacementValid()) {
+      if (!shipPlacementValidator.isPlacementValid()) {
         shipPlacementSuccess = false;
         return;
       }
@@ -299,7 +299,7 @@ public class FleetPlacementController {
   private void placeShip(int index, Mast[] masts, int mastCount, int recIndex) {
     index += 1;
 
-    if(shipOrientation.equals(ShipOrientation.VERTICAL)) {
+    if (shipOrientation.equals(ShipOrientation.VERTICAL)) {
       for (int i1 = 1; i1 < mastCount; i1++) {
         ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);
         masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));

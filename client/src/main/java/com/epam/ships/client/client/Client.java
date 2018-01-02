@@ -42,6 +42,7 @@ public class Client implements Runnable {
    *
    * @param ipAddress - server ip address
    * @param port      - server port
+   * @param socket    - socket to connect on.
    * @return true if success, false on failure
    */
   public boolean connect(final String ipAddress, final int port, Socket socket) {
