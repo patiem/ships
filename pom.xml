@@ -129,6 +129,16 @@
 
     <build>
         <pluginManagement>
+            <!--Why so many plug-ins in pluginManagement?
+            It all started with a report produced by
+            versions-maven-plugin
+            It lists all plug-ins anyhow used by Maven
+            and gives a status:
+            - if a version is not fixed and/or not the latest one = red
+            - if a version is fixed and the latest one = green
+            We wanted to have as many green status as possible which is
+            also a project requirement (as we understood it).
+            -->
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
