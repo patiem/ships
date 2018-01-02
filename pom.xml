@@ -237,6 +237,17 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>${releaseVersion}</version>
                 </plugin>
+                <!--
+                We were supposed to tell, how Maven Antrun Plug-in
+                was used.
+                Maven Antrun Plug-in can be used to run
+                Ant tasks. We do not know much about Ant, and
+                the most comprehensive/useful example we've found was
+                running a script with a build phase:
+                https://maven.apache.org/guides/mini/guide-using-ant.html
+                We haven't used it in our project anyways because
+                we couldn't think of a script we'd like to run with a build phase:)
+                -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-antrun-plugin</artifactId>
