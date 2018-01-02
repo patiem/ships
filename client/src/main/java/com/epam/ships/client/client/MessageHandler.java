@@ -16,7 +16,7 @@ import java.util.Map;
  * @author Magdalena Aarsman
  * @since 2017-12-16
  */
-public class MessageHandler {
+class MessageHandler {
 
   private static final Target logger = new SharedLogger(Client.class);
   private final Map<Header, EventTrigger> triggers;

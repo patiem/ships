@@ -32,19 +32,9 @@ public class Client implements Runnable {
   private Socket clientSocket;
   private volatile boolean shouldRun;
 
-  public Client() {
-    Map<Header, EventTrigger> eventTriggerMap = new EnumMap<>(Header.class);
-    eventTriggerMap.put(Header.OPPONENT_CONNECTED, new OpponentConnectedTrigger());
-    eventTriggerMap.put(Header.SHOT, new OpponentShotTrigger());
-    eventTriggerMap.put(Header.CONNECTION, new ConnectionEndTrigger());
-    eventTriggerMap.put(Header.YOUR_TURN, new TurnTrigger());
-    eventTriggerMap.put(Header.MISS, new MissShotTrigger());
-    eventTriggerMap.put(Header.HIT, new HitShotTrigger());
-    eventTriggerMap.put(Header.SHIP_DESTRUCTED, new HitShotTrigger());
-    eventTriggerMap.put(Header.WIN, new WinTrigger());
-    eventTriggerMap.put(Header.LOSE, new LoseTrigger());
-    this.messageHandler = new MessageHandler(eventTriggerMap);
-    shouldRun = true;
+  public Client(MessageHandler messageHandler, boolean shouldRun) {
+    this.messageHandler = messageHandler;
+    this.shouldRun = shouldRun;
   }
 
   /**
