@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Author: Sandor
+# Author: Sandor, Piotr
 # Since: 2017-12-18
 #
 # [Important]
