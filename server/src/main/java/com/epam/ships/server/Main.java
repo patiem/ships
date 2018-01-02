@@ -2,6 +2,8 @@ package com.epam.ships.server;
 
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
+import com.epam.ships.server.gamestates.GameState;
+import com.epam.ships.server.gamestates.WaitingForPlayersState;
 
 import java.io.IOException;
 
@@ -19,19 +21,19 @@ public class Main {
    */
   public static void main(String[] args) throws IOException {
 
-    CommunicationBus communicationBus = new CommunicationBus();
     boolean shouldRun = true;
     while (shouldRun) {
-      communicationBus.start();
-      final Game game = new Game(communicationBus);
-      game.play();
+
+      GameState initialState = new WaitingForPlayersState();
+      new Game(initialState).loop();
+
       try {
         Thread.sleep(300);
       } catch (final InterruptedException e) {
         logger.error(e.getMessage());
         Thread.currentThread().interrupt();
       }
-      communicationBus.stop();
+//      communicationBus.stop();
     }
   }
 }

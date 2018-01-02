@@ -16,7 +16,7 @@ import java.util.List;
  * @since 2017-12-09
  */
 
-class CommunicationBus {
+public class CommunicationBus {
 
   private static final int SERVER_PORT = 8189;
   private final Target logger = new SharedLogger(CommunicationBus.class);
@@ -24,12 +24,12 @@ class CommunicationBus {
 
   private List<WrappedClient> clients;
 
-  CommunicationBus() throws IOException {
+  public CommunicationBus() throws IOException {
     appServer = new AppServer(SERVER_PORT);
     clients = new ArrayList<>();
   }
 
-  void start() throws IOException {
+  public void start() throws IOException {
     appServer.connectClients();
     for (Socket socketClient : appServer.getClientSockets()) {
       wrapClient(socketClient);
@@ -42,7 +42,7 @@ class CommunicationBus {
     clients.add(wrappedClient);
   }
 
-  void stop() {
+  public void stop() {
     for (WrappedClient c : clients) {
       c.close();
     }
@@ -50,19 +50,23 @@ class CommunicationBus {
     clients.clear();
   }
 
-  Message receive(WrappedClient sender) {
+  public Message receive(WrappedClient sender) {
     return sender.receive();
   }
 
-  void send(final WrappedClient recipient, final Message response) {
+  public void send(final WrappedClient recipient, final Message response) {
     recipient.send(response);
   }
 
-  final WrappedClient getFirstClient() {
+  public void sendToAll(final Message message) {
+    clients.forEach(wrappedClient -> send(wrappedClient, message));
+  }
+
+  public final WrappedClient getFirstClient() {
     return this.clients.get(0);
   }
 
-  final WrappedClient getSecondClient() {
+  public final WrappedClient getSecondClient() {
     return this.clients.get(1);
   }
 }
