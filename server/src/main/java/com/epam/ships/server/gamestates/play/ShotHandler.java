@@ -13,7 +13,7 @@ import com.epam.ships.server.TurnManager;
 import java.util.List;
 
 /**
- * Handles a player shot: checks if a shot makes a damage on a fleet and send proper message
+ * Handles a player shot: It checks if a shot makes a damage on a fleet and sends a proper message
  * to clients.
  *
  * @author Piotr Czyż
@@ -34,7 +34,7 @@ class ShotHandler {
   }
 
   /**
-   * Handles player shot.
+   * Handles player shots.
    *
    * @param isShotByFirstPlayer it checks who shots
    * @param shot                Message with shot

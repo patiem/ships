@@ -23,7 +23,7 @@ public class GameEndWithWinState implements GameState {
    * It creates state in which we have a winner.
    *
    * @param communicationBus client server communication bus
-   * @param turnManager      changes players turns
+   * @param turnManager      changes players' turns
    */
   public GameEndWithWinState(final CommunicationBus communicationBus,
                              final TurnManager turnManager) {

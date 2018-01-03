@@ -40,7 +40,7 @@ public class GameEndWithWalkoverState implements GameState {
   /**
    * Set that game should not by continued since there is no opponent.
    *
-   * @return false - game can not be continued because there is no opponent.
+   * @return false when game can not be continued because there is no opponent.
    */
   @Override
   public boolean shouldBeContinued() {

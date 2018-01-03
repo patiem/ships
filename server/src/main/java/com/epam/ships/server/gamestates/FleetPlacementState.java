@@ -27,7 +27,7 @@ public class FleetPlacementState implements GameState {
   private final List<Fleet> fleets;
 
   /**
-   * It creates instance of game where players place their fleets.
+   * It creates state of game where players place their fleets.
    *
    * @param communicationBus client server communication bus
    */
@@ -39,7 +39,7 @@ public class FleetPlacementState implements GameState {
   }
 
   /**
-   * It receives fleets from players, and transfer game to next state.
+   * It receives fleets from players, and transfers game to next state.
    *
    * @return GameState - PlayState
    */
