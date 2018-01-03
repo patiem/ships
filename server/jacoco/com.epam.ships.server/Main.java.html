@@ -19,20 +19,22 @@ import java.io.IOException;
 
   /**
    * Main server method. It creates communication bus and starts the game.
+   * @param args is a conventional main method parameter.
+   * @throws IOException can be thrown due to establishing a socket connection.
    */
   public static void main(String[] args) throws IOException {
-<span class="nc" id="L24">    CommunicationBus communicationBus = new CommunicationBus();</span>
-<span class="nc" id="L25">    boolean shouldRun = true;</span>
-<span class="nc bnc" id="L26" title="All 2 branches missed.">    while (shouldRun) {</span>
-<span class="nc" id="L27">      GameState initialState = new WaitingForPlayersState(communicationBus);</span>
-<span class="nc" id="L28">      new Game(initialState).loop();</span>
+<span class="nc" id="L26">    CommunicationBus communicationBus = new CommunicationBus();</span>
+<span class="nc" id="L27">    boolean shouldRun = true;</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">    while (shouldRun) {</span>
+<span class="nc" id="L29">      GameState initialState = new WaitingForPlayersState(communicationBus);</span>
+<span class="nc" id="L30">      new Game(initialState).loop();</span>
       try {
-<span class="nc" id="L30">        Thread.sleep(REST_TIME);</span>
-<span class="nc" id="L31">      } catch (final InterruptedException e) {</span>
-<span class="nc" id="L32">        logger.error(e.getMessage());</span>
-<span class="nc" id="L33">        Thread.currentThread().interrupt();</span>
-<span class="nc" id="L34">      }</span>
-<span class="nc" id="L35">    }</span>
-<span class="nc" id="L36">  }</span>
+<span class="nc" id="L32">        Thread.sleep(REST_TIME);</span>
+<span class="nc" id="L33">      } catch (final InterruptedException e) {</span>
+<span class="nc" id="L34">        logger.error(e.getMessage());</span>
+<span class="nc" id="L35">        Thread.currentThread().interrupt();</span>
+<span class="nc" id="L36">      }</span>
+<span class="nc" id="L37">    }</span>
+<span class="nc" id="L38">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

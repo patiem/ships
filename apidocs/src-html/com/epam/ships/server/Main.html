@@ -27,22 +27,24 @@
 <span class="sourceLineNo">019</span><a name="line.19"></a>
 <span class="sourceLineNo">020</span>  /**<a name="line.20"></a>
 <span class="sourceLineNo">021</span>   * Main server method. It creates communication bus and starts the game.<a name="line.21"></a>
-<span class="sourceLineNo">022</span>   */<a name="line.22"></a>
-<span class="sourceLineNo">023</span>  public static void main(String[] args) throws IOException {<a name="line.23"></a>
-<span class="sourceLineNo">024</span>    CommunicationBus communicationBus = new CommunicationBus();<a name="line.24"></a>
-<span class="sourceLineNo">025</span>    boolean shouldRun = true;<a name="line.25"></a>
-<span class="sourceLineNo">026</span>    while (shouldRun) {<a name="line.26"></a>
-<span class="sourceLineNo">027</span>      GameState initialState = new WaitingForPlayersState(communicationBus);<a name="line.27"></a>
-<span class="sourceLineNo">028</span>      new Game(initialState).loop();<a name="line.28"></a>
-<span class="sourceLineNo">029</span>      try {<a name="line.29"></a>
-<span class="sourceLineNo">030</span>        Thread.sleep(REST_TIME);<a name="line.30"></a>
-<span class="sourceLineNo">031</span>      } catch (final InterruptedException e) {<a name="line.31"></a>
-<span class="sourceLineNo">032</span>        logger.error(e.getMessage());<a name="line.32"></a>
-<span class="sourceLineNo">033</span>        Thread.currentThread().interrupt();<a name="line.33"></a>
-<span class="sourceLineNo">034</span>      }<a name="line.34"></a>
-<span class="sourceLineNo">035</span>    }<a name="line.35"></a>
-<span class="sourceLineNo">036</span>  }<a name="line.36"></a>
-<span class="sourceLineNo">037</span>}<a name="line.37"></a>
+<span class="sourceLineNo">022</span>   * @param args is a conventional main method parameter.<a name="line.22"></a>
+<span class="sourceLineNo">023</span>   * @throws IOException can be thrown due to establishing a socket connection.<a name="line.23"></a>
+<span class="sourceLineNo">024</span>   */<a name="line.24"></a>
+<span class="sourceLineNo">025</span>  public static void main(String[] args) throws IOException {<a name="line.25"></a>
+<span class="sourceLineNo">026</span>    CommunicationBus communicationBus = new CommunicationBus();<a name="line.26"></a>
+<span class="sourceLineNo">027</span>    boolean shouldRun = true;<a name="line.27"></a>
+<span class="sourceLineNo">028</span>    while (shouldRun) {<a name="line.28"></a>
+<span class="sourceLineNo">029</span>      GameState initialState = new WaitingForPlayersState(communicationBus);<a name="line.29"></a>
+<span class="sourceLineNo">030</span>      new Game(initialState).loop();<a name="line.30"></a>
+<span class="sourceLineNo">031</span>      try {<a name="line.31"></a>
+<span class="sourceLineNo">032</span>        Thread.sleep(REST_TIME);<a name="line.32"></a>
+<span class="sourceLineNo">033</span>      } catch (final InterruptedException e) {<a name="line.33"></a>
+<span class="sourceLineNo">034</span>        logger.error(e.getMessage());<a name="line.34"></a>
+<span class="sourceLineNo">035</span>        Thread.currentThread().interrupt();<a name="line.35"></a>
+<span class="sourceLineNo">036</span>      }<a name="line.36"></a>
+<span class="sourceLineNo">037</span>    }<a name="line.37"></a>
+<span class="sourceLineNo">038</span>  }<a name="line.38"></a>
+<span class="sourceLineNo">039</span>}<a name="line.39"></a>
 
 
 
