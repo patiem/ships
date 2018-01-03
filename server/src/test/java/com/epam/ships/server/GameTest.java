@@ -20,7 +20,7 @@ public class GameTest {
     when(secondState.shouldBeContinued()).thenReturn(false);
 
     //when
-    new Game(initState).loop();
+    new Game(initState).play();
 
     //then
     verify(initState, times(1)).process();

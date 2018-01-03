@@ -61,7 +61,7 @@ public class CommunicationBus {
   }
 
   /**
-   * It receive message from player.
+   * It receives message from player.
    *
    * @param sender player who sent a message
    * @return received message

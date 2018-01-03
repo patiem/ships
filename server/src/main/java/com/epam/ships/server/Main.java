@@ -27,7 +27,7 @@ public class Main {
     boolean shouldRun = true;
     while (shouldRun) {
       GameState initialState = new WaitingForPlayersState(communicationBus);
-      new Game(initialState).loop();
+      new Game(initialState).play();
       try {
         Thread.sleep(REST_TIME);
       } catch (final InterruptedException e) {

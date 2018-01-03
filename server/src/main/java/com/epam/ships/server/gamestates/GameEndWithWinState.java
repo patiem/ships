@@ -20,10 +20,10 @@ public class GameEndWithWinState implements GameState {
   private TurnManager turnManager;
 
   /**
-   * Its create state of game when we have winner.
+   * It creates state in which we have a winner.
    *
    * @param communicationBus client server communication bus
-   * @param turnManager      take care about players turns
+   * @param turnManager      changes players turns
    */
   public GameEndWithWinState(final CommunicationBus communicationBus,
                              final TurnManager turnManager) {

@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represent state of game where players place their fleets.
+ * Represents state of game where players place their fleets.
  *
  * @author Piotr Czyż
  * @since 2018-01-02
@@ -27,7 +27,7 @@ public class FleetPlacementState implements GameState {
   private final List<Fleet> fleets;
 
   /**
-   * Create instance of game where players place their fleets.
+   * It creates instance of game where players place their fleets.
    *
    * @param communicationBus client server communication bus
    */
@@ -39,7 +39,7 @@ public class FleetPlacementState implements GameState {
   }
 
   /**
-   * Receives fleets from players, and transfer game to next state.
+   * It receives fleets from players, and transfer game to next state.
    *
    * @return GameState - PlayState
    */

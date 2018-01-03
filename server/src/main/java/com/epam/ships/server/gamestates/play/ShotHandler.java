@@ -13,7 +13,8 @@ import com.epam.ships.server.TurnManager;
 import java.util.List;
 
 /**
- * Handle a player shot.
+ * Handles a player shot: checks if a shot makes a damage on a fleet and send proper message
+ * to clients.
  *
  * @author Piotr Czyż
  * @since 2018-01-02
@@ -33,27 +34,32 @@ class ShotHandler {
   }
 
   /**
-   * It handle player shot.
+   * Handles player shot.
+   *
    * @param isShotByFirstPlayer it checks who shots
-   * @param shot Message with shot
+   * @param shot                Message with shot
    * @return true if there is no more ships in opponent fleet
    */
-  public boolean handle(final boolean isShotByFirstPlayer,final Message shot) {
+  public boolean handle(final boolean isShotByFirstPlayer, final Message shot) {
     Fleet fleet = getRightFleet(isShotByFirstPlayer);
     return handleShot(shot, fleet);
   }
 
-  private boolean handleShot(final Message receivedShot,final Fleet fleet) {
+  private boolean handleShot(final Message receivedShot, final Fleet fleet) {
     logger.debug("Handling shot at " + receivedShot.getStatement());
     final Mast mast = Mast.ofIndex(receivedShot.getStatement());
     Damage damage = fleet.handleDamage(mast);
-    DamageNotifier damageNotifier = new DamageMissNotifier(messageSender, turnManager);
-    if (damage.equals(Damage.MISSED)) {
-      damageNotifier = new DamageMissNotifier(messageSender, turnManager);
-    } else if (damage.equals(Damage.HIT)) {
-      damageNotifier = new DamageHitNotifier(messageSender, turnManager);
-    } else if (damage.equals(Damage.DESTRUCTED)) {
-      damageNotifier = new DamageDestructedNotifier(messageSender, turnManager);
+    DamageNotifier damageNotifier;
+    switch (damage) {
+      case HIT:
+        damageNotifier = new DamageHitNotifier(messageSender, turnManager);
+        break;
+      case DESTRUCTED:
+        damageNotifier = new DamageDestructedNotifier(messageSender, turnManager);
+        break;
+      default:
+        damageNotifier = new DamageMissNotifier(messageSender, turnManager);
+        break;
     }
     damageNotifier.notify(receivedShot);
     return fleet.isDefeated();
