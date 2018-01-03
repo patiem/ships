@@ -30,6 +30,9 @@ public class CommunicationBus {
     clients = new ArrayList<>();
   }
 
+  /**
+   * It ask AppServer for clients and then wrap them into wrapped client.
+   */
   public void start() {
     appServer.connectClients();
     for (Socket socketClient : appServer.getClientSockets()) {
@@ -38,6 +41,9 @@ public class CommunicationBus {
     logger.info("Communication bus started..");
   }
 
+  /**
+   * Close clients sockets and clear list of wrapped clients.
+   */
   public void stop() {
     for (WrappedClient c : clients) {
       c.close();

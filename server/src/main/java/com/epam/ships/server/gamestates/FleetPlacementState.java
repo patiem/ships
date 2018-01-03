@@ -14,6 +14,12 @@ import com.epam.ships.server.gamestates.play.PlayState;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represent state of game where players place their fleets.
+ *
+ * @author Piotr Czyż
+ * @since 02.01.2018
+ */
 public class FleetPlacementState implements GameState {
   private final CommunicationBus communicationBus;
   private final TurnManager turnManager;

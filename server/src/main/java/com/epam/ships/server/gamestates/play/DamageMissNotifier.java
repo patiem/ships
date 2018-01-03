@@ -4,7 +4,12 @@ import com.epam.ships.infra.communication.api.Message;
 import com.epam.ships.infra.communication.api.message.Header;
 import com.epam.ships.server.MessageSender;
 import com.epam.ships.server.TurnManager;
-
+/**
+ * Notification for client that his shot missed a target.
+ *
+ * @author Piotr Czyż
+ * @since 02.01.2018
+ */
 class DamageMissNotifier extends DamageNotifier {
   DamageMissNotifier(MessageSender messageSender, TurnManager turnManager) {
     super(messageSender, turnManager);
