@@ -12,6 +12,7 @@ import java.util.Scanner;
 @Test
 public class WrappedClientTest {
 
+  @Test(groups = "integration")
   public void wrappedClientShouldBeAbleToSendMessageToServer() throws IOException {
     //given
     int port = 9090;

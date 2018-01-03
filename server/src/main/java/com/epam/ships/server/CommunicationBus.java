@@ -16,7 +16,6 @@ import java.util.List;
  * @author Piotr Czyż, Magdalena Aarsman, Sandor Korotkevics
  * @since 2017-12-09
  */
-
 public class CommunicationBus {
 
   private static final int SERVER_PORT = 8189;
