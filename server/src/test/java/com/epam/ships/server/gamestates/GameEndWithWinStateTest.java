@@ -4,17 +4,14 @@ import com.epam.ships.server.CommunicationBus;
 import com.epam.ships.server.TurnManager;
 import org.testng.annotations.Test;
 
-import static org.mockito.ArgumentMatchers.booleanThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
 @Test
 public class GameEndWithWinStateTest {
 
-  public void shouldProcessWinState(){
+  public void shouldProcessWinState() {
     //given
     CommunicationBus communicationBus = mock(CommunicationBus.class);
     TurnManager turnManager = mock(TurnManager.class);
@@ -28,7 +25,7 @@ public class GameEndWithWinStateTest {
     verify(communicationBus, times(1)).stop();
   }
 
-  public void shouldReturnFalseWhenShouldBeContinuedIsCall(){
+  public void shouldReturnFalseWhenShouldBeContinuedIsCall() {
     //given
     CommunicationBus communicationBus = mock(CommunicationBus.class);
     TurnManager turnManager = mock(TurnManager.class);
