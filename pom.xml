@@ -305,18 +305,52 @@
                             </goals>
                             <configuration>
                                 <rules>
+                                    <!--SHARED module only
+                                    TODO: increase, so the cross-module average can be 60%.
+                                    -->
                                     <rule implementation="org.jacoco.maven.RuleConfiguration">
                                         <element>BUNDLE</element>
-                                        <!--We were unable to add an average COVEREDRATIO for multiple
-                                        modules, there we excluded client module-->
                                         <excludes>
                                             <exclude>client</exclude>
+                                            <exclude>server</exclude>
                                         </excludes>
                                         <limits>
                                             <limit implementation="org.jacoco.report.check.Limit">
                                                 <counter>INSTRUCTION</counter>
                                                 <value>COVEREDRATIO</value>
-                                                <minimum>0.60</minimum>
+                                                <minimum>0.68</minimum>
+                                            </limit>
+                                        </limits>
+                                    </rule>
+                                    <!--CLIENT module only-->
+                                    <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                        <element>BUNDLE</element>
+                                        <excludes>
+                                            <exclude>server</exclude>
+                                            <exclude>shared</exclude>
+                                        </excludes>
+                                        <limits>
+                                            <limit implementation="org.jacoco.report.check.Limit">
+                                                <counter>INSTRUCTION</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>0.02</minimum>
+                                            </limit>
+                                        </limits>
+                                    </rule>
+                                    <!--SERVER module only
+                                    TODO: increase, so the cross-module average can be 60%.
+                                    -->
+                                    <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                        <element>BUNDLE</element>
+                                        <excludes>
+                                            <exclude>client</exclude>
+                                            <exclude>shared</exclude>
+                                        </excludes>
+                                        <limits>
+                                            <limit implementation="org.jacoco.report.check.Limit">
+                                                <counter>INSTRUCTION</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>0.16</minimum>
                                             </limit>
                                         </limits>
                                     </rule>
