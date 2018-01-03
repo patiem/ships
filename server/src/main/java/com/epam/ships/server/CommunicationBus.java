@@ -13,7 +13,7 @@ import java.util.List;
  * It starts a server, gets its client sockets
  * and adds them wrapped into own list.
  *
- * @author Piotr Czyż
+ * @author Piotr Czyż, Magdalena Aarsman, Sandor Korotkevics
  * @since 2017-12-09
  */
 
