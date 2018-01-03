@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#
+# Author: Piotr
+# Since: 2018-01-03
+#
+# Pre-commit hook running mvn clean install
 # save the file as <git_directory>/.git/hooks/pre-commit
 
 echo "Running Maven clean install"

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Author: Sandor
+# Author: Sandor, Piotr
 # Since: 2017-12-18
 #
 # [How to use]
@@ -9,7 +9,7 @@
 # 2) Run ./clone.sh [your_dir_name]
 #
 # Have our remote git repository (https://github.com/korotkevics/ships/)
-# cloned into a [your_dir_name].
+# cloned into a [your_dir_name] and set pre-commit hook to run mvn clean install.
 #
 
 set -e
@@ -18,7 +18,7 @@ cd $1
 git checkout master --quiet
 
 echo "copying pre-commit hook"
-chmod u+x pre-commitHookMaven.sh
-cp pre-commitHookMaven.sh ../.git/hooks/pre-commit
+chmod u+x scripts/pre-commitHookMaven.sh
+cp scripts/pre-commitHookMaven.sh .git/hooks/pre-commit
 
 echo "Done cloning"
