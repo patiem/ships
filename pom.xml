@@ -125,6 +125,7 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombokVersion}</version>
+                <scope>provided</scope>
                 <!--Provided because it generates code
                 which is available once compiled-->
             </dependency>
