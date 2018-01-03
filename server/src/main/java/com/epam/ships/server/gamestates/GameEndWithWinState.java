@@ -25,7 +25,8 @@ public class GameEndWithWinState implements GameState {
    * @param communicationBus client server communication bus
    * @param turnManager      take care about players turns
    */
-  public GameEndWithWinState(final CommunicationBus communicationBus, final TurnManager turnManager) {
+  public GameEndWithWinState(final CommunicationBus communicationBus,
+                             final TurnManager turnManager) {
     this.communicationBus = communicationBus;
     this.turnManager = turnManager;
     messageSender = new MessageSender(communicationBus, logger);
