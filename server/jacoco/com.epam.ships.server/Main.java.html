@@ -2,6 +2,8 @@
 
 import com.epam.ships.infra.logging.api.Target;
 import com.epam.ships.infra.logging.core.SharedLogger;
+import com.epam.ships.server.gamestates.GameState;
+import com.epam.ships.server.gamestates.WaitingForPlayersState;
 
 import java.io.IOException;
 
@@ -11,27 +13,25 @@ import java.io.IOException;
  * @author Piotr Czyż
  * @since 2017-12-09
  */
-<span class="nc" id="L14">public class Main {</span>
-<span class="nc" id="L15">  private static final Target logger = new SharedLogger(Main.class);</span>
+<span class="nc" id="L16">public class Main {</span>
+<span class="nc" id="L17">  private static final Target logger = new SharedLogger(Main.class);</span>
+  private static final int REST_TIME = 300;
 
   /**
    * Main server method. It creates communication bus and starts the game.
    */
   public static void main(String[] args) throws IOException {
-
-<span class="nc" id="L22">    CommunicationBus communicationBus = new CommunicationBus();</span>
-<span class="nc" id="L23">    boolean shouldRun = true;</span>
-<span class="nc bnc" id="L24" title="All 2 branches missed.">    while (shouldRun) {</span>
-<span class="nc" id="L25">      communicationBus.start();</span>
-<span class="nc" id="L26">      final Game game = new Game(communicationBus);</span>
-<span class="nc" id="L27">      game.play();</span>
+<span class="nc" id="L24">    CommunicationBus communicationBus = new CommunicationBus();</span>
+<span class="nc" id="L25">    boolean shouldRun = true;</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">    while (shouldRun) {</span>
+<span class="nc" id="L27">      GameState initialState = new WaitingForPlayersState(communicationBus);</span>
+<span class="nc" id="L28">      new Game(initialState).loop();</span>
       try {
-<span class="nc" id="L29">        Thread.sleep(300);</span>
-<span class="nc" id="L30">      } catch (final InterruptedException e) {</span>
-<span class="nc" id="L31">        logger.error(e.getMessage());</span>
-<span class="nc" id="L32">        Thread.currentThread().interrupt();</span>
-<span class="nc" id="L33">      }</span>
-<span class="nc" id="L34">      communicationBus.stop();</span>
+<span class="nc" id="L30">        Thread.sleep(REST_TIME);</span>
+<span class="nc" id="L31">      } catch (final InterruptedException e) {</span>
+<span class="nc" id="L32">        logger.error(e.getMessage());</span>
+<span class="nc" id="L33">        Thread.currentThread().interrupt();</span>
+<span class="nc" id="L34">      }</span>
 <span class="nc" id="L35">    }</span>
 <span class="nc" id="L36">  }</span>
 }

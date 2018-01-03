@@ -1,1 +1,3 @@
 com.epam.ships.server
+com.epam.ships.server.gamestates
+com.epam.ships.server.gamestates.play

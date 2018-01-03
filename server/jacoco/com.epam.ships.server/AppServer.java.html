@@ -11,27 +11,27 @@ import java.util.List;
 
 /**
  * It starts a server socket and accepts two client sockets.
- * @author Piotr Czyż
+ *
+ * @author Piotr Czyż, Magdalena Aarsman, Sandor Korotkevics
  * @since 2017-12-09
-  */
+ */
 class AppServer {
 
-<span class="fc" id="L19">  private final Target logger = new SharedLogger(AppServer.class);</span>
+<span class="fc" id="L20">  private final Target logger = new SharedLogger(AppServer.class);</span>
 
   private final ServerSocket serverSocket;
 
   private List&lt;Socket&gt; clientSockets;
 
-<span class="fc" id="L25">  AppServer(int port) throws IOException {</span>
-<span class="fc" id="L26">    logger.info(&quot;Server is up and waiting for clients..&quot;);</span>
-<span class="fc" id="L27">    this.serverSocket = new ServerSocket(port);</span>
-<span class="fc" id="L28">  }</span>
+<span class="fc" id="L26">  AppServer(int port) throws IOException {</span>
+<span class="fc" id="L27">    logger.info(&quot;Server is up and waiting for clients..&quot;);</span>
+<span class="fc" id="L28">    this.serverSocket = new ServerSocket(port);</span>
+<span class="fc" id="L29">  }</span>
 
   /**
    * It connects two clients.
-   * @throws IOException - if accepting client failed
    */
-  void connectClients() throws IOException {
+  void connectClients() {
 <span class="fc" id="L35">    clientSockets = new ArrayList&lt;&gt;();</span>
 <span class="fc" id="L36">    logger.info(&quot;Waiting for the 1st client.. &quot;);</span>
 <span class="fc" id="L37">    acceptClient();</span>
@@ -45,19 +45,22 @@ class AppServer {
   /**
    * It accepts a client socket
    * while storing it in a list.
-   *
-   * @throws IOException on failure
    */
-  private void acceptClient() throws IOException {
-<span class="fc" id="L52">    Socket client = serverSocket.accept();</span>
-<span class="fc" id="L53">    clientSockets.add(client);</span>
-<span class="fc" id="L54">  }</span>
+  private void acceptClient() {
+<span class="fc" id="L50">    Socket client = null;</span>
+    try {
+<span class="fc" id="L52">      client = serverSocket.accept();</span>
+<span class="nc" id="L53">    } catch (IOException e) {</span>
+<span class="nc" id="L54">      logger.error(e.getMessage());</span>
+<span class="fc" id="L55">    }</span>
+<span class="fc" id="L56">    clientSockets.add(client);</span>
+<span class="fc" id="L57">  }</span>
 
   /**
    * @return a list of stored client sockets.
    */
   List&lt;Socket&gt; getClientSockets() {
-<span class="fc" id="L60">    return clientSockets;</span>
+<span class="fc" id="L63">    return clientSockets;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

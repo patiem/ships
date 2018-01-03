@@ -12,11 +12,11 @@ import java.util.List;
 /**
  * It starts a server, gets its client sockets
  * and adds them wrapped into own list.
- * @author Piotr Czyż
+ *
+ * @author Piotr Czyż, Magdalena Aarsman, Sandor Korotkevics
  * @since 2017-12-09
  */
-
-class CommunicationBus {
+public class CommunicationBus {
 
   private static final int SERVER_PORT = 8189;
 <span class="nc" id="L22">  private final Target logger = new SharedLogger(CommunicationBus.class);</span>
@@ -24,46 +24,76 @@ class CommunicationBus {
 
   private List&lt;WrappedClient&gt; clients;
 
-<span class="nc" id="L27">  CommunicationBus() throws IOException {</span>
-<span class="nc" id="L28">    appServer = new AppServer(SERVER_PORT);</span>
-<span class="nc" id="L29">    clients = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L30">  }</span>
+  /**
+   * Create communication bus instance.
+   *
+   * @throws IOException if an I/O error occurs when opening the socket.
+   */
+<span class="nc" id="L32">  public CommunicationBus() throws IOException {</span>
+<span class="nc" id="L33">    appServer = new AppServer(SERVER_PORT);</span>
+<span class="nc" id="L34">    clients = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L35">  }</span>
 
-  void start() throws IOException {
-<span class="nc" id="L33">    appServer.connectClients();</span>
-<span class="nc bnc" id="L34" title="All 2 branches missed.">    for (Socket socketClient : appServer.getClientSockets()) {</span>
-<span class="nc" id="L35">      wrapClient(socketClient);</span>
-<span class="nc" id="L36">    }</span>
-<span class="nc" id="L37">    logger.info(&quot;Communication bus started..&quot;);</span>
-<span class="nc" id="L38">  }</span>
+  /**
+   * It ask AppServer for clients and then wrap them into wrapped client.
+   */
+  public void start() {
+<span class="nc" id="L41">    appServer.connectClients();</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">    for (Socket socketClient : appServer.getClientSockets()) {</span>
+<span class="nc" id="L43">      wrapClient(socketClient);</span>
+<span class="nc" id="L44">    }</span>
+<span class="nc" id="L45">    logger.info(&quot;Communication bus started..&quot;);</span>
+<span class="nc" id="L46">  }</span>
 
-  private void wrapClient(Socket socketClient) {
-<span class="nc" id="L41">    WrappedClient wrappedClient = new WrappedClient(socketClient);</span>
-<span class="nc" id="L42">    clients.add(wrappedClient);</span>
-<span class="nc" id="L43">  }</span>
+  /**
+   * Close clients sockets and clear list of wrapped clients.
+   */
+  public void stop() {
+<span class="nc bnc" id="L52" title="All 2 branches missed.">    for (WrappedClient c : clients) {</span>
+<span class="nc" id="L53">      c.close();</span>
+<span class="nc" id="L54">    }</span>
+<span class="nc" id="L55">    clients.clear();</span>
+<span class="nc" id="L56">  }</span>
 
-  void stop() {
-<span class="nc bnc" id="L46" title="All 2 branches missed.">    for (WrappedClient c : clients) {</span>
-<span class="nc" id="L47">      c.close();</span>
-<span class="nc" id="L48">    }</span>
+  private void wrapClient(final Socket socketClient) {
+<span class="nc" id="L59">    WrappedClient wrappedClient = new WrappedClient(socketClient);</span>
+<span class="nc" id="L60">    clients.add(wrappedClient);</span>
+<span class="nc" id="L61">  }</span>
 
-<span class="nc" id="L50">    clients.clear();</span>
-<span class="nc" id="L51">  }</span>
-
-  Message receive(WrappedClient sender) {
-<span class="nc" id="L54">    return sender.receive();</span>
+  /**
+   * It receive message from player.
+   *
+   * @param sender player who sent a message
+   * @return received message
+   */
+  public Message receive(final WrappedClient sender) {
+<span class="nc" id="L70">    return sender.receive();</span>
   }
 
   void send(final WrappedClient recipient, final Message response) {
-<span class="nc" id="L58">    recipient.send(response);</span>
-<span class="nc" id="L59">  }</span>
+<span class="nc" id="L74">    recipient.send(response);</span>
+<span class="nc" id="L75">  }</span>
 
-  final WrappedClient getFirstClient() {
-<span class="nc" id="L62">    return this.clients.get(0);</span>
+  void sendToAll(final Message message) {
+<span class="nc" id="L78">    clients.forEach(wrappedClient -&gt; send(wrappedClient, message));</span>
+<span class="nc" id="L79">  }</span>
+
+  /**
+   * Gets player which was connected earlier.
+   *
+   * @return WrappedClient
+   */
+  public WrappedClient getFirstClient() {
+<span class="nc" id="L87">    return this.clients.get(0);</span>
   }
 
-  final WrappedClient getSecondClient() {
-<span class="nc" id="L66">    return this.clients.get(1);</span>
+  /**
+   * Gets player which was connected as second one.
+   *
+   * @return WrappedClient
+   */
+  public WrappedClient getSecondClient() {
+<span class="nc" id="L96">    return this.clients.get(1);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

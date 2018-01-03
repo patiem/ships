@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2018 Java Academy</copyright>
     <item>
-      <title>File: 6,
+      <title>File: 20,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -46,7 +46,49 @@ under the License.
           <tbody>
                           <tr>
                 <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.GameState.java">com/epam/ships/server/gamestates/GameState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.Game.java">com/epam/ships/server/Game.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.play.ShotHandler.java">com/epam/ships/server/gamestates/play/ShotHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.play.DamageDestructedNotifier.java">com/epam/ships/server/gamestates/play/DamageDestructedNotifier.java</a>
                 </td>
                 <td>
                   0
@@ -74,20 +116,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.CommunicationBus.java">com/epam/ships/server/CommunicationBus.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.AppServer.java">com/epam/ships/server/AppServer.java</a>
                 </td>
                 <td>
@@ -102,7 +130,175 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.WaitingForPlayersState.java">com/epam/ships/server/gamestates/WaitingForPlayersState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.play.MessageReceiver.java">com/epam/ships/server/gamestates/play/MessageReceiver.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.play.PlayState.java">com/epam/ships/server/gamestates/play/PlayState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.play.DamageNotifier.java">com/epam/ships/server/gamestates/play/DamageNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.MessageRepository.java">com/epam/ships/server/MessageRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.CommunicationBus.java">com/epam/ships/server/CommunicationBus.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.play.DamageMissNotifier.java">com/epam/ships/server/gamestates/play/DamageMissNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.GameEndWithWalkoverState.java">com/epam/ships/server/gamestates/GameEndWithWalkoverState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.FleetPlacementState.java">com/epam/ships/server/gamestates/FleetPlacementState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.MessageSender.java">com/epam/ships/server/MessageSender.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.WrappedClient.java">com/epam/ships/server/WrappedClient.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.play.DamageHitNotifier.java">com/epam/ships/server/gamestates/play/DamageHitNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.gamestates.GameEndWithWinState.java">com/epam/ships/server/gamestates/GameEndWithWinState.java</a>
                 </td>
                 <td>
                   0

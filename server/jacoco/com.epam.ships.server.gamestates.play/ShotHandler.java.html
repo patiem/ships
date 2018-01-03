@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShotHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SERVER</a> &gt; <a href="index.source.html" class="el_package">com.epam.ships.server.gamestates.play</a> &gt; <span class="el_source">ShotHandler.java</span></div><h1>ShotHandler.java</h1><pre class="source lang-java linenums">package com.epam.ships.server.gamestates.play;
+
+import com.epam.ships.fleet.Damage;
+import com.epam.ships.fleet.Fleet;
+import com.epam.ships.fleet.Mast;
+import com.epam.ships.infra.communication.api.Message;
+import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.infra.logging.core.SharedLogger;
+import com.epam.ships.server.CommunicationBus;
+import com.epam.ships.server.MessageSender;
+import com.epam.ships.server.TurnManager;
+
+import java.util.List;
+
+/**
+ * Handle a player shot.
+ *
+ * @author Piotr Czyż
+ * @since 2018-01-02
+ */
+class ShotHandler {
+<span class="fc" id="L22">  private final Target logger = new SharedLogger(ShotHandler.class);</span>
+  private final MessageSender messageSender;
+  private TurnManager turnManager;
+  private List&lt;Fleet&gt; fleets;
+
+
+  ShotHandler(final CommunicationBus communicationBus, final TurnManager turnManager,
+<span class="fc" id="L29">              final List&lt;Fleet&gt; fleets) {</span>
+<span class="fc" id="L30">    this.turnManager = turnManager;</span>
+<span class="fc" id="L31">    this.fleets = fleets;</span>
+<span class="fc" id="L32">    this.messageSender = new MessageSender(communicationBus, logger);</span>
+<span class="fc" id="L33">  }</span>
+
+  /**
+   * It handle player shot.
+   * @param isShotByFirstPlayer it checks who shots
+   * @param shot Message with shot
+   * @return true if there is no more ships in opponent fleet
+   */
+  public boolean handle(final boolean isShotByFirstPlayer,final Message shot) {
+<span class="fc" id="L42">    Fleet fleet = getRightFleet(isShotByFirstPlayer);</span>
+<span class="fc" id="L43">    return handleShot(shot, fleet);</span>
+  }
+
+  private boolean handleShot(final Message receivedShot,final Fleet fleet) {
+<span class="fc" id="L47">    logger.debug(&quot;Handling shot at &quot; + receivedShot.getStatement());</span>
+<span class="fc" id="L48">    final Mast mast = Mast.ofIndex(receivedShot.getStatement());</span>
+<span class="fc" id="L49">    Damage damage = fleet.handleDamage(mast);</span>
+<span class="fc" id="L50">    DamageNotifier damageNotifier = new DamageMissNotifier(messageSender, turnManager);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">    if (damage.equals(Damage.MISSED)) {</span>
+<span class="fc" id="L52">      damageNotifier = new DamageMissNotifier(messageSender, turnManager);</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">    } else if (damage.equals(Damage.HIT)) {</span>
+<span class="fc" id="L54">      damageNotifier = new DamageHitNotifier(messageSender, turnManager);</span>
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">    } else if (damage.equals(Damage.DESTRUCTED)) {</span>
+<span class="fc" id="L56">      damageNotifier = new DamageDestructedNotifier(messageSender, turnManager);</span>
+    }
+<span class="fc" id="L58">    damageNotifier.notify(receivedShot);</span>
+<span class="fc" id="L59">    return fleet.isDefeated();</span>
+  }
+
+  private Fleet getRightFleet(final boolean isShotByFirstPlayer) {
+<span class="fc bfc" id="L63" title="All 2 branches covered.">    return isShotByFirstPlayer ? fleets.get(1) : fleets.get(0);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

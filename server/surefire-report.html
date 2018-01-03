@@ -130,12 +130,12 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td>7</td>
+<td>22</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.928</td></tr></table><br />
+<td>1.268</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
@@ -151,12 +151,28 @@ function toggleDisplay(elementId) {
 <th>Time</th></tr>
 <tr class="b">
 <td><a href="#com.epam.ships.server">com.epam.ships.server</a></td>
-<td>7</td>
+<td>10</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.928</td></tr></table><br />
+<td>0.542</td></tr>
+<tr class="a">
+<td><a href="#com.epam.ships.server.gamestates">com.epam.ships.server.gamestates</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.674</td></tr>
+<tr class="b">
+<td><a href="#com.epam.ships.server.gamestates.play">com.epam.ships.server.gamestates.play</a></td>
+<td>10</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.052</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
 <h3><a name="com.epam.ships.server"></a>com.epam.ships.server</h3><a name="com.epam.ships.server"></a>
@@ -171,6 +187,15 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
+<td><a href="#com.epam.ships.serverMessageRepositoryTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.epam.ships.serverMessageRepositoryTest">MessageRepositoryTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.016</td></tr>
+<tr class="a">
 <td><a href="#com.epam.ships.serverTurnManagerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#com.epam.ships.serverTurnManagerTest">TurnManagerTest</a></td>
 <td>5</td>
@@ -178,19 +203,106 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.434</td></tr>
+<td>0.415</td></tr>
+<tr class="b">
+<td><a href="#com.epam.ships.serverMessageSenderTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.epam.ships.serverMessageSenderTest">MessageSenderTest</a></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.097</td></tr>
 <tr class="a">
-<td><a href="#com.epam.ships.serverWrappedClientTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.epam.ships.serverWrappedClientTest">WrappedClientTest</a></td>
+<td><a href="#com.epam.ships.serverGameTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.epam.ships.serverGameTest">GameTest</a></td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.493</td></tr>
+<td>0.014</td></tr></table></div>
+<div class="section">
+<h3><a name="com.epam.ships.server.gamestates"></a>com.epam.ships.server.gamestates</h3><a name="com.epam.ships.server.gamestates"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<th></th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
 <tr class="b">
-<td><a href="#com.epam.ships.serverDummyTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.epam.ships.serverDummyTest">DummyTest</a></td>
+<td><a href="#com.epam.ships.server.gamestatesFleetPlacementStateTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.epam.ships.server.gamestatesFleetPlacementStateTest">FleetPlacementStateTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.651</td></tr>
+<tr class="a">
+<td><a href="#com.epam.ships.server.gamestatesWaitingForPlayersStateTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.epam.ships.server.gamestatesWaitingForPlayersStateTest">WaitingForPlayersStateTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.023</td></tr></table></div>
+<div class="section">
+<h3><a name="com.epam.ships.server.gamestates.play"></a>com.epam.ships.server.gamestates.play</h3><a name="com.epam.ships.server.gamestates.play"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<th></th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#com.epam.ships.server.gamestates.playDamageDestructedNotifierTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.epam.ships.server.gamestates.playDamageDestructedNotifierTest">DamageDestructedNotifierTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.045</td></tr>
+<tr class="a">
+<td><a href="#com.epam.ships.server.gamestates.playMessageReceiverTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.epam.ships.server.gamestates.playMessageReceiverTest">MessageReceiverTest</a></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.002</td></tr>
+<tr class="b">
+<td><a href="#com.epam.ships.server.gamestates.playShotHandlerTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.epam.ships.server.gamestates.playShotHandlerTest">ShotHandlerTest</a></td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.003</td></tr>
+<tr class="a">
+<td><a href="#com.epam.ships.server.gamestates.playDamageHitNotifierTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.epam.ships.server.gamestates.playDamageHitNotifierTest">DamageHitNotifierTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.001</td></tr>
+<tr class="b">
+<td><a href="#com.epam.ships.server.gamestates.playDamageMissNotifierTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.epam.ships.server.gamestates.playDamageMissNotifierTest">DamageMissNotifierTest</a></td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -201,12 +313,19 @@ function toggleDisplay(elementId) {
 <h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
 <div class="section">
+<h3><a name="MessageRepositoryTest"></a>MessageRepositoryTest</h3><a name="com.epam.ships.serverMessageRepositoryTest"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.MessageRepositoryTest.shouldGetMessageByHeader"></a>shouldGetMessageByHeader</td>
+<td>0.016</td></tr></table></div>
+<div class="section">
 <h3><a name="TurnManagerTest"></a>TurnManagerTest</h3><a name="com.epam.ships.serverTurnManagerTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td><a name="TC_com.epam.ships.server.TurnManagerTest.shouldBeSecondClientAsCurrentClientAfterFirstInvoceSwitchMethod"></a>shouldBeSecondClientAsCurrentClientAfterFirstInvoceSwitchMethod</td>
-<td>0.433</td></tr>
+<td>0.414</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td><a name="TC_com.epam.ships.server.TurnManagerTest.shouldReturnFalseAfterSwitchingThePlayers"></a>shouldReturnFalseAfterSwitchingThePlayers</td>
@@ -224,19 +343,96 @@ function toggleDisplay(elementId) {
 <td><a name="TC_com.epam.ships.server.TurnManagerTest.shouldReturnTrueIfBeforeSwitchingThePlayers"></a>shouldReturnTrueIfBeforeSwitchingThePlayers</td>
 <td>0</td></tr></table></div>
 <div class="section">
-<h3><a name="WrappedClientTest"></a>WrappedClientTest</h3><a name="com.epam.ships.serverWrappedClientTest"></a>
+<h3><a name="MessageSenderTest"></a>MessageSenderTest</h3><a name="com.epam.ships.serverMessageSenderTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.server.WrappedClientTest.wrappedClientShouldBeAbleToSendMessageToServer"></a>wrappedClientShouldBeAbleToSendMessageToServer</td>
-<td>0.493</td></tr></table></div>
+<td><a name="TC_com.epam.ships.server.MessageSenderTest.shouldSendByHeader"></a>shouldSendByHeader</td>
+<td>0.097</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.MessageSenderTest.shouldSendMessage"></a>shouldSendMessage</td>
+<td>0</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.MessageSenderTest.shouldSendToAll"></a>shouldSendToAll</td>
+<td>0</td></tr></table></div>
 <div class="section">
-<h3><a name="DummyTest"></a>DummyTest</h3><a name="com.epam.ships.serverDummyTest"></a>
+<h3><a name="FleetPlacementStateTest"></a>FleetPlacementStateTest</h3><a name="com.epam.ships.server.gamestatesFleetPlacementStateTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.server.DummyTest.testDummy"></a>testDummy</td>
-<td>0.001</td></tr></table></div><br /></div>
+<td><a name="TC_com.epam.ships.server.gamestates.FleetPlacementStateTest.shouldProcessState"></a>shouldProcessState</td>
+<td>0.651</td></tr></table></div>
+<div class="section">
+<h3><a name="WaitingForPlayersStateTest"></a>WaitingForPlayersStateTest</h3><a name="com.epam.ships.server.gamestatesWaitingForPlayersStateTest"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.gamestates.WaitingForPlayersStateTest.shouldProcess"></a>shouldProcess</td>
+<td>0.023</td></tr></table></div>
+<div class="section">
+<h3><a name="DamageDestructedNotifierTest"></a>DamageDestructedNotifierTest</h3><a name="com.epam.ships.server.gamestates.playDamageDestructedNotifierTest"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.gamestates.play.DamageDestructedNotifierTest.shouldNotifyAboutDamage"></a>shouldNotifyAboutDamage</td>
+<td>0.045</td></tr></table></div>
+<div class="section">
+<h3><a name="MessageReceiverTest"></a>MessageReceiverTest</h3><a name="com.epam.ships.server.gamestates.playMessageReceiverTest"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.gamestates.play.MessageReceiverTest.shouldBeAShotIfLastMessageWasShot"></a>shouldBeAShotIfLastMessageWasShot</td>
+<td>0.001</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.gamestates.play.MessageReceiverTest.shouldNotBeAShotIfLastMessageWasNotShot"></a>shouldNotBeAShotIfLastMessageWasNotShot</td>
+<td>0</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.gamestates.play.MessageReceiverTest.shouldReceiveMessageFromPlayer"></a>shouldReceiveMessageFromPlayer</td>
+<td>0.001</td></tr></table></div>
+<div class="section">
+<h3><a name="ShotHandlerTest"></a>ShotHandlerTest</h3><a name="com.epam.ships.server.gamestates.playShotHandlerTest"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.gamestates.play.ShotHandlerTest.shouldHandleFleetDefeat"></a>shouldHandleFleetDefeat</td>
+<td>0.001</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.gamestates.play.ShotHandlerTest.shouldHandleHitWhenFirstPlayerShots"></a>shouldHandleHitWhenFirstPlayerShots</td>
+<td>0</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.gamestates.play.ShotHandlerTest.shouldHandleHitWhenSecondPlayerShots"></a>shouldHandleHitWhenSecondPlayerShots</td>
+<td>0.001</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.gamestates.play.ShotHandlerTest.shouldHandleMiss"></a>shouldHandleMiss</td>
+<td>0.001</td></tr></table></div>
+<div class="section">
+<h3><a name="DamageHitNotifierTest"></a>DamageHitNotifierTest</h3><a name="com.epam.ships.server.gamestates.playDamageHitNotifierTest"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.gamestates.play.DamageHitNotifierTest.shouldNotifyAboutHit"></a>shouldNotifyAboutHit</td>
+<td>0.001</td></tr></table></div>
+<div class="section">
+<h3><a name="DamageMissNotifierTest"></a>DamageMissNotifierTest</h3><a name="com.epam.ships.server.gamestates.playDamageMissNotifierTest"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.gamestates.play.DamageMissNotifierTest.shouldNotifyAboutHit"></a>shouldNotifyAboutHit</td>
+<td>0.001</td></tr></table></div>
+<div class="section">
+<h3><a name="GameTest"></a>GameTest</h3><a name="com.epam.ships.serverGameTest"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_com.epam.ships.server.GameTest.shouldEndWhenShouldBeContinuedConditionIsFalse"></a>shouldEndWhenShouldBeContinuedConditionIsFalse</td>
+<td>0.014</td></tr></table></div><br /></div>
       </div>
     </div>
     <div class="clear">
