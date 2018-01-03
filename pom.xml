@@ -230,6 +230,7 @@
                     <version>${siteVersion}</version>
                     <configuration>
                         <skip>${skipSite}</skip>
+                        <relativizeDecorationLinks>true</relativizeDecorationLinks>
                     </configuration>
                 </plugin>
                 <plugin>
