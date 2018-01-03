@@ -253,6 +253,21 @@
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>${antrunVersion}</version>
                 </plugin>
+                <!--
+                We were supposed to tell, how Maven Assembly Plug-in
+                was used.
+                First of all, in our project it isn't used explicitly,
+                it is present here for the same reason as mentioned above
+                <pluginManagement> (to fix stable versions and thus satisfy
+                a plug-in requirement).
+                We've read about it though and it seems to be an alternative to
+                Maven Shade Plug-in for packaging which can do less, and
+                as we understood documentation the main difference is that
+                Maven Shade Plugin is also capable of shading (renaming packages)
+                and most importantly of creating uber-jars. That much for now;)
+                More info:
+                http://maven.apache.org/plugins-archives/maven-assembly-plugin-2.6/
+                -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
