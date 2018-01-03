@@ -123,6 +123,8 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombokVersion}</version>
+                <!--Provided because it generates code
+                which is available once compiled-->
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -304,7 +306,7 @@
                                     <rule implementation="org.jacoco.maven.RuleConfiguration">
                                         <element>BUNDLE</element>
                                         <!--We were unable to add an average COVEREDRATIO for multiple
-                                        modules, there we've excluded client module-->
+                                        modules, there we excluded client module-->
                                         <excludes>
                                             <exclude>client</exclude>
                                         </excludes>
