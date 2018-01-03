@@ -12,11 +12,16 @@ import lombok.EqualsAndHashCode;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ * Represents client witch is used by CommunicationBus.
+ *
+ * @author Piotr Czyż
+ * @since 2018-01-02
+ */
 @EqualsAndHashCode
-class WrappedClient {
+public class WrappedClient {
 
   private final Target logger = new SharedLogger(this.getClass());
-
   private final Socket socket;
   private Sender out;
   private Receiver in;
