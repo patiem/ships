@@ -12,12 +12,11 @@ public class Main {
 
   public static void main(String[] args) throws IOException {
 
+    CommunicationBus communicationBus = new CommunicationBus();
     boolean shouldRun = true;
     while (shouldRun) {
-      CommunicationBus communicationBus = new CommunicationBus();
       GameState initialState = new WaitingForPlayersState(communicationBus);
       new Game(initialState).loop();
-
       try {
         Thread.sleep(300);
       } catch (final InterruptedException e) {

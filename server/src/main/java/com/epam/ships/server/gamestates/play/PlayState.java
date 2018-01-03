@@ -39,7 +39,7 @@ public class PlayState implements GameState {
       Message shot = messageReceiver.getMessage();
       isGameWon = shotHandler.handle(turnManager.isCurrentPlayerFirstPlayer(), shot);
     } else {
-      return new GameEndWithWalkoverState(communicationBus, turnManager);
+      return new GameEndWithWalkoverState(communicationBus);
     }
     if (isGameWon) {
       return new GameEndWithWinState(communicationBus, turnManager);

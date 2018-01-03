@@ -38,17 +38,16 @@ public class CommunicationBus {
     logger.info("Communication bus started..");
   }
 
-  private void wrapClient(Socket socketClient) {
-    WrappedClient wrappedClient = new WrappedClient(socketClient);
-    clients.add(wrappedClient);
-  }
-
   public void stop() {
     for (WrappedClient c : clients) {
       c.close();
     }
-
     clients.clear();
+  }
+
+  private void wrapClient(Socket socketClient) {
+    WrappedClient wrappedClient = new WrappedClient(socketClient);
+    clients.add(wrappedClient);
   }
 
   public Message receive(WrappedClient sender) {
