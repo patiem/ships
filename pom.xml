@@ -330,6 +330,23 @@
                     <artifactId>maven-shade-plugin</artifactId>
                     <version>${shadeVersion}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${checkstyleVersion}</version>
+                    <executions>
+                        <execution>
+                            <phase>process-sources</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <configLocation>google_checks.xml</configLocation>
+                        <failsOnError>true</failsOnError>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <!--Important: JaCoCo here also generates datafiles which
@@ -352,6 +369,10 @@
             to an infinitive loop bug in server module.
             We're working on it.
             -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
         </plugins>
     </build>
 
