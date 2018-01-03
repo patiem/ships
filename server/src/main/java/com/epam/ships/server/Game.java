@@ -2,11 +2,17 @@ package com.epam.ships.server;
 
 import com.epam.ships.server.gamestates.GameState;
 
+/**
+ * Represents Game with states.
+ *
+ * @author Piotr Czyż
+ * @since 02.01.2018
+ */
 public class Game {
   private GameState currentState;
 
-  Game(GameState initialState) {
-    currentState = initialState;
+  Game(GameState gameState) {
+    currentState = gameState;
   }
 
   void loop() {
@@ -15,7 +21,6 @@ public class Game {
     while (shouldBeContinued) {
       nextState = currentState.process();
       shouldBeContinued = currentState.shouldBeContinued();
-
       currentState = nextState;
     }
   }

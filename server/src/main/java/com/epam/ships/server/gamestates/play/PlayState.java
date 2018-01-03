@@ -14,6 +14,12 @@ import com.epam.ships.server.gamestates.GameState;
 
 import java.util.List;
 
+/**
+ * Main class where the play goes.
+ *
+ * @author Piotr Czyż
+ * @since 02.01.2018
+ */
 public class PlayState implements GameState {
   private final MessageReceiver messageReceiver;
   private final ShotHandler shotHandler;
@@ -22,6 +28,12 @@ public class PlayState implements GameState {
   private CommunicationBus communicationBus;
   private boolean isGameWon;
 
+  /**
+   * Crates PlayState instance.
+   *
+   * @param communicationBus client server communication bus
+   * @param fleets list of clients fleets
+   */
   public PlayState(CommunicationBus communicationBus, List<Fleet> fleets) {
     this.communicationBus = communicationBus;
     this.messageReceiver = new MessageReceiver(communicationBus);

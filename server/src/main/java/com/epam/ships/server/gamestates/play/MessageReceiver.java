@@ -7,6 +7,12 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import com.epam.ships.server.CommunicationBus;
 import com.epam.ships.server.WrappedClient;
 
+/**
+ * Receive message from client.
+ *
+ * @author Piotr Czyż
+ * @since 02.01.2018
+ */
 public class MessageReceiver {
   private final Target logger = new SharedLogger(MessageReceiver.class);
   private CommunicationBus communicationBus;

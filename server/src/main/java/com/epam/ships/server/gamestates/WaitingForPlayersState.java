@@ -6,6 +6,12 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import com.epam.ships.server.CommunicationBus;
 import com.epam.ships.server.MessageSender;
 
+/**
+ * Represents state where player is waiting for opponent.
+ *
+ * @author Piotr Czyż
+ * @since 02.01.2018
+ */
 public class WaitingForPlayersState implements GameState {
   private final Target logger = new SharedLogger(WaitingForPlayersState.class);
   private CommunicationBus communicationBus;

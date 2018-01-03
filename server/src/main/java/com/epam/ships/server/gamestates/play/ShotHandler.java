@@ -12,6 +12,12 @@ import com.epam.ships.server.TurnManager;
 
 import java.util.List;
 
+/**
+ * Handle a player shot.
+ *
+ * @author Piotr Czyż
+ * @since 02.01.2018
+ */
 class ShotHandler {
   private final Target logger = new SharedLogger(ShotHandler.class);
   private final MessageSender messageSender;

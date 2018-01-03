@@ -1,11 +1,23 @@
 package com.epam.ships.server;
 
+/**
+ * Take care of players turn.
+ *
+ * @author Piotr Czyż
+ * @since 20.12.2017
+ */
 public class TurnManager {
   private final WrappedClient firstPlayer;
   private final WrappedClient secondPlayer;
   private WrappedClient currentPlayer;
   private WrappedClient otherPlayer;
 
+  /**
+   * Creates TurnManager instance.
+   *
+   * @param firstPlayer  player who starts the game
+   * @param secondPlayer second player in the game
+   */
   public TurnManager(final WrappedClient firstPlayer, final WrappedClient secondPlayer) {
     this.firstPlayer = firstPlayer;
     this.secondPlayer = secondPlayer;
@@ -21,6 +33,9 @@ public class TurnManager {
     return this.otherPlayer;
   }
 
+  /**
+   * It's changes players turn.
+   */
   public void switchPlayer() {
     if (this.currentPlayer.equals(this.firstPlayer)) {
       this.currentPlayer = this.secondPlayer;

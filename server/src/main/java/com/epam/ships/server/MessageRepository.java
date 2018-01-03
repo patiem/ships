@@ -7,6 +7,12 @@ import com.epam.ships.infra.communication.core.message.MessageBuilder;
 
 import java.util.EnumMap;
 
+/**
+ * Repository of message that server can send
+ *
+ * @author Piotr Czyż
+ * @since 02.01.2018
+ */
 public class MessageRepository {
 
   private EnumMap<Header, Message> messages;

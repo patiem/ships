@@ -5,6 +5,12 @@ import com.epam.ships.infra.communication.api.message.Header;
 import com.epam.ships.server.MessageSender;
 import com.epam.ships.server.TurnManager;
 
+/**
+ * Notification about strength of shot.
+ *
+ * @author Piotr Czyż
+ * @since 02.01.2018
+ */
 abstract class DamageNotifier {
   protected MessageSender messageSender;
   protected TurnManager turnManager;

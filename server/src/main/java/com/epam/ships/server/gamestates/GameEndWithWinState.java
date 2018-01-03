@@ -7,12 +7,24 @@ import com.epam.ships.server.CommunicationBus;
 import com.epam.ships.server.MessageSender;
 import com.epam.ships.server.TurnManager;
 
+/**
+ * Represents game state where game have a winner.
+ *
+ * @author Piotr Czyż
+ * @since 02.01.2018
+ */
 public class GameEndWithWinState implements GameState {
   private final MessageSender messageSender;
   private final Target logger = new SharedLogger(GameEndWithWinState.class);
   private CommunicationBus communicationBus;
   private TurnManager turnManager;
 
+  /**
+   * Its create state of game when we have winner.
+   *
+   * @param communicationBus client server communication bus
+   * @param turnManager      take care about players turns
+   */
   public GameEndWithWinState(CommunicationBus communicationBus, TurnManager turnManager) {
     this.communicationBus = communicationBus;
     this.turnManager = turnManager;
