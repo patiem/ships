@@ -26,8 +26,7 @@ public class GameEndWithWalkoverState implements GameState {
   /**
    * Process game end with walk-over.
    *
-   * @return GameState - returns itself, but this will not be processed any more because
-   *         shouldBeContinued returns false.
+   * @return return a state in which game will be discontinued
    * @see #shouldBeContinued()
    */
   @Override

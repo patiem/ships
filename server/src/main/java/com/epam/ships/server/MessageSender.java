@@ -39,7 +39,7 @@ public class MessageSender {
   }
 
   /**
-   * Send message to addressee.
+   * Send message to an addressee.
    *
    * @param addressee message addressee
    * @param message   message to send

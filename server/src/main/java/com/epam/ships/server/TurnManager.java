@@ -26,7 +26,7 @@ public class TurnManager {
   }
 
   /**
-   * Returns player who has the turn now.
+   * Returns a player having the turn.
    *
    * @return WrappedClient - currentPlayer
    */
@@ -35,7 +35,7 @@ public class TurnManager {
   }
 
   /**
-   * Returns player who is waiting for his turn.
+   * Returns a player waiting for his turn.
    *
    * @return WrappedClient - player waiting for his turn.
    */
