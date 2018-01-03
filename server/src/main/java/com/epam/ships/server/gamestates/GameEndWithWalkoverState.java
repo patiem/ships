@@ -26,8 +26,9 @@ public class GameEndWithWalkoverState implements GameState {
   /**
    * Process game end with walk-over.
    *
-   * @return GameState - returns itself, but this will not be processed any more because of
-   * @see this.shouldBeContinued().
+   * @return GameState - returns itself, but this will not be processed any more because
+   *         shouldBeContinued returns false.
+   * @see #shouldBeContinued()
    */
   @Override
   public GameState process() {
