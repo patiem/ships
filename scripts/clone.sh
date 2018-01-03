@@ -16,4 +16,9 @@ set -e
 git clone https://github.com/korotkevics/ships $1 --quiet
 cd $1
 git checkout master --quiet
+
+echo "copying pre-commit hook"
+chmod u+x pre-commitHookMaven.sh
+cp pre-commitHookMaven.sh ../.git/hooks/pre-commit
+
 echo "Done cloning"
