@@ -7,7 +7,7 @@ import java.net.Socket;
 
 import static org.testng.Assert.assertEquals;
 
-@Test
+@Test(groups = {"integration"})
 public class AppServerTest {
 
   public void shouldConnectTwoClients() throws IOException, InterruptedException {

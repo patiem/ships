@@ -5,9 +5,18 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
 
+/**
+ * Main class of server application.
+ *
+ * @author Piotr Czyż
+ * @since 2017-12-09
+ */
 public class Main {
   private static final Target logger = new SharedLogger(Main.class);
 
+  /**
+   * Main server method. It creates communication bus and starts the game.
+   */
   public static void main(String[] args) throws IOException {
 
     CommunicationBus communicationBus = new CommunicationBus();
