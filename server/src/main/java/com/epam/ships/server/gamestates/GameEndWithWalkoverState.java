@@ -8,7 +8,7 @@ import com.epam.ships.server.CommunicationBus;
  * Represents game state where one of players quit in the middle of game.
  *
  * @author Piotr Czyż
- * @since 02.01.2018
+ * @since 2018-01-02
  */
 public class GameEndWithWalkoverState implements GameState {
   private final Target logger = new SharedLogger(GameEndWithWalkoverState.class);

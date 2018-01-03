@@ -24,6 +24,11 @@ public class CommunicationBus {
 
   private List<WrappedClient> clients;
 
+  /**
+   * Create communication bus instance.
+   *
+   * @throws IOException if an I/O error occurs when opening the socket.
+   */
   public CommunicationBus() throws IOException {
     appServer = new AppServer(SERVER_PORT);
     clients = new ArrayList<>();
@@ -59,7 +64,7 @@ public class CommunicationBus {
    * It receive message from player.
    *
    * @param sender player who sent a message
-   * @return message
+   * @return received message
    */
   public Message receive(final WrappedClient sender) {
     return sender.receive();
