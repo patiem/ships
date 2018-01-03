@@ -6,8 +6,16 @@
     </skin>
 
     <body>
-        <menu ref="reports" />
+        <menu ref="reports" inherit="top"/>
+        <menu ref="modules" inherit="top"/>
+        <menu name="Index" inherit="top">
+            <item name="Go to INDEX" href="./index.html"/>
+        </menu>
     </body>
+
+    <bannerLeft>
+        <src>https://d1u5p3l4wpay3k.cloudfront.net/arksurvivalevolved_gamepedia/thumb/9/93/Primitive_Cannon.png/128px-Primitive_Cannon.png</src>
+    </bannerLeft>
 
     <custom>
         <fluidoSkin>
