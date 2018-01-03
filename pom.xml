@@ -47,7 +47,7 @@
         <dependency.locations.enabled>false</dependency.locations.enabled>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <mavenVersion>3.5.2</mavenVersion>
+        <mavenVersion>3.5.0</mavenVersion>
         <compilerVersion>3.7.0</compilerVersion>
         <cleanVersion>3.0.0</cleanVersion>
         <deployVersion>2.8.2</deployVersion>
@@ -89,11 +89,13 @@
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
                 <version>${testngVersion}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
                 <version>${mockitoVersion}</version>
+                <scope>test</scope>
             </dependency>
             <!--Else-->
             <dependency>
@@ -123,12 +125,25 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombokVersion}</version>
+                <scope>provided</scope>
+                <!--Provided because it generates code
+                which is available once compiled-->
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
         <pluginManagement>
+            <!--Why so many plug-ins in pluginManagement?
+            It all started with a report produced by
+            versions-maven-plugin
+            It lists all plug-ins anyhow used by Maven
+            and gives a status:
+            - if a version is not fixed and/or not the latest one = red
+            - if a version is fixed and the latest one = green
+            We wanted to have as many green status as possible which is
+            also a project requirement (as we understood it).
+            -->
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -228,11 +243,37 @@
                     <artifactId>maven-release-plugin</artifactId>
                     <version>${releaseVersion}</version>
                 </plugin>
+                <!--
+                We were supposed to tell, how Maven Antrun Plug-in
+                was used.
+                Maven Antrun Plug-in can be used to run
+                Ant tasks. We do not know much about Ant, and
+                the most comprehensive/useful example we've found was
+                running a script with a build phase:
+                https://maven.apache.org/guides/mini/guide-using-ant.html
+                We haven't used it in our project anyways because
+                we couldn't think of a script we'd like to run with a build phase:)
+                -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>${antrunVersion}</version>
                 </plugin>
+                <!--
+                We were supposed to tell, how Maven Assembly Plug-in
+                was used.
+                First of all, in our project it isn't used explicitly,
+                it is present here for the same reason as mentioned above
+                <pluginManagement> (to fix stable versions and thus satisfy
+                a plug-in requirement).
+                We've read about it though and it seems to be an alternative to
+                Maven Shade Plug-in for packaging which can do less, and
+                as we understood documentation the main difference is that
+                Maven Shade Plugin is also capable of shading (renaming packages)
+                and most importantly of creating uber-jars. That much for now;)
+                More info:
+                http://maven.apache.org/plugins-archives/maven-assembly-plugin-2.6/
+                -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
@@ -252,27 +293,106 @@
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>${jacocoVersion}</version>
+                    <executions>
+                        <execution>
+                            <id>prepare-agent</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>check</id>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <!--SHARED module only
+                                    TODO: increase, so the cross-module average can be 60%.
+                                    -->
+                                    <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                        <element>BUNDLE</element>
+                                        <excludes>
+                                            <exclude>client</exclude>
+                                            <exclude>server</exclude>
+                                        </excludes>
+                                        <limits>
+                                            <limit implementation="org.jacoco.report.check.Limit">
+                                                <counter>INSTRUCTION</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>0.68</minimum>
+                                            </limit>
+                                        </limits>
+                                    </rule>
+                                    <!--SERVER module only
+                                    TODO: increase, so the cross-module average can be 60%.
+                                    -->
+                                    <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                        <element>BUNDLE</element>
+                                        <excludes>
+                                            <exclude>client</exclude>
+                                            <exclude>shared</exclude>
+                                        </excludes>
+                                        <limits>
+                                            <limit implementation="org.jacoco.report.check.Limit">
+                                                <counter>INSTRUCTION</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>0.16</minimum>
+                                            </limit>
+                                        </limits>
+                                    </rule>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>${shadeVersion}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${checkstyleVersion}</version>
+                    <executions>
+                        <execution>
+                            <phase>process-sources</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <configLocation>google_checks.xml</configLocation>
+                        <failsOnError>true</failsOnError>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
-        <!--Necessary to generate datafiles which can
-        be later used by jacoco reporting-->
+        <!--Important: JaCoCo here also generates datafiles which
+        are later used by JaCoCo reporting-->
         <plugins>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+            <!--
+            We're yet unable to add FindBugs to build due
+            to an infinitive loop bug in server module.
+            We're working on it.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
@@ -288,7 +408,7 @@
                 <configuration>
                     <xmlOutput>false</xmlOutput>
                     <effort>Max</effort>
-                    <threshold>Low</threshold>
+                    <threshold>Medium</threshold>
                 </configuration>
             </plugin>
             <plugin>
@@ -450,6 +570,17 @@
     <distributionManagement>
         <site>
             <id>${project.artifactId}</id>
+            <!--
+            We deploy site with a script (updateRemoteSite.sh),
+            therefore scp is left empty.
+            We do not have a server, and it would be also
+            troublesome to configure with settings.xml for each
+            computer.
+            The reason it is mentioned at all is to make local
+            site staging possible.
+            More info here:
+            https://maven.apache.org/plugins/maven-site-plugin/usage.html
+            -->
             <url>scp:///</url>
         </site>
     </distributionManagement>

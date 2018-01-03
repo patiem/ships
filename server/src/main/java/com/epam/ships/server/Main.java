@@ -19,6 +19,8 @@ public class Main {
 
   /**
    * Main server method. It creates communication bus and starts the game.
+   * @param args is a conventional main method parameter.
+   * @throws IOException can be thrown due to establishing a socket connection.
    */
   public static void main(String[] args) throws IOException {
     CommunicationBus communicationBus = new CommunicationBus();

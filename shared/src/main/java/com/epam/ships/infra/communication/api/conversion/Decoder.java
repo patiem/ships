@@ -13,8 +13,8 @@ import com.epam.ships.infra.communication.api.Message;
 public interface Decoder<T> {
   /**
    * Implementing BaseMessage interface.
-   * @param t it decodes from this type.
+   * @param type it decodes from this type.
    * @return BaseMessage an instance of a class
    */
-  Message decode(T t);
+  Message decode(T type);
 }
