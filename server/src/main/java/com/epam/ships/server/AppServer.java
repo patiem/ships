@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * It starts a server socket and accepts two client sockets.
  *
- * @author Piotr Czyż
+ * @author Piotr Czyż, Magdalena Aarsman, Sandor Korotkevics
  * @since 2017-12-09
  */
 class AppServer {

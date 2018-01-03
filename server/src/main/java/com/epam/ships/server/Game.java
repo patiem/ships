@@ -6,7 +6,7 @@ import com.epam.ships.server.gamestates.GameState;
  * Represents Game with states.
  *
  * @author Piotr Czyż
- * @since 02.01.2018
+ * @since 13.12.2017
  */
 public class Game {
   private GameState currentState;
