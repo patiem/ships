@@ -6,7 +6,7 @@ import com.epam.ships.infra.logging.core.SharedLogger;
 import java.io.IOException;
 
 /**
- * * Main class of server application.
+ * Main class of server application.
  *
  * @author Piotr Czyż
  * @since 2017-12-09

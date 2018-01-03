@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.EnumMap;
+import java.util.Map;
 
 /**
  * Enable communication with server side.
@@ -31,11 +33,13 @@ public class Client implements Runnable {
   private volatile boolean shouldRun;
 
   /**
-   * Creates the Client instance.
+   * Creates Client instance.
+   * @param messageHandler - messageHandler instance
+   * @param shouldRun - flag informing if client should start/run
    */
-  public Client() {
-    this.messageHandler = new MessageHandler();
-    shouldRun = true;
+  public Client(final MessageHandler messageHandler, boolean shouldRun) {
+    this.messageHandler = messageHandler;
+    this.shouldRun = shouldRun;
   }
 
   /**
@@ -43,11 +47,12 @@ public class Client implements Runnable {
    *
    * @param ipAddress - server ip address
    * @param port      - server port
+   * @param socket    - socket to connect on.
    * @return true if success, false on failure
    */
-  public boolean connect(final String ipAddress, final int port) {
+  public boolean connect(final String ipAddress, final int port, Socket socket) {
     try {
-      clientSocket = new Socket();
+      clientSocket = socket;
       final InetAddress address = InetAddress.getByName(ipAddress);
       final int connectionTimeout = 500;
       clientSocket.connect(new InetSocketAddress(address, port), connectionTimeout);

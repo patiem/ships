@@ -21,6 +21,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.Socket;
 
 /**
  * Connecting window controller.
@@ -110,7 +111,7 @@ public class StartWindowController {
     logger.info("server port: " + port);
 
     showLoadingWheel();
-    final boolean isConnected = client.connect(serverAddress, port);
+    final boolean isConnected = client.connect(serverAddress, port, new Socket());
 
     if (!isConnected) {
       loadServerNotResponseView();
