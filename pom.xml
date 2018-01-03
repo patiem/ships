@@ -318,6 +318,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
             </plugin>
+            <!--
+            We're yet unable to add FindBugs to build due
+            to an infinitive loop bug in server module.
+            We're working on it.
+            -->
         </plugins>
     </build>
 
