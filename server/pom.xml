@@ -26,18 +26,15 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
         </dependency>
         <!--Lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -48,7 +45,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>${shadeVersion}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -77,9 +73,12 @@
     <name>Ships - SERVER</name>
 
     <description>
-        It's Battleships game client.
-        It is an isolated module having
-        a light-weight client logic and GUI (JavaFX).
+        It's Battleships game server.
+        It is an isolated module being mostly
+        responsible for,
+        - handling a network connection
+        - handling message exchange
+        - handling heavy-weight game rules
 
         It's a child POM:
         - it explicitly defines dependencies inherited from
