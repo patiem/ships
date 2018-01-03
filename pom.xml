@@ -47,7 +47,7 @@
         <dependency.locations.enabled>false</dependency.locations.enabled>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <mavenVersion>3.5.2</mavenVersion>
+        <mavenVersion>3.5.0</mavenVersion>
         <compilerVersion>3.7.0</compilerVersion>
         <cleanVersion>3.0.0</cleanVersion>
         <deployVersion>2.8.2</deployVersion>
