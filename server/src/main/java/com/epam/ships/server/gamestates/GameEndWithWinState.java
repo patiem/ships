@@ -11,7 +11,7 @@ import com.epam.ships.server.TurnManager;
  * Represents game state where game have a winner.
  *
  * @author Piotr Czyż
- * @since 02.01.2018
+ * @since 2018-01-02
  */
 public class GameEndWithWinState implements GameState {
   private final MessageSender messageSender;
@@ -25,12 +25,17 @@ public class GameEndWithWinState implements GameState {
    * @param communicationBus client server communication bus
    * @param turnManager      take care about players turns
    */
-  public GameEndWithWinState(CommunicationBus communicationBus, TurnManager turnManager) {
+  public GameEndWithWinState(final CommunicationBus communicationBus, final TurnManager turnManager) {
     this.communicationBus = communicationBus;
     this.turnManager = turnManager;
     messageSender = new MessageSender(communicationBus, logger);
   }
 
+  /**
+   * Process end of game with the winner, and close communication bus.
+   *
+   * @return GameState
+   */
   @Override
   public GameState process() {
     handleEndOfGame();
@@ -39,6 +44,11 @@ public class GameEndWithWinState implements GameState {
     return this;
   }
 
+  /**
+   * Set that game should not by continued since we have a winner.
+   *
+   * @return boolean
+   */
   @Override
   public boolean shouldBeContinued() {
     return false;

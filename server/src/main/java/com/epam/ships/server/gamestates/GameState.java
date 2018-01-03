@@ -1,15 +1,24 @@
 package com.epam.ships.server.gamestates;
 
 /**
- * Interface for game states
+ * Interface for game states.
  *
  * @author Piotr Czyż
- * @since 02.01.2018
+ * @since 2018-01-02
  */
 public interface GameState {
-
+  /**
+   * Process current game state.
+   *
+   * @return GameState
+   */
   GameState process();
 
+  /**
+   * Stays that game should or should not be continued.
+   *
+   * @return by default its returns true, to keep game going.
+   */
   default boolean shouldBeContinued() {
     return true;
   }

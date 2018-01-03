@@ -4,7 +4,7 @@ package com.epam.ships.server;
  * Take care of players turn.
  *
  * @author Piotr Czyż
- * @since 20.12.2017
+ * @since 2017-12-20
  */
 public class TurnManager {
   private final WrappedClient firstPlayer;
@@ -25,10 +25,20 @@ public class TurnManager {
     this.otherPlayer = secondPlayer;
   }
 
+  /**
+   * Gets player which has a turn.
+   *
+   * @return WrappedClient - current player
+   */
   public WrappedClient getCurrentPlayer() {
     return this.currentPlayer;
   }
 
+  /**
+   * Gets player which is waiting for his turn.
+   *
+   * @return WrappedClient - player waiting for his turn.
+   */
   public WrappedClient getOtherPlayer() {
     return this.otherPlayer;
   }
@@ -46,6 +56,11 @@ public class TurnManager {
     }
   }
 
+  /**
+   * Check if firstPlayer is current player.
+   *
+   * @return true if currentPlayer is firstPlayer
+   */
   public boolean isCurrentPlayerFirstPlayer() {
     return currentPlayer.equals(firstPlayer);
   }

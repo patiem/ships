@@ -16,7 +16,7 @@ import java.util.List;
  * Handle a player shot.
  *
  * @author Piotr Czyż
- * @since 02.01.2018
+ * @since 2018-01-02
  */
 class ShotHandler {
   private final Target logger = new SharedLogger(ShotHandler.class);
@@ -25,18 +25,25 @@ class ShotHandler {
   private List<Fleet> fleets;
 
 
-  ShotHandler(CommunicationBus communicationBus, TurnManager turnManager, List<Fleet> fleets) {
+  ShotHandler(final CommunicationBus communicationBus, final TurnManager turnManager,
+              final List<Fleet> fleets) {
     this.turnManager = turnManager;
     this.fleets = fleets;
     this.messageSender = new MessageSender(communicationBus, logger);
   }
 
-  public boolean handle(boolean isShotByFirstPlayer, Message shot) {
+  /**
+   * It handle player shot.
+   * @param isShotByFirstPlayer it checks who shots
+   * @param shot Message with shot
+   * @return true if there is no more ships in opponent fleet
+   */
+  public boolean handle(final boolean isShotByFirstPlayer,final Message shot) {
     Fleet fleet = getRightFleet(isShotByFirstPlayer);
     return handleShot(shot, fleet);
   }
 
-  private boolean handleShot(Message receivedShot, Fleet fleet) {
+  private boolean handleShot(final Message receivedShot,final Fleet fleet) {
     logger.debug("Handling shot at " + receivedShot.getStatement());
     final Mast mast = Mast.ofIndex(receivedShot.getStatement());
     Damage damage = fleet.handleDamage(mast);
@@ -52,11 +59,7 @@ class ShotHandler {
     return fleet.isDefeated();
   }
 
-  private Fleet getRightFleet(boolean isShotByFirstPlayer) {
-    if (isShotByFirstPlayer) {
-      return fleets.get(1);
-    } else {
-      return fleets.get(0);
-    }
+  private Fleet getRightFleet(final boolean isShotByFirstPlayer) {
+    return isShotByFirstPlayer ? fleets.get(1) : fleets.get(0);
   }
 }

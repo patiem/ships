@@ -11,18 +11,18 @@ import com.epam.ships.server.WrappedClient;
  * Receive message from client.
  *
  * @author Piotr Czyż
- * @since 02.01.2018
+ * @since 2018-01-02
  */
 public class MessageReceiver {
   private final Target logger = new SharedLogger(MessageReceiver.class);
   private CommunicationBus communicationBus;
   private Message lastMessage;
 
-  MessageReceiver(CommunicationBus communicationBus) {
+  MessageReceiver(final CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
   }
 
-  void receive(WrappedClient player) {
+  void receive(final WrappedClient player) {
     lastMessage = communicationBus.receive(player);
     logger.info(lastMessage);
   }

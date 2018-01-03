@@ -50,12 +50,18 @@ public class CommunicationBus {
     clients.clear();
   }
 
-  private void wrapClient(Socket socketClient) {
+  private void wrapClient(final Socket socketClient) {
     WrappedClient wrappedClient = new WrappedClient(socketClient);
     clients.add(wrappedClient);
   }
 
-  public Message receive(WrappedClient sender) {
+  /**
+   * It receive message from player.
+   *
+   * @param sender player who sent a message
+   * @return message
+   */
+  public Message receive(final WrappedClient sender) {
     return sender.receive();
   }
 
@@ -67,10 +73,20 @@ public class CommunicationBus {
     clients.forEach(wrappedClient -> send(wrappedClient, message));
   }
 
+  /**
+   * Gets player which was connected earlier.
+   *
+   * @return WrappedClient
+   */
   public WrappedClient getFirstClient() {
     return this.clients.get(0);
   }
 
+  /**
+   * Gets player which was connected as second one.
+   *
+   * @return WrappedClient
+   */
   public WrappedClient getSecondClient() {
     return this.clients.get(1);
   }

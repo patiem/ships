@@ -8,10 +8,10 @@ import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import java.util.EnumMap;
 
 /**
- * Repository of message that server can send
+ * Repository of message that server can send.
  *
  * @author Piotr Czyż
- * @since 02.01.2018
+ * @since 2018-01-02
  */
 public class MessageRepository {
 
@@ -29,7 +29,13 @@ public class MessageRepository {
     messages.put(Header.YOUR_TURN, this.yourTurnMessage());
   }
 
-  public Message getMessage(Header header) {
+  /**
+   * Gets message from repository based on message header.
+   *
+   * @param header header of wonted message
+   * @return proper Message from MessageRepository
+   */
+  public Message getMessage(final Header header) {
     return messages.get(header);
   }
 

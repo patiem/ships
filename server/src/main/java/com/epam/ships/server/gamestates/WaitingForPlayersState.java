@@ -10,16 +10,26 @@ import com.epam.ships.server.MessageSender;
  * Represents state where player is waiting for opponent.
  *
  * @author Piotr Czyż
- * @since 02.01.2018
+ * @since 2018-01-02
  */
 public class WaitingForPlayersState implements GameState {
   private final Target logger = new SharedLogger(WaitingForPlayersState.class);
   private CommunicationBus communicationBus;
 
-  public WaitingForPlayersState(CommunicationBus communicationBus) {
+  /**
+   * Create instance of WaitingForPlayersState.
+   *
+   * @param communicationBus client server communication bus
+   */
+  public WaitingForPlayersState(final CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
   }
 
+  /**
+   * Process game from waiting for opponent to FleetPlacementState.
+   *
+   * @return GameState - FleetPlacementState
+   */
   @Override
   public GameState process() {
     communicationBus.start();

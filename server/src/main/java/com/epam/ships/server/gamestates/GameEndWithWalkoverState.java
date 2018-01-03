@@ -14,10 +14,15 @@ public class GameEndWithWalkoverState implements GameState {
   private final Target logger = new SharedLogger(GameEndWithWalkoverState.class);
   private final CommunicationBus communicationBus;
 
-  public GameEndWithWalkoverState(CommunicationBus communicationBus) {
+  public GameEndWithWalkoverState(final CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
   }
 
+  /**
+   * Process game end with walk-over.
+   *
+   * @return GameState - returns it self because there is no more game states.
+   */
   @Override
   public GameState process() {
     logger.info("Game ends - walk-over");
@@ -25,6 +30,11 @@ public class GameEndWithWalkoverState implements GameState {
     return this;
   }
 
+  /**
+   * Set that game should not by continued since there is no opponent.
+   *
+   * @return false because that was
+   */
   @Override
   public boolean shouldBeContinued() {
     return false;

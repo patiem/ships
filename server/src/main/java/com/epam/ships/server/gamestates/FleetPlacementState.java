@@ -18,7 +18,7 @@ import java.util.List;
  * Represent state of game where players place their fleets.
  *
  * @author Piotr Czyż
- * @since 02.01.2018
+ * @since 2018-01-02
  */
 public class FleetPlacementState implements GameState {
   private final CommunicationBus communicationBus;
@@ -26,13 +26,23 @@ public class FleetPlacementState implements GameState {
   private final Target logger = new SharedLogger(FleetPlacementState.class);
   private final List<Fleet> fleets;
 
-  FleetPlacementState(CommunicationBus communicationBus) {
+  /**
+   * Create instance of game where players place their fleets.
+   *
+   * @param communicationBus client server communication bus
+   */
+  FleetPlacementState(final CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
     this.turnManager = new TurnManager(communicationBus.getFirstClient(),
         communicationBus.getSecondClient());
     fleets = new ArrayList<>(2);
   }
 
+  /**
+   * Receives fleets from players, and transfer game to next state.
+   *
+   * @return GameState - PlayState
+   */
   @Override
   public GameState process() {
     askPlayersForPlaceFleet();
