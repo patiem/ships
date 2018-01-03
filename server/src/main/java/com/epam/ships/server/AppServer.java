@@ -11,9 +11,10 @@ import java.util.List;
 
 /**
  * It starts a server socket and accepts two client sockets.
- * @author Piotr Czyż
+ *
+ * @author Piotr Czyż, Magdalena Aarsman, Sandor Korotkevics
  * @since 2017-12-09
-  */
+ */
 class AppServer {
 
   private final Target logger = new SharedLogger(AppServer.class);
@@ -29,9 +30,8 @@ class AppServer {
 
   /**
    * It connects two clients.
-   * @throws IOException - if accepting client failed
    */
-  void connectClients() throws IOException {
+  void connectClients() {
     clientSockets = new ArrayList<>();
     logger.info("Waiting for the 1st client.. ");
     acceptClient();
@@ -45,11 +45,14 @@ class AppServer {
   /**
    * It accepts a client socket
    * while storing it in a list.
-   *
-   * @throws IOException on failure
    */
-  private void acceptClient() throws IOException {
-    Socket client = serverSocket.accept();
+  private void acceptClient() {
+    Socket client = null;
+    try {
+      client = serverSocket.accept();
+    } catch (IOException e) {
+      logger.error(e.getMessage());
+    }
     clientSockets.add(client);
   }
 
