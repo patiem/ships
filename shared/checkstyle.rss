@@ -130,20 +130,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonSender.java">com/epam/ships/infra/communication/core/json/io/JsonSender.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Fleet.java">com/epam/ships/fleet/Fleet.java</a>
                 </td>
                 <td>
@@ -158,7 +144,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.message.Status.java">com/epam/ships/infra/communication/api/message/Status.java</a>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonSender.java">com/epam/ships/infra/communication/core/json/io/JsonSender.java</a>
                 </td>
                 <td>
                   0
@@ -173,6 +159,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.io.Receiver.java">com/epam/ships/infra/communication/api/io/Receiver.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.message.Status.java">com/epam/ships/infra/communication/api/message/Status.java</a>
                 </td>
                 <td>
                   0

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GridToBoardConverter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - CLIENT</a> &gt; <a href="index.source.html" class="el_package">com.epam.ships.client.gui.util</a> &gt; <span class="el_source">GridToBoardConverter.java</span></div><h1>GridToBoardConverter.java</h1><pre class="source lang-java linenums">package com.epam.ships.client.gui.util;
+
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import lombok.RequiredArgsConstructor;
+
+/**
+ * Helper class to convert board represented by grid to array.
+ * @author Magdalena Aarsman
+ * @since 2018-01-01
+ */
+<span class="nc" id="L13">@RequiredArgsConstructor</span>
+public class GridToBoardConverter {
+
+  private static final int BOARD_SIZE = 10;
+  private final GridPane gridBoard;
+
+  /**
+   * Converts grid to array.
+   * @return FieldState array
+   */
+  public FieldState[] convert() {
+<span class="nc" id="L24">    FieldState[] board = new FieldState[BOARD_SIZE * BOARD_SIZE];</span>
+
+<span class="nc bnc" id="L26" title="All 2 branches missed.">    for (int i = 1; i &lt; gridBoard.getChildren().size(); i++) {</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">      if (((Rectangle) gridBoard.getChildren().get(i)).getFill().equals(Color.GREEN)) {</span>
+<span class="nc" id="L28">        board[i - 1] = FieldState.OCCUPIED;</span>
+      } else {
+<span class="nc" id="L30">        board[i - 1] = FieldState.EMPTY;</span>
+      }
+    }
+
+<span class="nc" id="L34">    return board;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

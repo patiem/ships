@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 6,
              Errors: 0,
-             Warnings: 1,
+             Warnings: 0,
              Infos: 0
       </title>
             <link>scp:///server//server/checkstyle.html</link>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.TurnManager.java">com/epam/ships/server/TurnManager.java</a>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.Game.java">com/epam/ships/server/Game.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.Game.java">com/epam/ships/server/Game.java</a>
+                  <a href="scp:///server//server/checkstyle.html#com.epam.ships.server.TurnManager.java">com/epam/ships/server/TurnManager.java</a>
                 </td>
                 <td>
                   0
@@ -122,7 +122,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0

@@ -13,27 +13,36 @@
 <span class="sourceLineNo">005</span><a name="line.5"></a>
 <span class="sourceLineNo">006</span>import java.io.IOException;<a name="line.6"></a>
 <span class="sourceLineNo">007</span><a name="line.7"></a>
-<span class="sourceLineNo">008</span>public class Main {<a name="line.8"></a>
-<span class="sourceLineNo">009</span>  private static final Target logger = new SharedLogger(Main.class);<a name="line.9"></a>
-<span class="sourceLineNo">010</span><a name="line.10"></a>
-<span class="sourceLineNo">011</span>  public static void main(String[] args) throws IOException {<a name="line.11"></a>
-<span class="sourceLineNo">012</span><a name="line.12"></a>
-<span class="sourceLineNo">013</span>    CommunicationBus communicationBus = new CommunicationBus();<a name="line.13"></a>
-<span class="sourceLineNo">014</span>    boolean shouldRun = true;<a name="line.14"></a>
-<span class="sourceLineNo">015</span>    while (shouldRun) {<a name="line.15"></a>
-<span class="sourceLineNo">016</span>      communicationBus.start();<a name="line.16"></a>
-<span class="sourceLineNo">017</span>      final Game game = new Game(communicationBus);<a name="line.17"></a>
-<span class="sourceLineNo">018</span>      game.play();<a name="line.18"></a>
-<span class="sourceLineNo">019</span>      try {<a name="line.19"></a>
-<span class="sourceLineNo">020</span>        Thread.sleep(300);<a name="line.20"></a>
-<span class="sourceLineNo">021</span>      } catch (final InterruptedException e) {<a name="line.21"></a>
-<span class="sourceLineNo">022</span>        logger.error(e.getMessage());<a name="line.22"></a>
-<span class="sourceLineNo">023</span>        Thread.currentThread().interrupt();<a name="line.23"></a>
-<span class="sourceLineNo">024</span>      }<a name="line.24"></a>
-<span class="sourceLineNo">025</span>      communicationBus.stop();<a name="line.25"></a>
-<span class="sourceLineNo">026</span>    }<a name="line.26"></a>
-<span class="sourceLineNo">027</span>  }<a name="line.27"></a>
-<span class="sourceLineNo">028</span>}<a name="line.28"></a>
+<span class="sourceLineNo">008</span>/**<a name="line.8"></a>
+<span class="sourceLineNo">009</span> * Main class of server application.<a name="line.9"></a>
+<span class="sourceLineNo">010</span> *<a name="line.10"></a>
+<span class="sourceLineNo">011</span> * @author Piotr Czyż<a name="line.11"></a>
+<span class="sourceLineNo">012</span> * @since 2017-12-09<a name="line.12"></a>
+<span class="sourceLineNo">013</span> */<a name="line.13"></a>
+<span class="sourceLineNo">014</span>public class Main {<a name="line.14"></a>
+<span class="sourceLineNo">015</span>  private static final Target logger = new SharedLogger(Main.class);<a name="line.15"></a>
+<span class="sourceLineNo">016</span><a name="line.16"></a>
+<span class="sourceLineNo">017</span>  /**<a name="line.17"></a>
+<span class="sourceLineNo">018</span>   * Main server method. It creates communication bus and starts the game.<a name="line.18"></a>
+<span class="sourceLineNo">019</span>   */<a name="line.19"></a>
+<span class="sourceLineNo">020</span>  public static void main(String[] args) throws IOException {<a name="line.20"></a>
+<span class="sourceLineNo">021</span><a name="line.21"></a>
+<span class="sourceLineNo">022</span>    CommunicationBus communicationBus = new CommunicationBus();<a name="line.22"></a>
+<span class="sourceLineNo">023</span>    boolean shouldRun = true;<a name="line.23"></a>
+<span class="sourceLineNo">024</span>    while (shouldRun) {<a name="line.24"></a>
+<span class="sourceLineNo">025</span>      communicationBus.start();<a name="line.25"></a>
+<span class="sourceLineNo">026</span>      final Game game = new Game(communicationBus);<a name="line.26"></a>
+<span class="sourceLineNo">027</span>      game.play();<a name="line.27"></a>
+<span class="sourceLineNo">028</span>      try {<a name="line.28"></a>
+<span class="sourceLineNo">029</span>        Thread.sleep(300);<a name="line.29"></a>
+<span class="sourceLineNo">030</span>      } catch (final InterruptedException e) {<a name="line.30"></a>
+<span class="sourceLineNo">031</span>        logger.error(e.getMessage());<a name="line.31"></a>
+<span class="sourceLineNo">032</span>        Thread.currentThread().interrupt();<a name="line.32"></a>
+<span class="sourceLineNo">033</span>      }<a name="line.33"></a>
+<span class="sourceLineNo">034</span>      communicationBus.stop();<a name="line.34"></a>
+<span class="sourceLineNo">035</span>    }<a name="line.35"></a>
+<span class="sourceLineNo">036</span>  }<a name="line.36"></a>
+<span class="sourceLineNo">037</span>}<a name="line.37"></a>
 
 
 

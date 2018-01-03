@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2018 Java Academy</copyright>
     <item>
-      <title>File: 54,
+      <title>File: 58,
              Errors: 0,
-             Warnings: 2,
+             Warnings: 1,
              Infos: 0
       </title>
             <link>./index.html/checkstyle.html</link>
@@ -214,6 +214,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.util.GridToBoardConverter.java">com/epam/ships/client/gui/util/GridToBoardConverter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="./index.html/checkstyle.html#com.epam.ships.server.Game.java">com/epam/ships/server/Game.java</a>
                 </td>
                 <td>
@@ -242,20 +256,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.OpponentShotTrigger.java">com/epam/ships/client/client/OpponentShotTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.ServerNotRespondingController.java">com/epam/ships/client/gui/controllers/ServerNotRespondingController.java</a>
                 </td>
                 <td>
@@ -271,6 +271,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.HitShotEvent.java">com/epam/ships/client/gui/events/HitShotEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.OpponentShotTrigger.java">com/epam/ships/client/client/OpponentShotTrigger.java</a>
                 </td>
                 <td>
                   0
@@ -416,7 +430,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -634,7 +648,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.MessageHandlerBuilder.java">com/epam/ships/client/client/MessageHandlerBuilder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="./index.html/checkstyle.html#com.epam.ships.server.AppServer.java">com/epam/ships/server/AppServer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.client.validators.ShipPlacementValidator.java">com/epam/ships/client/validators/ShipPlacementValidator.java</a>
                 </td>
                 <td>
                   0
@@ -718,7 +760,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.Orientation.java">com/epam/ships/client/gui/controllers/Orientation.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.logging.core.SharedLogger.java">com/epam/ships/infra/logging/core/SharedLogger.java</a>
                 </td>
                 <td>
                   0
@@ -732,7 +774,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.logging.core.SharedLogger.java">com/epam/ships/infra/logging/core/SharedLogger.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.util.ShipOrientation.java">com/epam/ships/client/gui/util/ShipOrientation.java</a>
                 </td>
                 <td>
                   0
@@ -789,6 +831,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.message.MessageBuilder.java">com/epam/ships/infra/communication/core/message/MessageBuilder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.util.FieldState.java">com/epam/ships/client/gui/util/FieldState.java</a>
                 </td>
                 <td>
                   0

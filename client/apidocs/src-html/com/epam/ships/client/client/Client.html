@@ -25,147 +25,152 @@
 <span class="sourceLineNo">017</span>import java.net.InetAddress;<a name="line.17"></a>
 <span class="sourceLineNo">018</span>import java.net.InetSocketAddress;<a name="line.18"></a>
 <span class="sourceLineNo">019</span>import java.net.Socket;<a name="line.19"></a>
-<span class="sourceLineNo">020</span><a name="line.20"></a>
-<span class="sourceLineNo">021</span>/**<a name="line.21"></a>
-<span class="sourceLineNo">022</span> * Enable communication with server side.<a name="line.22"></a>
-<span class="sourceLineNo">023</span> *<a name="line.23"></a>
-<span class="sourceLineNo">024</span> * @author Magdalena Aarsman<a name="line.24"></a>
-<span class="sourceLineNo">025</span> * @since 2017-12-13<a name="line.25"></a>
-<span class="sourceLineNo">026</span> */<a name="line.26"></a>
-<span class="sourceLineNo">027</span>public class Client implements Runnable {<a name="line.27"></a>
-<span class="sourceLineNo">028</span>  private static final Target logger = new SharedLogger(Client.class);<a name="line.28"></a>
-<span class="sourceLineNo">029</span>  private final MessageHandler messageHandler;<a name="line.29"></a>
-<span class="sourceLineNo">030</span>  private Socket clientSocket;<a name="line.30"></a>
-<span class="sourceLineNo">031</span>  private volatile boolean shouldRun;<a name="line.31"></a>
-<span class="sourceLineNo">032</span><a name="line.32"></a>
-<span class="sourceLineNo">033</span>  /**<a name="line.33"></a>
-<span class="sourceLineNo">034</span>   * Creates the Client instance.<a name="line.34"></a>
-<span class="sourceLineNo">035</span>   */<a name="line.35"></a>
-<span class="sourceLineNo">036</span>  public Client() {<a name="line.36"></a>
-<span class="sourceLineNo">037</span>    this.messageHandler = new MessageHandler();<a name="line.37"></a>
-<span class="sourceLineNo">038</span>    shouldRun = true;<a name="line.38"></a>
-<span class="sourceLineNo">039</span>  }<a name="line.39"></a>
-<span class="sourceLineNo">040</span><a name="line.40"></a>
-<span class="sourceLineNo">041</span>  /**<a name="line.41"></a>
-<span class="sourceLineNo">042</span>   * Connecting client with server using providing address and port.<a name="line.42"></a>
-<span class="sourceLineNo">043</span>   *<a name="line.43"></a>
-<span class="sourceLineNo">044</span>   * @param ipAddress - server ip address<a name="line.44"></a>
-<span class="sourceLineNo">045</span>   * @param port      - server port<a name="line.45"></a>
-<span class="sourceLineNo">046</span>   * @return true if success, false on failure<a name="line.46"></a>
-<span class="sourceLineNo">047</span>   */<a name="line.47"></a>
-<span class="sourceLineNo">048</span>  public boolean connect(final String ipAddress, final int port) {<a name="line.48"></a>
-<span class="sourceLineNo">049</span>    try {<a name="line.49"></a>
-<span class="sourceLineNo">050</span>      clientSocket = new Socket();<a name="line.50"></a>
-<span class="sourceLineNo">051</span>      final InetAddress address = InetAddress.getByName(ipAddress);<a name="line.51"></a>
-<span class="sourceLineNo">052</span>      final int connectionTimeout = 500;<a name="line.52"></a>
-<span class="sourceLineNo">053</span>      clientSocket.connect(new InetSocketAddress(address, port), connectionTimeout);<a name="line.53"></a>
-<span class="sourceLineNo">054</span>    } catch (IOException | IllegalArgumentException e) {<a name="line.54"></a>
-<span class="sourceLineNo">055</span>      logger.error(e.getMessage());<a name="line.55"></a>
-<span class="sourceLineNo">056</span>      return false;<a name="line.56"></a>
-<span class="sourceLineNo">057</span>    }<a name="line.57"></a>
-<span class="sourceLineNo">058</span>    return true;<a name="line.58"></a>
-<span class="sourceLineNo">059</span>  }<a name="line.59"></a>
-<span class="sourceLineNo">060</span><a name="line.60"></a>
-<span class="sourceLineNo">061</span>  /**<a name="line.61"></a>
-<span class="sourceLineNo">062</span>   * Override run method of Runnable interface.<a name="line.62"></a>
-<span class="sourceLineNo">063</span>   * Setting name of thread to "Client listen Thread" and start listen loop.<a name="line.63"></a>
-<span class="sourceLineNo">064</span>   */<a name="line.64"></a>
-<span class="sourceLineNo">065</span>  @Override<a name="line.65"></a>
-<span class="sourceLineNo">066</span>  public void run() {<a name="line.66"></a>
-<span class="sourceLineNo">067</span>    Thread.currentThread().setName("Client listen Thread");<a name="line.67"></a>
-<span class="sourceLineNo">068</span>    listenLoop();<a name="line.68"></a>
-<span class="sourceLineNo">069</span>  }<a name="line.69"></a>
-<span class="sourceLineNo">070</span><a name="line.70"></a>
-<span class="sourceLineNo">071</span>  /**<a name="line.71"></a>
-<span class="sourceLineNo">072</span>   * Closing client, stopping listen thread.<a name="line.72"></a>
-<span class="sourceLineNo">073</span>   */<a name="line.73"></a>
-<span class="sourceLineNo">074</span>  public void closeClient() {<a name="line.74"></a>
-<span class="sourceLineNo">075</span>    this.shouldRun = false;<a name="line.75"></a>
-<span class="sourceLineNo">076</span>    if (clientSocket == null) {<a name="line.76"></a>
-<span class="sourceLineNo">077</span>      return;<a name="line.77"></a>
-<span class="sourceLineNo">078</span>    }<a name="line.78"></a>
-<span class="sourceLineNo">079</span><a name="line.79"></a>
-<span class="sourceLineNo">080</span>    try {<a name="line.80"></a>
-<span class="sourceLineNo">081</span>      clientSocket.close();<a name="line.81"></a>
-<span class="sourceLineNo">082</span>    } catch (IOException e) {<a name="line.82"></a>
-<span class="sourceLineNo">083</span>      logger.error(e.getMessage());<a name="line.83"></a>
-<span class="sourceLineNo">084</span>    }<a name="line.84"></a>
-<span class="sourceLineNo">085</span>  }<a name="line.85"></a>
-<span class="sourceLineNo">086</span><a name="line.86"></a>
-<span class="sourceLineNo">087</span>  private void listenLoop() {<a name="line.87"></a>
-<span class="sourceLineNo">088</span><a name="line.88"></a>
-<span class="sourceLineNo">089</span>    while (shouldRun &amp;&amp; !messageHandler.isEndConnectionTriggered()) {<a name="line.89"></a>
-<span class="sourceLineNo">090</span>      try {<a name="line.90"></a>
-<span class="sourceLineNo">091</span>        Receiver receiver = new JsonReceiver(clientSocket.getInputStream());<a name="line.91"></a>
-<span class="sourceLineNo">092</span>        Message message = receiver.receive();<a name="line.92"></a>
+<span class="sourceLineNo">020</span>import java.util.EnumMap;<a name="line.20"></a>
+<span class="sourceLineNo">021</span>import java.util.Map;<a name="line.21"></a>
+<span class="sourceLineNo">022</span><a name="line.22"></a>
+<span class="sourceLineNo">023</span>/**<a name="line.23"></a>
+<span class="sourceLineNo">024</span> * Enable communication with server side.<a name="line.24"></a>
+<span class="sourceLineNo">025</span> *<a name="line.25"></a>
+<span class="sourceLineNo">026</span> * @author Magdalena Aarsman<a name="line.26"></a>
+<span class="sourceLineNo">027</span> * @since 2017-12-13<a name="line.27"></a>
+<span class="sourceLineNo">028</span> */<a name="line.28"></a>
+<span class="sourceLineNo">029</span>public class Client implements Runnable {<a name="line.29"></a>
+<span class="sourceLineNo">030</span>  private static final Target logger = new SharedLogger(Client.class);<a name="line.30"></a>
+<span class="sourceLineNo">031</span>  private final MessageHandler messageHandler;<a name="line.31"></a>
+<span class="sourceLineNo">032</span>  private Socket clientSocket;<a name="line.32"></a>
+<span class="sourceLineNo">033</span>  private volatile boolean shouldRun;<a name="line.33"></a>
+<span class="sourceLineNo">034</span><a name="line.34"></a>
+<span class="sourceLineNo">035</span>  /**<a name="line.35"></a>
+<span class="sourceLineNo">036</span>   * Creates Client instance.<a name="line.36"></a>
+<span class="sourceLineNo">037</span>   * @param messageHandler - messageHandler instance<a name="line.37"></a>
+<span class="sourceLineNo">038</span>   * @param shouldRun - flag informing if client should start/run<a name="line.38"></a>
+<span class="sourceLineNo">039</span>   */<a name="line.39"></a>
+<span class="sourceLineNo">040</span>  public Client(final MessageHandler messageHandler, boolean shouldRun) {<a name="line.40"></a>
+<span class="sourceLineNo">041</span>    this.messageHandler = messageHandler;<a name="line.41"></a>
+<span class="sourceLineNo">042</span>    this.shouldRun = shouldRun;<a name="line.42"></a>
+<span class="sourceLineNo">043</span>  }<a name="line.43"></a>
+<span class="sourceLineNo">044</span><a name="line.44"></a>
+<span class="sourceLineNo">045</span>  /**<a name="line.45"></a>
+<span class="sourceLineNo">046</span>   * Connecting client with server using providing address and port.<a name="line.46"></a>
+<span class="sourceLineNo">047</span>   *<a name="line.47"></a>
+<span class="sourceLineNo">048</span>   * @param ipAddress - server ip address<a name="line.48"></a>
+<span class="sourceLineNo">049</span>   * @param port      - server port<a name="line.49"></a>
+<span class="sourceLineNo">050</span>   * @param socket    - socket to connect on.<a name="line.50"></a>
+<span class="sourceLineNo">051</span>   * @return true if success, false on failure<a name="line.51"></a>
+<span class="sourceLineNo">052</span>   */<a name="line.52"></a>
+<span class="sourceLineNo">053</span>  public boolean connect(final String ipAddress, final int port, Socket socket) {<a name="line.53"></a>
+<span class="sourceLineNo">054</span>    try {<a name="line.54"></a>
+<span class="sourceLineNo">055</span>      clientSocket = socket;<a name="line.55"></a>
+<span class="sourceLineNo">056</span>      final InetAddress address = InetAddress.getByName(ipAddress);<a name="line.56"></a>
+<span class="sourceLineNo">057</span>      final int connectionTimeout = 500;<a name="line.57"></a>
+<span class="sourceLineNo">058</span>      clientSocket.connect(new InetSocketAddress(address, port), connectionTimeout);<a name="line.58"></a>
+<span class="sourceLineNo">059</span>    } catch (IOException | IllegalArgumentException e) {<a name="line.59"></a>
+<span class="sourceLineNo">060</span>      logger.error(e.getMessage());<a name="line.60"></a>
+<span class="sourceLineNo">061</span>      return false;<a name="line.61"></a>
+<span class="sourceLineNo">062</span>    }<a name="line.62"></a>
+<span class="sourceLineNo">063</span>    return true;<a name="line.63"></a>
+<span class="sourceLineNo">064</span>  }<a name="line.64"></a>
+<span class="sourceLineNo">065</span><a name="line.65"></a>
+<span class="sourceLineNo">066</span>  /**<a name="line.66"></a>
+<span class="sourceLineNo">067</span>   * Override run method of Runnable interface.<a name="line.67"></a>
+<span class="sourceLineNo">068</span>   * Setting name of thread to "Client listen Thread" and start listen loop.<a name="line.68"></a>
+<span class="sourceLineNo">069</span>   */<a name="line.69"></a>
+<span class="sourceLineNo">070</span>  @Override<a name="line.70"></a>
+<span class="sourceLineNo">071</span>  public void run() {<a name="line.71"></a>
+<span class="sourceLineNo">072</span>    Thread.currentThread().setName("Client listen Thread");<a name="line.72"></a>
+<span class="sourceLineNo">073</span>    listenLoop();<a name="line.73"></a>
+<span class="sourceLineNo">074</span>  }<a name="line.74"></a>
+<span class="sourceLineNo">075</span><a name="line.75"></a>
+<span class="sourceLineNo">076</span>  /**<a name="line.76"></a>
+<span class="sourceLineNo">077</span>   * Closing client, stopping listen thread.<a name="line.77"></a>
+<span class="sourceLineNo">078</span>   */<a name="line.78"></a>
+<span class="sourceLineNo">079</span>  public void closeClient() {<a name="line.79"></a>
+<span class="sourceLineNo">080</span>    this.shouldRun = false;<a name="line.80"></a>
+<span class="sourceLineNo">081</span>    if (clientSocket == null) {<a name="line.81"></a>
+<span class="sourceLineNo">082</span>      return;<a name="line.82"></a>
+<span class="sourceLineNo">083</span>    }<a name="line.83"></a>
+<span class="sourceLineNo">084</span><a name="line.84"></a>
+<span class="sourceLineNo">085</span>    try {<a name="line.85"></a>
+<span class="sourceLineNo">086</span>      clientSocket.close();<a name="line.86"></a>
+<span class="sourceLineNo">087</span>    } catch (IOException e) {<a name="line.87"></a>
+<span class="sourceLineNo">088</span>      logger.error(e.getMessage());<a name="line.88"></a>
+<span class="sourceLineNo">089</span>    }<a name="line.89"></a>
+<span class="sourceLineNo">090</span>  }<a name="line.90"></a>
+<span class="sourceLineNo">091</span><a name="line.91"></a>
+<span class="sourceLineNo">092</span>  private void listenLoop() {<a name="line.92"></a>
 <span class="sourceLineNo">093</span><a name="line.93"></a>
-<span class="sourceLineNo">094</span>        logger.info(message);<a name="line.94"></a>
-<span class="sourceLineNo">095</span><a name="line.95"></a>
-<span class="sourceLineNo">096</span>        messageHandler.handle(message);<a name="line.96"></a>
-<span class="sourceLineNo">097</span><a name="line.97"></a>
-<span class="sourceLineNo">098</span>      } catch (IOException | IllegalStateException e) {<a name="line.98"></a>
-<span class="sourceLineNo">099</span>        logger.error(e.getMessage());<a name="line.99"></a>
-<span class="sourceLineNo">100</span>      }<a name="line.100"></a>
-<span class="sourceLineNo">101</span><a name="line.101"></a>
-<span class="sourceLineNo">102</span>      rest();<a name="line.102"></a>
-<span class="sourceLineNo">103</span>    }<a name="line.103"></a>
-<span class="sourceLineNo">104</span>  }<a name="line.104"></a>
-<span class="sourceLineNo">105</span><a name="line.105"></a>
-<span class="sourceLineNo">106</span>  private void rest() {<a name="line.106"></a>
-<span class="sourceLineNo">107</span>    try {<a name="line.107"></a>
-<span class="sourceLineNo">108</span>      Thread.sleep(300);<a name="line.108"></a>
-<span class="sourceLineNo">109</span>    } catch (InterruptedException e) {<a name="line.109"></a>
-<span class="sourceLineNo">110</span>      logger.info(e.getMessage());<a name="line.110"></a>
-<span class="sourceLineNo">111</span>      Thread.currentThread().interrupt();<a name="line.111"></a>
-<span class="sourceLineNo">112</span>    }<a name="line.112"></a>
-<span class="sourceLineNo">113</span>  }<a name="line.113"></a>
-<span class="sourceLineNo">114</span><a name="line.114"></a>
-<span class="sourceLineNo">115</span>  /**<a name="line.115"></a>
-<span class="sourceLineNo">116</span>   * Sending message containing shot index to server.<a name="line.116"></a>
-<span class="sourceLineNo">117</span>   *<a name="line.117"></a>
-<span class="sourceLineNo">118</span>   * @param shotIndex - index of last shot<a name="line.118"></a>
-<span class="sourceLineNo">119</span>   */<a name="line.119"></a>
-<span class="sourceLineNo">120</span>  public void sendShot(int shotIndex) {<a name="line.120"></a>
-<span class="sourceLineNo">121</span>    try {<a name="line.121"></a>
-<span class="sourceLineNo">122</span>      Sender sender = new JsonSender(clientSocket.getOutputStream());<a name="line.122"></a>
-<span class="sourceLineNo">123</span>      Message shot = new MessageBuilder().withHeader(Header.SHOT)<a name="line.123"></a>
-<span class="sourceLineNo">124</span>          .withAuthor(Author.CLIENT)<a name="line.124"></a>
-<span class="sourceLineNo">125</span>          .withStatement(String.valueOf(shotIndex))<a name="line.125"></a>
-<span class="sourceLineNo">126</span>          .build();<a name="line.126"></a>
-<span class="sourceLineNo">127</span>      sender.send(shot);<a name="line.127"></a>
-<span class="sourceLineNo">128</span>    } catch (IOException e) {<a name="line.128"></a>
-<span class="sourceLineNo">129</span>      logger.error(e.getMessage());<a name="line.129"></a>
-<span class="sourceLineNo">130</span>    }<a name="line.130"></a>
-<span class="sourceLineNo">131</span>  }<a name="line.131"></a>
-<span class="sourceLineNo">132</span><a name="line.132"></a>
-<span class="sourceLineNo">133</span>  /**<a name="line.133"></a>
-<span class="sourceLineNo">134</span>   * Sending message containing fleet placement to server.<a name="line.134"></a>
-<span class="sourceLineNo">135</span>   *<a name="line.135"></a>
-<span class="sourceLineNo">136</span>   * @param fleet - Fleet object representing user fleet.<a name="line.136"></a>
-<span class="sourceLineNo">137</span>   */<a name="line.137"></a>
-<span class="sourceLineNo">138</span>  public void sendFleet(Fleet fleet) {<a name="line.138"></a>
-<span class="sourceLineNo">139</span>    try {<a name="line.139"></a>
-<span class="sourceLineNo">140</span>      Sender sender = new JsonSender(clientSocket.getOutputStream());<a name="line.140"></a>
-<span class="sourceLineNo">141</span>      Message fleetMsg = new MessageBuilder()<a name="line.141"></a>
-<span class="sourceLineNo">142</span>          .withHeader(Header.PLACEMENT)<a name="line.142"></a>
-<span class="sourceLineNo">143</span>          .withAuthor(Author.CLIENT)<a name="line.143"></a>
-<span class="sourceLineNo">144</span>          .withFleet(fleet)<a name="line.144"></a>
-<span class="sourceLineNo">145</span>          .build();<a name="line.145"></a>
-<span class="sourceLineNo">146</span>      sender.send(fleetMsg);<a name="line.146"></a>
-<span class="sourceLineNo">147</span>    } catch (IOException e) {<a name="line.147"></a>
-<span class="sourceLineNo">148</span>      logger.error(e.getMessage());<a name="line.148"></a>
-<span class="sourceLineNo">149</span>    }<a name="line.149"></a>
-<span class="sourceLineNo">150</span>  }<a name="line.150"></a>
-<span class="sourceLineNo">151</span><a name="line.151"></a>
-<span class="sourceLineNo">152</span>  /**<a name="line.152"></a>
-<span class="sourceLineNo">153</span>   * Set handle to gui to trigger some events in response for server message.<a name="line.153"></a>
-<span class="sourceLineNo">154</span>   *<a name="line.154"></a>
-<span class="sourceLineNo">155</span>   * @param button - gui handler as button.<a name="line.155"></a>
-<span class="sourceLineNo">156</span>   */<a name="line.156"></a>
-<span class="sourceLineNo">157</span>  public void setEventTrigger(Button button) {<a name="line.157"></a>
-<span class="sourceLineNo">158</span>    messageHandler.setCurrentEventButton(button);<a name="line.158"></a>
-<span class="sourceLineNo">159</span>  }<a name="line.159"></a>
-<span class="sourceLineNo">160</span>}<a name="line.160"></a>
+<span class="sourceLineNo">094</span>    while (shouldRun &amp;&amp; !messageHandler.isEndConnectionTriggered()) {<a name="line.94"></a>
+<span class="sourceLineNo">095</span>      try {<a name="line.95"></a>
+<span class="sourceLineNo">096</span>        Receiver receiver = new JsonReceiver(clientSocket.getInputStream());<a name="line.96"></a>
+<span class="sourceLineNo">097</span>        Message message = receiver.receive();<a name="line.97"></a>
+<span class="sourceLineNo">098</span><a name="line.98"></a>
+<span class="sourceLineNo">099</span>        logger.info(message);<a name="line.99"></a>
+<span class="sourceLineNo">100</span><a name="line.100"></a>
+<span class="sourceLineNo">101</span>        messageHandler.handle(message);<a name="line.101"></a>
+<span class="sourceLineNo">102</span><a name="line.102"></a>
+<span class="sourceLineNo">103</span>      } catch (IOException | IllegalStateException e) {<a name="line.103"></a>
+<span class="sourceLineNo">104</span>        logger.error(e.getMessage());<a name="line.104"></a>
+<span class="sourceLineNo">105</span>      }<a name="line.105"></a>
+<span class="sourceLineNo">106</span><a name="line.106"></a>
+<span class="sourceLineNo">107</span>      rest();<a name="line.107"></a>
+<span class="sourceLineNo">108</span>    }<a name="line.108"></a>
+<span class="sourceLineNo">109</span>  }<a name="line.109"></a>
+<span class="sourceLineNo">110</span><a name="line.110"></a>
+<span class="sourceLineNo">111</span>  private void rest() {<a name="line.111"></a>
+<span class="sourceLineNo">112</span>    try {<a name="line.112"></a>
+<span class="sourceLineNo">113</span>      Thread.sleep(300);<a name="line.113"></a>
+<span class="sourceLineNo">114</span>    } catch (InterruptedException e) {<a name="line.114"></a>
+<span class="sourceLineNo">115</span>      logger.info(e.getMessage());<a name="line.115"></a>
+<span class="sourceLineNo">116</span>      Thread.currentThread().interrupt();<a name="line.116"></a>
+<span class="sourceLineNo">117</span>    }<a name="line.117"></a>
+<span class="sourceLineNo">118</span>  }<a name="line.118"></a>
+<span class="sourceLineNo">119</span><a name="line.119"></a>
+<span class="sourceLineNo">120</span>  /**<a name="line.120"></a>
+<span class="sourceLineNo">121</span>   * Sending message containing shot index to server.<a name="line.121"></a>
+<span class="sourceLineNo">122</span>   *<a name="line.122"></a>
+<span class="sourceLineNo">123</span>   * @param shotIndex - index of last shot<a name="line.123"></a>
+<span class="sourceLineNo">124</span>   */<a name="line.124"></a>
+<span class="sourceLineNo">125</span>  public void sendShot(int shotIndex) {<a name="line.125"></a>
+<span class="sourceLineNo">126</span>    try {<a name="line.126"></a>
+<span class="sourceLineNo">127</span>      Sender sender = new JsonSender(clientSocket.getOutputStream());<a name="line.127"></a>
+<span class="sourceLineNo">128</span>      Message shot = new MessageBuilder().withHeader(Header.SHOT)<a name="line.128"></a>
+<span class="sourceLineNo">129</span>          .withAuthor(Author.CLIENT)<a name="line.129"></a>
+<span class="sourceLineNo">130</span>          .withStatement(String.valueOf(shotIndex))<a name="line.130"></a>
+<span class="sourceLineNo">131</span>          .build();<a name="line.131"></a>
+<span class="sourceLineNo">132</span>      sender.send(shot);<a name="line.132"></a>
+<span class="sourceLineNo">133</span>    } catch (IOException e) {<a name="line.133"></a>
+<span class="sourceLineNo">134</span>      logger.error(e.getMessage());<a name="line.134"></a>
+<span class="sourceLineNo">135</span>    }<a name="line.135"></a>
+<span class="sourceLineNo">136</span>  }<a name="line.136"></a>
+<span class="sourceLineNo">137</span><a name="line.137"></a>
+<span class="sourceLineNo">138</span>  /**<a name="line.138"></a>
+<span class="sourceLineNo">139</span>   * Sending message containing fleet placement to server.<a name="line.139"></a>
+<span class="sourceLineNo">140</span>   *<a name="line.140"></a>
+<span class="sourceLineNo">141</span>   * @param fleet - Fleet object representing user fleet.<a name="line.141"></a>
+<span class="sourceLineNo">142</span>   */<a name="line.142"></a>
+<span class="sourceLineNo">143</span>  public void sendFleet(Fleet fleet) {<a name="line.143"></a>
+<span class="sourceLineNo">144</span>    try {<a name="line.144"></a>
+<span class="sourceLineNo">145</span>      Sender sender = new JsonSender(clientSocket.getOutputStream());<a name="line.145"></a>
+<span class="sourceLineNo">146</span>      Message fleetMsg = new MessageBuilder()<a name="line.146"></a>
+<span class="sourceLineNo">147</span>          .withHeader(Header.PLACEMENT)<a name="line.147"></a>
+<span class="sourceLineNo">148</span>          .withAuthor(Author.CLIENT)<a name="line.148"></a>
+<span class="sourceLineNo">149</span>          .withFleet(fleet)<a name="line.149"></a>
+<span class="sourceLineNo">150</span>          .build();<a name="line.150"></a>
+<span class="sourceLineNo">151</span>      sender.send(fleetMsg);<a name="line.151"></a>
+<span class="sourceLineNo">152</span>    } catch (IOException e) {<a name="line.152"></a>
+<span class="sourceLineNo">153</span>      logger.error(e.getMessage());<a name="line.153"></a>
+<span class="sourceLineNo">154</span>    }<a name="line.154"></a>
+<span class="sourceLineNo">155</span>  }<a name="line.155"></a>
+<span class="sourceLineNo">156</span><a name="line.156"></a>
+<span class="sourceLineNo">157</span>  /**<a name="line.157"></a>
+<span class="sourceLineNo">158</span>   * Set handle to gui to trigger some events in response for server message.<a name="line.158"></a>
+<span class="sourceLineNo">159</span>   *<a name="line.159"></a>
+<span class="sourceLineNo">160</span>   * @param button - gui handler as button.<a name="line.160"></a>
+<span class="sourceLineNo">161</span>   */<a name="line.161"></a>
+<span class="sourceLineNo">162</span>  public void setEventTrigger(Button button) {<a name="line.162"></a>
+<span class="sourceLineNo">163</span>    messageHandler.setCurrentEventButton(button);<a name="line.163"></a>
+<span class="sourceLineNo">164</span>  }<a name="line.164"></a>
+<span class="sourceLineNo">165</span>}<a name="line.165"></a>
 
 
 
