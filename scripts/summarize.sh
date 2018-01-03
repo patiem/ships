@@ -47,6 +47,8 @@ echo "3 (Builder, Factory Method in Shared module, and MVC in Client module - si
 
 echo "[ Q ] How many public APIs do we have.."
 echo "3: communication, conversion and fleet in Shared module"
+echo "public methods: "
+grep -r "public .*) {*" --include=*.java . --no-filename | sort -u |wc -l
 
 echo "[ Q ] How many package-private APIs do we have.."
 echo "2: event triggers, message handlers in Client module"
