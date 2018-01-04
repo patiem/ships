@@ -50,19 +50,19 @@ then
 	exit 1;
 fi
 echo "Installed server, now attempting to deploy.."
-if ! java -jar ./server/target/server*.jar & ;
+if ! (java -jar ./server/target/server*.jar &) ;
 then
 	helpEcho
 	exit 1;
 fi
 echo "Deployed server, now attempting to deploy the 1st client.."
-if ! java -jar ./client/target/client*.jar & ;
+if ! (java -jar ./client/target/client*.jar &) ;
 then
 	helpEcho
 	exit 1;
 fi
 echo "Deployed server, now attempting to deploy the 2nd client.."
-if ! java -jar ./client/target/client*.jar & ;
+if ! (java -jar ./client/target/client*.jar &) ;
 then
 	helpEcho
 	exit 1;
