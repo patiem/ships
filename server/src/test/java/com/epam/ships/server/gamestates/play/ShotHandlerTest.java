@@ -84,14 +84,14 @@ public class ShotHandlerTest {
   public void shouldHandleFleetDefeat() {
     //given
     ShotHandler shotHandler = new ShotHandler(communicationBus, turnManager, fleets);
+    Message firstMessage = shotAtIndex("11");
+    Message secondMessage = shotAtIndex("12");
+    Message thirdMessage = shotAtIndex("13");
 
     //when
-    Message message = shotAtIndex("11");
-    Message message2 = shotAtIndex("12");
-    Message message3 = shotAtIndex("13");
-    shotHandler.handle(true, message);
-    shotHandler.handle(true, message2);
-    boolean result = shotHandler.handle(true, message3);
+    shotHandler.handle(true, firstMessage);
+    shotHandler.handle(true, secondMessage);
+    boolean result = shotHandler.handle(true, thirdMessage);
 
     //then
     assertEquals(fleets.get(1).isDefeated(),result);
