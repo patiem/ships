@@ -29,13 +29,13 @@ import static org.testng.Assert.*;
 public class ShotHandlerTest {
 
 
-  List<Fleet> fleets;
-  ShotHandler shotHandler;
+  private List<Fleet> fleets;
+  private ShotHandler shotHandler;
 
   @Mock
-  TurnManager turnManager;
+  private TurnManager turnManager;
   @Mock
-  CommunicationBus communicationBus;
+  private CommunicationBus communicationBus;
 
   @BeforeMethod
   void before(){
