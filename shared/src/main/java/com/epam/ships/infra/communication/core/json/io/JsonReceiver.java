@@ -29,6 +29,7 @@ public class JsonReceiver implements Receiver {
 
   private final InputStream inputStream;
 
+  private static final String CHARSET_NAME = "UTF-8";
   /**
    * @param inputStream it will read from this stream.
    */
@@ -46,7 +47,7 @@ public class JsonReceiver implements Receiver {
    */
   @Override
   public Message receive() {
-    Scanner scanner = new Scanner(inputStream, "UTF-8");
+    Scanner scanner = new Scanner(inputStream, CHARSET_NAME);
     StringBuilder stringBuilder = new StringBuilder();
     if (scanner.hasNextLine()) {
       stringBuilder.append(scanner.nextLine());
