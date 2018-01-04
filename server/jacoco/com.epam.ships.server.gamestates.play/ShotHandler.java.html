@@ -13,54 +13,60 @@ import com.epam.ships.server.TurnManager;
 import java.util.List;
 
 /**
- * Handle a player shot.
+ * Handles a player shot: It checks if a shot makes a damage on a fleet and sends a proper message
+ * to clients.
  *
  * @author Piotr Czyż
  * @since 2018-01-02
  */
 class ShotHandler {
-<span class="fc" id="L22">  private final Target logger = new SharedLogger(ShotHandler.class);</span>
+<span class="fc" id="L23">  private final Target logger = new SharedLogger(ShotHandler.class);</span>
   private final MessageSender messageSender;
   private TurnManager turnManager;
   private List&lt;Fleet&gt; fleets;
 
 
   ShotHandler(final CommunicationBus communicationBus, final TurnManager turnManager,
-<span class="fc" id="L29">              final List&lt;Fleet&gt; fleets) {</span>
-<span class="fc" id="L30">    this.turnManager = turnManager;</span>
-<span class="fc" id="L31">    this.fleets = fleets;</span>
-<span class="fc" id="L32">    this.messageSender = new MessageSender(communicationBus, logger);</span>
-<span class="fc" id="L33">  }</span>
+<span class="fc" id="L30">              final List&lt;Fleet&gt; fleets) {</span>
+<span class="fc" id="L31">    this.turnManager = turnManager;</span>
+<span class="fc" id="L32">    this.fleets = fleets;</span>
+<span class="fc" id="L33">    this.messageSender = new MessageSender(communicationBus, logger);</span>
+<span class="fc" id="L34">  }</span>
 
   /**
-   * It handle player shot.
+   * Handles player shots.
+   *
    * @param isShotByFirstPlayer it checks who shots
-   * @param shot Message with shot
+   * @param shot                Message with shot
    * @return true if there is no more ships in opponent fleet
    */
-  public boolean handle(final boolean isShotByFirstPlayer,final Message shot) {
-<span class="fc" id="L42">    Fleet fleet = getRightFleet(isShotByFirstPlayer);</span>
-<span class="fc" id="L43">    return handleShot(shot, fleet);</span>
+  public boolean handle(final boolean isShotByFirstPlayer, final Message shot) {
+<span class="fc" id="L44">    Fleet fleet = getRightFleet(isShotByFirstPlayer);</span>
+<span class="fc" id="L45">    return handleShot(shot, fleet);</span>
   }
 
-  private boolean handleShot(final Message receivedShot,final Fleet fleet) {
-<span class="fc" id="L47">    logger.debug(&quot;Handling shot at &quot; + receivedShot.getStatement());</span>
-<span class="fc" id="L48">    final Mast mast = Mast.ofIndex(receivedShot.getStatement());</span>
-<span class="fc" id="L49">    Damage damage = fleet.handleDamage(mast);</span>
-<span class="fc" id="L50">    DamageNotifier damageNotifier = new DamageMissNotifier(messageSender, turnManager);</span>
-<span class="fc bfc" id="L51" title="All 2 branches covered.">    if (damage.equals(Damage.MISSED)) {</span>
-<span class="fc" id="L52">      damageNotifier = new DamageMissNotifier(messageSender, turnManager);</span>
-<span class="fc bfc" id="L53" title="All 2 branches covered.">    } else if (damage.equals(Damage.HIT)) {</span>
-<span class="fc" id="L54">      damageNotifier = new DamageHitNotifier(messageSender, turnManager);</span>
-<span class="pc bpc" id="L55" title="1 of 2 branches missed.">    } else if (damage.equals(Damage.DESTRUCTED)) {</span>
-<span class="fc" id="L56">      damageNotifier = new DamageDestructedNotifier(messageSender, turnManager);</span>
+  private boolean handleShot(final Message receivedShot, final Fleet fleet) {
+<span class="fc" id="L49">    logger.debug(&quot;Handling shot at &quot; + receivedShot.getStatement());</span>
+<span class="fc" id="L50">    final Mast mast = Mast.ofIndex(receivedShot.getStatement());</span>
+<span class="fc" id="L51">    Damage damage = fleet.handleDamage(mast);</span>
+    DamageNotifier damageNotifier;
+<span class="pc bfc" id="L53" title="All 3 branches covered.">    switch (damage) {</span>
+      case HIT:
+<span class="fc" id="L55">        damageNotifier = new DamageHitNotifier(messageSender, turnManager);</span>
+<span class="fc" id="L56">        break;</span>
+      case DESTRUCTED:
+<span class="fc" id="L58">        damageNotifier = new DamageDestructedNotifier(messageSender, turnManager);</span>
+<span class="fc" id="L59">        break;</span>
+      default:
+<span class="fc" id="L61">        damageNotifier = new DamageMissNotifier(messageSender, turnManager);</span>
+        break;
     }
-<span class="fc" id="L58">    damageNotifier.notify(receivedShot);</span>
-<span class="fc" id="L59">    return fleet.isDefeated();</span>
+<span class="fc" id="L64">    damageNotifier.notify(receivedShot);</span>
+<span class="fc" id="L65">    return fleet.isDefeated();</span>
   }
 
   private Fleet getRightFleet(final boolean isShotByFirstPlayer) {
-<span class="fc bfc" id="L63" title="All 2 branches covered.">    return isShotByFirstPlayer ? fleets.get(1) : fleets.get(0);</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">    return isShotByFirstPlayer ? fleets.get(1) : fleets.get(0);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

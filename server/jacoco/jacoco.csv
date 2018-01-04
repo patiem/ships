@@ -3,19 +3,20 @@ Ships - SERVER,com.epam.ships.server,MessageRepository,0,145,0,0,0,45,0,10,0,10
 Ships - SERVER,com.epam.ships.server,MessageSender,0,71,0,0,0,14,0,4,0,4
 Ships - SERVER,com.epam.ships.server,Game,0,23,0,2,0,9,0,3,0,2
 Ships - SERVER,com.epam.ships.server,TurnManager,8,43,1,1,2,13,1,5,0,5
-Ships - SERVER,com.epam.ships.server,AppServer,6,65,0,0,2,20,0,4,0,4
+Ships - SERVER,com.epam.ships.server,AppServer,6,63,0,0,2,19,0,4,0,4
 Ships - SERVER,com.epam.ships.server,CommunicationBus,104,0,4,0,26,0,12,0,10,0
 Ships - SERVER,com.epam.ships.server,Main,39,0,2,0,14,0,4,0,3,0
 Ships - SERVER,com.epam.ships.server,WrappedClient,175,38,38,0,9,11,24,3,5,3
-Ships - SERVER,com.epam.ships.server.gamestates.play,ShotHandler,0,118,1,7,0,21,1,7,0,4
+Ships - SERVER,com.epam.ships.server.gamestates.play,ShotHandler,0,103,0,5,0,20,0,7,0,4
 Ships - SERVER,com.epam.ships.server.gamestates.play,DamageMissNotifier,0,23,0,0,0,7,0,2,0,2
-Ships - SERVER,com.epam.ships.server.gamestates.play,PlayState,76,39,4,0,21,9,5,1,3,1
+Ships - SERVER,com.epam.ships.server.gamestates.play,PlayState,8,107,0,4,3,27,0,6,0,4
 Ships - SERVER,com.epam.ships.server.gamestates.play,DamageHitNotifier,0,8,0,0,0,3,0,1,0,1
-Ships - SERVER,com.epam.ships.server.gamestates.play,MessageReceiver,3,30,0,0,1,8,1,3,1,3
+Ships - SERVER,com.epam.ships.server.gamestates.play,MessageReceiver,0,33,0,0,0,9,0,4,0,4
 Ships - SERVER,com.epam.ships.server.gamestates.play,DamageNotifier,0,29,0,0,0,9,0,3,0,3
+Ships - SERVER,com.epam.ships.server.gamestates.play,ShotHandler.new Object() {...},2,17,0,0,0,1,0,1,0,1
 Ships - SERVER,com.epam.ships.server.gamestates.play,DamageDestructedNotifier,0,8,0,0,0,3,0,1,0,1
 Ships - SERVER,com.epam.ships.server.gamestates,FleetPlacementState,8,97,0,0,3,24,0,6,0,6
-Ships - SERVER,com.epam.ships.server.gamestates,GameEndWithWinState,51,0,0,0,14,0,4,0,4,0
-Ships - SERVER,com.epam.ships.server.gamestates,GameState,2,0,0,0,1,0,1,0,1,0
+Ships - SERVER,com.epam.ships.server.gamestates,GameEndWithWinState,0,51,0,0,0,14,0,4,0,4
+Ships - SERVER,com.epam.ships.server.gamestates,GameState,0,2,0,0,0,1,0,1,0,1
 Ships - SERVER,com.epam.ships.server.gamestates,WaitingForPlayersState,0,32,0,0,0,8,0,2,0,2
-Ships - SERVER,com.epam.ships.server.gamestates,GameEndWithWalkoverState,23,0,0,0,8,0,3,0,3,0
+Ships - SERVER,com.epam.ships.server.gamestates,GameEndWithWalkoverState,0,23,0,0,0,8,0,3,0,3

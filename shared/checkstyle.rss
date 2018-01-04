@@ -20,7 +20,7 @@ under the License.
 <rss version="0.91">
   <channel>
     <title>Ships - SHARED - Checkstyle report</title>
-    <link>scp:///shared//shared</link>
+    <link>./index.html</link>
     <description>Ships - SHARED - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2018 Java Academy</copyright>
@@ -30,9 +30,9 @@ under the License.
              Warnings: 0,
              Infos: 0
       </title>
-            <link>scp:///shared//shared/checkstyle.html</link>
+            <link>./index.html/checkstyle.html</link>
       <description>
-        <p>Click <a href="scp:///shared//shared/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="./index.html/checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.Message.java">com/epam/ships/infra/communication/api/Message.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.Message.java">com/epam/ships/infra/communication/api/Message.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.conversion.Encoder.java">com/epam/ships/infra/communication/api/conversion/Encoder.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.conversion.Encoder.java">com/epam/ships/infra/communication/api/conversion/Encoder.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.conversion.JsonDecoder.java">com/epam/ships/infra/communication/core/json/conversion/JsonDecoder.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.json.conversion.JsonDecoder.java">com/epam/ships/infra/communication/core/json/conversion/JsonDecoder.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.message.Author.java">com/epam/ships/infra/communication/api/message/Author.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.message.Author.java">com/epam/ships/infra/communication/api/message/Author.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.io.Sender.java">com/epam/ships/infra/communication/api/io/Sender.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.io.Sender.java">com/epam/ships/infra/communication/api/io/Sender.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Mast.java">com/epam/ships/fleet/Mast.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.fleet.Mast.java">com/epam/ships/fleet/Mast.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Fleet.java">com/epam/ships/fleet/Fleet.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.fleet.Fleet.java">com/epam/ships/fleet/Fleet.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +144,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonSender.java">com/epam/ships/infra/communication/core/json/io/JsonSender.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonSender.java">com/epam/ships/infra/communication/core/json/io/JsonSender.java</a>
                 </td>
                 <td>
                   0
@@ -158,7 +158,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.io.Receiver.java">com/epam/ships/infra/communication/api/io/Receiver.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.io.Receiver.java">com/epam/ships/infra/communication/api/io/Receiver.java</a>
                 </td>
                 <td>
                   0
@@ -172,7 +172,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.message.Status.java">com/epam/ships/infra/communication/api/message/Status.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.message.Status.java">com/epam/ships/infra/communication/api/message/Status.java</a>
                 </td>
                 <td>
                   0
@@ -186,7 +186,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.message.Header.java">com/epam/ships/infra/communication/api/message/Header.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.message.Header.java">com/epam/ships/infra/communication/api/message/Header.java</a>
                 </td>
                 <td>
                   0
@@ -200,7 +200,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.api.conversion.Decoder.java">com/epam/ships/infra/communication/api/conversion/Decoder.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.api.conversion.Decoder.java">com/epam/ships/infra/communication/api/conversion/Decoder.java</a>
                 </td>
                 <td>
                   0
@@ -214,7 +214,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Ship.java">com/epam/ships/fleet/Ship.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.fleet.Ship.java">com/epam/ships/fleet/Ship.java</a>
                 </td>
                 <td>
                   0
@@ -228,7 +228,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonReceiver.java">com/epam/ships/infra/communication/core/json/io/JsonReceiver.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.json.io.JsonReceiver.java">com/epam/ships/infra/communication/core/json/io/JsonReceiver.java</a>
                 </td>
                 <td>
                   0
@@ -242,7 +242,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.message.BaseMessage.java">com/epam/ships/infra/communication/core/message/BaseMessage.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.message.BaseMessage.java">com/epam/ships/infra/communication/core/message/BaseMessage.java</a>
                 </td>
                 <td>
                   0
@@ -256,7 +256,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.logging.core.SharedLogger.java">com/epam/ships/infra/logging/core/SharedLogger.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.logging.core.SharedLogger.java">com/epam/ships/infra/logging/core/SharedLogger.java</a>
                 </td>
                 <td>
                   0
@@ -270,7 +270,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.logging.api.Target.java">com/epam/ships/infra/logging/api/Target.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.logging.api.Target.java">com/epam/ships/infra/logging/api/Target.java</a>
                 </td>
                 <td>
                   0
@@ -284,7 +284,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.fleet.Damage.java">com/epam/ships/fleet/Damage.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.fleet.Damage.java">com/epam/ships/fleet/Damage.java</a>
                 </td>
                 <td>
                   0
@@ -298,7 +298,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.message.MessageBuilder.java">com/epam/ships/infra/communication/core/message/MessageBuilder.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.message.MessageBuilder.java">com/epam/ships/infra/communication/core/message/MessageBuilder.java</a>
                 </td>
                 <td>
                   0
@@ -312,7 +312,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="scp:///shared//shared/checkstyle.html#com.epam.ships.infra.communication.core.json.conversion.JsonEncoder.java">com/epam/ships/infra/communication/core/json/conversion/JsonEncoder.java</a>
+                  <a href="./index.html/checkstyle.html#com.epam.ships.infra.communication.core.json.conversion.JsonEncoder.java">com/epam/ships/infra/communication/core/json/conversion/JsonEncoder.java</a>
                 </td>
                 <td>
                   0

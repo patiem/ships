@@ -47,20 +47,19 @@ class AppServer {
    * while storing it in a list.
    */
   private void acceptClient() {
-<span class="fc" id="L50">    Socket client = null;</span>
     try {
-<span class="fc" id="L52">      client = serverSocket.accept();</span>
+<span class="fc" id="L51">      Socket client = serverSocket.accept();</span>
+<span class="fc" id="L52">      clientSockets.add(client);</span>
 <span class="nc" id="L53">    } catch (IOException e) {</span>
 <span class="nc" id="L54">      logger.error(e.getMessage());</span>
 <span class="fc" id="L55">    }</span>
-<span class="fc" id="L56">    clientSockets.add(client);</span>
-<span class="fc" id="L57">  }</span>
+<span class="fc" id="L56">  }</span>
 
   /**
    * @return a list of stored client sockets.
    */
   List&lt;Socket&gt; getClientSockets() {
-<span class="fc" id="L63">    return clientSockets;</span>
+<span class="fc" id="L62">    return clientSockets;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

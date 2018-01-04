@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TurnManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SERVER</a> &gt; <a href="index.source.html" class="el_package">com.epam.ships.server</a> &gt; <span class="el_source">TurnManager.java</span></div><h1>TurnManager.java</h1><pre class="source lang-java linenums">package com.epam.ships.server;
 
 /**
- * Take care of players turn.
+ * Changes player's turn.
  *
  * @author Piotr Czyż
  * @since 2017-12-20
@@ -13,7 +13,7 @@ public class TurnManager {
   private WrappedClient otherPlayer;
 
   /**
-   * Creates TurnManager instance.
+   * Creates TurnManager instance, and sets firstly connected client as player who starts the game.
    *
    * @param firstPlayer  player who starts the game
    * @param secondPlayer second player in the game
@@ -26,16 +26,16 @@ public class TurnManager {
 <span class="fc" id="L26">  }</span>
 
   /**
-   * Gets player which has a turn.
+   * Returns a player having the turn.
    *
-   * @return WrappedClient - current player
+   * @return WrappedClient - currentPlayer
    */
   public WrappedClient getCurrentPlayer() {
 <span class="fc" id="L34">    return this.currentPlayer;</span>
   }
 
   /**
-   * Gets player which is waiting for his turn.
+   * Returns a player waiting for his turn.
    *
    * @return WrappedClient - player waiting for his turn.
    */
@@ -44,7 +44,7 @@ public class TurnManager {
   }
 
   /**
-   * It's changes players turn.
+   * It changes players turn.
    */
   public void switchPlayer() {
 <span class="pc bpc" id="L50" title="1 of 2 branches missed.">    if (this.currentPlayer.equals(this.firstPlayer)) {</span>

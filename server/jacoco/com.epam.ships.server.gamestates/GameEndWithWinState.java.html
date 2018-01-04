@@ -15,22 +15,22 @@ import com.epam.ships.server.TurnManager;
  */
 public class GameEndWithWinState implements GameState {
   private final MessageSender messageSender;
-<span class="nc" id="L18">  private final Target logger = new SharedLogger(GameEndWithWinState.class);</span>
+<span class="fc" id="L18">  private final Target logger = new SharedLogger(GameEndWithWinState.class);</span>
   private CommunicationBus communicationBus;
   private TurnManager turnManager;
 
   /**
-   * Its create state of game when we have winner.
+   * It creates state in which we have a winner.
    *
    * @param communicationBus client server communication bus
-   * @param turnManager      take care about players turns
+   * @param turnManager      changes players' turns
    */
   public GameEndWithWinState(final CommunicationBus communicationBus,
-<span class="nc" id="L29">                             final TurnManager turnManager) {</span>
-<span class="nc" id="L30">    this.communicationBus = communicationBus;</span>
-<span class="nc" id="L31">    this.turnManager = turnManager;</span>
-<span class="nc" id="L32">    messageSender = new MessageSender(communicationBus, logger);</span>
-<span class="nc" id="L33">  }</span>
+<span class="fc" id="L29">                             final TurnManager turnManager) {</span>
+<span class="fc" id="L30">    this.communicationBus = communicationBus;</span>
+<span class="fc" id="L31">    this.turnManager = turnManager;</span>
+<span class="fc" id="L32">    messageSender = new MessageSender(communicationBus, logger);</span>
+<span class="fc" id="L33">  }</span>
 
   /**
    * Process end of game with the winner, and close communication bus.
@@ -39,10 +39,10 @@ public class GameEndWithWinState implements GameState {
    */
   @Override
   public GameState process() {
-<span class="nc" id="L42">    handleEndOfGame();</span>
-<span class="nc" id="L43">    communicationBus.stop();</span>
-<span class="nc" id="L44">    logger.info(&quot;Game ended&quot;);</span>
-<span class="nc" id="L45">    return this;</span>
+<span class="fc" id="L42">    handleEndOfGame();</span>
+<span class="fc" id="L43">    communicationBus.stop();</span>
+<span class="fc" id="L44">    logger.info(&quot;Game ended&quot;);</span>
+<span class="fc" id="L45">    return this;</span>
   }
 
   /**
@@ -52,12 +52,12 @@ public class GameEndWithWinState implements GameState {
    */
   @Override
   public boolean shouldBeContinued() {
-<span class="nc" id="L55">    return false;</span>
+<span class="fc" id="L55">    return false;</span>
   }
 
   private void handleEndOfGame() {
-<span class="nc" id="L59">    messageSender.send(turnManager.getCurrentPlayer(), Header.WIN);</span>
-<span class="nc" id="L60">    messageSender.send(turnManager.getOtherPlayer(), Header.LOSE);</span>
-<span class="nc" id="L61">  }</span>
+<span class="fc" id="L59">    messageSender.send(turnManager.getCurrentPlayer(), Header.WIN);</span>
+<span class="fc" id="L60">    messageSender.send(turnManager.getOtherPlayer(), Header.LOSE);</span>
+<span class="fc" id="L61">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
