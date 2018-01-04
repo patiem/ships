@@ -2,15 +2,14 @@ package com.epam.ships.client.validators;
 
 import com.epam.ships.client.gui.util.FieldState;
 import com.epam.ships.client.gui.util.ShipOrientation;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class ShipPlacementValidatorTest {
 
@@ -19,14 +18,21 @@ public class ShipPlacementValidatorTest {
   @DataProvider(name = "validPlacement")
   public static Object [][] validData() {
     return new Object[][] {
-        {ShipOrientation.VERTICAL, 0, 3, producedBoard(Arrays.asList(99,81))}
+        {ShipOrientation.VERTICAL, 0, 3, producedBoard(Arrays.asList(99,81))},
+        {ShipOrientation.HORIZONTAL, 0, 3, producedBoard(Arrays.asList(4,2,3))},
+        {ShipOrientation.VERTICAL, 0, 4, producedBoard(Arrays.asList(20,30,40))}
     };
   }
 
   @DataProvider(name = "invalidPlacement")
   public static Object [][] invalidData() {
     return new Object[][] {
-        {ShipOrientation.HORIZONTAL, 0, 3, producedBoard(Arrays.asList(0,1,2,3))}
+        {ShipOrientation.HORIZONTAL, 0, 3, producedBoard(Arrays.asList(0,1,2,3))},
+        {ShipOrientation.VERTICAL, 0, 3, producedBoard(Arrays.asList(0,1,2,3))},
+        {ShipOrientation.HORIZONTAL, 25, 2, producedBoard(Arrays.asList(45,1,2,3))},
+        {ShipOrientation.VERTICAL, 25, 2, producedBoard(Arrays.asList(15,1,2,3))},
+        {ShipOrientation.HORIZONTAL, 25, 2, producedBoard(Arrays.asList(24,1,2,3))},
+        {ShipOrientation.VERTICAL, 25, 2, producedBoard(Arrays.asList(27,1,2,3))}
     };
   }
 
