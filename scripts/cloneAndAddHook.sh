@@ -27,6 +27,11 @@ echo -e "\t ./cloneAndHook.sh [your_dir_name]"
 echo -e "\t\t [your_dir_name] - dir to which you want to clone"
 }
 
+if [[ $1 = "--help" ]];
+	then helpEcho
+	exit 1;
+fi
+
 if [[ ${#1} = 0 ]]; 
 	then echo -e "no args provided! \n\n" 
 	helpEcho
