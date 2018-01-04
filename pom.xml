@@ -319,7 +319,7 @@
                                             <limit implementation="org.jacoco.report.check.Limit">
                                                 <counter>INSTRUCTION</counter>
                                                 <value>COVEREDRATIO</value>
-                                                <minimum>0.68</minimum>
+                                                <minimum>0.75</minimum>
                                             </limit>
                                         </limits>
                                     </rule>
@@ -336,6 +336,23 @@
                                                 <counter>INSTRUCTION</counter>
                                                 <value>COVEREDRATIO</value>
                                                 <minimum>0.72</minimum>
+                                            </limit>
+                                        </limits>
+                                    </rule>
+
+                                    <!--CLIENT module only
+                                    -->
+                                    <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                        <element>BUNDLE</element>
+                                        <excludes>
+                                            <exclude>server</exclude>
+                                            <exclude>shared</exclude>
+                                        </excludes>
+                                        <limits>
+                                            <limit implementation="org.jacoco.report.check.Limit">
+                                                <counter>INSTRUCTION</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>0.16</minimum>
                                             </limit>
                                         </limits>
                                     </rule>
@@ -595,7 +612,7 @@
             <url>https://github.com/M-Aarsman</url>
             <email>magdalena_aarsman@epam.com</email>
             <roles>
-                <role>Developer (client)</role>
+                <role>Developer (client/scripts)</role>
             </roles>
             <properties/>
         </developer>

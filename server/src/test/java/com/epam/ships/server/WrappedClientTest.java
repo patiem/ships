@@ -1,7 +1,7 @@
 package com.epam.ships.server;
 
-import com.epam.ships.infra.communication.api.message.Author;
-import com.epam.ships.infra.communication.core.message.MessageBuilder;
+import com.epam.ships.shared.infra.communication.api.message.Author;
+import com.epam.ships.shared.infra.communication.core.message.MessageBuilder;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

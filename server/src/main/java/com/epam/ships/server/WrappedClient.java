@@ -1,12 +1,12 @@
 package com.epam.ships.server;
 
-import com.epam.ships.infra.communication.api.Message;
-import com.epam.ships.infra.communication.api.io.Receiver;
-import com.epam.ships.infra.communication.api.io.Sender;
-import com.epam.ships.infra.communication.core.json.io.JsonReceiver;
-import com.epam.ships.infra.communication.core.json.io.JsonSender;
-import com.epam.ships.infra.logging.api.Target;
-import com.epam.ships.infra.logging.core.SharedLogger;
+import com.epam.ships.shared.infra.communication.api.Message;
+import com.epam.ships.shared.infra.communication.api.io.Receiver;
+import com.epam.ships.shared.infra.communication.api.io.Sender;
+import com.epam.ships.shared.infra.communication.core.json.io.JsonReceiver;
+import com.epam.ships.shared.infra.communication.core.json.io.JsonSender;
+import com.epam.ships.shared.infra.logging.api.Target;
+import com.epam.ships.shared.infra.logging.core.SharedLogger;
 import lombok.EqualsAndHashCode;
 
 import java.io.IOException;
