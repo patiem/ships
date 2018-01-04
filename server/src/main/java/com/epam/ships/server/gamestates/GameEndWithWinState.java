@@ -1,8 +1,8 @@
 package com.epam.ships.server.gamestates;
 
-import com.epam.ships.infra.communication.api.message.Header;
-import com.epam.ships.infra.logging.api.Target;
-import com.epam.ships.infra.logging.core.SharedLogger;
+import com.epam.ships.shared.infra.communication.api.message.Header;
+import com.epam.ships.shared.infra.logging.api.Target;
+import com.epam.ships.shared.infra.logging.core.SharedLogger;
 import com.epam.ships.server.CommunicationBus;
 import com.epam.ships.server.MessageSender;
 import com.epam.ships.server.TurnManager;

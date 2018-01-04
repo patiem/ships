@@ -1,7 +1,7 @@
 package com.epam.ships.server.gamestates;
 
-import com.epam.ships.infra.logging.api.Target;
-import com.epam.ships.infra.logging.core.SharedLogger;
+import com.epam.ships.shared.infra.logging.api.Target;
+import com.epam.ships.shared.infra.logging.core.SharedLogger;
 import com.epam.ships.server.CommunicationBus;
 
 /**

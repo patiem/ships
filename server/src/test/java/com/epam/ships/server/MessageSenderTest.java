@@ -1,9 +1,9 @@
 package com.epam.ships.server;
 
-import com.epam.ships.infra.communication.api.Message;
-import com.epam.ships.infra.communication.api.message.Header;
-import com.epam.ships.infra.communication.core.message.MessageBuilder;
-import com.epam.ships.infra.logging.api.Target;
+import com.epam.ships.shared.infra.communication.api.Message;
+import com.epam.ships.shared.infra.communication.api.message.Header;
+import com.epam.ships.shared.infra.communication.core.message.MessageBuilder;
+import com.epam.ships.shared.infra.logging.api.Target;
 import org.testng.annotations.Test;
 
 import static org.mockito.Mockito.*;

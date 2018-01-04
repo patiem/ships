@@ -1,7 +1,7 @@
 package com.epam.ships.server.gamestates.play;
 
-import com.epam.ships.infra.communication.api.Message;
-import com.epam.ships.infra.communication.api.message.Header;
+import com.epam.ships.shared.infra.communication.api.Message;
+import com.epam.ships.shared.infra.communication.api.message.Header;
 import com.epam.ships.server.MessageSender;
 import com.epam.ships.server.TurnManager;
 
