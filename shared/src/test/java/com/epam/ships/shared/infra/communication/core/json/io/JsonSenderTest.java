@@ -12,7 +12,7 @@ import java.io.OutputStream;
 
 import static org.testng.Assert.assertEquals;
 
-@Test(groups = {"integration"})
+@Test
 public class JsonSenderTest {
   public void itSendsProperlyEncodedMessage() {
     //given
