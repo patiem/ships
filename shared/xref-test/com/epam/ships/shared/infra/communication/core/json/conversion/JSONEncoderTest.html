@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>JSONEncoderTest xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../../../../testapidocs/com/epam/ships/shared/infra/communication/core/json/conversion/JSONEncoderTest.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> com.epam.ships.shared.infra.communication.core.json.conversion;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.communication.api.Message;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.communication.api.conversion.Encoder;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.communication.api.message.Author;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.communication.api.message.Header;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.communication.api.message.Status;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.communication.core.message.MessageBuilder;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> com.google.gson.JsonElement;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> org.testng.annotations.Test;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.testng.Assert.assertEquals;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../../../../com/epam/ships/shared/infra/communication/core/json/conversion/JSONEncoderTest.html">JSONEncoderTest</a> {
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>    @Test
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> itEncodesAsExpected() {
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>      <em class="jxr_comment">//given</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>      Encoder&lt;JsonElement&gt; baseEncoder = <strong class="jxr_keyword">new</strong> JsonEncoder();
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>      Message message = <strong class="jxr_keyword">new</strong> MessageBuilder()
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>          .withAuthor(Author.SERVER)
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>          .withHeader(Header.CONNECTION)
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>          .withStatus(Status.OK)
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>          .withStatement(<span class="jxr_string">"The first real test in this project:-)"</span>)
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>          .build();
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>      <em class="jxr_comment">//when</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>      JsonElement jsonElement = baseEncoder.encode(message);
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>      <em class="jxr_comment">//then</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      assertEquals(jsonElement.toString(), <span class="jxr_string">"{\&quot;header\&quot;:\&quot;CONNECTION\&quot;,\&quot;status\&quot;:\&quot;OK\&quot;,\&quot;author\&quot;:\&quot;SERVER\&quot;,"</span> +
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>          <span class="jxr_string">"\&quot;statement\&quot;:\&quot;The first real test in this project:-)\&quot;,"</span> +
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>          <span class="jxr_string">"\&quot;fleet\&quot;:{\&quot;fleet\&quot;:{}}}"</span>);
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>    }
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2018 Java Academy. All rights reserved.</div>
+</body>
+</html>

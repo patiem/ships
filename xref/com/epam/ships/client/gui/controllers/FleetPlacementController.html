@@ -12,11 +12,11 @@
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.client.gui.util.GridToBoardConverter;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.client.gui.util.ShipOrientation;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.client.validators.ShipPlacementValidator;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.fleet.Fleet;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.fleet.Mast;
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.fleet.Ship;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> com.epam.ships.infra.logging.api.Target;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> com.epam.ships.infra.logging.core.SharedLogger;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.fleet.Fleet;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.fleet.Mast;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.fleet.Ship;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.logging.api.Target;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.logging.core.SharedLogger;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> javafx.beans.binding.Bindings;
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> javafx.beans.binding.NumberBinding;
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> javafx.collections.FXCollections;
@@ -53,7 +53,7 @@
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../com/epam/ships/client/gui/controllers/FleetPlacementController.html">FleetPlacementController</a> {
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../../../com/epam/ships/infra/logging/api/Target.html">Target</a> logger = <strong class="jxr_keyword">new</strong> <a href="../../../../../../com/epam/ships/infra/logging/core/SharedLogger.html">SharedLogger</a>(Client.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../../../com/epam/ships/shared/infra/logging/api/Target.html">Target</a> logger = <strong class="jxr_keyword">new</strong> <a href="../../../../../../com/epam/ships/shared/infra/logging/core/SharedLogger.html">SharedLogger</a>(Client.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> BOARD_SIZE = 10;
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> SHIPS_COUNT = 10;
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  
@@ -277,7 +277,7 @@
 <a class="jxr_linenumber" name="L269" href="#L269">269</a>       }
 <a class="jxr_linenumber" name="L270" href="#L270">270</a>       event.setDropCompleted(success);
 <a class="jxr_linenumber" name="L271" href="#L271">271</a>       <strong class="jxr_keyword">int</strong> mastCount = ((Group) event.getGestureSource()).getChildren().size();
-<a class="jxr_linenumber" name="L272" href="#L272">272</a>       <a href="../../../../../../com/epam/ships/fleet/Mast.html">Mast</a>[] masts = <strong class="jxr_keyword">new</strong> <a href="../../../../../../com/epam/ships/fleet/Mast.html">Mast</a>[mastCount];
+<a class="jxr_linenumber" name="L272" href="#L272">272</a>       <a href="../../../../../../com/epam/ships/shared/fleet/Mast.html">Mast</a>[] masts = <strong class="jxr_keyword">new</strong> <a href="../../../../../../com/epam/ships/shared/fleet/Mast.html">Mast</a>[mastCount];
 <a class="jxr_linenumber" name="L273" href="#L273">273</a> 
 <a class="jxr_linenumber" name="L274" href="#L274">274</a>       <strong class="jxr_keyword">if</strong> (shipOrientation.equals(ShipOrientation.HORIZONTAL) &amp;&amp; isOutOfBound(index, mastCount)) {
 <a class="jxr_linenumber" name="L275" href="#L275">275</a>         shipPlacementSuccess = false;
@@ -304,7 +304,7 @@
 <a class="jxr_linenumber" name="L296" href="#L296">296</a>     });
 <a class="jxr_linenumber" name="L297" href="#L297">297</a>   }
 <a class="jxr_linenumber" name="L298" href="#L298">298</a> 
-<a class="jxr_linenumber" name="L299" href="#L299">299</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> placeShip(<strong class="jxr_keyword">int</strong> index, <a href="../../../../../../com/epam/ships/fleet/Mast.html">Mast</a>[] masts, <strong class="jxr_keyword">int</strong> mastCount, <strong class="jxr_keyword">int</strong> recIndex) {
+<a class="jxr_linenumber" name="L299" href="#L299">299</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> placeShip(<strong class="jxr_keyword">int</strong> index, <a href="../../../../../../com/epam/ships/shared/fleet/Mast.html">Mast</a>[] masts, <strong class="jxr_keyword">int</strong> mastCount, <strong class="jxr_keyword">int</strong> recIndex) {
 <a class="jxr_linenumber" name="L300" href="#L300">300</a>     index += 1;
 <a class="jxr_linenumber" name="L301" href="#L301">301</a> 
 <a class="jxr_linenumber" name="L302" href="#L302">302</a>     <strong class="jxr_keyword">if</strong> (shipOrientation.equals(ShipOrientation.VERTICAL)) {

@@ -1,3 +1,4 @@
-com.epam.ships.fleet
-com.epam.ships.infra.communication.core.json.conversion
-com.epam.ships.infra.communication.core.message
+com.epam.ships.shared.fleet
+com.epam.ships.shared.infra.communication.core.json.conversion
+com.epam.ships.shared.infra.communication.core.json.io
+com.epam.ships.shared.infra.communication.core.message

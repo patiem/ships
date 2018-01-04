@@ -8,11 +8,11 @@
 <div id="overview"><a href="../../../../../../../apidocs/com/epam/ships/server/gamestates/play/PlayState.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> com.epam.ships.server.gamestates.play;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.fleet.Fleet;
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.infra.communication.api.Message;
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.infra.communication.api.message.Header;
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.infra.logging.api.Target;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.infra.logging.core.SharedLogger;
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.fleet.Fleet;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.communication.api.Message;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.communication.api.message.Header;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.logging.api.Target;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.logging.core.SharedLogger;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.server.CommunicationBus;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.server.MessageSender;
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> com.epam.ships.server.TurnManager;
@@ -31,7 +31,7 @@
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../com/epam/ships/server/gamestates/play/PlayState.html">PlayState</a> <strong class="jxr_keyword">implements</strong> <a href="../../../../../../com/epam/ships/server/gamestates/GameState.html">GameState</a> {
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../../../com/epam/ships/server/gamestates/play/MessageReceiver.html">MessageReceiver</a> messageReceiver;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../../../com/epam/ships/server/gamestates/play/ShotHandler.html">ShotHandler</a> shotHandler;
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../../../com/epam/ships/infra/logging/api/Target.html">Target</a> logger = <strong class="jxr_keyword">new</strong> <a href="../../../../../../com/epam/ships/infra/logging/core/SharedLogger.html">SharedLogger</a>(PlayState.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../../../com/epam/ships/shared/infra/logging/api/Target.html">Target</a> logger = <strong class="jxr_keyword">new</strong> <a href="../../../../../../com/epam/ships/shared/infra/logging/core/SharedLogger.html">SharedLogger</a>(PlayState.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../../../com/epam/ships/server/TurnManager.html">TurnManager</a> turnManager;
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>    <strong class="jxr_keyword">private</strong> <a href="../../../../../../com/epam/ships/server/CommunicationBus.html">CommunicationBus</a> communicationBus;
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> isGameWon;
@@ -62,7 +62,7 @@
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      sendYourTurnMessage();
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>      messageReceiver.receive(turnManager.getCurrentPlayer());
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>      <strong class="jxr_keyword">if</strong> (messageReceiver.isAShot()) {
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>        <a href="../../../../../../com/epam/ships/infra/communication/api/Message.html">Message</a> shot = messageReceiver.getMessage();
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>        <a href="../../../../../../com/epam/ships/shared/infra/communication/api/Message.html">Message</a> shot = messageReceiver.getMessage();
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>        isGameWon = shotHandler.handle(turnManager.isCurrentPlayerFirstPlayer(), shot);
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>      } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>        <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../../com/epam/ships/server/gamestates/GameEndWithWalkoverState.html">GameEndWithWalkoverState</a>(communicationBus);

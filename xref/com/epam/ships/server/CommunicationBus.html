@@ -8,9 +8,9 @@
 <div id="overview"><a href="../../../../../apidocs/com/epam/ships/server/CommunicationBus.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> com.epam.ships.server;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.infra.communication.api.Message;
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.infra.logging.api.Target;
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.infra.logging.core.SharedLogger;
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.communication.api.Message;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.logging.api.Target;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> com.epam.ships.shared.infra.logging.core.SharedLogger;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> java.io.IOException;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> java.net.Socket;
@@ -27,7 +27,7 @@
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/epam/ships/server/CommunicationBus.html">CommunicationBus</a> {
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> SERVER_PORT = 8189;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/infra/logging/api/Target.html">Target</a> logger = <strong class="jxr_keyword">new</strong> <a href="../../../../com/epam/ships/infra/logging/core/SharedLogger.html">SharedLogger</a>(CommunicationBus.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/shared/infra/logging/api/Target.html">Target</a> logger = <strong class="jxr_keyword">new</strong> <a href="../../../../com/epam/ships/shared/infra/logging/core/SharedLogger.html">SharedLogger</a>(CommunicationBus.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/server/AppServer.html">AppServer</a> appServer;
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>    <strong class="jxr_keyword">private</strong> List&lt;WrappedClient&gt; clients;
@@ -74,15 +74,15 @@
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">   * @param sender player who sent a message</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">   * @return received message</em>
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>    <strong class="jxr_keyword">public</strong> <a href="../../../../com/epam/ships/infra/communication/api/Message.html">Message</a> receive(<strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/server/WrappedClient.html">WrappedClient</a> sender) {
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>    <strong class="jxr_keyword">public</strong> <a href="../../../../com/epam/ships/shared/infra/communication/api/Message.html">Message</a> receive(<strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/server/WrappedClient.html">WrappedClient</a> sender) {
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>      <strong class="jxr_keyword">return</strong> sender.receive();
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>    }
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>    <strong class="jxr_keyword">void</strong> send(<strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/server/WrappedClient.html">WrappedClient</a> recipient, <strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/infra/communication/api/Message.html">Message</a> response) {
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>    <strong class="jxr_keyword">void</strong> send(<strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/server/WrappedClient.html">WrappedClient</a> recipient, <strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/shared/infra/communication/api/Message.html">Message</a> response) {
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>      recipient.send(response);
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>    }
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>    <strong class="jxr_keyword">void</strong> sendToAll(<strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/infra/communication/api/Message.html">Message</a> message) {
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>    <strong class="jxr_keyword">void</strong> sendToAll(<strong class="jxr_keyword">final</strong> <a href="../../../../com/epam/ships/shared/infra/communication/api/Message.html">Message</a> message) {
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>      clients.forEach(wrappedClient -&gt; send(wrappedClient, message));
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>    }
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  
