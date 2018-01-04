@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 import static org.testng.Assert.assertEquals;
 
-@Test(groups = {"integration"})
+@Test
 public class JsonReceiverTest {
   
   public void itShouldReturnMessageWithEndStatus() {
@@ -27,5 +27,4 @@ public class JsonReceiverTest {
     //then
     assertEquals(message.getStatus(), Status.END);
   }
-  
 }
