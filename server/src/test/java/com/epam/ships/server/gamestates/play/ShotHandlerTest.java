@@ -28,7 +28,6 @@ import static org.testng.Assert.*;
 @Test
 public class ShotHandlerTest {
 
-
   private List<Fleet> fleets;
   private ShotHandler shotHandler;
 
@@ -70,7 +69,6 @@ public class ShotHandlerTest {
     verify(turnManager, times(0)).switchPlayer();
   }
 
-
   public void shouldHandleMiss() {
     //given
     //when
@@ -86,7 +84,6 @@ public class ShotHandlerTest {
   public void shouldHandleFleetDefeat() {
     //given
     ShotHandler shotHandler = new ShotHandler(communicationBus, turnManager, fleets);
-
 
     //when
     Message message = shotAtIndex("11");
