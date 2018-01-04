@@ -61,19 +61,19 @@ then
 	exit 1;
 fi
 echo "[ Q ] How many commits do we have.."
-if ! git rev-list HEAD ^master --count
+if ! git rev-list HEAD ^master --count ;
 then
 	helpEcho
 	exit 1;
 fi
 echo "[ Q ] How many packages do we have.."
-if ! grep -r "package" --include=*.java . --no-filename | sort -u | wc -l
+if ! grep -r "package" --include=*.java . --no-filename | sort -u | wc -l ; 
 then
 	helpEcho
 	exit 1;
 fi
 echo "[ Q ] How many interfaces do we have.."
-grep -r " interface " --include=*.java . --no-filename | sort -u | grep -i "{" | wc -l
+grep -r " interface " --include=*.java . --no-filename | sort -u | grep -i "{" | wc -l ;
 then
 	helpEcho
 	exit 1;
