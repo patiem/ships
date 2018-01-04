@@ -1,7 +1,7 @@
 package com.epam.ships.server;
 
 /**
- * Take care of players turn.
+ * Changes player's turn.
  *
  * @author Piotr Czyż
  * @since 2017-12-20
@@ -13,7 +13,7 @@ public class TurnManager {
   private WrappedClient otherPlayer;
 
   /**
-   * Creates TurnManager instance.
+   * Creates TurnManager instance, and sets firstly connected client as player who starts the game.
    *
    * @param firstPlayer  player who starts the game
    * @param secondPlayer second player in the game
@@ -26,16 +26,16 @@ public class TurnManager {
   }
 
   /**
-   * Gets player which has a turn.
+   * Returns a player having the turn.
    *
-   * @return WrappedClient - current player
+   * @return WrappedClient - currentPlayer
    */
   public WrappedClient getCurrentPlayer() {
     return this.currentPlayer;
   }
 
   /**
-   * Gets player which is waiting for his turn.
+   * Returns a player waiting for his turn.
    *
    * @return WrappedClient - player waiting for his turn.
    */
@@ -44,7 +44,7 @@ public class TurnManager {
   }
 
   /**
-   * It's changes players turn.
+   * It changes players turn.
    */
   public void switchPlayer() {
     if (this.currentPlayer.equals(this.firstPlayer)) {

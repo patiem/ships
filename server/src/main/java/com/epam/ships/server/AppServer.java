@@ -47,13 +47,12 @@ class AppServer {
    * while storing it in a list.
    */
   private void acceptClient() {
-    Socket client = null;
     try {
-      client = serverSocket.accept();
+      Socket client = serverSocket.accept();
+      clientSockets.add(client);
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
-    clientSockets.add(client);
   }
 
   /**

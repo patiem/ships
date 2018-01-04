@@ -15,7 +15,7 @@ public class Game {
     currentState = gameState;
   }
 
-  void loop() {
+  void play() {
     boolean shouldBeContinued = true;
     GameState nextState;
     while (shouldBeContinued) {
