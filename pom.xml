@@ -251,7 +251,7 @@
                 the most comprehensive/useful example we've found was
                 running a script with a build phase:
                 https://maven.apache.org/guides/mini/guide-using-ant.html
-                We haven't used it in our project anyways because
+                We haven't used it in our project anyway because
                 we couldn't think of a script we'd like to run with a build phase:)
                 -->
                 <plugin>

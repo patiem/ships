@@ -84,6 +84,6 @@
     </description>
 
     <!--Necessary for site links to work properly-->
-    <url>${project.distributionManagement.site.url}/${project.artifactId}</url>
+    <url>./index.html</url>
 
 </project>

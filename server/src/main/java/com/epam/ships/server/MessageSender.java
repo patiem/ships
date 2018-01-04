@@ -28,7 +28,7 @@ public class MessageSender {
   }
 
   /**
-   * Send message to given client bases on message header.
+   * Get message by header from MessageRepository and send it to addressee.
    *
    * @param addressee message addressee
    * @param header    header of message to send
@@ -39,7 +39,7 @@ public class MessageSender {
   }
 
   /**
-   * Send given message to proper given client.
+   * Send message to an addressee.
    *
    * @param addressee message addressee
    * @param message   message to send
@@ -50,7 +50,7 @@ public class MessageSender {
   }
 
   /**
-   * Send message to all connected clients.
+   * Get message by header from MessageRepository and send it to all connected clients.
    *
    * @param header header of message to send
    */
