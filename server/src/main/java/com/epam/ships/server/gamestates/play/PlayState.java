@@ -34,7 +34,7 @@ public class PlayState implements GameState {
    * @param communicationBus client server communication bus
    * @param fleets           list of clients fleets
    */
-  public PlayState(final CommunicationBus communicationBus,final List<Fleet> fleets) {
+  public PlayState(final CommunicationBus communicationBus, final List<Fleet> fleets) {
     this.communicationBus = communicationBus;
     this.messageReceiver = new MessageReceiver(communicationBus);
     isGameWon = false;
@@ -62,22 +62,11 @@ public class PlayState implements GameState {
     if (isGameWon) {
       return new GameEndWithWinState(communicationBus, turnManager);
     }
-    rest();
     return this;
   }
 
   private void sendYourTurnMessage() {
     MessageSender messageSender = new MessageSender(communicationBus, logger);
     messageSender.send(turnManager.getCurrentPlayer(), Header.YOUR_TURN);
-  }
-
-  private void rest() {
-    final long restTime = 300;
-    try {
-      Thread.sleep(restTime);
-    } catch (final InterruptedException e) {
-      logger.error(e.getMessage());
-      Thread.currentThread().interrupt();
-    }
   }
 }
