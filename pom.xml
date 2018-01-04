@@ -339,6 +339,23 @@
                                             </limit>
                                         </limits>
                                     </rule>
+
+                                    <!--CLIENT module only
+                                    -->
+                                    <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                        <element>BUNDLE</element>
+                                        <excludes>
+                                            <exclude>server</exclude>
+                                            <exclude>shared</exclude>
+                                        </excludes>
+                                        <limits>
+                                            <limit implementation="org.jacoco.report.check.Limit">
+                                                <counter>INSTRUCTION</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>0.16</minimum>
+                                            </limit>
+                                        </limits>
+                                    </rule>
                                 </rules>
                             </configuration>
                         </execution>
