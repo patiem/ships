@@ -14,6 +14,7 @@
 # * It is dependent on clone.sh script
 # * It is dependent on pre-commitHookMaven.sh script
 #
+
 function helpEcho {
 echo "[How to use]"
 echo " 1) Copy a script (if not willing to alias it) into a directory"
