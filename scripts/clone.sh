@@ -26,6 +26,12 @@ if [[ $1 = "--help" ]];
 	exit 1;
 fi
 
+if [[ ${#1} = 0 ]]; 
+	then echo -e "no args provided! \n\n" 
+	helpEcho
+	exit 1;
+fi
+
 if ! git clone https://github.com/korotkevics/ships $1 --quiet;
 then
 	helpEcho
