@@ -73,7 +73,7 @@ then
 	exit 1;
 fi
 echo "[ Q ] How many interfaces do we have.."
-grep -r " interface " --include=*.java . --no-filename | sort -u | grep -i "{" | wc -l ;
+if ! grep -r " interface " --include=*.java . --no-filename | sort -u | grep -i "{" | wc -l ;
 then
 	helpEcho
 	exit 1;
