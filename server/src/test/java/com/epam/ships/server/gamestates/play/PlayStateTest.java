@@ -8,7 +8,6 @@ import com.epam.ships.infra.communication.api.message.Author;
 import com.epam.ships.infra.communication.api.message.Header;
 import com.epam.ships.infra.communication.core.message.MessageBuilder;
 import com.epam.ships.server.CommunicationBus;
-import com.epam.ships.server.TurnManager;
 import com.epam.ships.server.WrappedClient;
 import com.epam.ships.server.gamestates.GameEndWithWalkoverState;
 import com.epam.ships.server.gamestates.GameEndWithWinState;
@@ -44,31 +43,31 @@ public class PlayStateTest {
 
 
   public void shouldKeepStateWhenNoWinner() {
-    Fleet fleet2 = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("4"), Mast.ofIndex("5"))));
-    List<Fleet> fleetList = Arrays.asList(fleet, fleet2);
+    Fleet secondFleet = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("4"), Mast.ofIndex("5"))));
+    List<Fleet> fleetList = Arrays.asList(fleet, secondFleet);
     processShot();
-    //when
     PlayState playState = new PlayState(communicationBus, fleetList);
+    //when
     GameState gameState = playState.process();
     //then
     assertEquals(PlayState.class, gameState.getClass());
   }
 
-  public void shouldProcessWin() {
+  public void shouldProcessGameToWinState() {
     //given
-    Fleet fleet2 = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("4"))));
-    List<Fleet> fleetList = Arrays.asList(fleet, fleet2);
+    Fleet secondFleet = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("4"))));
+    List<Fleet> fleetList = Arrays.asList(fleet, secondFleet);
     processShot();
-    //when
     PlayState playState = new PlayState(communicationBus, fleetList);
+    //when
     GameState gameState = playState.process();
     //then
     assertEquals(GameEndWithWinState.class, gameState.getClass());
   }
 
-  public void shouldProcessWalkover() {
-    Fleet fleet2 = mock(Fleet.class);
-    List<Fleet> fleetList = Arrays.asList(fleet, fleet2);
+  public void shouldProcessGameToWalkover() {
+    Fleet secondFleet = mock(Fleet.class);
+    List<Fleet> fleetList = Arrays.asList(fleet, secondFleet);
     Message shot = new MessageBuilder()
         .withAuthor(Author.AUTO)
         .withHeader(Header.CONNECTION)
@@ -77,20 +76,20 @@ public class PlayStateTest {
     when(communicationBus.receive(sender)).thenReturn(shot);
     when(communicationBus.getFirstClient()).thenReturn(sender);
     when(communicationBus.getSecondClient()).thenReturn(wrappedClient);
-    //when
     PlayState playState = new PlayState(communicationBus, fleetList);
+    //when
     GameState gameState = playState.process();
     //then
     assertEquals(GameEndWithWalkoverState.class, gameState.getClass());
   }
 
   private void processShot() {
-    when(communicationBus.receive(sender)).thenReturn(shot());
+    when(communicationBus.receive(sender)).thenReturn(produceMessageWithShot());
     when(communicationBus.getFirstClient()).thenReturn(sender);
     when(communicationBus.getSecondClient()).thenReturn(wrappedClient);
   }
 
-  private Message shot() {
+  private Message produceMessageWithShot() {
     return new MessageBuilder()
         .withAuthor(Author.CLIENT)
         .withHeader(Header.SHOT)
