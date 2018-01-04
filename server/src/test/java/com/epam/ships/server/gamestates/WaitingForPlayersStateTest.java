@@ -2,30 +2,50 @@ package com.epam.ships.server.gamestates;
 
 import com.epam.ships.server.CommunicationBus;
 import com.epam.ships.server.WrappedClient;
+import org.mockito.Mock;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 import static org.mockito.Mockito.*;
-import static org.testng.Assert.assertNotNull;
+import static org.mockito.MockitoAnnotations.initMocks;
+import static org.testng.Assert.*;
+
 @Test
 public class WaitingForPlayersStateTest {
 
-  public void shouldProcess(){
-    //given
-    CommunicationBus communicationBus = mock(CommunicationBus.class);
-    when(communicationBus.getFirstClient()).thenReturn(mock(WrappedClient.class));
-    when(communicationBus.getSecondClient()).thenReturn(mock(WrappedClient.class));
+  private WaitingForPlayersState state;
+  @Mock
+  private CommunicationBus communicationBus;
+  @Mock
+  private WrappedClient wrappedClient;
+  @Mock
+  private WrappedClient secondWrappedClient;
 
-    WaitingForPlayersState state = new WaitingForPlayersState(communicationBus);
+  @BeforeClass
+  private void before() {
+    initMocks(this);
+    state = new WaitingForPlayersState(communicationBus);
+  }
+
+  public void shouldProcessGameToFleetPlacementState() {
+    //given
+    when(communicationBus.getFirstClient()).thenReturn(wrappedClient);
+    when(communicationBus.getSecondClient()).thenReturn(secondWrappedClient);
 
     //when
-    GameState fleetPlacementState = state.process();
+    GameState gameState= state.process();
 
     //then
     verify(communicationBus, times(1)).start();
-    assertNotNull(fleetPlacementState);
+    assertEquals(FleetPlacementState.class, gameState.getClass());
+
+  }
+
+  public void shouldBeContinuedShouldReturnTrueByDefault() {
+    //when
+    boolean result = state.shouldBeContinued();
+    //then
+    assertTrue(result);
   }
 
 }
