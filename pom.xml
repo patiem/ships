@@ -319,7 +319,7 @@
                                             <limit implementation="org.jacoco.report.check.Limit">
                                                 <counter>INSTRUCTION</counter>
                                                 <value>COVEREDRATIO</value>
-                                                <minimum>0.68</minimum>
+                                                <minimum>0.75</minimum>
                                             </limit>
                                         </limits>
                                     </rule>

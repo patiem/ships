@@ -1,11 +1,11 @@
 package com.epam.ships.server.gamestates.play;
 
-import com.epam.ships.fleet.Damage;
-import com.epam.ships.fleet.Fleet;
-import com.epam.ships.fleet.Mast;
-import com.epam.ships.infra.communication.api.Message;
-import com.epam.ships.infra.logging.api.Target;
-import com.epam.ships.infra.logging.core.SharedLogger;
+import com.epam.ships.shared.fleet.Damage;
+import com.epam.ships.shared.fleet.Fleet;
+import com.epam.ships.shared.fleet.Mast;
+import com.epam.ships.shared.infra.communication.api.Message;
+import com.epam.ships.shared.infra.logging.api.Target;
+import com.epam.ships.shared.infra.logging.core.SharedLogger;
 import com.epam.ships.server.CommunicationBus;
 import com.epam.ships.server.MessageSender;
 import com.epam.ships.server.TurnManager;

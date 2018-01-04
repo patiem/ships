@@ -1,6 +1,6 @@
 package com.epam.ships.client.client;
 
-import com.epam.ships.infra.communication.api.message.Header;
+import com.epam.ships.shared.infra.communication.api.message.Header;
 
 import java.util.EnumMap;
 import java.util.Map;
