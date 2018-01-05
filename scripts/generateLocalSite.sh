@@ -50,4 +50,4 @@ then
 	helpEcho
 	exit 1;
 fi
-echo "Done generating site.\nPlease browse a local site with your favourite browser at [root]/target/staging/index.html"
+echo "Done generating site. Please browse a local site with your favourite browser at [root]/target/staging/index.html"
