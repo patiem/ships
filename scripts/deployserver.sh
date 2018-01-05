@@ -31,7 +31,7 @@ echo -e "\t ./deployserver.sh\n"
 
 if [[ $1 = "--help" ]];
 	then helpEcho
-	exit 1;
+	exit 0;
 fi
 
 if ! cd ../server;

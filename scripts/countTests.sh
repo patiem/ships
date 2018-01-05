@@ -21,7 +21,7 @@ echo -e "\t ./countTests.sh\n"
 
 if [[ $1 = "--help" ]];
 	then helpEcho
-	exit 1;
+	exit 0;
 fi
 
 mvn test --log-file logFile

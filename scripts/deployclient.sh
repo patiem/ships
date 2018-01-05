@@ -32,7 +32,7 @@ echo -e "\t ./deployclient.sh\n"
 
 if [[ $1 = "--help" ]];
 	then helpEcho
-	exit 1;
+	exit 0;
 fi
 
 cd ../client
