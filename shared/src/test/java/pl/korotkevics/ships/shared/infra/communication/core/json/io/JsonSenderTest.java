@@ -26,6 +26,6 @@ public class JsonSenderTest {
     sender.send(message);
     //then
     assertEquals(outputStream.toString(), "{\"header\":\"WIN\",\"status\":\"OK\"," +
-                                              "\"author\":\"SERVER\",\"statement\":\"\",\"fleet\":{\"fleet\":{}}}\n");
+                                              "\"author\":\"SERVER\",\"statement\":\"\",\"fleet\":{\"fleet\":{}}}"+System.lineSeparator());
   }
 }
