@@ -1,15 +1,8 @@
 #!/bin/bash
 
 #
-# Author: Sandor
+# Author: Sandor, Magda
 # Since: 2017-12-18
-#
-# [How to use]
-# 1) Copy a script (if not willing to alias it) into a directory
-# 2) Run ./clone.sh [your_dir_name]
-#
-# Have our remote git repository (https://github.com/korotkevics/ships/)
-# cloned into a [your_dir_name].
 #
 
 function helpEcho {
@@ -23,7 +16,7 @@ echo -e "\t\t [your_dir_name] - dir to which you want to clone"
 
 if [[ $1 = "--help" ]];
 	then helpEcho
-	exit 1;
+	exit 0;
 fi
 
 if [[ ${#1} = 0 ]]; 
