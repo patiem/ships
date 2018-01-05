@@ -1,19 +1,8 @@
 #!/bin/bash
 
 #
-# Author: Sandor
+# Author: Sandor, Magda
 # Since: 2017-12-19
-#
-# [Important]
-#
-#   1) The assumption is that the script is placed within ./scripts/
-#      directory.
-#   2) JAR file name has to be maintained manually.
-#
-# [Description]
-#
-# It installs server along with two clients with mvn clean install and executes
-# generated JAR files.
 #
 
 function helpEcho {
@@ -31,7 +20,7 @@ echo -e "\t ./deployserverandclients.sh\n"
 
 if [[ $1 = "--help" ]];
 	then helpEcho
-	exit 1;
+	exit 0;
 fi
 
 if ! cd .. ;

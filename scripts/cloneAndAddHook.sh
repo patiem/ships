@@ -1,19 +1,11 @@
 #!/bin/bash
 
 #
-# Author: Piotr
+# Author: Piotr, Magda
 #
 # Since: 2017-01-03
 #
-# [How to use]
-# 1) Copy a script (if not willing to alias it) into a directory
-# 2) Run ./cloneAndAddHook.sh [your_dir_name]
-#
-# [Important]
-#
-# * It is dependent on clone.sh script
-# * It is dependent on pre-commitHookMaven.sh script
-#
+
 
 function helpEcho {
 echo "[How to use]"
@@ -30,7 +22,7 @@ echo -e "\t\t [your_dir_name] - dir to which you want to clone"
 
 if [[ $1 = "--help" ]];
 	then helpEcho
-	exit 1;
+	exit 0;
 fi
 
 if [[ ${#1} = 0 ]]; 
@@ -44,10 +36,6 @@ if ! ./clone.sh $1;
 fi
 cd $1
 echo "copying pre-commit hook"
-if ! chmod u+x scripts/pre-commitHookMaven.sh;
-	then helpEcho
-	exit 1;
-fi
 if ! cp scripts/pre-commitHookMaven.sh .git/hooks/pre-commit;
 	then helpEcho
 	exit 1;
