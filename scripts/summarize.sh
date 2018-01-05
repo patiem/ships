@@ -86,14 +86,14 @@ then
 fi
 
 echo "[ Q ] How many public APIs do we have..(=public method count)"
-if ! grep -r -E "public (\w)+ (\w)+.*) {*" --include=\*.java . --no-filename | sort -u | wc -l;
+if ! grep -r -E "public (\w)+ (\w)+.*) {*" --include=\*.java --exclude-dir=test . --no-filename | sort -u | wc -l;
 then
 	helpEcho
 	exit 1;
 fi
 
 echo "[ Q ] How many package-private APIs do we have..(=package-private method count)"
-if ! grep -r -E " .*) {\$" --include=\*.java . --no-filename | grep -v public | grep -v protected | grep -v private | grep -E "^\s*(\w)+ (\w)+\(" | sort -u | wc -l;
+if ! grep -r -E "^\s{2}(\w)+ (\w)+\(.*\)" --include=\*.java --exclude-dir=test . --no-filename  | grep -v public | grep -v protected | grep -v private | sort -u | wc -l
 then
 	helpEcho
 	exit 1;
