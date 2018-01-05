@@ -30,11 +30,8 @@
         <mockitoVersion>2.13.0</mockitoVersion>
         <failsafeVersion>2.20.1</failsafeVersion>
         <!--Logging-->
-        <!--The newest version 2.10.0 gives a warning such as
-        [WARNING] Unable to process class module-info.class in JarAnalyzer File
-        /home/sandor/.m2/repository/org/apache/logging/log4j/log4j-api/2.10.0/log4j-api-2.10.0.jar
-        org.apache.bcel.classfile.ClassFormatException: Invalid byte tag in constant pool: 19
-        Therefore an older version is preferred.-->
+        <!--An older versions is preferred, more: Log4J
+        https://github.com/korotkevics/ships/wiki/POM-Explanations/-->
         <log4jVersion>2.9.1</log4jVersion>
         <!--Maven-->
         <surefireVersion>2.20.1</surefireVersion>
@@ -59,12 +56,8 @@
         <assemblyVersion>3.1.0</assemblyVersion>
         <dependencyVersion>3.0.2</dependencyVersion>
         <jxrVersion>2.5</jxrVersion>
-        <!-- The newest released javadoc plugin version is 3.0.0,
-        however an older version is preferred since the newest
-        version throws an error complaining about a missing
-        module descriptor and there no info available online which
-        could help to solve this issue.
-        -->
+        <!--An older versions is preferred, more: JavaDoc
+        https://github.com/korotkevics/ships/wiki/POM-Explanations/-->
         <jdocVersion>2.10.4</jdocVersion>
         <jdepsVersion>0.4.0</jdepsVersion>
         <!--switch to true if not willing to generate a site-->
@@ -135,14 +128,7 @@
     <build>
         <pluginManagement>
             <!--Why so many plug-ins in pluginManagement?
-            It all started with a report produced by
-            versions-maven-plugin
-            It lists all plug-ins anyhow used by Maven
-            and gives a status:
-            - if a version is not fixed and/or not the latest one = red
-            - if a version is fixed and the latest one = green
-            We wanted to have as many green status as possible which is
-            also a project requirement (as we understood it).
+            https://github.com/korotkevics/ships/wiki/POM-Explanations
             -->
             <plugins>
                 <plugin>
@@ -244,15 +230,8 @@
                     <version>${releaseVersion}</version>
                 </plugin>
                 <!--
-                We were supposed to tell, how Maven Antrun Plug-in
-                was used.
-                Maven Antrun Plug-in can be used to run
-                Ant tasks. We do not know much about Ant, and
-                the most comprehensive/useful example we've found was
-                running a script with a build phase:
-                https://maven.apache.org/guides/mini/guide-using-ant.html
-                We haven't used it in our project anyway because
-                we couldn't think of a script we'd like to run with a build phase:)
+                How Maven Antrun Plug-in is used?
+                https://github.com/korotkevics/ships/wiki/POM-Explanations
                 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -260,19 +239,8 @@
                     <version>${antrunVersion}</version>
                 </plugin>
                 <!--
-                We were supposed to tell, how Maven Assembly Plug-in
-                was used.
-                First of all, in our project it isn't used explicitly,
-                it is present here for the same reason as mentioned above
-                <pluginManagement> (to fix stable versions and thus satisfy
-                a plug-in requirement).
-                We've read about it though and it seems to be an alternative to
-                Maven Shade Plug-in for packaging which can do less, and
-                as we understood documentation the main difference is that
-                Maven Shade Plugin is also capable of shading (renaming packages)
-                and most importantly of creating uber-jars. That much for now;)
-                More info:
-                http://maven.apache.org/plugins-archives/maven-assembly-plugin-2.6/
+                How Maven Assembly Plug-in is used?
+                https://github.com/korotkevics/ships/wiki/POM-Explanations
                 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -401,9 +369,8 @@
                 <artifactId>maven-enforcer-plugin</artifactId>
             </plugin>
             <!--
-            We're yet unable to add FindBugs to build due
-            to an infinitive loop bug in server module.
-            We're working on it.
+            FindBugs is missing, more: Missing FindBugs
+            https://github.com/korotkevics/ships/wiki/POM-Explanations
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -475,30 +442,8 @@
                     <configLocation>google_checks.xml</configLocation>
                 </configuration>
             </plugin>
-            <!--JDepend plug-in isn't present because it throws some
-            unresolvable warnings, as it seems not to be 100% compatible
-            with Java 1.8, although reports produced are mostly fine.
-            If it turns out to be necessary, we can include it as well.
-            In general, JDepend reports summarize dependencies quite well.
-
-            For now, we've added the newer JDeps plug-in only.
-            When it comes to reporting, it simply lists dependencies.
-            It also has some drawbacks:
-            - jdeps-maven-plugin by Apache isn't compatible with
-           reporting (only with build) so we went for the one created
-           by com.github.marschall
-            - we've found no option of adding external dependencies to
-            classpath with this plug-in as it can be simply done in
-            command line with jdeps, so occasionally we get 'not found'
-            in reports
-            - we receive the below warning in report produced for the shared
-            module which is dependent on log4j, and we couldn't resolve it -
-            there isn't much info on-line, and we would'nt upgrade to JDK9
-            just because of that
-
-            Warning: /home/sandor/.m2/repository/org/apache/logging/log4j/log4j-api/2.9.1/log4j-api-2.9.1.jar
-            is a multi-release jar file All versioned entries are analyzed. To analyze the entries for a specific
-            version, use a newer version of jdeps (JDK 9 or later) "- -multi-release" option.
+            <!--JDepend / JDeps issues
+            https://github.com/korotkevics/ships/wiki/POM-Explanations
             -->
             <plugin>
                 <groupId>com.github.marschall</groupId>
@@ -552,7 +497,8 @@
             </plugin>
             <!--Important: it's necessary to run mvn clean install
             in order to generate jacoco datafiles based on which
-            this report can be generated-->
+            this report can be generated (also added onto Wiki
+            -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -586,15 +532,8 @@
         <site>
             <id>${project.artifactId}</id>
             <!--
-            We deploy site with a script (updateRemoteSite.sh),
-            therefore scp is left empty.
-            We do not have a server, and it would be also
-            troublesome to configure with settings.xml for each
-            computer.
-            The reason it is mentioned at all is to make local
-            site staging possible.
-            More info here:
-            https://maven.apache.org/plugins/maven-site-plugin/usage.html
+            SCP usage explained
+            https://github.com/korotkevics/ships/wiki/POM-Explanations
             -->
             <url>scp:///</url>
         </site>
