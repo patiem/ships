@@ -86,7 +86,14 @@ then
 fi
 
 echo "[ Q ] How many public APIs do we have..(=public method count)"
-if ! grep -r "public .*) {*" --include=*.java . --no-filename | sort -u |wc -l;
+if ! grep -r -E "public (\w)+ (\w)+.*) {*" --include=\*.java --exclude-dir=test . --no-filename | sort -u | wc -l;
+then
+	helpEcho
+	exit 1;
+fi
+
+echo "[ Q ] How many package-private APIs do we have..(=package-private method count)"
+if ! grep -r -E "^\s{2}(\w)+ (\w)+\(.*\)" --include=\*.java --exclude-dir=test . --no-filename  | grep -v public | grep -v protected | grep -v private | sort -u | wc -l
 then
 	helpEcho
 	exit 1;
@@ -96,6 +103,3 @@ fi
 
 echo "[ Q ] How many design patterns do we have.."
 echo "3 (Builder, Factory Method in Shared module, and MVC in Client module - since we use JavaFX)"
-
-echo "[ Q ] How many package-private APIs do we have.."
-echo "2: event triggers, message handlers in Client module"
