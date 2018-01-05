@@ -32,7 +32,7 @@ echo -e "\t ./updateRemoteSite.sh\n"
 
 if [[ $1 = "--help" ]];
 	then helpEcho
-	exit 1;
+	exit 0;
 fi
 
 if ! mkdir ../../tempUpdateRemoteSite;
