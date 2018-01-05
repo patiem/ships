@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/8"
-            fx:controller="com.epam.ships.client.gui.controllers.ServerNotRespondingController">
+            fx:controller="pl.korotkevics.ships.client.gui.controllers.ServerNotRespondingController">
     <children>
         <VBox fx:id="vbWheel" alignment="BOTTOM_CENTER" cacheShape="false" centerShape="false" prefHeight="320.0"
               prefWidth="498.0" scaleShape="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"

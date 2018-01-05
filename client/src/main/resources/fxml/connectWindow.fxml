@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/8"
-            fx:controller="com.epam.ships.client.gui.controllers.StartWindowController">
+            fx:controller="pl.korotkevics.ships.client.gui.controllers.StartWindowController">
     <children>
         <GridPane fx:id="gridPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
