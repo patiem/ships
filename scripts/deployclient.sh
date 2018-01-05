@@ -1,21 +1,9 @@
 #!/bin/bash
 
 #
-# Author: Sandor
+# Author: Sandor, Magda
 # Since: 2017-12-18
 #
-# [Important]
-#
-#   1) The assumption is that the script is placed within ./scripts/
-#      directory.
-#   2) JAR file name has to be maintained manually.
-#
-# [Description]
-#
-# It installs client with mvn clean install and executes
-# a generated .jar file.
-#
-
 
 function helpEcho {
 echo "[Description]"
@@ -35,7 +23,9 @@ if [[ $1 = "--help" ]];
 	exit 0;
 fi
 
-cd ../client
+# Install
+
+cd ..
 
 if ! mvn clean install -q;
 then
@@ -45,7 +35,9 @@ fi
 
 echo "Installed, now attempting to deploy.."
 
-if ! java -jar ./target/client*.jar;
+# Launch
+
+if ! java -jar client/target/client*.jar;
 then
 	helpEcho
 	exit 1;

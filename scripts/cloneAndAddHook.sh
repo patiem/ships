@@ -1,19 +1,11 @@
 #!/bin/bash
 
 #
-# Author: Piotr
+# Author: Piotr, Magda
 #
 # Since: 2017-01-03
 #
-# [How to use]
-# 1) Copy a script (if not willing to alias it) into a directory
-# 2) Run ./cloneAndAddHook.sh [your_dir_name]
-#
-# [Important]
-#
-# * It is dependent on clone.sh script
-# * It is dependent on pre-commitHookMaven.sh script
-#
+
 
 function helpEcho {
 echo "[How to use]"

@@ -1,13 +1,8 @@
 #!/bin/bash
 
 #
-# Author: Piotr
+# Author: Piotr, Magda
 # Since: 2017-12-28
-#
-#
-# [Description]
-#
-# It runs mvn test, and basing on results it counts number of unit tests in project.
 #
 
 function helpEcho {
