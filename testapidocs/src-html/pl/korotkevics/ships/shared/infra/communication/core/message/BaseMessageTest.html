@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../../../stylesheet.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>package pl.korotkevics.ships.shared.infra.communication.core.message;<a name="line.1"></a>
+<span class="sourceLineNo">002</span><a name="line.2"></a>
+<span class="sourceLineNo">003</span>import pl.korotkevics.ships.shared.infra.communication.api.Message;<a name="line.3"></a>
+<span class="sourceLineNo">004</span>import pl.korotkevics.ships.shared.infra.communication.api.message.Author;<a name="line.4"></a>
+<span class="sourceLineNo">005</span>import pl.korotkevics.ships.shared.infra.communication.api.message.Header;<a name="line.5"></a>
+<span class="sourceLineNo">006</span>import org.testng.annotations.Test;<a name="line.6"></a>
+<span class="sourceLineNo">007</span><a name="line.7"></a>
+<span class="sourceLineNo">008</span>import static org.testng.Assert.assertEquals;<a name="line.8"></a>
+<span class="sourceLineNo">009</span><a name="line.9"></a>
+<span class="sourceLineNo">010</span>public class BaseMessageTest {<a name="line.10"></a>
+<span class="sourceLineNo">011</span>  @Test<a name="line.11"></a>
+<span class="sourceLineNo">012</span>  public void stringRepresentationIsProper() {<a name="line.12"></a>
+<span class="sourceLineNo">013</span>    //given - when<a name="line.13"></a>
+<span class="sourceLineNo">014</span>    Message message = new MessageBuilder()<a name="line.14"></a>
+<span class="sourceLineNo">015</span>        .withAuthor(Author.SERVER)<a name="line.15"></a>
+<span class="sourceLineNo">016</span>        .withStatement("Hello World")<a name="line.16"></a>
+<span class="sourceLineNo">017</span>        .withHeader(Header.WIN)<a name="line.17"></a>
+<span class="sourceLineNo">018</span>        .build();<a name="line.18"></a>
+<span class="sourceLineNo">019</span>    //then<a name="line.19"></a>
+<span class="sourceLineNo">020</span>    assertEquals(message.toString(), "BaseMessage(header=WIN, status=OK, author=SERVER, statement=Hello World, fleet=Fleet(fleet={}))");<a name="line.20"></a>
+<span class="sourceLineNo">021</span>  }<a name="line.21"></a>
+<span class="sourceLineNo">022</span>}<a name="line.22"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</body>
+</html>

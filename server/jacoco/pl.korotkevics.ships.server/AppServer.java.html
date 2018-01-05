@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AppServer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SERVER</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.server</a> &gt; <span class="el_source">AppServer.java</span></div><h1>AppServer.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.server;
+
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * It starts a server socket and accepts two client sockets.
+ *
+ * @author Piotr Czyż, Magdalena Aarsman, Sandor Korotkevics
+ * @since 2017-12-09
+ */
+class AppServer {
+
+<span class="fc" id="L20">  private final Target logger = new SharedLogger(AppServer.class);</span>
+
+  private final ServerSocket serverSocket;
+
+  private List&lt;Socket&gt; clientSockets;
+
+<span class="fc" id="L26">  AppServer(int port) throws IOException {</span>
+<span class="fc" id="L27">    logger.info(&quot;Server is up and waiting for clients..&quot;);</span>
+<span class="fc" id="L28">    this.serverSocket = new ServerSocket(port);</span>
+<span class="fc" id="L29">  }</span>
+
+  /**
+   * It connects two clients.
+   */
+  void connectClients() {
+<span class="fc" id="L35">    clientSockets = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L36">    logger.info(&quot;Waiting for the 1st client.. &quot;);</span>
+<span class="fc" id="L37">    acceptClient();</span>
+<span class="fc" id="L38">    logger.info(&quot;1st client connected... &quot;);</span>
+<span class="fc" id="L39">    logger.info(&quot;waiting for the 2nd client..&quot;);</span>
+<span class="fc" id="L40">    acceptClient();</span>
+<span class="fc" id="L41">    logger.info(&quot;2nd client connected... &quot;);</span>
+<span class="fc" id="L42">    logger.info(&quot;Clients are connected&quot;);</span>
+<span class="fc" id="L43">  }</span>
+
+  /**
+   * It accepts a client socket
+   * while storing it in a list.
+   */
+  private void acceptClient() {
+    try {
+<span class="fc" id="L51">      Socket client = serverSocket.accept();</span>
+<span class="fc" id="L52">      clientSockets.add(client);</span>
+<span class="nc" id="L53">    } catch (IOException e) {</span>
+<span class="nc" id="L54">      logger.error(e.getMessage());</span>
+<span class="fc" id="L55">    }</span>
+<span class="fc" id="L56">  }</span>
+
+  /**
+   * @return a list of stored client sockets.
+   */
+  List&lt;Socket&gt; getClientSockets() {
+<span class="fc" id="L62">    return clientSockets;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

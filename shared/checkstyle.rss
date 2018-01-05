@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 20,
              Errors: 0,
-             Warnings: 0,
+             Warnings: 18,
              Infos: 0
       </title>
             <link>./index.html/checkstyle.html</link>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.conversion.Decoder.java">com/epam/ships/shared/infra/communication/api/conversion/Decoder.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.json.conversion.JsonDecoder.java">pl/korotkevics/ships/shared/infra/communication/core/json/conversion/JsonDecoder.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.message.BaseMessage.java">com/epam/ships/shared/infra/communication/core/message/BaseMessage.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.Message.java">pl/korotkevics/ships/shared/infra/communication/api/Message.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.message.Author.java">com/epam/ships/shared/infra/communication/api/message/Author.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage.java">pl/korotkevics/ships/shared/infra/communication/core/message/BaseMessage.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.message.Status.java">pl/korotkevics/ships/shared/infra/communication/api/message/Status.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.fleet.Fleet.java">pl/korotkevics/ships/shared/fleet/Fleet.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.message.MessageBuilder.java">com/epam/ships/shared/infra/communication/core/message/MessageBuilder.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.fleet.Mast.java">pl/korotkevics/ships/shared/fleet/Mast.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.logging.core.SharedLogger.java">com/epam/ships/shared/infra/logging/core/SharedLogger.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.conversion.Decoder.java">pl/korotkevics/ships/shared/infra/communication/api/conversion/Decoder.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +144,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.fleet.Damage.java">com/epam/ships/shared/fleet/Damage.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonReceiver.java">pl/korotkevics/ships/shared/infra/communication/core/json/io/JsonReceiver.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +158,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.message.Status.java">com/epam/ships/shared/infra/communication/api/message/Status.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.message.Header.java">pl/korotkevics/ships/shared/infra/communication/api/message/Header.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.fleet.Damage.java">pl/korotkevics/ships/shared/fleet/Damage.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +186,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.fleet.Ship.java">com/epam/ships/shared/fleet/Ship.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.conversion.Encoder.java">pl/korotkevics/ships/shared/infra/communication/api/conversion/Encoder.java</a>
                 </td>
                 <td>
                   0
@@ -158,7 +200,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.logging.api.Target.java">com/epam/ships/shared/infra/logging/api/Target.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.logging.core.SharedLogger.java">pl/korotkevics/ships/shared/infra/logging/core/SharedLogger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.io.Receiver.java">pl/korotkevics/ships/shared/infra/communication/api/io/Receiver.java</a>
                 </td>
                 <td>
                   0
@@ -172,7 +228,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.Message.java">com/epam/ships/shared/infra/communication/api/Message.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.logging.api.Target.java">pl/korotkevics/ships/shared/infra/logging/api/Target.java</a>
                 </td>
                 <td>
                   0
@@ -186,7 +242,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.json.conversion.JsonDecoder.java">com/epam/ships/shared/infra/communication/core/json/conversion/JsonDecoder.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder.java">pl/korotkevics/ships/shared/infra/communication/core/message/MessageBuilder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonSender.java">pl/korotkevics/ships/shared/infra/communication/core/json/io/JsonSender.java</a>
                 </td>
                 <td>
                   0
@@ -200,7 +270,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.io.Sender.java">com/epam/ships/shared/infra/communication/api/io/Sender.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.io.Sender.java">pl/korotkevics/ships/shared/infra/communication/api/io/Sender.java</a>
                 </td>
                 <td>
                   0
@@ -214,7 +284,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.fleet.Fleet.java">com/epam/ships/shared/fleet/Fleet.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.json.conversion.JsonEncoder.java">pl/korotkevics/ships/shared/infra/communication/core/json/conversion/JsonEncoder.java</a>
                 </td>
                 <td>
                   0
@@ -228,7 +298,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.io.Receiver.java">com/epam/ships/shared/infra/communication/api/io/Receiver.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.fleet.Ship.java">pl/korotkevics/ships/shared/fleet/Ship.java</a>
                 </td>
                 <td>
                   0
@@ -242,83 +312,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.conversion.Encoder.java">com/epam/ships/shared/infra/communication/api/conversion/Encoder.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.message.Author.java">pl/korotkevics/ships/shared/infra/communication/api/message/Author.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.json.io.JsonSender.java">com/epam/ships/shared/infra/communication/core/json/io/JsonSender.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.json.io.JsonReceiver.java">com/epam/ships/shared/infra/communication/core/json/io/JsonReceiver.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.message.Header.java">com/epam/ships/shared/infra/communication/api/message/Header.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.fleet.Mast.java">com/epam/ships/shared/fleet/Mast.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.json.conversion.JsonEncoder.java">com/epam/ships/shared/infra/communication/core/json/conversion/JsonEncoder.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
+                  4
                 </td>
                 <td>
                   0

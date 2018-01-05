@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FleetPlacementState.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SERVER</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.server.gamestates</a> &gt; <span class="el_source">FleetPlacementState.java</span></div><h1>FleetPlacementState.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.server.gamestates;
+
+import pl.korotkevics.ships.shared.fleet.Fleet;
+import pl.korotkevics.ships.shared.infra.communication.api.Message;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+import pl.korotkevics.ships.server.CommunicationBus;
+import pl.korotkevics.ships.server.MessageSender;
+import pl.korotkevics.ships.server.TurnManager;
+import pl.korotkevics.ships.server.WrappedClient;
+import pl.korotkevics.ships.server.gamestates.play.PlayState;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Represents state of game in witch players place their fleets.
+ *
+ * @author Piotr Czyż
+ * @since 2018-01-02
+ */
+public class FleetPlacementState implements GameState {
+  private final CommunicationBus communicationBus;
+  private final TurnManager turnManager;
+<span class="fc" id="L26">  private final Target logger = new SharedLogger(FleetPlacementState.class);</span>
+  private final List&lt;Fleet&gt; fleets;
+
+  /**
+   * It creates state of game in witch players place their fleets.
+   *
+   * @param communicationBus client server communication bus
+   */
+<span class="fc" id="L34">  FleetPlacementState(final CommunicationBus communicationBus) {</span>
+<span class="fc" id="L35">    this.communicationBus = communicationBus;</span>
+<span class="fc" id="L36">    this.turnManager = new TurnManager(communicationBus.getFirstClient(),</span>
+<span class="fc" id="L37">        communicationBus.getSecondClient());</span>
+<span class="fc" id="L38">    fleets = new ArrayList&lt;&gt;(2);</span>
+<span class="fc" id="L39">  }</span>
+
+  /**
+   * It receives fleets from players, and transfers game to next state.
+   *
+   * @return GameState - PlayState
+   */
+  @Override
+  public GameState process() {
+<span class="fc" id="L48">    askPlayersForPlaceFleet();</span>
+<span class="fc" id="L49">    receiveFleetFromBothPlayers();</span>
+<span class="fc" id="L50">    rest();</span>
+<span class="fc" id="L51">    return new PlayState(communicationBus, fleets);</span>
+  }
+
+  private void askPlayersForPlaceFleet() {
+<span class="fc" id="L55">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
+<span class="fc" id="L56">    messageSender.sendToAll(Header.PLACEMENT);</span>
+<span class="fc" id="L57">  }</span>
+
+  private void receiveFleetFromBothPlayers() {
+<span class="fc" id="L60">    fleets.add(receiveFloat(turnManager.getCurrentPlayer()));</span>
+<span class="fc" id="L61">    fleets.add(receiveFloat(turnManager.getOtherPlayer()));</span>
+<span class="fc" id="L62">  }</span>
+
+  private Fleet receiveFloat(WrappedClient player) {
+<span class="fc" id="L65">    final Message fleetMsg = communicationBus.receive(player);</span>
+<span class="fc" id="L66">    logger.info(&quot;Fleet received: &quot; + fleetMsg);</span>
+<span class="fc" id="L67">    return fleetMsg.getFleet();</span>
+  }
+
+  private void rest() {
+<span class="fc" id="L71">    final long restTime = 300;</span>
+    try {
+<span class="fc" id="L73">      Thread.sleep(restTime);</span>
+<span class="nc" id="L74">    } catch (final InterruptedException e) {</span>
+<span class="nc" id="L75">      logger.error(e.getMessage());</span>
+<span class="nc" id="L76">      Thread.currentThread().interrupt();</span>
+<span class="fc" id="L77">    }</span>
+<span class="fc" id="L78">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

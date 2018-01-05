@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 32,
              Errors: 0,
-             Warnings: 0,
+             Warnings: 90,
              Infos: 0
       </title>
             <link>./index.html/checkstyle.html</link>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.EventTrigger.java">com/epam/ships/client/client/EventTrigger.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.TurnChangeEvent.java">pl/korotkevics/ships/client/gui/events/TurnChangeEvent.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.GameController.java">com/epam/ships/client/gui/controllers/GameController.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.util.GridToBoardConverter.java">pl/korotkevics/ships/client/gui/util/GridToBoardConverter.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.Main.java">com/epam/ships/client/Main.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.Client.java">pl/korotkevics/ships/client/client/Client.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.HitShotEvent.java">pl/korotkevics/ships/client/gui/events/HitShotEvent.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +102,49 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.OpponentWithdrawEvent.java">com/epam/ships/client/gui/events/OpponentWithdrawEvent.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.OpponentConnectedTrigger.java">pl/korotkevics/ships/client/client/OpponentConnectedTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.MainController.java">pl/korotkevics/ships/client/gui/controllers/MainController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MissShotTrigger.java">pl/korotkevics/ships/client/client/MissShotTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.OpponentConnectedEvent.java">pl/korotkevics/ships/client/gui/events/OpponentConnectedEvent.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +158,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.LooseEvent.java">com/epam/ships/client/gui/events/LooseEvent.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.LooseEvent.java">pl/korotkevics/ships/client/gui/events/LooseEvent.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +172,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.LoseTrigger.java">com/epam/ships/client/client/LoseTrigger.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.ConnectionEndTrigger.java">pl/korotkevics/ships/client/client/ConnectionEndTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.validators.ShipPlacementValidator.java">pl/korotkevics/ships/client/validators/ShipPlacementValidator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.OpponentShotEvent.java">pl/korotkevics/ships/client/gui/events/OpponentShotEvent.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +214,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.GuiMain.java">com/epam/ships/client/gui/GuiMain.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.validators.PortValidator.java">pl/korotkevics/ships/client/validators/PortValidator.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +228,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.MissShotEvent.java">com/epam/ships/client/gui/events/MissShotEvent.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.FleetPlacementController.java">pl/korotkevics/ships/client/gui/controllers/FleetPlacementController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  24
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent.java">pl/korotkevics/ships/client/gui/events/OpponentWithdrawEvent.java</a>
                 </td>
                 <td>
                   0
@@ -158,7 +256,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.WinEvent.java">com/epam/ships/client/gui/events/WinEvent.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MessageHandler.java">pl/korotkevics/ships/client/client/MessageHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.util.FieldState.java">pl/korotkevics/ships/client/gui/util/FieldState.java</a>
                 </td>
                 <td>
                   0
@@ -172,7 +284,49 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.validators.PortValidator.java">com/epam/ships/client/validators/PortValidator.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.OpponentShotTrigger.java">pl/korotkevics/ships/client/client/OpponentShotTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.GameController.java">pl/korotkevics/ships/client/gui/controllers/GameController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.TurnTrigger.java">pl/korotkevics/ships/client/client/TurnTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.MissShotEvent.java">pl/korotkevics/ships/client/gui/events/MissShotEvent.java</a>
                 </td>
                 <td>
                   0
@@ -186,7 +340,63 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.ConnectionEndTrigger.java">com/epam/ships/client/client/ConnectionEndTrigger.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.ServerNotRespondingController.java">pl/korotkevics/ships/client/gui/controllers/ServerNotRespondingController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.StartWindowController.java">pl/korotkevics/ships/client/gui/controllers/StartWindowController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.LoseTrigger.java">pl/korotkevics/ships/client/client/LoseTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.HitShotTrigger.java">pl/korotkevics/ships/client/client/HitShotTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MessageHandlerBuilder.java">pl/korotkevics/ships/client/client/MessageHandlerBuilder.java</a>
                 </td>
                 <td>
                   0
@@ -200,7 +410,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.util.GridToBoardConverter.java">com/epam/ships/client/gui/util/GridToBoardConverter.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.WinEvent.java">pl/korotkevics/ships/client/gui/events/WinEvent.java</a>
                 </td>
                 <td>
                   0
@@ -214,7 +424,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.Client.java">com/epam/ships/client/client/Client.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.EventTrigger.java">pl/korotkevics/ships/client/client/EventTrigger.java</a>
                 </td>
                 <td>
                   0
@@ -228,27 +438,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.OpponentConnectedEvent.java">com/epam/ships/client/gui/events/OpponentConnectedEvent.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.Main.java">pl/korotkevics/ships/client/Main.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.MessageHandlerBuilder.java">com/epam/ships/client/client/MessageHandlerBuilder.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -256,27 +452,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.validators.ShipPlacementValidator.java">com/epam/ships/client/validators/ShipPlacementValidator.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.WinTrigger.java">pl/korotkevics/ships/client/client/WinTrigger.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.ServerNotRespondingController.java">com/epam/ships/client/gui/controllers/ServerNotRespondingController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
+                  2
                 </td>
                 <td>
                   0
@@ -284,27 +466,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.HitShotEvent.java">com/epam/ships/client/gui/events/HitShotEvent.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.GuiMain.java">pl/korotkevics/ships/client/gui/GuiMain.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.OpponentShotTrigger.java">com/epam/ships/client/client/OpponentShotTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
+                  7
                 </td>
                 <td>
                   0
@@ -312,175 +480,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.FleetPlacementController.java">com/epam/ships/client/gui/controllers/FleetPlacementController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.OpponentConnectedTrigger.java">com/epam/ships/client/client/OpponentConnectedTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.WinTrigger.java">com/epam/ships/client/client/WinTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.StartWindowController.java">com/epam/ships/client/gui/controllers/StartWindowController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.HitShotTrigger.java">com/epam/ships/client/client/HitShotTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.MissShotTrigger.java">com/epam/ships/client/client/MissShotTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.MessageHandler.java">com/epam/ships/client/client/MessageHandler.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.util.ShipOrientation.java">com/epam/ships/client/gui/util/ShipOrientation.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.MainController.java">com/epam/ships/client/gui/controllers/MainController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.OpponentShotEvent.java">com/epam/ships/client/gui/events/OpponentShotEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.TurnChangeEvent.java">com/epam/ships/client/gui/events/TurnChangeEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.util.FieldState.java">com/epam/ships/client/gui/util/FieldState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.TurnTrigger.java">com/epam/ships/client/client/TurnTrigger.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.util.ShipOrientation.java">pl/korotkevics/ships/client/gui/util/ShipOrientation.java</a>
                 </td>
                 <td>
                   0

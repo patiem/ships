@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 20,
              Errors: 0,
-             Warnings: 32,
+             Warnings: 31,
              Infos: 0
       </title>
             <link>./index.html/checkstyle.html</link>
@@ -46,27 +46,13 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.GameState.java">com/epam/ships/server/gamestates/GameState.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.WaitingForPlayersState.java">pl/korotkevics/ships/server/gamestates/WaitingForPlayersState.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.Game.java">com/epam/ships/server/Game.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
+                  2
                 </td>
                 <td>
                   0
@@ -74,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.ShotHandler.java">com/epam/ships/server/gamestates/play/ShotHandler.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.GameEndWithWinState.java">pl/korotkevics/ships/server/gamestates/GameEndWithWinState.java</a>
                 </td>
                 <td>
                   0
@@ -88,147 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.DamageDestructedNotifier.java">com/epam/ships/server/gamestates/play/DamageDestructedNotifier.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.TurnManager.java">com/epam/ships/server/TurnManager.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.AppServer.java">com/epam/ships/server/AppServer.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.WaitingForPlayersState.java">com/epam/ships/server/gamestates/WaitingForPlayersState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.MessageReceiver.java">com/epam/ships/server/gamestates/play/MessageReceiver.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.PlayState.java">com/epam/ships/server/gamestates/play/PlayState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.DamageNotifier.java">com/epam/ships/server/gamestates/play/DamageNotifier.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.MessageRepository.java">com/epam/ships/server/MessageRepository.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.CommunicationBus.java">com/epam/ships/server/CommunicationBus.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.DamageMissNotifier.java">com/epam/ships/server/gamestates/play/DamageMissNotifier.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.GameEndWithWalkoverState.java">com/epam/ships/server/gamestates/GameEndWithWalkoverState.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.WrappedClient.java">pl/korotkevics/ships/server/WrappedClient.java</a>
                 </td>
                 <td>
                   0
@@ -242,21 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.FleetPlacementState.java">com/epam/ships/server/gamestates/FleetPlacementState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.MessageSender.java">com/epam/ships/server/MessageSender.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.CommunicationBus.java">pl/korotkevics/ships/server/CommunicationBus.java</a>
                 </td>
                 <td>
                   0
@@ -270,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.WrappedClient.java">com/epam/ships/server/WrappedClient.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.MessageSender.java">pl/korotkevics/ships/server/MessageSender.java</a>
                 </td>
                 <td>
                   0
@@ -284,13 +116,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.DamageHitNotifier.java">com/epam/ships/server/gamestates/play/DamageHitNotifier.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.AppServer.java">pl/korotkevics/ships/server/AppServer.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   0
@@ -298,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.GameEndWithWinState.java">com/epam/ships/server/gamestates/GameEndWithWinState.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.ShotHandler.java">pl/korotkevics/ships/server/gamestates/play/ShotHandler.java</a>
                 </td>
                 <td>
                   0
@@ -312,13 +144,181 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.Main.java">com/epam/ships/server/Main.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageDestructedNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageDestructedNotifier.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
                   2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.TurnManager.java">pl/korotkevics/ships/server/TurnManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.MessageReceiver.java">pl/korotkevics/ships/server/gamestates/play/MessageReceiver.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.PlayState.java">pl/korotkevics/ships/server/gamestates/play/PlayState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.GameState.java">pl/korotkevics/ships/server/gamestates/GameState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageHitNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageHitNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.Main.java">pl/korotkevics/ships/server/Main.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.MessageRepository.java">pl/korotkevics/ships/server/MessageRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.FleetPlacementState.java">pl/korotkevics/ships/server/gamestates/FleetPlacementState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.GameEndWithWalkoverState.java">pl/korotkevics/ships/server/gamestates/GameEndWithWalkoverState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageMissNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageMissNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.Game.java">pl/korotkevics/ships/server/Game.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
                 </td>
                 <td>
                   0

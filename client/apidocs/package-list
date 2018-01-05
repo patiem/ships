@@ -1,7 +1,7 @@
-com.epam.ships.client
-com.epam.ships.client.client
-com.epam.ships.client.gui
-com.epam.ships.client.gui.controllers
-com.epam.ships.client.gui.events
-com.epam.ships.client.gui.util
-com.epam.ships.client.validators
+pl.korotkevics.ships.client
+pl.korotkevics.ships.client.client
+pl.korotkevics.ships.client.gui
+pl.korotkevics.ships.client.gui.controllers
+pl.korotkevics.ships.client.gui.events
+pl.korotkevics.ships.client.gui.util
+pl.korotkevics.ships.client.validators

@@ -82,7 +82,7 @@
         <ul class="breadcrumb">
         <li id="publishDate">Last Published: 2018-01-05<span class="divider">|</span>
 </li>
-          <li id="projectVersion">Version: 1.0-SNAPSHOT</li>
+          <li id="projectVersion">Version: 1.5</li>
         </ul>
       </div>
       <div class="row-fluid">
@@ -153,12 +153,12 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td>11</td>
+<td>13</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.089</td></tr></table><br />
+<td>0.608</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
@@ -173,32 +173,40 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td><a href="#com.epam.ships.shared.fleet">com.epam.ships.shared.fleet</a></td>
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.message">pl.korotkevics.ships.shared.infra.communication.core.message</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.006</td></tr>
+<tr class="a">
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.json.conversion">pl.korotkevics.ships.shared.infra.communication.core.json.conversion</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.006</td></tr>
+<tr class="b">
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.json.io">pl.korotkevics.ships.shared.infra.communication.core.json.io</a></td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.561</td></tr>
+<tr class="a">
+<td><a href="#pl.korotkevics.ships.shared.fleet">pl.korotkevics.ships.shared.fleet</a></td>
 <td>8</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.001</td></tr>
-<tr class="a">
-<td><a href="#com.epam.ships.shared.infra.communication.core.message">com.epam.ships.shared.infra.communication.core.message</a></td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-<td>0</td></tr>
-<tr class="b">
-<td><a href="#com.epam.ships.shared.infra.communication.core.json.conversion">com.epam.ships.shared.infra.communication.core.json.conversion</a></td>
-<td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-<td>0.088</td></tr></table><br />
+<td>0.035</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
-<h3><a name="com.epam.ships.shared.fleet"></a>com.epam.ships.shared.fleet</h3><a name="com.epam.ships.shared.fleet"></a>
+<h3><a name="pl.korotkevics.ships.shared.infra.communication.core.message"></a>pl.korotkevics.ships.shared.infra.communication.core.message</h3><a name="pl.korotkevics.ships.shared.infra.communication.core.message"></a>
 <table border="1" class="table table-striped">
 <tr class="a">
 <th></th>
@@ -210,78 +218,108 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td><a href="#com.epam.ships.shared.fleetMastTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.epam.ships.shared.fleetMastTest">MastTest</a></td>
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.messageBaseMessageTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.messageBaseMessageTest">BaseMessageTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.006</td></tr></table></div>
+<div class="section">
+<h3><a name="pl.korotkevics.ships.shared.infra.communication.core.json.conversion"></a>pl.korotkevics.ships.shared.infra.communication.core.json.conversion</h3><a name="pl.korotkevics.ships.shared.infra.communication.core.json.conversion"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<th></th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.json.conversionJSONDecoderTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.json.conversionJSONDecoderTest">JSONDecoderTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.005</td></tr>
+<tr class="a">
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.json.conversionJSONEncoderTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.json.conversionJSONEncoderTest">JSONEncoderTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.001</td></tr></table></div>
+<div class="section">
+<h3><a name="pl.korotkevics.ships.shared.infra.communication.core.json.io"></a>pl.korotkevics.ships.shared.infra.communication.core.json.io</h3><a name="pl.korotkevics.ships.shared.infra.communication.core.json.io"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<th></th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.json.ioJsonSenderTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.json.ioJsonSenderTest">JsonSenderTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.561</td></tr>
+<tr class="a">
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.json.ioJsonReceiverTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#pl.korotkevics.ships.shared.infra.communication.core.json.ioJsonReceiverTest">JsonReceiverTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0</td></tr></table></div>
+<div class="section">
+<h3><a name="pl.korotkevics.ships.shared.fleet"></a>pl.korotkevics.ships.shared.fleet</h3><a name="pl.korotkevics.ships.shared.fleet"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<th></th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#pl.korotkevics.ships.shared.fleetMastTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#pl.korotkevics.ships.shared.fleetMastTest">MastTest</a></td>
 <td>2</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0</td></tr>
+<td>0.021</td></tr>
 <tr class="a">
-<td><a href="#com.epam.ships.shared.fleetFleetTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.epam.ships.shared.fleetFleetTest">FleetTest</a></td>
+<td><a href="#pl.korotkevics.ships.shared.fleetFleetTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#pl.korotkevics.ships.shared.fleetFleetTest">FleetTest</a></td>
 <td>4</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.001</td></tr>
+<td>0.012</td></tr>
 <tr class="b">
-<td><a href="#com.epam.ships.shared.fleetShipTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.epam.ships.shared.fleetShipTest">ShipTest</a></td>
+<td><a href="#pl.korotkevics.ships.shared.fleetShipTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#pl.korotkevics.ships.shared.fleetShipTest">ShipTest</a></td>
 <td>2</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-<td>0</td></tr></table></div>
-<div class="section">
-<h3><a name="com.epam.ships.shared.infra.communication.core.message"></a>com.epam.ships.shared.infra.communication.core.message</h3><a name="com.epam.ships.shared.infra.communication.core.message"></a>
-<table border="1" class="table table-striped">
-<tr class="a">
-<th></th>
-<th>Class</th>
-<th>Tests</th>
-<th>Errors </th>
-<th>Failures</th>
-<th>Skipped</th>
-<th>Success Rate</th>
-<th>Time</th></tr>
-<tr class="b">
-<td><a href="#com.epam.ships.shared.infra.communication.core.messageBaseMessageTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.epam.ships.shared.infra.communication.core.messageBaseMessageTest">BaseMessageTest</a></td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-<td>0</td></tr></table></div>
-<div class="section">
-<h3><a name="com.epam.ships.shared.infra.communication.core.json.conversion"></a>com.epam.ships.shared.infra.communication.core.json.conversion</h3><a name="com.epam.ships.shared.infra.communication.core.json.conversion"></a>
-<table border="1" class="table table-striped">
-<tr class="a">
-<th></th>
-<th>Class</th>
-<th>Tests</th>
-<th>Errors </th>
-<th>Failures</th>
-<th>Skipped</th>
-<th>Success Rate</th>
-<th>Time</th></tr>
-<tr class="b">
-<td><a href="#com.epam.ships.shared.infra.communication.core.json.conversionJSONDecoderTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.epam.ships.shared.infra.communication.core.json.conversionJSONDecoderTest">JSONDecoderTest</a></td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-<td>0.086</td></tr>
-<tr class="a">
-<td><a href="#com.epam.ships.shared.infra.communication.core.json.conversionJSONEncoderTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.epam.ships.shared.infra.communication.core.json.conversionJSONEncoderTest">JSONEncoderTest</a></td>
-<td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
@@ -291,67 +329,81 @@ function toggleDisplay(elementId) {
 <h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
 <div class="section">
-<h3><a name="JSONDecoderTest"></a>JSONDecoderTest</h3><a name="com.epam.ships.shared.infra.communication.core.json.conversionJSONDecoderTest"></a>
+<h3><a name="MastTest"></a>MastTest</h3><a name="pl.korotkevics.ships.shared.fleetMastTest"></a>
 <table border="1" class="table table-striped">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.shared.infra.communication.core.json.conversion.JSONDecoderTest.itDecodesAsExpected"></a>itDecodesAsExpected</td>
-<td>0.086</td></tr></table></div>
-<div class="section">
-<h3><a name="MastTest"></a>MastTest</h3><a name="com.epam.ships.shared.fleetMastTest"></a>
-<table border="1" class="table table-striped">
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.shared.fleet.MastTest.itShouldCreateEqualMastsWhenGivenDifferentIndices"></a>itShouldCreateEqualMastsWhenGivenDifferentIndices</td>
-<td>0</td></tr>
+<td><a name="TC_pl.korotkevics.ships.shared.fleet.MastTest.itShouldCreateEqualMastsWhenGivenDifferentIndices"></a>itShouldCreateEqualMastsWhenGivenDifferentIndices</td>
+<td>0.02</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.shared.fleet.MastTest.itShouldCreateEqualMastsWhenGivenSameIndices"></a>itShouldCreateEqualMastsWhenGivenSameIndices</td>
-<td>0</td></tr></table></div>
+<td><a name="TC_pl.korotkevics.ships.shared.fleet.MastTest.itShouldCreateEqualMastsWhenGivenSameIndices"></a>itShouldCreateEqualMastsWhenGivenSameIndices</td>
+<td>0.001</td></tr></table></div>
 <div class="section">
-<h3><a name="FleetTest"></a>FleetTest</h3><a name="com.epam.ships.shared.fleetFleetTest"></a>
+<h3><a name="FleetTest"></a>FleetTest</h3><a name="pl.korotkevics.ships.shared.fleetFleetTest"></a>
 <table border="1" class="table table-striped">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.shared.fleet.FleetTest.itIsMiss"></a>itIsMiss</td>
+<td><a name="TC_pl.korotkevics.ships.shared.fleet.FleetTest.itIsMiss"></a>itIsMiss</td>
+<td>0.006</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_pl.korotkevics.ships.shared.fleet.FleetTest.itShouldCreateNonEmptyFleetWhenGivenWithShips"></a>itShouldCreateNonEmptyFleetWhenGivenWithShips</td>
+<td>0.003</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_pl.korotkevics.ships.shared.fleet.FleetTest.shipIsDestructed"></a>shipIsDestructed</td>
+<td>0.002</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_pl.korotkevics.ships.shared.fleet.FleetTest.stringRepresentationIsProper"></a>stringRepresentationIsProper</td>
+<td>0.001</td></tr></table></div>
+<div class="section">
+<h3><a name="ShipTest"></a>ShipTest</h3><a name="pl.korotkevics.ships.shared.fleetShipTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_pl.korotkevics.ships.shared.fleet.ShipTest.itShouldCreateEqualShipsWhenGivenSameIndices"></a>itShouldCreateEqualShipsWhenGivenSameIndices</td>
 <td>0.001</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.shared.fleet.FleetTest.itShouldCreateNonEmptyFleetWhenGivenWithShips"></a>itShouldCreateNonEmptyFleetWhenGivenWithShips</td>
-<td>0</td></tr>
+<td><a name="TC_pl.korotkevics.ships.shared.fleet.ShipTest.itShouldCreateNotEqualShipsWhenGivenDifferentIndices"></a>itShouldCreateNotEqualShipsWhenGivenDifferentIndices</td>
+<td>0.001</td></tr></table></div>
+<div class="section">
+<h3><a name="BaseMessageTest"></a>BaseMessageTest</h3><a name="pl.korotkevics.ships.shared.infra.communication.core.messageBaseMessageTest"></a>
+<table border="1" class="table table-striped">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.shared.fleet.FleetTest.shipIsDestructed"></a>shipIsDestructed</td>
-<td>0</td></tr>
-<tr class="b">
+<td><a name="TC_pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessageTest.stringRepresentationIsProper"></a>stringRepresentationIsProper</td>
+<td>0.006</td></tr></table></div>
+<div class="section">
+<h3><a name="JsonSenderTest"></a>JsonSenderTest</h3><a name="pl.korotkevics.ships.shared.infra.communication.core.json.ioJsonSenderTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.shared.fleet.FleetTest.stringRepresentationIsProper"></a>stringRepresentationIsProper</td>
+<td><a name="TC_pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonSenderTest.itSendsProperlyEncodedMessage"></a>itSendsProperlyEncodedMessage</td>
+<td>0.561</td></tr></table></div>
+<div class="section">
+<h3><a name="JsonReceiverTest"></a>JsonReceiverTest</h3><a name="pl.korotkevics.ships.shared.infra.communication.core.json.ioJsonReceiverTest"></a>
+<table border="1" class="table table-striped">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><a name="TC_pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonReceiverTest.itShouldReturnMessageWithEndStatus"></a>itShouldReturnMessageWithEndStatus</td>
 <td>0</td></tr></table></div>
 <div class="section">
-<h3><a name="JSONEncoderTest"></a>JSONEncoderTest</h3><a name="com.epam.ships.shared.infra.communication.core.json.conversionJSONEncoderTest"></a>
+<h3><a name="JSONDecoderTest"></a>JSONDecoderTest</h3><a name="pl.korotkevics.ships.shared.infra.communication.core.json.conversionJSONDecoderTest"></a>
 <table border="1" class="table table-striped">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.shared.infra.communication.core.json.conversion.JSONEncoderTest.itEncodesAsExpected"></a>itEncodesAsExpected</td>
-<td>0.002</td></tr></table></div>
+<td><a name="TC_pl.korotkevics.ships.shared.infra.communication.core.json.conversion.JSONDecoderTest.itDecodesAsExpected"></a>itDecodesAsExpected</td>
+<td>0.005</td></tr></table></div>
 <div class="section">
-<h3><a name="ShipTest"></a>ShipTest</h3><a name="com.epam.ships.shared.fleetShipTest"></a>
+<h3><a name="JSONEncoderTest"></a>JSONEncoderTest</h3><a name="pl.korotkevics.ships.shared.infra.communication.core.json.conversionJSONEncoderTest"></a>
 <table border="1" class="table table-striped">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.shared.fleet.ShipTest.itShouldCreateEqualShipsWhenGivenSameIndices"></a>itShouldCreateEqualShipsWhenGivenSameIndices</td>
-<td>0</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.shared.fleet.ShipTest.itShouldCreateNotEqualShipsWhenGivenDifferentIndices"></a>itShouldCreateNotEqualShipsWhenGivenDifferentIndices</td>
-<td>0</td></tr></table></div>
-<div class="section">
-<h3><a name="BaseMessageTest"></a>BaseMessageTest</h3><a name="com.epam.ships.shared.infra.communication.core.messageBaseMessageTest"></a>
-<table border="1" class="table table-striped">
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td><a name="TC_com.epam.ships.shared.infra.communication.core.message.BaseMessageTest.stringRepresentationIsProper"></a>stringRepresentationIsProper</td>
-<td>0</td></tr></table></div><br /></div>
+<td><a name="TC_pl.korotkevics.ships.shared.infra.communication.core.json.conversion.JSONEncoderTest.itEncodesAsExpected"></a>itEncodesAsExpected</td>
+<td>0.001</td></tr></table></div><br /></div>
         </div>
       </div>
     </div>

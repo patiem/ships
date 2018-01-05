@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FleetPlacementController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - CLIENT</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.client.gui.controllers</a> &gt; <span class="el_source">FleetPlacementController.java</span></div><h1>FleetPlacementController.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.client.gui.controllers;
+
+import pl.korotkevics.ships.client.client.Client;
+import pl.korotkevics.ships.client.gui.util.GridToBoardConverter;
+import pl.korotkevics.ships.client.gui.util.ShipOrientation;
+import pl.korotkevics.ships.client.validators.ShipPlacementValidator;
+import pl.korotkevics.ships.shared.fleet.Fleet;
+import pl.korotkevics.ships.shared.fleet.Mast;
+import pl.korotkevics.ships.shared.fleet.Ship;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.NumberBinding;
+import javafx.collections.FXCollections;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Fleet Placement window controller.
+ * @author Magdalena Aarsman
+ * @since 2017-12-19
+ */
+<span class="nc" id="L46">public class FleetPlacementController {</span>
+
+<span class="nc" id="L48">  private static final Target logger = new SharedLogger(Client.class);</span>
+  private static final int BOARD_SIZE = 10;
+  private static final int SHIPS_COUNT = 10;
+
+  @FXML
+  private AnchorPane mainAnchorPane;
+
+  @FXML
+  private Button buttonReady;
+
+  @FXML
+  private Button eventButton;
+
+  @FXML
+  private Group groupFourMastShips;
+
+  @FXML
+  private Group groupThreeMastShips;
+
+  @FXML
+  private Group groupTwoMastShips;
+
+  @FXML
+  private Group groupOneMastShips;
+
+  @FXML
+  private GridPane yourBoard;
+
+  @FXML
+  private ChoiceBox choiceBox;
+
+  private List&lt;Ship&gt; ships;
+
+  private ShipOrientation shipOrientation;
+
+  private boolean shipPlacementSuccess;
+
+  //Events Handlers
+<span class="nc" id="L86">  private EventHandler&lt;MouseEvent&gt; onMouseEnteredOnShip =</span>
+      event -&gt; {
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        for (Node child : ((Group) event.getSource()).getChildren()) {</span>
+<span class="nc" id="L89">          Rectangle rec = (Rectangle) child;</span>
+<span class="nc" id="L90">          rec.setFill(Color.BLUE);</span>
+<span class="nc" id="L91">        }</span>
+<span class="nc" id="L92">        event.consume();</span>
+<span class="nc" id="L93">      };</span>
+
+<span class="nc" id="L95">  private EventHandler&lt;MouseEvent&gt; onMouseExitFromShip =</span>
+      event -&gt; {
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        for (Node child : ((Group) event.getSource()).getChildren()) {</span>
+<span class="nc" id="L98">          Rectangle rec = (Rectangle) child;</span>
+<span class="nc" id="L99">          rec.setFill(Color.web(&quot;#7A16C2&quot;));</span>
+<span class="nc" id="L100">        }</span>
+<span class="nc" id="L101">        event.consume();</span>
+<span class="nc" id="L102">      };</span>
+
+<span class="nc" id="L104">  private EventHandler&lt;DragEvent&gt; shipOnDragEntered =</span>
+      event -&gt; {
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        for (Node child : ((Group) event.getSource()).getChildren()) {</span>
+<span class="nc" id="L107">          Rectangle rec = (Rectangle) child;</span>
+<span class="nc" id="L108">          rec.setFill(Color.RED);</span>
+<span class="nc" id="L109">        }</span>
+<span class="nc" id="L110">        event.consume();</span>
+<span class="nc" id="L111">      };</span>
+
+<span class="nc" id="L113">  private EventHandler&lt;MouseEvent&gt; shipOnDragDetected =</span>
+      event -&gt; {
+<span class="nc" id="L115">        Dragboard db = ((Group) event.getSource()).startDragAndDrop(TransferMode.COPY);</span>
+<span class="nc" id="L116">        ClipboardContent content = new ClipboardContent();</span>
+<span class="nc" id="L117">        content.putString(&quot;Ship&quot;);</span>
+<span class="nc" id="L118">        db.setContent(content);</span>
+<span class="nc" id="L119">        event.consume();</span>
+<span class="nc" id="L120">      };</span>
+
+<span class="nc" id="L122">  private EventHandler&lt;DragEvent&gt; shipOnDragDone =</span>
+      event -&gt; {
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        if (shipPlacementSuccess) {</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">          for (Node child : ((Group) event.getSource()).getChildren()) {</span>
+<span class="nc" id="L126">            Rectangle rec = (Rectangle) child;</span>
+<span class="nc" id="L127">            rec.setFill(Color.GRAY);</span>
+<span class="nc" id="L128">          }</span>
+<span class="nc" id="L129">          ((Group) event.getSource()).setDisable(true);</span>
+        }
+<span class="nc" id="L131">        shipPlacementSuccess = false;</span>
+<span class="nc" id="L132">        event.consume();</span>
+<span class="nc" id="L133">      };</span>
+
+<span class="nc" id="L135">  private EventHandler&lt;DragEvent&gt; boardOnDragOver =</span>
+      event -&gt; {
+<span class="nc" id="L137">        Dragboard db = event.getDragboard();</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        if (db.hasString()) {</span>
+<span class="nc" id="L139">          event.acceptTransferModes(TransferMode.COPY);</span>
+        }
+<span class="nc" id="L141">        event.consume();</span>
+<span class="nc" id="L142">      };</span>
+
+  @FXML
+  void initialize() {
+<span class="nc" id="L146">    buttonReady.setOnAction(event -&gt; loadGameWindow());</span>
+<span class="nc" id="L147">    buttonReady.setDisable(true);</span>
+<span class="nc" id="L148">    initializeBoard();</span>
+<span class="nc" id="L149">    addDragEventsToShips();</span>
+<span class="nc" id="L150">    ships = new ArrayList&lt;&gt;(SHIPS_COUNT);</span>
+<span class="nc" id="L151">    shipOrientation = ShipOrientation.VERTICAL;</span>
+<span class="nc" id="L152">    choiceBox.setItems(FXCollections.observableArrayList(&quot;VERTICAL&quot;, &quot;HORIZONTAL&quot;));</span>
+<span class="nc" id="L153">    choiceBox.setValue(&quot;VERTICAL&quot;);</span>
+<span class="nc" id="L154">    choiceBox.getSelectionModel()</span>
+<span class="nc" id="L155">        .selectedItemProperty()</span>
+<span class="nc" id="L156">        .addListener((observable, oldValue, newValue) -&gt; {</span>
+<span class="nc" id="L157">          shipOrientation = ShipOrientation.valueOf((String) newValue);</span>
+<span class="nc" id="L158">          logger.info(newValue);</span>
+<span class="nc" id="L159">        });</span>
+<span class="nc" id="L160">  }</span>
+
+  private void initializeBoard() {
+<span class="nc" id="L163">    final int margin = 50;</span>
+<span class="nc" id="L164">    final NumberBinding allRectanglesWidth = Bindings.min(yourBoard.widthProperty(),</span>
+<span class="nc" id="L165">        yourBoard.widthProperty().add(-margin));</span>
+<span class="nc" id="L166">    final NumberBinding allRectanglesHeight = Bindings.min(yourBoard.heightProperty(),</span>
+<span class="nc" id="L167">        yourBoard.widthProperty()).add(-margin);</span>
+
+<span class="nc bnc" id="L169" title="All 2 branches missed.">    for (int i = 0; i &lt; BOARD_SIZE; i++) {</span>
+<span class="nc bnc" id="L170" title="All 2 branches missed.">      for (int j = 0; j &lt; BOARD_SIZE; j++) {</span>
+<span class="nc" id="L171">        final int recIndex = j * BOARD_SIZE + i;</span>
+<span class="nc" id="L172">        final int fillIndex = i * BOARD_SIZE + j;</span>
+
+<span class="nc" id="L174">        Rectangle yourRect = getYourRect(allRectanglesWidth, allRectanglesHeight);</span>
+<span class="nc" id="L175">        yourBoard.add(yourRect, i, j);</span>
+<span class="nc" id="L176">        setEventsOnField(yourRect, recIndex, fillIndex);</span>
+<span class="nc" id="L177">        GridPane.setHalignment(yourRect, HPos.CENTER);</span>
+      }
+    }
+<span class="nc" id="L180">  }</span>
+
+  private Rectangle getYourRect(NumberBinding allRectanglesWidth,
+                                NumberBinding allRectanglesHeight) {
+<span class="nc" id="L184">    final int initialSize = 15;</span>
+<span class="nc" id="L185">    Rectangle yourRect = new Rectangle(initialSize, initialSize, Color.GRAY);</span>
+<span class="nc" id="L186">    yourRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));</span>
+<span class="nc" id="L187">    yourRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));</span>
+<span class="nc" id="L188">    return yourRect;</span>
+  }
+
+  private void setEventsOnField(Rectangle rectangle, final int recIndex, final int fillIndex) {
+<span class="nc" id="L192">    setFieldOnDragEntered(rectangle, fillIndex);</span>
+<span class="nc" id="L193">    rectangle.setOnDragOver(boardOnDragOver);</span>
+<span class="nc" id="L194">    setFieldOnDragExited(rectangle, fillIndex);</span>
+<span class="nc" id="L195">    setFieldOnDragDropped(rectangle, recIndex, fillIndex);</span>
+<span class="nc" id="L196">  }</span>
+
+  private void setOpacity(int index, int mastCount, double opacity) {
+<span class="nc" id="L199">    index += 1;</span>
+
+<span class="nc bnc" id="L201" title="All 2 branches missed.">    if (shipOrientation.equals(ShipOrientation.HORIZONTAL)) {</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">      for (int i = 1; i &lt; mastCount; i++) {</span>
+<span class="nc" id="L203">        (yourBoard.getChildren().get(index + i * BOARD_SIZE)).setOpacity(opacity);</span>
+      }
+    } else {
+<span class="nc bnc" id="L206" title="All 2 branches missed.">      for (int i = 1; i &lt; mastCount; i++) {</span>
+<span class="nc" id="L207">        (yourBoard.getChildren().get(index + i)).setOpacity(opacity);</span>
+      }
+    }
+<span class="nc" id="L210">  }</span>
+
+  private void setFieldOnDragExited(Rectangle rectangle, int fillIndex) {
+<span class="nc" id="L213">    rectangle.setOnDragExited(</span>
+        event -&gt; {
+<span class="nc" id="L215">          double noOpacity = 1.0;</span>
+<span class="nc" id="L216">          int mastCount = ((Group) event.getGestureSource()).getChildren().size();</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">          if (isOutOfBound(fillIndex, mastCount)) {</span>
+<span class="nc" id="L218">            return;</span>
+          }
+<span class="nc" id="L220">          ((Rectangle) event.getSource()).setOpacity(noOpacity);</span>
+<span class="nc" id="L221">          setOpacity(fillIndex, mastCount ,noOpacity);</span>
+<span class="nc" id="L222">          event.consume();</span>
+<span class="nc" id="L223">        });</span>
+<span class="nc" id="L224">  }</span>
+
+  private void setFieldOnDragEntered(Rectangle rectangle, final int index) {
+<span class="nc" id="L227">    rectangle.setOnDragEntered(event -&gt; {</span>
+<span class="nc" id="L228">      double opacity = 0.5;</span>
+<span class="nc" id="L229">      int mastCount = ((Group) event.getGestureSource()).getChildren().size();</span>
+<span class="nc bnc" id="L230" title="All 4 branches missed.">      if (shipOrientation.equals(ShipOrientation.HORIZONTAL) &amp;&amp; isOutOfBound(index, mastCount)) {</span>
+<span class="nc" id="L231">        return;</span>
+      }
+<span class="nc" id="L233">      GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);</span>
+<span class="nc" id="L234">      ShipPlacementValidator shipPlacementValidator =</span>
+          new ShipPlacementValidator(shipOrientation, index, mastCount,
+<span class="nc" id="L236">              gridToBoardConverter.convert());</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">      if (!shipPlacementValidator.isPlacementValid()) {</span>
+<span class="nc" id="L238">        return;</span>
+      }
+
+<span class="nc" id="L241">      ((Rectangle) event.getSource()).setOpacity(opacity);</span>
+<span class="nc" id="L242">      setOpacity(index, mastCount, opacity);</span>
+<span class="nc" id="L243">      event.consume();</span>
+<span class="nc" id="L244">    });</span>
+<span class="nc" id="L245">  }</span>
+
+  private boolean isOutOfBound(int index, int mastCount) {
+<span class="nc" id="L248">    final int notRectangleChildCount = 2;</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">    if (shipOrientation.equals(ShipOrientation.HORIZONTAL)) {</span>
+<span class="nc" id="L250">      if (index + (mastCount - 1) * BOARD_SIZE</span>
+<span class="nc bnc" id="L251" title="All 2 branches missed.">          &gt; yourBoard.getChildren().size() - notRectangleChildCount) {</span>
+<span class="nc" id="L252">        return true;</span>
+      }
+<span class="nc" id="L254">      return false;</span>
+    } else {
+<span class="nc bnc" id="L256" title="All 2 branches missed.">      if (index + mastCount &gt;= yourBoard.getChildren().size()) {</span>
+<span class="nc" id="L257">        return true;</span>
+      }
+    }
+<span class="nc" id="L260">    return false;</span>
+  }
+
+  private void setFieldOnDragDropped(Rectangle rectangle, final int recIndex, final int index) {
+<span class="nc" id="L264">    rectangle.setOnDragDropped(event -&gt; {</span>
+<span class="nc" id="L265">      Dragboard db = event.getDragboard();</span>
+<span class="nc" id="L266">      boolean success = false;</span>
+<span class="nc bnc" id="L267" title="All 2 branches missed.">      if (db.hasString()) {</span>
+<span class="nc" id="L268">        success = true;</span>
+      }
+<span class="nc" id="L270">      event.setDropCompleted(success);</span>
+<span class="nc" id="L271">      int mastCount = ((Group) event.getGestureSource()).getChildren().size();</span>
+<span class="nc" id="L272">      Mast[] masts = new Mast[mastCount];</span>
+
+<span class="nc bnc" id="L274" title="All 4 branches missed.">      if (shipOrientation.equals(ShipOrientation.HORIZONTAL) &amp;&amp; isOutOfBound(index, mastCount)) {</span>
+<span class="nc" id="L275">        shipPlacementSuccess = false;</span>
+<span class="nc" id="L276">        return;</span>
+      }
+
+<span class="nc" id="L279">      GridToBoardConverter gridToBoardConverter = new GridToBoardConverter(yourBoard);</span>
+<span class="nc" id="L280">      ShipPlacementValidator shipPlacementValidator =</span>
+          new ShipPlacementValidator(shipOrientation, index, mastCount,
+<span class="nc" id="L282">              gridToBoardConverter.convert());</span>
+<span class="nc bnc" id="L283" title="All 2 branches missed.">      if (!shipPlacementValidator.isPlacementValid()) {</span>
+<span class="nc" id="L284">        shipPlacementSuccess = false;</span>
+<span class="nc" id="L285">        return;</span>
+      }
+<span class="nc" id="L287">      masts[0] = Mast.ofIndex(String.valueOf(recIndex));</span>
+<span class="nc" id="L288">      rectangle.setFill(Color.GREEN);</span>
+<span class="nc" id="L289">      placeShip(index, masts, mastCount, recIndex);</span>
+<span class="nc" id="L290">      ships.add(Ship.ofMasts(masts));</span>
+<span class="nc bnc" id="L291" title="All 2 branches missed.">      if (ships.size() == SHIPS_COUNT) {</span>
+<span class="nc" id="L292">        buttonReady.setDisable(false);</span>
+      }
+<span class="nc" id="L294">      shipPlacementSuccess = true;</span>
+<span class="nc" id="L295">      event.consume();</span>
+<span class="nc" id="L296">    });</span>
+<span class="nc" id="L297">  }</span>
+
+  private void placeShip(int index, Mast[] masts, int mastCount, int recIndex) {
+<span class="nc" id="L300">    index += 1;</span>
+
+<span class="nc bnc" id="L302" title="All 2 branches missed.">    if (shipOrientation.equals(ShipOrientation.VERTICAL)) {</span>
+<span class="nc bnc" id="L303" title="All 2 branches missed.">      for (int i1 = 1; i1 &lt; mastCount; i1++) {</span>
+<span class="nc" id="L304">        ((Rectangle) yourBoard.getChildren().get(index + i1)).setFill(Color.GREEN);</span>
+<span class="nc" id="L305">        masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1 * BOARD_SIZE));</span>
+      }
+    } else {
+<span class="nc bnc" id="L308" title="All 2 branches missed.">      for (int i1 = 1; i1 &lt; mastCount; i1++) {</span>
+<span class="nc" id="L309">        ((Rectangle) yourBoard.getChildren().get(index + i1 * BOARD_SIZE)).setFill(Color.GREEN);</span>
+<span class="nc" id="L310">        masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1));</span>
+      }
+    }
+<span class="nc" id="L313">  }</span>
+
+  private void addDragEventsToShips() {
+<span class="nc" id="L316">    setEventsOnShips(groupFourMastShips);</span>
+<span class="nc" id="L317">    setEventsOnShips(groupThreeMastShips);</span>
+<span class="nc" id="L318">    setEventsOnShips(groupTwoMastShips);</span>
+<span class="nc" id="L319">    setEventsOnShips(groupOneMastShips);</span>
+<span class="nc" id="L320">  }</span>
+
+  private void setEventsOnShips(Group shipsGroup) {
+<span class="nc bnc" id="L323" title="All 2 branches missed.">    for (Node ship : shipsGroup.getChildren()) {</span>
+<span class="nc" id="L324">      ship.setOnMouseEntered(onMouseEnteredOnShip);</span>
+<span class="nc" id="L325">      ship.setOnMouseExited(onMouseExitFromShip);</span>
+<span class="nc" id="L326">      ship.setOnDragEntered(shipOnDragEntered);</span>
+<span class="nc" id="L327">      ship.setOnDragDetected(shipOnDragDetected);</span>
+<span class="nc" id="L328">      ship.setOnDragDone(shipOnDragDone);</span>
+<span class="nc" id="L329">    }</span>
+<span class="nc" id="L330">  }</span>
+
+  void initializeClient() {
+<span class="nc" id="L333">    getClient().setEventTrigger(eventButton);</span>
+<span class="nc" id="L334">  }</span>
+
+  private Client getClient() {
+<span class="nc" id="L337">    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();</span>
+<span class="nc" id="L338">    return mainController.getClient();</span>
+  }
+
+  private void loadGameWindow() {
+    try {
+<span class="nc" id="L343">      getClient().sendFleet(Fleet.ofShips(ships));</span>
+
+<span class="nc" id="L345">      final String gameWindowUrl = &quot;/fxml/gameWindow.fxml&quot;;</span>
+<span class="nc" id="L346">      final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));</span>
+<span class="nc" id="L347">      final Parent gameWindow = gameWindowLoader.load();</span>
+<span class="nc" id="L348">      final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();</span>
+
+<span class="nc" id="L350">      Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();</span>
+
+<span class="nc" id="L352">      Stage stage = (Stage) mainPane.getScene().getWindow();</span>
+<span class="nc" id="L353">      final int shrinkSize = 300;</span>
+<span class="nc" id="L354">      stage.setMinHeight(screenBounds.getHeight() - shrinkSize);</span>
+<span class="nc" id="L355">      stage.setMinWidth(screenBounds.getWidth() - shrinkSize);</span>
+
+<span class="nc" id="L357">      mainPane.getChildren().clear();</span>
+<span class="nc" id="L358">      mainPane.getChildren().setAll(gameWindow);</span>
+
+<span class="nc" id="L360">      GameController gameController = gameWindowLoader.getController();</span>
+<span class="nc" id="L361">      gameController.initializeClient();</span>
+<span class="nc" id="L362">      gameController.initializeBoards(yourBoard);</span>
+
+<span class="nc" id="L364">      final double margin = 0.0;</span>
+<span class="nc" id="L365">      AnchorPane.setTopAnchor(gameWindow, margin);</span>
+<span class="nc" id="L366">      AnchorPane.setBottomAnchor(gameWindow, margin);</span>
+<span class="nc" id="L367">      AnchorPane.setLeftAnchor(gameWindow, margin);</span>
+<span class="nc" id="L368">      AnchorPane.setRightAnchor(gameWindow, margin);</span>
+
+<span class="nc" id="L370">    } catch (IOException e) {</span>
+<span class="nc" id="L371">      logger.error(e.getMessage());</span>
+<span class="nc" id="L372">    }</span>
+<span class="nc" id="L373">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

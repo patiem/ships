@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 72,
              Errors: 0,
-             Warnings: 32,
+             Warnings: 139,
              Infos: 0
       </title>
             <link>./index.html/checkstyle.html</link>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.Main.java">com/epam/ships/client/Main.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.json.conversion.JsonDecoder.java">pl/korotkevics/ships/shared/infra/communication/core/json/conversion/JsonDecoder.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.OpponentWithdrawEvent.java">com/epam/ships/client/gui/events/OpponentWithdrawEvent.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.message.Status.java">pl/korotkevics/ships/shared/infra/communication/api/message/Status.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.fleet.Fleet.java">pl/korotkevics/ships/shared/fleet/Fleet.java</a>
                 </td>
                 <td>
                   0
@@ -74,357 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.json.conversion.JsonDecoder.java">com/epam/ships/shared/infra/communication/core/json/conversion/JsonDecoder.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.fleet.Fleet.java">com/epam/ships/shared/fleet/Fleet.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.CommunicationBus.java">com/epam/ships/server/CommunicationBus.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.LoseTrigger.java">com/epam/ships/client/client/LoseTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.GuiMain.java">com/epam/ships/client/gui/GuiMain.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.message.Header.java">com/epam/ships/shared/infra/communication/api/message/Header.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.WinEvent.java">com/epam/ships/client/gui/events/WinEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.fleet.Mast.java">com/epam/ships/shared/fleet/Mast.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.util.GridToBoardConverter.java">com/epam/ships/client/gui/util/GridToBoardConverter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.Game.java">com/epam/ships/server/Game.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.Message.java">com/epam/ships/shared/infra/communication/api/Message.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.ServerNotRespondingController.java">com/epam/ships/client/gui/controllers/ServerNotRespondingController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.HitShotEvent.java">com/epam/ships/client/gui/events/HitShotEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.OpponentShotTrigger.java">com/epam/ships/client/client/OpponentShotTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.OpponentConnectedTrigger.java">com/epam/ships/client/client/OpponentConnectedTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.PlayState.java">com/epam/ships/server/gamestates/play/PlayState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  6
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.WinTrigger.java">com/epam/ships/client/client/WinTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.StartWindowController.java">com/epam/ships/client/gui/controllers/StartWindowController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.io.Sender.java">com/epam/ships/shared/infra/communication/api/io/Sender.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.io.Receiver.java">com/epam/ships/shared/infra/communication/api/io/Receiver.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.HitShotTrigger.java">com/epam/ships/client/client/HitShotTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.MissShotTrigger.java">com/epam/ships/client/client/MissShotTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.MessageHandler.java">com/epam/ships/client/client/MessageHandler.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.FleetPlacementState.java">com/epam/ships/server/gamestates/FleetPlacementState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.TurnChangeEvent.java">com/epam/ships/client/gui/events/TurnChangeEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.DamageHitNotifier.java">com/epam/ships/server/gamestates/play/DamageHitNotifier.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.OpponentConnectedTrigger.java">pl/korotkevics/ships/client/client/OpponentConnectedTrigger.java</a>
                 </td>
                 <td>
                   0
@@ -438,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.json.conversion.JsonEncoder.java">com/epam/ships/shared/infra/communication/core/json/conversion/JsonEncoder.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.AppServer.java">pl/korotkevics/ships/server/AppServer.java</a>
                 </td>
                 <td>
                   0
@@ -452,7 +116,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.TurnTrigger.java">com/epam/ships/client/client/TurnTrigger.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.ShotHandler.java">pl/korotkevics/ships/server/gamestates/play/ShotHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.message.Header.java">pl/korotkevics/ships/shared/infra/communication/api/message/Header.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.LooseEvent.java">pl/korotkevics/ships/client/gui/events/LooseEvent.java</a>
                 </td>
                 <td>
                   0
@@ -466,7 +158,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.Main.java">com/epam/ships/server/Main.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.ConnectionEndTrigger.java">pl/korotkevics/ships/client/client/ConnectionEndTrigger.java</a>
                 </td>
                 <td>
                   0
@@ -480,105 +172,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.GameState.java">com/epam/ships/server/gamestates/GameState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.EventTrigger.java">com/epam/ships/client/client/EventTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.message.BaseMessage.java">com/epam/ships/shared/infra/communication/core/message/BaseMessage.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.message.Author.java">com/epam/ships/shared/infra/communication/api/message/Author.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.message.MessageBuilder.java">com/epam/ships/shared/infra/communication/core/message/MessageBuilder.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.fleet.Damage.java">com/epam/ships/shared/fleet/Damage.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.GameController.java">com/epam/ships/client/gui/controllers/GameController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.WaitingForPlayersState.java">com/epam/ships/server/gamestates/WaitingForPlayersState.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageNotifier.java</a>
                 </td>
                 <td>
                   0
@@ -592,7 +186,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.conversion.Encoder.java">com/epam/ships/shared/infra/communication/api/conversion/Encoder.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.io.Receiver.java">pl/korotkevics/ships/shared/infra/communication/api/io/Receiver.java</a>
                 </td>
                 <td>
                   0
@@ -606,7 +200,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.LooseEvent.java">com/epam/ships/client/gui/events/LooseEvent.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.Main.java">pl/korotkevics/ships/server/Main.java</a>
                 </td>
                 <td>
                   0
@@ -620,7 +214,49 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.GameEndWithWalkoverState.java">com/epam/ships/server/gamestates/GameEndWithWalkoverState.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.OpponentShotEvent.java">pl/korotkevics/ships/client/gui/events/OpponentShotEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.MessageRepository.java">pl/korotkevics/ships/server/MessageRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.validators.PortValidator.java">pl/korotkevics/ships/client/validators/PortValidator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder.java">pl/korotkevics/ships/shared/infra/communication/core/message/MessageBuilder.java</a>
                 </td>
                 <td>
                   0
@@ -634,7 +270,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.json.io.JsonSender.java">com/epam/ships/shared/infra/communication/core/json/io/JsonSender.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.FleetPlacementState.java">pl/korotkevics/ships/server/gamestates/FleetPlacementState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.FleetPlacementController.java">pl/korotkevics/ships/client/gui/controllers/FleetPlacementController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  24
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent.java">pl/korotkevics/ships/client/gui/events/OpponentWithdrawEvent.java</a>
                 </td>
                 <td>
                   0
@@ -648,7 +312,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.core.json.io.JsonReceiver.java">com/epam/ships/shared/infra/communication/core/json/io/JsonReceiver.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MessageHandler.java">pl/korotkevics/ships/client/client/MessageHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.json.conversion.JsonEncoder.java">pl/korotkevics/ships/shared/infra/communication/core/json/conversion/JsonEncoder.java</a>
                 </td>
                 <td>
                   0
@@ -662,7 +340,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.MissShotEvent.java">com/epam/ships/client/gui/events/MissShotEvent.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.util.FieldState.java">pl/korotkevics/ships/client/gui/util/FieldState.java</a>
                 </td>
                 <td>
                   0
@@ -676,7 +354,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.validators.PortValidator.java">com/epam/ships/client/validators/PortValidator.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.OpponentShotTrigger.java">pl/korotkevics/ships/client/client/OpponentShotTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.TurnTrigger.java">pl/korotkevics/ships/client/client/TurnTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.MissShotEvent.java">pl/korotkevics/ships/client/gui/events/MissShotEvent.java</a>
                 </td>
                 <td>
                   0
@@ -690,7 +396,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.conversion.Decoder.java">com/epam/ships/shared/infra/communication/api/conversion/Decoder.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.ServerNotRespondingController.java">pl/korotkevics/ships/client/gui/controllers/ServerNotRespondingController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.WaitingForPlayersState.java">pl/korotkevics/ships/server/gamestates/WaitingForPlayersState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.fleet.Mast.java">pl/korotkevics/ships/shared/fleet/Mast.java</a>
                 </td>
                 <td>
                   0
@@ -704,7 +438,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.ConnectionEndTrigger.java">com/epam/ships/client/client/ConnectionEndTrigger.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.LoseTrigger.java">pl/korotkevics/ships/client/client/LoseTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MessageHandlerBuilder.java">pl/korotkevics/ships/client/client/MessageHandlerBuilder.java</a>
                 </td>
                 <td>
                   0
@@ -718,7 +466,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.Client.java">com/epam/ships/client/client/Client.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.MessageSender.java">pl/korotkevics/ships/server/MessageSender.java</a>
                 </td>
                 <td>
                   0
@@ -732,7 +480,441 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.ShotHandler.java">com/epam/ships/server/gamestates/play/ShotHandler.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.conversion.Decoder.java">pl/korotkevics/ships/shared/infra/communication/api/conversion/Decoder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonReceiver.java">pl/korotkevics/ships/shared/infra/communication/core/json/io/JsonReceiver.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.conversion.Encoder.java">pl/korotkevics/ships/shared/infra/communication/api/conversion/Encoder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.EventTrigger.java">pl/korotkevics/ships/client/client/EventTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.logging.api.Target.java">pl/korotkevics/ships/shared/infra/logging/api/Target.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.GuiMain.java">pl/korotkevics/ships/client/gui/GuiMain.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.util.ShipOrientation.java">pl/korotkevics/ships/client/gui/util/ShipOrientation.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.GameEndWithWalkoverState.java">pl/korotkevics/ships/server/gamestates/GameEndWithWalkoverState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageMissNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageMissNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.TurnChangeEvent.java">pl/korotkevics/ships/client/gui/events/TurnChangeEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.util.GridToBoardConverter.java">pl/korotkevics/ships/client/gui/util/GridToBoardConverter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.Client.java">pl/korotkevics/ships/client/client/Client.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.HitShotEvent.java">pl/korotkevics/ships/client/gui/events/HitShotEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage.java">pl/korotkevics/ships/shared/infra/communication/core/message/BaseMessage.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.WrappedClient.java">pl/korotkevics/ships/server/WrappedClient.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.MainController.java">pl/korotkevics/ships/client/gui/controllers/MainController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MissShotTrigger.java">pl/korotkevics/ships/client/client/MissShotTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.OpponentConnectedEvent.java">pl/korotkevics/ships/client/gui/events/OpponentConnectedEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageDestructedNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageDestructedNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.TurnManager.java">pl/korotkevics/ships/server/TurnManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.MessageReceiver.java">pl/korotkevics/ships/server/gamestates/play/MessageReceiver.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.validators.ShipPlacementValidator.java">pl/korotkevics/ships/client/validators/ShipPlacementValidator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.logging.core.SharedLogger.java">pl/korotkevics/ships/shared/infra/logging/core/SharedLogger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.PlayState.java">pl/korotkevics/ships/server/gamestates/play/PlayState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.GameState.java">pl/korotkevics/ships/server/gamestates/GameState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonSender.java">pl/korotkevics/ships/shared/infra/communication/core/json/io/JsonSender.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.fleet.Ship.java">pl/korotkevics/ships/shared/fleet/Ship.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.GameController.java">pl/korotkevics/ships/client/gui/controllers/GameController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.Game.java">pl/korotkevics/ships/server/Game.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.Message.java">pl/korotkevics/ships/shared/infra/communication/api/Message.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.StartWindowController.java">pl/korotkevics/ships/client/gui/controllers/StartWindowController.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.GameEndWithWinState.java">pl/korotkevics/ships/server/gamestates/GameEndWithWinState.java</a>
                 </td>
                 <td>
                   0
@@ -746,7 +928,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.DamageDestructedNotifier.java">com/epam/ships/server/gamestates/play/DamageDestructedNotifier.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.HitShotTrigger.java">pl/korotkevics/ships/client/client/HitShotTrigger.java</a>
                 </td>
                 <td>
                   0
@@ -760,7 +942,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.TurnManager.java">com/epam/ships/server/TurnManager.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.CommunicationBus.java">pl/korotkevics/ships/server/CommunicationBus.java</a>
                 </td>
                 <td>
                   0
@@ -774,7 +956,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.logging.core.SharedLogger.java">com/epam/ships/shared/infra/logging/core/SharedLogger.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.fleet.Damage.java">pl/korotkevics/ships/shared/fleet/Damage.java</a>
                 </td>
                 <td>
                   0
@@ -788,7 +970,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.OpponentConnectedEvent.java">com/epam/ships/client/gui/events/OpponentConnectedEvent.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.WinEvent.java">pl/korotkevics/ships/client/gui/events/WinEvent.java</a>
                 </td>
                 <td>
                   0
@@ -802,91 +984,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.client.MessageHandlerBuilder.java">com/epam/ships/client/client/MessageHandlerBuilder.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.AppServer.java">com/epam/ships/server/AppServer.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.communication.api.message.Status.java">com/epam/ships/shared/infra/communication/api/message/Status.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.validators.ShipPlacementValidator.java">com/epam/ships/client/validators/ShipPlacementValidator.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.fleet.Ship.java">com/epam/ships/shared/fleet/Ship.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.shared.infra.logging.api.Target.java">com/epam/ships/shared/infra/logging/api/Target.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.MessageReceiver.java">com/epam/ships/server/gamestates/play/MessageReceiver.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageHitNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageHitNotifier.java</a>
                 </td>
                 <td>
                   0
@@ -900,13 +998,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.FleetPlacementController.java">com/epam/ships/client/gui/controllers/FleetPlacementController.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.Main.java">pl/korotkevics/ships/client/Main.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -914,7 +1012,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.DamageNotifier.java">com/epam/ships/server/gamestates/play/DamageNotifier.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.WinTrigger.java">pl/korotkevics/ships/client/client/WinTrigger.java</a>
                 </td>
                 <td>
                   0
@@ -928,7 +1026,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.MessageRepository.java">com/epam/ships/server/MessageRepository.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.io.Sender.java">pl/korotkevics/ships/shared/infra/communication/api/io/Sender.java</a>
                 </td>
                 <td>
                   0
@@ -942,111 +1040,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.play.DamageMissNotifier.java">com/epam/ships/server/gamestates/play/DamageMissNotifier.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.api.message.Author.java">pl/korotkevics/ships/shared/infra/communication/api/message/Author.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.util.ShipOrientation.java">com/epam/ships/client/gui/util/ShipOrientation.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.MessageSender.java">com/epam/ships/server/MessageSender.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.controllers.MainController.java">com/epam/ships/client/gui/controllers/MainController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.events.OpponentShotEvent.java">com/epam/ships/client/gui/events/OpponentShotEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.WrappedClient.java">com/epam/ships/server/WrappedClient.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.server.gamestates.GameEndWithWinState.java">com/epam/ships/server/gamestates/GameEndWithWinState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#com.epam.ships.client.gui.util.FieldState.java">com/epam/ships/client/gui/util/FieldState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
+                  4
                 </td>
                 <td>
                   0

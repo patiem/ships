@@ -1,4 +1,4 @@
-com.epam.ships.shared.fleet
-com.epam.ships.shared.infra.communication.core.json.conversion
-com.epam.ships.shared.infra.communication.core.json.io
-com.epam.ships.shared.infra.communication.core.message
+pl.korotkevics.ships.shared.fleet
+pl.korotkevics.ships.shared.infra.communication.core.json.conversion
+pl.korotkevics.ships.shared.infra.communication.core.json.io
+pl.korotkevics.ships.shared.infra.communication.core.message

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TurnTrigger.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - CLIENT</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.client.client</a> &gt; <span class="el_source">TurnTrigger.java</span></div><h1>TurnTrigger.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.client.client;
+
+import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+import javafx.application.Platform;
+import javafx.scene.control.Button;
+
+/**
+ * Enable to fire event reacting changing turn.
+ *
+ * @author Magdalena Aarsman
+ * @since 2017-12-18
+ */
+<span class="nc" id="L15">class TurnTrigger implements EventTrigger {</span>
+
+<span class="nc" id="L17">  private static final Target logger = new SharedLogger(Client.class);</span>
+
+  @Override
+  public void fire(final Button button, final String messageStatement) {
+<span class="nc bnc" id="L21" title="All 2 branches missed.">    if (messageStatement.isEmpty()) {</span>
+<span class="nc" id="L22">      logger.info(&quot;I start&quot;);</span>
+<span class="nc" id="L23">      Platform.runLater(() -&gt; button.fireEvent(new TurnChangeEvent()));</span>
+    }
+<span class="nc" id="L25">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
