@@ -30,7 +30,7 @@ echo "[Usage]"
 echo -e "\t ./updateRemoteSite.sh\n"
 }
 
-if [[ $1 = "--help" ]];
+if [[ $1 =1 "--help" ]];
 	then helpEcho
 	exit 0;
 fi

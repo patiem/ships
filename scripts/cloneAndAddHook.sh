@@ -44,10 +44,6 @@ if ! ./clone.sh $1;
 fi
 cd $1
 echo "copying pre-commit hook"
-if ! chmod u+x scripts/pre-commitHookMaven.sh;
-	then helpEcho
-	exit 1;
-fi
 if ! cp scripts/pre-commitHookMaven.sh .git/hooks/pre-commit;
 	then helpEcho
 	exit 1;
