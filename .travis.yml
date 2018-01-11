@@ -12,7 +12,9 @@ addons:
     token:
       secure: "599389432fc8ad1e74b138e04479683ecefeb22c"
     branches:
-      - int_2.0 
+      only:
+        - int_1.5.1
+        - int_2.0  
     cache:
       directories:
         - '$HOME/.m2/repository'
