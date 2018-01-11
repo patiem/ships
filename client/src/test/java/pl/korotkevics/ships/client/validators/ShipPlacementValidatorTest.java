@@ -1,9 +1,9 @@
 package pl.korotkevics.ships.client.validators;
 
-import pl.korotkevics.ships.client.gui.util.FieldState;
-import pl.korotkevics.ships.client.gui.util.ShipOrientation;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pl.korotkevics.ships.client.gui.util.FieldState;
+import pl.korotkevics.ships.client.gui.util.ShipOrientation;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +20,11 @@ public class ShipPlacementValidatorTest {
     return new Object[][] {
         {ShipOrientation.VERTICAL, 0, 3, producedBoard(Arrays.asList(99,81))},
         {ShipOrientation.HORIZONTAL, 0, 3, producedBoard(Arrays.asList(4,2,3))},
-        {ShipOrientation.VERTICAL, 0, 4, producedBoard(Arrays.asList(20,30,40))}
+        {ShipOrientation.VERTICAL, 0, 4, producedBoard(Arrays.asList(20,30,40))},
+        {ShipOrientation.VERTICAL, 99, 1, producedBoard(Arrays.asList(20,30,40))},
+        {ShipOrientation.HORIZONTAL, 99, 1, producedBoard(Arrays.asList(20,30,40))},
+        {ShipOrientation.HORIZONTAL, 79, 1, producedBoard(Arrays.asList(80,90,70,60))},
+        {ShipOrientation.VERTICAL, 79, 1, producedBoard(Arrays.asList(80,90,70,60))}
     };
   }
 
@@ -32,7 +36,17 @@ public class ShipPlacementValidatorTest {
         {ShipOrientation.HORIZONTAL, 25, 2, producedBoard(Arrays.asList(45,1,2,3))},
         {ShipOrientation.VERTICAL, 25, 2, producedBoard(Arrays.asList(15,1,2,3))},
         {ShipOrientation.HORIZONTAL, 25, 2, producedBoard(Arrays.asList(24,1,2,3))},
-        {ShipOrientation.VERTICAL, 25, 2, producedBoard(Arrays.asList(27,1,2,3))}
+        {ShipOrientation.VERTICAL, 25, 2, producedBoard(Arrays.asList(27,1,2,3))},
+        //corners
+        {ShipOrientation.VERTICAL, 25, 2, producedBoard(Arrays.asList(14,1,2,3))},
+        {ShipOrientation.VERTICAL, 25, 2, producedBoard(Arrays.asList(34,1,2,3))},
+        {ShipOrientation.VERTICAL, 25, 2, producedBoard(Arrays.asList(17,1,2,3))},
+        {ShipOrientation.VERTICAL, 25, 2, producedBoard(Arrays.asList(37,1,2,3))},
+
+        {ShipOrientation.HORIZONTAL, 25, 2, producedBoard(Arrays.asList(44,1,2,3))},
+        {ShipOrientation.HORIZONTAL, 25, 2, producedBoard(Arrays.asList(46,1,2,3))},
+        {ShipOrientation.HORIZONTAL, 25, 2, producedBoard(Arrays.asList(14,1,2,3))},
+        {ShipOrientation.HORIZONTAL, 25, 2, producedBoard(Arrays.asList(16,1,2,3))}
     };
   }
 
@@ -60,6 +74,40 @@ public class ShipPlacementValidatorTest {
     boolean isValid = shipPlacementValidator.isPlacementValid();
     //then
     assertFalse(isValid);
+  }
+
+  @Test
+  void shipPassingToOtherSideShouldCauseInvalidPlacement() {
+    //given
+    ShipOrientation shipOrientation = ShipOrientation.VERTICAL;
+    int shipStartingIndex = 7;
+    int mastCount = 4;
+    FieldState[] board = producedBoard(Arrays.asList(1));
+    ShipPlacementValidator shipPlacementValidator =
+        new ShipPlacementValidator(shipOrientation, shipStartingIndex, mastCount, board);
+
+    //when
+    boolean isValid = shipPlacementValidator.isPlacementValid();
+
+    //then
+    assertFalse(isValid);
+  }
+
+  @Test
+  void shipNotPassingToOtherSideShouldCauseInvalidPlacement() {
+    //given
+    ShipOrientation shipOrientation = ShipOrientation.VERTICAL;
+    int shipStartingIndex = 6;
+    int mastCount = 4;
+    FieldState[] board = producedBoard(Arrays.asList(1));
+    ShipPlacementValidator shipPlacementValidator =
+        new ShipPlacementValidator(shipOrientation, shipStartingIndex, mastCount, board);
+
+    //when
+    boolean isValid = shipPlacementValidator.isPlacementValid();
+
+    //then
+    assertTrue(isValid);
   }
 
   private static FieldState [] producedBoard(List<Integer> occupiedPlaces) {

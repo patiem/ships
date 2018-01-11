@@ -4,6 +4,8 @@ import pl.korotkevics.ships.client.gui.util.FieldState;
 import pl.korotkevics.ships.client.gui.util.ShipOrientation;
 import lombok.RequiredArgsConstructor;
 
+import java.util.stream.IntStream;
+
 /**
  * Enable validation of ships placement.
  * @author Magdalena Aarsman
@@ -23,148 +25,117 @@ public class ShipPlacementValidator {
    * @return true if it is valid, false if not.
    */
   public boolean isPlacementValid() {
-    if (shipOrientation.equals(ShipOrientation.HORIZONTAL)) {
-      return checkForHorizontal();
-    } else {
-      return checkForVertical();
-    }
+    return !isOutOfRange()
+        && (shipOrientation.equals(ShipOrientation.HORIZONTAL)
+        ? checkForHorizontal()
+        : checkForVertical());
   }
 
-  private boolean checkIfNotPassingToOtherSide(final int index, final int mastCount) {
+  private boolean checkIfPassingToOtherSide(final int index, final int mastCount) {
     int startIndexMod = index % BOARD_SIZE;
-    for (int i = 1; i < mastCount; i++) {
-      if ((index + i) % BOARD_SIZE < startIndexMod) {
-        return false;
-      }
-    }
-    return true;
+    return (index + (mastCount - 1)) % BOARD_SIZE < startIndexMod;
   }
 
   private boolean checkForVertical() {
-    return isNotShipOnShip(shipStartIndex, mastCount)
-        && isNotShipAboveShip(shipStartIndex, mastCount)
-        && isNotShipBelowShip(shipStartIndex)
-        && isNotShipOnTheRight(shipStartIndex, mastCount)
-        && isNotShipOnTheLeft(shipStartIndex, mastCount)
-        && checkIfNotPassingToOtherSide(shipStartIndex, mastCount);
+    return ! checkIfPassingToOtherSide(shipStartIndex, mastCount)
+        && ! isShipOnShip(shipStartIndex, mastCount)
+        && ! isShipTouchOtherShip();
   }
 
-  private boolean isNotShipOnShip(final int index, final int mastCount) {
-    for (int i = 0; i < mastCount; i++) {
-      if (index + i >= board.length) {
-        return false;
-      }
-
-      if (board[index + i].equals(FieldState.OCCUPIED)) {
-        return false;
-      }
-    }
-    return true;
+  private boolean isOutOfRange() {
+    return shipOrientation.equals(ShipOrientation.VERTICAL)
+        ? shipStartIndex + mastCount > board.length
+        : shipStartIndex + (mastCount - 1) * BOARD_SIZE >= board.length;
   }
 
-  private boolean isNotShipAboveShip(final int index, final int mastCount) {
-    return !((index + mastCount < board.length)
-        && (board[index + mastCount].equals(FieldState.OCCUPIED)));
+  private boolean isShipOnShip(final int index, final int mastCount) {
+    return IntStream
+        .rangeClosed(index, index + mastCount - 1)
+        .anyMatch(p -> board[p].equals(FieldState.OCCUPIED));
   }
 
-  private boolean isNotShipBelowShip(final int index) {
-    return !(index > 1 && index % BOARD_SIZE != 0
-        && (board[index - 1].equals(FieldState.OCCUPIED)));
+  private boolean isShipTouchOtherShip() {
+    return isShipAboveShip(shipStartIndex, mastCount)
+        || isShipBelowShip(shipStartIndex)
+        || isShipOnTheRight(shipStartIndex, mastCount)
+        || isShipOnTheLeft(shipStartIndex, mastCount);
   }
 
-  private boolean isNotShipOnTheRight(final int index, final int mastCount) {
-    for (int i = 0; i < mastCount; i++) {
-      if (index + i - BOARD_SIZE > 0
-          && (board[index + i - BOARD_SIZE].equals(FieldState.OCCUPIED))) {
-        return false;
-      }
-    }
-    return true;
+  private boolean isShipAboveShip(final int index, final int mastCount) {
+    return (index ) % BOARD_SIZE != 9 &&
+        index + mastCount < board.length
+        && IntStream.iterate(index - BOARD_SIZE , i-> i + BOARD_SIZE)
+        .limit(3)
+        .filter(i-> i > 0)
+        .filter(i-> i + mastCount < board.length)
+        .anyMatch(i -> board[i + mastCount].equals(FieldState.OCCUPIED));
   }
 
-  private boolean isNotShipOnTheLeft(final int index, final int mastCount) {
-    for (int i = 0; i < mastCount; i++) {
-      if (index + i + BOARD_SIZE < board.length
-          && (board[index + i + BOARD_SIZE].equals(FieldState.OCCUPIED))) {
-        return false;
-      }
-    }
-    return true;
+  private boolean isShipBelowShip(final int index) {
+    return index % BOARD_SIZE != 0 && index - 1 > 0
+        && IntStream.iterate(index - BOARD_SIZE , i-> i + BOARD_SIZE)
+        .limit(3)
+        .filter(i-> i - 1 > 0)
+        .filter(i-> i < board.length)
+        .anyMatch(i -> board[i - 1].equals(FieldState.OCCUPIED));
+  }
+
+  private boolean isShipOnTheRight(final int index, final int mastCount) {
+    return IntStream.range(index, index + mastCount)
+        .filter(value -> value - BOARD_SIZE > 0)
+        .anyMatch(value -> board[value - BOARD_SIZE].equals(FieldState.OCCUPIED));
+  }
+
+  private boolean isShipOnTheLeft(final int index, final int mastCount) {
+    return IntStream.range(index, index + mastCount)
+        .filter(value -> value > 0)
+        .filter(value -> value + BOARD_SIZE < board.length)
+        .anyMatch(value -> board[value + BOARD_SIZE].equals(FieldState.OCCUPIED));
   }
 
   private boolean checkForHorizontal() {
-    return isNotShipOnShipHorizontal(shipStartIndex, mastCount)
-        && isNotShipBelowShipHorizontal(shipStartIndex, mastCount)
-        && isNotShipAboveShipHorizontal(shipStartIndex, mastCount)
-        && isNotShipOnTheRightHorizontal(shipStartIndex, mastCount)
-        && isNotShipOnTheLeftHorizontal(shipStartIndex);
+    return ! isShipOnShipHorizontal(shipStartIndex, mastCount)
+        && ! isShipTouchOtherShipHorizontal();
   }
 
-  private boolean isNotShipOnShipHorizontal(final int index, final int mastCount) {
-    for (int i = 0; i < mastCount; i++) {
-      if (board[index + i * BOARD_SIZE].equals(FieldState.OCCUPIED)) {
-        return false;
-      }
-    }
-    return true;
+  private boolean isShipTouchOtherShipHorizontal() {
+    return isShipBelowShipHorizontal(shipStartIndex, mastCount)
+        || isShipAboveShipHorizontal(shipStartIndex, mastCount)
+        || isShipOnTheRightHorizontal(shipStartIndex, mastCount)
+        || isShipOnTheLeftHorizontal(shipStartIndex);
   }
 
-  private boolean isNotShipBelowShipHorizontal(final int index, final int mastCount) {
-    for (int i = 0; i < mastCount; i++) {
-      if ((index + i * BOARD_SIZE) % BOARD_SIZE == 9) {
-        return true;
-      }
-      final int oneRowBelow = 1;
-      if (index + oneRowBelow + i * BOARD_SIZE >= board.length) {
-        return true;
-      }
-
-      if (board[index + oneRowBelow + i * BOARD_SIZE].equals(FieldState.OCCUPIED)) {
-        return false;
-      }
-    }
-    return true;
+  private boolean isShipOnShipHorizontal(final int index, final int mastCount) {
+    return IntStream.iterate(index, n -> n + BOARD_SIZE)
+        .limit((mastCount - 1))
+        .anyMatch(n -> board[n].equals(FieldState.OCCUPIED));
   }
 
-  private boolean isNotShipAboveShipHorizontal(final int index, final int mastCount) {
-    for (int i = 0; i < mastCount; i++) {
-      if ((index + i * BOARD_SIZE) % BOARD_SIZE == 0) {
-        return true;
-      }
-      if (index + i * BOARD_SIZE >= board.length || index + i * BOARD_SIZE < 1) {
-        return true;
-      }
-
-      if (board[index - 1 + i * BOARD_SIZE].equals(FieldState.OCCUPIED)) {
-        return false;
-      }
-    }
-
-    return true;
+  private boolean isShipBelowShipHorizontal(final int index, final int mastCount) {
+    return index % BOARD_SIZE != 9
+        && IntStream.iterate(index - BOARD_SIZE, n -> n + BOARD_SIZE)
+        .limit(mastCount + 2L)
+        .filter(n -> n > 0)
+        .filter(n -> n + 1 < board.length)
+        .anyMatch(n -> board[n + 1].equals(FieldState.OCCUPIED));
   }
 
-  private boolean isNotShipOnTheRightHorizontal(final int index, final int mastCount) {
-    if (index + mastCount * BOARD_SIZE >= board.length) {
-      return true;
-    }
-
-    if (board[index + mastCount * BOARD_SIZE].equals(FieldState.OCCUPIED)) {
-      return false;
-    }
-
-    return true;
+  private boolean isShipAboveShipHorizontal(final int index, final int mastCount) {
+    return index % BOARD_SIZE != 0
+        && IntStream.iterate(index - BOARD_SIZE, n -> n + BOARD_SIZE)
+        .limit(mastCount + 2L)
+        .filter(n -> n > 0)
+        .filter(n -> n < board.length)
+        .anyMatch(n -> board[n - 1].equals(FieldState.OCCUPIED));
   }
 
-  private boolean isNotShipOnTheLeftHorizontal(final int index) {
-    if (index - BOARD_SIZE < 1) {
-      return true;
-    }
+  private boolean isShipOnTheRightHorizontal(final int index, final int mastCount) {
+    return index + mastCount * BOARD_SIZE < board.length
+        && board[index + mastCount * BOARD_SIZE].equals(FieldState.OCCUPIED);
+  }
 
-    if (board[index - BOARD_SIZE].equals(FieldState.OCCUPIED)) {
-      return false;
-    }
-
-    return true;
+  private boolean isShipOnTheLeftHorizontal(final int index) {
+    return index - BOARD_SIZE >= 1 && board[index - BOARD_SIZE].equals(FieldState.OCCUPIED);
   }
 
 }
