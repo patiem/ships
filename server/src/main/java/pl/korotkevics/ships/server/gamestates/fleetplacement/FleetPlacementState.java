@@ -1,15 +1,14 @@
-package pl.korotkevics.ships.server.gamestates;
+package pl.korotkevics.ships.server.gamestates.fleetplacement;
 
-import pl.korotkevics.ships.shared.fleet.Fleet;
-import pl.korotkevics.ships.shared.infra.communication.api.Message;
-import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.logging.api.Target;
-import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import pl.korotkevics.ships.server.CommunicationBus;
 import pl.korotkevics.ships.server.MessageSender;
 import pl.korotkevics.ships.server.TurnManager;
-import pl.korotkevics.ships.server.WrappedClient;
+import pl.korotkevics.ships.server.gamestates.GameState;
 import pl.korotkevics.ships.server.gamestates.play.PlayState;
+import pl.korotkevics.ships.shared.fleet.Fleet;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +21,7 @@ import java.util.List;
  */
 public class FleetPlacementState implements GameState {
   private final CommunicationBus communicationBus;
+  private final FleetPlacementProcessor fleetProcessor;
   private final TurnManager turnManager;
   private final Target logger = new SharedLogger(FleetPlacementState.class);
   private final List<Fleet> fleets;
@@ -31,10 +31,11 @@ public class FleetPlacementState implements GameState {
    *
    * @param communicationBus client server communication bus
    */
-  FleetPlacementState(final CommunicationBus communicationBus) {
+  public FleetPlacementState(final CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
     this.turnManager = new TurnManager(communicationBus.getFirstClient(),
         communicationBus.getSecondClient());
+    this.fleetProcessor = new FleetPlacementProcessor(communicationBus);
     fleets = new ArrayList<>(2);
   }
 
@@ -46,25 +47,19 @@ public class FleetPlacementState implements GameState {
   @Override
   public GameState process() {
     askPlayersForPlaceFleet();
-    receiveFleetFromBothPlayers();
+    placeFleet();
     rest();
     return new PlayState(communicationBus, fleets);
+  }
+
+  private void placeFleet() {
+    fleets.add(fleetProcessor.placeFleet(turnManager.getCurrentPlayer()));
+    fleets.add(fleetProcessor.placeFleet(turnManager.getOtherPlayer()));
   }
 
   private void askPlayersForPlaceFleet() {
     MessageSender messageSender = new MessageSender(communicationBus, logger);
     messageSender.sendToAll(Header.PLACEMENT);
-  }
-
-  private void receiveFleetFromBothPlayers() {
-    fleets.add(receiveFloat(turnManager.getCurrentPlayer()));
-    fleets.add(receiveFloat(turnManager.getOtherPlayer()));
-  }
-
-  private Fleet receiveFloat(WrappedClient player) {
-    final Message fleetMsg = communicationBus.receive(player);
-    logger.info("Fleet received: " + fleetMsg);
-    return fleetMsg.getFleet();
   }
 
   private void rest() {

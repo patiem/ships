@@ -1,7 +1,7 @@
 package pl.korotkevics.ships.server;
 
-import pl.korotkevics.ships.server.gamestates.GameState;
 import org.testng.annotations.Test;
+import pl.korotkevics.ships.server.gamestates.GameState;
 
 import static org.mockito.Mockito.*;
 

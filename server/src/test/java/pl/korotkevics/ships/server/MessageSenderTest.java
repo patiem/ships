@@ -1,10 +1,10 @@
 package pl.korotkevics.ships.server;
 
+import org.testng.annotations.Test;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
-import org.testng.annotations.Test;
 
 import static org.mockito.Mockito.*;
 

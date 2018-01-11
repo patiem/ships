@@ -1,11 +1,9 @@
-package pl.korotkevics.ships.server.gamestates.play;
+package pl.korotkevics.ships.server;
 
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
-import pl.korotkevics.ships.server.CommunicationBus;
-import pl.korotkevics.ships.server.WrappedClient;
 
 /**
  * Receive message from client.
@@ -18,20 +16,24 @@ public class MessageReceiver {
   private CommunicationBus communicationBus;
   private Message lastMessage;
 
-  MessageReceiver(final CommunicationBus communicationBus) {
+  public MessageReceiver(final CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
   }
 
-  void receive(final WrappedClient player) {
+  public void receive(final WrappedClient player) {
     lastMessage = communicationBus.receive(player);
     logger.info(lastMessage);
   }
 
-  boolean isAShot() {
+  public boolean isAShot() {
     return Header.SHOT.equals(lastMessage.getHeader());
   }
 
-  Message getMessage() {
+  public Message getMessage() {
     return lastMessage;
+  }
+
+  public boolean isRandomPlacement() {
+    return Header.RANDOM_PLACEMENT.equals(lastMessage.getHeader());
   }
 }

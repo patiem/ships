@@ -1,11 +1,12 @@
-package pl.korotkevics.ships.server.gamestates;
+package pl.korotkevics.ships.server.gamestates.endgame;
 
-import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.logging.api.Target;
-import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import pl.korotkevics.ships.server.CommunicationBus;
 import pl.korotkevics.ships.server.MessageSender;
 import pl.korotkevics.ships.server.TurnManager;
+import pl.korotkevics.ships.server.gamestates.GameState;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 /**
  * Represents game state where game have a winner.
@@ -58,5 +59,14 @@ public class GameEndWithWinState implements GameState {
   private void handleEndOfGame() {
     messageSender.send(turnManager.getCurrentPlayer(), Header.WIN);
     messageSender.send(turnManager.getOtherPlayer(), Header.LOSE);
+    rest();
+  }
+
+  private void rest() {
+    try {
+      Thread.sleep(100);
+    } catch (InterruptedException e) {
+      logger.error(e.getMessage());
+    }
   }
 }

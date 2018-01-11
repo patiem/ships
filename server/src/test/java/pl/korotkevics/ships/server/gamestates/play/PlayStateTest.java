@@ -1,5 +1,13 @@
 package pl.korotkevics.ships.server.gamestates.play;
 
+import org.mockito.Mock;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import pl.korotkevics.ships.server.CommunicationBus;
+import pl.korotkevics.ships.server.WrappedClient;
+import pl.korotkevics.ships.server.gamestates.GameState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWalkoverState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWinState;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.fleet.Mast;
 import pl.korotkevics.ships.shared.fleet.Ship;
@@ -7,14 +15,6 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
-import pl.korotkevics.ships.server.CommunicationBus;
-import pl.korotkevics.ships.server.WrappedClient;
-import pl.korotkevics.ships.server.gamestates.GameEndWithWalkoverState;
-import pl.korotkevics.ships.server.gamestates.GameEndWithWinState;
-import pl.korotkevics.ships.server.gamestates.GameState;
-import org.mockito.Mock;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import java.util.Arrays;
 import java.util.List;
@@ -37,7 +37,7 @@ public class PlayStateTest {
   private WrappedClient wrappedClient;
 
   @BeforeMethod
-  void before(){
+  void before() {
     initMocks(this);
   }
 
