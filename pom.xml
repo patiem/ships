@@ -457,8 +457,6 @@
                     <profile>true</profile>
                     <!--Recursively traverse all dependencies.-->
                     <recursive>true</recursive>
-                    <!--Print all class level dependencies.-->
-                    <verbose>true</verbose>
                     <!--Version information.-->
                     <version>true</version>
                 </configuration>
