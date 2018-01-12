@@ -16,13 +16,13 @@ import java.util.stream.IntStream;
  */
 class FleetGenerator {
 
-  private Map<Integer, Boolean> gameBoard;
+  private Map<Integer, FieldState> gameBoard;
 
   FleetGenerator() {
     this.gameBoard = new HashMap<>();
     int firstFieldIndex = 0;
     int lastFieldIndex = 100;
-    IntStream.range(firstFieldIndex, lastFieldIndex).forEach(i -> gameBoard.put(i, true));
+    IntStream.range(firstFieldIndex, lastFieldIndex).forEach(i -> gameBoard.put(i, FieldState.EMPTY));
   }
 
   Fleet generateFleet() {
@@ -73,7 +73,7 @@ class FleetGenerator {
     areaToMark
         .stream()
         .filter(i -> gameBoard.containsKey(i))
-        .forEach(i -> gameBoard.put(i, false));
+        .forEach(i -> gameBoard.put(i, FieldState.OCCUPIED));
   }
 
   private boolean isWithinBoard(final List<Integer> offeredShip) {
@@ -85,16 +85,16 @@ class FleetGenerator {
   private boolean canBePut(final List<Integer> offeredShip) {
     return offeredShip
         .stream()
-        .allMatch(i -> gameBoard.get(i));
+        .allMatch(i -> FieldState.EMPTY.equals(gameBoard.get(i)));
   }
 
   private Set<Integer> determineAreaForShip(final List<Integer> offeredShip) {
     Set<Integer> area = new HashSet<>();
-    offeredShip.forEach(index -> area.addAll(this.addIndexAndNeighbours(index)));
+    offeredShip.forEach(index -> area.addAll(this.addFieldAndNeighbours(index)));
     return area;
   }
 
-  private List<Integer> addIndexAndNeighbours(final Integer index) {
+  private List<Integer> addFieldAndNeighbours(final int index) {
     List<Integer> area = new ArrayList<>();
     List<Integer> neighbours = Arrays.asList(-11, -10, -9, 0, -1, 1, 9, 10, 11);
     neighbours.forEach(i -> area.add(index + i));
@@ -105,7 +105,7 @@ class FleetGenerator {
     List<Integer> emptyIndices = gameBoard
         .entrySet()
         .stream()
-        .filter(Map.Entry::getValue)
+        .filter(i -> FieldState.EMPTY.equals(i.getValue()))
         .map(Map.Entry::getKey)
         .collect(Collectors.toList());
     int index = new Random().nextInt(emptyIndices.size());
