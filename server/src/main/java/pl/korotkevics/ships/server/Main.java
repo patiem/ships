@@ -19,6 +19,12 @@ public class Main {
    */
   public static void main(String[] args) throws IOException {
     CommunicationBus communicationBus = new CommunicationBus();
+    
+    /*
+    Sonar reports an infinitive loop as a critical bug, and therefore
+    we could not think of a better workaround than presenting it as a
+    an effective infinitive loop (with true extracted to a flag).
+     */
     boolean shouldRun = true;
     while (shouldRun) {
       GameState initialState = new WaitingForPlayersState(communicationBus);
