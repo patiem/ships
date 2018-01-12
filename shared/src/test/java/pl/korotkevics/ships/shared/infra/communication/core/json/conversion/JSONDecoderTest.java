@@ -1,5 +1,7 @@
 package pl.korotkevics.ships.shared.infra.communication.core.json.conversion;
 
+import com.google.gson.JsonElement;
+import org.testng.annotations.Test;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.fleet.Mast;
 import pl.korotkevics.ships.shared.fleet.Ship;
@@ -9,8 +11,6 @@ import pl.korotkevics.ships.shared.infra.communication.api.conversion.Encoder;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
-import com.google.gson.JsonElement;
-import org.testng.annotations.Test;
 
 import java.util.Arrays;
 
@@ -22,7 +22,7 @@ public class JSONDecoderTest {
   public void itDecodesAsExpected() {
     Message sent = new MessageBuilder()
         .withAuthor(Author.CLIENT)
-        .withHeader(Header.PLACEMENT)
+        .withHeader(Header.MANUAL_PLACEMENT)
         .withFleet(Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"),
             Mast.ofIndex("2"), Mast.ofIndex("1")))))
         .build();

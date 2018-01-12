@@ -1,7 +1,7 @@
 package pl.korotkevics.ships.server;
 
 import pl.korotkevics.ships.server.gamestates.GameState;
-import pl.korotkevics.ships.server.gamestates.WaitingForPlayersState;
+import pl.korotkevics.ships.server.gamestates.connection.WaitingForPlayersState;
 
 import java.io.IOException;
 

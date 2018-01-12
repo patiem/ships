@@ -1,14 +1,17 @@
-package pl.korotkevics.ships.server.gamestates;
+package pl.korotkevics.ships.server.gamestates.connection;
 
-import pl.korotkevics.ships.server.CommunicationBus;
-import pl.korotkevics.ships.server.WrappedClient;
 import org.mockito.Mock;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pl.korotkevics.ships.server.CommunicationBus;
+import pl.korotkevics.ships.server.WrappedClient;
+import pl.korotkevics.ships.server.gamestates.GameState;
+import pl.korotkevics.ships.server.gamestates.fleetplacement.FleetPlacementState;
 
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 @Test
 public class WaitingForPlayersStateTest {
@@ -33,7 +36,7 @@ public class WaitingForPlayersStateTest {
     when(communicationBus.getSecondClient()).thenReturn(secondWrappedClient);
 
     //when
-    GameState gameState= state.process();
+    GameState gameState = state.process();
 
     //then
     verify(communicationBus, times(1)).start();

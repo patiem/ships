@@ -1,12 +1,13 @@
 package pl.korotkevics.ships.server.gamestates.play;
 
+import org.testng.annotations.Test;
+import pl.korotkevics.ships.server.CommunicationBus;
+import pl.korotkevics.ships.server.MessageReceiver;
+import pl.korotkevics.ships.server.WrappedClient;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
-import pl.korotkevics.ships.server.CommunicationBus;
-import pl.korotkevics.ships.server.WrappedClient;
-import org.testng.annotations.Test;
 
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.assertFalse;

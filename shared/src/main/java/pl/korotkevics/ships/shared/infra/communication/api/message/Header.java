@@ -20,5 +20,6 @@ public enum Header {
   LOSE,
   WIN,
   SHOT,
-  PLACEMENT
+  MANUAL_PLACEMENT,
+  RANDOM_PLACEMENT
 }

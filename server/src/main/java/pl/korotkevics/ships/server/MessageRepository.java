@@ -22,7 +22,7 @@ public class MessageRepository {
     messages.put(Header.OPPONENT_CONNECTED, this.opponentConnectedMessage());
     messages.put(Header.WIN, this.winMessage());
     messages.put(Header.LOSE, this.loseMessage());
-    messages.put(Header.PLACEMENT, this.askForFleetMessage());
+    messages.put(Header.MANUAL_PLACEMENT, this.askForFleetMessage());
     messages.put(Header.HIT, this.hitMessage());
     messages.put(Header.MISS, this.missMessage());
     messages.put(Header.SHIP_DESTRUCTED, this.shipDestructedMessage());
@@ -70,7 +70,7 @@ public class MessageRepository {
   private Message askForFleetMessage() {
     return new MessageBuilder()
         .withAuthor(Author.SERVER)
-        .withHeader(Header.PLACEMENT)
+        .withHeader(Header.MANUAL_PLACEMENT)
         .build();
   }
 

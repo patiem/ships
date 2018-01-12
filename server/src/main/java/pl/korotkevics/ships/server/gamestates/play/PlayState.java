@@ -1,5 +1,6 @@
 package pl.korotkevics.ships.server.gamestates.play;
 
+import pl.korotkevics.ships.server.MessageReceiver;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
@@ -8,8 +9,8 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import pl.korotkevics.ships.server.CommunicationBus;
 import pl.korotkevics.ships.server.MessageSender;
 import pl.korotkevics.ships.server.TurnManager;
-import pl.korotkevics.ships.server.gamestates.GameEndWithWalkoverState;
-import pl.korotkevics.ships.server.gamestates.GameEndWithWinState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWalkoverState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWinState;
 import pl.korotkevics.ships.server.gamestates.GameState;
 
 import java.util.List;
