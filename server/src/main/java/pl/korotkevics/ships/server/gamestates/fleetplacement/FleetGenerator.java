@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 
 /**
  * Generates Fleet of ships.
+ *
  * @author Piotr Czyż
  * @since 2018-01-10
  */
@@ -18,96 +19,104 @@ class FleetGenerator {
   private Map<Integer, Boolean> gameBoard;
 
   FleetGenerator() {
-    gameBoard = new HashMap<>();
-    IntStream.range(0, 100).forEach(index -> gameBoard.put(index, true));
+    this.gameBoard = new HashMap<>();
+    int firstFieldIndex = 0;
+    int lastFieldIndex = 100;
+    IntStream.range(firstFieldIndex, lastFieldIndex).forEach(i -> gameBoard.put(i, true));
   }
 
   Fleet generateFleet() {
     List<Integer> shipsToPlace = Arrays.asList(4, 3, 3, 2, 2, 2, 1, 1, 1, 1);
     List<Ship> ships = new ArrayList<>();
-    shipsToPlace.forEach(i -> ships.add(generateShip(i)));
+    shipsToPlace.forEach(i -> ships.add(this.generateShip(i)));
     return Fleet.ofShips(ships);
   }
 
   private Ship generateShip(final int shipLength) {
-    List<Integer> ship = new ArrayList<>();
-    boolean isVerticalOrientation = generateOrientation();
-    int startIndex = generateStartIndex();
-    if (isVerticalOrientation) {
-      IntStream.range(0, shipLength).forEach(i -> ship.add(startIndex + i * 10));
+    int startIndex = this.generateStartIndex();
+    List<Integer> offeredShip = this.offerShipAsIndices(shipLength, startIndex);
+    if (this.isProperShip(offeredShip)) {
+      this.markAreaAsOccupied(offeredShip);
+      return Ship.ofMasts(this.convertToMasts(offeredShip));
     } else {
-      IntStream.range(0, shipLength).forEach(i -> ship.add(startIndex + i));
-    }
-    if (isWithinBoard(ship) && canBePut(ship)) {
-      markShip(ship);
-      return Ship.ofMasts(convertToMasts(ship));
-    } else {
-      return generateShip(shipLength);
+      return this.generateShip(shipLength);
     }
   }
 
-  private Mast[] convertToMasts(final List<Integer> ship) {
-    return ship
+  private List<Integer> offerShipAsIndices(final int shipLength, final int startIndex) {
+    List<Integer> shipAsIndices;
+    boolean verticalOrientation = this.isVerticalOrientation();
+    if (verticalOrientation) {
+      shipAsIndices = this.offerIndices(shipLength, startIndex, 10);
+    } else {
+      shipAsIndices = this.offerIndices(shipLength, startIndex, 1);
+    }
+    return shipAsIndices;
+  }
+
+  private List<Integer> offerIndices(int length, int startIndex, int step) {
+    List<Integer> indices = new ArrayList<>();
+    IntStream.range(0, length).forEach(i -> indices.add(startIndex + i * step));
+    return indices;
+  }
+
+  private Mast[] convertToMasts(final List<Integer> offeredShip) {
+    return offeredShip
         .stream()
         .map(obj -> Mast.ofIndex(String.valueOf(obj)))
         .collect(Collectors.toList())
-        .toArray(new Mast[ship.size()]);
+        .toArray(new Mast[offeredShip.size()]);
   }
 
-  private void markShip(final List<Integer> ship) {
-    Set<Integer> placeToMark = countNecessaryPlace(ship);
-    placeToMark
+  private void markAreaAsOccupied(final List<Integer> offeredShip) {
+    Set<Integer> areaToMark = this.determineAreaForShip(offeredShip);
+    areaToMark
         .stream()
-        .filter(idx -> gameBoard.containsKey(idx))
-        .forEach(idx -> gameBoard.put(idx, false));
+        .filter(i -> gameBoard.containsKey(i))
+        .forEach(i -> gameBoard.put(i, false));
   }
 
-  private boolean isWithinBoard(final List<Integer> ship) {
-    return ship
+  private boolean isWithinBoard(final List<Integer> offeredShip) {
+    return offeredShip
         .stream()
-        .allMatch(integer -> integer > 0 && integer < 100);
+        .allMatch(i -> i > 0 && i < 100);
   }
 
-  private boolean canBePut(final List<Integer> ship) {
-    return ship
+  private boolean canBePut(final List<Integer> offeredShip) {
+    return offeredShip
         .stream()
-        .allMatch(idx -> gameBoard.get(idx));
+        .allMatch(i -> gameBoard.get(i));
   }
 
-  private Set<Integer> countNecessaryPlace(final List<Integer> ship) {
-    Set<Integer> place = new HashSet<>();
-    ship.forEach(index -> place.addAll(addIndexAndNeighbours(index)));
-    return place;
+  private Set<Integer> determineAreaForShip(final List<Integer> offeredShip) {
+    Set<Integer> area = new HashSet<>();
+    offeredShip.forEach(index -> area.addAll(this.addIndexAndNeighbours(index)));
+    return area;
   }
 
   private List<Integer> addIndexAndNeighbours(final Integer index) {
-    List<Integer> place = new ArrayList<>();
-    place.add(index - 11);
-    place.add(index - 10);
-    place.add(index - 9);
-    place.add(index - 1);
-    place.add(index);
-    place.add(index + 1);
-    place.add(index + 9);
-    place.add(index + 10);
-    place.add(index + 11);
-    return place;
+    List<Integer> area = new ArrayList<>();
+    List<Integer> neighbours = Arrays.asList(-11, -10, -9, 0, -1, 1, 9, 10, 11);
+    neighbours.forEach(i -> area.add(index + i));
+    return area;
   }
 
   private int generateStartIndex() {
-    List<Integer> emptyIndexes = gameBoard
+    List<Integer> emptyIndices = gameBoard
         .entrySet()
         .stream()
         .filter(Map.Entry::getValue)
         .map(Map.Entry::getKey)
         .collect(Collectors.toList());
-
-    int index = new Random().nextInt(emptyIndexes.size());
-    return emptyIndexes.get(index);
+    int index = new Random().nextInt(emptyIndices.size());
+    return emptyIndices.get(index);
   }
 
-  private boolean generateOrientation() {
-    Random random = new Random();
-    return random.nextBoolean();
+  private boolean isVerticalOrientation() {
+    return new Random().nextBoolean();
+  }
+
+  private boolean isProperShip(final List<Integer> offeredShip) {
+    return this.isWithinBoard(offeredShip) && this.canBePut(offeredShip);
   }
 }

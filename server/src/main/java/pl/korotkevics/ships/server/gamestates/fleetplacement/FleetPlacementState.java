@@ -36,7 +36,7 @@ public class FleetPlacementState implements GameState {
     this.turnManager = new TurnManager(communicationBus.getFirstClient(),
         communicationBus.getSecondClient());
     this.fleetProcessor = new FleetPlacementProcessor(communicationBus);
-    fleets = new ArrayList<>(2);
+    fleets = new ArrayList<>();
   }
 
   /**
@@ -46,20 +46,20 @@ public class FleetPlacementState implements GameState {
    */
   @Override
   public GameState process() {
-    askPlayersForPlaceFleet();
-    placeFleet();
-    rest();
+    this.askPlayersForPlaceFleet();
+    this.placeFleet();
+    this.rest();
     return new PlayState(communicationBus, fleets);
   }
 
   private void placeFleet() {
-    fleets.add(fleetProcessor.placeFleet(turnManager.getCurrentPlayer()));
-    fleets.add(fleetProcessor.placeFleet(turnManager.getOtherPlayer()));
+    fleets.add(this.fleetProcessor.placeFleet(this.turnManager.getCurrentPlayer()));
+    fleets.add(this.fleetProcessor.placeFleet(this.turnManager.getOtherPlayer()));
   }
 
   private void askPlayersForPlaceFleet() {
     MessageSender messageSender = new MessageSender(communicationBus, logger);
-    messageSender.sendToAll(Header.PLACEMENT);
+    messageSender.sendToAll(Header.MANUAL_PLACEMENT);
   }
 
   private void rest() {

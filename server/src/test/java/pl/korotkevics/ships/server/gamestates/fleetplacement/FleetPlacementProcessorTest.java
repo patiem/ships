@@ -16,14 +16,14 @@ import static org.mockito.Mockito.when;
 @Test
 public class FleetPlacementProcessorTest {
 
-  public void shouldReturnReceivedFleetWhenTheHeaderIsPlacement() {
+  public void shouldReturnReceivedFleetWhenTheHeaderIsManualPlacement() {
     //given
     CommunicationBus communicationBus = mock(CommunicationBus.class);
     WrappedClient wrappedClient = mock(WrappedClient.class);
     Fleet fleet = mock(Fleet.class);
     Message message = new MessageBuilder()
         .withAuthor(Author.CLIENT)
-        .withHeader(Header.PLACEMENT)
+        .withHeader(Header.MANUAL_PLACEMENT)
         .withFleet(fleet)
         .build();
     when(communicationBus.receive(wrappedClient)).thenReturn(message);

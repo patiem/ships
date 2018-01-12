@@ -1,5 +1,6 @@
 package pl.korotkevics.ships.client.client;
 
+import javafx.scene.control.Button;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.io.Receiver;
@@ -11,7 +12,6 @@ import pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonSender;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
-import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -142,7 +142,7 @@ public class Client implements Runnable {
     try {
       Sender sender = new JsonSender(clientSocket.getOutputStream());
       Message fleetMsg = new MessageBuilder()
-          .withHeader(Header.PLACEMENT)
+          .withHeader(Header.MANUAL_PLACEMENT)
           .withAuthor(Author.CLIENT)
           .withFleet(fleet)
           .build();

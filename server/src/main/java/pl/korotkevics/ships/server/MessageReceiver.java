@@ -16,23 +16,48 @@ public class MessageReceiver {
   private CommunicationBus communicationBus;
   private Message lastMessage;
 
+  /**
+   * Creates instance of MessageReceiver witch accepts client messages.
+   *
+   * @param communicationBus client server communication bus.
+   */
   public MessageReceiver(final CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
   }
 
-  public void receive(final WrappedClient player) {
-    lastMessage = communicationBus.receive(player);
+  /**
+   * Receives message from given player.
+   *
+   * @param wrappedClient current playing player.
+   */
+  public void receive(final WrappedClient wrappedClient) {
+    lastMessage = communicationBus.receive(wrappedClient);
     logger.info(lastMessage);
   }
 
+  /**
+   * Checks if last received message was a shot.
+   *
+   * @return true if last message has header equals to SHOT.
+   */
   public boolean isAShot() {
     return Header.SHOT.equals(lastMessage.getHeader());
   }
 
+  /**
+   * Return last received message.
+   *
+   * @return message from player.
+   */
   public Message getMessage() {
     return lastMessage;
   }
 
+  /**
+   * Checks if last received message was a shot.
+   *
+   * @return true if last message has header equals to RANDOM_PLACEMENT.
+   */
   public boolean isRandomPlacement() {
     return Header.RANDOM_PLACEMENT.equals(lastMessage.getHeader());
   }

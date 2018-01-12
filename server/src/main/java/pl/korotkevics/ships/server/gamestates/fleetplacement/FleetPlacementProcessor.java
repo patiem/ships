@@ -29,12 +29,12 @@ class FleetPlacementProcessor {
     this.messageReceiver = new MessageReceiver(communicationBus);
   }
 
-  Fleet placeFleet(final WrappedClient player) {
-    messageReceiver.receive(player);
-    if (messageReceiver.isRandomPlacement()) {
+  Fleet placeFleet(final WrappedClient wrappedClient) {
+    this.messageReceiver.receive(wrappedClient);
+    if (this.messageReceiver.isRandomPlacement()) {
       FleetGenerator generator = new FleetGenerator();
       Fleet fleet = generator.generateFleet();
-      send(player, fleet);
+      this.send(wrappedClient, fleet);
       logger.info(fleet.toString());
       return fleet;
     } else {
@@ -42,17 +42,17 @@ class FleetPlacementProcessor {
     }
   }
 
-  private void send(final WrappedClient player, Fleet fleet) {
+  private void send(final WrappedClient wrappedClient, final Fleet fleet) {
     MessageSender messageSender = new MessageSender(communicationBus, logger);
     final Message message = new MessageBuilder()
         .withAuthor(Author.SERVER)
         .withHeader(Header.RANDOM_PLACEMENT)
         .withFleet(fleet)
         .build();
-    messageSender.send(player, message);
+    messageSender.send(wrappedClient, message);
   }
 
   private Fleet receiveFloat() {
-    return messageReceiver.getMessage().getFleet();
+    return this.messageReceiver.getMessage().getFleet();
   }
 }

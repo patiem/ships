@@ -36,8 +36,8 @@ public class ShotHandlerTest {
   void before() {
     initMocks(this);
     Fleet fleet = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"), Mast.ofIndex("2"), Mast.ofIndex("1"))));
-    Fleet fleet2 = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("11"), Mast.ofIndex("12"), Mast.ofIndex("13"))));
-    fleets = Arrays.asList(fleet, fleet2);
+    Fleet secondFleet = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("11"), Mast.ofIndex("12"), Mast.ofIndex("13"))));
+    fleets = Arrays.asList(fleet, secondFleet);
     shotHandler = new ShotHandler(communicationBus, turnManager, fleets);
   }
 

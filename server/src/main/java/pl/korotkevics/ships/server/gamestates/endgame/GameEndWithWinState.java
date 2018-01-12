@@ -57,14 +57,15 @@ public class GameEndWithWinState implements GameState {
   }
 
   private void handleEndOfGame() {
-    messageSender.send(turnManager.getCurrentPlayer(), Header.WIN);
-    messageSender.send(turnManager.getOtherPlayer(), Header.LOSE);
-    rest();
+    this.messageSender.send(this.turnManager.getCurrentPlayer(), Header.WIN);
+    this.messageSender.send(this.turnManager.getOtherPlayer(), Header.LOSE);
+    this.rest();
   }
 
   private void rest() {
+    final int restTime = 100;
     try {
-      Thread.sleep(100);
+      Thread.sleep(restTime);
     } catch (InterruptedException e) {
       logger.error(e.getMessage());
     }
