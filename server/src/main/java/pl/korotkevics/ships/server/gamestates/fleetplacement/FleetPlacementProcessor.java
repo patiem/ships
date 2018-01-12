@@ -37,9 +37,8 @@ class FleetPlacementProcessor {
       this.send(wrappedClient, fleet);
       logger.info(fleet.toString());
       return fleet;
-    } else {
-      return receiveFloat();
     }
+    return receiveFloat();
   }
 
   private void send(final WrappedClient wrappedClient, final Fleet fleet) {
