@@ -46,7 +46,7 @@ public class MessageHandlerTest {
     messageHandler.handle(message);
 
     //then
-    verify(connectionEndTrigger, times(1)).fire(messageHandler.getCurrentEventButton(), message.getStatement());
+    verify(connectionEndTrigger, times(1)).fire(messageHandler.getCurrentEventButton(), message);
   }
 
   @Test
