@@ -1,6 +1,9 @@
 package pl.korotkevics.ships.client.gui.controllers;
 
+import javafx.scene.effect.DropShadow;
 import pl.korotkevics.ships.client.client.Client;
+import pl.korotkevics.ships.client.gui.events.RandomPlacementEvent;
+import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
 import pl.korotkevics.ships.client.gui.util.GridToBoardConverter;
 import pl.korotkevics.ships.client.gui.util.ShipOrientation;
 import pl.korotkevics.ships.client.validators.ShipPlacementValidator;
@@ -56,6 +59,9 @@ public class FleetPlacementController {
   private Button buttonReady;
 
   @FXML
+  private Button buttonRandom;
+
+  @FXML
   private Button eventButton;
 
   @FXML
@@ -81,6 +87,7 @@ public class FleetPlacementController {
   private ShipOrientation shipOrientation;
 
   private boolean shipPlacementSuccess;
+  private boolean randomShipPlacement;
 
   //Events Handlers
   private EventHandler<MouseEvent> onMouseEnteredOnShip =
@@ -157,6 +164,14 @@ public class FleetPlacementController {
           shipOrientation = ShipOrientation.valueOf((String) newValue);
           logger.info(newValue);
         });
+
+    buttonRandom.setOnAction(event -> askForRandomFleet());
+    DropShadow shadow = new DropShadow();
+    buttonRandom.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonRandom.setEffect(shadow));
+    buttonRandom.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonRandom.setEffect(null));
+    buttonReady.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonReady.setEffect(shadow));
+    buttonReady.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonReady.setEffect(null));
+    eventButton.addEventHandler(RandomPlacementEvent.RANDOM_PLACEMENT_EVENT, event -> getRandomFleet());
   }
 
   private void initializeBoard() {
@@ -340,7 +355,9 @@ public class FleetPlacementController {
 
   private void loadGameWindow() {
     try {
-      getClient().sendFleet(Fleet.ofShips(ships));
+      if(!randomShipPlacement) {
+        getClient().sendFleet(Fleet.ofShips(ships));
+      }
 
       final String gameWindowUrl = "/fxml/gameWindow.fxml";
       final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));
@@ -370,5 +387,16 @@ public class FleetPlacementController {
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
+  }
+
+  private void askForRandomFleet() {
+    getClient().askForRandomFleet();
+    this.randomShipPlacement = true;
+    buttonRandom.setDisable(true);
+  }
+
+  private void getRandomFleet() {
+    buttonReady.setDisable(false);
+    loadGameWindow();
   }
 }

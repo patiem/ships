@@ -37,6 +37,7 @@ public class MessageHandlerBuilder {
     triggers.put(Header.SHIP_DESTRUCTED, new HitShotTrigger());
     triggers.put(Header.WIN, new WinTrigger());
     triggers.put(Header.LOSE, new LoseTrigger());
+    triggers.put(Header.RANDOM_PLACEMENT, new RandomPlacementTrigger());
     return this;
   }
 
