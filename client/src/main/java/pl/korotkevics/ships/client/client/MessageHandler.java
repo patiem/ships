@@ -51,7 +51,7 @@ class MessageHandler {
       return;
     }
     checkIfEndWillBeTriggered(message);
-    triggers.get(header).fire(eventButton, message.getStatement());
+    triggers.get(header).fire(eventButton, message);
   }
 
   private void checkIfEndWillBeTriggered(Message message) {

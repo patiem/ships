@@ -3,6 +3,7 @@ package pl.korotkevics.ships.client.client;
 import pl.korotkevics.ships.client.gui.events.LooseEvent;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
+import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
 /**
  * Enable to fire event reacting to lose the game.
@@ -13,7 +14,7 @@ import javafx.scene.control.Button;
 class LoseTrigger implements EventTrigger {
 
   @Override
-  public void fire(Button button, String messageStatement) {
+  public void fire(Button button, Message message) {
     Platform.runLater(() -> button.fireEvent(new LooseEvent()));
   }
 }

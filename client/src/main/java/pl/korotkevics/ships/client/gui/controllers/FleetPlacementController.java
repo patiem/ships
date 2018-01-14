@@ -171,7 +171,8 @@ public class FleetPlacementController {
     buttonRandom.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonRandom.setEffect(null));
     buttonReady.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonReady.setEffect(shadow));
     buttonReady.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonReady.setEffect(null));
-    eventButton.addEventHandler(RandomPlacementEvent.RANDOM_PLACEMENT_EVENT, event -> getRandomFleet());
+    eventButton.addEventHandler(RandomPlacementEvent.RANDOM_PLACEMENT_EVENT,
+        event -> getRandomFleet(event.getFleet()));
   }
 
   private void initializeBoard() {
@@ -395,8 +396,9 @@ public class FleetPlacementController {
     buttonRandom.setDisable(true);
   }
 
-  private void getRandomFleet() {
+  private void getRandomFleet(Fleet fleet) {
     buttonReady.setDisable(false);
+    //TODO: Fleet does not have getters!
     loadGameWindow();
   }
 }
