@@ -16,6 +16,7 @@ import java.util.stream.IntStream;
  */
 class FleetGenerator {
 
+  private static final int BOARD_WIDTH = 10;
   private Map<Integer, FieldState> gameBoard;
 
   FleetGenerator() {
@@ -34,9 +35,8 @@ class FleetGenerator {
   }
 
   private Ship generateShip(final int shipLength) {
-    int startIndex = this.generateStartIndex();
-    List<Integer> offeredShip = this.offerShipAsIndices(shipLength, startIndex);
-    if (this.isProperShip(offeredShip)) {
+    List<Integer> offeredShip = this.offerShipAsIndices(shipLength);
+    if (this.canBePut(offeredShip)) {
       this.markAreaAsOccupied(offeredShip);
       return Ship.ofMasts(this.convertToMasts(offeredShip));
     } else {
@@ -44,20 +44,29 @@ class FleetGenerator {
     }
   }
 
-  private List<Integer> offerShipAsIndices(final int shipLength, final int startIndex) {
+  private List<Integer> offerShipAsIndices(final int shipLength) {
+    int startIndex = this.generateStartIndex();
     List<Integer> shipAsIndices;
     boolean verticalOrientation = this.isVerticalOrientation();
     if (verticalOrientation) {
-      shipAsIndices = this.offerIndices(shipLength, startIndex, 10);
+      shipAsIndices = this.offerIndices(shipLength, startIndex, BOARD_WIDTH);
+      if (!isWithinBoardVertical(shipAsIndices)) {
+        return offerShipAsIndices(shipLength);
+      }
     } else {
       shipAsIndices = this.offerIndices(shipLength, startIndex, 1);
+      if (!isWithinBoardHorizontal(shipAsIndices)) {
+        return offerShipAsIndices(shipLength);
+      }
     }
+    System.out.println(shipAsIndices);
     return shipAsIndices;
   }
 
   private List<Integer> offerIndices(int length, int startIndex, int step) {
     List<Integer> indices = new ArrayList<>();
-    IntStream.range(0, length).forEach(i -> indices.add(startIndex + i * step));
+    IntStream.range(0, length)
+        .forEach(i -> indices.add(startIndex + i * step));
     return indices;
   }
 
@@ -77,7 +86,14 @@ class FleetGenerator {
         .forEach(i -> gameBoard.put(i, FieldState.OCCUPIED));
   }
 
-  private boolean isWithinBoard(final List<Integer> offeredShip) {
+  private boolean isWithinBoardHorizontal(final List<Integer> offeredShip) {
+    int firstShipIndex = offeredShip.get(0) / BOARD_WIDTH;
+    return offeredShip
+        .stream()
+        .allMatch(i -> i < 100 && i / BOARD_WIDTH == firstShipIndex);
+  }
+
+  private boolean isWithinBoardVertical(final List<Integer> offeredShip) {
     return offeredShip
         .stream()
         .allMatch(i -> i > 0 && i < 100);
@@ -117,7 +133,4 @@ class FleetGenerator {
     return new Random().nextBoolean();
   }
 
-  private boolean isProperShip(final List<Integer> offeredShip) {
-    return this.isWithinBoard(offeredShip) && this.canBePut(offeredShip);
-  }
 }
