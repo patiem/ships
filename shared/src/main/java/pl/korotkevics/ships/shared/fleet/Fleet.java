@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +34,7 @@ public class Fleet {
    * @param ships - list of ships
    * @return Fleet
    */
-  public static Fleet ofShips(List<Ship> ships) {
+  public static Fleet ofShips(final List<Ship> ships) {
     Map<Mast, Ship> fleet = new HashMap<>();
     ships.forEach(ship -> ship.getMasts().forEach(mast -> fleet.put(mast, ship)));
     return new Fleet(fleet);
@@ -57,7 +58,7 @@ public class Fleet {
    * @param mast attacked
    * @return Damage caused
    */
-  public Damage handleDamage(Mast mast) {
+  public Damage handleDamage(final Mast mast) {
     if (!this.fleet.containsKey(mast)) {
       return Damage.MISSED;
     }
@@ -67,5 +68,11 @@ public class Fleet {
       return Damage.DESTRUCTED;
     }
     return Damage.HIT;
+  }
+  
+  public List<Integer> toIntegerList() {
+    List<Integer> list = new ArrayList<>();
+    this.fleet.forEach((k,v) -> list.add(Integer.valueOf(k.toString())));
+    return list;
   }
 }
