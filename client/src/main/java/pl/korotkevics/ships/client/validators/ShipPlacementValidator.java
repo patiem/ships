@@ -62,8 +62,7 @@ public class ShipPlacementValidator {
   }
 
   private boolean isShipAboveShip() {
-    return (shipStartIndex + (mastCount - 1) ) % BOARD_SIZE != 9 &&
-        shipStartIndex + mastCount < board.length
+    return ! isInLastRow()
         && IntStream.iterate(shipStartIndex - BOARD_SIZE , i-> i + BOARD_SIZE)
         .limit(3)
         .filter(i-> i > 0)
@@ -71,13 +70,21 @@ public class ShipPlacementValidator {
         .anyMatch(i -> board[i + mastCount].equals(FieldState.OCCUPIED));
   }
 
+  private boolean isInLastRow() {
+    return (shipStartIndex + (mastCount - 1) ) % BOARD_SIZE == 9;
+  }
+
   private boolean isShipBelowShip() {
-    return shipStartIndex % BOARD_SIZE != 0 && shipStartIndex - 1 > 0
+    return ! isInFirstRow() && shipStartIndex - 1 > 0
         && IntStream.iterate(shipStartIndex - BOARD_SIZE , i-> i + BOARD_SIZE)
         .limit(3)
         .filter(i-> i - 1 > 0)
         .filter(i-> i < board.length)
         .anyMatch(i -> board[i - 1].equals(FieldState.OCCUPIED));
+  }
+
+  private boolean isInFirstRow() {
+    return shipStartIndex % BOARD_SIZE == 0;
   }
 
   private boolean isShipOnTheRight() {
@@ -121,7 +128,7 @@ public class ShipPlacementValidator {
   }
 
   private boolean isShipAboveShipHorizontal() {
-    return shipStartIndex % BOARD_SIZE != 0
+    return ! isInFirstRow()
         && IntStream.iterate(shipStartIndex - BOARD_SIZE, n -> n + BOARD_SIZE)
         .limit(mastCount + 2L)
         .filter(n -> n > 0)
