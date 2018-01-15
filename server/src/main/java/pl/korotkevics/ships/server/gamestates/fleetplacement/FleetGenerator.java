@@ -22,7 +22,8 @@ class FleetGenerator {
     this.gameBoard = new HashMap<>();
     int firstFieldIndex = 0;
     int lastFieldIndex = 100;
-    IntStream.range(firstFieldIndex, lastFieldIndex).forEach(i -> gameBoard.put(i, FieldState.EMPTY));
+    IntStream.range(firstFieldIndex, lastFieldIndex)
+        .forEach(i -> gameBoard.put(i, FieldState.EMPTY));
   }
 
   Fleet generateFleet() {

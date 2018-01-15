@@ -1,17 +1,17 @@
 package pl.korotkevics.ships.server.gamestates.play;
 
+import pl.korotkevics.ships.server.CommunicationBus;
 import pl.korotkevics.ships.server.MessageReceiver;
+import pl.korotkevics.ships.server.MessageSender;
+import pl.korotkevics.ships.server.TurnManager;
+import pl.korotkevics.ships.server.gamestates.GameState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWalkoverState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWinState;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
-import pl.korotkevics.ships.server.CommunicationBus;
-import pl.korotkevics.ships.server.MessageSender;
-import pl.korotkevics.ships.server.TurnManager;
-import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWalkoverState;
-import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWinState;
-import pl.korotkevics.ships.server.gamestates.GameState;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class PlayState implements GameState {
    * Processes gameplay until it has a winner.
    *
    * @return GameState, depends on game flow it can be GameEndWithWalkoverState
-   *         or GameEndWithWinState.
+   * or GameEndWithWinState.
    */
   @Override
   public GameState process() {

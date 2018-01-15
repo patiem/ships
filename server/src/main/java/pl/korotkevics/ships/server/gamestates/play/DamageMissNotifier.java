@@ -1,9 +1,9 @@
 package pl.korotkevics.ships.server.gamestates.play;
 
-import pl.korotkevics.ships.shared.infra.communication.api.Message;
-import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.server.MessageSender;
 import pl.korotkevics.ships.server.TurnManager;
+import pl.korotkevics.ships.shared.infra.communication.api.Message;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 
 /**
  * Notification for client that his shot missed a target.
@@ -12,7 +12,7 @@ import pl.korotkevics.ships.server.TurnManager;
  * @since 2018-01-02
  */
 class DamageMissNotifier extends DamageNotifier {
-  DamageMissNotifier(final MessageSender messageSender,final TurnManager turnManager) {
+  DamageMissNotifier(final MessageSender messageSender, final TurnManager turnManager) {
     super(messageSender, turnManager);
     this.header = Header.MISS;
   }

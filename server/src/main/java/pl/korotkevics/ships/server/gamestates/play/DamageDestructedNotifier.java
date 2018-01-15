@@ -1,8 +1,8 @@
 package pl.korotkevics.ships.server.gamestates.play;
 
-import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.server.MessageSender;
 import pl.korotkevics.ships.server.TurnManager;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 
 /**
  * Notification for player that he destroyed a ship.
@@ -11,7 +11,7 @@ import pl.korotkevics.ships.server.TurnManager;
  * @since 2018-01-02
  */
 class DamageDestructedNotifier extends DamageNotifier {
-  DamageDestructedNotifier(final MessageSender messageSender,final TurnManager turnManager) {
+  DamageDestructedNotifier(final MessageSender messageSender, final TurnManager turnManager) {
     super(messageSender, turnManager);
     this.header = Header.SHIP_DESTRUCTED;
   }
