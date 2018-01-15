@@ -1,6 +1,8 @@
 package pl.korotkevics.ships.client.gui.controllers;
 
+import javafx.scene.image.ImageView;
 import pl.korotkevics.ships.client.client.Client;
+import pl.korotkevics.ships.client.localization.Locale;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import javafx.fxml.FXML;
@@ -10,6 +12,8 @@ import javafx.scene.layout.Pane;
 import lombok.Getter;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ResourceBundle;
 
 /**
  * Main window, which contains title etc. controller.
@@ -27,6 +31,14 @@ public class MainController {
   @Getter
   private Client client;
 
+  @FXML
+  private ImageView imEnglandFlag;
+
+  @FXML
+  private ImageView imPolandFlag;
+
+  private ResourceBundle resourceBundle = ResourceBundle.getBundle(Locale.ENGLISH.toString());
+
   /**
    * Initialize main controller.
    * @param client - Instance of Client, which communicate with server.
@@ -35,6 +47,9 @@ public class MainController {
   public void initialize(final Client client) {
     final String connectWindowUrl = "/fxml/connectWindow.fxml";
     this.client = client;
+
+    this.imEnglandFlag.setOnMouseClicked(e -> ResourceBundle.getBundle(Locale.ENGLISH.toString()));
+    this.imPolandFlag.setOnMouseClicked(e -> ResourceBundle.getBundle(Locale.POLISH.toString()));
 
     try {
       final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowUrl));
@@ -46,4 +61,6 @@ public class MainController {
       logger.error(e.getMessage());
     }
   }
+
+
 }
