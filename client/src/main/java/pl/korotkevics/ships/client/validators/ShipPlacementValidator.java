@@ -25,10 +25,10 @@ public class ShipPlacementValidator {
    * @return true if it is valid, false if not.
    */
   public boolean isPlacementValid() {
-    return !isOutOfRange()
+    return !this.isOutOfRange()
         && (shipOrientation.equals(ShipOrientation.HORIZONTAL)
-        ? checkForHorizontal()
-        : checkForVertical());
+        ? this.checkForHorizontal()
+        : this.checkForVertical());
   }
 
   private boolean checkIfBreakingThroughBorders() {
@@ -37,9 +37,9 @@ public class ShipPlacementValidator {
   }
 
   private boolean checkForVertical() {
-    return !checkIfBreakingThroughBorders()
-        && !isShipOnShip()
-        && !isShipTouchOtherShip();
+    return !this.checkIfBreakingThroughBorders()
+        && !this.isShipOnShip()
+        && !this.isShipTouchOtherShip();
   }
 
   private boolean isOutOfRange() {
@@ -55,15 +55,15 @@ public class ShipPlacementValidator {
   }
 
   private boolean isShipTouchOtherShip() {
-    return isShipAboveShip()
-        || isShipBelowShip()
-        || isShipOnTheRight()
-        || isShipOnTheLeft();
+    return this.isShipAboveShip()
+        || this.isShipBelowShip()
+        || this.isShipOnTheRight()
+        || this.isShipOnTheLeft();
   }
 
   private boolean isShipAboveShip() {
     int checkWidthInCell = 3;
-    return !isInLastRow()
+    return !this.isInLastRow()
         && IntStream.iterate(shipStartIndex - BOARD_SIZE , i -> i + BOARD_SIZE)
         .limit(checkWidthInCell)
         .filter(i -> i > 0)
@@ -78,7 +78,7 @@ public class ShipPlacementValidator {
 
   private boolean isShipBelowShip() {
     int checkWidthInCell = 3;
-    return !isInFirstRow() && shipStartIndex - 1 > 0
+    return !this.isInFirstRow() && shipStartIndex - 1 > 0
         && IntStream.iterate(shipStartIndex - BOARD_SIZE , i -> i + BOARD_SIZE)
         .limit(checkWidthInCell)
         .filter(i -> i - 1 > 0)
@@ -104,15 +104,15 @@ public class ShipPlacementValidator {
   }
 
   private boolean checkForHorizontal() {
-    return !isShipOnShipHorizontal()
-        && !isShipTouchOtherShipHorizontal();
+    return !this.isShipOnShipHorizontal()
+        && !this.isShipTouchOtherShipHorizontal();
   }
 
   private boolean isShipTouchOtherShipHorizontal() {
-    return isShipBelowShipHorizontal()
-        || isShipAboveShipHorizontal()
-        || isShipOnTheRightHorizontal()
-        || isShipOnTheLeftHorizontal();
+    return this.isShipBelowShipHorizontal()
+        || this.isShipAboveShipHorizontal()
+        || this.isShipOnTheRightHorizontal()
+        || this.isShipOnTheLeftHorizontal();
   }
 
   private boolean isShipOnShipHorizontal() {
@@ -131,7 +131,7 @@ public class ShipPlacementValidator {
   }
 
   private boolean isShipAboveShipHorizontal() {
-    return !isInFirstRow()
+    return !this.isInFirstRow()
         && IntStream.iterate(shipStartIndex - BOARD_SIZE, n -> n + BOARD_SIZE)
         .limit(mastCount + 2L)
         .filter(n -> n > 0)
