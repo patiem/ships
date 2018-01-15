@@ -32,8 +32,8 @@ public class ShipPlacementValidator {
   }
 
   private boolean checkIfPassingToOtherSide() {
-    int startIndexMod = shipStartIndex % BOARD_SIZE;
-    return (shipStartIndex + (mastCount - 1)) % BOARD_SIZE < startIndexMod;
+    int startIndexInColumn = shipStartIndex % BOARD_SIZE;
+    return startIndexInColumn + (mastCount - 1) >= BOARD_SIZE;
   }
 
   private boolean checkForVertical() {
@@ -62,7 +62,7 @@ public class ShipPlacementValidator {
   }
 
   private boolean isShipAboveShip() {
-    return (shipStartIndex ) % BOARD_SIZE != 9 &&
+    return (shipStartIndex + (mastCount - 1) ) % BOARD_SIZE != 9 &&
         shipStartIndex + mastCount < board.length
         && IntStream.iterate(shipStartIndex - BOARD_SIZE , i-> i + BOARD_SIZE)
         .limit(3)
