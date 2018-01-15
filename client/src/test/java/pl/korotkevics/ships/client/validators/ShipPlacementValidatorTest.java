@@ -24,7 +24,8 @@ public class ShipPlacementValidatorTest {
         {ShipOrientation.VERTICAL, 99, 1, produceBoard(Arrays.asList(20,30,40))},
         {ShipOrientation.HORIZONTAL, 99, 1, produceBoard(Arrays.asList(20,30,40))},
         {ShipOrientation.HORIZONTAL, 79, 1, produceBoard(Arrays.asList(80,90,70,60))},
-        {ShipOrientation.VERTICAL, 79, 1, produceBoard(Arrays.asList(80,90,70,60))}
+        {ShipOrientation.VERTICAL, 79, 1, produceBoard(Arrays.asList(80,90,70,60))},
+        {ShipOrientation.VERTICAL, 77, 3, produceBoard(Arrays.asList(70,80,90))}
     };
   }
 
@@ -37,6 +38,9 @@ public class ShipPlacementValidatorTest {
         {ShipOrientation.VERTICAL, 25, 2, produceBoard(Arrays.asList(15,1,2,3))},
         {ShipOrientation.HORIZONTAL, 25, 2, produceBoard(Arrays.asList(24,1,2,3))},
         {ShipOrientation.VERTICAL, 25, 2, produceBoard(Arrays.asList(27,1,2,3))},
+
+        {ShipOrientation.HORIZONTAL, 70, 4, produceBoard(Arrays.asList(1))},
+        {ShipOrientation.VERTICAL, 98, 4, produceBoard(Arrays.asList(1))},
         //corners
         {ShipOrientation.VERTICAL, 25, 2, produceBoard(Arrays.asList(14,1,2,3))},
         {ShipOrientation.VERTICAL, 25, 2, produceBoard(Arrays.asList(34,1,2,3))},
@@ -94,7 +98,7 @@ public class ShipPlacementValidatorTest {
   }
 
   @Test
-  void shipNotPassingToOtherSideShouldCauseInvalidPlacement() {
+  void shipNotPassingToOtherSideShouldCauseValidPlacement() {
     //given
     ShipOrientation shipOrientation = ShipOrientation.VERTICAL;
     int shipStartingIndex = 6;
