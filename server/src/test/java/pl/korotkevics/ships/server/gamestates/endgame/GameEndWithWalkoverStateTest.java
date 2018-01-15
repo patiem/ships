@@ -1,9 +1,10 @@
-package pl.korotkevics.ships.server.gamestates;
+package pl.korotkevics.ships.server.gamestates.endgame;
 
-import pl.korotkevics.ships.server.CommunicationBus;
 import org.mockito.Mock;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pl.korotkevics.ships.server.CommunicationBus;
+import pl.korotkevics.ships.server.gamestates.GameState;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;

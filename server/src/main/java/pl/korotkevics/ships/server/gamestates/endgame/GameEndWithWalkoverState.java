@@ -1,5 +1,6 @@
-package pl.korotkevics.ships.server.gamestates;
+package pl.korotkevics.ships.server.gamestates.endgame;
 
+import pl.korotkevics.ships.server.gamestates.GameState;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import pl.korotkevics.ships.server.CommunicationBus;

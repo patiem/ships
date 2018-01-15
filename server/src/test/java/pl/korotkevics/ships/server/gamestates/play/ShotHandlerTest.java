@@ -1,5 +1,10 @@
 package pl.korotkevics.ships.server.gamestates.play;
 
+import org.mockito.Mock;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import pl.korotkevics.ships.server.CommunicationBus;
+import pl.korotkevics.ships.server.TurnManager;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.fleet.Mast;
 import pl.korotkevics.ships.shared.fleet.Ship;
@@ -7,15 +12,10 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
-import pl.korotkevics.ships.server.CommunicationBus;
-import pl.korotkevics.ships.server.TurnManager;
-import org.mockito.Mock;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -33,11 +33,11 @@ public class ShotHandlerTest {
   private CommunicationBus communicationBus;
 
   @BeforeMethod
-  void before(){
+  void before() {
     initMocks(this);
     Fleet fleet = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"), Mast.ofIndex("2"), Mast.ofIndex("1"))));
-    Fleet fleet2 = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("11"), Mast.ofIndex("12"), Mast.ofIndex("13"))));
-    fleets = Arrays.asList(fleet,fleet2);
+    Fleet secondFleet = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("11"), Mast.ofIndex("12"), Mast.ofIndex("13"))));
+    fleets = Arrays.asList(fleet, secondFleet);
     shotHandler = new ShotHandler(communicationBus, turnManager, fleets);
   }
 
@@ -48,7 +48,7 @@ public class ShotHandlerTest {
     boolean result = shotHandler.handle(true, message);
 
     //then
-    assertEquals(fleets.get(1).isDefeated(),result);
+    assertEquals(fleets.get(1).isDefeated(), result);
     assertFalse(result);
     verify(turnManager, times(0)).switchPlayer();
   }
@@ -60,7 +60,7 @@ public class ShotHandlerTest {
     boolean result = shotHandler.handle(false, message);
 
     //then
-    assertEquals(fleets.get(1).isDefeated(),result);
+    assertEquals(fleets.get(1).isDefeated(), result);
     assertFalse(result);
     verify(turnManager, times(0)).switchPlayer();
   }
@@ -72,7 +72,7 @@ public class ShotHandlerTest {
     boolean result = shotHandler.handle(true, message);
 
     //then
-    assertEquals(fleets.get(1).isDefeated(),result);
+    assertEquals(fleets.get(1).isDefeated(), result);
     assertFalse(result);
     verify(turnManager, times(1)).switchPlayer();
   }
@@ -90,7 +90,7 @@ public class ShotHandlerTest {
     boolean result = shotHandler.handle(true, thirdMessage);
 
     //then
-    assertEquals(fleets.get(1).isDefeated(),result);
+    assertEquals(fleets.get(1).isDefeated(), result);
     assertTrue(result);
     verify(turnManager, times(0)).switchPlayer();
   }

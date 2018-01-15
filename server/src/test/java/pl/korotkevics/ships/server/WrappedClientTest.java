@@ -1,9 +1,9 @@
 package pl.korotkevics.ships.server;
 
-import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
+import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
 
 import java.io.IOException;
 import java.net.Socket;

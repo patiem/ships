@@ -1,20 +1,23 @@
-package pl.korotkevics.ships.server.gamestates;
+package pl.korotkevics.ships.server.gamestates.fleetplacement;
 
+import org.testng.annotations.Test;
+import pl.korotkevics.ships.server.CommunicationBus;
+import pl.korotkevics.ships.server.WrappedClient;
+import pl.korotkevics.ships.server.gamestates.GameState;
+import pl.korotkevics.ships.server.gamestates.play.PlayState;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.fleet.Mast;
 import pl.korotkevics.ships.shared.fleet.Ship;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
-import pl.korotkevics.ships.server.CommunicationBus;
-import pl.korotkevics.ships.server.WrappedClient;
-import pl.korotkevics.ships.server.gamestates.play.PlayState;
-import org.testng.annotations.Test;
 
 import java.util.Arrays;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+
 @Test
 public class FleetPlacementStateTest {
 

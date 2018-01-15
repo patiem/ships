@@ -1,10 +1,10 @@
 package pl.korotkevics.ships.server;
 
+import org.testng.annotations.Test;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
-import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 

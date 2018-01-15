@@ -1,12 +1,14 @@
-package pl.korotkevics.ships.server.gamestates;
+package pl.korotkevics.ships.server.gamestates.endgame;
 
-import pl.korotkevics.ships.server.CommunicationBus;
-import pl.korotkevics.ships.server.TurnManager;
 import org.mockito.Mock;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pl.korotkevics.ships.server.CommunicationBus;
+import pl.korotkevics.ships.server.TurnManager;
+import pl.korotkevics.ships.server.gamestates.GameState;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -22,7 +24,7 @@ public class GameEndWithWinStateTest {
   private TurnManager turnManager;
 
   @BeforeClass
-  private void before(){
+  private void before() {
     initMocks(this);
     gameEndWithWinState = new GameEndWithWinState(communicationBus, turnManager);
   }
