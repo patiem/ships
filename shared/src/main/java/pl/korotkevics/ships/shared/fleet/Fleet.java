@@ -13,6 +13,7 @@ import java.util.Map;
 
 /**
  * Fleet of ships.
+ *
  * @author Piotr Czyż, Sandor Korotkevics
  * @see Ship
  * @since 2017-12-19
@@ -21,17 +22,19 @@ import java.util.Map;
 @RequiredArgsConstructor(staticName = "fleet", access = AccessLevel.PRIVATE)
 @ToString
 public class Fleet {
-
+  
   private final Map<Mast, Ship> fleet;
-
+  
   private Fleet() {
     this.fleet = Collections.emptyMap();
   }
-
+  
   /**
    * Static factory method.
    *
-   * @param ships - list of ships
+   * @param ships
+   *     - list of ships
+   *
    * @return Fleet
    */
   public static Fleet ofShips(final List<Ship> ships) {
@@ -39,23 +42,25 @@ public class Fleet {
     ships.forEach(ship -> ship.getMasts().forEach(mast -> fleet.put(mast, ship)));
     return new Fleet(fleet);
   }
-
+  
   public static Fleet empty() {
     return new Fleet();
   }
-
+  
   /**
    * @return true if a fleet is defeated.
    */
   public boolean isDefeated() {
     return this.fleet.isEmpty();
   }
-
+  
   /**
    * It handles an attack
    * returning an output of such.
    *
-   * @param mast attacked
+   * @param mast
+   *     attacked
+   *
    * @return Damage caused
    */
   public Damage handleDamage(final Mast mast) {
@@ -70,9 +75,14 @@ public class Fleet {
     return Damage.HIT;
   }
   
+  /**
+   * It produces a list representation of Fleet.
+   *
+   * @return a list containing indices of Masts only.
+   */
   public List<Integer> toIntegerList() {
-    List<Integer> list = new ArrayList<>();
-    this.fleet.forEach((k,v) -> list.add(Integer.valueOf(k.toString())));
+    final List<Integer> list = new ArrayList<>();
+    this.fleet.forEach((k, v) -> list.add(Integer.valueOf(k.toString())));
     return list;
   }
 }
