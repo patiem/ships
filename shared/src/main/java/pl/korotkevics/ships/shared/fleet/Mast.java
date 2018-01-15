@@ -13,11 +13,15 @@ import lombok.ToString;
  */
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@ToString
 public class Mast {
   private String index;
-
+  
   public static Mast ofIndex(String index) {
     return new Mast(index);
+  }
+  
+  @Override
+  public String toString() {
+    return this.index;
   }
 }
