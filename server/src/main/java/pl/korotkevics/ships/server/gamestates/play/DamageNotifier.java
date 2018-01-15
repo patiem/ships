@@ -1,9 +1,9 @@
 package pl.korotkevics.ships.server.gamestates.play;
 
-import pl.korotkevics.ships.shared.infra.communication.api.Message;
-import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.server.MessageSender;
 import pl.korotkevics.ships.server.TurnManager;
+import pl.korotkevics.ships.shared.infra.communication.api.Message;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 
 /**
  * Notification about strength of shot.
@@ -16,7 +16,7 @@ abstract class DamageNotifier {
   protected TurnManager turnManager;
   protected Header header;
 
-  DamageNotifier(final MessageSender messageSender,final TurnManager turnManager) {
+  DamageNotifier(final MessageSender messageSender, final TurnManager turnManager) {
     this.messageSender = messageSender;
     this.turnManager = turnManager;
   }

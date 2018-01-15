@@ -1,5 +1,6 @@
 package pl.korotkevics.ships.server;
 
+import lombok.EqualsAndHashCode;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.io.Receiver;
 import pl.korotkevics.ships.shared.infra.communication.api.io.Sender;
@@ -7,7 +8,6 @@ import pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonReceiver
 import pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonSender;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
-import lombok.EqualsAndHashCode;
 
 import java.io.IOException;
 import java.net.Socket;

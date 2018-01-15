@@ -1,14 +1,14 @@
 package pl.korotkevics.ships.server.gamestates.play;
 
+import pl.korotkevics.ships.server.CommunicationBus;
+import pl.korotkevics.ships.server.MessageSender;
+import pl.korotkevics.ships.server.TurnManager;
 import pl.korotkevics.ships.shared.fleet.Damage;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.fleet.Mast;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
-import pl.korotkevics.ships.server.CommunicationBus;
-import pl.korotkevics.ships.server.MessageSender;
-import pl.korotkevics.ships.server.TurnManager;
 
 import java.util.List;
 
