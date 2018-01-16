@@ -1,17 +1,17 @@
 package pl.korotkevics.ships.server.gamestates.play;
 
+import pl.korotkevics.ships.server.CommunicationBus;
 import pl.korotkevics.ships.server.MessageReceiver;
+import pl.korotkevics.ships.server.MessageSender;
+import pl.korotkevics.ships.server.TurnManager;
+import pl.korotkevics.ships.server.gamestates.GameState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWalkoverState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWinState;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
-import pl.korotkevics.ships.server.CommunicationBus;
-import pl.korotkevics.ships.server.MessageSender;
-import pl.korotkevics.ships.server.TurnManager;
-import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWalkoverState;
-import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWinState;
-import pl.korotkevics.ships.server.gamestates.GameState;
 
 import java.util.List;
 
@@ -67,7 +67,17 @@ public class PlayState implements GameState {
   }
 
   private void sendYourTurnMessage() {
+    this.rest();
     MessageSender messageSender = new MessageSender(communicationBus, logger);
-    messageSender.send(turnManager.getCurrentPlayer(), Header.YOUR_TURN);
+    messageSender.send(this.turnManager.getCurrentPlayer(), Header.YOUR_TURN);
+  }
+
+  private void rest() {
+    final int restTime = 300;
+    try {
+      Thread.sleep(restTime);
+    } catch (InterruptedException e) {
+      logger.error(e.getMessage());
+    }
   }
 }

@@ -1,12 +1,12 @@
 package pl.korotkevics.ships.server.gamestates.connection;
 
+import pl.korotkevics.ships.server.CommunicationBus;
+import pl.korotkevics.ships.server.MessageSender;
 import pl.korotkevics.ships.server.gamestates.GameState;
 import pl.korotkevics.ships.server.gamestates.fleetplacement.FleetPlacementState;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
-import pl.korotkevics.ships.server.CommunicationBus;
-import pl.korotkevics.ships.server.MessageSender;
 
 /**
  * Represents state where player is waiting for opponent.

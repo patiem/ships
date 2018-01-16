@@ -20,8 +20,8 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
  */
 class FleetPlacementProcessor {
 
-  private Target logger = new SharedLogger(FleetPlacementProcessor.class);
   private final CommunicationBus communicationBus;
+  private Target logger = new SharedLogger(FleetPlacementProcessor.class);
   private MessageReceiver messageReceiver;
 
   FleetPlacementProcessor(final CommunicationBus communicationBus) {
