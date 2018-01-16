@@ -26,9 +26,9 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
 
-import static pl.korotkevics.ships.client.gui.controllers.MainController.DICTIONARY;
+import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.enrichFxmlLoader;
+import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.resolveLocalization;
 
 /**
  * Game window controller.
@@ -91,6 +91,11 @@ public class GameController {
     getClient().setEventTrigger(eventButton);
   }
   
+  private Client getClient() {
+    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
+    return mainController.getClient();
+  }
+  
   void initializeBoards(GridPane yourBoard) {
     final int margin = 50;
     final NumberBinding allRectanglesWidth = Bindings.min(this.yourBoard.heightProperty(), this.yourBoard.widthProperty().add(-margin));
@@ -113,19 +118,6 @@ public class GameController {
     }
     
     copyYourBoard(yourBoard);
-  }
-  
-  private void copyYourBoard(GridPane yourBoard) {
-    for (int i = 1; i < yourBoard.getChildren().size(); i++) {
-      if (((Rectangle) yourBoard.getChildren().get(i)).getFill() == Color.GREEN) {
-        ((Rectangle) this.yourBoard.getChildren().get(i)).setFill(Color.GREEN);
-      }
-    }
-  }
-  
-  private Client getClient() {
-    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
-    return mainController.getClient();
   }
   
   private Rectangle getYourRect(NumberBinding allRectanglesWidth, NumberBinding
@@ -156,6 +148,14 @@ public class GameController {
     return opponentRect;
   }
   
+  private void copyYourBoard(GridPane yourBoard) {
+    for (int i = 1; i < yourBoard.getChildren().size(); i++) {
+      if (((Rectangle) yourBoard.getChildren().get(i)).getFill() == Color.GREEN) {
+        ((Rectangle) this.yourBoard.getChildren().get(i)).setFill(Color.GREEN);
+      }
+    }
+  }
+  
   private void opponentWithdraw() {
     getClient().closeClient();
     loadWithdrawalScreen();
@@ -164,10 +164,9 @@ public class GameController {
   private void loadWithdrawalScreen() {
     try {
       final String opponentWithdrawUrl = "/fxml/opponentWithdraw.fxml";
-      final FXMLLoader opponentWithdrawLoader = new FXMLLoader(getClass().getResource
-                                                                              (opponentWithdrawUrl));
-      final ResourceBundle resourceBundle = ResourceBundle.getBundle(DICTIONARY);
-      opponentWithdrawLoader.setResources(resourceBundle);
+      final FXMLLoader opponentWithdrawLoader = enrichFxmlLoader(new FXMLLoader(getClass()
+                                                                                    .getResource
+                                                                                         (opponentWithdrawUrl)));
       final Parent opponentWithdraw = opponentWithdrawLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
       final int sceneHeight = 400;
@@ -256,7 +255,6 @@ public class GameController {
   }
   
   private void renderSpecificResult(String key) {
-    final ResourceBundle resourceBundle = ResourceBundle.getBundle(DICTIONARY);
-    this.winLabel.setText(resourceBundle.getString(key));
+    this.winLabel.setText(resolveLocalization(key));
   }
 }

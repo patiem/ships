@@ -16,6 +16,8 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import java.io.IOException;
 import java.util.Locale;
 
+import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.*;
+
 /**
  * Main window (containing title and similar) controller.
  *
@@ -51,20 +53,6 @@ public class MainController {
     this.loadDefaultView();
   }
   
-  @FXML
-  void triggerPolishVersion(final ActionEvent event) {
-    logger.info("The language is set to " + OurLocale.POLISH);
-    Locale.setDefault(new Locale(OurLocale.POLISH.toString()));
-    this.reloadView();
-  }
-  
-  @FXML
-  void triggerEnglishVersion(final ActionEvent event) {
-    logger.info("The language is set to " + OurLocale.ENGLISH);
-    Locale.setDefault(new Locale(OurLocale.ENGLISH.toString()));
-    this.reloadView();
-  }
-  
   private void loadDefaultView() {
     this.reloadView();
   }
@@ -81,7 +69,7 @@ public class MainController {
   private FXMLLoader prepareFxmlLoader() {
     final String url = "/fxml/connectWindow.fxml";
     final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(url));
-    return LocalizationHandler.enrichFxmlLoader(fxmlLoader);
+    return enrichFxmlLoader(fxmlLoader);
   }
   
   private void addFxmlLoaderToMainPane(final Parent parent) {
@@ -89,18 +77,32 @@ public class MainController {
     this.mainPane.getChildren().add(parent);
   }
   
+  @FXML
+  void triggerPolishVersion(final ActionEvent event) {
+    logger.info("The language is set to " + OurLocale.POLISH);
+    Locale.setDefault(new Locale(OurLocale.POLISH.toString()));
+    this.reloadView();
+  }
+  
+  @FXML
+  void triggerEnglishVersion(final ActionEvent event) {
+    logger.info("The language is set to " + OurLocale.ENGLISH);
+    Locale.setDefault(new Locale(OurLocale.ENGLISH.toString()));
+    this.reloadView();
+  }
+  
   void disableLocalizationButtons() {
     this.hidePolishButton();
     this.hideEnglishButton();
   }
   
-  private void hideEnglishButton() {
-    this.englishButton.setDisable(true);
-    this.englishButton.setVisible(false);
-  }
-  
   private void hidePolishButton() {
     this.polishButton.setDisable(true);
     this.polishButton.setVisible(false);
+  }
+  
+  private void hideEnglishButton() {
+    this.englishButton.setDisable(true);
+    this.englishButton.setVisible(false);
   }
 }

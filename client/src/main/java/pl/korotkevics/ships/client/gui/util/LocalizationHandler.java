@@ -12,9 +12,9 @@ import java.util.ResourceBundle;
  */
 public class LocalizationHandler {
   
-  private LocalizationHandler() {}
-  
   private static final String DICTIONARY = "dict";
+  
+  private LocalizationHandler() {}
   
   /**
    * It enriches a given FXMLLoader instance with active ResourceBundle.
@@ -29,6 +29,10 @@ public class LocalizationHandler {
     return fxmlLoader;
   }
   
+  private static ResourceBundle resolveActiveResourceBundle() {
+    return ResourceBundle.getBundle(DICTIONARY);
+  }
+  
   /**
    * It returns a valid translation for a given localization key.
    *
@@ -39,9 +43,5 @@ public class LocalizationHandler {
    */
   public static String resolveLocalization(final String key) {
     return resolveActiveResourceBundle().getString(key);
-  }
-  
-  private static ResourceBundle resolveActiveResourceBundle() {
-    return ResourceBundle.getBundle(DICTIONARY);
   }
 }

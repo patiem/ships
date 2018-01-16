@@ -1,32 +1,30 @@
 package pl.korotkevics.ships.client.gui.controllers;
 
-import pl.korotkevics.ships.client.client.Client;
-import pl.korotkevics.ships.shared.infra.logging.api.Target;
-import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import pl.korotkevics.ships.client.client.Client;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
-
-import static pl.korotkevics.ships.client.gui.controllers.MainController.DICTIONARY;
 
 /**
  * Server not responding window.
+ *
  * @author Magdalena Aarsman
  * @since 2017-12-17
  */
 
 public class ServerNotRespondingController {
-
+  
   private static final Target logger = new SharedLogger(Client.class);
-
+  
   @FXML
   private AnchorPane mainAnchorPane;
-
+  
   @FXML
   private void onTryAgainPressed() {
     try {
