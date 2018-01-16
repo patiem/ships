@@ -72,8 +72,6 @@ public class GameController {
   }
 
   private void initializeTurn(boolean myTurn) {
-    logger.info("initialize turn: " + myTurn);
-
     if (!myTurn) {
       opponentBoard.setDisable(true);
       final double opacity = 0.4;
@@ -141,8 +139,9 @@ public class GameController {
     Rectangle opponentRect = new Rectangle(initialSize, initialSize, Color.GRAY);
 
     opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -> {
-      opponentRect.setFill(Color.BLACK);
-      logger.info(shotIndex);
+      if (opponentRect.getFill().equals(Color.GRAY)) {
+        opponentRect.setFill(Color.BLACK);
+      }
       this.shotIndex = shotIndex;
       getClient().sendShot(shotIndex);
     });
@@ -188,7 +187,6 @@ public class GameController {
 
   private void setOpponentShot(final int shotIndex) {
     final int shotIndexInGrid = convertToGridIndex(shotIndex);
-    logger.info("new shotIndex: " + shotIndexInGrid);
     final Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndexInGrid));
     if (rec.getFill() == Color.GREEN) {
       rec.setFill(Color.RED);
@@ -216,7 +214,6 @@ public class GameController {
   }
 
   private void setMyTurn() {
-    logger.info("set my turn game controller");
     final double noOpacity = 1.0;
     opponentBoard.setDisable(false);
     opponentBoard.setOpacity(noOpacity);
