@@ -54,6 +54,14 @@
                         <ImageView image="$flagPoland"/>
                     </graphic>
                 </Button>
+                <!--text="" is necessary here to hide JavaFX default text appearing nearby the button-->
+                <Button fx:id="russianButton" layoutX="9.0" layoutY="9.0" mnemonicParsing="false"
+                        onAction="#triggerRussianVersion" text="">
+                    <Image fx:id="russianFlag" url="@../images/russia_flag.png"/>
+                    <graphic>
+                        <ImageView image="$russianFlag"/>
+                    </graphic>
+                </Button>
             </HBox>
         </GridPane>
         <AnchorPane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0"

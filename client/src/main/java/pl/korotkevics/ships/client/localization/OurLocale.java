@@ -12,5 +12,11 @@ public enum OurLocale {
         public String toString() {
             return "pl";
         }
-    };
+    },
+    RUSSIAN {
+        @Override
+        public String toString() {
+            return "ru";
+        }
+    }
 }

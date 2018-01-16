@@ -28,6 +28,8 @@ import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.*;
 public class MainController {
   
   private static final Target logger = new SharedLogger(Client.class);
+  @FXML
+  private Button russianButton;
   
   @FXML
   private Pane mainPane;
@@ -91,18 +93,21 @@ public class MainController {
     this.reloadView();
   }
   
+  @FXML
+  void triggerRussianVersion(final ActionEvent event) {
+    logger.info("The language is set to " + OurLocale.RUSSIAN);
+    Locale.setDefault(new Locale(OurLocale.RUSSIAN.toString()));
+    this.reloadView();
+  }
+  
   void disableLocalizationButtons() {
-    this.hidePolishButton();
-    this.hideEnglishButton();
+    this.hideButton(this.polishButton);
+    this.hideButton(this.englishButton);
+    this.hideButton(this.russianButton);
   }
   
-  private void hidePolishButton() {
-    this.polishButton.setDisable(true);
-    this.polishButton.setVisible(false);
-  }
-  
-  private void hideEnglishButton() {
-    this.englishButton.setDisable(true);
-    this.englishButton.setVisible(false);
+  private void hideButton(Button button) {
+    button.setDisable(true);
+    button.setVisible(false);
   }
 }
