@@ -16,21 +16,22 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 /**
- * Main window, which contains title etc. controller.
- * @author Magdalena Aarsman
+ * Main window (containing title and similar) controller.
+ *
+ * @author Magdalena Aarsman, Sandor Korotkevics
  * @since 2017-12-14
  */
 
 public class MainController {
-
+  
   private static final Target logger = new SharedLogger(Client.class);
   
   @FXML
   private Pane mainPane;
-
+  
   @Getter
   private Client client;
-
+  
   private ResourceBundle resourceBundle;
   
   @FXML
@@ -41,41 +42,72 @@ public class MainController {
   
   /**
    * Initialize main controller.
-   * @param client - Instance of Client, which communicate with server.
+   *
+   * @param client
+   *     - Instance of Client, which communicate with server.
    */
   @FXML
   public void initialize(final Client client) {
     this.client = client;
     this.prepareLocalizationButtons();
-    this.loadView(Locale.ENGLISH);
+    this.loadDefaultView();
   }
   
   @FXML
-  void triggerPolishVersion(ActionEvent event) {
+  void triggerPolishVersion(final ActionEvent event) {
     this.loadView(Locale.POLISH);
   }
   
   @FXML
-  void triggerEnglishVersion(ActionEvent event) {
+  void triggerEnglishVersion(final ActionEvent event) {
     this.loadView(Locale.ENGLISH);
   }
   
-  private void loadView(Locale locale) {
-    final String connectWindowUrl = "/fxml/connectWindow.fxml";
-    final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowUrl));
-    this.resourceBundle = ResourceBundle.getBundle(locale.toString());
-    connectLoader.setResources(this.resourceBundle);
+  private void loadDefaultView() {
+    this.loadView(Locale.ENGLISH);
+  }
+  
+  private void loadView(final Locale locale) {
+    final FXMLLoader fxmlLoader = this.prepareFxmlLoader(locale);
     try {
-      final Parent connect = connectLoader.load();
-      mainPane.getChildren().clear();
-      mainPane.getChildren().add(connect);
+      this.addFxmlLoaderToMainPane(fxmlLoader.load());
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
   }
   
   private void prepareLocalizationButtons() {
-    this.englishButton.setOnMouseClicked(e -> this.resourceBundle = ResourceBundle.getBundle(Locale.ENGLISH.toString()));
-    this.polishButton.setOnMouseClicked(e -> this.resourceBundle = ResourceBundle.getBundle(Locale.POLISH.toString()));
+    this.prepareEnglishLocalizationButton();
+    this.preparePolishLocalizationButton();
+  }
+  
+  private void prepareEnglishLocalizationButton() {
+    this.englishButton.setOnMouseClicked(e -> this.resourceBundle = ResourceBundle.getBundle
+                                                                                       (Locale
+                                                                                            .ENGLISH.toString()));
+  }
+  
+  private void preparePolishLocalizationButton() {
+    this.polishButton.setOnMouseClicked(e -> this.resourceBundle = ResourceBundle.getBundle
+                                                                                      (Locale
+                                                                                           .POLISH.toString()));
+  }
+  
+  private FXMLLoader prepareFxmlLoader(final Locale locale) {
+    final String url = "/fxml/connectWindow.fxml";
+    final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(url));
+    return this.addResourceBundleToFxmlLoader(fxmlLoader, locale);
+  }
+  
+  private FXMLLoader addResourceBundleToFxmlLoader(final FXMLLoader fxmlLoader, final Locale
+                                                                                    locale) {
+    this.resourceBundle = ResourceBundle.getBundle(locale.toString());
+    fxmlLoader.setResources(this.resourceBundle);
+    return fxmlLoader;
+  }
+  
+  private void addFxmlLoaderToMainPane(final Parent parent) {
+    mainPane.getChildren().clear();
+    mainPane.getChildren().add(parent);
   }
 }

@@ -37,7 +37,7 @@
                     <Insets top="10.0"/>
                 </padding>
             </Label>
-            <HBox alignment="CENTER_RIGHT" prefHeight="80.0" prefWidth="297.0" GridPane.columnIndex="1" >
+            <HBox alignment="CENTER_RIGHT" prefHeight="80.0" prefWidth="297.0" GridPane.columnIndex="1">
                 <Button fx:id="polishButton" layoutX="9.0" layoutY="9.0" mnemonicParsing="false"
                         onAction="#triggerPolishVersion" text="">
                     <Image fx:id="flagPoland" url="@../images/poland_flag.png"/>
