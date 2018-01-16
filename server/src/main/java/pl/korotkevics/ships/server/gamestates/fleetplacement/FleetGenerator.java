@@ -63,13 +63,13 @@ class FleetGenerator {
     boolean verticalOrientation = this.isVerticalOrientation();
     if (verticalOrientation) {
       shipAsIndices = this.offerIndices(shipLength, startIndex, BOARD_WIDTH);
-      if (!isWithinBoardVertical(shipAsIndices)) {
-        return offerShipAsIndices(shipLength);
+      if (!this.isWithinBoardVertical(shipAsIndices)) {
+        return this.offerShipAsIndices(shipLength);
       }
     } else {
       shipAsIndices = this.offerIndices(shipLength, startIndex, 1);
-      if (!isWithinBoardAndSingleRow(shipAsIndices)) {
-        return offerShipAsIndices(shipLength);
+      if (!this.isWithinBoardAndSingleRow(shipAsIndices)) {
+        return this.offerShipAsIndices(shipLength);
       }
     }
     return shipAsIndices;
@@ -99,10 +99,10 @@ class FleetGenerator {
   }
 
   private boolean isWithinBoardAndSingleRow(final List<Integer> offeredShip) {
-    int firstShipIndex = offeredShip.get(0) / BOARD_WIDTH;
+    int rowNumberOfFirstShipIndex = offeredShip.get(0) / BOARD_WIDTH;
     return offeredShip
         .stream()
-        .allMatch(i -> i < 100 && (i / BOARD_WIDTH == firstShipIndex));
+        .allMatch(i -> i < 100 && (i / BOARD_WIDTH == rowNumberOfFirstShipIndex));
   }
 
   private boolean isWithinBoardVertical(final List<Integer> offeredShip) {

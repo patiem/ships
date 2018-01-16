@@ -48,7 +48,7 @@ public class PlayState implements GameState {
    * Processes gameplay until it has a winner.
    *
    * @return GameState, depends on game flow it can be GameEndWithWalkoverState
-   * or GameEndWithWinState.
+   *         or GameEndWithWinState.
    */
   @Override
   public GameState process() {
@@ -67,7 +67,17 @@ public class PlayState implements GameState {
   }
 
   private void sendYourTurnMessage() {
+    this.rest();
     MessageSender messageSender = new MessageSender(communicationBus, logger);
-    messageSender.send(turnManager.getCurrentPlayer(), Header.YOUR_TURN);
+    messageSender.send(this.turnManager.getCurrentPlayer(), Header.YOUR_TURN);
+  }
+
+  private void rest() {
+    final int restTime = 300;
+    try {
+      Thread.sleep(restTime);
+    } catch (InterruptedException e) {
+      logger.error(e.getMessage());
+    }
   }
 }
