@@ -4,7 +4,14 @@ import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.fleet.Mast;
 import pl.korotkevics.ships.shared.fleet.Ship;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -17,6 +24,13 @@ import java.util.stream.IntStream;
 class FleetGenerator {
 
   private static final int BOARD_WIDTH = 10;
+  private static final int FOUR_MAST_SHIP = 4;
+  private static final int THREE_MAST_SHIP = 3;
+  private static final int TWO_MAST_SHIP = 2;
+  private static final int ONE_MAST_SHIP = 1;
+  private static final List<Integer> SHIPS_TO_PLACE = Arrays.asList(FOUR_MAST_SHIP, THREE_MAST_SHIP,
+      THREE_MAST_SHIP, TWO_MAST_SHIP, TWO_MAST_SHIP, TWO_MAST_SHIP, ONE_MAST_SHIP, ONE_MAST_SHIP,
+      ONE_MAST_SHIP, ONE_MAST_SHIP);
   private Map<Integer, FieldState> gameBoard;
 
   FleetGenerator() {
@@ -28,9 +42,8 @@ class FleetGenerator {
   }
 
   Fleet generateFleet() {
-    List<Integer> shipsToPlace = Arrays.asList(4, 3, 3, 2, 2, 2, 1, 1, 1, 1);
     List<Ship> ships = new ArrayList<>();
-    shipsToPlace.forEach(i -> ships.add(this.generateShip(i)));
+    SHIPS_TO_PLACE.forEach(i -> ships.add(this.generateShip(i)));
     return Fleet.ofShips(ships);
   }
 
@@ -55,11 +68,10 @@ class FleetGenerator {
       }
     } else {
       shipAsIndices = this.offerIndices(shipLength, startIndex, 1);
-      if (!isWithinBoardHorizontal(shipAsIndices)) {
+      if (!isWithinBoardAndSingleRow(shipAsIndices)) {
         return offerShipAsIndices(shipLength);
       }
     }
-    System.out.println(shipAsIndices);
     return shipAsIndices;
   }
 
@@ -86,11 +98,11 @@ class FleetGenerator {
         .forEach(i -> gameBoard.put(i, FieldState.OCCUPIED));
   }
 
-  private boolean isWithinBoardHorizontal(final List<Integer> offeredShip) {
+  private boolean isWithinBoardAndSingleRow(final List<Integer> offeredShip) {
     int firstShipIndex = offeredShip.get(0) / BOARD_WIDTH;
     return offeredShip
         .stream()
-        .allMatch(i -> i < 100 && i / BOARD_WIDTH == firstShipIndex);
+        .allMatch(i -> i < 100 && (i / BOARD_WIDTH == firstShipIndex));
   }
 
   private boolean isWithinBoardVertical(final List<Integer> offeredShip) {
