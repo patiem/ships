@@ -1,6 +1,6 @@
 package pl.korotkevics.ships.client.localization;
 
-public enum Locale {
+public enum OurLocale {
     ENGLISH {
         @Override
         public String toString() {

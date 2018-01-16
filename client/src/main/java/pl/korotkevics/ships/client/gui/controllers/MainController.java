@@ -8,11 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import lombok.Getter;
 import pl.korotkevics.ships.client.client.Client;
-import pl.korotkevics.ships.client.localization.Locale;
+import pl.korotkevics.ships.client.localization.OurLocale;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -26,13 +27,13 @@ public class MainController {
   
   private static final Target logger = new SharedLogger(Client.class);
   
+  static final String DICTIONARY = "dict";
+  
   @FXML
   private Pane mainPane;
   
   @Getter
   private Client client;
-  
-  private ResourceBundle resourceBundle;
   
   @FXML
   private Button polishButton;
@@ -49,26 +50,27 @@ public class MainController {
   @FXML
   public void initialize(final Client client) {
     this.client = client;
-    this.prepareLocalizationButtons();
     this.loadDefaultView();
   }
   
   @FXML
   void triggerPolishVersion(final ActionEvent event) {
-    this.reloadView(Locale.POLISH);
+    Locale.setDefault(new Locale(OurLocale.POLISH.toString()));
+    this.reloadView();
   }
   
   @FXML
   void triggerEnglishVersion(final ActionEvent event) {
-    this.reloadView(Locale.ENGLISH);
+    Locale.setDefault(new Locale(OurLocale.ENGLISH.toString()));
+    this.reloadView();
   }
   
   private void loadDefaultView() {
-    this.reloadView(Locale.ENGLISH);
+    this.reloadView();
   }
   
-  private void reloadView(final Locale locale) {
-    final FXMLLoader fxmlLoader = this.prepareFxmlLoader(locale);
+  private void reloadView() {
+    final FXMLLoader fxmlLoader = this.prepareFxmlLoader();
     try {
       this.addFxmlLoaderToMainPane(fxmlLoader.load());
     } catch (IOException e) {
@@ -76,33 +78,15 @@ public class MainController {
     }
   }
   
-  private void prepareLocalizationButtons() {
-    this.prepareEnglishLocalizationButton();
-    this.preparePolishLocalizationButton();
-  }
-  
-  private void prepareEnglishLocalizationButton() {
-    this.englishButton.setOnMouseClicked(e -> this.resourceBundle = ResourceBundle.getBundle
-                                                                                       (Locale
-                                                                                            .ENGLISH.toString()));
-  }
-  
-  private void preparePolishLocalizationButton() {
-    this.polishButton.setOnMouseClicked(e -> this.resourceBundle = ResourceBundle.getBundle
-                                                                                      (Locale
-                                                                                           .POLISH.toString()));
-  }
-  
-  private FXMLLoader prepareFxmlLoader(final Locale locale) {
+  private FXMLLoader prepareFxmlLoader() {
     final String url = "/fxml/connectWindow.fxml";
     final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(url));
-    return this.addResourceBundleToFxmlLoader(fxmlLoader, locale);
+    return this.addResourceBundleToFxmlLoader(fxmlLoader);
   }
   
-  private FXMLLoader addResourceBundleToFxmlLoader(final FXMLLoader fxmlLoader, final Locale
-                                                                                    locale) {
-    this.resourceBundle = ResourceBundle.getBundle(locale.toString());
-    fxmlLoader.setResources(this.resourceBundle);
+  private FXMLLoader addResourceBundleToFxmlLoader(final FXMLLoader fxmlLoader) {
+    final ResourceBundle resourceBundle = ResourceBundle.getBundle(DICTIONARY);
+    fxmlLoader.setResources(resourceBundle);
     return fxmlLoader;
   }
   

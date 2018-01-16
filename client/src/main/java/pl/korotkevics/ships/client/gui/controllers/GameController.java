@@ -26,6 +26,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
+
+import static pl.korotkevics.ships.client.gui.controllers.MainController.DICTIONARY;
 
 /**
  * Game window controller.

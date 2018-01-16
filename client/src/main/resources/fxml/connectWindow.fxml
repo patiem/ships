@@ -54,7 +54,7 @@
         </GridPane>
         <VBox fx:id="vbWheel" alignment="CENTER" prefHeight="320.0" prefWidth="498.0" visible="false">
             <children>
-                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                     <VBox.margin>
                         <Insets left="25.0" right="25.0"/>
                     </VBox.margin>
@@ -62,8 +62,8 @@
                         <Image url="@../images/wheel.gif"/>
                     </image>
                 </ImageView>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="234.0"
-                       text="Waiting for opponent..." textAlignment="CENTER" textFill="#063483" textOverrun="CLIP">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="300.0"
+                       text="%waiting" textAlignment="CENTER" textFill="#063483" textOverrun="CLIP">
                     <font>
                         <Font size="19.0"/>
                     </font>
