@@ -60,7 +60,5 @@
                 <fx:reference source="controller"/>
             </userData>
         </AnchorPane>
-
-
     </GridPane>
 </AnchorPane>
