@@ -107,7 +107,22 @@ public class MainController {
   }
   
   private void addFxmlLoaderToMainPane(final Parent parent) {
-    mainPane.getChildren().clear();
-    mainPane.getChildren().add(parent);
+    this.mainPane.getChildren().clear();
+    this.mainPane.getChildren().add(parent);
+  }
+  
+  void disableLocalizationButtons() {
+    this.hidePolishButton();
+    this.hideEnglishButton();
+  }
+  
+  private void hideEnglishButton() {
+    this.englishButton.setDisable(true);
+    this.englishButton.setVisible(false);
+  }
+  
+  private void hidePolishButton() {
+    this.polishButton.setDisable(true);
+    this.polishButton.setVisible(false);
   }
 }

@@ -80,13 +80,13 @@ public class StartWindowController {
   }
 
   private void initializeClient() {
-    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
+    final MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
     this.client = mainController.getClient();
     if (client == null) {
       throw new IllegalStateException("client is not initialized!");
     }
-
-    client.setEventTrigger(eventButton);
+    this.client.setEventTrigger(eventButton);
+    mainController.disableLocalizationButtons();
   }
 
   @FXML
