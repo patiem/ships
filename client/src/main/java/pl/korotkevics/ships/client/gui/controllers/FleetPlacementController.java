@@ -398,7 +398,25 @@ public class FleetPlacementController {
 
   private void getRandomFleet(Fleet fleet) {
     buttonReady.setDisable(false);
-    //TODO: Fleet does not have getters!
-    loadGameWindow();
+    this.drawFleet(fleet);
+    this.loadGameWindow();
+  }
+
+  private void drawFleet(Fleet fleet) {
+    fleet.
+        toIntegerList().
+        forEach(i -> this.drawMast(this.convertToGridIndex(i)));
+  }
+
+  private void drawMast(int index) {
+    logger.info("draw index: " + index);
+    Rectangle rec = (Rectangle) (yourBoard.getChildren().get(index));
+    rec.setFill(Color.GREEN);
+  }
+
+  private int convertToGridIndex(int index) {
+    int column = index / BOARD_SIZE;
+    int row = index - (column * BOARD_SIZE);
+    return row * BOARD_SIZE + column + 1;
   }
 }

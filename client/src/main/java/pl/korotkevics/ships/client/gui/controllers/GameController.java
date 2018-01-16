@@ -187,16 +187,20 @@ public class GameController {
   }
 
   private void setOpponentShot(int shotIndex) {
-    int column = shotIndex / BOARD_SIZE;
-    int row = shotIndex - (column * BOARD_SIZE);
-    int newShotIndex = row * BOARD_SIZE + column;
-    logger.info("new shotIndex: " + newShotIndex);
-    Rectangle rec = (Rectangle) (yourBoard.getChildren().get(newShotIndex + 1));
+    int shotIndexInGrid = convertToGridIndex(shotIndex);
+    logger.info("new shotIndex: " + shotIndexInGrid);
+    Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndexInGrid));
     if (rec.getFill() == Color.GREEN) {
       rec.setFill(Color.RED);
     } else {
       rec.setFill(Color.BLACK);
     }
+  }
+
+  private int convertToGridIndex(int shotIndex) {
+    int column = shotIndex / BOARD_SIZE;
+    int row = shotIndex - (column * BOARD_SIZE);
+    return row * BOARD_SIZE + column + 1;
   }
 
   private void changeTurn() {
@@ -206,10 +210,8 @@ public class GameController {
   }
 
   private void setHit() {
-    int column = shotIndex / BOARD_SIZE;
-    int row = shotIndex - (column * BOARD_SIZE);
-    int newShotIndex = row * BOARD_SIZE + column;
-    Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(newShotIndex + 1));
+    int shotIndexInGrid = convertToGridIndex(shotIndex);
+    Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
     rec.setFill(Color.RED);
   }
 
