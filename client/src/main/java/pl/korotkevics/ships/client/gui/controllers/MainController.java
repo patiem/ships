@@ -37,7 +37,7 @@ public class MainController {
   @FXML
   private ImageView imPolandFlag;
 
-  private ResourceBundle resourceBundle = ResourceBundle.getBundle(Locale.ENGLISH.toString());
+  private ResourceBundle resourceBundle;
 
   /**
    * Initialize main controller.
@@ -48,11 +48,14 @@ public class MainController {
     final String connectWindowUrl = "/fxml/connectWindow.fxml";
     this.client = client;
 
-    this.imEnglandFlag.setOnMouseClicked(e -> ResourceBundle.getBundle(Locale.ENGLISH.toString()));
-    this.imPolandFlag.setOnMouseClicked(e -> ResourceBundle.getBundle(Locale.POLISH.toString()));
+    this.resourceBundle = ResourceBundle.getBundle(Locale.ENGLISH.toString());
+
+    this.imEnglandFlag.setOnMouseClicked(e -> this.resourceBundle = ResourceBundle.getBundle(Locale.ENGLISH.toString()));
+    this.imPolandFlag.setOnMouseClicked(e -> this.resourceBundle = ResourceBundle.getBundle(Locale.POLISH.toString()));
 
     try {
       final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowUrl));
+      connectLoader.setResources(this.resourceBundle);
       final Parent connect = connectLoader.load();
 
       mainPane.getChildren().clear();

@@ -28,10 +28,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <TextField fx:id="textFieldServerAddress" prefHeight="38.0" prefWidth="302.0" promptText="Server Addres"/>
+                <TextField fx:id="textFieldServerAddress" prefHeight="38.0" prefWidth="302.0"
+                           promptText="Server Addres"/>
                 <VBox GridPane.rowIndex="1">
                     <children>
-                        <TextField fx:id="textFieldServerPort" prefHeight="38.0" prefWidth="336.0" promptText="Server Port">
+                        <TextField fx:id="textFieldServerPort" prefHeight="38.0" prefWidth="336.0"
+                                   promptText="Server Port">
                             <VBox.margin>
                                 <Insets top="15.0"/>
                             </VBox.margin>
@@ -40,7 +42,7 @@
                     </children>
                 </VBox>
                 <Button maxWidth="120.0" mnemonicParsing="false" onAction="#onConnectPressed" prefHeight="38.0"
-                        text="Connect" GridPane.rowIndex="2"/>
+                        text="%connect" GridPane.rowIndex="2"/>
                 <ImageView fx:id="imCannon" fitHeight="224.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true"
                            GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <image>
