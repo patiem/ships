@@ -146,12 +146,12 @@ public class FleetPlacementController {
     addDragEventsToShips();
     ships = new ArrayList<>(SHIPS_COUNT);
     shipOrientation = ShipOrientation.VERTICAL;
-    choiceBox.setItems(FXCollections.observableArrayList(ShipOrientation.VERTICAL,
-        ShipOrientation.HORIZONTAL));
-    choiceBox.setValue(ShipOrientation.HORIZONTAL);
+    choiceBox.setItems(FXCollections.observableArrayList(ShipOrientation.VERTICAL.toString(),
+        ShipOrientation.HORIZONTAL.toString()));
+    choiceBox.setValue(ShipOrientation.HORIZONTAL.toString());
     choiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue,
                                                                       newValue) -> {
-      shipOrientation = ShipOrientation.valueOf((String) newValue);
+      shipOrientation = ShipOrientation.valueOf(String.valueOf(newValue));
       logger.info(newValue);
     });
   }
