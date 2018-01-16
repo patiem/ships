@@ -55,12 +55,14 @@ public class MainController {
   
   @FXML
   void triggerPolishVersion(final ActionEvent event) {
+    logger.info("The language is set to " + OurLocale.POLISH);
     Locale.setDefault(new Locale(OurLocale.POLISH.toString()));
     this.reloadView();
   }
   
   @FXML
   void triggerEnglishVersion(final ActionEvent event) {
+    logger.info("The language is set to " + OurLocale.ENGLISH);
     Locale.setDefault(new Locale(OurLocale.ENGLISH.toString()));
     this.reloadView();
   }

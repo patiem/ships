@@ -10,6 +10,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
+
+import static pl.korotkevics.ships.client.gui.controllers.MainController.DICTIONARY;
 
 /**
  * Server not responding window.

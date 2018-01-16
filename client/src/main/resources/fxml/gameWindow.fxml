@@ -81,7 +81,7 @@
                 </GridPane>
                 <HBox alignment="CENTER_LEFT">
                     <children>
-                        <Label prefHeight="25.0" prefWidth="162.0" text="%yourBoard">
+                        <Label prefHeight="25.0" prefWidth="225.0" text="%yourBoard">
                             <font>
                                 <Font name="FreeMono Bold" size="25.0"/>
                             </font>

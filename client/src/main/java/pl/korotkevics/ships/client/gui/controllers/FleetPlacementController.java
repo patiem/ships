@@ -152,8 +152,10 @@ public class FleetPlacementController {
     addDragEventsToShips();
     ships = new ArrayList<>(SHIPS_COUNT);
     shipOrientation = ShipOrientation.VERTICAL;
-    choiceBox.setItems(FXCollections.observableArrayList("VERTICAL", "HORIZONTAL"));
-    choiceBox.setValue("VERTICAL");
+    final ResourceBundle resourceBundle = ResourceBundle.getBundle(DICTIONARY);
+    choiceBox.setItems(FXCollections.observableArrayList(resourceBundle.getString("vertical"),
+        resourceBundle.getString("horizontal")));
+    choiceBox.setValue(resourceBundle.getString("horizontal"));
     choiceBox.getSelectionModel()
         .selectedItemProperty()
         .addListener((observable, oldValue, newValue) -> {
