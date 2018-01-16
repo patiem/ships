@@ -108,7 +108,8 @@ public class StartWindowController {
     try {
       port = portValidator.asInt(textFieldServerPort.getText());
     } catch (IllegalArgumentException e) {
-      labelInvalidPort.setText("invalid port number");
+      final ResourceBundle resourceBundle = ResourceBundle.getBundle(DICTIONARY);
+      labelInvalidPort.setText(resourceBundle.getString("invalidPort"));
       return;
     }
     logger.info("server port: " + port);
