@@ -35,8 +35,8 @@ class FleetGenerator {
 
   FleetGenerator() {
     this.gameBoard = new HashMap<>();
-    int firstFieldIndex = 0;
-    int lastFieldIndex = 100;
+    final int firstFieldIndex = 0;
+    final int lastFieldIndex = 100;
     IntStream.range(firstFieldIndex, lastFieldIndex)
         .forEach(i -> gameBoard.put(i, FieldState.EMPTY));
   }
@@ -52,22 +52,20 @@ class FleetGenerator {
     if (this.canBePut(offeredShip)) {
       this.markAreaAsOccupied(offeredShip);
       return Ship.ofMasts(this.convertToMasts(offeredShip));
-    } else {
-      return this.generateShip(shipLength);
     }
+    return this.generateShip(shipLength);
   }
 
   private List<Integer> offerShipAsIndices(final int shipLength) {
-    int startIndex = this.generateStartIndex();
-    List<Integer> shipAsIndices;
+    final List<Integer> shipAsIndices;
     boolean verticalOrientation = this.isVerticalOrientation();
     if (verticalOrientation) {
-      shipAsIndices = this.offerIndices(shipLength, startIndex, BOARD_WIDTH);
+      shipAsIndices = this.offerIndices(shipLength, this.generateStartIndex(), BOARD_WIDTH);
       if (!this.isWithinBoardVertical(shipAsIndices)) {
         return this.offerShipAsIndices(shipLength);
       }
     } else {
-      shipAsIndices = this.offerIndices(shipLength, startIndex, 1);
+      shipAsIndices = this.offerIndices(shipLength, this.generateStartIndex(), 1);
       if (!this.isWithinBoardAndSingleRow(shipAsIndices)) {
         return this.offerShipAsIndices(shipLength);
       }
@@ -75,8 +73,8 @@ class FleetGenerator {
     return shipAsIndices;
   }
 
-  private List<Integer> offerIndices(int length, int startIndex, int step) {
-    List<Integer> indices = new ArrayList<>();
+  private List<Integer> offerIndices(final int length,final int startIndex,final int step) {
+    final List<Integer> indices = new ArrayList<>();
     IntStream.range(0, length)
         .forEach(i -> indices.add(startIndex + i * step));
     return indices;
@@ -99,7 +97,7 @@ class FleetGenerator {
   }
 
   private boolean isWithinBoardAndSingleRow(final List<Integer> offeredShip) {
-    int rowNumberOfFirstShipIndex = offeredShip.get(0) / BOARD_WIDTH;
+    final int rowNumberOfFirstShipIndex = offeredShip.get(0) / BOARD_WIDTH;
     return offeredShip
         .stream()
         .allMatch(i -> i < 100 && (i / BOARD_WIDTH == rowNumberOfFirstShipIndex));
