@@ -54,7 +54,7 @@ class MessageHandler {
     triggers.get(header).fire(eventButton, message);
   }
 
-  private void checkIfEndWillBeTriggered(Message message) {
+  private void checkIfEndWillBeTriggered(final Message message) {
     if (Status.END.equals(message.getStatus())) {
       endConnectionTriggered = true;
     }

@@ -14,7 +14,7 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
 class LoseTrigger implements EventTrigger {
 
   @Override
-  public void fire(Button button, Message message) {
+  public void fire(final Button button, final Message message) {
     Platform.runLater(() -> button.fireEvent(new LooseEvent()));
   }
 }
