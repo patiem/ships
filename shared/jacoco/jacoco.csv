@@ -3,7 +3,7 @@ Ships - SHARED,pl.korotkevics.ships.shared.fleet,Fleet,36,116,9,9,0,18,9,13,2,11
 Ships - SHARED,pl.korotkevics.ships.shared.fleet,Mast,11,73,7,7,0,4,6,7,0,6
 Ships - SHARED,pl.korotkevics.ships.shared.fleet,Ship,29,62,8,6,0,5,7,7,1,6
 Ships - SHARED,pl.korotkevics.ships.shared.fleet,Damage,9,39,0,0,0,2,2,2,2,2
-Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.api.message,Header,5,123,0,0,0,12,1,3,1,3
+Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.api.message,Header,5,133,0,0,0,13,1,3,1,3
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.api.message,Status,5,33,0,0,0,3,1,3,1,3
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.api.message,Author,5,43,0,0,0,4,1,3,1,3
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.json.conversion,JsonEncoder,0,14,0,0,0,5,0,2,0,2

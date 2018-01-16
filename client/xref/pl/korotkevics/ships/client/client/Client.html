@@ -8,18 +8,18 @@
 <div id="overview"><a href="../../../../../../apidocs/pl/korotkevics/ships/client/client/Client.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> pl.korotkevics.ships.client.client;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.fleet.Fleet;
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.Message;
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.io.Receiver;
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.io.Sender;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.message.Author;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonReceiver;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonSender;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.logging.api.Target;
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> javafx.scene.control.Button;
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> javafx.scene.control.Button;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.fleet.Fleet;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.Message;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.io.Receiver;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.io.Sender;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.message.Author;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonReceiver;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonSender;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.logging.api.Target;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> java.io.IOException;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> java.net.InetAddress;
@@ -150,7 +150,7 @@
 <a class="jxr_linenumber" name="L142" href="#L142">142</a>     <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L143" href="#L143">143</a>       Sender sender = <strong class="jxr_keyword">new</strong> JsonSender(clientSocket.getOutputStream());
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>       Message fleetMsg = <strong class="jxr_keyword">new</strong> MessageBuilder()
-<a class="jxr_linenumber" name="L145" href="#L145">145</a>           .withHeader(Header.PLACEMENT)
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>           .withHeader(Header.MANUAL_PLACEMENT)
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>           .withAuthor(Author.CLIENT)
 <a class="jxr_linenumber" name="L147" href="#L147">147</a>           .withFleet(fleet)
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>           .build();

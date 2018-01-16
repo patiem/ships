@@ -8,17 +8,17 @@
 <div id="overview"><a href="../../../../../../../../../../testapidocs/pl/korotkevics/ships/shared/infra/communication/core/json/conversion/JSONDecoderTest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> pl.korotkevics.ships.shared.infra.communication.core.json.conversion;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.fleet.Fleet;
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.fleet.Mast;
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.fleet.Ship;
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.Message;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.conversion.Decoder;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.conversion.Encoder;
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.message.Author;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> com.google.gson.JsonElement;
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> org.testng.annotations.Test;
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> com.google.gson.JsonElement;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> org.testng.annotations.Test;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.fleet.Fleet;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.fleet.Mast;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.fleet.Ship;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.Message;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.conversion.Decoder;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.conversion.Encoder;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.message.Author;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> java.util.Arrays;
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  
@@ -30,7 +30,7 @@
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>    <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> itDecodesAsExpected() {
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>      Message sent = <strong class="jxr_keyword">new</strong> MessageBuilder()
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>          .withAuthor(Author.CLIENT)
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>          .withHeader(Header.PLACEMENT)
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>          .withHeader(Header.MANUAL_PLACEMENT)
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>          .withFleet(Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex(<span class="jxr_string">"3"</span>),
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>              Mast.ofIndex(<span class="jxr_string">"2"</span>), Mast.ofIndex(<span class="jxr_string">"1"</span>)))))
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>          .build();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlayState.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SERVER</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.server.gamestates.play</a> &gt; <span class="el_source">PlayState.java</span></div><h1>PlayState.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.server.gamestates.play;
 
+import pl.korotkevics.ships.server.MessageReceiver;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
@@ -8,8 +9,8 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import pl.korotkevics.ships.server.CommunicationBus;
 import pl.korotkevics.ships.server.MessageSender;
 import pl.korotkevics.ships.server.TurnManager;
-import pl.korotkevics.ships.server.gamestates.GameEndWithWalkoverState;
-import pl.korotkevics.ships.server.gamestates.GameEndWithWinState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWalkoverState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWinState;
 import pl.korotkevics.ships.server.gamestates.GameState;
 
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.List;
 public class PlayState implements GameState {
   private final MessageReceiver messageReceiver;
   private final ShotHandler shotHandler;
-<span class="fc" id="L26">  private final Target logger = new SharedLogger(PlayState.class);</span>
+<span class="fc" id="L27">  private final Target logger = new SharedLogger(PlayState.class);</span>
   private final TurnManager turnManager;
   private CommunicationBus communicationBus;
   private boolean isGameWon;
@@ -34,14 +35,14 @@ public class PlayState implements GameState {
    * @param communicationBus client server communication bus
    * @param fleets           list of clients fleets
    */
-<span class="fc" id="L37">  public PlayState(final CommunicationBus communicationBus, final List&lt;Fleet&gt; fleets) {</span>
-<span class="fc" id="L38">    this.communicationBus = communicationBus;</span>
-<span class="fc" id="L39">    this.messageReceiver = new MessageReceiver(communicationBus);</span>
-<span class="fc" id="L40">    isGameWon = false;</span>
-<span class="fc" id="L41">    this.turnManager = new TurnManager(communicationBus.getFirstClient(),</span>
-<span class="fc" id="L42">        communicationBus.getSecondClient());</span>
-<span class="fc" id="L43">    this.shotHandler = new ShotHandler(communicationBus, turnManager, fleets);</span>
-<span class="fc" id="L44">  }</span>
+<span class="fc" id="L38">  public PlayState(final CommunicationBus communicationBus, final List&lt;Fleet&gt; fleets) {</span>
+<span class="fc" id="L39">    this.communicationBus = communicationBus;</span>
+<span class="fc" id="L40">    this.messageReceiver = new MessageReceiver(communicationBus);</span>
+<span class="fc" id="L41">    isGameWon = false;</span>
+<span class="fc" id="L42">    this.turnManager = new TurnManager(communicationBus.getFirstClient(),</span>
+<span class="fc" id="L43">        communicationBus.getSecondClient());</span>
+<span class="fc" id="L44">    this.shotHandler = new ShotHandler(communicationBus, turnManager, fleets);</span>
+<span class="fc" id="L45">  }</span>
 
   /**
    * Processes gameplay until it has a winner.
@@ -51,23 +52,23 @@ public class PlayState implements GameState {
    */
   @Override
   public GameState process() {
-<span class="fc" id="L54">    sendYourTurnMessage();</span>
-<span class="fc" id="L55">    messageReceiver.receive(turnManager.getCurrentPlayer());</span>
-<span class="fc bfc" id="L56" title="All 2 branches covered.">    if (messageReceiver.isAShot()) {</span>
-<span class="fc" id="L57">      Message shot = messageReceiver.getMessage();</span>
-<span class="fc" id="L58">      isGameWon = shotHandler.handle(turnManager.isCurrentPlayerFirstPlayer(), shot);</span>
-<span class="fc" id="L59">    } else {</span>
-<span class="fc" id="L60">      return new GameEndWithWalkoverState(communicationBus);</span>
+<span class="fc" id="L55">    sendYourTurnMessage();</span>
+<span class="fc" id="L56">    messageReceiver.receive(turnManager.getCurrentPlayer());</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">    if (messageReceiver.isAShot()) {</span>
+<span class="fc" id="L58">      Message shot = messageReceiver.getMessage();</span>
+<span class="fc" id="L59">      isGameWon = shotHandler.handle(turnManager.isCurrentPlayerFirstPlayer(), shot);</span>
+<span class="fc" id="L60">    } else {</span>
+<span class="fc" id="L61">      return new GameEndWithWalkoverState(communicationBus);</span>
     }
-<span class="fc bfc" id="L62" title="All 2 branches covered.">    if (isGameWon) {</span>
-<span class="fc" id="L63">      return new GameEndWithWinState(communicationBus, turnManager);</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">    if (isGameWon) {</span>
+<span class="fc" id="L64">      return new GameEndWithWinState(communicationBus, turnManager);</span>
     }
-<span class="fc" id="L65">    return this;</span>
+<span class="fc" id="L66">    return this;</span>
   }
 
   private void sendYourTurnMessage() {
-<span class="fc" id="L69">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
-<span class="fc" id="L70">    messageSender.send(turnManager.getCurrentPlayer(), Header.YOUR_TURN);</span>
-<span class="fc" id="L71">  }</span>
+<span class="fc" id="L70">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
+<span class="fc" id="L71">    messageSender.send(turnManager.getCurrentPlayer(), Header.YOUR_TURN);</span>
+<span class="fc" id="L72">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

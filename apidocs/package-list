@@ -7,6 +7,9 @@ pl.korotkevics.ships.client.gui.util
 pl.korotkevics.ships.client.validators
 pl.korotkevics.ships.server
 pl.korotkevics.ships.server.gamestates
+pl.korotkevics.ships.server.gamestates.connection
+pl.korotkevics.ships.server.gamestates.endgame
+pl.korotkevics.ships.server.gamestates.fleetplacement
 pl.korotkevics.ships.server.gamestates.play
 pl.korotkevics.ships.shared.fleet
 pl.korotkevics.ships.shared.infra.communication.api

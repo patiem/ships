@@ -1,3 +1,6 @@
 pl.korotkevics.ships.server
 pl.korotkevics.ships.server.gamestates
+pl.korotkevics.ships.server.gamestates.connection
+pl.korotkevics.ships.server.gamestates.endgame
+pl.korotkevics.ships.server.gamestates.fleetplacement
 pl.korotkevics.ships.server.gamestates.play

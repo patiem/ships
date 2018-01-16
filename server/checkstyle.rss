@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2018 Java Academy</copyright>
     <item>
-      <title>File: 20,
+      <title>File: 23,
              Errors: 0,
-             Warnings: 31,
+             Warnings: 23,
              Infos: 0
       </title>
             <link>./index.html/checkstyle.html</link>
@@ -46,27 +46,13 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.WaitingForPlayersState.java">pl/korotkevics/ships/server/gamestates/WaitingForPlayersState.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.MessageReceiver.java">pl/korotkevics/ships/server/MessageReceiver.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  2
-                </td>
-                <td>
                   0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.GameEndWithWinState.java">pl/korotkevics/ships/server/gamestates/GameEndWithWinState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
                 </td>
                 <td>
                   0
@@ -81,6 +67,20 @@ under the License.
                 </td>
                 <td>
                   1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FleetPlacementState.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
                 </td>
                 <td>
                   0
@@ -103,6 +103,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.MessageSender.java">pl/korotkevics/ships/server/MessageSender.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FieldState.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FieldState.java</a>
                 </td>
                 <td>
                   0
@@ -172,7 +186,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.MessageReceiver.java">pl/korotkevics/ships/server/gamestates/play/MessageReceiver.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageNotifier.java</a>
                 </td>
                 <td>
                   0
@@ -186,13 +200,27 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageNotifier.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.connection.WaitingForPlayersState.java">pl/korotkevics/ships/server/gamestates/connection/WaitingForPlayersState.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
                   2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FleetPlacementProcessor.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementProcessor.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
                 </td>
                 <td>
                   0
@@ -256,6 +284,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWinState.java">pl/korotkevics/ships/server/gamestates/endgame/GameEndWithWinState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.MessageRepository.java">pl/korotkevics/ships/server/MessageRepository.java</a>
                 </td>
                 <td>
@@ -270,21 +312,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.FleetPlacementState.java">pl/korotkevics/ships/server/gamestates/FleetPlacementState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.GameEndWithWalkoverState.java">pl/korotkevics/ships/server/gamestates/GameEndWithWalkoverState.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWalkoverState.java">pl/korotkevics/ships/server/gamestates/endgame/GameEndWithWalkoverState.java</a>
                 </td>
                 <td>
                   0
@@ -319,6 +347,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FleetGenerator.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FleetGenerator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
                 </td>
                 <td>
                   0
