@@ -24,7 +24,7 @@ public class LocalizationHandler {
    *
    * @return enriched FXMLLoader.
    */
-  public static FXMLLoader enrichFxmlLoaderWithLocalization(final FXMLLoader fxmlLoader) {
+  public static FXMLLoader enrichFxmlLoader(final FXMLLoader fxmlLoader) {
     fxmlLoader.setResources(resolveActiveResourceBundle());
     return fxmlLoader;
   }
