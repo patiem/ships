@@ -35,10 +35,10 @@ public class MainController {
   private ResourceBundle resourceBundle;
   
   @FXML
-  Button polishButton;
+  private Button polishButton;
   
   @FXML
-  Button englishButton;
+  private Button englishButton;
   
   /**
    * Initialize main controller.
