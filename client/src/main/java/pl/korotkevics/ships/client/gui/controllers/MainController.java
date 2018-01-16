@@ -55,19 +55,19 @@ public class MainController {
   
   @FXML
   void triggerPolishVersion(final ActionEvent event) {
-    this.loadView(Locale.POLISH);
+    this.reloadView(Locale.POLISH);
   }
   
   @FXML
   void triggerEnglishVersion(final ActionEvent event) {
-    this.loadView(Locale.ENGLISH);
+    this.reloadView(Locale.ENGLISH);
   }
   
   private void loadDefaultView() {
-    this.loadView(Locale.ENGLISH);
+    this.reloadView(Locale.ENGLISH);
   }
   
-  private void loadView(final Locale locale) {
+  private void reloadView(final Locale locale) {
     final FXMLLoader fxmlLoader = this.prepareFxmlLoader(locale);
     try {
       this.addFxmlLoaderToMainPane(fxmlLoader.load());
