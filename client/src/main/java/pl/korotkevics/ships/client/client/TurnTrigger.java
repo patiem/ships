@@ -19,7 +19,6 @@ class TurnTrigger implements EventTrigger {
   @Override
   public void fire(final Button button, final String messageStatement) {
     if (messageStatement.isEmpty()) {
-      logger.info("I start");
       Platform.runLater(() -> button.fireEvent(new TurnChangeEvent()));
     }
   }
