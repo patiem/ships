@@ -161,7 +161,7 @@ public class FleetPlacementController {
     choiceBox.getSelectionModel()
         .selectedItemProperty()
         .addListener((observable, oldValue, newValue) -> {
-          shipOrientation = ShipOrientation.valueOf((String) newValue);
+          shipOrientation = ShipOrientation.valueOf(String.valueOf(newValue));
           logger.info(newValue);
         });
 
@@ -356,8 +356,8 @@ public class FleetPlacementController {
 
   private void loadGameWindow() {
     try {
-      if(!randomShipPlacement) {
-        getClient().sendFleet(Fleet.ofShips(ships));
+      if(!this.randomShipPlacement) {
+        this.getClient().sendFleet(Fleet.ofShips(ships));
       }
 
       final String gameWindowUrl = "/fxml/gameWindow.fxml";
@@ -391,18 +391,18 @@ public class FleetPlacementController {
   }
 
   private void askForRandomFleet() {
-    getClient().askForRandomFleet();
+    this.getClient().askForRandomFleet();
     this.randomShipPlacement = true;
-    buttonRandom.setDisable(true);
+    this.buttonRandom.setDisable(true);
   }
 
-  private void getRandomFleet(Fleet fleet) {
-    buttonReady.setDisable(false);
+  private void getRandomFleet(final Fleet fleet) {
+    this.buttonReady.setDisable(false);
     this.drawFleet(fleet);
     this.loadGameWindow();
   }
 
-  private void drawFleet(Fleet fleet) {
+  private void drawFleet(final Fleet fleet) {
     fleet.
         toIntegerList().
         forEach(i -> this.drawMast(this.convertToGridIndex(i)));
@@ -414,9 +414,9 @@ public class FleetPlacementController {
     rec.setFill(Color.GREEN);
   }
 
-  private int convertToGridIndex(int index) {
-    int column = index / BOARD_SIZE;
-    int row = index - (column * BOARD_SIZE);
+  private int convertToGridIndex(final int index) {
+    final int column = index / BOARD_SIZE;
+    final int row = index - (column * BOARD_SIZE);
     return row * BOARD_SIZE + column + 1;
   }
 }

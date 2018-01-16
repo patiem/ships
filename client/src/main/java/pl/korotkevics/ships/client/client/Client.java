@@ -162,12 +162,13 @@ public class Client implements Runnable {
   }
 
   public void askForRandomFleet() {
+    Message askForRandomFleet = new MessageBuilder()
+        .withHeader(Header.RANDOM_PLACEMENT)
+        .withAuthor(Author.CLIENT)
+        .build();
+
     try {
       Sender sender = new JsonSender(clientSocket.getOutputStream());
-      Message askForRandomFleet = new MessageBuilder()
-          .withHeader(Header.RANDOM_PLACEMENT)
-          .withAuthor(Author.CLIENT)
-          .build();
       sender.send(askForRandomFleet);
     } catch (IOException e) {
       logger.error(e.getMessage());
