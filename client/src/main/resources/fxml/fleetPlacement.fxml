@@ -56,7 +56,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                 </GridPane>
-                <Label text="Your Board">
+                <Label text="%yourBoard">
                     <font>
                         <Font name="FreeMono Bold" size="25.0"/>
                     </font>

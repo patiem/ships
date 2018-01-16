@@ -37,6 +37,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
+
+import static pl.korotkevics.ships.client.gui.controllers.MainController.DICTIONARY;
 
 /**
  * Fleet Placement window controller.
@@ -344,6 +347,8 @@ public class FleetPlacementController {
 
       final String gameWindowUrl = "/fxml/gameWindow.fxml";
       final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));
+      final ResourceBundle resourceBundle = ResourceBundle.getBundle(DICTIONARY);
+      gameWindowLoader.setResources(resourceBundle);
       final Parent gameWindow = gameWindowLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
 

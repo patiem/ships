@@ -22,6 +22,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ResourceBundle;
+
+import static pl.korotkevics.ships.client.gui.controllers.MainController.DICTIONARY;
 
 /**
  * Connecting window controller.
@@ -148,6 +151,8 @@ public class StartWindowController {
     try {
       final String gameWindowUrl = "/fxml/fleetPlacement.fxml";
       final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));
+      final ResourceBundle resourceBundle = ResourceBundle.getBundle(DICTIONARY);
+      gameWindowLoader.setResources(resourceBundle);
       final Parent gameWindow = gameWindowLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
 

@@ -96,7 +96,7 @@
                         </Label>
                     </children>
                 </HBox>
-                <Label text="Opponent Board" GridPane.columnIndex="2">
+                <Label text="%opponentBoard" GridPane.columnIndex="2">
                     <font>
                         <Font name="FreeMono Bold" size="25.0"/>
                     </font>
