@@ -1,8 +1,8 @@
 package pl.korotkevics.ships.server.gamestates.play;
 
-import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.server.MessageSender;
 import pl.korotkevics.ships.server.TurnManager;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 
 /**
  * Notification for player that he hit a ship.

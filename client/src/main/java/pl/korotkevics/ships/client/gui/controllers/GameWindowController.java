@@ -1,20 +1,8 @@
+
 package pl.korotkevics.ships.client.gui.controllers;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.NumberBinding;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import com.sun.org.apache.xml.internal.security.Init;
 import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 import pl.korotkevics.ships.client.client.Client;
 import pl.korotkevics.ships.client.gui.events.HitShotEvent;
 import pl.korotkevics.ships.client.gui.events.LooseEvent;
@@ -25,6 +13,20 @@ import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
 import pl.korotkevics.ships.client.gui.events.WinEvent;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.NumberBinding;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,7 +34,6 @@ import java.util.ResourceBundle;
 
 /**
  * Game window controller.
- *
  * @author Magdalena Aarsman
  * @since 2017-12-15
  */
@@ -59,7 +60,6 @@ public class GameWindowController implements Initializable {
   private Label winLabel;
   
   private int shotIndex;
-  
   private ResourceBundle resourceBundle;
   
   private void initializeTurn(boolean myTurn) {
@@ -76,23 +76,20 @@ public class GameWindowController implements Initializable {
     getClient().setEventTrigger(eventButton);
   }
   
-  private Client getClient() {
-    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
-    return mainController.getClient();
-  }
-  
   void initializeBoards(GridPane yourBoard) {
     final int margin = 50;
-    final NumberBinding allRectanglesWidth = Bindings.min(this.yourBoard.heightProperty(), this.yourBoard.widthProperty().add(-margin));
-    final NumberBinding allRectanglesHeight = Bindings.min(this.yourBoard.heightProperty(), this.yourBoard.widthProperty()).add(-margin);
+    final NumberBinding allRectanglesWidth = Bindings.min(this.yourBoard.heightProperty(),
+        this.yourBoard.widthProperty().add(-margin));
+    final NumberBinding allRectanglesHeight = Bindings.min(this.yourBoard.heightProperty(),
+        this.yourBoard.widthProperty()).add(-margin);
     
     for (int i = 0; i < BOARD_SIZE; i++) {
       for (int j = 0; j < BOARD_SIZE; j++) {
         final int shotIndex = j * BOARD_SIZE + i;
         
         Rectangle yourRect = getYourRect(allRectanglesWidth, allRectanglesHeight);
-        Rectangle opponentRect = getOpponentRectangle(allRectanglesWidth, allRectanglesHeight,
-            shotIndex);
+        Rectangle opponentRect = getOpponentRectangle(allRectanglesWidth,
+            allRectanglesHeight, shotIndex);
         
         this.yourBoard.add(yourRect, i, j);
         opponentBoard.add(opponentRect, i, j);
@@ -105,8 +102,21 @@ public class GameWindowController implements Initializable {
     copyYourBoard(yourBoard);
   }
   
-  private Rectangle getYourRect(NumberBinding allRectanglesWidth, NumberBinding
-                                                                      allRectanglesHeight) {
+  private void copyYourBoard(GridPane yourBoard) {
+    for (int i = 1; i < yourBoard.getChildren().size(); i++) {
+      if (((Rectangle) yourBoard.getChildren().get(i)).getFill() == Color.GREEN) {
+        ((Rectangle) this.yourBoard.getChildren().get(i)).setFill(Color.GREEN);
+      }
+    }
+  }
+  
+  private Client getClient() {
+    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
+    return mainController.getClient();
+  }
+  
+  private Rectangle getYourRect(NumberBinding allRectanglesWidth,
+                                NumberBinding allRectanglesHeight) {
     final int initialSize = 15;
     Rectangle yourRect = new Rectangle(initialSize, initialSize, Color.GRAY);
     yourRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));
@@ -115,8 +125,9 @@ public class GameWindowController implements Initializable {
     return yourRect;
   }
   
-  private Rectangle getOpponentRectangle(NumberBinding allRectanglesWidth, NumberBinding
-                                                                               allRectanglesHeight, final int shotIndex) {
+  private Rectangle getOpponentRectangle(NumberBinding allRectanglesWidth,
+                                         NumberBinding allRectanglesHeight,
+                                         final int shotIndex) {
     final int initialSize = 15;
     Rectangle opponentRect = new Rectangle(initialSize, initialSize, Color.GRAY);
     
@@ -133,24 +144,16 @@ public class GameWindowController implements Initializable {
     return opponentRect;
   }
   
-  private void copyYourBoard(GridPane yourBoard) {
-    for (int i = 1; i < yourBoard.getChildren().size(); i++) {
-      if (((Rectangle) yourBoard.getChildren().get(i)).getFill() == Color.GREEN) {
-        ((Rectangle) this.yourBoard.getChildren().get(i)).setFill(Color.GREEN);
-      }
-    }
-  }
-  
   private void opponentWithdraw() {
     getClient().closeClient();
-    loadWithdrawalScreen();
+    loadWithdrawScreen();
   }
   
-  private void loadWithdrawalScreen() {
+  private void loadWithdrawScreen() {
     try {
       final String opponentWithdrawUrl = "/fxml/opponentWithdraw.fxml";
-      final FXMLLoader opponentWithdrawLoader = new FXMLLoader(getClass().getResource
-                                                                              (opponentWithdrawUrl));
+      final FXMLLoader opponentWithdrawLoader =
+          new FXMLLoader(getClass().getResource(opponentWithdrawUrl));
       opponentWithdrawLoader.setResources(this.resourceBundle);
       final Parent opponentWithdraw = opponentWithdrawLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
@@ -175,12 +178,10 @@ public class GameWindowController implements Initializable {
     }
   }
   
-  private void setOpponentShot(int shotIndex) {
-    int column = shotIndex / BOARD_SIZE;
-    int row = shotIndex - (column * BOARD_SIZE);
-    int newShotIndex = row * BOARD_SIZE + column;
-    logger.info("new shotIndex: " + newShotIndex);
-    Rectangle rec = (Rectangle) (yourBoard.getChildren().get(newShotIndex + 1));
+  private void setOpponentShot(final int shotIndex) {
+    final int shotIndexInGrid = convertToGridIndex(shotIndex);
+    logger.info("new shotIndex: " + shotIndexInGrid);
+    final Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndexInGrid));
     if (rec.getFill() == Color.GREEN) {
       rec.setFill(Color.RED);
     } else {
@@ -188,25 +189,45 @@ public class GameWindowController implements Initializable {
     }
   }
   
-  private void changeTurn() {
-    final double opacity = 0.4;
-    opponentBoard.setDisable(true);
-    opponentBoard.setOpacity(opacity);
-  }
-  
-  private void setHit() {
+  private int convertToGridIndex(final int shotIndex) {
     final int column = shotIndex / BOARD_SIZE;
     final int row = shotIndex - (column * BOARD_SIZE);
-    final int newShotIndex = row * BOARD_SIZE + column;
-    Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(newShotIndex + 1));
+    return row * BOARD_SIZE + column + 1;
+  }
+  
+  private void changeTurn() {
+    final double opacity = 0.4;
+    this.opponentBoard.setDisable(true);
+    this.opponentBoard.setOpacity(opacity);
+  }
+  
+  private void markAsHit() {
+    final int shotIndexInGrid = this.convertToGridIndex(shotIndex);
+    final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
     rec.setFill(Color.RED);
   }
   
   private void setMyTurn() {
     logger.info("set my turn game controller");
     final double noOpacity = 1.0;
-    this.opponentBoard.setDisable(false);
-    this.opponentBoard.setOpacity(noOpacity);
+    opponentBoard.setDisable(false);
+    opponentBoard.setOpacity(noOpacity);
+  }
+  
+  @Override
+  public void initialize(final URL location, final ResourceBundle resources) {
+    this.resourceBundle = resources;
+    eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
+        opponentConnectedEvent -> opponentWithdraw());
+    eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,
+        opponentShotEvent -> setOpponentShot(opponentShotEvent.getShotIndex()));
+    eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
+    eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -> changeTurn());
+    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> markAsHit());
+    eventButton.addEventHandler(WinEvent.GAME_WIN, event -> renderAsWin());
+    eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> renderAsLoss());
+  
+    initializeTurn(false);
   }
   
   private void renderAsWin() {
@@ -219,15 +240,14 @@ public class GameWindowController implements Initializable {
     this.renderSpecificResult("youLose");
   }
   
+  private void renderSpecificResult(String key) {
+    this.winLabel.setText(this.resourceBundle.getString(key));
+  }
+  
   private void prepareToRenderAnyPossibleResult() {
     this.getClient().closeClient();
     this.disableWithdrawalPossibility();
     this.disableBoards();
-  }
-  
-  private void disableWithdrawalPossibility() {
-    this.eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
-        opponentConnectedEvent -> opponentWithdraw());
   }
   
   private void disableBoards() {
@@ -239,26 +259,9 @@ public class GameWindowController implements Initializable {
     this.winLabel.setStyle("-fx-color: green");
   }
   
-  private void renderSpecificResult(String key) {
-    this.winLabel.setText(this.resourceBundle.getString(key));
+  private void disableWithdrawalPossibility() {
+    this.eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
+        opponentConnectedEvent -> opponentWithdraw());
   }
   
-  @Override
-  public void initialize(final URL location, final ResourceBundle resources) {
-    this.resourceBundle = resources;
-    eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent
-                                                                             -> opponentWithdraw());
-    eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT, opponentShotEvent ->
-                                                                     setOpponentShot
-                                                                         (opponentShotEvent
-                                                                              .getShotIndex()));
-    eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
-    eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -> changeTurn());
-    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> setHit());
-    eventButton.addEventHandler(WinEvent.GAME_WIN, event -> renderAsWin());
-    eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> renderAsLoss());
-    
-    initializeTurn(false);
-    
-  }
 }

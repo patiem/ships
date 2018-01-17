@@ -62,7 +62,7 @@ public class ShipPlacementValidator {
   }
 
   private boolean isShipAboveShip() {
-    int checkWidthInCell = 3;
+    final int checkWidthInCell = 3;
     return !this.isInLastRow()
         && IntStream.iterate(shipStartIndex - BOARD_SIZE , i -> i + BOARD_SIZE)
         .limit(checkWidthInCell)
@@ -72,7 +72,7 @@ public class ShipPlacementValidator {
   }
 
   private boolean isInLastRow() {
-    int lastRowModulo = 9;
+    final int lastRowModulo = 9;
     return (shipStartIndex + (mastCount - 1)) % BOARD_SIZE == lastRowModulo;
   }
 
@@ -87,7 +87,7 @@ public class ShipPlacementValidator {
   }
 
   private boolean isInFirstRow() {
-    return shipStartIndex % BOARD_SIZE == 0;
+    return this.shipStartIndex % BOARD_SIZE == 0;
   }
 
   private boolean isShipOnTheRight() {
@@ -140,12 +140,12 @@ public class ShipPlacementValidator {
   }
 
   private boolean isShipOnTheRightHorizontal() {
-    return shipStartIndex + mastCount * BOARD_SIZE < board.length
-        && board[shipStartIndex + mastCount * BOARD_SIZE].equals(FieldState.OCCUPIED);
+    return this.shipStartIndex + this.mastCount * BOARD_SIZE < this.board.length
+        && board[this.shipStartIndex + this.mastCount * BOARD_SIZE].equals(FieldState.OCCUPIED);
   }
 
   private boolean isShipOnTheLeftHorizontal() {
-    return shipStartIndex - BOARD_SIZE >= 1 && board[shipStartIndex - BOARD_SIZE].equals(FieldState.OCCUPIED);
+    return this.shipStartIndex - BOARD_SIZE >= 1 && this.board[shipStartIndex - BOARD_SIZE].equals(FieldState.OCCUPIED);
   }
 
 }

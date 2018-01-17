@@ -3,6 +3,7 @@ package pl.korotkevics.ships.client.client;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
+import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
@@ -17,9 +18,9 @@ class OpponentShotTrigger implements EventTrigger {
   private static final Target logger = new SharedLogger(Client.class);
 
   @Override
-  public void fire(final Button button, final String messageStatement) {
+  public void fire(final Button button, final Message message) {
     Platform.runLater(() ->
-        button.fireEvent(new OpponentShotEvent(Integer.valueOf(messageStatement))));
-    logger.info("shot index: " + messageStatement);
+        button.fireEvent(new OpponentShotEvent(Integer.valueOf(message.getStatement()))));
+    logger.info("shot index: " + message.getStatement());
   }
 }

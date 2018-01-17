@@ -13,11 +13,26 @@ import lombok.ToString;
  */
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@ToString
 public class Mast {
   private String index;
-
-  public static Mast ofIndex(String index) {
+  
+  /**
+   *
+   * It creates a Mast based on an index value.
+   *
+   * @param index location of a mast within a game board grid
+   * @return Mast
+   */
+  public static Mast ofIndex(final String index) {
     return new Mast(index);
+  }
+  
+  /**
+   * It is not a subject to change.
+   * @return a String representation of Mast which is its actual index.
+   */
+  @Override
+  public String toString() {
+    return this.index;
   }
 }
