@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/8"
-            fx:controller="pl.korotkevics.ships.client.gui.controllers.StartWindowController">
+            fx:controller="pl.korotkevics.ships.client.gui.controllers.ConnectWindowController">
     <children>
         <GridPane fx:id="gridPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -28,10 +28,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <TextField fx:id="textFieldServerAddress" prefHeight="38.0" prefWidth="302.0" promptText="Server Addres"/>
+                <TextField fx:id="textFieldServerAddress" prefHeight="38.0" prefWidth="302.0"
+                           promptText="%serverAddress"/>
                 <VBox GridPane.rowIndex="1">
                     <children>
-                        <TextField fx:id="textFieldServerPort" prefHeight="38.0" prefWidth="336.0" promptText="Server Port">
+                        <TextField fx:id="textFieldServerPort" prefHeight="38.0" prefWidth="336.0"
+                                   promptText="%serverPort">
                             <VBox.margin>
                                 <Insets top="15.0"/>
                             </VBox.margin>
@@ -40,7 +42,7 @@
                     </children>
                 </VBox>
                 <Button maxWidth="120.0" mnemonicParsing="false" onAction="#onConnectPressed" prefHeight="38.0"
-                        text="Connect" GridPane.rowIndex="2"/>
+                        text="%connect" GridPane.rowIndex="2"/>
                 <ImageView fx:id="imCannon" fitHeight="224.0" fitWidth="201.0" pickOnBounds="true" preserveRatio="true"
                            GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <image>
@@ -52,7 +54,7 @@
         </GridPane>
         <VBox fx:id="vbWheel" alignment="CENTER" prefHeight="320.0" prefWidth="498.0" visible="false">
             <children>
-                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
                     <VBox.margin>
                         <Insets left="25.0" right="25.0"/>
                     </VBox.margin>
@@ -60,8 +62,8 @@
                         <Image url="@../images/wheel.gif"/>
                     </image>
                 </ImageView>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="234.0"
-                       text="Waiting for opponent..." textAlignment="CENTER" textFill="#063483" textOverrun="CLIP">
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="300.0"
+                       text="%waiting" textAlignment="CENTER" textFill="#063483" textOverrun="CLIP">
                     <font>
                         <Font size="19.0"/>
                     </font>

@@ -32,8 +32,9 @@ public class Client implements Runnable {
 
   /**
    * Creates Client instance.
+   *
    * @param messageHandler - messageHandler instance
-   * @param shouldRun - flag informing if client should start/run
+   * @param shouldRun      - flag informing if client should start/run
    */
   public Client(final MessageHandler messageHandler, boolean shouldRun) {
     this.messageHandler = messageHandler;
