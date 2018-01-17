@@ -1,22 +1,11 @@
 
 package pl.korotkevics.ships.client.gui.controllers;
 
-import com.sun.org.apache.xml.internal.security.Init;
-import javafx.fxml.Initializable;
-import pl.korotkevics.ships.client.client.Client;
-import pl.korotkevics.ships.client.gui.events.HitShotEvent;
-import pl.korotkevics.ships.client.gui.events.LooseEvent;
-import pl.korotkevics.ships.client.gui.events.MissShotEvent;
-import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
-import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
-import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
-import pl.korotkevics.ships.client.gui.events.WinEvent;
-import pl.korotkevics.ships.shared.infra.logging.api.Target;
-import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -27,6 +16,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import pl.korotkevics.ships.client.client.Client;
+import pl.korotkevics.ships.client.gui.events.HitShotEvent;
+import pl.korotkevics.ships.client.gui.events.LooseEvent;
+import pl.korotkevics.ships.client.gui.events.MissShotEvent;
+import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
+import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
+import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
+import pl.korotkevics.ships.client.gui.events.WinEvent;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
 import java.net.URL;
