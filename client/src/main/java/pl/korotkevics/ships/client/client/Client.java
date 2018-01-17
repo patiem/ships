@@ -160,4 +160,18 @@ public class Client implements Runnable {
   public void setEventTrigger(Button button) {
     messageHandler.setCurrentEventButton(button);
   }
+
+  public void askForRandomFleet() {
+    Message askForRandomFleet = new MessageBuilder()
+        .withHeader(Header.RANDOM_PLACEMENT)
+        .withAuthor(Author.CLIENT)
+        .build();
+
+    try {
+      Sender sender = new JsonSender(clientSocket.getOutputStream());
+      sender.send(askForRandomFleet);
+    } catch (IOException e) {
+      logger.error(e.getMessage());
+    }
+  }
 }

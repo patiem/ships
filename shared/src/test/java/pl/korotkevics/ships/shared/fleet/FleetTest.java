@@ -3,6 +3,7 @@ package pl.korotkevics.ships.shared.fleet;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
@@ -48,9 +49,16 @@ public class FleetTest {
     //given - when
     Fleet fleet = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"), Mast.ofIndex("2"), Mast.ofIndex("1"))));
     //then
-    assertEquals(fleet.toString(), "Fleet(fleet={Mast(index=1)=Ship(masts=[Mast(index=1), Mast(index=2), Mast" +
-        "(index=3)]), Mast(index=2)=Ship(masts=[Mast(index=1), Mast(index=2), " +
-        "Mast(index=3)]), Mast(index=3)=Ship(masts=[Mast(index=1), Mast" +
-        "(index=2), Mast(index=3)])})");
+    assertEquals(fleet.toString(), "Fleet(fleet={1=Ship(masts=[1, 2, 3]), 2=Ship(masts=[1, 2, 3]), 3=Ship(masts=[1, 2, 3])})");
+  }
+  
+  @Test
+  public void integerListRepresentationIsProper() {
+    //given
+    Fleet fleet = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"), Mast.ofIndex("2"), Mast.ofIndex("1"))));
+    //when
+    List<Integer> list = fleet.toIntegerList();
+    //then
+    assertEquals(list.toString(), "[1, 2, 3]");
   }
 }
