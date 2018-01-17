@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
@@ -224,15 +223,23 @@
                         </HBox>
                         </VBox>
                         <HBox alignment="CENTER_RIGHT" GridPane.rowIndex="1">
-                            <Button fx:id="buttonReady" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="200.0" style="-fx-background-color: seagreen;" text="%ready" textAlignment="CENTER">
-                                <font>
-                                    <Font name="FreeMono" size="29.0" />
-                                </font>
-                                <HBox.margin>
-                                    <Insets right="20.0" />
-                                </HBox.margin>
-                            </Button>
+                            <children>
+                                <Button fx:id="buttonRandom" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: seagreen;" text="Random fleet" textAlignment="CENTER" wrapText="true">
+                                    <font>
+                                        <Font name="FreeMono" size="20.0" />
+                                    </font>
+                                    <HBox.margin>
+                                        <Insets right="20.0" />
+                                    </HBox.margin>
+                                </Button>
+                                <Button fx:id="buttonReady" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: seagreen;" text="Ready" textAlignment="CENTER">
+                                    <font>
+                                        <Font name="FreeMono" size="29.0" />
+                                    </font>
+                                </Button>
+                            </children>
                         </HBox>
+
                     </children>
                 </GridPane>
             </children>
