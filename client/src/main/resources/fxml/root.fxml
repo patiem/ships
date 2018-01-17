@@ -31,7 +31,7 @@
             <rowConstraints>
                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+            <Label fx:id="gameTitle" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
                    style="-fx-font-size: 30; -fx-font-family: monospace;" text="Battleships" textAlignment="CENTER">
                 <padding>
                     <Insets top="10.0"/>

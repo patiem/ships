@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import lombok.Getter;
 import pl.korotkevics.ships.client.client.Client;
@@ -31,6 +32,9 @@ public class MainController {
   private static final String DICTIONARY = "dict";
   
   @FXML
+  private Label gameTitle;
+  
+  @FXML
   private Button russianButton;
   
   @FXML
@@ -44,6 +48,8 @@ public class MainController {
   
   @FXML
   private Button englishButton;
+  
+  private ResourceBundle resourceBundle;
   
   /**
    * Initialize main controller.
@@ -63,6 +69,7 @@ public class MainController {
   
   private void reloadView() {
     final FXMLLoader fxmlLoader = this.prepareFxmlLoader();
+    this.gameTitle.setText(this.resourceBundle.getString("gameTitle"));
     try {
       this.addToMainPane(fxmlLoader.load());
     } catch (IOException e) {
@@ -73,7 +80,8 @@ public class MainController {
   private FXMLLoader prepareFxmlLoader() {
     final String url = "/fxml/connectWindow.fxml";
     final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(url));
-    fxmlLoader.setResources(ResourceBundle.getBundle(DICTIONARY));
+    this.resourceBundle = ResourceBundle.getBundle(DICTIONARY);
+    fxmlLoader.setResources(this.resourceBundle);
     return fxmlLoader;
   }
   
