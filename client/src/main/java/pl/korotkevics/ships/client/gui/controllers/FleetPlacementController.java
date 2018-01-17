@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -35,10 +36,10 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.enrichFxmlLoader;
+import java.util.ResourceBundle;
 
 /**
  * Fleet Placement window controller.
@@ -46,7 +47,7 @@ import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.enrichFxm
  * @author Magdalena Aarsman
  * @since 2017-12-19
  */
-public class FleetPlacementController {
+public class FleetPlacementController implements Initializable {
   
   private static final Target logger = new SharedLogger(Client.class);
   private static final int BOARD_SIZE = 10;
@@ -137,9 +138,20 @@ public class FleetPlacementController {
     }
     event.consume();
   };
+  private ResourceBundle resourceBundle;
   
-  @FXML
-  void initialize() {
+  void initializeClient() {
+    getClient().setEventTrigger(eventButton);
+  }
+  
+  private Client getClient() {
+    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
+    return mainController.getClient();
+  }
+  
+  @Override
+  public void initialize(final URL location, final ResourceBundle resourceBundle) {
+    this.resourceBundle = resourceBundle;
     buttonReady.setOnAction(event -> loadGameWindow());
     buttonReady.setDisable(true);
     initializeBoard();
@@ -161,8 +173,8 @@ public class FleetPlacementController {
       getClient().sendFleet(Fleet.ofShips(ships));
       
       final String gameWindowUrl = "/fxml/gameWindow.fxml";
-      final FXMLLoader gameWindowLoader = enrichFxmlLoader(new FXMLLoader(getClass().getResource
-                                                                                         (gameWindowUrl)));
+      final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));
+      gameWindowLoader.setResources(this.resourceBundle);
       final Parent gameWindow = gameWindowLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
       
@@ -216,11 +228,6 @@ public class FleetPlacementController {
     setEventsOnShips(groupThreeMastShips);
     setEventsOnShips(groupTwoMastShips);
     setEventsOnShips(groupOneMastShips);
-  }
-  
-  private Client getClient() {
-    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
-    return mainController.getClient();
   }
   
   private Rectangle getYourRect(NumberBinding allRectanglesWidth, NumberBinding
@@ -365,9 +372,5 @@ public class FleetPlacementController {
         masts[i1] = Mast.ofIndex(String.valueOf(recIndex + i1));
       }
     }
-  }
-  
-  void initializeClient() {
-    getClient().setEventTrigger(eventButton);
   }
 }

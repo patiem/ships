@@ -8,15 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import lombok.Getter;
 import pl.korotkevics.ships.client.client.Client;
-import pl.korotkevics.ships.client.gui.util.LocalizationHandler;
 import pl.korotkevics.ships.client.localization.OurLocale;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
-import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.*;
 
 /**
  * Main window (containing title and similar) controller.
@@ -28,6 +27,9 @@ import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.*;
 public class MainController {
   
   private static final Target logger = new SharedLogger(Client.class);
+  
+  private static final String DICTIONARY = "dict";
+  
   @FXML
   private Button russianButton;
   
@@ -71,7 +73,8 @@ public class MainController {
   private FXMLLoader prepareFxmlLoader() {
     final String url = "/fxml/connectWindow.fxml";
     final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(url));
-    return enrichFxmlLoader(fxmlLoader);
+    fxmlLoader.setResources(ResourceBundle.getBundle(DICTIONARY));
+    return fxmlLoader;
   }
   
   private void addFxmlLoaderToMainPane(final Parent parent) {

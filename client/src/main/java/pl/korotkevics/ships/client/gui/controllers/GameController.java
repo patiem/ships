@@ -4,6 +4,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -26,9 +27,8 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
-
-import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.enrichFxmlLoader;
-import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.resolveLocalization;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Game window controller.
@@ -37,7 +37,7 @@ import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.resolveLo
  * @since 2017-12-15
  */
 
-public class GameController {
+public class GameController implements Initializable {
   
   private static final Target logger = new SharedLogger(Client.class);
   
@@ -60,22 +60,7 @@ public class GameController {
   
   private int shotIndex;
   
-  @FXML
-  void initialize() {
-    eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent
-                                                                             -> opponentWithdraw());
-    eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT, opponentShotEvent ->
-                                                                     setOpponentShot
-                                                                         (opponentShotEvent
-                                                                              .getShotIndex()));
-    eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
-    eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -> changeTurn());
-    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> setHit());
-    eventButton.addEventHandler(WinEvent.GAME_WIN, event -> renderAsWin());
-    eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> renderAsLoss());
-    
-    initializeTurn(false);
-  }
+  private ResourceBundle resourceBundle;
   
   private void initializeTurn(boolean myTurn) {
     logger.info("initialize turn: " + myTurn);
@@ -164,9 +149,9 @@ public class GameController {
   private void loadWithdrawalScreen() {
     try {
       final String opponentWithdrawUrl = "/fxml/opponentWithdraw.fxml";
-      final FXMLLoader opponentWithdrawLoader = enrichFxmlLoader(new FXMLLoader(getClass()
-                                                                                    .getResource
-                                                                                         (opponentWithdrawUrl)));
+      final FXMLLoader opponentWithdrawLoader = new FXMLLoader(getClass().getResource
+                                                                              (opponentWithdrawUrl));
+      opponentWithdrawLoader.setResources(this.resourceBundle);
       final Parent opponentWithdraw = opponentWithdrawLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
       final int sceneHeight = 400;
@@ -255,6 +240,25 @@ public class GameController {
   }
   
   private void renderSpecificResult(String key) {
-    this.winLabel.setText(resolveLocalization(key));
+    this.winLabel.setText(this.resourceBundle.getString(key));
+  }
+  
+  @Override
+  public void initialize(final URL location, final ResourceBundle resources) {
+    this.resourceBundle = resources;
+    eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW, opponentConnectedEvent
+                                                                             -> opponentWithdraw());
+    eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT, opponentShotEvent ->
+                                                                     setOpponentShot
+                                                                         (opponentShotEvent
+                                                                              .getShotIndex()));
+    eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
+    eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -> changeTurn());
+    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> setHit());
+    eventButton.addEventHandler(WinEvent.GAME_WIN, event -> renderAsWin());
+    eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> renderAsLoss());
+    
+    initializeTurn(false);
+    
   }
 }

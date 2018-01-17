@@ -2,6 +2,7 @@ package pl.korotkevics.ships.client.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -22,9 +23,8 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
 import java.net.Socket;
-
-import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.enrichFxmlLoader;
-import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.resolveLocalization;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Connecting window controller.
@@ -32,7 +32,7 @@ import static pl.korotkevics.ships.client.gui.util.LocalizationHandler.resolveLo
  * @author Magdalena Aarsman
  * @since 2017-12-14
  */
-public class StartWindowController {
+public class StartWindowController implements Initializable {
   
   private static final Target logger = new SharedLogger(Client.class);
   
@@ -64,56 +64,7 @@ public class StartWindowController {
   
   private PortValidator portValidator;
   
-  @FXML
-  void initialize() {
-    textFieldServerPort.textProperty().addListener((observableValue, s1, t1) -> {
-      if (!labelInvalidPort.getText().isEmpty()) {
-        labelInvalidPort.setText("");
-      }
-    });
-    
-    portValidator = new PortValidator();
-    eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED, event ->
-                                                                               loadFleetPlacementWindow());
-    
-    final String defaultHost = "127.0.0.1";
-    final String defaultPort = "8189";
-    
-    textFieldServerAddress.setText(defaultHost);
-    textFieldServerPort.setText(defaultPort);
-  }
-  
-  private void loadFleetPlacementWindow() {
-    try {
-      final String gameWindowUrl = "/fxml/fleetPlacement.fxml";
-      final FXMLLoader gameWindowLoader = enrichFxmlLoader(new FXMLLoader(getClass().getResource
-                                                                                         (gameWindowUrl)));
-      final Parent gameWindow = gameWindowLoader.load();
-      final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
-      
-      Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-      
-      Stage stage = (Stage) mainPane.getScene().getWindow();
-      final int shrinkSize = 300;
-      stage.setMinHeight(screenBounds.getHeight() - shrinkSize);
-      stage.setMinWidth(screenBounds.getWidth() - shrinkSize);
-      
-      mainPane.getChildren().clear();
-      mainPane.getChildren().setAll(gameWindow);
-      
-      FleetPlacementController fleetPlacementController = gameWindowLoader.getController();
-      fleetPlacementController.initializeClient();
-      
-      final double margin = 0.0;
-      AnchorPane.setTopAnchor(gameWindow, margin);
-      AnchorPane.setBottomAnchor(gameWindow, margin);
-      AnchorPane.setLeftAnchor(gameWindow, margin);
-      AnchorPane.setRightAnchor(gameWindow, margin);
-      
-    } catch (IOException e) {
-      logger.error(e.getMessage());
-    }
-  }
+  private ResourceBundle resourceBundle;
   
   @FXML
   private void onConnectPressed() {
@@ -131,7 +82,7 @@ public class StartWindowController {
     try {
       port = portValidator.asInt(textFieldServerPort.getText());
     } catch (IllegalArgumentException e) {
-      labelInvalidPort.setText(resolveLocalization("invalidPort"));
+      labelInvalidPort.setText(this.resourceBundle.getString("invalidPort"));
       return;
     }
     logger.info("server port: " + port);
@@ -175,6 +126,60 @@ public class StartWindowController {
       final Pane mainPane = (Pane) mainAnchorPane.getParent();
       mainPane.getChildren().clear();
       mainPane.getChildren().setAll(notResponse);
+    } catch (IOException e) {
+      logger.error(e.getMessage());
+    }
+  }
+  
+  @Override
+  public void initialize(final URL location, final ResourceBundle resourceBundle) {
+    this.resourceBundle = resourceBundle;
+    
+    textFieldServerPort.textProperty().addListener((observableValue, s1, t1) -> {
+      if (!labelInvalidPort.getText().isEmpty()) {
+        labelInvalidPort.setText("");
+      }
+    });
+    
+    portValidator = new PortValidator();
+    eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED, event ->
+                                                                               loadFleetPlacementWindow());
+    
+    final String defaultHost = "127.0.0.1";
+    final String defaultPort = "8189";
+    
+    textFieldServerAddress.setText(defaultHost);
+    textFieldServerPort.setText(defaultPort);
+    
+  }
+  
+  private void loadFleetPlacementWindow() {
+    try {
+      final String gameWindowUrl = "/fxml/fleetPlacement.fxml";
+      final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));
+      gameWindowLoader.setResources(this.resourceBundle);
+      final Parent gameWindow = gameWindowLoader.load();
+      final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
+      
+      Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+      
+      Stage stage = (Stage) mainPane.getScene().getWindow();
+      final int shrinkSize = 300;
+      stage.setMinHeight(screenBounds.getHeight() - shrinkSize);
+      stage.setMinWidth(screenBounds.getWidth() - shrinkSize);
+      
+      mainPane.getChildren().clear();
+      mainPane.getChildren().setAll(gameWindow);
+      
+      FleetPlacementController fleetPlacementController = gameWindowLoader.getController();
+      fleetPlacementController.initializeClient();
+      
+      final double margin = 0.0;
+      AnchorPane.setTopAnchor(gameWindow, margin);
+      AnchorPane.setBottomAnchor(gameWindow, margin);
+      AnchorPane.setLeftAnchor(gameWindow, margin);
+      AnchorPane.setRightAnchor(gameWindow, margin);
+      
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
