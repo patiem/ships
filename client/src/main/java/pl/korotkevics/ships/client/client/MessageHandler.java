@@ -1,12 +1,12 @@
 package pl.korotkevics.ships.client.client;
 
+import javafx.scene.control.Button;
+import lombok.Getter;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
-import javafx.scene.control.Button;
-import lombok.Getter;
 
 import java.util.Map;
 
@@ -31,12 +31,12 @@ class MessageHandler {
     this.triggers = triggerMap;
   }
 
-  void setCurrentEventButton(Button eventButton) {
-    this.eventButton = eventButton;
-  }
-
   Button getCurrentEventButton() {
     return eventButton;
+  }
+
+  void setCurrentEventButton(Button eventButton) {
+    this.eventButton = eventButton;
   }
 
   void handle(Message message) {
