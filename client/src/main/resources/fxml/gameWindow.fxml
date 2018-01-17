@@ -86,7 +86,7 @@
                                 <Font name="FreeMono Bold" size="25.0"/>
                             </font>
                         </Label>
-                        <Label fx:id="winLabel" prefHeight="16.0" prefWidth="399.0">
+                        <Label fx:id="winLabel" prefHeight="16.0" prefWidth="500.0">
                             <font>
                                 <Font name="FreeMono Bold" size="65.0"/>
                             </font>
