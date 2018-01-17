@@ -2,6 +2,7 @@ package pl.korotkevics.ships.client.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -10,6 +11,8 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Server not responding window.
@@ -18,12 +21,13 @@ import java.io.IOException;
  * @since 2017-12-17
  */
 
-public class ServerNotRespondingController {
+public class ServerNotRespondingController implements Initializable {
   
   private static final Target logger = new SharedLogger(Client.class);
   
   @FXML
   private AnchorPane mainAnchorPane;
+  private ResourceBundle resourceBundle;
   
   @FXML
   private void onTryAgainPressed() {
@@ -37,5 +41,10 @@ public class ServerNotRespondingController {
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
+  }
+  
+  @Override
+  public void initialize(final URL location, final ResourceBundle resources) {
+    this.resourceBundle = resources;
   }
 }
