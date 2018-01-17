@@ -212,7 +212,6 @@ public class GameController {
     final int shotIndexInGrid = this.convertToGridIndex(shotIndex);
     final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
     rec.setFill(Color.RED);
-    //opponentBoard.setDisable(false);
   }
 
   private void setMyTurn() {
