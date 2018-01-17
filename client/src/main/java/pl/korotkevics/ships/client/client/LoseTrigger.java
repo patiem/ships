@@ -1,8 +1,8 @@
 package pl.korotkevics.ships.client.client;
 
-import pl.korotkevics.ships.client.gui.events.LooseEvent;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
+import pl.korotkevics.ships.client.gui.events.LooseEvent;
 
 /**
  * Enable to fire event reacting to lose the game.

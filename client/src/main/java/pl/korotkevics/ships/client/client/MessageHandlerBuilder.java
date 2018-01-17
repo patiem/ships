@@ -7,6 +7,7 @@ import java.util.Map;
 
 /**
  * Helper class to build MessageHandler.
+ *
  * @author Magdalena Aarsman
  * @since 2018-01-02
  */
@@ -16,6 +17,7 @@ public class MessageHandlerBuilder {
 
   /**
    * Set triggers map to be enum map with Header as key.
+   *
    * @return MessageHandlerBuilder
    */
   public MessageHandlerBuilder withEnumMap() {
@@ -25,6 +27,7 @@ public class MessageHandlerBuilder {
 
   /**
    * Set default set of triggers and put it into map.
+   *
    * @return MessageHandlerBuilder
    */
   public MessageHandlerBuilder withDefaultSetsOfTriggers() {
@@ -42,6 +45,7 @@ public class MessageHandlerBuilder {
 
   /**
    * Build MessageHandler.
+   *
    * @return MessageHandler
    */
   public MessageHandler build() {
