@@ -1,6 +1,9 @@
 package pl.korotkevics.ships.client.gui.controllers;
 
+import javafx.scene.effect.DropShadow;
 import pl.korotkevics.ships.client.client.Client;
+import pl.korotkevics.ships.client.gui.events.RandomPlacementEvent;
+import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
 import pl.korotkevics.ships.client.gui.util.GridToBoardConverter;
 import pl.korotkevics.ships.client.gui.util.ShipOrientation;
 import pl.korotkevics.ships.client.validators.ShipPlacementValidator;
@@ -56,6 +59,9 @@ public class FleetPlacementController {
   private Button buttonReady;
 
   @FXML
+  private Button buttonRandom;
+
+  @FXML
   private Button eventButton;
 
   @FXML
@@ -81,6 +87,7 @@ public class FleetPlacementController {
   private ShipOrientation shipOrientation;
 
   private boolean shipPlacementSuccess;
+  private boolean randomShipPlacement;
 
   //Events Handlers
   private EventHandler<MouseEvent> onMouseEnteredOnShip =
@@ -154,9 +161,18 @@ public class FleetPlacementController {
     choiceBox.getSelectionModel()
         .selectedItemProperty()
         .addListener((observable, oldValue, newValue) -> {
-          shipOrientation = ShipOrientation.valueOf((String) newValue);
+          shipOrientation = ShipOrientation.valueOf(String.valueOf(newValue));
           logger.info(newValue);
         });
+
+    buttonRandom.setOnAction(event -> askForRandomFleet());
+    DropShadow shadow = new DropShadow();
+    buttonRandom.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonRandom.setEffect(shadow));
+    buttonRandom.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonRandom.setEffect(null));
+    buttonReady.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonReady.setEffect(shadow));
+    buttonReady.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonReady.setEffect(null));
+    eventButton.addEventHandler(RandomPlacementEvent.RANDOM_PLACEMENT_EVENT,
+        event -> getRandomFleet(event.getFleet()));
   }
 
   private void initializeBoard() {
@@ -340,7 +356,9 @@ public class FleetPlacementController {
 
   private void loadGameWindow() {
     try {
-      getClient().sendFleet(Fleet.ofShips(ships));
+      if(!this.randomShipPlacement) {
+        this.getClient().sendFleet(Fleet.ofShips(ships));
+      }
 
       final String gameWindowUrl = "/fxml/gameWindow.fxml";
       final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));
@@ -370,5 +388,35 @@ public class FleetPlacementController {
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
+  }
+
+  private void askForRandomFleet() {
+    this.getClient().askForRandomFleet();
+    this.randomShipPlacement = true;
+    this.buttonRandom.setDisable(true);
+  }
+
+  private void getRandomFleet(final Fleet fleet) {
+    this.buttonReady.setDisable(false);
+    this.drawFleet(fleet);
+    this.loadGameWindow();
+  }
+
+  private void drawFleet(final Fleet fleet) {
+    fleet.
+        toIntegerList().
+        forEach(i -> this.drawMast(this.convertToGridIndex(i)));
+  }
+
+  private void drawMast(int index) {
+    logger.info("draw index: " + index);
+    Rectangle rec = (Rectangle) (yourBoard.getChildren().get(index));
+    rec.setFill(Color.GREEN);
+  }
+
+  private int convertToGridIndex(final int index) {
+    final int column = index / BOARD_SIZE;
+    final int row = index - (column * BOARD_SIZE);
+    return row * BOARD_SIZE + column + 1;
   }
 }

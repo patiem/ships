@@ -64,7 +64,7 @@ public class GameController {
         opponentShotEvent -> setOpponentShot(opponentShotEvent.getShotIndex()));
     eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
     eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -> changeTurn());
-    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> setHit());
+    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> markAsHit());
     eventButton.addEventHandler(WinEvent.GAME_WIN, event -> setWin());
     eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> setLose());
 
@@ -186,12 +186,10 @@ public class GameController {
     }
   }
 
-  private void setOpponentShot(int shotIndex) {
-    int column = shotIndex / BOARD_SIZE;
-    int row = shotIndex - (column * BOARD_SIZE);
-    int newShotIndex = row * BOARD_SIZE + column;
-    logger.info("new shotIndex: " + newShotIndex);
-    Rectangle rec = (Rectangle) (yourBoard.getChildren().get(newShotIndex + 1));
+  private void setOpponentShot(final int shotIndex) {
+    final int shotIndexInGrid = convertToGridIndex(shotIndex);
+    logger.info("new shotIndex: " + shotIndexInGrid);
+    final Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndexInGrid));
     if (rec.getFill() == Color.GREEN) {
       rec.setFill(Color.RED);
     } else {
@@ -199,17 +197,21 @@ public class GameController {
     }
   }
 
-  private void changeTurn() {
-    final double opacity = 0.4;
-    opponentBoard.setDisable(true);
-    opponentBoard.setOpacity(opacity);
+  private int convertToGridIndex(final int shotIndex) {
+    final int column = shotIndex / BOARD_SIZE;
+    final int row = shotIndex - (column * BOARD_SIZE);
+    return row * BOARD_SIZE + column + 1;
   }
 
-  private void setHit() {
-    int column = shotIndex / BOARD_SIZE;
-    int row = shotIndex - (column * BOARD_SIZE);
-    int newShotIndex = row * BOARD_SIZE + column;
-    Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(newShotIndex + 1));
+  private void changeTurn() {
+    final double opacity = 0.4;
+    this.opponentBoard.setDisable(true);
+    this.opponentBoard.setOpacity(opacity);
+  }
+
+  private void markAsHit() {
+    final int shotIndexInGrid = this.convertToGridIndex(shotIndex);
+    final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
     rec.setFill(Color.RED);
   }
 

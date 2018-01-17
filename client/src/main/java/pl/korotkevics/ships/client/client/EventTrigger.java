@@ -1,6 +1,7 @@
 package pl.korotkevics.ships.client.client;
 
 import javafx.scene.control.Button;
+import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
 /**
  * Enable fire gui event from client listen thread.
@@ -10,5 +11,5 @@ import javafx.scene.control.Button;
  */
 
 interface EventTrigger {
-  void fire(final Button button, final String messageStatement);
+  void fire(final Button button, final Message message);
 }
