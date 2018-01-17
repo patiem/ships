@@ -14,9 +14,6 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
  * @since 2017-12-18
  */
 class TurnTrigger implements EventTrigger {
-
-  private static final Target logger = new SharedLogger(Client.class);
-
   @Override
   public void fire(final Button button, final Message message) {
     if (message.getStatement().isEmpty()) {

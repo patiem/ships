@@ -1,11 +1,11 @@
 package pl.korotkevics.ships.client.client;
 
-import javafx.application.Platform;
-import javafx.scene.control.Button;
 import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+import javafx.application.Platform;
+import javafx.scene.control.Button;
 
 /**
  * Enable to fire event reacting to opponent shot.
@@ -14,13 +14,9 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
  * @since 2017-12-17
  */
 class OpponentShotTrigger implements EventTrigger {
-
-  private static final Target logger = new SharedLogger(Client.class);
-
   @Override
   public void fire(final Button button, final Message message) {
     Platform.runLater(() ->
         button.fireEvent(new OpponentShotEvent(Integer.valueOf(message.getStatement()))));
-    logger.info("shot index: " + message.getStatement());
   }
 }

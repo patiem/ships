@@ -5,6 +5,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.effect.DropShadow;
 import pl.korotkevics.ships.client.client.Client;
 import pl.korotkevics.ships.client.gui.events.RandomPlacementEvent;
+import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
 import pl.korotkevics.ships.client.gui.util.GridToBoardConverter;
 import pl.korotkevics.ships.client.gui.util.ShipOrientation;
 import pl.korotkevics.ships.client.validators.ShipPlacementValidator;
@@ -15,6 +16,7 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
+import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,7 +81,7 @@ public class FleetPlacementController implements Initializable {
 
   @FXML
   private GridPane yourBoard;
-  
+
   @FXML
   private RadioButton rbVertical;
   
@@ -388,7 +390,6 @@ public class FleetPlacementController implements Initializable {
   }
 
   private void drawMast(int index) {
-    logger.info("draw index: " + index);
     Rectangle rec = (Rectangle) (yourBoard.getChildren().get(index));
     rec.setFill(Color.GREEN);
   }

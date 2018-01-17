@@ -55,7 +55,9 @@ class MessageHandler {
   }
 
   private void checkIfEndWillBeTriggered(final Message message) {
-    if (Status.END.equals(message.getStatus())) {
+    if (Status.END.equals(message.getStatus())
+        || Header.WIN.equals(message.getHeader())
+        || Header.LOSE.equals(message.getHeader())) {
       endConnectionTriggered = true;
     }
   }
