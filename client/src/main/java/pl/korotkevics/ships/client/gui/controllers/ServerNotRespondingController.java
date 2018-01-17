@@ -34,6 +34,7 @@ public class ServerNotRespondingController implements Initializable {
     try {
       final String connectWindowUrl = "/fxml/connectWindow.fxml";
       final FXMLLoader connectLoader = new FXMLLoader(getClass().getResource(connectWindowUrl));
+      connectLoader.setResources(this.resourceBundle);
       final Parent connectWindow = connectLoader.load();
       final Pane mainPane = (Pane) mainAnchorPane.getParent();
       mainPane.getChildren().clear();

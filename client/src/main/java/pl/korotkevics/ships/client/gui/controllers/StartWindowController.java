@@ -122,6 +122,7 @@ public class StartWindowController implements Initializable {
       final String serverNotRespondingUrl = "/fxml/serverNotResponding.fxml";
       final FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource
                                                                          (serverNotRespondingUrl));
+      notResponseLoader.setResources(this.resourceBundle);
       final Parent notResponse = notResponseLoader.load();
       final Pane mainPane = (Pane) mainAnchorPane.getParent();
       mainPane.getChildren().clear();
