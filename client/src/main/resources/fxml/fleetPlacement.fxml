@@ -224,7 +224,7 @@
                         </VBox>
                         <HBox alignment="CENTER_RIGHT" GridPane.rowIndex="1">
                             <children>
-                                <Button fx:id="buttonRandom" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: seagreen;" text="Random fleet" textAlignment="CENTER" wrapText="true">
+                                <Button fx:id="buttonRandom" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="200.0" style="-fx-background-color: seagreen;" text="Random fleet" textAlignment="CENTER" wrapText="true">
                                     <font>
                                         <Font name="FreeMono" size="20.0" />
                                     </font>
@@ -232,7 +232,7 @@
                                         <Insets right="20.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="buttonReady" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: seagreen;" text="Ready" textAlignment="CENTER">
+                                <Button fx:id="buttonReady" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="147.0" style="-fx-background-color: seagreen;" text="%ready" textAlignment="CENTER">
                                     <font>
                                         <Font name="FreeMono" size="29.0" />
                                     </font>
