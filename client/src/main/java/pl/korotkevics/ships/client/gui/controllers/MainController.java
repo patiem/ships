@@ -64,7 +64,7 @@ public class MainController {
   private void reloadView() {
     final FXMLLoader fxmlLoader = this.prepareFxmlLoader();
     try {
-      this.addFxmlLoaderToMainPane(fxmlLoader.load());
+      this.addToMainPane(fxmlLoader.load());
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
@@ -77,7 +77,7 @@ public class MainController {
     return fxmlLoader;
   }
   
-  private void addFxmlLoaderToMainPane(final Parent parent) {
+  private void addToMainPane(final Parent parent) {
     this.mainPane.getChildren().clear();
     this.mainPane.getChildren().add(parent);
   }
