@@ -37,7 +37,7 @@ import java.util.ResourceBundle;
  * @since 2017-12-15
  */
 
-public class GameController implements Initializable {
+public class GameWindowController implements Initializable {
   
   private static final Target logger = new SharedLogger(Client.class);
   

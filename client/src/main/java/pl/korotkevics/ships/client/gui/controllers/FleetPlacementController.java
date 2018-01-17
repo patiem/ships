@@ -2,7 +2,6 @@ package pl.korotkevics.ships.client.gui.controllers;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
-import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +12,7 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -187,9 +184,9 @@ public class FleetPlacementController implements Initializable {
       mainPane.getChildren().clear();
       mainPane.getChildren().setAll(gameWindow);
       
-      GameController gameController = gameWindowLoader.getController();
-      gameController.initializeClient();
-      gameController.initializeBoards(yourBoard);
+      GameWindowController gameWindowController = gameWindowLoader.getController();
+      gameWindowController.initializeClient();
+      gameWindowController.initializeBoards(yourBoard);
       
       final double margin = 0.0;
       AnchorPane.setTopAnchor(gameWindow, margin);

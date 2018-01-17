@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
  * @author Magdalena Aarsman
  * @since 2017-12-14
  */
-public class StartWindowController implements Initializable {
+public class ConnectWindowController implements Initializable {
   
   private static final Target logger = new SharedLogger(Client.class);
   
