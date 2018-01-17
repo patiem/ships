@@ -14,6 +14,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -26,6 +27,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Game window controller.
@@ -33,8 +36,8 @@ import java.io.IOException;
  * @since 2017-12-15
  */
 
-public class GameController {
-
+public class GameWindowController implements Initializable {
+  
   private static final Target logger = new SharedLogger(Client.class);
 
   private static final int BOARD_SIZE = 10;
@@ -55,25 +58,9 @@ public class GameController {
   private Label winLabel;
 
   private int shotIndex;
-
-  @FXML
-  void initialize() {
-    eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
-        opponentConnectedEvent -> opponentWithdraw());
-    eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,
-        opponentShotEvent -> setOpponentShot(opponentShotEvent.getShotIndex()));
-    eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
-    eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -> changeTurn());
-    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> markAsHit());
-    eventButton.addEventHandler(WinEvent.GAME_WIN, event -> setWin());
-    eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> setLose());
-
-    initializeTurn(false);
-  }
-
+  private ResourceBundle resourceBundle;
+  
   private void initializeTurn(boolean myTurn) {
-    logger.info("initialize turn: " + myTurn);
-
     if (!myTurn) {
       opponentBoard.setDisable(true);
       final double opacity = 0.4;
@@ -141,8 +128,10 @@ public class GameController {
     Rectangle opponentRect = new Rectangle(initialSize, initialSize, Color.GRAY);
 
     opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -> {
-      opponentRect.setFill(Color.BLACK);
-      logger.info(shotIndex);
+      opponentBoard.setDisable(true);
+      if (opponentRect.getFill().equals(Color.GRAY)) {
+        opponentRect.setFill(Color.BLACK);
+      }
       this.shotIndex = shotIndex;
       getClient().sendShot(shotIndex);
     });
@@ -163,6 +152,7 @@ public class GameController {
       final String opponentWithdrawUrl = "/fxml/opponentWithdraw.fxml";
       final FXMLLoader opponentWithdrawLoader =
           new FXMLLoader(getClass().getResource(opponentWithdrawUrl));
+      opponentWithdrawLoader.setResources(this.resourceBundle);
       final Parent opponentWithdraw = opponentWithdrawLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
       final int sceneHeight = 400;
@@ -188,11 +178,10 @@ public class GameController {
 
   private void setOpponentShot(final int shotIndex) {
     final int shotIndexInGrid = convertToGridIndex(shotIndex);
-    logger.info("new shotIndex: " + shotIndexInGrid);
     final Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndexInGrid));
     if (rec.getFill() == Color.GREEN) {
       rec.setFill(Color.RED);
-    } else {
+    } else if (rec.getFill().equals(Color.GRAY)){
       rec.setFill(Color.BLACK);
     }
   }
@@ -216,35 +205,59 @@ public class GameController {
   }
 
   private void setMyTurn() {
-    logger.info("set my turn game controller");
     final double noOpacity = 1.0;
     opponentBoard.setDisable(false);
     opponentBoard.setOpacity(noOpacity);
   }
-
-  private void setWin() {
-    getClient().closeClient();
-    eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
+  
+  @Override
+  public void initialize(final URL location, final ResourceBundle resources) {
+    this.resourceBundle = resources;
+    eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
         opponentConnectedEvent -> opponentWithdraw());
-    winLabel.setStyle("-fx-color: green");
-    winLabel.setText("YOU WIN!");
-    final double opacity = 0.4;
-    yourBoard.setDisable(true);
-    yourBoard.setOpacity(opacity);
-    opponentBoard.setDisable(true);
-    opponentBoard.setOpacity(opacity);
+    eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,
+        opponentShotEvent -> setOpponentShot(opponentShotEvent.getShotIndex()));
+    eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -> setMyTurn());
+    eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -> changeTurn());
+    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> markAsHit());
+    eventButton.addEventHandler(WinEvent.GAME_WIN, event -> renderAsWin());
+    eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> renderAsLoss());
+  
+    initializeTurn(false);
   }
-
-  private void setLose() {
-    getClient().closeClient();
-    eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
+  
+  private void renderAsWin() {
+    this.prepareToRenderAnyPossibleResult();
+    this.renderSpecificResult("youWin");
+  }
+  
+  private void renderAsLoss() {
+    this.prepareToRenderAnyPossibleResult();
+    this.renderSpecificResult("youLose");
+  }
+  
+  private void renderSpecificResult(String key) {
+    this.winLabel.setText(this.resourceBundle.getString(key));
+  }
+  
+  private void prepareToRenderAnyPossibleResult() {
+    this.getClient().closeClient();
+    this.disableWithdrawalPossibility();
+    this.disableBoards();
+  }
+  
+  private void disableBoards() {
+    final double opacity = 0.4;
+    this.yourBoard.setDisable(true);
+    this.yourBoard.setOpacity(opacity);
+    this.opponentBoard.setDisable(true);
+    this.opponentBoard.setOpacity(opacity);
+    this.winLabel.setStyle("-fx-color: green");
+  }
+  
+  private void disableWithdrawalPossibility() {
+    this.eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
         opponentConnectedEvent -> opponentWithdraw());
-    winLabel.setStyle("-fx-color: green");
-    winLabel.setText("YOU LOSE!");
-    final double opacity = 0.4;
-    yourBoard.setDisable(true);
-    yourBoard.setOpacity(opacity);
-    opponentBoard.setDisable(true);
-    opponentBoard.setOpacity(opacity);
   }
+  
 }

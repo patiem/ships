@@ -24,7 +24,7 @@
                     </image>
                 </ImageView>
                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="61.0" prefWidth="372.0"
-                       text="Server is not responding" textAlignment="CENTER" textFill="#b50c17" textOverrun="CLIP">
+                       text="%notResponding" textAlignment="CENTER" textFill="#b50c17" textOverrun="CLIP">
                     <font>
                         <Font size="19.0"/>
                     </font>
@@ -35,7 +35,7 @@
                 <AnchorPane prefHeight="44.0" prefWidth="498.0">
                     <children>
                         <Button alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="390.0" layoutY="50.0"
-                                mnemonicParsing="false" onAction="#onTryAgainPressed" text="Try Again"
+                                mnemonicParsing="false" onAction="#onTryAgainPressed" text="%tryAgain"
                                 AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="40.0">
                             <font>
                                 <Font size="17.0"/>

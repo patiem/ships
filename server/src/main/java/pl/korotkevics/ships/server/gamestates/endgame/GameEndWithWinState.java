@@ -67,6 +67,7 @@ public class GameEndWithWinState implements GameState {
     try {
       Thread.sleep(restTime);
     } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
       logger.error(e.getMessage());
     }
   }

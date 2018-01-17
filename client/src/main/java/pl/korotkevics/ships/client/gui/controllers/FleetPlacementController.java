@@ -1,5 +1,7 @@
 package pl.korotkevics.ships.client.gui.controllers;
 
+import javafx.fxml.Initializable;
+import javafx.scene.control.RadioButton;
 import javafx.scene.effect.DropShadow;
 import pl.korotkevics.ships.client.client.Client;
 import pl.korotkevics.ships.client.gui.events.RandomPlacementEvent;
@@ -24,7 +26,6 @@ import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -38,15 +39,17 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Fleet Placement window controller.
  * @author Magdalena Aarsman
  * @since 2017-12-19
  */
-public class FleetPlacementController {
+public class FleetPlacementController implements Initializable {
 
   private static final Target logger = new SharedLogger(Client.class);
   private static final int BOARD_SIZE = 10;
@@ -80,7 +83,10 @@ public class FleetPlacementController {
   private GridPane yourBoard;
 
   @FXML
-  private ChoiceBox choiceBox;
+  private RadioButton rbVertical;
+  
+  @FXML
+  private RadioButton rbHorizontal;
 
   private List<Ship> ships;
 
@@ -147,34 +153,8 @@ public class FleetPlacementController {
         }
         event.consume();
       };
-
-  @FXML
-  void initialize() {
-    buttonReady.setOnAction(event -> loadGameWindow());
-    buttonReady.setDisable(true);
-    initializeBoard();
-    addDragEventsToShips();
-    ships = new ArrayList<>(SHIPS_COUNT);
-    shipOrientation = ShipOrientation.VERTICAL;
-    choiceBox.setItems(FXCollections.observableArrayList("VERTICAL", "HORIZONTAL"));
-    choiceBox.setValue("VERTICAL");
-    choiceBox.getSelectionModel()
-        .selectedItemProperty()
-        .addListener((observable, oldValue, newValue) -> {
-          shipOrientation = ShipOrientation.valueOf(String.valueOf(newValue));
-          logger.info(newValue);
-        });
-
-    buttonRandom.setOnAction(event -> askForRandomFleet());
-    DropShadow shadow = new DropShadow();
-    buttonRandom.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonRandom.setEffect(shadow));
-    buttonRandom.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonRandom.setEffect(null));
-    buttonReady.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonReady.setEffect(shadow));
-    buttonReady.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonReady.setEffect(null));
-    eventButton.addEventHandler(RandomPlacementEvent.RANDOM_PLACEMENT_EVENT,
-        event -> getRandomFleet(event.getFleet()));
-  }
-
+  private ResourceBundle resourceBundle;
+  
   private void initializeBoard() {
     final int margin = 50;
     final NumberBinding allRectanglesWidth = Bindings.min(yourBoard.widthProperty(),
@@ -362,6 +342,7 @@ public class FleetPlacementController {
 
       final String gameWindowUrl = "/fxml/gameWindow.fxml";
       final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));
+      gameWindowLoader.setResources(this.resourceBundle);
       final Parent gameWindow = gameWindowLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
 
@@ -375,7 +356,7 @@ public class FleetPlacementController {
       mainPane.getChildren().clear();
       mainPane.getChildren().setAll(gameWindow);
 
-      GameController gameController = gameWindowLoader.getController();
+      GameWindowController gameController = gameWindowLoader.getController();
       gameController.initializeClient();
       gameController.initializeBoards(yourBoard);
 
@@ -409,7 +390,6 @@ public class FleetPlacementController {
   }
 
   private void drawMast(int index) {
-    logger.info("draw index: " + index);
     Rectangle rec = (Rectangle) (yourBoard.getChildren().get(index));
     rec.setFill(Color.GREEN);
   }
@@ -419,4 +399,26 @@ public class FleetPlacementController {
     final int row = index - (column * BOARD_SIZE);
     return row * BOARD_SIZE + column + 1;
   }
+  
+  @Override
+  public void initialize(final URL location, final ResourceBundle resources) {
+    this.resourceBundle = resources;
+    buttonReady.setOnAction(event -> loadGameWindow());
+    buttonReady.setDisable(true);
+    initializeBoard();
+    addDragEventsToShips();
+    ships = new ArrayList<>(SHIPS_COUNT);
+    shipOrientation = ShipOrientation.VERTICAL;
+    rbVertical.setOnAction(event -> shipOrientation = ShipOrientation.VERTICAL);
+    rbHorizontal.setOnAction(event -> shipOrientation = ShipOrientation.HORIZONTAL);
+    buttonRandom.setOnAction(event -> askForRandomFleet());
+    DropShadow shadow = new DropShadow();
+    buttonRandom.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonRandom.setEffect(shadow));
+    buttonRandom.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonRandom.setEffect(null));
+    buttonReady.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonReady.setEffect(shadow));
+    buttonReady.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonReady.setEffect(null));
+    eventButton.addEventHandler(RandomPlacementEvent.RANDOM_PLACEMENT_EVENT,
+        event -> getRandomFleet(event.getFleet()));
+  }
 }
+

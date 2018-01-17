@@ -4,6 +4,7 @@ import pl.korotkevics.ships.server.CommunicationBus;
 import pl.korotkevics.ships.server.MessageSender;
 import pl.korotkevics.ships.server.TurnManager;
 import pl.korotkevics.ships.server.gamestates.GameState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWalkoverState;
 import pl.korotkevics.ships.server.gamestates.play.PlayState;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
@@ -49,7 +50,14 @@ public class FleetPlacementState implements GameState {
     this.askPlayersForPlaceFleet();
     this.placeFleet();
     this.rest();
-    return new PlayState(communicationBus, fleets);
+    if (this.verifyClientsAreConnected()) {
+      return new PlayState(communicationBus, fleets);
+    }
+    return new GameEndWithWalkoverState(communicationBus);
+  }
+
+  private boolean verifyClientsAreConnected() {
+    return this.fleets.stream().noneMatch(Fleet::isDefeated);
   }
 
   private void placeFleet() {

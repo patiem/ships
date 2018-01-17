@@ -32,8 +32,9 @@ public class Client implements Runnable {
 
   /**
    * Creates Client instance.
+   *
    * @param messageHandler - messageHandler instance
-   * @param shouldRun - flag informing if client should start/run
+   * @param shouldRun      - flag informing if client should start/run
    */
   public Client(final MessageHandler messageHandler, boolean shouldRun) {
     this.messageHandler = messageHandler;
@@ -101,17 +102,6 @@ public class Client implements Runnable {
       } catch (IOException | IllegalStateException e) {
         logger.error(e.getMessage());
       }
-
-      rest();
-    }
-  }
-
-  private void rest() {
-    try {
-      Thread.sleep(300);
-    } catch (InterruptedException e) {
-      logger.info(e.getMessage());
-      Thread.currentThread().interrupt();
     }
   }
 
