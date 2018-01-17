@@ -4,6 +4,7 @@ import pl.korotkevics.ships.server.CommunicationBus;
 import pl.korotkevics.ships.server.MessageSender;
 import pl.korotkevics.ships.server.TurnManager;
 import pl.korotkevics.ships.server.gamestates.GameState;
+import pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWalkoverState;
 import pl.korotkevics.ships.server.gamestates.play.PlayState;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
@@ -23,7 +24,7 @@ public class FleetPlacementState implements GameState {
   private final CommunicationBus communicationBus;
   private final FleetPlacementProcessor fleetProcessor;
   private final TurnManager turnManager;
-<span class="fc" id="L26">  private final Target logger = new SharedLogger(FleetPlacementState.class);</span>
+<span class="fc" id="L27">  private final Target logger = new SharedLogger(FleetPlacementState.class);</span>
   private final List&lt;Fleet&gt; fleets;
 
   /**
@@ -31,13 +32,13 @@ public class FleetPlacementState implements GameState {
    *
    * @param communicationBus client server communication bus
    */
-<span class="fc" id="L34">  public FleetPlacementState(final CommunicationBus communicationBus) {</span>
-<span class="fc" id="L35">    this.communicationBus = communicationBus;</span>
-<span class="fc" id="L36">    this.turnManager = new TurnManager(communicationBus.getFirstClient(),</span>
-<span class="fc" id="L37">        communicationBus.getSecondClient());</span>
-<span class="fc" id="L38">    this.fleetProcessor = new FleetPlacementProcessor(communicationBus);</span>
-<span class="fc" id="L39">    fleets = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L35">  public FleetPlacementState(final CommunicationBus communicationBus) {</span>
+<span class="fc" id="L36">    this.communicationBus = communicationBus;</span>
+<span class="fc" id="L37">    this.turnManager = new TurnManager(communicationBus.getFirstClient(),</span>
+<span class="fc" id="L38">        communicationBus.getSecondClient());</span>
+<span class="fc" id="L39">    this.fleetProcessor = new FleetPlacementProcessor(communicationBus);</span>
+<span class="fc" id="L40">    fleets = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L41">  }</span>
 
   /**
    * It receives fleets from players, and transfers game to next state.
@@ -46,30 +47,37 @@ public class FleetPlacementState implements GameState {
    */
   @Override
   public GameState process() {
-<span class="fc" id="L49">    this.askPlayersForPlaceFleet();</span>
-<span class="fc" id="L50">    this.placeFleet();</span>
-<span class="fc" id="L51">    this.rest();</span>
-<span class="fc" id="L52">    return new PlayState(communicationBus, fleets);</span>
+<span class="fc" id="L50">    this.askPlayersForPlaceFleet();</span>
+<span class="fc" id="L51">    this.placeFleet();</span>
+<span class="fc" id="L52">    this.rest();</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">    if (this.verifyClientsAreConnected()) {</span>
+<span class="fc" id="L54">      return new PlayState(communicationBus, fleets);</span>
+    }
+<span class="nc" id="L56">    return new GameEndWithWalkoverState(communicationBus);</span>
+  }
+
+  private boolean verifyClientsAreConnected() {
+<span class="fc" id="L60">    return this.fleets.stream().noneMatch(Fleet::isDefeated);</span>
   }
 
   private void placeFleet() {
-<span class="fc" id="L56">    fleets.add(this.fleetProcessor.placeFleet(this.turnManager.getCurrentPlayer()));</span>
-<span class="fc" id="L57">    fleets.add(this.fleetProcessor.placeFleet(this.turnManager.getOtherPlayer()));</span>
-<span class="fc" id="L58">  }</span>
+<span class="fc" id="L64">    fleets.add(this.fleetProcessor.placeFleet(this.turnManager.getCurrentPlayer()));</span>
+<span class="fc" id="L65">    fleets.add(this.fleetProcessor.placeFleet(this.turnManager.getOtherPlayer()));</span>
+<span class="fc" id="L66">  }</span>
 
   private void askPlayersForPlaceFleet() {
-<span class="fc" id="L61">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
-<span class="fc" id="L62">    messageSender.sendToAll(Header.MANUAL_PLACEMENT);</span>
-<span class="fc" id="L63">  }</span>
+<span class="fc" id="L69">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
+<span class="fc" id="L70">    messageSender.sendToAll(Header.MANUAL_PLACEMENT);</span>
+<span class="fc" id="L71">  }</span>
 
   private void rest() {
-<span class="fc" id="L66">    final long restTime = 300;</span>
+<span class="fc" id="L74">    final long restTime = 300;</span>
     try {
-<span class="fc" id="L68">      Thread.sleep(restTime);</span>
-<span class="nc" id="L69">    } catch (final InterruptedException e) {</span>
-<span class="nc" id="L70">      logger.error(e.getMessage());</span>
-<span class="nc" id="L71">      Thread.currentThread().interrupt();</span>
-<span class="fc" id="L72">    }</span>
-<span class="fc" id="L73">  }</span>
+<span class="fc" id="L76">      Thread.sleep(restTime);</span>
+<span class="nc" id="L77">    } catch (final InterruptedException e) {</span>
+<span class="nc" id="L78">      logger.error(e.getMessage());</span>
+<span class="nc" id="L79">      Thread.currentThread().interrupt();</span>
+<span class="fc" id="L80">    }</span>
+<span class="fc" id="L81">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

@@ -4,6 +4,7 @@ pl.korotkevics.ships.client.gui
 pl.korotkevics.ships.client.gui.controllers
 pl.korotkevics.ships.client.gui.events
 pl.korotkevics.ships.client.gui.util
+pl.korotkevics.ships.client.localization
 pl.korotkevics.ships.client.validators
 pl.korotkevics.ships.server
 pl.korotkevics.ships.server.gamestates

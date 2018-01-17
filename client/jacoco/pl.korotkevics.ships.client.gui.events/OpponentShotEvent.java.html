@@ -6,19 +6,20 @@ import lombok.Getter;
 
 /**
  * Event firing when opponent perform shot.
+ *
  * @author Magdalena Aarsman
  * @since 2017-12-17
  */
 public class OpponentShotEvent extends Event {
-<span class="nc" id="L13">  public static final EventType&lt;OpponentShotEvent&gt; OPPONENT_SHOT =</span>
-      new EventType&lt;&gt;(Event.ANY, &quot;OPPONENT_SHOT&quot;);
-
-<span class="nc" id="L16">  @Getter</span>
+<span class="nc" id="L14">  public static final EventType&lt;OpponentShotEvent&gt; OPPONENT_SHOT = new EventType&lt;&gt;(Event.ANY,</span>
+                                                                                      &quot;OPPONENT_SHOT&quot;);
+  
+<span class="nc" id="L17">  @Getter</span>
   final int shotIndex;
-
+  
   public OpponentShotEvent(int shotIndex) {
-<span class="nc" id="L20">    super(OPPONENT_SHOT);</span>
-<span class="nc" id="L21">    this.shotIndex = shotIndex;</span>
-<span class="nc" id="L22">  }</span>
+<span class="nc" id="L21">    super(OPPONENT_SHOT);</span>
+<span class="nc" id="L22">    this.shotIndex = shotIndex;</span>
+<span class="nc" id="L23">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

@@ -4,11 +4,11 @@ Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,DamageNotifier,0,29,0
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,DamageHitNotifier,0,8,0,0,0,3,0,1,0,1
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,ShotHandler,0,103,0,5,0,20,0,7,0,4
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,ShotHandler.new Object() {...},2,17,0,0,0,1,0,1,0,1
-Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,PlayState,0,99,0,4,0,22,0,5,0,3
+Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,PlayState,8,107,0,4,3,27,0,6,0,4
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,DamageMissNotifier,0,23,0,0,0,7,0,2,0,2
 Ships - SERVER,pl.korotkevics.ships.server.gamestates,GameState,0,2,0,0,0,1,0,1,0,1
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.connection,WaitingForPlayersState,0,32,0,0,0,8,0,2,0,2
-Ships - SERVER,pl.korotkevics.ships.server.gamestates.endgame,GameEndWithWinState,6,59,0,0,2,19,0,5,0,5
+Ships - SERVER,pl.korotkevics.ships.server.gamestates.endgame,GameEndWithWinState,8,59,0,0,3,19,0,5,0,5
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.endgame,GameEndWithWalkoverState,0,23,0,0,0,8,0,3,0,3
 Ships - SERVER,pl.korotkevics.ships.server,MessageSender,0,71,0,0,0,14,0,4,0,4
 Ships - SERVER,pl.korotkevics.ships.server,AppServer,6,63,0,0,2,19,0,4,0,4
@@ -21,5 +21,5 @@ Ships - SERVER,pl.korotkevics.ships.server,WrappedClient,175,38,38,0,9,11,24,3,5
 Ships - SERVER,pl.korotkevics.ships.server,Main,23,0,2,0,8,0,3,0,2,0
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FieldState,9,29,0,0,0,3,2,2,2,2
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FleetPlacementProcessor,0,76,0,2,0,22,0,5,0,4
-Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FleetPlacementState,8,85,0,0,3,22,0,5,0,5
-Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FleetGenerator,0,376,0,12,0,58,0,31,0,25
+Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FleetPlacementState,14,94,1,1,4,24,1,6,0,6
+Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FleetGenerator,0,406,0,16,0,68,0,35,0,27

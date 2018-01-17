@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameWindowController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - CLIENT</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.client.gui.controllers</a> &gt; <span class="el_source">GameWindowController.java</span></div><h1>GameWindowController.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.client.gui.controllers;
+
+import pl.korotkevics.ships.client.client.Client;
+import pl.korotkevics.ships.client.gui.events.HitShotEvent;
+import pl.korotkevics.ships.client.gui.events.LooseEvent;
+import pl.korotkevics.ships.client.gui.events.MissShotEvent;
+import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
+import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
+import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
+import pl.korotkevics.ships.client.gui.events.WinEvent;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.NumberBinding;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+/**
+ * Game window controller.
+ * @author Magdalena Aarsman
+ * @since 2017-12-15
+ */
+
+<span class="nc" id="L39">public class GameWindowController implements Initializable {</span>
+  
+<span class="nc" id="L41">  private static final Target logger = new SharedLogger(Client.class);</span>
+
+  private static final int BOARD_SIZE = 10;
+
+  @FXML
+  private GridPane yourBoard;
+
+  @FXML
+  private GridPane opponentBoard;
+
+  @FXML
+  private AnchorPane mainAnchorPane;
+
+  @FXML
+  private Button eventButton;
+
+  @FXML
+  private Label winLabel;
+
+  private int shotIndex;
+  private ResourceBundle resourceBundle;
+  
+  private void initializeTurn(boolean myTurn) {
+<span class="nc bnc" id="L64" title="All 2 branches missed.">    if (!myTurn) {</span>
+<span class="nc" id="L65">      opponentBoard.setDisable(true);</span>
+<span class="nc" id="L66">      final double opacity = 0.4;</span>
+<span class="nc" id="L67">      opponentBoard.setOpacity(opacity);</span>
+    }
+<span class="nc" id="L69">  }</span>
+
+  void initializeClient() {
+<span class="nc" id="L72">    getClient().setEventTrigger(eventButton);</span>
+<span class="nc" id="L73">  }</span>
+
+  void initializeBoards(GridPane yourBoard) {
+<span class="nc" id="L76">    final int margin = 50;</span>
+<span class="nc" id="L77">    final NumberBinding allRectanglesWidth = Bindings.min(this.yourBoard.heightProperty(),</span>
+<span class="nc" id="L78">        this.yourBoard.widthProperty().add(-margin));</span>
+<span class="nc" id="L79">    final NumberBinding allRectanglesHeight = Bindings.min(this.yourBoard.heightProperty(),</span>
+<span class="nc" id="L80">        this.yourBoard.widthProperty()).add(-margin);</span>
+
+<span class="nc bnc" id="L82" title="All 2 branches missed.">    for (int i = 0; i &lt; BOARD_SIZE; i++) {</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">      for (int j = 0; j &lt; BOARD_SIZE; j++) {</span>
+<span class="nc" id="L84">        final int shotIndex = j * BOARD_SIZE + i;</span>
+
+<span class="nc" id="L86">        Rectangle yourRect = getYourRect(allRectanglesWidth, allRectanglesHeight);</span>
+<span class="nc" id="L87">        Rectangle opponentRect = getOpponentRectangle(allRectanglesWidth,</span>
+            allRectanglesHeight, shotIndex);
+
+<span class="nc" id="L90">        this.yourBoard.add(yourRect, i, j);</span>
+<span class="nc" id="L91">        opponentBoard.add(opponentRect, i, j);</span>
+
+<span class="nc" id="L93">        GridPane.setHalignment(yourRect, HPos.CENTER);</span>
+<span class="nc" id="L94">        GridPane.setHalignment(opponentRect, HPos.CENTER);</span>
+      }
+    }
+
+<span class="nc" id="L98">    copyYourBoard(yourBoard);</span>
+<span class="nc" id="L99">  }</span>
+
+  private void copyYourBoard(GridPane yourBoard) {
+<span class="nc bnc" id="L102" title="All 2 branches missed.">    for (int i = 1; i &lt; yourBoard.getChildren().size(); i++) {</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">      if (((Rectangle) yourBoard.getChildren().get(i)).getFill() == Color.GREEN) {</span>
+<span class="nc" id="L104">        ((Rectangle) this.yourBoard.getChildren().get(i)).setFill(Color.GREEN);</span>
+      }
+    }
+<span class="nc" id="L107">  }</span>
+
+  private Client getClient() {
+<span class="nc" id="L110">    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();</span>
+<span class="nc" id="L111">    return mainController.getClient();</span>
+  }
+
+  private Rectangle getYourRect(NumberBinding allRectanglesWidth,
+                                NumberBinding allRectanglesHeight) {
+<span class="nc" id="L116">    final int initialSize = 15;</span>
+<span class="nc" id="L117">    Rectangle yourRect = new Rectangle(initialSize, initialSize, Color.GRAY);</span>
+<span class="nc" id="L118">    yourRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));</span>
+<span class="nc" id="L119">    yourRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));</span>
+
+<span class="nc" id="L121">    return yourRect;</span>
+  }
+
+  private Rectangle getOpponentRectangle(NumberBinding allRectanglesWidth,
+                                         NumberBinding allRectanglesHeight,
+                                         final int shotIndex) {
+<span class="nc" id="L127">    final int initialSize = 15;</span>
+<span class="nc" id="L128">    Rectangle opponentRect = new Rectangle(initialSize, initialSize, Color.GRAY);</span>
+
+<span class="nc" id="L130">    opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -&gt; {</span>
+<span class="nc" id="L131">      opponentBoard.setDisable(true);</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">      if (opponentRect.getFill().equals(Color.GRAY)) {</span>
+<span class="nc" id="L133">        opponentRect.setFill(Color.BLACK);</span>
+      }
+<span class="nc" id="L135">      this.shotIndex = shotIndex;</span>
+<span class="nc" id="L136">      getClient().sendShot(shotIndex);</span>
+<span class="nc" id="L137">    });</span>
+
+<span class="nc" id="L139">    opponentRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));</span>
+<span class="nc" id="L140">    opponentRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));</span>
+
+<span class="nc" id="L142">    return opponentRect;</span>
+  }
+
+  private void opponentWithdraw() {
+<span class="nc" id="L146">    getClient().closeClient();</span>
+<span class="nc" id="L147">    loadWithdrawScreen();</span>
+<span class="nc" id="L148">  }</span>
+
+  private void loadWithdrawScreen() {
+    try {
+<span class="nc" id="L152">      final String opponentWithdrawUrl = &quot;/fxml/opponentWithdraw.fxml&quot;;</span>
+<span class="nc" id="L153">      final FXMLLoader opponentWithdrawLoader =</span>
+<span class="nc" id="L154">          new FXMLLoader(getClass().getResource(opponentWithdrawUrl));</span>
+<span class="nc" id="L155">      opponentWithdrawLoader.setResources(this.resourceBundle);</span>
+<span class="nc" id="L156">      final Parent opponentWithdraw = opponentWithdrawLoader.load();</span>
+<span class="nc" id="L157">      final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();</span>
+<span class="nc" id="L158">      final int sceneHeight = 400;</span>
+<span class="nc" id="L159">      final int sceneWidth = 600;</span>
+<span class="nc" id="L160">      final double margin = 0.0;</span>
+
+<span class="nc" id="L162">      Stage stage = (Stage) mainPane.getScene().getWindow();</span>
+<span class="nc" id="L163">      stage.setHeight(sceneHeight);</span>
+<span class="nc" id="L164">      stage.setWidth(sceneWidth);</span>
+
+<span class="nc" id="L166">      mainPane.getChildren().clear();</span>
+<span class="nc" id="L167">      mainPane.getChildren().setAll(opponentWithdraw);</span>
+
+<span class="nc" id="L169">      AnchorPane.setTopAnchor(opponentWithdraw, margin);</span>
+<span class="nc" id="L170">      AnchorPane.setBottomAnchor(opponentWithdraw, margin);</span>
+<span class="nc" id="L171">      AnchorPane.setLeftAnchor(opponentWithdraw, margin);</span>
+<span class="nc" id="L172">      AnchorPane.setRightAnchor(opponentWithdraw, margin);</span>
+
+<span class="nc" id="L174">    } catch (IOException e) {</span>
+<span class="nc" id="L175">      logger.error(e.getMessage());</span>
+<span class="nc" id="L176">    }</span>
+<span class="nc" id="L177">  }</span>
+
+  private void setOpponentShot(final int shotIndex) {
+<span class="nc" id="L180">    final int shotIndexInGrid = convertToGridIndex(shotIndex);</span>
+<span class="nc" id="L181">    final Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndexInGrid));</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">    if (rec.getFill() == Color.GREEN) {</span>
+<span class="nc" id="L183">      rec.setFill(Color.RED);</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">    } else if (rec.getFill().equals(Color.GRAY)){</span>
+<span class="nc" id="L185">      rec.setFill(Color.BLACK);</span>
+    }
+<span class="nc" id="L187">  }</span>
+
+  private int convertToGridIndex(final int shotIndex) {
+<span class="nc" id="L190">    final int column = shotIndex / BOARD_SIZE;</span>
+<span class="nc" id="L191">    final int row = shotIndex - (column * BOARD_SIZE);</span>
+<span class="nc" id="L192">    return row * BOARD_SIZE + column + 1;</span>
+  }
+
+  private void changeTurn() {
+<span class="nc" id="L196">    final double opacity = 0.4;</span>
+<span class="nc" id="L197">    this.opponentBoard.setDisable(true);</span>
+<span class="nc" id="L198">    this.opponentBoard.setOpacity(opacity);</span>
+<span class="nc" id="L199">  }</span>
+
+  private void markAsHit() {
+<span class="nc" id="L202">    final int shotIndexInGrid = this.convertToGridIndex(shotIndex);</span>
+<span class="nc" id="L203">    final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));</span>
+<span class="nc" id="L204">    rec.setFill(Color.RED);</span>
+<span class="nc" id="L205">  }</span>
+
+  private void setMyTurn() {
+<span class="nc" id="L208">    final double noOpacity = 1.0;</span>
+<span class="nc" id="L209">    opponentBoard.setDisable(false);</span>
+<span class="nc" id="L210">    opponentBoard.setOpacity(noOpacity);</span>
+<span class="nc" id="L211">  }</span>
+  
+  @Override
+  public void initialize(final URL location, final ResourceBundle resources) {
+<span class="nc" id="L215">    this.resourceBundle = resources;</span>
+<span class="nc" id="L216">    eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,</span>
+<span class="nc" id="L217">        opponentConnectedEvent -&gt; opponentWithdraw());</span>
+<span class="nc" id="L218">    eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,</span>
+<span class="nc" id="L219">        opponentShotEvent -&gt; setOpponentShot(opponentShotEvent.getShotIndex()));</span>
+<span class="nc" id="L220">    eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -&gt; setMyTurn());</span>
+<span class="nc" id="L221">    eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -&gt; changeTurn());</span>
+<span class="nc" id="L222">    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -&gt; markAsHit());</span>
+<span class="nc" id="L223">    eventButton.addEventHandler(WinEvent.GAME_WIN, event -&gt; renderAsWin());</span>
+<span class="nc" id="L224">    eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -&gt; renderAsLoss());</span>
+  
+<span class="nc" id="L226">    initializeTurn(false);</span>
+<span class="nc" id="L227">  }</span>
+  
+  private void renderAsWin() {
+<span class="nc" id="L230">    this.prepareToRenderAnyPossibleResult();</span>
+<span class="nc" id="L231">    this.renderSpecificResult(&quot;youWin&quot;);</span>
+<span class="nc" id="L232">  }</span>
+  
+  private void renderAsLoss() {
+<span class="nc" id="L235">    this.prepareToRenderAnyPossibleResult();</span>
+<span class="nc" id="L236">    this.renderSpecificResult(&quot;youLose&quot;);</span>
+<span class="nc" id="L237">  }</span>
+  
+  private void renderSpecificResult(String key) {
+<span class="nc" id="L240">    this.winLabel.setText(this.resourceBundle.getString(key));</span>
+<span class="nc" id="L241">  }</span>
+  
+  private void prepareToRenderAnyPossibleResult() {
+<span class="nc" id="L244">    this.getClient().closeClient();</span>
+<span class="nc" id="L245">    this.disableWithdrawalPossibility();</span>
+<span class="nc" id="L246">    this.disableBoards();</span>
+<span class="nc" id="L247">  }</span>
+  
+  private void disableBoards() {
+<span class="nc" id="L250">    final double opacity = 0.4;</span>
+<span class="nc" id="L251">    this.yourBoard.setDisable(true);</span>
+<span class="nc" id="L252">    this.yourBoard.setOpacity(opacity);</span>
+<span class="nc" id="L253">    this.opponentBoard.setDisable(true);</span>
+<span class="nc" id="L254">    this.opponentBoard.setOpacity(opacity);</span>
+<span class="nc" id="L255">    this.winLabel.setStyle(&quot;-fx-color: green&quot;);</span>
+<span class="nc" id="L256">  }</span>
+  
+  private void disableWithdrawalPossibility() {
+<span class="nc" id="L259">    this.eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,</span>
+<span class="nc" id="L260">        opponentConnectedEvent -&gt; opponentWithdraw());</span>
+<span class="nc" id="L261">  }</span>
+  
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

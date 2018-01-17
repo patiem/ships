@@ -7,45 +7,50 @@ import java.util.Map;
 
 /**
  * Helper class to build MessageHandler.
+ *
  * @author Magdalena Aarsman
  * @since 2018-01-02
  */
 
-<span class="nc" id="L14">public class MessageHandlerBuilder {</span>
+<span class="nc" id="L15">public class MessageHandlerBuilder {</span>
   private Map&lt;Header, EventTrigger&gt; triggers;
 
   /**
    * Set triggers map to be enum map with Header as key.
+   *
    * @return MessageHandlerBuilder
    */
   public MessageHandlerBuilder withEnumMap() {
-<span class="nc" id="L22">    triggers = new EnumMap&lt;&gt;(Header.class);</span>
-<span class="nc" id="L23">    return this;</span>
+<span class="nc" id="L24">    triggers = new EnumMap&lt;&gt;(Header.class);</span>
+<span class="nc" id="L25">    return this;</span>
   }
 
   /**
    * Set default set of triggers and put it into map.
+   *
    * @return MessageHandlerBuilder
    */
   public MessageHandlerBuilder withDefaultSetsOfTriggers() {
-<span class="nc" id="L31">    triggers.put(Header.OPPONENT_CONNECTED, new OpponentConnectedTrigger());</span>
-<span class="nc" id="L32">    triggers.put(Header.SHOT, new OpponentShotTrigger());</span>
-<span class="nc" id="L33">    triggers.put(Header.CONNECTION, new ConnectionEndTrigger());</span>
-<span class="nc" id="L34">    triggers.put(Header.YOUR_TURN, new TurnTrigger());</span>
-<span class="nc" id="L35">    triggers.put(Header.MISS, new MissShotTrigger());</span>
-<span class="nc" id="L36">    triggers.put(Header.HIT, new HitShotTrigger());</span>
-<span class="nc" id="L37">    triggers.put(Header.SHIP_DESTRUCTED, new HitShotTrigger());</span>
-<span class="nc" id="L38">    triggers.put(Header.WIN, new WinTrigger());</span>
-<span class="nc" id="L39">    triggers.put(Header.LOSE, new LoseTrigger());</span>
-<span class="nc" id="L40">    return this;</span>
+<span class="nc" id="L34">    triggers.put(Header.OPPONENT_CONNECTED, new OpponentConnectedTrigger());</span>
+<span class="nc" id="L35">    triggers.put(Header.SHOT, new OpponentShotTrigger());</span>
+<span class="nc" id="L36">    triggers.put(Header.CONNECTION, new ConnectionEndTrigger());</span>
+<span class="nc" id="L37">    triggers.put(Header.YOUR_TURN, new TurnTrigger());</span>
+<span class="nc" id="L38">    triggers.put(Header.MISS, new MissShotTrigger());</span>
+<span class="nc" id="L39">    triggers.put(Header.HIT, new HitShotTrigger());</span>
+<span class="nc" id="L40">    triggers.put(Header.SHIP_DESTRUCTED, new HitShotTrigger());</span>
+<span class="nc" id="L41">    triggers.put(Header.WIN, new WinTrigger());</span>
+<span class="nc" id="L42">    triggers.put(Header.LOSE, new LoseTrigger());</span>
+<span class="nc" id="L43">    triggers.put(Header.RANDOM_PLACEMENT, new RandomPlacementTrigger());</span>
+<span class="nc" id="L44">    return this;</span>
   }
 
   /**
    * Build MessageHandler.
+   *
    * @return MessageHandler
    */
   public MessageHandler build() {
-<span class="nc" id="L48">    return new MessageHandler(triggers);</span>
+<span class="nc" id="L53">    return new MessageHandler(triggers);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

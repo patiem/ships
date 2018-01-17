@@ -32,13 +32,14 @@ public class Client implements Runnable {
 
   /**
    * Creates Client instance.
+   *
    * @param messageHandler - messageHandler instance
-   * @param shouldRun - flag informing if client should start/run
+   * @param shouldRun      - flag informing if client should start/run
    */
-<span class="nc" id="L38">  public Client(final MessageHandler messageHandler, boolean shouldRun) {</span>
-<span class="nc" id="L39">    this.messageHandler = messageHandler;</span>
-<span class="nc" id="L40">    this.shouldRun = shouldRun;</span>
-<span class="nc" id="L41">  }</span>
+<span class="nc" id="L39">  public Client(final MessageHandler messageHandler, boolean shouldRun) {</span>
+<span class="nc" id="L40">    this.messageHandler = messageHandler;</span>
+<span class="nc" id="L41">    this.shouldRun = shouldRun;</span>
+<span class="nc" id="L42">  }</span>
 
   /**
    * Connecting client with server using providing address and port.
@@ -50,15 +51,15 @@ public class Client implements Runnable {
    */
   public boolean connect(final String ipAddress, final int port, Socket socket) {
     try {
-<span class="nc" id="L53">      clientSocket = socket;</span>
-<span class="nc" id="L54">      final InetAddress address = InetAddress.getByName(ipAddress);</span>
-<span class="nc" id="L55">      final int connectionTimeout = 500;</span>
-<span class="nc" id="L56">      clientSocket.connect(new InetSocketAddress(address, port), connectionTimeout);</span>
-<span class="nc" id="L57">    } catch (IOException | IllegalArgumentException e) {</span>
-<span class="nc" id="L58">      logger.error(e.getMessage());</span>
-<span class="nc" id="L59">      return false;</span>
-<span class="nc" id="L60">    }</span>
-<span class="nc" id="L61">    return true;</span>
+<span class="nc" id="L54">      clientSocket = socket;</span>
+<span class="nc" id="L55">      final InetAddress address = InetAddress.getByName(ipAddress);</span>
+<span class="nc" id="L56">      final int connectionTimeout = 500;</span>
+<span class="nc" id="L57">      clientSocket.connect(new InetSocketAddress(address, port), connectionTimeout);</span>
+<span class="nc" id="L58">    } catch (IOException | IllegalArgumentException e) {</span>
+<span class="nc" id="L59">      logger.error(e.getMessage());</span>
+<span class="nc" id="L60">      return false;</span>
+<span class="nc" id="L61">    }</span>
+<span class="nc" id="L62">    return true;</span>
   }
 
   /**
@@ -67,53 +68,42 @@ public class Client implements Runnable {
    */
   @Override
   public void run() {
-<span class="nc" id="L70">    Thread.currentThread().setName(&quot;Client listen Thread&quot;);</span>
-<span class="nc" id="L71">    listenLoop();</span>
-<span class="nc" id="L72">  }</span>
+<span class="nc" id="L71">    Thread.currentThread().setName(&quot;Client listen Thread&quot;);</span>
+<span class="nc" id="L72">    listenLoop();</span>
+<span class="nc" id="L73">  }</span>
 
   /**
    * Closing client, stopping listen thread.
    */
   public void closeClient() {
-<span class="nc" id="L78">    this.shouldRun = false;</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">    if (clientSocket == null) {</span>
-<span class="nc" id="L80">      return;</span>
+<span class="nc" id="L79">    this.shouldRun = false;</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">    if (clientSocket == null) {</span>
+<span class="nc" id="L81">      return;</span>
     }
 
     try {
-<span class="nc" id="L84">      clientSocket.close();</span>
-<span class="nc" id="L85">    } catch (IOException e) {</span>
-<span class="nc" id="L86">      logger.error(e.getMessage());</span>
-<span class="nc" id="L87">    }</span>
-<span class="nc" id="L88">  }</span>
+<span class="nc" id="L85">      clientSocket.close();</span>
+<span class="nc" id="L86">    } catch (IOException e) {</span>
+<span class="nc" id="L87">      logger.error(e.getMessage());</span>
+<span class="nc" id="L88">    }</span>
+<span class="nc" id="L89">  }</span>
 
   private void listenLoop() {
 
-<span class="nc bnc" id="L92" title="All 4 branches missed.">    while (shouldRun &amp;&amp; !messageHandler.isEndConnectionTriggered()) {</span>
+<span class="nc bnc" id="L93" title="All 4 branches missed.">    while (shouldRun &amp;&amp; !messageHandler.isEndConnectionTriggered()) {</span>
       try {
-<span class="nc" id="L94">        Receiver receiver = new JsonReceiver(clientSocket.getInputStream());</span>
-<span class="nc" id="L95">        Message message = receiver.receive();</span>
+<span class="nc" id="L95">        Receiver receiver = new JsonReceiver(clientSocket.getInputStream());</span>
+<span class="nc" id="L96">        Message message = receiver.receive();</span>
 
-<span class="nc" id="L97">        logger.info(message);</span>
+<span class="nc" id="L98">        logger.info(message);</span>
 
-<span class="nc" id="L99">        messageHandler.handle(message);</span>
+<span class="nc" id="L100">        messageHandler.handle(message);</span>
 
-<span class="nc" id="L101">      } catch (IOException | IllegalStateException e) {</span>
-<span class="nc" id="L102">        logger.error(e.getMessage());</span>
-<span class="nc" id="L103">      }</span>
-
-<span class="nc" id="L105">      rest();</span>
+<span class="nc" id="L102">      } catch (IOException | IllegalStateException e) {</span>
+<span class="nc" id="L103">        logger.error(e.getMessage());</span>
+<span class="nc" id="L104">      }</span>
     }
-<span class="nc" id="L107">  }</span>
-
-  private void rest() {
-    try {
-<span class="nc" id="L111">      Thread.sleep(300);</span>
-<span class="nc" id="L112">    } catch (InterruptedException e) {</span>
-<span class="nc" id="L113">      logger.info(e.getMessage());</span>
-<span class="nc" id="L114">      Thread.currentThread().interrupt();</span>
-<span class="nc" id="L115">    }</span>
-<span class="nc" id="L116">  }</span>
+<span class="nc" id="L106">  }</span>
 
   /**
    * Sending message containing shot index to server.
@@ -122,16 +112,16 @@ public class Client implements Runnable {
    */
   public void sendShot(int shotIndex) {
     try {
-<span class="nc" id="L125">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
-<span class="nc" id="L126">      Message shot = new MessageBuilder().withHeader(Header.SHOT)</span>
-<span class="nc" id="L127">          .withAuthor(Author.CLIENT)</span>
-<span class="nc" id="L128">          .withStatement(String.valueOf(shotIndex))</span>
-<span class="nc" id="L129">          .build();</span>
-<span class="nc" id="L130">      sender.send(shot);</span>
-<span class="nc" id="L131">    } catch (IOException e) {</span>
-<span class="nc" id="L132">      logger.error(e.getMessage());</span>
-<span class="nc" id="L133">    }</span>
-<span class="nc" id="L134">  }</span>
+<span class="nc" id="L115">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
+<span class="nc" id="L116">      Message shot = new MessageBuilder().withHeader(Header.SHOT)</span>
+<span class="nc" id="L117">          .withAuthor(Author.CLIENT)</span>
+<span class="nc" id="L118">          .withStatement(String.valueOf(shotIndex))</span>
+<span class="nc" id="L119">          .build();</span>
+<span class="nc" id="L120">      sender.send(shot);</span>
+<span class="nc" id="L121">    } catch (IOException e) {</span>
+<span class="nc" id="L122">      logger.error(e.getMessage());</span>
+<span class="nc" id="L123">    }</span>
+<span class="nc" id="L124">  }</span>
 
   /**
    * Sending message containing fleet placement to server.
@@ -140,17 +130,17 @@ public class Client implements Runnable {
    */
   public void sendFleet(Fleet fleet) {
     try {
-<span class="nc" id="L143">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
-<span class="nc" id="L144">      Message fleetMsg = new MessageBuilder()</span>
-<span class="nc" id="L145">          .withHeader(Header.MANUAL_PLACEMENT)</span>
-<span class="nc" id="L146">          .withAuthor(Author.CLIENT)</span>
-<span class="nc" id="L147">          .withFleet(fleet)</span>
-<span class="nc" id="L148">          .build();</span>
-<span class="nc" id="L149">      sender.send(fleetMsg);</span>
-<span class="nc" id="L150">    } catch (IOException e) {</span>
-<span class="nc" id="L151">      logger.error(e.getMessage());</span>
-<span class="nc" id="L152">    }</span>
-<span class="nc" id="L153">  }</span>
+<span class="nc" id="L133">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
+<span class="nc" id="L134">      Message fleetMsg = new MessageBuilder()</span>
+<span class="nc" id="L135">          .withHeader(Header.MANUAL_PLACEMENT)</span>
+<span class="nc" id="L136">          .withAuthor(Author.CLIENT)</span>
+<span class="nc" id="L137">          .withFleet(fleet)</span>
+<span class="nc" id="L138">          .build();</span>
+<span class="nc" id="L139">      sender.send(fleetMsg);</span>
+<span class="nc" id="L140">    } catch (IOException e) {</span>
+<span class="nc" id="L141">      logger.error(e.getMessage());</span>
+<span class="nc" id="L142">    }</span>
+<span class="nc" id="L143">  }</span>
 
   /**
    * Set handle to gui to trigger some events in response for server message.
@@ -158,7 +148,21 @@ public class Client implements Runnable {
    * @param button - gui handler as button.
    */
   public void setEventTrigger(Button button) {
-<span class="nc" id="L161">    messageHandler.setCurrentEventButton(button);</span>
-<span class="nc" id="L162">  }</span>
+<span class="nc" id="L151">    messageHandler.setCurrentEventButton(button);</span>
+<span class="nc" id="L152">  }</span>
+
+  public void askForRandomFleet() {
+<span class="nc" id="L155">    Message askForRandomFleet = new MessageBuilder()</span>
+<span class="nc" id="L156">        .withHeader(Header.RANDOM_PLACEMENT)</span>
+<span class="nc" id="L157">        .withAuthor(Author.CLIENT)</span>
+<span class="nc" id="L158">        .build();</span>
+
+    try {
+<span class="nc" id="L161">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
+<span class="nc" id="L162">      sender.send(askForRandomFleet);</span>
+<span class="nc" id="L163">    } catch (IOException e) {</span>
+<span class="nc" id="L164">      logger.error(e.getMessage());</span>
+<span class="nc" id="L165">    }</span>
+<span class="nc" id="L166">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

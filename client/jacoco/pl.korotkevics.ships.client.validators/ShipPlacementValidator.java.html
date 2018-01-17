@@ -62,7 +62,7 @@ public class ShipPlacementValidator {
   }
 
   private boolean isShipAboveShip() {
-<span class="fc" id="L65">    int checkWidthInCell = 3;</span>
+<span class="fc" id="L65">    final int checkWidthInCell = 3;</span>
 <span class="fc bfc" id="L66" title="All 2 branches covered.">    return !this.isInLastRow()</span>
 <span class="fc" id="L67">        &amp;&amp; IntStream.iterate(shipStartIndex - BOARD_SIZE , i -&gt; i + BOARD_SIZE)</span>
 <span class="fc" id="L68">        .limit(checkWidthInCell)</span>
@@ -72,7 +72,7 @@ public class ShipPlacementValidator {
   }
 
   private boolean isInLastRow() {
-<span class="fc" id="L75">    int lastRowModulo = 9;</span>
+<span class="fc" id="L75">    final int lastRowModulo = 9;</span>
 <span class="fc bfc" id="L76" title="All 2 branches covered.">    return (shipStartIndex + (mastCount - 1)) % BOARD_SIZE == lastRowModulo;</span>
   }
 
@@ -87,7 +87,7 @@ public class ShipPlacementValidator {
   }
 
   private boolean isInFirstRow() {
-<span class="fc bfc" id="L90" title="All 2 branches covered.">    return shipStartIndex % BOARD_SIZE == 0;</span>
+<span class="fc bfc" id="L90" title="All 2 branches covered.">    return this.shipStartIndex % BOARD_SIZE == 0;</span>
   }
 
   private boolean isShipOnTheRight() {
@@ -140,12 +140,12 @@ public class ShipPlacementValidator {
   }
 
   private boolean isShipOnTheRightHorizontal() {
-<span class="fc bfc" id="L143" title="All 2 branches covered.">    return shipStartIndex + mastCount * BOARD_SIZE &lt; board.length</span>
-<span class="fc bfc" id="L144" title="All 2 branches covered.">        &amp;&amp; board[shipStartIndex + mastCount * BOARD_SIZE].equals(FieldState.OCCUPIED);</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">    return this.shipStartIndex + this.mastCount * BOARD_SIZE &lt; this.board.length</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        &amp;&amp; board[this.shipStartIndex + this.mastCount * BOARD_SIZE].equals(FieldState.OCCUPIED);</span>
   }
 
   private boolean isShipOnTheLeftHorizontal() {
-<span class="pc bpc" id="L148" title="1 of 4 branches missed.">    return shipStartIndex - BOARD_SIZE &gt;= 1 &amp;&amp; board[shipStartIndex - BOARD_SIZE].equals(FieldState.OCCUPIED);</span>
+<span class="pc bpc" id="L148" title="1 of 4 branches missed.">    return this.shipStartIndex - BOARD_SIZE &gt;= 1 &amp;&amp; this.board[shipStartIndex - BOARD_SIZE].equals(FieldState.OCCUPIED);</span>
   }
 
 }

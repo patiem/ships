@@ -14,22 +14,23 @@ import java.io.IOException;
 <span class="nc" id="L14">public class Main {</span>
   /**
    * Main server method. It creates communication bus and starts the game.
+   *
    * @param args is a conventional main method parameter.
    * @throws IOException can be thrown due to establishing a socket connection.
    */
   public static void main(String[] args) throws IOException {
-<span class="nc" id="L21">    CommunicationBus communicationBus = new CommunicationBus();</span>
+<span class="nc" id="L22">    CommunicationBus communicationBus = new CommunicationBus();</span>
     
     /*
     Sonar reports an infinitive loop as a critical bug, and therefore
     we could not think of a better workaround than presenting it as a
     an effective infinitive loop (with true extracted to a flag).
      */
-<span class="nc" id="L28">    boolean shouldRun = true;</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">    while (shouldRun) {</span>
-<span class="nc" id="L30">      GameState initialState = new WaitingForPlayersState(communicationBus);</span>
-<span class="nc" id="L31">      new Game(initialState).play();</span>
-<span class="nc" id="L32">    }</span>
-<span class="nc" id="L33">  }</span>
+<span class="nc" id="L29">    boolean shouldRun = true;</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">    while (shouldRun) {</span>
+<span class="nc" id="L31">      GameState initialState = new WaitingForPlayersState(communicationBus);</span>
+<span class="nc" id="L32">      new Game(initialState).play();</span>
+<span class="nc" id="L33">    }</span>
+<span class="nc" id="L34">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

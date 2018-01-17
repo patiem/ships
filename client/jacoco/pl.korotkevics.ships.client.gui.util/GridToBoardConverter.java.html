@@ -7,31 +7,33 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * Helper class to convert board represented by grid to array.
+ *
  * @author Magdalena Aarsman
  * @since 2018-01-01
  */
-<span class="nc" id="L13">@RequiredArgsConstructor</span>
+<span class="nc" id="L14">@RequiredArgsConstructor</span>
 public class GridToBoardConverter {
-
+  
   private static final int BOARD_SIZE = 10;
   private final GridPane gridBoard;
-
+  
   /**
    * Converts grid to array.
+   *
    * @return FieldState array
    */
   public FieldState[] convert() {
-<span class="nc" id="L24">    FieldState[] board = new FieldState[BOARD_SIZE * BOARD_SIZE];</span>
-
-<span class="nc bnc" id="L26" title="All 2 branches missed.">    for (int i = 1; i &lt; gridBoard.getChildren().size(); i++) {</span>
-<span class="nc bnc" id="L27" title="All 2 branches missed.">      if (((Rectangle) gridBoard.getChildren().get(i)).getFill().equals(Color.GREEN)) {</span>
-<span class="nc" id="L28">        board[i - 1] = FieldState.OCCUPIED;</span>
+<span class="nc" id="L26">    FieldState[] board = new FieldState[BOARD_SIZE * BOARD_SIZE];</span>
+    
+<span class="nc bnc" id="L28" title="All 2 branches missed.">    for (int i = 1; i &lt; gridBoard.getChildren().size(); i++) {</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">      if (((Rectangle) gridBoard.getChildren().get(i)).getFill().equals(Color.GREEN)) {</span>
+<span class="nc" id="L30">        board[i - 1] = FieldState.OCCUPIED;</span>
       } else {
-<span class="nc" id="L30">        board[i - 1] = FieldState.EMPTY;</span>
+<span class="nc" id="L32">        board[i - 1] = FieldState.EMPTY;</span>
       }
     }
-
-<span class="nc" id="L34">    return board;</span>
+    
+<span class="nc" id="L36">    return board;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

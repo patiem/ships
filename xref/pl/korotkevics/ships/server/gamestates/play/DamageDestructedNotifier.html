@@ -8,9 +8,9 @@
 <div id="overview"><a href="../../../../../../../apidocs/pl/korotkevics/ships/server/gamestates/play/DamageDestructedNotifier.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> pl.korotkevics.ships.server.gamestates.play;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.server.MessageSender;
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.server.TurnManager;
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.server.MessageSender;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.server.TurnManager;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * Notification for player that he destroyed a ship.</em>
@@ -19,7 +19,7 @@
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment"> * @since 2018-01-02</em>
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">class</strong> <a href="../../../../../../pl/korotkevics/ships/server/gamestates/play/DamageDestructedNotifier.html">DamageDestructedNotifier</a> <strong class="jxr_keyword">extends</strong> <a href="../../../../../../pl/korotkevics/ships/server/gamestates/play/DamageNotifier.html">DamageNotifier</a> {
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>    <a href="../../../../../../pl/korotkevics/ships/server/gamestates/play/DamageDestructedNotifier.html">DamageDestructedNotifier</a>(<strong class="jxr_keyword">final</strong> <a href="../../../../../../pl/korotkevics/ships/server/MessageSender.html">MessageSender</a> messageSender,<strong class="jxr_keyword">final</strong> <a href="../../../../../../pl/korotkevics/ships/server/TurnManager.html">TurnManager</a> turnManager) {
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>    <a href="../../../../../../pl/korotkevics/ships/server/gamestates/play/DamageDestructedNotifier.html">DamageDestructedNotifier</a>(<strong class="jxr_keyword">final</strong> <a href="../../../../../../pl/korotkevics/ships/server/MessageSender.html">MessageSender</a> messageSender, <strong class="jxr_keyword">final</strong> <a href="../../../../../../pl/korotkevics/ships/server/TurnManager.html">TurnManager</a> turnManager) {
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>      <strong class="jxr_keyword">super</strong>(messageSender, turnManager);
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>      <strong class="jxr_keyword">this</strong>.header = Header.SHIP_DESTRUCTED;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>    }
