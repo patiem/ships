@@ -29,11 +29,11 @@
             </rowConstraints>
             <children>
                 <TextField fx:id="textFieldServerAddress" prefHeight="38.0" prefWidth="302.0"
-                           promptText="Server Addres"/>
+                           promptText="%serverAddress"/>
                 <VBox GridPane.rowIndex="1">
                     <children>
                         <TextField fx:id="textFieldServerPort" prefHeight="38.0" prefWidth="336.0"
-                                   promptText="Server Port">
+                                   promptText="%serverPort">
                             <VBox.margin>
                                 <Insets top="15.0"/>
                             </VBox.margin>
