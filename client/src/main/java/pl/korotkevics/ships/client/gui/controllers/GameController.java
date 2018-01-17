@@ -139,6 +139,7 @@ public class GameController {
     Rectangle opponentRect = new Rectangle(initialSize, initialSize, Color.GRAY);
 
     opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -> {
+      opponentBoard.setDisable(true);
       if (opponentRect.getFill().equals(Color.GRAY)) {
         opponentRect.setFill(Color.BLACK);
       }
@@ -190,7 +191,7 @@ public class GameController {
     final Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndexInGrid));
     if (rec.getFill() == Color.GREEN) {
       rec.setFill(Color.RED);
-    } else {
+    } else if (rec.getFill().equals(Color.GRAY)){
       rec.setFill(Color.BLACK);
     }
   }
@@ -211,6 +212,7 @@ public class GameController {
     final int shotIndexInGrid = this.convertToGridIndex(shotIndex);
     final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
     rec.setFill(Color.RED);
+    //opponentBoard.setDisable(false);
   }
 
   private void setMyTurn() {

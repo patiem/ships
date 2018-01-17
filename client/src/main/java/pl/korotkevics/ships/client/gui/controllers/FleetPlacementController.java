@@ -162,7 +162,6 @@ public class FleetPlacementController {
         .selectedItemProperty()
         .addListener((observable, oldValue, newValue) -> {
           shipOrientation = ShipOrientation.valueOf(String.valueOf(newValue));
-          logger.info(newValue);
         });
 
     buttonRandom.setOnAction(event -> askForRandomFleet());
@@ -408,8 +407,7 @@ public class FleetPlacementController {
         forEach(i -> this.drawMast(this.convertToGridIndex(i)));
   }
 
-  private void drawMast(int index) {
-    logger.info("draw index: " + index);
+  private void drawMast(final int index) {
     Rectangle rec = (Rectangle) (yourBoard.getChildren().get(index));
     rec.setFill(Color.GREEN);
   }

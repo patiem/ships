@@ -21,6 +21,5 @@ class OpponentShotTrigger implements EventTrigger {
   public void fire(final Button button, final Message message) {
     Platform.runLater(() ->
         button.fireEvent(new OpponentShotEvent(Integer.valueOf(message.getStatement()))));
-    logger.info("shot index: " + message.getStatement());
   }
 }
