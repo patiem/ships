@@ -14,6 +14,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -76,9 +78,12 @@ public class FleetPlacementController implements Initializable {
   
   @FXML
   private GridPane yourBoard;
-  
+
   @FXML
-  private ChoiceBox choiceBox;
+  private RadioButton rbVertical;
+
+  @FXML
+  private RadioButton rbHorizontal;
   
   private List<Ship> ships;
   
@@ -158,14 +163,8 @@ public class FleetPlacementController implements Initializable {
     addDragEventsToShips();
     ships = new ArrayList<>(SHIPS_COUNT);
     shipOrientation = ShipOrientation.VERTICAL;
-    choiceBox.setItems(FXCollections.observableArrayList(ShipOrientation.VERTICAL.toString(),
-        ShipOrientation.HORIZONTAL.toString()));
-    choiceBox.setValue(ShipOrientation.HORIZONTAL.toString());
-    choiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue,
-                                                                      newValue) -> {
-      shipOrientation = ShipOrientation.valueOf(String.valueOf(newValue));
-      logger.info(newValue);
-    });
+    rbVertical.setOnAction(event -> shipOrientation = ShipOrientation.VERTICAL);
+    rbHorizontal.setOnAction(event -> shipOrientation = ShipOrientation.HORIZONTAL);
   }
   
   private void loadGameWindow() {
