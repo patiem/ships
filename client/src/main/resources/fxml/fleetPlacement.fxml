@@ -17,49 +17,48 @@
 
 <AnchorPane fx:id="mainAnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.korotkevics.ships.client.gui.controllers.FleetPlacementController">
     <children>
-        <GridPane fx:id="gridPane" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0"
-                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <GridPane fx:id="gridPane" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="49.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="2.0" prefWidth="100.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="49.0" prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="49.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="2.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="49.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" percentHeight="3.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="3.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="eventButton" mnemonicParsing="false" visible="false" GridPane.rowIndex="2"/>
+                <Button fx:id="eventButton" mnemonicParsing="false" visible="false" GridPane.rowIndex="2" />
                 <GridPane fx:id="yourBoard" gridLinesVisible="true" GridPane.rowIndex="1">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                 </GridPane>
                 <Label text="%yourBoard">
                     <font>
-                        <Font name="FreeMono Bold" size="20.0"/>
+                        <Font name="FreeMono Bold" size="20.0" />
                     </font>
                 </Label>
                 <GridPane fx:id="rightGrid" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -68,7 +67,7 @@
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
                         <VBox prefHeight="529.0" prefWidth="588.0">
@@ -78,18 +77,10 @@
                                         <Group fx:id="groupFourMastShips">
                                             <children>
                                                 <Group fx:id="gFourMastShip">
-                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                               height="60.0" stroke="BLACK" strokeType="INSIDE"
-                                                               width="60.0" />
-                                                    <Rectangle fx:id="testRec" arcHeight="5.0" arcWidth="5.0"
-                                                               fill="#7a16c2" height="60.0" layoutX="60.0"
-                                                               stroke="BLACK" strokeType="INSIDE" width="60.0" />
-                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                               height="60.0" layoutX="120.0" stroke="BLACK"
-                                                               strokeType="INSIDE" width="60.0" />
-                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                               height="60.0" layoutX="180.0" stroke="BLACK"
-                                                               strokeType="INSIDE" width="60.0" />
+                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                                    <Rectangle fx:id="testRec" arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="120.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="180.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                                 </Group>
                                             </children>
                                         </Group>
@@ -104,28 +95,16 @@
                                             <children>
                                                 <Group fx:id="gFirstThreeMastShip">
                                                     <children>
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" stroke="BLACK" strokeType="INSIDE"
-                                                                   width="60.0" />
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" layoutX="60.0" stroke="BLACK"
-                                                                   strokeType="INSIDE" width="60.0" />
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" layoutX="120.0" stroke="BLACK"
-                                                                   strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="120.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                                     </children>
                                                 </Group>
                                                 <Group fx:id="gSecondThreeMastShip" layoutX="200.0">
                                                     <children>
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" stroke="BLACK" strokeType="INSIDE"
-                                                                   width="60.0" />
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" layoutX="60.0" stroke="BLACK"
-                                                                   strokeType="INSIDE" width="60.0" />
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" layoutX="120.0" stroke="BLACK"
-                                                                   strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="120.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                                     </children>
                                                 </Group>
                                             </children>
@@ -141,32 +120,20 @@
                                             <children>
                                                 <Group fx:id="gFirstTwoMastShip">
                                                     <children>
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" stroke="BLACK" strokeType="INSIDE"
-                                                                   width="60.0" />
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" layoutX="60.0" stroke="BLACK"
-                                                                   strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                                     </children>
                                                 </Group>
                                                 <Group fx:id="gSecondTwoMastShip" layoutX="140.0">
                                                     <children>
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" stroke="BLACK" strokeType="INSIDE"
-                                                                   width="60.0" />
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" layoutX="60.0" stroke="BLACK"
-                                                                   strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                                     </children>
                                                 </Group>
                                                 <Group fx:id="gThirdTwoMastShip" layoutX="280.0">
                                                     <children>
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" stroke="BLACK" strokeType="INSIDE"
-                                                                   width="60.0" />
-                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                                   height="60.0" layoutX="60.0" stroke="BLACK"
-                                                                   strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
+                                                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" layoutX="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                                     </children>
                                                 </Group>
                                             </children>
@@ -181,50 +148,50 @@
                                         <Group fx:id="groupOneMastShips">
                                             <children>
                                                 <Group fx:id="gFirstOneMastShip">
-                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                               height="60.0" stroke="BLACK" strokeType="INSIDE"
-                                                               width="60.0" />
+                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                                 </Group>
                                                 <Group fx:id="gSecondOneMastShip" layoutX="80.0">
-                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                               height="60.0" stroke="BLACK" strokeType="INSIDE"
-                                                               width="60.0" />
+                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                                 </Group>
                                                 <Group fx:id="gThirdOneMastShip" layoutX="160.0">
-                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                               height="60.0" stroke="BLACK" strokeType="INSIDE"
-                                                               width="60.0" />
+                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                                 </Group>
                                                 <Group fx:id="gFourthOneMastShip" layoutX="240.0">
-                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2"
-                                                               height="60.0" stroke="BLACK" strokeType="INSIDE"
-                                                               width="60.0" />
+                                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a16c2" height="60.0" stroke="BLACK" strokeType="INSIDE" width="60.0" />
                                                 </Group>
                                             </children>
                                         </Group>
                                     </children>
                                 </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <RadioButton fx:id="rbVertical" mnemonicParsing="false" selected="true" text="%vertical">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="shipPlacement" />
+                                       </toggleGroup>
+                                    </RadioButton>
+                                    <RadioButton fx:id="rbHorizontal" mnemonicParsing="false" text="%horizontal" toggleGroup="$shipPlacement" />
+                                 </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                              </HBox>
                             </children>
-                        <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <RadioButton fx:id="rbVertical" mnemonicParsing="false" selected="true" text="%vertical">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="shipPlacement" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton fx:id="rbHorizontal" mnemonicParsing="false" text="%horizontal" toggleGroup="$shipPlacement" />
-                           </children>
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </HBox>
                         </VBox>
                         <HBox alignment="CENTER_RIGHT" GridPane.rowIndex="1">
                             <children>
-                                <Button fx:id="buttonRandom" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="200.0" style="-fx-background-color: seagreen;" text="%randomFleet" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="buttonClear" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="180.0" style="-fx-background-color: seagreen;" text="%clearBoard" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="FreeMono" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Button>
+                                <Button fx:id="buttonRandom" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="180.0" style="-fx-background-color: seagreen;" text="%randomFleet" textAlignment="CENTER" wrapText="true">
                                     <font>
                                         <Font name="FreeMono" size="20.0" />
                                     </font>
@@ -232,14 +199,16 @@
                                         <Insets right="20.0" />
                                     </HBox.margin>
                                 </Button>
-                                <Button fx:id="buttonReady" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="200.0" style="-fx-background-color: seagreen;" text="%ready" textAlignment="CENTER">
+                                <Button fx:id="buttonReady" alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="64.0" prefWidth="180.0" style="-fx-background-color: seagreen;" text="%ready" textAlignment="CENTER">
                                     <font>
                                         <Font name="FreeMono" size="29.0" />
                                     </font>
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
                                 </Button>
                             </children>
                         </HBox>
-
                     </children>
                 </GridPane>
             </children>

@@ -1,31 +1,19 @@
 package pl.korotkevics.ships.client.gui.controllers;
 
-import javafx.fxml.Initializable;
-import javafx.scene.control.RadioButton;
-import javafx.scene.effect.DropShadow;
-import pl.korotkevics.ships.client.client.Client;
-import pl.korotkevics.ships.client.gui.events.RandomPlacementEvent;
-import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
-import pl.korotkevics.ships.client.gui.util.GridToBoardConverter;
-import pl.korotkevics.ships.client.gui.util.ShipOrientation;
-import pl.korotkevics.ships.client.validators.ShipPlacementValidator;
-import pl.korotkevics.ships.shared.fleet.Fleet;
-import pl.korotkevics.ships.shared.fleet.Mast;
-import pl.korotkevics.ships.shared.fleet.Ship;
-import pl.korotkevics.ships.shared.infra.logging.api.Target;
-import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
-import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -37,6 +25,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import pl.korotkevics.ships.client.client.Client;
+import pl.korotkevics.ships.client.gui.events.RandomPlacementEvent;
+import pl.korotkevics.ships.client.gui.util.GridToBoardConverter;
+import pl.korotkevics.ships.client.gui.util.ShipOrientation;
+import pl.korotkevics.ships.client.validators.ShipPlacementValidator;
+import pl.korotkevics.ships.shared.fleet.Fleet;
+import pl.korotkevics.ships.shared.fleet.Mast;
+import pl.korotkevics.ships.shared.fleet.Ship;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -87,6 +85,9 @@ public class FleetPlacementController implements Initializable {
   
   @FXML
   private RadioButton rbHorizontal;
+
+  @FXML
+  private Button buttonClear;
 
   private List<Ship> ships;
 
@@ -243,11 +244,8 @@ public class FleetPlacementController implements Initializable {
   private boolean isOutOfBound(int index, int mastCount) {
     final int notRectangleChildCount = 2;
     if (shipOrientation.equals(ShipOrientation.HORIZONTAL)) {
-      if (index + (mastCount - 1) * BOARD_SIZE
-          > yourBoard.getChildren().size() - notRectangleChildCount) {
-        return true;
-      }
-      return false;
+      return index + (mastCount - 1) * BOARD_SIZE
+          > yourBoard.getChildren().size() - notRectangleChildCount;
     } else {
       if (index + mastCount >= yourBoard.getChildren().size()) {
         return true;
@@ -319,7 +317,7 @@ public class FleetPlacementController implements Initializable {
     for (Node ship : shipsGroup.getChildren()) {
       ship.setOnMouseEntered(onMouseEnteredOnShip);
       ship.setOnMouseExited(onMouseExitFromShip);
-      ship.setOnDragEntered(shipOnDragEntered);
+      //ship.setOnDragEntered(shipOnDragEntered);
       ship.setOnDragDetected(shipOnDragDetected);
       ship.setOnDragDone(shipOnDragDone);
     }
@@ -336,9 +334,7 @@ public class FleetPlacementController implements Initializable {
 
   private void loadGameWindow() {
     try {
-      if(!this.randomShipPlacement) {
-        this.getClient().sendFleet(Fleet.ofShips(ships));
-      }
+      this.getClient().sendFleet(Fleet.ofShips(ships));
 
       final String gameWindowUrl = "/fxml/gameWindow.fxml";
       final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));
@@ -372,15 +368,23 @@ public class FleetPlacementController implements Initializable {
   }
 
   private void askForRandomFleet() {
+    this.disableDragAndDropShips(true);
+    this.clearBoard();
     this.getClient().askForRandomFleet();
     this.randomShipPlacement = true;
-    this.buttonRandom.setDisable(true);
+  }
+
+  private void disableDragAndDropShips(boolean disable) {
+    this.groupFourMastShips.setDisable(disable);
+    this.groupThreeMastShips.setDisable(disable);
+    this.groupTwoMastShips.setDisable(disable);
+    this.groupOneMastShips.setDisable(disable);
   }
 
   private void getRandomFleet(final Fleet fleet) {
     this.buttonReady.setDisable(false);
     this.drawFleet(fleet);
-    this.loadGameWindow();
+    this.buttonRandom.setDisable(false);
   }
 
   private void drawFleet(final Fleet fleet) {
@@ -398,6 +402,15 @@ public class FleetPlacementController implements Initializable {
     final int column = index / BOARD_SIZE;
     final int row = index - (column * BOARD_SIZE);
     return row * BOARD_SIZE + column + 1;
+  }
+
+  private void clearBoard() {
+    buttonReady.setDisable(true);
+    this.disableDragAndDropShips(false);
+
+    for(int i = 1; i < 101; i++) {
+      ((Rectangle) yourBoard.getChildren().get(i)).setFill(Color.GRAY);
+    }
   }
   
   @Override
@@ -419,6 +432,11 @@ public class FleetPlacementController implements Initializable {
     buttonReady.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonReady.setEffect(null));
     eventButton.addEventHandler(RandomPlacementEvent.RANDOM_PLACEMENT_EVENT,
         event -> getRandomFleet(event.getFleet()));
+    buttonClear.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonClear.setEffect(shadow));
+    buttonClear.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonClear.setEffect(null));
+    buttonClear.setOnAction(event -> clearBoard());
   }
+
+
 }
 
