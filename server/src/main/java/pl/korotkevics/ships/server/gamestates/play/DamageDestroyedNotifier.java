@@ -10,9 +10,9 @@ import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
  * @author Piotr Czyż
  * @since 2018-01-02
  */
-class DamageDestructedNotifier extends DamageNotifier {
-  DamageDestructedNotifier(final MessageSender messageSender, final TurnManager turnManager) {
+class DamageDestroyedNotifier extends DamageNotifier {
+  DamageDestroyedNotifier(final MessageSender messageSender, final TurnManager turnManager) {
     super(messageSender, turnManager);
-    this.header = Header.SHIP_DESTRUCTED;
+    this.header = Header.SHIP_DESTROYED;
   }
 }

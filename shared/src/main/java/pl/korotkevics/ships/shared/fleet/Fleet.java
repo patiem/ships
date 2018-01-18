@@ -70,7 +70,7 @@ public class Fleet {
     Ship shipHit = this.fleet.get(mast);
     this.fleet.remove(mast);
     if (!this.fleet.containsValue(shipHit)) {
-      return Damage.DESTRUCTED;
+      return Damage.DESTROYED;
     }
     return Damage.HIT;
   }

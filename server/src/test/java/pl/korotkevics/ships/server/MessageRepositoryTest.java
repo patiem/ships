@@ -14,7 +14,7 @@ public class MessageRepositoryTest {
 
   public void shouldGetMessageByHeader() {
     //given
-    Header header = Header.SHIP_DESTRUCTED;
+    Header header = Header.SHIP_DESTROYED;
 
     Message expectedMessage = new MessageBuilder()
         .withAuthor(Author.SERVER)

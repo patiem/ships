@@ -7,5 +7,5 @@ package pl.korotkevics.ships.shared.fleet;
  * @since 2017-12-20
  */
 public enum Damage {
-  MISSED, HIT, DESTRUCTED
+  MISSED, HIT, DESTROYED
 }
