@@ -25,7 +25,8 @@ class FleetPlacementProcessor {
   private MessageReceiver messageReceiver;
   private final FleetGenerator fleetGenerator;
 
-  FleetPlacementProcessor(final CommunicationBus communicationBus, FleetGenerator fleetGenerator) {
+  FleetPlacementProcessor(final CommunicationBus communicationBus,
+                          final FleetGenerator fleetGenerator) {
     this.communicationBus = communicationBus;
     this.messageReceiver = new MessageReceiver(communicationBus);
     this.fleetGenerator = fleetGenerator;
