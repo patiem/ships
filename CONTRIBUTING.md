@@ -2,7 +2,7 @@
 
 ## Intro
 
-To begin with, we highly recommend that you familiriaze yourself with information we gathered on our Wiki.
+To begin with, we highly recommend that you familiarize yourself with information we gathered on our Wiki.
 
 In particular, we would like to draw your attention to pages listed below.
 
@@ -15,7 +15,7 @@ In particular, we would like to draw your attention to pages listed below.
 
 * We mostly use **Waffle.io** to manage our issues and milestones, it allows us to share our current workload among ourselves and have an overview of all issues we are aware of
 * We use a private Slack channel to discuss on-going project related issues, and the channel is also integrated with **Waffle.io**
-* Insufficient test coverage ratio and/or inproper Maven/Java version will fail the build
+* Insufficient test coverage ratio and/or improper Maven/Java version will fail the build
 * We use Google checkstyle, please set up your IDE accordingly
 * All public methods/classes/interfaces/enums have to be covered with JavaDoc
 * JavaDoc for new classes/interfaces/enums need to have @since (date in the YYYY-MM-DD format) and @author (Name Surname)
