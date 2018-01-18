@@ -11,7 +11,10 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.RadioButton;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.ClipboardContent;
@@ -21,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
@@ -368,26 +372,54 @@ public class FleetPlacementController implements Initializable {
   }
 
   private void askForRandomFleet() {
+    ButtonType yesButton = new ButtonType(this.resourceBundle.getString("yes"), ButtonBar.ButtonData.YES);
+    ButtonType noButton = new ButtonType(this.resourceBundle.getString("no"), ButtonBar.ButtonData.NO);
+
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, this.resourceBundle.getString("alertInfo")
+        + "\n\n"
+        + this.resourceBundle.getString("alertQuestion"),
+        yesButton, noButton);
+    alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+    alert.showAndWait();
+
+    if (alert.getResult() == noButton) {
+      return;
+    }
+
     this.disableDragAndDropShips(true);
     this.clearBoard();
+    this.buttonRandom.setDisable(true);
     this.getClient().askForRandomFleet();
   }
 
   private void disableDragAndDropShips(boolean disable) {
-    this.groupFourMastShips.setDisable(disable);
-    this.groupThreeMastShips.setDisable(disable);
-    this.groupTwoMastShips.setDisable(disable);
-    this.groupOneMastShips.setDisable(disable);
+    this.disableDragAndDropForGroupOfShips(this.groupFourMastShips, disable);
+    this.disableDragAndDropForGroupOfShips(this.groupThreeMastShips, disable);
+    this.disableDragAndDropForGroupOfShips(this.groupTwoMastShips, disable);
+    this.disableDragAndDropForGroupOfShips(this.groupOneMastShips, disable);
+  }
+
+  private void disableDragAndDropForGroupOfShips(Group shipsGroup, boolean disable) {
+    for (Node ship : shipsGroup.getChildren()) {
+      ship.setDisable(disable);
+      for (Node child : ((Group) ship).getChildren()) {
+        Rectangle rec = (Rectangle) child;
+        if(disable)
+          rec.setFill(Color.GRAY);
+        else
+          rec.setFill(Color.web("#7A16C2"));
+      }
+    }
   }
 
   private void getRandomFleet(final Fleet fleet) {
     this.buttonReady.setDisable(false);
     this.fleet = fleet;
-    this.drawFleet(this.fleet);
+    this.drawFleet();
     this.buttonRandom.setDisable(false);
   }
 
-  private void drawFleet(final Fleet fleet) {
+  private void drawFleet() {
     this.fleet.
         toIntegerList().
         forEach(i -> this.drawMast(this.convertToGridIndex(i)));
@@ -404,11 +436,14 @@ public class FleetPlacementController implements Initializable {
     return row * BOARD_SIZE + column + 1;
   }
 
-  private void clearBoard() {
+  private void clearBoardAction() {
     buttonReady.setDisable(true);
     this.disableDragAndDropShips(false);
-    ships.clear();
+    clearBoard();
+  }
 
+  private void clearBoard() {
+    ships.clear();
     for(int i = 1; i < 101; i++) {
       ((Rectangle) yourBoard.getChildren().get(i)).setFill(Color.GRAY);
     }
@@ -426,18 +461,19 @@ public class FleetPlacementController implements Initializable {
     rbVertical.setOnAction(event -> shipOrientation = ShipOrientation.VERTICAL);
     rbHorizontal.setOnAction(event -> shipOrientation = ShipOrientation.HORIZONTAL);
     buttonRandom.setOnAction(event -> askForRandomFleet());
+    eventButton.addEventHandler(RandomPlacementEvent.RANDOM_PLACEMENT_EVENT,
+        event -> getRandomFleet(event.getFleet()));
+    buttonClear.setOnAction(event -> clearBoardAction());
+  }
+
+  private void addDropShahows() {
     DropShadow shadow = new DropShadow();
     buttonRandom.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonRandom.setEffect(shadow));
     buttonRandom.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonRandom.setEffect(null));
     buttonReady.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonReady.setEffect(shadow));
     buttonReady.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonReady.setEffect(null));
-    eventButton.addEventHandler(RandomPlacementEvent.RANDOM_PLACEMENT_EVENT,
-        event -> getRandomFleet(event.getFleet()));
     buttonClear.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonClear.setEffect(shadow));
     buttonClear.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonClear.setEffect(null));
-    buttonClear.setOnAction(event -> clearBoard());
   }
-
-
 }
 
