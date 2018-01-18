@@ -8,6 +8,19 @@
  * **2018-01-03**: we received one award for our private Slack channel configuration  
  * Also, two colleagues of ours have babies :P
 
+### Dropped Features
+
+So far we have been allowed  to drop the below features,
+
+ * Surrounding adjacent fields around sunken ships with missed hits
+ * Placing partially horizontal / vertical ships
+
+Also we'd like to negotiate the below feature,
+
+ * Redirecting game messages from GUI to other outputs (file, console and such)
+
+We aren't really planning to deliver the extra feature: nukes. :(
+
 ## Project ships
 
 On-line battleships game. Guessing game for 2 players with simple GUI.
@@ -134,12 +147,14 @@ Stable release branch is 'master'. See 'Code Quality & Team Setup'.
 
 ### Game Features
 
+*Please also see "Dropped Features"..*
+
     - Drawing the boards for a player (fleet board has player's fleet and where opponent shot, "seen" board has where player fired and what he has shot).
     - Placing the fleet - diagonal placing is disallowed, only horizontal and vertical. Humans can place ships but they can also choose to randomize placement. Ships cannot touch (no adjacent field to a ship can have a ship). Ships can be partially vertical and partially horizontal, if they have the length.
     - Firing the shot - choose a place, shoot. If you hit, you repeat the shot. You can repeat as many times as you hit.
     - Hitting the ship - hit happens when place chosen has enemy ship. Mark this part of ship as hit, ask for another shot. One can repeat the shot into already hit (or even sunken) ship, but this doesn't give the right to another shot.
     - Missing the ship - misses are marked on "seen" board. One can shoot twice in the same place if it's a miss.
-    - Sinking the ship - if all masts of a ship are hit, ship sinks. Once the ship has sunk, mark all adjacent fields as "missed", since none of them can have a ship anyway.
+    - Sinking the ship - if all masts of a ship are hit, ship sinks. Once the ship has sunk, mark all adjacent fields as "missed", since none of them can have a ship anyway.  
     - Sinking last ship, that is, winning.
     - Nuke - thrice per game player chooses a 3x3 area and "nukes" it, that is, all ships within take damage as if shot. This is done in addition to normal shot. Only 4-mast ship has nukes, so once they are sunk, nukes cannot be used.
 
