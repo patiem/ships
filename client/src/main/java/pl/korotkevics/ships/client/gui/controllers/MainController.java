@@ -80,7 +80,7 @@ public class MainController {
   private FXMLLoader prepareFxmlLoader() {
     final String url = "/fxml/connectWindow.fxml";
     final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(url));
-    this.resourceBundle = ResourceBundle.getBundle(DICTIONARY);
+    this.resourceBundle = ResourceBundle.getBundle(DICTIONARY, new UTF8Control());
     fxmlLoader.setResources(this.resourceBundle);
     return fxmlLoader;
   }
