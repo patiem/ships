@@ -1,12 +1,16 @@
 # Requirements
 
-Although requirements are briefly described in README, here we take a more strict approach while tracking our progress on them.
+Below we track our progress on requirements split into three categories.
 
 ## Features
 
-- [ ] Dummy
-- [ ] Dummy
-- [ ] Dummy
+- [x] It must work: if one cannot play, it doesn't work.
+- [ ] 60% unit test code coverage (lines).
+- [ ] Code quality – non-OO code is tolerated in little amounts.
+- [x] Project mantra followed (Git, Maven, test cases, etc.).
+- [x] Java FX simple GUI
+- [x] Network game, client-server architecture
+- [x] Both players are human players
 
 ## Functional
 
