@@ -375,12 +375,14 @@ public class FleetPlacementController implements Initializable {
     ButtonType yesButton = new ButtonType(this.resourceBundle.getString("yes"), ButtonBar.ButtonData.YES);
     ButtonType noButton = new ButtonType(this.resourceBundle.getString("no"), ButtonBar.ButtonData.NO);
 
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, this.resourceBundle.getString("alertInfo")
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, this.resourceBundle.getString("alertInfo")
         + System.lineSeparator()
         + System.lineSeparator()
         + this.resourceBundle.getString("alertQuestion"),
         yesButton, noButton);
     alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+    alert.setTitle(this.resourceBundle.getString("information"));
+    alert.setHeaderText(this.resourceBundle.getString("information"));
     alert.showAndWait();
 
     if (alert.getResult() == noButton) {
