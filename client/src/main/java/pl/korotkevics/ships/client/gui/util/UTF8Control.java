@@ -1,4 +1,4 @@
-package pl.korotkevics.ships.client.gui.controllers;
+package pl.korotkevics.ships.client.gui.util;
 
 import java.io.IOException;
 import java.io.InputStream;
