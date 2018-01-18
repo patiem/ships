@@ -8,10 +8,10 @@ import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @Test
 public class FleetPlacementProcessorTest {
@@ -20,6 +20,7 @@ public class FleetPlacementProcessorTest {
     //given
     CommunicationBus communicationBus = mock(CommunicationBus.class);
     WrappedClient wrappedClient = mock(WrappedClient.class);
+    FleetGenerator fleetGenerator = mock(FleetGenerator.class);
     Fleet fleet = mock(Fleet.class);
     Message message = new MessageBuilder()
         .withAuthor(Author.CLIENT)
@@ -27,7 +28,8 @@ public class FleetPlacementProcessorTest {
         .withFleet(fleet)
         .build();
     when(communicationBus.receive(wrappedClient)).thenReturn(message);
-    FleetPlacementProcessor fleetPlacementProcessor = new FleetPlacementProcessor(communicationBus);
+    FleetPlacementProcessor fleetPlacementProcessor = new FleetPlacementProcessor(communicationBus,
+        fleetGenerator);
     //when
     Fleet receivedFleet = fleetPlacementProcessor.placeFleet(wrappedClient);
     //then
@@ -38,16 +40,38 @@ public class FleetPlacementProcessorTest {
     //given
     CommunicationBus communicationBus = mock(CommunicationBus.class);
     WrappedClient wrappedClient = mock(WrappedClient.class);
+    FleetGenerator fleetGenerator = mock(FleetGenerator.class);
+    Fleet fleet = mock(Fleet.class);
     Message message = new MessageBuilder()
         .withAuthor(Author.CLIENT)
         .withHeader(Header.RANDOM_PLACEMENT)
         .build();
-    when(communicationBus.receive(wrappedClient)).thenReturn(message);
-    FleetPlacementProcessor fleetPlacementProcessor = new FleetPlacementProcessor(communicationBus);
+
+    Message ready = manualPlacementMessage();
+
+    Message randomFleet = new MessageBuilder()
+        .withAuthor(Author.SERVER)
+        .withHeader(Header.RANDOM_PLACEMENT)
+        .withStatus(Status.OK)
+        .withFleet(fleet)
+        .build();
+
+    when(communicationBus.receive(wrappedClient)).thenReturn(message, ready);
+    when(fleetGenerator.generateFleet()).thenReturn(fleet);
+    FleetPlacementProcessor fleetPlacementProcessor = new FleetPlacementProcessor(communicationBus,
+        fleetGenerator);
     //when
-    Fleet generatedFleet = fleetPlacementProcessor.placeFleet(wrappedClient);
+    fleetPlacementProcessor.placeFleet(wrappedClient);
     //then
-    Assert.assertNotNull(generatedFleet);
+    verify(communicationBus).send(wrappedClient, randomFleet);
+  }
+
+
+  private Message manualPlacementMessage() {
+    return new MessageBuilder()
+        .withAuthor(Author.CLIENT)
+        .withHeader(Header.MANUAL_PLACEMENT)
+        .build();
   }
 
 

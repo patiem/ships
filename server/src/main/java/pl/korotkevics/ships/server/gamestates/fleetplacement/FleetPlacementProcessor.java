@@ -23,20 +23,21 @@ class FleetPlacementProcessor {
   private final CommunicationBus communicationBus;
   private Target logger = new SharedLogger(FleetPlacementProcessor.class);
   private MessageReceiver messageReceiver;
+  private final FleetGenerator fleetGenerator;
 
-  FleetPlacementProcessor(final CommunicationBus communicationBus) {
+  FleetPlacementProcessor(final CommunicationBus communicationBus, FleetGenerator fleetGenerator) {
     this.communicationBus = communicationBus;
     this.messageReceiver = new MessageReceiver(communicationBus);
+    this.fleetGenerator = fleetGenerator;
   }
 
   Fleet placeFleet(final WrappedClient wrappedClient) {
     this.messageReceiver.receive(wrappedClient);
     if (this.messageReceiver.isRandomPlacement()) {
-      FleetGenerator generator = new FleetGenerator();
-      Fleet fleet = generator.generateFleet();
+      Fleet fleet = this.fleetGenerator.generateFleet();
       this.send(wrappedClient, fleet);
       logger.info(fleet.toString());
-      return fleet;
+      return this.placeFleet(wrappedClient);
     }
     return receiveFloat();
   }
