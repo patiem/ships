@@ -1,7 +1,5 @@
 package pl.korotkevics.ships.shared.infra.communication.api.message;
 
-import lombok.EqualsAndHashCode;
-
 /**
  * @author Sandor Korotkevics
  * @since 2017-12-22
