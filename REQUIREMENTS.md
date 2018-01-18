@@ -2,7 +2,7 @@
 
 Below we track our progress on requirements split into three categories.
 
-## Features
+## Non-functional
 
 - [x] It must work: if one cannot play, it doesn't work.
 - [ ] 60% unit test code coverage (lines).
