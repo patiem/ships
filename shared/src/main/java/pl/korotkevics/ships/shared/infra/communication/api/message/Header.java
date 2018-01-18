@@ -16,7 +16,7 @@ public enum Header {
   YOUR_TURN,
   MISS,
   HIT,
-  SHIP_DESTRUCTED,
+  SHIP_DESTROYED,
   LOSE,
   WIN,
   SHOT,

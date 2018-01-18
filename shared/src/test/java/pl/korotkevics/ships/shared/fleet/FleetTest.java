@@ -21,7 +21,7 @@ public class FleetTest {
   }
 
   @Test
-  public void shipIsDestructed() {
+  public void shipIsDestoyed() {
     //given
     Fleet fleet = Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"), Mast.ofIndex("2"), Mast.ofIndex("1"))));
     //when
@@ -31,7 +31,7 @@ public class FleetTest {
     //then
     fleet.handleDamage(firstHit);
     fleet.handleDamage(secondHit);
-    assertEquals(fleet.handleDamage(thirdHit), Damage.DESTRUCTED);
+    assertEquals(fleet.handleDamage(thirdHit), Damage.DESTROYED);
   }
 
   @Test
