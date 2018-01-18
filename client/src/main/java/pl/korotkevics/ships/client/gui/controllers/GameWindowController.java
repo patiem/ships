@@ -1,5 +1,7 @@
 package pl.korotkevics.ships.client.gui.controllers;
 
+import javafx.application.Platform;
+import javafx.scene.layout.StackPane;
 import pl.korotkevics.ships.client.client.Client;
 import pl.korotkevics.ships.client.gui.events.HitShotEvent;
 import pl.korotkevics.ships.client.gui.events.LooseEvent;
@@ -56,6 +58,12 @@ public class GameWindowController implements Initializable {
 
   @FXML
   private Label winLabel;
+
+  @FXML
+  private StackPane endStack;
+
+  @FXML
+  private Button buttonEnd;
 
   private int shotIndex;
   private ResourceBundle resourceBundle;
@@ -222,18 +230,29 @@ public class GameWindowController implements Initializable {
     eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> markAsHit());
     eventButton.addEventHandler(WinEvent.GAME_WIN, event -> renderAsWin());
     eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> renderAsLoss());
+    buttonEnd.setOnAction(actionEvent -> this.endTheGame());
   
     initializeTurn(false);
   }
-  
+
+  private void endTheGame() {
+    //getClient().closeClient();
+    Platform.exit();
+    System.exit(0);
+  }
+
   private void renderAsWin() {
     this.prepareToRenderAnyPossibleResult();
     this.renderSpecificResult("youWin");
+    this.endStack.setVisible(true);
+    this.buttonEnd.setDisable(false);
   }
   
   private void renderAsLoss() {
     this.prepareToRenderAnyPossibleResult();
     this.renderSpecificResult("youLose");
+    this.endStack.setVisible(true);
+    this.buttonEnd.setDisable(false);
   }
   
   private void renderSpecificResult(String key) {
