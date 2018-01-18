@@ -39,7 +39,7 @@ class FleetGenerator {
 
   Fleet generateFleet() {
     this.fillGameBoard();
-    List<Ship> ships = new ArrayList<>();
+    final List<Ship> ships = new ArrayList<>();
     SHIPS_TO_PLACE.forEach(i -> ships.add(this.generateShip(i)));
     return Fleet.ofShips(ships);
   }
