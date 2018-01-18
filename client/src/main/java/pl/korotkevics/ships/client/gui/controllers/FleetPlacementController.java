@@ -90,11 +90,11 @@ public class FleetPlacementController implements Initializable {
   private Button buttonClear;
 
   private List<Ship> ships;
+  private Fleet fleet;
 
   private ShipOrientation shipOrientation;
 
   private boolean shipPlacementSuccess;
-  private boolean randomShipPlacement;
 
   //Events Handlers
   private EventHandler<MouseEvent> onMouseEnteredOnShip =
@@ -284,6 +284,7 @@ public class FleetPlacementController implements Initializable {
       ships.add(Ship.ofMasts(masts));
       if (ships.size() == SHIPS_COUNT) {
         buttonReady.setDisable(false);
+        fleet = Fleet.ofShips(ships);
       }
       shipPlacementSuccess = true;
       event.consume();
@@ -317,7 +318,6 @@ public class FleetPlacementController implements Initializable {
     for (Node ship : shipsGroup.getChildren()) {
       ship.setOnMouseEntered(onMouseEnteredOnShip);
       ship.setOnMouseExited(onMouseExitFromShip);
-      //ship.setOnDragEntered(shipOnDragEntered);
       ship.setOnDragDetected(shipOnDragDetected);
       ship.setOnDragDone(shipOnDragDone);
     }
@@ -334,7 +334,7 @@ public class FleetPlacementController implements Initializable {
 
   private void loadGameWindow() {
     try {
-      this.getClient().sendFleet(Fleet.ofShips(ships));
+      this.getClient().sendFleet(fleet);
 
       final String gameWindowUrl = "/fxml/gameWindow.fxml";
       final FXMLLoader gameWindowLoader = new FXMLLoader(getClass().getResource(gameWindowUrl));
@@ -371,7 +371,6 @@ public class FleetPlacementController implements Initializable {
     this.disableDragAndDropShips(true);
     this.clearBoard();
     this.getClient().askForRandomFleet();
-    this.randomShipPlacement = true;
   }
 
   private void disableDragAndDropShips(boolean disable) {
@@ -383,12 +382,13 @@ public class FleetPlacementController implements Initializable {
 
   private void getRandomFleet(final Fleet fleet) {
     this.buttonReady.setDisable(false);
-    this.drawFleet(fleet);
+    this.fleet = fleet;
+    this.drawFleet(this.fleet);
     this.buttonRandom.setDisable(false);
   }
 
   private void drawFleet(final Fleet fleet) {
-    fleet.
+    this.fleet.
         toIntegerList().
         forEach(i -> this.drawMast(this.convertToGridIndex(i)));
   }
@@ -407,6 +407,7 @@ public class FleetPlacementController implements Initializable {
   private void clearBoard() {
     buttonReady.setDisable(true);
     this.disableDragAndDropShips(false);
+    ships.clear();
 
     for(int i = 1; i < 101; i++) {
       ((Rectangle) yourBoard.getChildren().get(i)).setFill(Color.GRAY);
