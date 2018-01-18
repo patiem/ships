@@ -160,6 +160,8 @@ Stable release branch is 'master'. See 'Code Quality & Team Setup'.
 
 ### Code Quality & Team Setup
 
+Sonar stats are available under the [link](https://sonarcloud.io/organizations/mp5-team/projects?search=Ships+-+ROOT+int_2.0)
+
     - Holy master - everything on master is holy, this is what is being checked by customer
     - CI server - before anything gets pulled into master, it is integrated with master by CI server, it runs tests, checks, etc.
     - Reviewers - pull-requests to master that are handled by CI server are then reviewed internally by teammates
