@@ -6,6 +6,7 @@
 
  * **2017-12-08**: we received two awards since Magda & Piotr wrote scripts allowing to clone our repo into a given folder. 
  * **2018-01-03**: we received one award for our private Slack channel configuration  
+ * Also, two colleagues of ours have babies :P
 
 ## Project ships
 
