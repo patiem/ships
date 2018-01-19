@@ -33,7 +33,7 @@
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>      messages.put(Header.MANUAL_PLACEMENT, <strong class="jxr_keyword">this</strong>.askForFleetMessage());
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>      messages.put(Header.HIT, <strong class="jxr_keyword">this</strong>.hitMessage());
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>      messages.put(Header.MISS, <strong class="jxr_keyword">this</strong>.missMessage());
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>      messages.put(Header.SHIP_DESTRUCTED, <strong class="jxr_keyword">this</strong>.shipDestructedMessage());
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      messages.put(Header.SHIP_DESTROYED, <strong class="jxr_keyword">this</strong>.shipDestroyedMessage());
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>      messages.put(Header.YOUR_TURN, <strong class="jxr_keyword">this</strong>.yourTurnMessage());
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>    }
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
@@ -54,10 +54,10 @@
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>          .build();
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>    }
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>    <strong class="jxr_keyword">private</strong> <a href="../../../../pl/korotkevics/ships/shared/infra/communication/api/Message.html">Message</a> shipDestructedMessage() {
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>    <strong class="jxr_keyword">private</strong> <a href="../../../../pl/korotkevics/ships/shared/infra/communication/api/Message.html">Message</a> shipDestroyedMessage() {
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../pl/korotkevics/ships/shared/infra/communication/core/message/MessageBuilder.html">MessageBuilder</a>()
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>          .withAuthor(Author.SERVER)
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>          .withHeader(Header.SHIP_DESTRUCTED)
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>          .withHeader(Header.SHIP_DESTROYED)
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>          .build();
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>    }
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  

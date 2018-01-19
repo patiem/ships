@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2018 Java Academy</copyright>
     <item>
-      <title>File: 38,
+      <title>File: 41,
              Errors: 0,
-             Warnings: 79,
+             Warnings: 70,
              Infos: 0
       </title>
             <link>./index.html/checkstyle.html</link>
@@ -44,6 +44,20 @@ under the License.
             </tr>
           </thead>
           <tbody>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.Client.java">pl/korotkevics/ships/client/client/Client.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
                           <tr>
                 <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.TurnChangeEvent.java">pl/korotkevics/ships/client/gui/events/TurnChangeEvent.java</a>
@@ -74,13 +88,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.Client.java">pl/korotkevics/ships/client/client/Client.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.HitShotEvent.java">pl/korotkevics/ships/client/gui/events/HitShotEvent.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -88,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.HitShotEvent.java">pl/korotkevics/ships/client/gui/events/HitShotEvent.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.ShipDestroyedTrigger.java">pl/korotkevics/ships/client/client/ShipDestroyedTrigger.java</a>
                 </td>
                 <td>
                   0
@@ -116,20 +130,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.MainController.java">pl/korotkevics/ships/client/gui/controllers/MainController.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MissShotTrigger.java">pl/korotkevics/ships/client/client/MissShotTrigger.java</a>
                 </td>
                 <td>
@@ -144,13 +144,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.localization.OurLocale.java">pl/korotkevics/ships/client/localization/OurLocale.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.MainController.java">pl/korotkevics/ships/client/gui/controllers/MainController.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  9
+                  0
                 </td>
                 <td>
                   0
@@ -172,13 +172,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#dict_ru.properties">dict_ru.properties</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.localization.OurLocale.java">pl/korotkevics/ships/client/localization/OurLocale.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
+                  9
                 </td>
                 <td>
                   0
@@ -186,7 +186,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.LooseEvent.java">pl/korotkevics/ships/client/gui/events/LooseEvent.java</a>
+                  <a href="./index.html/checkstyle.html#dict_ru.properties">dict_ru.properties</a>
                 </td>
                 <td>
                   0
@@ -214,6 +214,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.LooseEvent.java">pl/korotkevics/ships/client/gui/events/LooseEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.validators.ShipPlacementValidator.java">pl/korotkevics/ships/client/validators/ShipPlacementValidator.java</a>
                 </td>
                 <td>
@@ -234,7 +248,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  16
+                  18
                 </td>
                 <td>
                   0
@@ -284,13 +298,27 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MessageHandler.java">pl/korotkevics/ships/client/client/MessageHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.FleetPlacementController.java">pl/korotkevics/ships/client/gui/controllers/FleetPlacementController.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  29
+                  13
                 </td>
                 <td>
                   0
@@ -312,13 +340,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MessageHandler.java">pl/korotkevics/ships/client/client/MessageHandler.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.OpponentShotTrigger.java">pl/korotkevics/ships/client/client/OpponentShotTrigger.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
+                  2
                 </td>
                 <td>
                   0
@@ -340,13 +368,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.OpponentShotTrigger.java">pl/korotkevics/ships/client/client/OpponentShotTrigger.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.TurnTrigger.java">pl/korotkevics/ships/client/client/TurnTrigger.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  2
+                  0
                 </td>
                 <td>
                   0
@@ -361,20 +389,6 @@ under the License.
                 </td>
                 <td>
                   2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.TurnTrigger.java">pl/korotkevics/ships/client/client/TurnTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   0
@@ -431,6 +445,20 @@ under the License.
                 </td>
                 <td>
                   2
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.util.UTF8Control.java">pl/korotkevics/ships/client/gui/util/UTF8Control.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
                 </td>
                 <td>
                   0
@@ -571,6 +599,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent.java">pl/korotkevics/ships/client/gui/events/ShipDestroyedEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   0

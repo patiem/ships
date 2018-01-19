@@ -2,15 +2,16 @@ GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_
 Ships - CLIENT,pl.korotkevics.ships.client,Main,23,0,0,0,5,0,4,0,4,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,ConnectWindowController,307,0,6,0,83,0,13,0,10,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,ServerNotRespondingController,56,0,0,0,15,0,4,0,4,0
-Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,MainController,151,0,0,0,42,0,13,0,13,0
-Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,FleetPlacementController,968,0,56,0,226,0,69,0,41,0
-Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,GameWindowController,511,0,16,0,129,0,40,0,32,0
+Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,MainController,175,0,0,0,49,0,14,0,14,0
+Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,FleetPlacementController,1182,0,64,0,268,0,82,0,50,0
+Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,GameWindowController,652,0,20,0,155,0,46,0,36,0
 Ships - CLIENT,pl.korotkevics.ships.client.client,LoseTrigger,13,0,0,0,3,0,3,0,3,0
 Ships - CLIENT,pl.korotkevics.ships.client.client,RandomPlacementTrigger,16,0,0,0,4,0,3,0,3,0
 Ships - CLIENT,pl.korotkevics.ships.client.client,TurnTrigger,17,0,2,0,4,0,4,0,3,0
 Ships - CLIENT,pl.korotkevics.ships.client.client,WinTrigger,13,0,0,0,3,0,3,0,3,0
+Ships - CLIENT,pl.korotkevics.ships.client.client,ShipDestroyedTrigger,13,0,0,0,3,0,3,0,3,0
 Ships - CLIENT,pl.korotkevics.ships.client.client,OpponentConnectedTrigger,13,0,0,0,3,0,3,0,3,0
-Ships - CLIENT,pl.korotkevics.ships.client.client,Client,185,0,6,0,67,0,13,0,10,0
+Ships - CLIENT,pl.korotkevics.ships.client.client,Client,209,0,6,0,79,0,14,0,11,0
 Ships - CLIENT,pl.korotkevics.ships.client.client,ConnectionEndTrigger,13,0,0,0,3,0,3,0,3,0
 Ships - CLIENT,pl.korotkevics.ships.client.client,MessageHandlerBuilder,99,0,0,0,15,0,4,0,4,0
 Ships - CLIENT,pl.korotkevics.ships.client.client,MissShotTrigger,13,0,0,0,3,0,3,0,3,0
@@ -21,6 +22,7 @@ Ships - CLIENT,pl.korotkevics.ships.client.gui,GuiMain,71,0,0,0,22,0,3,0,3,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,MissShotEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,OpponentWithdrawEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,RandomPlacementEvent,17,0,0,0,5,0,3,0,3,0
+Ships - CLIENT,pl.korotkevics.ships.client.gui.events,ShipDestroyedEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,OpponentConnectedEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,WinEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,HitShotEvent,11,0,0,0,3,0,2,0,2,0
@@ -29,10 +31,11 @@ Ships - CLIENT,pl.korotkevics.ships.client.gui.events,OpponentShotEvent,17,0,0,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,TurnChangeEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.validators,PortValidator,0,27,0,4,0,9,0,5,0,3
 Ships - CLIENT,pl.korotkevics.ships.client.validators,ShipPlacementValidator,5,567,7,87,0,66,7,84,0,44
+Ships - CLIENT,pl.korotkevics.ships.client.gui.util,GridToBoardConverter,44,0,4,0,7,0,4,0,2,0
+Ships - CLIENT,pl.korotkevics.ships.client.gui.util,ShipOrientation,9,29,0,0,0,2,2,2,2,2
+Ships - CLIENT,pl.korotkevics.ships.client.gui.util,UTF8Control,62,0,8,0,19,0,6,0,2,0
+Ships - CLIENT,pl.korotkevics.ships.client.gui.util,FieldState,9,29,0,0,0,2,2,2,2,2
 Ships - CLIENT,pl.korotkevics.ships.client.localization,OurLocale.new OurLocale() {...},8,0,0,0,2,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.localization,OurLocale.new OurLocale() {...},8,0,0,0,2,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.localization,OurLocale.new OurLocale() {...},8,0,0,0,2,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.localization,OurLocale,48,0,0,0,4,0,4,0,4,0
-Ships - CLIENT,pl.korotkevics.ships.client.gui.util,GridToBoardConverter,44,0,4,0,7,0,4,0,2,0
-Ships - CLIENT,pl.korotkevics.ships.client.gui.util,ShipOrientation,9,29,0,0,0,2,2,2,2,2
-Ships - CLIENT,pl.korotkevics.ships.client.gui.util,FieldState,9,29,0,0,0,2,2,2,2,2

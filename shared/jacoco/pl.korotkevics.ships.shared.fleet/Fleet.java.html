@@ -70,7 +70,7 @@ public class Fleet {
 <span class="fc" id="L70">    Ship shipHit = this.fleet.get(mast);</span>
 <span class="fc" id="L71">    this.fleet.remove(mast);</span>
 <span class="fc bfc" id="L72" title="All 2 branches covered.">    if (!this.fleet.containsValue(shipHit)) {</span>
-<span class="fc" id="L73">      return Damage.DESTRUCTED;</span>
+<span class="fc" id="L73">      return Damage.DESTROYED;</span>
     }
 <span class="fc" id="L75">    return Damage.HIT;</span>
   }

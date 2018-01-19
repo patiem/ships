@@ -35,112 +35,116 @@ class FleetGenerator {
 
 <span class="fc" id="L36">  FleetGenerator() {</span>
 <span class="fc" id="L37">    this.gameBoard = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L38">    final int firstFieldIndex = 0;</span>
-<span class="fc" id="L39">    final int lastFieldIndex = 100;</span>
-<span class="fc" id="L40">    IntStream.range(firstFieldIndex, lastFieldIndex)</span>
-<span class="fc" id="L41">        .forEach(i -&gt; gameBoard.put(i, FieldState.EMPTY));</span>
-<span class="fc" id="L42">  }</span>
+<span class="fc" id="L38">  }</span>
 
   Fleet generateFleet() {
-<span class="fc" id="L45">    List&lt;Ship&gt; ships = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L46">    SHIPS_TO_PLACE.forEach(i -&gt; ships.add(this.generateShip(i)));</span>
-<span class="fc" id="L47">    return Fleet.ofShips(ships);</span>
+<span class="fc" id="L41">    this.fillGameBoard();</span>
+<span class="fc" id="L42">    final List&lt;Ship&gt; ships = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L43">    SHIPS_TO_PLACE.forEach(i -&gt; ships.add(this.generateShip(i)));</span>
+<span class="fc" id="L44">    return Fleet.ofShips(ships);</span>
   }
 
+  private void fillGameBoard() {
+<span class="fc" id="L48">    final int firstFieldIndex = 0;</span>
+<span class="fc" id="L49">    final int lastFieldIndex = 100;</span>
+<span class="fc" id="L50">    IntStream.range(firstFieldIndex, lastFieldIndex)</span>
+<span class="fc" id="L51">        .forEach(i -&gt; gameBoard.put(i, FieldState.EMPTY));</span>
+<span class="fc" id="L52">  }</span>
+
   private Ship generateShip(final int shipLength) {
-<span class="fc" id="L51">    List&lt;Integer&gt; offeredShip = this.offerShipAsIndices(shipLength);</span>
-<span class="fc bfc" id="L52" title="All 2 branches covered.">    if (this.canBePut(offeredShip)) {</span>
-<span class="fc" id="L53">      this.markAreaAsOccupied(offeredShip);</span>
-<span class="fc" id="L54">      return Ship.ofMasts(this.convertToMasts(offeredShip));</span>
+<span class="fc" id="L55">    List&lt;Integer&gt; offeredShip = this.offerShipAsIndices(shipLength);</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">    if (this.canBePut(offeredShip)) {</span>
+<span class="fc" id="L57">      this.markAreaAsOccupied(offeredShip);</span>
+<span class="fc" id="L58">      return Ship.ofMasts(this.convertToMasts(offeredShip));</span>
     }
-<span class="fc" id="L56">    return this.generateShip(shipLength);</span>
+<span class="fc" id="L60">    return this.generateShip(shipLength);</span>
   }
 
   private List&lt;Integer&gt; offerShipAsIndices(final int shipLength) {
     final List&lt;Integer&gt; shipAsIndices;
-<span class="fc" id="L61">    boolean verticalOrientation = this.isVerticalOrientation();</span>
-<span class="fc bfc" id="L62" title="All 2 branches covered.">    if (verticalOrientation) {</span>
-<span class="fc" id="L63">      shipAsIndices = this.offerIndices(shipLength, this.generateStartIndex(), BOARD_WIDTH);</span>
-<span class="fc bfc" id="L64" title="All 2 branches covered.">      if (!this.isWithinBoardVertical(shipAsIndices)) {</span>
-<span class="fc" id="L65">        return this.offerShipAsIndices(shipLength);</span>
+<span class="fc" id="L65">    boolean verticalOrientation = this.isVerticalOrientation();</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">    if (verticalOrientation) {</span>
+<span class="fc" id="L67">      shipAsIndices = this.offerIndices(shipLength, this.generateStartIndex(), BOARD_WIDTH);</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">      if (!this.isWithinBoardVertical(shipAsIndices)) {</span>
+<span class="fc" id="L69">        return this.offerShipAsIndices(shipLength);</span>
       }
     } else {
-<span class="fc" id="L68">      shipAsIndices = this.offerIndices(shipLength, this.generateStartIndex(), 1);</span>
-<span class="fc bfc" id="L69" title="All 2 branches covered.">      if (!this.isWithinBoardAndSingleRow(shipAsIndices)) {</span>
-<span class="fc" id="L70">        return this.offerShipAsIndices(shipLength);</span>
+<span class="fc" id="L72">      shipAsIndices = this.offerIndices(shipLength, this.generateStartIndex(), 1);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">      if (!this.isWithinBoardAndSingleRow(shipAsIndices)) {</span>
+<span class="fc" id="L74">        return this.offerShipAsIndices(shipLength);</span>
       }
     }
-<span class="fc" id="L73">    return shipAsIndices;</span>
+<span class="fc" id="L77">    return shipAsIndices;</span>
   }
 
   private List&lt;Integer&gt; offerIndices(final int length,final int startIndex,final int step) {
-<span class="fc" id="L77">    final List&lt;Integer&gt; indices = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L78">    IntStream.range(0, length)</span>
-<span class="fc" id="L79">        .forEach(i -&gt; indices.add(startIndex + i * step));</span>
-<span class="fc" id="L80">    return indices;</span>
+<span class="fc" id="L81">    final List&lt;Integer&gt; indices = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L82">    IntStream.range(0, length)</span>
+<span class="fc" id="L83">        .forEach(i -&gt; indices.add(startIndex + i * step));</span>
+<span class="fc" id="L84">    return indices;</span>
   }
 
   private Mast[] convertToMasts(final List&lt;Integer&gt; offeredShip) {
-<span class="fc" id="L84">    return offeredShip</span>
-<span class="fc" id="L85">        .stream()</span>
-<span class="fc" id="L86">        .map(obj -&gt; Mast.ofIndex(String.valueOf(obj)))</span>
-<span class="fc" id="L87">        .collect(Collectors.toList())</span>
-<span class="fc" id="L88">        .toArray(new Mast[offeredShip.size()]);</span>
+<span class="fc" id="L88">    return offeredShip</span>
+<span class="fc" id="L89">        .stream()</span>
+<span class="fc" id="L90">        .map(obj -&gt; Mast.ofIndex(String.valueOf(obj)))</span>
+<span class="fc" id="L91">        .collect(Collectors.toList())</span>
+<span class="fc" id="L92">        .toArray(new Mast[offeredShip.size()]);</span>
   }
 
   private void markAreaAsOccupied(final List&lt;Integer&gt; offeredShip) {
-<span class="fc" id="L92">    Set&lt;Integer&gt; areaToMark = this.determineAreaForShip(offeredShip);</span>
-<span class="fc" id="L93">    areaToMark</span>
-<span class="fc" id="L94">        .stream()</span>
-<span class="fc" id="L95">        .filter(i -&gt; gameBoard.containsKey(i))</span>
-<span class="fc" id="L96">        .forEach(i -&gt; gameBoard.put(i, FieldState.OCCUPIED));</span>
-<span class="fc" id="L97">  }</span>
+<span class="fc" id="L96">    Set&lt;Integer&gt; areaToMark = this.determineAreaForShip(offeredShip);</span>
+<span class="fc" id="L97">    areaToMark</span>
+<span class="fc" id="L98">        .stream()</span>
+<span class="fc" id="L99">        .filter(i -&gt; gameBoard.containsKey(i))</span>
+<span class="fc" id="L100">        .forEach(i -&gt; gameBoard.put(i, FieldState.OCCUPIED));</span>
+<span class="fc" id="L101">  }</span>
 
   private boolean isWithinBoardAndSingleRow(final List&lt;Integer&gt; offeredShip) {
-<span class="fc" id="L100">    final int rowNumberOfFirstShipIndex = offeredShip.get(0) / BOARD_WIDTH;</span>
-<span class="fc" id="L101">    return offeredShip</span>
-<span class="fc" id="L102">        .stream()</span>
-<span class="fc bfc" id="L103" title="All 4 branches covered.">        .allMatch(i -&gt; i &lt; 100 &amp;&amp; (i / BOARD_WIDTH == rowNumberOfFirstShipIndex));</span>
+<span class="fc" id="L104">    final int rowNumberOfFirstShipIndex = offeredShip.get(0) / BOARD_WIDTH;</span>
+<span class="fc" id="L105">    return offeredShip</span>
+<span class="fc" id="L106">        .stream()</span>
+<span class="fc bfc" id="L107" title="All 4 branches covered.">        .allMatch(i -&gt; i &lt; 100 &amp;&amp; (i / BOARD_WIDTH == rowNumberOfFirstShipIndex));</span>
   }
 
   private boolean isWithinBoardVertical(final List&lt;Integer&gt; offeredShip) {
-<span class="fc" id="L107">    return offeredShip</span>
-<span class="fc" id="L108">        .stream()</span>
-<span class="fc bfc" id="L109" title="All 4 branches covered.">        .allMatch(i -&gt; i &gt; 0 &amp;&amp; i &lt; 100);</span>
+<span class="fc" id="L111">    return offeredShip</span>
+<span class="fc" id="L112">        .stream()</span>
+<span class="fc bfc" id="L113" title="All 4 branches covered.">        .allMatch(i -&gt; i &gt; 0 &amp;&amp; i &lt; 100);</span>
   }
 
   private boolean canBePut(final List&lt;Integer&gt; offeredShip) {
-<span class="fc" id="L113">    return offeredShip</span>
-<span class="fc" id="L114">        .stream()</span>
-<span class="fc" id="L115">        .allMatch(i -&gt; FieldState.EMPTY.equals(gameBoard.get(i)));</span>
+<span class="fc" id="L117">    return offeredShip</span>
+<span class="fc" id="L118">        .stream()</span>
+<span class="fc" id="L119">        .allMatch(i -&gt; FieldState.EMPTY.equals(gameBoard.get(i)));</span>
   }
 
   private Set&lt;Integer&gt; determineAreaForShip(final List&lt;Integer&gt; offeredShip) {
-<span class="fc" id="L119">    Set&lt;Integer&gt; area = new HashSet&lt;&gt;();</span>
-<span class="fc" id="L120">    offeredShip.forEach(index -&gt; area.addAll(this.addFieldAndNeighbours(index)));</span>
-<span class="fc" id="L121">    return area;</span>
+<span class="fc" id="L123">    Set&lt;Integer&gt; area = new HashSet&lt;&gt;();</span>
+<span class="fc" id="L124">    offeredShip.forEach(index -&gt; area.addAll(this.addFieldAndNeighbours(index)));</span>
+<span class="fc" id="L125">    return area;</span>
   }
 
   private List&lt;Integer&gt; addFieldAndNeighbours(final int index) {
-<span class="fc" id="L125">    List&lt;Integer&gt; area = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L126">    List&lt;Integer&gt; neighbours = Arrays.asList(-11, -10, -9, 0, -1, 1, 9, 10, 11);</span>
-<span class="fc" id="L127">    neighbours.forEach(i -&gt; area.add(index + i));</span>
-<span class="fc" id="L128">    return area;</span>
+<span class="fc" id="L129">    List&lt;Integer&gt; area = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L130">    List&lt;Integer&gt; neighbours = Arrays.asList(-11, -10, -9, 0, -1, 1, 9, 10, 11);</span>
+<span class="fc" id="L131">    neighbours.forEach(i -&gt; area.add(index + i));</span>
+<span class="fc" id="L132">    return area;</span>
   }
 
   private int generateStartIndex() {
-<span class="fc" id="L132">    List&lt;Integer&gt; emptyIndices = gameBoard</span>
-<span class="fc" id="L133">        .entrySet()</span>
-<span class="fc" id="L134">        .stream()</span>
-<span class="fc" id="L135">        .filter(i -&gt; FieldState.EMPTY.equals(i.getValue()))</span>
-<span class="fc" id="L136">        .map(Map.Entry::getKey)</span>
-<span class="fc" id="L137">        .collect(Collectors.toList());</span>
-<span class="fc" id="L138">    int index = new Random().nextInt(emptyIndices.size());</span>
-<span class="fc" id="L139">    return emptyIndices.get(index);</span>
+<span class="fc" id="L136">    List&lt;Integer&gt; emptyIndices = gameBoard</span>
+<span class="fc" id="L137">        .entrySet()</span>
+<span class="fc" id="L138">        .stream()</span>
+<span class="fc" id="L139">        .filter(i -&gt; FieldState.EMPTY.equals(i.getValue()))</span>
+<span class="fc" id="L140">        .map(Map.Entry::getKey)</span>
+<span class="fc" id="L141">        .collect(Collectors.toList());</span>
+<span class="fc" id="L142">    int index = new Random().nextInt(emptyIndices.size());</span>
+<span class="fc" id="L143">    return emptyIndices.get(index);</span>
   }
 
   private boolean isVerticalOrientation() {
-<span class="fc" id="L143">    return new Random().nextBoolean();</span>
+<span class="fc" id="L147">    return new Random().nextBoolean();</span>
   }
 
 }

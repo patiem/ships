@@ -1,8 +1,8 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,DamageDestructedNotifier,0,8,0,0,0,3,0,1,0,1
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,DamageNotifier,0,29,0,0,0,9,0,3,0,3
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,DamageHitNotifier,0,8,0,0,0,3,0,1,0,1
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,ShotHandler,0,103,0,5,0,20,0,7,0,4
+Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,DamageDestroyedNotifier,0,8,0,0,0,3,0,1,0,1
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,ShotHandler.new Object() {...},2,17,0,0,0,1,0,1,0,1
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,PlayState,8,107,0,4,3,27,0,6,0,4
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.play,DamageMissNotifier,0,23,0,0,0,7,0,2,0,2
@@ -10,16 +10,16 @@ Ships - SERVER,pl.korotkevics.ships.server.gamestates,GameState,0,2,0,0,0,1,0,1,
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.connection,WaitingForPlayersState,0,32,0,0,0,8,0,2,0,2
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.endgame,GameEndWithWinState,8,59,0,0,3,19,0,5,0,5
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.endgame,GameEndWithWalkoverState,0,23,0,0,0,8,0,3,0,3
-Ships - SERVER,pl.korotkevics.ships.server,MessageSender,0,71,0,0,0,14,0,4,0,4
 Ships - SERVER,pl.korotkevics.ships.server,AppServer,6,63,0,0,2,19,0,4,0,4
+Ships - SERVER,pl.korotkevics.ships.server,MessageSender,0,71,0,0,0,14,0,4,0,4
 Ships - SERVER,pl.korotkevics.ships.server,TurnManager,8,43,1,1,2,13,1,5,0,5
 Ships - SERVER,pl.korotkevics.ships.server,CommunicationBus,104,0,4,0,26,0,12,0,10,0
 Ships - SERVER,pl.korotkevics.ships.server,Game,0,23,0,2,0,9,0,3,0,2
 Ships - SERVER,pl.korotkevics.ships.server,MessageReceiver,0,39,0,0,0,10,0,5,0,5
-Ships - SERVER,pl.korotkevics.ships.server,MessageRepository,0,145,0,0,0,45,0,10,0,10
 Ships - SERVER,pl.korotkevics.ships.server,WrappedClient,175,38,38,0,9,11,24,3,5,3
+Ships - SERVER,pl.korotkevics.ships.server,MessageRepository,0,145,0,0,0,45,0,10,0,10
 Ships - SERVER,pl.korotkevics.ships.server,Main,23,0,2,0,8,0,3,0,2,0
 Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FieldState,9,29,0,0,0,3,2,2,2,2
-Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FleetPlacementProcessor,0,76,0,2,0,22,0,5,0,4
-Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FleetPlacementState,14,94,1,1,4,24,1,6,0,6
-Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FleetGenerator,0,406,0,16,0,68,0,35,0,27
+Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FleetPlacementProcessor,0,78,0,2,0,22,0,5,0,4
+Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FleetPlacementState,20,146,1,1,6,34,1,8,0,8
+Ships - SERVER,pl.korotkevics.ships.server.gamestates.fleetplacement,FleetGenerator,0,409,0,16,0,70,0,36,0,28

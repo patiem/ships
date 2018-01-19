@@ -23,36 +23,38 @@ class FleetPlacementProcessor {
   private final CommunicationBus communicationBus;
 <span class="fc" id="L24">  private Target logger = new SharedLogger(FleetPlacementProcessor.class);</span>
   private MessageReceiver messageReceiver;
+  private final FleetGenerator fleetGenerator;
 
-<span class="fc" id="L27">  FleetPlacementProcessor(final CommunicationBus communicationBus) {</span>
-<span class="fc" id="L28">    this.communicationBus = communicationBus;</span>
-<span class="fc" id="L29">    this.messageReceiver = new MessageReceiver(communicationBus);</span>
-<span class="fc" id="L30">  }</span>
+  FleetPlacementProcessor(final CommunicationBus communicationBus,
+<span class="fc" id="L29">                          final FleetGenerator fleetGenerator) {</span>
+<span class="fc" id="L30">    this.communicationBus = communicationBus;</span>
+<span class="fc" id="L31">    this.messageReceiver = new MessageReceiver(communicationBus);</span>
+<span class="fc" id="L32">    this.fleetGenerator = fleetGenerator;</span>
+<span class="fc" id="L33">  }</span>
 
   Fleet placeFleet(final WrappedClient wrappedClient) {
-<span class="fc" id="L33">    this.messageReceiver.receive(wrappedClient);</span>
-<span class="fc bfc" id="L34" title="All 2 branches covered.">    if (this.messageReceiver.isRandomPlacement()) {</span>
-<span class="fc" id="L35">      FleetGenerator generator = new FleetGenerator();</span>
-<span class="fc" id="L36">      Fleet fleet = generator.generateFleet();</span>
-<span class="fc" id="L37">      this.send(wrappedClient, fleet);</span>
-<span class="fc" id="L38">      logger.info(fleet.toString());</span>
-<span class="fc" id="L39">      return fleet;</span>
+<span class="fc" id="L36">    this.messageReceiver.receive(wrappedClient);</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">    if (this.messageReceiver.isRandomPlacement()) {</span>
+<span class="fc" id="L38">      Fleet fleet = this.fleetGenerator.generateFleet();</span>
+<span class="fc" id="L39">      this.send(wrappedClient, fleet);</span>
+<span class="fc" id="L40">      logger.info(fleet.toString());</span>
+<span class="fc" id="L41">      return this.placeFleet(wrappedClient);</span>
     }
-<span class="fc" id="L41">    return receiveFloat();</span>
+<span class="fc" id="L43">    return receiveFloat();</span>
   }
 
   private void send(final WrappedClient wrappedClient, final Fleet fleet) {
-<span class="fc" id="L45">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
-<span class="fc" id="L46">    final Message message = new MessageBuilder()</span>
-<span class="fc" id="L47">        .withAuthor(Author.SERVER)</span>
-<span class="fc" id="L48">        .withHeader(Header.RANDOM_PLACEMENT)</span>
-<span class="fc" id="L49">        .withFleet(fleet)</span>
-<span class="fc" id="L50">        .build();</span>
-<span class="fc" id="L51">    messageSender.send(wrappedClient, message);</span>
-<span class="fc" id="L52">  }</span>
+<span class="fc" id="L47">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
+<span class="fc" id="L48">    final Message message = new MessageBuilder()</span>
+<span class="fc" id="L49">        .withAuthor(Author.SERVER)</span>
+<span class="fc" id="L50">        .withHeader(Header.RANDOM_PLACEMENT)</span>
+<span class="fc" id="L51">        .withFleet(fleet)</span>
+<span class="fc" id="L52">        .build();</span>
+<span class="fc" id="L53">    messageSender.send(wrappedClient, message);</span>
+<span class="fc" id="L54">  }</span>
 
   private Fleet receiveFloat() {
-<span class="fc" id="L55">    return this.messageReceiver.getMessage().getFleet();</span>
+<span class="fc" id="L57">    return this.messageReceiver.getMessage().getFleet();</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

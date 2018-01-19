@@ -103,7 +103,24 @@ public class Client implements Runnable {
 <span class="nc" id="L103">        logger.error(e.getMessage());</span>
 <span class="nc" id="L104">      }</span>
     }
-<span class="nc" id="L106">  }</span>
+
+<span class="nc" id="L107">    closeSocket();</span>
+<span class="nc" id="L108">  }</span>
+
+  private void closeSocket() {
+<span class="nc" id="L111">    final int waitTime = 100;</span>
+    try {
+<span class="nc" id="L113">      Thread.sleep(waitTime);</span>
+<span class="nc" id="L114">    } catch (InterruptedException e) {</span>
+<span class="nc" id="L115">      Thread.currentThread().interrupt();</span>
+<span class="nc" id="L116">      logger.error(e.getMessage());</span>
+<span class="nc" id="L117">    }</span>
+    try {
+<span class="nc" id="L119">      clientSocket.close();</span>
+<span class="nc" id="L120">    } catch (IOException e) {</span>
+<span class="nc" id="L121">      logger.error(e.getMessage());</span>
+<span class="nc" id="L122">    }</span>
+<span class="nc" id="L123">  }</span>
 
   /**
    * Sending message containing shot index to server.
@@ -112,16 +129,16 @@ public class Client implements Runnable {
    */
   public void sendShot(int shotIndex) {
     try {
-<span class="nc" id="L115">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
-<span class="nc" id="L116">      Message shot = new MessageBuilder().withHeader(Header.SHOT)</span>
-<span class="nc" id="L117">          .withAuthor(Author.CLIENT)</span>
-<span class="nc" id="L118">          .withStatement(String.valueOf(shotIndex))</span>
-<span class="nc" id="L119">          .build();</span>
-<span class="nc" id="L120">      sender.send(shot);</span>
-<span class="nc" id="L121">    } catch (IOException e) {</span>
-<span class="nc" id="L122">      logger.error(e.getMessage());</span>
-<span class="nc" id="L123">    }</span>
-<span class="nc" id="L124">  }</span>
+<span class="nc" id="L132">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
+<span class="nc" id="L133">      Message shot = new MessageBuilder().withHeader(Header.SHOT)</span>
+<span class="nc" id="L134">          .withAuthor(Author.CLIENT)</span>
+<span class="nc" id="L135">          .withStatement(String.valueOf(shotIndex))</span>
+<span class="nc" id="L136">          .build();</span>
+<span class="nc" id="L137">      sender.send(shot);</span>
+<span class="nc" id="L138">    } catch (IOException e) {</span>
+<span class="nc" id="L139">      logger.error(e.getMessage());</span>
+<span class="nc" id="L140">    }</span>
+<span class="nc" id="L141">  }</span>
 
   /**
    * Sending message containing fleet placement to server.
@@ -130,17 +147,17 @@ public class Client implements Runnable {
    */
   public void sendFleet(Fleet fleet) {
     try {
-<span class="nc" id="L133">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
-<span class="nc" id="L134">      Message fleetMsg = new MessageBuilder()</span>
-<span class="nc" id="L135">          .withHeader(Header.MANUAL_PLACEMENT)</span>
-<span class="nc" id="L136">          .withAuthor(Author.CLIENT)</span>
-<span class="nc" id="L137">          .withFleet(fleet)</span>
-<span class="nc" id="L138">          .build();</span>
-<span class="nc" id="L139">      sender.send(fleetMsg);</span>
-<span class="nc" id="L140">    } catch (IOException e) {</span>
-<span class="nc" id="L141">      logger.error(e.getMessage());</span>
-<span class="nc" id="L142">    }</span>
-<span class="nc" id="L143">  }</span>
+<span class="nc" id="L150">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
+<span class="nc" id="L151">      Message fleetMsg = new MessageBuilder()</span>
+<span class="nc" id="L152">          .withHeader(Header.MANUAL_PLACEMENT)</span>
+<span class="nc" id="L153">          .withAuthor(Author.CLIENT)</span>
+<span class="nc" id="L154">          .withFleet(fleet)</span>
+<span class="nc" id="L155">          .build();</span>
+<span class="nc" id="L156">      sender.send(fleetMsg);</span>
+<span class="nc" id="L157">    } catch (IOException e) {</span>
+<span class="nc" id="L158">      logger.error(e.getMessage());</span>
+<span class="nc" id="L159">    }</span>
+<span class="nc" id="L160">  }</span>
 
   /**
    * Set handle to gui to trigger some events in response for server message.
@@ -148,21 +165,21 @@ public class Client implements Runnable {
    * @param button - gui handler as button.
    */
   public void setEventTrigger(Button button) {
-<span class="nc" id="L151">    messageHandler.setCurrentEventButton(button);</span>
-<span class="nc" id="L152">  }</span>
+<span class="nc" id="L168">    messageHandler.setCurrentEventButton(button);</span>
+<span class="nc" id="L169">  }</span>
 
   public void askForRandomFleet() {
-<span class="nc" id="L155">    Message askForRandomFleet = new MessageBuilder()</span>
-<span class="nc" id="L156">        .withHeader(Header.RANDOM_PLACEMENT)</span>
-<span class="nc" id="L157">        .withAuthor(Author.CLIENT)</span>
-<span class="nc" id="L158">        .build();</span>
+<span class="nc" id="L172">    Message askForRandomFleet = new MessageBuilder()</span>
+<span class="nc" id="L173">        .withHeader(Header.RANDOM_PLACEMENT)</span>
+<span class="nc" id="L174">        .withAuthor(Author.CLIENT)</span>
+<span class="nc" id="L175">        .build();</span>
 
     try {
-<span class="nc" id="L161">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
-<span class="nc" id="L162">      sender.send(askForRandomFleet);</span>
-<span class="nc" id="L163">    } catch (IOException e) {</span>
-<span class="nc" id="L164">      logger.error(e.getMessage());</span>
-<span class="nc" id="L165">    }</span>
-<span class="nc" id="L166">  }</span>
+<span class="nc" id="L178">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
+<span class="nc" id="L179">      sender.send(askForRandomFleet);</span>
+<span class="nc" id="L180">    } catch (IOException e) {</span>
+<span class="nc" id="L181">      logger.error(e.getMessage());</span>
+<span class="nc" id="L182">    }</span>
+<span class="nc" id="L183">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

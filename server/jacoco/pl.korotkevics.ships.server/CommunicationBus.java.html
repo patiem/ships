@@ -70,13 +70,19 @@ public class CommunicationBus {
 <span class="nc" id="L70">    return sender.receive();</span>
   }
 
-  void send(final WrappedClient recipient, final Message response) {
-<span class="nc" id="L74">    recipient.send(response);</span>
-<span class="nc" id="L75">  }</span>
+  /**
+   * It sends message to wrapped client.
+   *
+   * @param recipient message addressee
+   * @param response  message to send
+   */
+  public void send(final WrappedClient recipient, final Message response) {
+<span class="nc" id="L80">    recipient.send(response);</span>
+<span class="nc" id="L81">  }</span>
 
   void sendToAll(final Message message) {
-<span class="nc" id="L78">    clients.forEach(wrappedClient -&gt; send(wrappedClient, message));</span>
-<span class="nc" id="L79">  }</span>
+<span class="nc" id="L84">    clients.forEach(wrappedClient -&gt; send(wrappedClient, message));</span>
+<span class="nc" id="L85">  }</span>
 
   /**
    * Gets player which was connected earlier.
@@ -84,7 +90,7 @@ public class CommunicationBus {
    * @return WrappedClient
    */
   public WrappedClient getFirstClient() {
-<span class="nc" id="L87">    return this.clients.get(0);</span>
+<span class="nc" id="L93">    return this.clients.get(0);</span>
   }
 
   /**
@@ -93,7 +99,7 @@ public class CommunicationBus {
    * @return WrappedClient
    */
   public WrappedClient getSecondClient() {
-<span class="nc" id="L96">    return this.clients.get(1);</span>
+<span class="nc" id="L102">    return this.clients.get(1);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
