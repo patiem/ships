@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Represents state of game in witch players place their fleets.
+ * Represents state of game in which players place their fleets.
  *
  * @author Piotr Czyż
  * @since 2018-01-02
@@ -30,8 +30,6 @@ public class FleetPlacementState implements GameState {
   private final List<Fleet> fleets;
 
   /**
-   * It creates state of game in witch players place their fleets.
-   *
    * @param communicationBus client server communication bus
    */
   public FleetPlacementState(final CommunicationBus communicationBus) {
@@ -43,8 +41,10 @@ public class FleetPlacementState implements GameState {
   }
 
   /**
-   * It receives fleets from players, and transfers game to next state.
+   * Receives fleets from players, and transfers game to next state.
    *
+   * @see PlayState
+   * @see GameEndWithWalkoverState
    * @return GameState - PlayState
    */
   @Override
