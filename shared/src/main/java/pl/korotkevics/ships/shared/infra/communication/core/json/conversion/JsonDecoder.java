@@ -3,7 +3,6 @@ package pl.korotkevics.ships.shared.infra.communication.core.json.conversion;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
-
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.conversion.Decoder;
 import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
@@ -31,6 +30,6 @@ public class JsonDecoder implements Decoder<JsonElement> {
   public Message decode(JsonElement jsonElement) {
     Gson gson = new GsonBuilder().create();
 
-    return gson.fromJson(jsonElement, BaseMessage.class);
+    return gson.fromJson(jsonElement, BaseMessage.getGeneratedType());
   }
 }

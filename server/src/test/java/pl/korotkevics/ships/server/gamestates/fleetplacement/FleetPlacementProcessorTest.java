@@ -50,7 +50,7 @@ public class FleetPlacementProcessorTest {
     Message ready = manualPlacementMessage();
 
     Message randomFleet = BaseMessage.builder()
-            .setAuthor(Author.CLIENT)
+            .setAuthor(Author.SERVER)
             .setHeader(Header.RANDOM_PLACEMENT)
         .setStatus(Status.OK)
         .setFleet(fleet)

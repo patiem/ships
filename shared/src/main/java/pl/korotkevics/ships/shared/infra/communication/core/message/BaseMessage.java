@@ -8,11 +8,12 @@ import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 
+import java.lang.reflect.Type;
+
 /**
  * Value-object used as a communication mean.
  * @since 2017-12-10
  */
-
 @AutoValue
 public abstract class BaseMessage implements Message {
 
@@ -25,7 +26,7 @@ public abstract class BaseMessage implements Message {
   public abstract String getStatement();
 
   public abstract Fleet getFleet();
-  
+
   public static Builder builder() {
     return new AutoValue_BaseMessage.Builder()
             .setHeader(Header.DEFAULT)
@@ -34,7 +35,14 @@ public abstract class BaseMessage implements Message {
             .setStatement(StringUtils.EMPTY)
             .setFleet(Fleet.empty());
   }
+  // this used for Gson serialization
+  public static Type getGeneratedType(){
+    return AutoValue_BaseMessage.class;
+  }
 
+  /**
+   * Builder for {@link BaseMessage} object.
+   */
   @AutoValue.Builder
   public static abstract class Builder {
     public abstract Builder setHeader(Header header);
