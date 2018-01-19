@@ -4,7 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventType;
 
 /**
- * Event firing when user perform destroyed a ship.
+ * Event firing when player destroys a ship.
  *
  * @author Magdalena Aarsman
  * @since 2017-01-19

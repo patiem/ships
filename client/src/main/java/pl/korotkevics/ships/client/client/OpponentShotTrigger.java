@@ -8,7 +8,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 
 /**
- * Enable to fire event reacting to opponent shot.
+ * Trigger event reacting to opponent shot.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-17

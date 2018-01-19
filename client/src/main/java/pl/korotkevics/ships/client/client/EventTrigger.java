@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
 /**
- * Enable fire gui event from client listen thread.
+ * Trigger gui event from client listen thread.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-17

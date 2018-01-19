@@ -8,7 +8,7 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 /**
- * Enable to fire event reacting changing turn.
+ * Trigger event reacting changing turn.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-18

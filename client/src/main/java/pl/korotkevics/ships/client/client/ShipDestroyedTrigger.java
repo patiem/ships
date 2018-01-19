@@ -6,7 +6,7 @@ import pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
 /**
- * Enable to fire event reacting to destroyed ship.
+ * Trigger event reacting to destroyed ship.
  *
  * @author Magdalena Aarsman
  * @since 2017-01-19

@@ -414,7 +414,7 @@ public class FleetPlacementController implements Initializable {
         if(disable) {
           rec.setFill(Color.GRAY);
         } else {
-          String purple = "#7A16C2";
+          final String purple = "#7A16C2";
           rec.setFill(Color.web(purple));
         }
       }

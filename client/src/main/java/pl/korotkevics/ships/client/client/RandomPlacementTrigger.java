@@ -6,7 +6,7 @@ import pl.korotkevics.ships.client.gui.events.RandomPlacementEvent;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
 /**
- * Enable to fire event reacting to missing shot.
+ * Trigger event reacting to missing shot.
  *
  * @author Magdalena Aarsman
  * @since 2017-01-15

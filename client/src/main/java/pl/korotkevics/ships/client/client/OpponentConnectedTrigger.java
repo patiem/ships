@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
 /**
- * Enable to fire event reacting to opponent connecting.
+ * Trigger event reacting to opponent connecting.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-17
