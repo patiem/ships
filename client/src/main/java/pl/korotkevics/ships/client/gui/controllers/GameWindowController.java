@@ -1,11 +1,14 @@
 package pl.korotkevics.ships.client.gui.controllers;
 
+import javafx.application.Platform;
+import javafx.scene.layout.StackPane;
 import pl.korotkevics.ships.client.client.Client;
 import pl.korotkevics.ships.client.gui.events.HitShotEvent;
 import pl.korotkevics.ships.client.gui.events.LooseEvent;
 import pl.korotkevics.ships.client.gui.events.MissShotEvent;
 import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
 import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
+import pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent;
 import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
 import pl.korotkevics.ships.client.gui.events.WinEvent;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
@@ -57,10 +60,21 @@ public class GameWindowController implements Initializable {
   @FXML
   private Label winLabel;
 
+  @FXML
+  private StackPane endStack;
+
+  @FXML
+  private Button buttonEnd;
+
+  @FXML
+  private Label infoLabel;
+
   private int shotIndex;
   private ResourceBundle resourceBundle;
+  private boolean hitShot;
+  private boolean shipDestroyed;
   
-  private void initializeTurn(boolean myTurn) {
+  private void initializeTurn(final boolean myTurn) {
     if (!myTurn) {
       opponentBoard.setDisable(true);
       final double opacity = 0.4;
@@ -196,18 +210,34 @@ public class GameWindowController implements Initializable {
     final double opacity = 0.4;
     this.opponentBoard.setDisable(true);
     this.opponentBoard.setOpacity(opacity);
+    this.infoLabel.setText(this.resourceBundle.getString("youMiss")
+                            + " "
+                            + this.resourceBundle.getString("opponentAction"));
   }
 
   private void markAsHit() {
     final int shotIndexInGrid = this.convertToGridIndex(shotIndex);
     final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
     rec.setFill(Color.RED);
+    this.hitShot = true;
   }
 
   private void setMyTurn() {
     final double noOpacity = 1.0;
     opponentBoard.setDisable(false);
     opponentBoard.setOpacity(noOpacity);
+    this.infoLabel.setText(this.resourceBundle.getString("yourTurn"));
+    if(this.hitShot) {
+      this.infoLabel.setText(this.infoLabel.getText()
+          + " "
+          + this.resourceBundle.getString("youHit"));
+      this.hitShot = false;
+    } else if(this.shipDestroyed) {
+      this.infoLabel.setText(this.infoLabel.getText()
+          + " "
+          + this.resourceBundle.getString("shipDestroyed"));
+      this.shipDestroyed = false;
+    }
   }
   
   @Override
@@ -222,18 +252,35 @@ public class GameWindowController implements Initializable {
     eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> markAsHit());
     eventButton.addEventHandler(WinEvent.GAME_WIN, event -> renderAsWin());
     eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> renderAsLoss());
-  
+    eventButton.addEventHandler(ShipDestroyedEvent.SHIP_DESTROYED, event -> this.shipDestroyed());
+    buttonEnd.setOnAction(actionEvent -> this.endTheGame());
+    infoLabel.setText(this.resourceBundle.getString("opponentAction"));
     initializeTurn(false);
   }
-  
+
+  private void shipDestroyed() {
+    final int shotIndexInGrid = this.convertToGridIndex(shotIndex);
+    final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
+    rec.setFill(Color.RED);
+    shipDestroyed = true;
+  }
+
+  private void endTheGame() {
+    Platform.exit();
+  }
+
   private void renderAsWin() {
     this.prepareToRenderAnyPossibleResult();
     this.renderSpecificResult("youWin");
+    this.endStack.setVisible(true);
+    this.buttonEnd.setDisable(false);
   }
   
   private void renderAsLoss() {
     this.prepareToRenderAnyPossibleResult();
     this.renderSpecificResult("youLose");
+    this.endStack.setVisible(true);
+    this.buttonEnd.setDisable(false);
   }
   
   private void renderSpecificResult(String key) {
@@ -241,9 +288,9 @@ public class GameWindowController implements Initializable {
   }
   
   private void prepareToRenderAnyPossibleResult() {
-    this.getClient().closeClient();
     this.disableWithdrawalPossibility();
     this.disableBoards();
+    this.infoLabel.setText("");
   }
   
   private void disableBoards() {

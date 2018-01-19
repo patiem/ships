@@ -103,6 +103,23 @@ public class Client implements Runnable {
         logger.error(e.getMessage());
       }
     }
+
+    closeSocket();
+  }
+
+  private void closeSocket() {
+    final int waitTime = 100;
+    try {
+      Thread.sleep(waitTime);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      logger.error(e.getMessage());
+    }
+    try {
+      clientSocket.close();
+    } catch (IOException e) {
+      logger.error(e.getMessage());
+    }
   }
 
   /**
