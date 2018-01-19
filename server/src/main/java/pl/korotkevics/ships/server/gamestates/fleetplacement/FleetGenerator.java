@@ -28,6 +28,8 @@ class FleetGenerator {
   private static final int THREE_MAST_SHIP = 3;
   private static final int TWO_MAST_SHIP = 2;
   private static final int ONE_MAST_SHIP = 1;
+  private static final int FIRST_FIELD_INDEX = 0;
+  private static final int LAST_FIELD_INDEX = 100;
   private static final List<Integer> SHIPS_TO_PLACE = Arrays.asList(FOUR_MAST_SHIP, THREE_MAST_SHIP,
       THREE_MAST_SHIP, TWO_MAST_SHIP, TWO_MAST_SHIP, TWO_MAST_SHIP, ONE_MAST_SHIP, ONE_MAST_SHIP,
       ONE_MAST_SHIP, ONE_MAST_SHIP);
@@ -45,9 +47,7 @@ class FleetGenerator {
   }
 
   private void fillGameBoard() {
-    final int firstFieldIndex = 0;
-    final int lastFieldIndex = 100;
-    IntStream.range(firstFieldIndex, lastFieldIndex)
+    IntStream.range(FIRST_FIELD_INDEX, LAST_FIELD_INDEX)
         .forEach(i -> gameBoard.put(i, FieldState.EMPTY));
   }
 
