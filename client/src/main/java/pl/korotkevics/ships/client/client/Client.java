@@ -104,10 +104,15 @@ public class Client implements Runnable {
       }
     }
 
+    closeSocket();
+  }
+
+  private void closeSocket() {
     try {
       Thread.sleep(100);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      Thread.currentThread().interrupt();
+      logger.error(e.getMessage());
     }
     try {
       clientSocket.close();

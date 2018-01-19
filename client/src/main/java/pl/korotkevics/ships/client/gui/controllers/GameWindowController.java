@@ -267,7 +267,6 @@ public class GameWindowController implements Initializable {
 
   private void endTheGame() {
     Platform.exit();
-    //System.exit(0);
   }
 
   private void renderAsWin() {
@@ -289,7 +288,6 @@ public class GameWindowController implements Initializable {
   }
   
   private void prepareToRenderAnyPossibleResult() {
-    //this.getClient().closeClient();
     this.disableWithdrawalPossibility();
     this.disableBoards();
     this.infoLabel.setText("");
