@@ -73,17 +73,15 @@
     <name>Ships - SERVER</name>
 
     <description>
-        It is Battleships game server.
-        It is an isolated module being mostly
+        Ships game server.
+
+        An isolated module being mostly
         responsible for,
         - handling a network connection
         - handling message exchange
         - handling heavy-weight game rules
 
-        It is a child POM:
-        - it explicitly defines dependencies inherited from
-        the parent POM
-        - it independently defines its packaging
+        The module packaging is defined independently.
     </description>
 
     <!--Site-->

@@ -59,7 +59,6 @@
         Used both by client and server modules.
 
         An isolated module having:
-
         - fleet model objects
         - communication API + core
     </description>

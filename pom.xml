@@ -517,10 +517,10 @@
     <name>Ships - ROOT</name>
 
     <description>
-        It is a root POM:
-        - it defines constants (versions mostly)
-        - it has dependency and plug-in management configured
-        - it has reporting configured
+        A root POM having:
+        - constants defined (which are version numbers mostly)
+        - dependency and plug-in management configured
+        - reporting configured
     </description>
 
     <!--Site - it makes links to sub-modules work!

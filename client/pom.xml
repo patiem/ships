@@ -73,14 +73,12 @@
     <name>Ships - CLIENT</name>
 
     <description>
-        It is Battleships game client.
-        It is an isolated module having
-        a light-weight client logic and GUI (JavaFX).
+        Ships game client.
 
-        It is a child POM:
-        - it explicitly defines dependencies inherited from
-        the parent POM
-        - it independently defines its packaging
+        An isolated module having a light-weight
+        client logic and GUI (JavaFX).
+
+        The module packaging is defined independently.
     </description>
 
     <!--Necessary for site links to work properly-->
