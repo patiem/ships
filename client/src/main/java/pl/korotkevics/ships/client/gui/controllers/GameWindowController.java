@@ -65,8 +65,12 @@ public class GameWindowController implements Initializable {
   @FXML
   private Button buttonEnd;
 
+  @FXML
+  private Label infoLabel;
+
   private int shotIndex;
   private ResourceBundle resourceBundle;
+  private boolean hitShot;
   
   private void initializeTurn(boolean myTurn) {
     if (!myTurn) {
@@ -204,18 +208,28 @@ public class GameWindowController implements Initializable {
     final double opacity = 0.4;
     this.opponentBoard.setDisable(true);
     this.opponentBoard.setOpacity(opacity);
+    this.infoLabel.setText(this.resourceBundle.getString("youMiss")
+                            + " "
+                            + this.resourceBundle.getString("opponentAction"));
   }
 
   private void markAsHit() {
     final int shotIndexInGrid = this.convertToGridIndex(shotIndex);
     final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
     rec.setFill(Color.RED);
+    hitShot = true;
   }
 
   private void setMyTurn() {
     final double noOpacity = 1.0;
     opponentBoard.setDisable(false);
     opponentBoard.setOpacity(noOpacity);
+    this.infoLabel.setText(this.resourceBundle.getString("yourTurn"));
+    if(hitShot) {
+      this.infoLabel.setText(this.infoLabel.getText()
+          + " "
+          + this.resourceBundle.getString("youHit"));
+    }
   }
   
   @Override
@@ -231,12 +245,11 @@ public class GameWindowController implements Initializable {
     eventButton.addEventHandler(WinEvent.GAME_WIN, event -> renderAsWin());
     eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> renderAsLoss());
     buttonEnd.setOnAction(actionEvent -> this.endTheGame());
-  
+    infoLabel.setText(this.resourceBundle.getString("opponentAction"));
     initializeTurn(false);
   }
 
   private void endTheGame() {
-    //getClient().closeClient();
     Platform.exit();
     System.exit(0);
   }
@@ -263,6 +276,7 @@ public class GameWindowController implements Initializable {
     this.getClient().closeClient();
     this.disableWithdrawalPossibility();
     this.disableBoards();
+    this.infoLabel.setText("");
   }
   
   private void disableBoards() {
