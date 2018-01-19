@@ -2,20 +2,18 @@ package pl.korotkevics.ships.client.client;
 
 import javafx.application.Platform;
 import javafx.scene.control.Button;
-import pl.korotkevics.ships.client.gui.events.RandomPlacementEvent;
+import pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
 /**
- * Enable to fire event reacting to asking for random fleet.
+ * Trigger event reacting to destroyed ship.
  *
  * @author Magdalena Aarsman
- * @since 2017-01-15
+ * @since 2017-01-19
  */
-class RandomPlacementTrigger implements EventTrigger {
+class ShipDestroyedTrigger implements EventTrigger {
   @Override
   public void fire(final Button button, final Message message) {
-    Platform.runLater(() ->
-        button.fireEvent(new RandomPlacementEvent(message.getFleet())));
+    Platform.runLater(() -> button.fireEvent(new ShipDestroyedEvent()));
   }
 }
-
