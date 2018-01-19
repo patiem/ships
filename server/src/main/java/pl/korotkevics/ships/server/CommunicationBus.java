@@ -70,7 +70,13 @@ public class CommunicationBus {
     return sender.receive();
   }
 
-  void send(final WrappedClient recipient, final Message response) {
+  /**
+   * It sends message to wrapped client.
+   *
+   * @param recipient message addressee
+   * @param response  message to send
+   */
+  public void send(final WrappedClient recipient, final Message response) {
     recipient.send(response);
   }
 

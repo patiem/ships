@@ -13,6 +13,8 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Represents state of game in witch players place their fleets.
@@ -36,7 +38,7 @@ public class FleetPlacementState implements GameState {
     this.communicationBus = communicationBus;
     this.turnManager = new TurnManager(communicationBus.getFirstClient(),
         communicationBus.getSecondClient());
-    this.fleetProcessor = new FleetPlacementProcessor(communicationBus);
+    this.fleetProcessor = new FleetPlacementProcessor(communicationBus, new FleetGenerator());
     fleets = new ArrayList<>();
   }
 
@@ -61,8 +63,21 @@ public class FleetPlacementState implements GameState {
   }
 
   private void placeFleet() {
-    fleets.add(this.fleetProcessor.placeFleet(this.turnManager.getCurrentPlayer()));
-    fleets.add(this.fleetProcessor.placeFleet(this.turnManager.getOtherPlayer()));
+    final Map<Integer, Fleet> clientsFleet = new ConcurrentHashMap<>();
+    Thread firstClientFleetPlacement = new Thread(() ->
+        clientsFleet.put(0, this.fleetProcessor.placeFleet(this.turnManager.getCurrentPlayer())));
+    firstClientFleetPlacement.start();
+    Thread secondClientFleetPlacement = new Thread(() ->
+        clientsFleet.put(1, this.fleetProcessor.placeFleet(this.turnManager.getOtherPlayer())));
+    secondClientFleetPlacement.start();
+    try {
+      firstClientFleetPlacement.join();
+      secondClientFleetPlacement.join();
+    } catch (InterruptedException e) {
+      logger.error(e.getMessage());
+    }
+    this.fleets.add(clientsFleet.get(0));
+    this.fleets.add(clientsFleet.get(1));
   }
 
   private void askPlayersForPlaceFleet() {

@@ -25,7 +25,7 @@ public class MessageRepository {
     messages.put(Header.MANUAL_PLACEMENT, this.askForFleetMessage());
     messages.put(Header.HIT, this.hitMessage());
     messages.put(Header.MISS, this.missMessage());
-    messages.put(Header.SHIP_DESTRUCTED, this.shipDestructedMessage());
+    messages.put(Header.SHIP_DESTROYED, this.shipDestroyedMessage());
     messages.put(Header.YOUR_TURN, this.yourTurnMessage());
   }
 
@@ -46,10 +46,10 @@ public class MessageRepository {
         .build();
   }
 
-  private Message shipDestructedMessage() {
+  private Message shipDestroyedMessage() {
     return new MessageBuilder()
         .withAuthor(Author.SERVER)
-        .withHeader(Header.SHIP_DESTRUCTED)
+        .withHeader(Header.SHIP_DESTROYED)
         .build();
   }
 

@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import lombok.Getter;
 import pl.korotkevics.ships.client.client.Client;
+import pl.korotkevics.ships.client.gui.util.UTF8Control;
 import pl.korotkevics.ships.client.localization.OurLocale;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
@@ -80,7 +81,7 @@ public class MainController {
   private FXMLLoader prepareFxmlLoader() {
     final String url = "/fxml/connectWindow.fxml";
     final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(url));
-    this.resourceBundle = ResourceBundle.getBundle(DICTIONARY);
+    this.resourceBundle = ResourceBundle.getBundle(DICTIONARY, new UTF8Control());
     fxmlLoader.setResources(this.resourceBundle);
     return fxmlLoader;
   }

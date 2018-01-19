@@ -35,16 +35,20 @@ class FleetGenerator {
 
   FleetGenerator() {
     this.gameBoard = new HashMap<>();
+  }
+
+  Fleet generateFleet() {
+    this.fillGameBoard();
+    final List<Ship> ships = new ArrayList<>();
+    SHIPS_TO_PLACE.forEach(i -> ships.add(this.generateShip(i)));
+    return Fleet.ofShips(ships);
+  }
+
+  private void fillGameBoard() {
     final int firstFieldIndex = 0;
     final int lastFieldIndex = 100;
     IntStream.range(firstFieldIndex, lastFieldIndex)
         .forEach(i -> gameBoard.put(i, FieldState.EMPTY));
-  }
-
-  Fleet generateFleet() {
-    List<Ship> ships = new ArrayList<>();
-    SHIPS_TO_PLACE.forEach(i -> ships.add(this.generateShip(i)));
-    return Fleet.ofShips(ships);
   }
 
   private Ship generateShip(final int shipLength) {

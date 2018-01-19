@@ -65,7 +65,7 @@
         <!--Utils-->
         <commonsLang3Version>3.7</commonsLang3Version>
         <commonsIoVersion>2.5</commonsIoVersion>
-        <lombokVersion>1.16.18</lombokVersion>
+        <lombokVersion>1.16.20</lombokVersion>
         <gsonVersion>2.8.2</gsonVersion>
     </properties>
 

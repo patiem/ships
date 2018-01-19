@@ -12,7 +12,7 @@ import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuild
 import static org.mockito.Mockito.*;
 
 @Test
-public class DamageDestructedNotifierTest {
+public class DamageDestroyedNotifierTest {
 
   public void shouldNotifyAboutDamage() {
     //given
@@ -24,14 +24,14 @@ public class DamageDestructedNotifierTest {
     when(turnManager.getOtherPlayer()).thenReturn(opponent);
     Message message = new MessageBuilder()
         .withAuthor(Author.SERVER)
-        .withHeader(Header.SHIP_DESTRUCTED)
+        .withHeader(Header.SHIP_DESTROYED)
         .build();
 
     //when
-    new DamageDestructedNotifier(messageSender, turnManager).notify(message);
+    new DamageDestroyedNotifier(messageSender, turnManager).notify(message);
 
     //then
-    verify(messageSender, times(1)).send(player, Header.SHIP_DESTRUCTED);
+    verify(messageSender, times(1)).send(player, Header.SHIP_DESTROYED);
     verify(messageSender, times(1)).send(opponent, message);
   }
 

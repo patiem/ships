@@ -54,8 +54,8 @@ class ShotHandler {
       case HIT:
         damageNotifier = new DamageHitNotifier(messageSender, turnManager);
         break;
-      case DESTRUCTED:
-        damageNotifier = new DamageDestructedNotifier(messageSender, turnManager);
+      case DESTROYED:
+        damageNotifier = new DamageDestroyedNotifier(messageSender, turnManager);
         break;
       default:
         damageNotifier = new DamageMissNotifier(messageSender, turnManager);

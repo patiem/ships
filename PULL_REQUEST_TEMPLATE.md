@@ -1,3 +1,5 @@
+_The below template was generated automatically. Please check in all the related check-boxes. You are welcome to add any extra remarks above this sentence._
+
 ### All Submissions:
 
 * [ ] Have you followed the guidelines in our Contributing document?
@@ -14,4 +16,4 @@
 
 * [ ] Have you added an explanation of what your changes do and why you'd like us to include them?
 * [ ] Have you written new tests for your core changes, as applicable?
-* [ ] Have you successfully ran tests with your changes locally?
+* [ ] Have you successfully run tests with your changes locally?
