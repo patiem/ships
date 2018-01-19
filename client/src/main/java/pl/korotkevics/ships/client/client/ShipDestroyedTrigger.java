@@ -11,7 +11,7 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
  * @author Magdalena Aarsman
  * @since 2017-01-19
  */
-public class ShipDestroyedTrigger implements EventTrigger {
+class ShipDestroyedTrigger implements EventTrigger {
   @Override
   public void fire(final Button button, final Message message) {
     Platform.runLater(() -> button.fireEvent(new ShipDestroyedEvent()));
