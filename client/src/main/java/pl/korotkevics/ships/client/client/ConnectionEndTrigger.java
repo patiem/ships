@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
 /**
- * Trigger event reacting to opponent withdraw.
+ * Enable to fire event reacting to opponent withdraw.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-18
