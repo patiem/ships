@@ -74,7 +74,7 @@ public class GameWindowController implements Initializable {
   private boolean hitShot;
   private boolean shipDestroyed;
   
-  private void initializeTurn(boolean myTurn) {
+  private void initializeTurn(final boolean myTurn) {
     if (!myTurn) {
       opponentBoard.setDisable(true);
       final double opacity = 0.4;
@@ -219,7 +219,7 @@ public class GameWindowController implements Initializable {
     final int shotIndexInGrid = this.convertToGridIndex(shotIndex);
     final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
     rec.setFill(Color.RED);
-    hitShot = true;
+    this.hitShot = true;
   }
 
   private void setMyTurn() {
@@ -227,16 +227,16 @@ public class GameWindowController implements Initializable {
     opponentBoard.setDisable(false);
     opponentBoard.setOpacity(noOpacity);
     this.infoLabel.setText(this.resourceBundle.getString("yourTurn"));
-    if(hitShot) {
+    if(this.hitShot) {
       this.infoLabel.setText(this.infoLabel.getText()
           + " "
           + this.resourceBundle.getString("youHit"));
-      hitShot = false;
-    } else if(shipDestroyed) {
+      this.hitShot = false;
+    } else if(this.shipDestroyed) {
       this.infoLabel.setText(this.infoLabel.getText()
           + " "
           + this.resourceBundle.getString("shipDestroyed"));
-      shipDestroyed = false;
+      this.shipDestroyed = false;
     }
   }
   

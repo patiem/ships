@@ -372,8 +372,8 @@ public class FleetPlacementController implements Initializable {
   }
 
   private void askForRandomFleet() {
-    ButtonType yesButton = new ButtonType(this.resourceBundle.getString("yes"), ButtonBar.ButtonData.YES);
-    ButtonType noButton = new ButtonType(this.resourceBundle.getString("no"), ButtonBar.ButtonData.NO);
+    final ButtonType yesButton = new ButtonType(this.resourceBundle.getString("yes"), ButtonBar.ButtonData.YES);
+    final ButtonType noButton = new ButtonType(this.resourceBundle.getString("no"), ButtonBar.ButtonData.NO);
 
     Alert alert = showInfoAlert(yesButton, noButton);
     if (alert.getResult() == noButton) {
@@ -386,8 +386,8 @@ public class FleetPlacementController implements Initializable {
     this.getClient().askForRandomFleet();
   }
 
-  private Alert showInfoAlert(ButtonType yesButton, ButtonType noButton) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION, this.resourceBundle.getString("alertInfo")
+  private Alert showInfoAlert(final ButtonType yesButton,final ButtonType noButton) {
+    final Alert alert = new Alert(Alert.AlertType.INFORMATION, this.resourceBundle.getString("alertInfo")
         + System.lineSeparator()
         + System.lineSeparator()
         + this.resourceBundle.getString("alertQuestion"),
@@ -399,22 +399,23 @@ public class FleetPlacementController implements Initializable {
     return alert;
   }
 
-  private void disableDragAndDropShips(boolean disable) {
+  private void disableDragAndDropShips(final boolean disable) {
     this.disableDragAndDropForGroupOfShips(this.groupFourMastShips, disable);
     this.disableDragAndDropForGroupOfShips(this.groupThreeMastShips, disable);
     this.disableDragAndDropForGroupOfShips(this.groupTwoMastShips, disable);
     this.disableDragAndDropForGroupOfShips(this.groupOneMastShips, disable);
   }
 
-  private void disableDragAndDropForGroupOfShips(Group shipsGroup, boolean disable) {
+  private void disableDragAndDropForGroupOfShips(final Group shipsGroup, final boolean disable) {
     for (Node ship : shipsGroup.getChildren()) {
       ship.setDisable(disable);
       for (Node child : ((Group) ship).getChildren()) {
-        Rectangle rec = (Rectangle) child;
+        final Rectangle rec = (Rectangle) child;
         if(disable) {
           rec.setFill(Color.GRAY);
         } else {
-          rec.setFill(Color.web("#7A16C2"));
+          final String purple = "#7A16C2";
+          rec.setFill(Color.web(purple));
         }
       }
     }
@@ -472,17 +473,17 @@ public class FleetPlacementController implements Initializable {
     eventButton.addEventHandler(RandomPlacementEvent.RANDOM_PLACEMENT_EVENT,
         event -> getRandomFleet(event.getFleet()));
     buttonClear.setOnAction(event -> clearBoardAction());
-    addDropShadows();
+    this.addDropShadows();
   }
 
   private void addDropShadows() {
-    DropShadow shadow = new DropShadow();
-    buttonRandom.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonRandom.setEffect(shadow));
-    buttonRandom.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonRandom.setEffect(null));
-    buttonReady.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonReady.setEffect(shadow));
-    buttonReady.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonReady.setEffect(null));
-    buttonClear.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonClear.setEffect(shadow));
-    buttonClear.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonClear.setEffect(null));
+    final DropShadow shadow = new DropShadow();
+    this.buttonRandom.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonRandom.setEffect(shadow));
+    this.buttonRandom.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonRandom.setEffect(null));
+    this.buttonReady.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonReady.setEffect(shadow));
+    this.buttonReady.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonReady.setEffect(null));
+    this.buttonClear.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonClear.setEffect(shadow));
+    this.buttonClear.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonClear.setEffect(null));
   }
 }
 

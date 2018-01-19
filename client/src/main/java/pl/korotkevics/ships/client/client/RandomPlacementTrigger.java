@@ -6,12 +6,12 @@ import pl.korotkevics.ships.client.gui.events.RandomPlacementEvent;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
 /**
- * Enable to fire event reacting to missing shot.
+ * Enable to fire event reacting to asking for random fleet.
  *
  * @author Magdalena Aarsman
  * @since 2017-01-15
  */
-public class RandomPlacementTrigger implements EventTrigger {
+class RandomPlacementTrigger implements EventTrigger {
   @Override
   public void fire(final Button button, final Message message) {
     Platform.runLater(() ->
