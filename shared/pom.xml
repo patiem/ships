@@ -56,11 +56,11 @@
     <name>Ships - SHARED</name>
 
     <description>
-        It's Battleships game infra API + Core.
+        It is Battleships game infra API + Core.
         It is an isolated module having network utils and logging
         used both by server and client modules.
 
-        It's a child POM:
+        It is a child POM:
         - it explicitly defines dependencies inherited from
         the parent POM
     </description>
