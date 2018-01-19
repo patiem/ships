@@ -108,8 +108,9 @@ public class Client implements Runnable {
   }
 
   private void closeSocket() {
+    final int waitTime = 100;
     try {
-      Thread.sleep(100);
+      Thread.sleep(waitTime);
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
       logger.error(e.getMessage());
