@@ -8,6 +8,7 @@ import pl.korotkevics.ships.client.gui.events.LooseEvent;
 import pl.korotkevics.ships.client.gui.events.MissShotEvent;
 import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
 import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
+import pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent;
 import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
 import pl.korotkevics.ships.client.gui.events.WinEvent;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
@@ -71,6 +72,7 @@ public class GameWindowController implements Initializable {
   private int shotIndex;
   private ResourceBundle resourceBundle;
   private boolean hitShot;
+  private boolean shipDestroyed;
   
   private void initializeTurn(boolean myTurn) {
     if (!myTurn) {
@@ -229,6 +231,12 @@ public class GameWindowController implements Initializable {
       this.infoLabel.setText(this.infoLabel.getText()
           + " "
           + this.resourceBundle.getString("youHit"));
+      hitShot = false;
+    } else if(shipDestroyed) {
+      this.infoLabel.setText(this.infoLabel.getText()
+          + " "
+          + this.resourceBundle.getString("shipDestroyed"));
+      shipDestroyed = false;
     }
   }
   
@@ -244,14 +252,22 @@ public class GameWindowController implements Initializable {
     eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> markAsHit());
     eventButton.addEventHandler(WinEvent.GAME_WIN, event -> renderAsWin());
     eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> renderAsLoss());
+    eventButton.addEventHandler(ShipDestroyedEvent.SHIP_DESTROYED, event -> this.shipDestroyed());
     buttonEnd.setOnAction(actionEvent -> this.endTheGame());
     infoLabel.setText(this.resourceBundle.getString("opponentAction"));
     initializeTurn(false);
   }
 
+  private void shipDestroyed() {
+    final int shotIndexInGrid = this.convertToGridIndex(shotIndex);
+    final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
+    rec.setFill(Color.RED);
+    shipDestroyed = true;
+  }
+
   private void endTheGame() {
     Platform.exit();
-    System.exit(0);
+    //System.exit(0);
   }
 
   private void renderAsWin() {
@@ -273,7 +289,7 @@ public class GameWindowController implements Initializable {
   }
   
   private void prepareToRenderAnyPossibleResult() {
-    this.getClient().closeClient();
+    //this.getClient().closeClient();
     this.disableWithdrawalPossibility();
     this.disableBoards();
     this.infoLabel.setText("");

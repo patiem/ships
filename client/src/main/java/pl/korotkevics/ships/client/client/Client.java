@@ -103,6 +103,17 @@ public class Client implements Runnable {
         logger.error(e.getMessage());
       }
     }
+
+    try {
+      Thread.sleep(100);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    try {
+      clientSocket.close();
+    } catch (IOException e) {
+      logger.error(e.getMessage());
+    }
   }
 
   /**
