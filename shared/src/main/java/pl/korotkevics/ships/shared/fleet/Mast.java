@@ -17,10 +17,9 @@ public class Mast {
   private String index;
   
   /**
+   * Creates a Mast based on an index value.
    *
-   * It creates a Mast based on an index value.
-   *
-   * @param index location of a mast within a game board grid
+   * @param index location of a mast within a game board grid.
    * @return Mast
    */
   public static Mast ofIndex(final String index) {
@@ -28,7 +27,7 @@ public class Mast {
   }
   
   /**
-   * It is not a subject to change.
+   * Not a subject to change.
    * @return a String representation of Mast which is its actual index.
    */
   @Override

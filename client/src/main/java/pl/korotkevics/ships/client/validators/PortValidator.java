@@ -1,7 +1,7 @@
 package pl.korotkevics.ships.client.validators;
 
 /**
- * Enable validation of port.
+ * Enables validation of a port number.
  * @author Magdalena Aarsman
  * @since 2017-12-16
  */

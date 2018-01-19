@@ -4,7 +4,7 @@ import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import pl.korotkevics.ships.client.client.Client;
 import pl.korotkevics.ships.client.gui.events.HitShotEvent;
-import pl.korotkevics.ships.client.gui.events.LooseEvent;
+import pl.korotkevics.ships.client.gui.events.LossEvent;
 import pl.korotkevics.ships.client.gui.events.MissShotEvent;
 import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
 import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
@@ -251,7 +251,7 @@ public class GameWindowController implements Initializable {
     eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -> changeTurn());
     eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -> markAsHit());
     eventButton.addEventHandler(WinEvent.GAME_WIN, event -> renderAsWin());
-    eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -> renderAsLoss());
+    eventButton.addEventHandler(LossEvent.GAME_LOSS, event -> renderAsLoss());
     eventButton.addEventHandler(ShipDestroyedEvent.SHIP_DESTROYED, event -> this.shipDestroyed());
     buttonEnd.setOnAction(actionEvent -> this.endTheGame());
     infoLabel.setText(this.resourceBundle.getString("opponentAction"));

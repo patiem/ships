@@ -13,10 +13,12 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * Represents client witch is used by CommunicationBus.
+ * Represents a wrapped client which is used
+ * by communication bus.
  *
  * @author Piotr Czyż
  * @since 2018-01-02
+ * @see CommunicationBus
  */
 @EqualsAndHashCode
 public class WrappedClient {

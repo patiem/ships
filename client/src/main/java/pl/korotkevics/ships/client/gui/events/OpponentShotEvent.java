@@ -5,7 +5,7 @@ import javafx.event.EventType;
 import lombok.Getter;
 
 /**
- * Event firing when opponent perform shot.
+ * Event firing when opponent performs a shot.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-17

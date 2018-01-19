@@ -5,7 +5,7 @@ import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 
 /**
- * It's sends messages to client.
+ * Sends messages to clients.
  *
  * @author Piotr Czyż
  * @since 2018-01-02

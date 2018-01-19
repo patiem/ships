@@ -5,9 +5,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * A logger shared across modules.
- * It is a Log4J wrapper.
- * Log4J can be configured with log4j2.xml.
+ * Logger shared across modules. A Log4J2 wrapper.
+ * Log4J2 can be configured with log4j2.xml.
+ * A short manual is present within the XML file.
  * @author Sandor Korotkevics
  * @see Target
  * @since 2017-12-10
@@ -18,7 +18,7 @@ public class SharedLogger implements Target {
   private final Class<?> clazz;
 
   /**
-   * @param clazz a classname used in log messages.
+   * @param clazz class name to appear in log messages.
    */
   public SharedLogger(final Class<?> clazz) {
     this.logger = LogManager.getLogger();
@@ -26,10 +26,9 @@ public class SharedLogger implements Target {
   }
 
   /**
-   * It is used for logging normal (neutral)
-   * messages.
+   * Used for logging normal (neutral) messages.
    *
-   * @param message a message to be logged.
+   * @param message to be logged.
    *                Extra information will be
    *                appended (such as class name,
    *                datetime, level).
@@ -40,11 +39,11 @@ public class SharedLogger implements Target {
   }
 
   /**
-   * It is used  for logging error messages
-   * (for example, when logging an exception
+   * Used for logging error messages
+   * (example: logging an exception
    * message).
    *
-   * @param message a message to be logged.
+   * @param message to be logged.
    *                Extra information will be
    *                appended (such as class name,
    *                datetime, level).
@@ -55,19 +54,19 @@ public class SharedLogger implements Target {
   }
 
   /**
-   * It is used  for logging debug messages.
+   * Used for logging debug messages.
    *
-   * @param message a message to be logged.
+   * @param message to be logged.
    *                Extra information will be
    *                appended (such as class name,
    *                datetime, level).
    */
   @Override
-  public void debug(Object message) {
+  public void debug(final Object message) {
     this.logger.debug(this.prepareMessage(message));
   }
 
-  private String prepareMessage(Object message) {
+  private String prepareMessage(final Object message) {
     return this.clazz.getSimpleName() + ": " + message;
   }
 }
