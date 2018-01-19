@@ -11,30 +11,27 @@ package pl.korotkevics.ships.shared.infra.logging.api;
 public interface Target {
 
   /**
-   * Directing a neutral message to
+   * Directs a neutral message to
    * a configurable target.
    *
-   * @param message a message to be
-   *                directed.
+   * @param message to be directed.
    */
   void info(Object message);
 
 
   /**
-   * Directing an error message to
+   * Directs an error message to
    * a configurable target.
    *
-   * @param message a message to be
-   *                directed.
+   * @param message to be directed.
    */
   void error(Object message);
 
   /**
-   * Directing a debug message to
+   * Directs a debug message to
    * a configurable target.
    *
-   * @param message a message to be
-   *                directed.
+   * @param message to be directed.
    */
   void debug(Object message);
 }
