@@ -47,7 +47,7 @@ public class PlayState implements GameState {
   }
 
   /**
-   * Processes game until it has a winner.
+   * Processing game until it has a winner.
    *
    * @see GameEndWithWalkoverState
    * @see GameEndWithWinState
