@@ -1,12 +1,13 @@
 package pl.korotkevics.ships.server.gamestates;
 
 /**
- * Interface for game states.
+ * Game state representation contract.
  *
  * @author Piotr Czyż
  * @since 2018-01-02
  */
 public interface GameState {
+  
   /**
    * Process current game state.
    *
@@ -15,7 +16,7 @@ public interface GameState {
   GameState process();
 
   /**
-   * Stays that game should or should not be continued.
+   * Indicates whether a game is to be continued.
    *
    * @return by default its returns true, to keep game going.
    */

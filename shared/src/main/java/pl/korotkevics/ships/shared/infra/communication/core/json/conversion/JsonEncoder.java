@@ -8,16 +8,16 @@ import pl.korotkevics.ships.shared.infra.communication.api.conversion.Encoder;
 import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 /**
- * It converts a BaseMessage instance into a JsonElement.
+ * Converts a BaseMessage instance into a JsonElement.
  * @author Sandor Korotkevics
  * @see Encoder
- * @see Message
+ * @see BaseMessage
  * @since 2017-12-10
  */
 public class JsonEncoder implements Encoder<JsonElement> {
 
   /**
-   * It converts an instance of a class implementing
+   * Converts an instance of a class implementing
    * BaseMessage interface into a JsonElement instance.
    *
    * @param message an instance of a class implementing

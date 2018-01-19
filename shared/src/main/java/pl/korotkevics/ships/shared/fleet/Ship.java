@@ -26,7 +26,7 @@ public class Ship {
   /**
    * Static factory method.
    *
-   * @param masts - masts of ship
+   * @param masts of ship
    * @return Ship
    */
   public static Ship ofMasts(Mast... masts) {

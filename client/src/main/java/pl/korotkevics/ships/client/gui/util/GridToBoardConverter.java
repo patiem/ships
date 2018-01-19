@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 import lombok.RequiredArgsConstructor;
 
 /**
- * Helper class to convert board represented by grid to array.
+ * Helper class used to convert board represented by grid to array.
  *
  * @author Magdalena Aarsman
  * @since 2018-01-01

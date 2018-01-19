@@ -8,18 +8,17 @@ import pl.korotkevics.ships.shared.infra.communication.api.conversion.Decoder;
 import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 /**
- * It converts a JsonElement into a BaseMessage instance.
+ * Converts a JsonElement into a BaseMessage instance.
  *
  * @author Sandor Korotkevics
  * @see Decoder
- * @see Message
- * @see Message
+ * @see BaseMessage
  * @since 2017-12-10
  */
 public class JsonDecoder implements Decoder<JsonElement> {
 
   /**
-   * It converts a JsonElement instance into a BaseMessage
+   * Converts a JsonElement instance into a BaseMessage
    * instance.
    *
    * @param jsonElement a JsonElement instance representing

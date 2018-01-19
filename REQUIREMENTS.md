@@ -50,7 +50,7 @@ Below we track our progress on requirements split into three categories.
 **Client: no info**
 - [ ] Hitting the ship - hit happens when place chosen has enemy ship. Mark this part of ship as hit, ask for another shot. One can repeat the shot into already hit (or even sunken) ship, but this doesn't give the right to another shot. 
 **Client: no info on miss or repeated place**
-- [ ] Missing the ship - misses are marked on "seen" board. One can shoot twice in the same place if it's a miss. 
+- [ ] Missing the ship - misses are marked on "seen" board. One can shoot twice in the same place if it is a miss. 
 **Client: no info**
 - [ ] **! Dropped** Sinking the ship - if all masts of a ship are hit, ship sinks. Once the ship has sunk, mark all adjacent fields as "missed", since none of them can have a ship anyway.
 - [x] Sinking last ship, that is, winning. 

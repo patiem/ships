@@ -9,7 +9,7 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 /**
- * Represents game state where game have a winner.
+ * Represents game state in which game has a winner.
  *
  * @author Piotr Czyż
  * @since 2018-01-02

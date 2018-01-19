@@ -8,7 +8,7 @@ import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 import java.util.EnumMap;
 
 /**
- * Repository of message that server can send.
+ * Repository of messages which can be sent by server.
  *
  * @author Piotr Czyż
  * @since 2018-01-02

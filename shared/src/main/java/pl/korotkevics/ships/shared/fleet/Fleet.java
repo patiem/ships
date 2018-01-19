@@ -33,9 +33,9 @@ public class Fleet {
    * Static factory method.
    *
    * @param ships
-   *     - list of ships
+   *     - list of ships.
    *
-   * @return Fleet
+   * @return Fleet.
    */
   public static Fleet ofShips(final List<Ship> ships) {
     Map<Mast, Ship> fleet = new HashMap<>();
@@ -55,13 +55,13 @@ public class Fleet {
   }
   
   /**
-   * It handles an attack
+   * Handles an attack
    * returning an output of such.
    *
    * @param mast
-   *     attacked
+   *     attacked.
    *
-   * @return Damage caused
+   * @return Damage caused.
    */
   public Damage handleDamage(final Mast mast) {
     if (!this.fleet.containsKey(mast)) {
@@ -76,7 +76,7 @@ public class Fleet {
   }
   
   /**
-   * It produces a list representation of Fleet.
+   * Produces a list representation of Fleet.
    *
    * @return a list containing indices of Masts only.
    */

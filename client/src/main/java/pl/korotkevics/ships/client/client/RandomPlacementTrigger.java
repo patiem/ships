@@ -18,3 +18,4 @@ class RandomPlacementTrigger implements EventTrigger {
         button.fireEvent(new RandomPlacementEvent(message.getFleet())));
   }
 }
+

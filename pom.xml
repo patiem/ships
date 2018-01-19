@@ -500,7 +500,7 @@
                     </reportSet>
                 </reportSets>
             </plugin>
-            <!--Important: it's necessary to run mvn clean install
+            <!--Important: it is necessary to run mvn clean install
             in order to generate jacoco datafiles based on which
             this report can be generated (also added onto Wiki
             -->
@@ -524,10 +524,10 @@
     <name>Ships - ROOT</name>
 
     <description>
-        It's a root POM:
-        - it defines constants (versions mostly)
-        - it has dependency and plug-in management configured
-        - it has reporting configured
+        A root POM having:
+        - constants defined (which are version numbers mostly)
+        - dependency and plug-in management configured
+        - reporting configured
     </description>
 
     <!--Site - it makes links to sub-modules work!

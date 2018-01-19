@@ -8,8 +8,7 @@ import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 
 /**
- * It is communication mean contract between
- * Receiver and Sender.
+ * Communication mean contract between Receiver and Sender.
  * @author Sandor Korotkevics
  * @see Receiver
  * @see Sender
