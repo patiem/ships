@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * It starts a server, gets its client sockets
+ * Starts a server and gets its clients' sockets
  * and adds them wrapped into own list.
  *
  * @author Piotr Czyż, Magdalena Aarsman, Sandor Korotkevics
