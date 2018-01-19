@@ -2,6 +2,7 @@ package pl.korotkevics.ships.client.validators;
 
 import pl.korotkevics.ships.client.gui.util.FieldState;
 import pl.korotkevics.ships.client.gui.util.ShipOrientation;
+import lombok.RequiredArgsConstructor;
 
 import java.util.stream.IntStream;
 
@@ -10,6 +11,7 @@ import java.util.stream.IntStream;
  * @author Magdalena Aarsman
  * @since 2017-12-31
  */
+@RequiredArgsConstructor
 public class ShipPlacementValidator {
   private static final int BOARD_SIZE = 10;
 
@@ -17,13 +19,6 @@ public class ShipPlacementValidator {
   private final int shipStartIndex;
   private final int mastCount;
   private final FieldState[] board;
-
-  public ShipPlacementValidator(ShipOrientation shipOrientation, int shipStartIndex, int mastCount, FieldState[] board) {
-    this.shipOrientation = shipOrientation;
-    this.shipStartIndex = shipStartIndex;
-    this.mastCount = mastCount;
-    this.board = board;
-  }
 
   /**
    * Check if ship placement is valid.
