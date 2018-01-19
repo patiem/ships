@@ -67,6 +67,7 @@
         <commonsIoVersion>2.5</commonsIoVersion>
         <lombokVersion>1.16.20</lombokVersion>
         <gsonVersion>2.8.2</gsonVersion>
+        <auto-value.version>1.5.3</auto-value.version>
     </properties>
 
     <dependencyManagement>
@@ -121,6 +122,12 @@
                 <scope>provided</scope>
                 <!--Provided because it generates code
                 which is available once compiled-->
+            </dependency>
+            <dependency>
+                <groupId>com.google.auto.value</groupId>
+                <artifactId>auto-value</artifactId>
+                <version>${auto-value.version}</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

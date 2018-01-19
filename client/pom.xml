@@ -36,6 +36,10 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.google.auto.value</groupId>
+            <artifactId>auto-value</artifactId>
+        </dependency>
     </dependencies>
 
     <!--Maven Shade Plug-in is used instead of Maven Jar Plug-in
