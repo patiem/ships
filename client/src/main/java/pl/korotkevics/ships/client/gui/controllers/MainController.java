@@ -4,9 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import lombok.Getter;
 import pl.korotkevics.ships.client.client.Client;
 import pl.korotkevics.ships.client.gui.util.UTF8Control;
@@ -62,6 +64,7 @@ public class MainController {
   public void initialize(final Client client) {
     this.client = client;
     this.loadDefaultView();
+
   }
   
   private void loadDefaultView() {
@@ -96,13 +99,21 @@ public class MainController {
     logger.info("The language is set to " + OurLocale.POLISH);
     Locale.setDefault(new Locale(OurLocale.POLISH.toString()));
     this.reloadView();
+    this.changeTitleLabel();
   }
-  
+
+  private void changeTitleLabel() {
+    Scene scene = mainPane.getScene();
+    Stage stage = (Stage) scene.getWindow();
+    stage.setTitle(this.resourceBundle.getString("gameTitle"));
+  }
+
   @FXML
   void triggerEnglishVersion(final ActionEvent event) {
     logger.info("The language is set to " + OurLocale.ENGLISH);
     Locale.setDefault(new Locale(OurLocale.ENGLISH.toString()));
     this.reloadView();
+    this.changeTitleLabel();
   }
   
   @FXML
@@ -110,6 +121,7 @@ public class MainController {
     logger.info("The language is set to " + OurLocale.RUSSIAN);
     Locale.setDefault(new Locale(OurLocale.RUSSIAN.toString()));
     this.reloadView();
+    this.changeTitleLabel();
   }
   
   void disableLocalizationButtons() {

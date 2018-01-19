@@ -375,14 +375,7 @@ public class FleetPlacementController implements Initializable {
     ButtonType yesButton = new ButtonType(this.resourceBundle.getString("yes"), ButtonBar.ButtonData.YES);
     ButtonType noButton = new ButtonType(this.resourceBundle.getString("no"), ButtonBar.ButtonData.NO);
 
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, this.resourceBundle.getString("alertInfo")
-        + System.lineSeparator()
-        + System.lineSeparator()
-        + this.resourceBundle.getString("alertQuestion"),
-        yesButton, noButton);
-    alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-    alert.showAndWait();
-
+    Alert alert = showInfoAlert(yesButton, noButton);
     if (alert.getResult() == noButton) {
       return;
     }
@@ -391,6 +384,19 @@ public class FleetPlacementController implements Initializable {
     this.clearBoard();
     this.buttonRandom.setDisable(true);
     this.getClient().askForRandomFleet();
+  }
+
+  private Alert showInfoAlert(ButtonType yesButton, ButtonType noButton) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, this.resourceBundle.getString("alertInfo")
+        + System.lineSeparator()
+        + System.lineSeparator()
+        + this.resourceBundle.getString("alertQuestion"),
+        yesButton, noButton);
+    alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+    alert.setTitle(this.resourceBundle.getString("information"));
+    alert.setHeaderText(this.resourceBundle.getString("information"));
+    alert.showAndWait();
+    return alert;
   }
 
   private void disableDragAndDropShips(boolean disable) {
@@ -405,10 +411,11 @@ public class FleetPlacementController implements Initializable {
       ship.setDisable(disable);
       for (Node child : ((Group) ship).getChildren()) {
         Rectangle rec = (Rectangle) child;
-        if(disable)
+        if(disable) {
           rec.setFill(Color.GRAY);
-        else
+        } else {
           rec.setFill(Color.web("#7A16C2"));
+        }
       }
     }
   }
@@ -465,9 +472,10 @@ public class FleetPlacementController implements Initializable {
     eventButton.addEventHandler(RandomPlacementEvent.RANDOM_PLACEMENT_EVENT,
         event -> getRandomFleet(event.getFleet()));
     buttonClear.setOnAction(event -> clearBoardAction());
+    addDropShadows();
   }
 
-  private void addDropShahows() {
+  private void addDropShadows() {
     DropShadow shadow = new DropShadow();
     buttonRandom.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonRandom.setEffect(shadow));
     buttonRandom.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonRandom.setEffect(null));
