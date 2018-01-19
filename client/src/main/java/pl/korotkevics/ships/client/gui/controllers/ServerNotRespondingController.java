@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Server not responding window.
+ * Server Not Responding window controller.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-17
