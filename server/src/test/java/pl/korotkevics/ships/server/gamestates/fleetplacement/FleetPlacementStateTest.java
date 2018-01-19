@@ -9,7 +9,7 @@ import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.fleet.Mast;
 import pl.korotkevics.ships.shared.fleet.Ship;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import java.util.Arrays;
 
@@ -29,8 +29,8 @@ public class FleetPlacementStateTest {
     when(communicationBus.getFirstClient()).thenReturn(player1);
     when(communicationBus.getSecondClient()).thenReturn(player2);
 
-    Message fleetMsg = new MessageBuilder()
-        .withFleet(Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"), Mast.ofIndex("2"), Mast.ofIndex("1")))))
+    Message fleetMsg = BaseMessage.builder()
+        .setFleet(Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"), Mast.ofIndex("2"), Mast.ofIndex("1")))))
         .build();
     when(communicationBus.receive(player1)).thenReturn(fleetMsg);
     when(communicationBus.receive(player2)).thenReturn(fleetMsg);

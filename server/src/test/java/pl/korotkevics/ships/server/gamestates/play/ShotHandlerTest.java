@@ -11,7 +11,7 @@ import pl.korotkevics.ships.shared.fleet.Ship;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -96,10 +96,10 @@ public class ShotHandlerTest {
   }
 
   private Message shotAtIndex(String mast) {
-    return new MessageBuilder()
-        .withAuthor(Author.CLIENT)
-        .withHeader(Header.SHOT)
-        .withStatement(mast)
+    return BaseMessage.builder()
+        .setAuthor(Author.CLIENT)
+        .setHeader(Header.SHOT)
+        .setStatement(mast)
         .build();
   }
 

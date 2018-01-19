@@ -3,7 +3,7 @@ package pl.korotkevics.ships.server;
 import org.testng.annotations.Test;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 
 import static org.mockito.Mockito.*;
@@ -33,9 +33,9 @@ public class MessageSenderTest {
     Target logger = mock(Target.class);
     WrappedClient wrappedClient = mock(WrappedClient.class);
     Header someHeader = Header.HIT;
-    Message message = new MessageBuilder()
-        .withHeader(someHeader)
-        .build();
+    Message message = BaseMessage.builder()
+            .setHeader(someHeader)
+            .build();
 
     //when
     MessageSender messageSender = new MessageSender(communicationBus, logger);

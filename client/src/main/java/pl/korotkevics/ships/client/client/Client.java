@@ -9,7 +9,7 @@ import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonReceiver;
 import pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonSender;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
@@ -130,9 +130,10 @@ public class Client implements Runnable {
   public void sendShot(int shotIndex) {
     try {
       Sender sender = new JsonSender(clientSocket.getOutputStream());
-      Message shot = new MessageBuilder().withHeader(Header.SHOT)
-          .withAuthor(Author.CLIENT)
-          .withStatement(String.valueOf(shotIndex))
+      Message shot = BaseMessage.builder()
+          .setHeader(Header.SHOT)
+          .setAuthor(Author.CLIENT)
+          .setStatement(String.valueOf(shotIndex))
           .build();
       sender.send(shot);
     } catch (IOException e) {
@@ -148,10 +149,10 @@ public class Client implements Runnable {
   public void sendFleet(Fleet fleet) {
     try {
       Sender sender = new JsonSender(clientSocket.getOutputStream());
-      Message fleetMsg = new MessageBuilder()
-          .withHeader(Header.MANUAL_PLACEMENT)
-          .withAuthor(Author.CLIENT)
-          .withFleet(fleet)
+      Message fleetMsg = BaseMessage.builder()
+          .setHeader(Header.MANUAL_PLACEMENT)
+          .setAuthor(Author.CLIENT)
+          .setFleet(fleet)
           .build();
       sender.send(fleetMsg);
     } catch (IOException e) {
@@ -169,9 +170,9 @@ public class Client implements Runnable {
   }
 
   public void askForRandomFleet() {
-    Message askForRandomFleet = new MessageBuilder()
-        .withHeader(Header.RANDOM_PLACEMENT)
-        .withAuthor(Author.CLIENT)
+    Message askForRandomFleet = BaseMessage.builder()
+        .setHeader(Header.RANDOM_PLACEMENT)
+        .setAuthor(Author.CLIENT)
         .build();
 
     try {

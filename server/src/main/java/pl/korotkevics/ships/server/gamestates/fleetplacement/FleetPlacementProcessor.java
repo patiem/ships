@@ -8,7 +8,7 @@ import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
@@ -45,11 +45,11 @@ class FleetPlacementProcessor {
 
   private void send(final WrappedClient wrappedClient, final Fleet fleet) {
     MessageSender messageSender = new MessageSender(communicationBus, logger);
-    final Message message = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.RANDOM_PLACEMENT)
-        .withFleet(fleet)
-        .build();
+    final Message message = BaseMessage.builder()
+            .setAuthor(Author.SERVER)
+            .setHeader(Header.RANDOM_PLACEMENT)
+            .setFleet(fleet)
+            .build();
     messageSender.send(wrappedClient, message);
   }
 

@@ -1,11 +1,11 @@
 package pl.korotkevics.ships.shared.infra.communication.core.json.io;
 
+import org.testng.annotations.Test;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.io.Sender;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
-import org.testng.annotations.Test;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -18,9 +18,9 @@ public class JsonSenderTest {
     //given
     OutputStream outputStream = new ByteArrayOutputStream();
     Sender sender = new JsonSender(outputStream);
-    Message message = new MessageBuilder()
-                          .withAuthor(Author.SERVER)
-                          .withHeader(Header.WIN)
+    Message message = BaseMessage.builder()
+                          .setAuthor(Author.SERVER)
+                          .setHeader(Header.WIN)
                           .build();
     //when
     sender.send(message);

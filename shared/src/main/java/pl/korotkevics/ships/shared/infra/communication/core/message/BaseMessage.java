@@ -1,40 +1,48 @@
 package pl.korotkevics.ships.shared.infra.communication.core.message;
 
+import com.google.auto.value.AutoValue;
+import org.apache.commons.lang3.StringUtils;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 /**
  * Value-object used as a communication mean.
- * Setters are only available to MessageBuilder.
- * @author Sandor Korotkevics
- * @see MessageBuilder
- * @see BaseMessage
  * @since 2017-12-10
  */
 
-@ToString
-@EqualsAndHashCode
-@Getter(AccessLevel.PUBLIC)
-@Setter(AccessLevel.PACKAGE)
-public class BaseMessage implements Message {
-  private Header header;
-  private Status status;
-  private Author author;
-  private String statement;
-  private Fleet fleet;
+@AutoValue
+public abstract class BaseMessage implements Message {
 
-  /**
-   * It is declared explicitly to
-   * limit its access to MessageBuilder only.
-   */
-  BaseMessage() {
+  public abstract Header getHeader();
+
+  public abstract Status getStatus();
+
+  public abstract Author getAuthor();
+
+  public abstract String getStatement();
+
+  public abstract Fleet getFleet();
+  
+  public static Builder builder() {
+    return new AutoValue_BaseMessage.Builder()
+            .setHeader(Header.DEFAULT)
+            .setStatus(Status.OK)
+            .setAuthor(Author.AUTO)
+            .setStatement(StringUtils.EMPTY)
+            .setFleet(Fleet.empty());
+  }
+
+  @AutoValue.Builder
+  public static abstract class Builder {
+    public abstract Builder setHeader(Header header);
+    public abstract Builder setStatus(Status status);
+    public abstract Builder setAuthor(Author author);
+    public abstract Builder setStatement(String statement);
+    public abstract Builder setFleet(Fleet fleet);
+
+    public abstract BaseMessage build();
   }
 }

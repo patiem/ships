@@ -7,7 +7,7 @@ import pl.korotkevics.ships.server.WrappedClient;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import static org.mockito.Mockito.*;
 
@@ -22,9 +22,9 @@ public class DamageHitNotifierTest {
     WrappedClient opponent = mock(WrappedClient.class);
     when(turnManager.getCurrentPlayer()).thenReturn(player);
     when(turnManager.getOtherPlayer()).thenReturn(opponent);
-    Message message = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.HIT)
+    Message message = BaseMessage.builder()
+        .setAuthor(Author.SERVER)
+        .setHeader(Header.HIT)
         .build();
 
     //when

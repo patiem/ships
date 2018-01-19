@@ -10,7 +10,7 @@ import pl.korotkevics.ships.shared.infra.communication.api.conversion.Decoder;
 import pl.korotkevics.ships.shared.infra.communication.api.conversion.Encoder;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import java.util.Arrays;
 
@@ -20,10 +20,10 @@ public class JSONDecoderTest {
 
   @Test
   public void itDecodesAsExpected() {
-    Message sent = new MessageBuilder()
-        .withAuthor(Author.CLIENT)
-        .withHeader(Header.MANUAL_PLACEMENT)
-        .withFleet(Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"),
+    Message sent = BaseMessage.builder()
+        .setAuthor(Author.CLIENT)
+        .setHeader(Header.MANUAL_PLACEMENT)
+        .setFleet(Fleet.ofShips(Arrays.asList(Ship.ofMasts(Mast.ofIndex("3"),
             Mast.ofIndex("2"), Mast.ofIndex("1")))))
         .build();
     Encoder<JsonElement> encoder = new JsonEncoder();

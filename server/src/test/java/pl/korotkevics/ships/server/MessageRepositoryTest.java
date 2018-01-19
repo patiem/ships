@@ -4,7 +4,7 @@ import org.testng.annotations.Test;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import static org.testng.Assert.assertEquals;
 
@@ -16,10 +16,10 @@ public class MessageRepositoryTest {
     //given
     Header header = Header.SHIP_DESTROYED;
 
-    Message expectedMessage = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(header)
-        .build();
+    Message expectedMessage = BaseMessage.builder()
+            .setAuthor(Author.SERVER)
+            .setHeader(header)
+            .build();
 
     //when
     Message result = new MessageRepository().getMessage(header);

@@ -2,14 +2,13 @@ package pl.korotkevics.ships.shared.infra.communication.core.json.io;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.conversion.Decoder;
 import pl.korotkevics.ships.shared.infra.communication.api.io.Receiver;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 import pl.korotkevics.ships.shared.infra.communication.core.json.conversion.JsonDecoder;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -52,10 +51,10 @@ public class JsonReceiver implements Receiver {
     if (scanner.hasNextLine()) {
       stringBuilder.append(scanner.nextLine());
     } else {
-      return new MessageBuilder()
-          .withHeader(Header.CONNECTION)
-          .withStatus(Status.END)
-          .withStatement("End of a message")
+      return BaseMessage.builder()
+          .setHeader(Header.CONNECTION)
+          .setStatus(Status.END)
+          .setStatement("End of a message")
           .build();
     }
     Decoder<JsonElement> jsonDecoder = new JsonDecoder();

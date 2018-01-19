@@ -3,7 +3,7 @@ package pl.korotkevics.ships.server;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -45,7 +45,7 @@ public class WrappedClientTest {
         Thread.sleep(10);
         WrappedClient wrappedClient = new WrappedClient(new Socket("127.0.0.1", testPort));
         Thread.sleep(10);
-        wrappedClient.send(new MessageBuilder().withAuthor(Author.SERVER).build());
+        wrappedClient.send(BaseMessage.builder().setAuthor(Author.SERVER).build());
       } catch (final InterruptedException | IOException e) {
         e.printStackTrace();
       }

@@ -3,7 +3,7 @@ package pl.korotkevics.ships.server;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import java.util.EnumMap;
 
@@ -40,59 +40,51 @@ public class MessageRepository {
   }
 
   private Message yourTurnMessage() {
-    return new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.YOUR_TURN)
-        .build();
+    return BaseMessage.builder().setAuthor(Author.SERVER)
+            .setHeader(Header.YOUR_TURN)
+            .build();
   }
 
   private Message shipDestroyedMessage() {
-    return new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.SHIP_DESTROYED)
-        .build();
+    return BaseMessage.builder().setAuthor(Author.SERVER)
+            .setHeader(Header.SHIP_DESTROYED)
+            .build();
   }
 
   private Message missMessage() {
-    return new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.MISS)
-        .build();
+    return BaseMessage.builder().setAuthor(Author.SERVER)
+            .setHeader(Header.MISS)
+            .build();
   }
 
   private Message hitMessage() {
-    return new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.HIT)
-        .build();
+    return BaseMessage.builder().setAuthor(Author.SERVER)
+            .setHeader(Header.HIT)
+            .build();
   }
 
   private Message askForFleetMessage() {
-    return new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.MANUAL_PLACEMENT)
-        .build();
+    return BaseMessage.builder().setAuthor(Author.SERVER)
+            .setHeader(Header.MANUAL_PLACEMENT)
+            .build();
   }
 
   private Message loseMessage() {
-    return new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.LOSE)
-        .build();
+    return BaseMessage.builder().setAuthor(Author.SERVER)
+            .setHeader(Header.LOSE)
+            .build();
   }
 
   private Message winMessage() {
-    return new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.WIN)
-        .build();
+    return BaseMessage.builder().setAuthor(Author.SERVER)
+            .setHeader(Header.WIN)
+            .build();
   }
 
   private Message opponentConnectedMessage() {
-    return new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.OPPONENT_CONNECTED)
-        .withStatement("true")
-        .build();
+    return BaseMessage.builder().setAuthor(Author.SERVER)
+            .setHeader(Header.OPPONENT_CONNECTED)
+            .setStatement("true")
+            .build();
   }
 }

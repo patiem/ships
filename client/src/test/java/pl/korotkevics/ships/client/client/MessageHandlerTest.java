@@ -1,22 +1,20 @@
 package pl.korotkevics.ships.client.client;
 
-import pl.korotkevics.ships.client.JavaFxInitializer;
-import pl.korotkevics.ships.shared.infra.communication.api.Message;
-import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
 import javafx.scene.control.Button;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pl.korotkevics.ships.client.JavaFxInitializer;
+import pl.korotkevics.ships.shared.infra.communication.api.Message;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import java.util.EnumMap;
 import java.util.Map;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.testng.Assert.assertTrue;
 
 public class MessageHandlerTest {
@@ -63,10 +61,10 @@ public class MessageHandlerTest {
   }
 
   private Message connectionEndMessage() {
-    return new MessageBuilder()
-        .withHeader(Header.CONNECTION)
-        .withStatus(Status.END)
-        .withStatement("End of a message")
+    return BaseMessage.builder()
+        .setHeader(Header.CONNECTION)
+        .setStatus(Status.END)
+        .setStatement("End of a message")
         .build();
   }
 

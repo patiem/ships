@@ -7,7 +7,7 @@ import pl.korotkevics.ships.server.WrappedClient;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.assertFalse;
@@ -30,9 +30,9 @@ public class MessageReceiverTest {
 
   public void shouldBeAShotIfLastMessageWasShot() {
     //given
-    Message lastMessage = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.SHOT)
+    Message lastMessage = BaseMessage.builder()
+        .setAuthor(Author.SERVER)
+        .setHeader(Header.SHOT)
         .build();
     CommunicationBus communicationBus = mock(CommunicationBus.class);
     WrappedClient wrappedClient = mock(WrappedClient.class);
@@ -50,9 +50,9 @@ public class MessageReceiverTest {
 
   public void shouldNotBeAShotIfLastMessageWasNotShot() {
     //given
-    Message lastMessage = new MessageBuilder()
-        .withAuthor(Author.AUTO)
-        .withHeader(Header.CONNECTION)
+    Message lastMessage = BaseMessage.builder()
+        .setAuthor(Author.AUTO)
+        .setHeader(Header.CONNECTION)
         .build();
     CommunicationBus communicationBus = mock(CommunicationBus.class);
     WrappedClient wrappedClient = mock(WrappedClient.class);

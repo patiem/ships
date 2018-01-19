@@ -9,7 +9,7 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import static org.mockito.Mockito.*;
 
@@ -22,10 +22,10 @@ public class FleetPlacementProcessorTest {
     WrappedClient wrappedClient = mock(WrappedClient.class);
     FleetGenerator fleetGenerator = mock(FleetGenerator.class);
     Fleet fleet = mock(Fleet.class);
-    Message message = new MessageBuilder()
-        .withAuthor(Author.CLIENT)
-        .withHeader(Header.MANUAL_PLACEMENT)
-        .withFleet(fleet)
+    Message message = BaseMessage.builder()
+        .setAuthor(Author.CLIENT)
+        .setHeader(Header.MANUAL_PLACEMENT)
+        .setFleet(fleet)
         .build();
     when(communicationBus.receive(wrappedClient)).thenReturn(message);
     FleetPlacementProcessor fleetPlacementProcessor = new FleetPlacementProcessor(communicationBus,
@@ -42,18 +42,18 @@ public class FleetPlacementProcessorTest {
     WrappedClient wrappedClient = mock(WrappedClient.class);
     FleetGenerator fleetGenerator = mock(FleetGenerator.class);
     Fleet fleet = mock(Fleet.class);
-    Message message = new MessageBuilder()
-        .withAuthor(Author.CLIENT)
-        .withHeader(Header.RANDOM_PLACEMENT)
-        .build();
+    Message message = BaseMessage.builder()
+            .setAuthor(Author.CLIENT)
+            .setHeader(Header.RANDOM_PLACEMENT)
+            .build();
 
     Message ready = manualPlacementMessage();
 
-    Message randomFleet = new MessageBuilder()
-        .withAuthor(Author.SERVER)
-        .withHeader(Header.RANDOM_PLACEMENT)
-        .withStatus(Status.OK)
-        .withFleet(fleet)
+    Message randomFleet = BaseMessage.builder()
+            .setAuthor(Author.CLIENT)
+            .setHeader(Header.RANDOM_PLACEMENT)
+        .setStatus(Status.OK)
+        .setFleet(fleet)
         .build();
 
     when(communicationBus.receive(wrappedClient)).thenReturn(message, ready);
@@ -68,10 +68,10 @@ public class FleetPlacementProcessorTest {
 
 
   private Message manualPlacementMessage() {
-    return new MessageBuilder()
-        .withAuthor(Author.CLIENT)
-        .withHeader(Header.MANUAL_PLACEMENT)
-        .build();
+    return BaseMessage.builder()
+            .setAuthor(Author.CLIENT)
+            .setHeader(Header.MANUAL_PLACEMENT)
+            .build();
   }
 
 

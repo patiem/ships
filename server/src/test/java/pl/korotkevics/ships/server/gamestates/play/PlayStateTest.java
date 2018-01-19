@@ -14,7 +14,7 @@ import pl.korotkevics.ships.shared.fleet.Ship;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -68,10 +68,10 @@ public class PlayStateTest {
   public void shouldProcessGameToWalkover() {
     Fleet secondFleet = mock(Fleet.class);
     List<Fleet> fleetList = Arrays.asList(fleet, secondFleet);
-    Message shot = new MessageBuilder()
-        .withAuthor(Author.AUTO)
-        .withHeader(Header.CONNECTION)
-        .withStatement("END")
+    Message shot = BaseMessage.builder()
+        .setAuthor(Author.AUTO)
+        .setHeader(Header.CONNECTION)
+        .setStatement("END")
         .build();
     when(communicationBus.receive(sender)).thenReturn(shot);
     when(communicationBus.getFirstClient()).thenReturn(sender);
@@ -90,10 +90,10 @@ public class PlayStateTest {
   }
 
   private Message produceMessageWithShot() {
-    return new MessageBuilder()
-        .withAuthor(Author.CLIENT)
-        .withHeader(Header.SHOT)
-        .withStatement("4")
+    return BaseMessage.builder()
+        .setAuthor(Author.CLIENT)
+        .setHeader(Header.SHOT)
+        .setStatement("4")
         .build();
   }
 }
