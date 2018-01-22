@@ -48,6 +48,7 @@ import java.util.ResourceBundle;
 
 /**
  * Fleet Placement window controller.
+ *
  * @author Magdalena Aarsman
  * @since 2017-12-19
  */
@@ -86,7 +87,7 @@ public class FleetPlacementController implements Initializable {
 
   @FXML
   private RadioButton rbVertical;
-  
+
   @FXML
   private RadioButton rbHorizontal;
 
@@ -159,7 +160,7 @@ public class FleetPlacementController implements Initializable {
         event.consume();
       };
   private ResourceBundle resourceBundle;
-  
+
   private void initializeBoard() {
     final int margin = 50;
     final NumberBinding allRectanglesWidth = Bindings.min(yourBoard.widthProperty(),
@@ -219,7 +220,7 @@ public class FleetPlacementController implements Initializable {
             return;
           }
           ((Rectangle) event.getSource()).setOpacity(noOpacity);
-          setOpacity(fillIndex, mastCount ,noOpacity);
+          setOpacity(fillIndex, mastCount, noOpacity);
           event.consume();
         });
   }
@@ -372,8 +373,10 @@ public class FleetPlacementController implements Initializable {
   }
 
   private void askForRandomFleet() {
-    final ButtonType yesButton = new ButtonType(this.resourceBundle.getString("yes"), ButtonBar.ButtonData.YES);
-    final ButtonType noButton = new ButtonType(this.resourceBundle.getString("no"), ButtonBar.ButtonData.NO);
+    final ButtonType yesButton = new ButtonType(this.resourceBundle.getString("yes"),
+        ButtonBar.ButtonData.YES);
+    final ButtonType noButton = new ButtonType(this.resourceBundle.getString("no"),
+        ButtonBar.ButtonData.NO);
 
     Alert alert = showInfoAlert(yesButton, noButton);
     if (alert.getResult() == noButton) {
@@ -386,8 +389,9 @@ public class FleetPlacementController implements Initializable {
     this.getClient().askForRandomFleet();
   }
 
-  private Alert showInfoAlert(final ButtonType yesButton,final ButtonType noButton) {
-    final Alert alert = new Alert(Alert.AlertType.INFORMATION, this.resourceBundle.getString("alertInfo")
+  private Alert showInfoAlert(final ButtonType yesButton, final ButtonType noButton) {
+    final Alert alert = new Alert(Alert.AlertType.INFORMATION, this.resourceBundle
+        .getString("alertInfo")
         + System.lineSeparator()
         + System.lineSeparator()
         + this.resourceBundle.getString("alertQuestion"),
@@ -411,7 +415,7 @@ public class FleetPlacementController implements Initializable {
       ship.setDisable(disable);
       for (Node child : ((Group) ship).getChildren()) {
         final Rectangle rec = (Rectangle) child;
-        if(disable) {
+        if (disable) {
           rec.setFill(Color.GRAY);
         } else {
           final String purple = "#7A16C2";
@@ -429,9 +433,9 @@ public class FleetPlacementController implements Initializable {
   }
 
   private void drawFleet() {
-    this.fleet.
-        toIntegerList().
-        forEach(i -> this.drawMast(this.convertToGridIndex(i)));
+    this.fleet
+        .toIntegerList()
+        .forEach(i -> this.drawMast(this.convertToGridIndex(i)));
   }
 
   private void drawMast(int index) {
@@ -453,11 +457,11 @@ public class FleetPlacementController implements Initializable {
 
   private void clearBoard() {
     ships.clear();
-    for(int i = 1; i < 101; i++) {
+    for (int i = 1; i < 101; i++) {
       ((Rectangle) yourBoard.getChildren().get(i)).setFill(Color.GRAY);
     }
   }
-  
+
   @Override
   public void initialize(final URL location, final ResourceBundle resources) {
     this.resourceBundle = resources;
@@ -478,12 +482,18 @@ public class FleetPlacementController implements Initializable {
 
   private void addDropShadows() {
     final DropShadow shadow = new DropShadow();
-    this.buttonRandom.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonRandom.setEffect(shadow));
-    this.buttonRandom.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonRandom.setEffect(null));
-    this.buttonReady.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonReady.setEffect(shadow));
-    this.buttonReady.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonReady.setEffect(null));
-    this.buttonClear.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonClear.setEffect(shadow));
-    this.buttonClear.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonClear.setEffect(null));
+    this.buttonRandom.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonRandom
+        .setEffect(shadow));
+    this.buttonRandom.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonRandom
+        .setEffect(null));
+    this.buttonReady.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonReady
+        .setEffect(shadow));
+    this.buttonReady.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonReady
+        .setEffect(null));
+    this.buttonClear.addEventHandler(MouseEvent.MOUSE_ENTERED, mouseEvent -> buttonClear
+        .setEffect(shadow));
+    this.buttonClear.addEventHandler(MouseEvent.MOUSE_EXITED, mouseEvent -> buttonClear
+        .setEffect(null));
   }
 }
 

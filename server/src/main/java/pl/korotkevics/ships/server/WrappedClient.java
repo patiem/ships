@@ -17,8 +17,8 @@ import java.net.Socket;
  * by communication bus.
  *
  * @author Piotr Czyż
- * @since 2018-01-02
  * @see CommunicationBus
+ * @since 2018-01-02
  */
 @EqualsAndHashCode
 public class WrappedClient {

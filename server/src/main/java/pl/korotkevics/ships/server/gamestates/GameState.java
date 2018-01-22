@@ -7,7 +7,7 @@ package pl.korotkevics.ships.server.gamestates;
  * @since 2018-01-02
  */
 public interface GameState {
-  
+
   /**
    * Process current game state.
    *

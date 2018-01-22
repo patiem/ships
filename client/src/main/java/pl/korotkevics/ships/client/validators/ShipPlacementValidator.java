@@ -1,13 +1,14 @@
 package pl.korotkevics.ships.client.validators;
 
+import lombok.RequiredArgsConstructor;
 import pl.korotkevics.ships.client.gui.util.FieldState;
 import pl.korotkevics.ships.client.gui.util.ShipOrientation;
-import lombok.RequiredArgsConstructor;
 
 import java.util.stream.IntStream;
 
 /**
  * Enables validation of ships' placement.
+ *
  * @author Magdalena Aarsman
  * @since 2017-12-31
  */
@@ -22,6 +23,7 @@ public class ShipPlacementValidator {
 
   /**
    * Check if ship placement is valid.
+   *
    * @return true if it is valid, false if not.
    */
   public boolean isPlacementValid() {
@@ -64,7 +66,7 @@ public class ShipPlacementValidator {
   private boolean isShipAboveShip() {
     final int checkWidthInCell = 3;
     return !this.isInLastRow()
-        && IntStream.iterate(shipStartIndex - BOARD_SIZE , i -> i + BOARD_SIZE)
+        && IntStream.iterate(shipStartIndex - BOARD_SIZE, i -> i + BOARD_SIZE)
         .limit(checkWidthInCell)
         .filter(i -> i > 0)
         .filter(i -> i + mastCount < board.length)
@@ -79,7 +81,7 @@ public class ShipPlacementValidator {
   private boolean isShipBelowShip() {
     int checkWidthInCell = 3;
     return !this.isInFirstRow() && shipStartIndex - 1 > 0
-        && IntStream.iterate(shipStartIndex - BOARD_SIZE , i -> i + BOARD_SIZE)
+        && IntStream.iterate(shipStartIndex - BOARD_SIZE, i -> i + BOARD_SIZE)
         .limit(checkWidthInCell)
         .filter(i -> i - 1 > 0)
         .filter(i -> i < board.length)
@@ -145,7 +147,8 @@ public class ShipPlacementValidator {
   }
 
   private boolean isShipOnTheLeftHorizontal() {
-    return this.shipStartIndex - BOARD_SIZE >= 1 && this.board[shipStartIndex - BOARD_SIZE].equals(FieldState.OCCUPIED);
+    return this.shipStartIndex - BOARD_SIZE >= 1 && this.board[shipStartIndex - BOARD_SIZE]
+        .equals(FieldState.OCCUPIED);
   }
 
 }

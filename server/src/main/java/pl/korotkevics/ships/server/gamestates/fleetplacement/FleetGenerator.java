@@ -77,7 +77,7 @@ class FleetGenerator {
     return shipAsIndices;
   }
 
-  private List<Integer> offerIndices(final int length,final int startIndex,final int step) {
+  private List<Integer> offerIndices(final int length, final int startIndex, final int step) {
     final List<Integer> indices = new ArrayList<>();
     IntStream.range(0, length)
         .forEach(i -> indices.add(startIndex + i * step));

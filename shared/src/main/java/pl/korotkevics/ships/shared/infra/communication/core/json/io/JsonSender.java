@@ -14,6 +14,7 @@ import java.io.UnsupportedEncodingException;
 
 /**
  * Sends a message to an output stream.
+ *
  * @author Piotr Czyż, Magda Aarsman, Sandor Korotkevics
  * @see Sender
  * @see JsonSender

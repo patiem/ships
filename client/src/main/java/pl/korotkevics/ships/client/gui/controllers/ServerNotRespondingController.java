@@ -22,13 +22,13 @@ import java.util.ResourceBundle;
  */
 
 public class ServerNotRespondingController implements Initializable {
-  
+
   private static final Target logger = new SharedLogger(Client.class);
-  
+
   @FXML
   private AnchorPane mainAnchorPane;
   private ResourceBundle resourceBundle;
-  
+
   @FXML
   private void onTryAgainPressed() {
     try {
@@ -43,7 +43,7 @@ public class ServerNotRespondingController implements Initializable {
       logger.error(e.getMessage());
     }
   }
-  
+
   @Override
   public void initialize(final URL location, final ResourceBundle resources) {
     this.resourceBundle = resources;

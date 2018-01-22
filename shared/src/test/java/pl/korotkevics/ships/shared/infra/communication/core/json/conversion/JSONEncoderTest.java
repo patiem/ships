@@ -1,13 +1,13 @@
 package pl.korotkevics.ships.shared.infra.communication.core.json.conversion;
 
+import com.google.gson.JsonElement;
+import org.testng.annotations.Test;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.conversion.Encoder;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
-import com.google.gson.JsonElement;
-import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
