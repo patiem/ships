@@ -1,16 +1,17 @@
 package pl.korotkevics.ships.shared.infra.communication.core.message;
 
+import org.apache.commons.lang3.StringUtils;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Builds a message with given or/and
  * default values.
  * Along with BaseMessage interface allows
  * to encapsulate BaseMessage class.
+ *
  * @author Sandor Korotkevics
  * @see BaseMessage
  * @since 2017-12-10

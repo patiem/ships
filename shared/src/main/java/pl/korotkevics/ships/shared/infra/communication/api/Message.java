@@ -9,6 +9,7 @@ import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 
 /**
  * Communication mean contract between Receiver and Sender.
+ *
  * @author Sandor Korotkevics
  * @see Receiver
  * @see Sender

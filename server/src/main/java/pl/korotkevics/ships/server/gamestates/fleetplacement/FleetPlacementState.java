@@ -30,7 +30,7 @@ public class FleetPlacementState implements GameState {
   private final List<Fleet> fleets;
 
   /**
-   * @param communicationBus client server communication bus
+   * @param communicationBus client server communication bus.
    */
   public FleetPlacementState(final CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
@@ -43,9 +43,9 @@ public class FleetPlacementState implements GameState {
   /**
    * Receives fleets from players, and transfers game to next state.
    *
+   * @return GameState - PlayState
    * @see PlayState
    * @see GameEndWithWalkoverState
-   * @return GameState - PlayState
    */
   @Override
   public GameState process() {

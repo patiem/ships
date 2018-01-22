@@ -4,8 +4,6 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
-import pl.korotkevics.ships.shared.infra.logging.api.Target;
-import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 /**
  * Enable to fire event reacting changing turn.

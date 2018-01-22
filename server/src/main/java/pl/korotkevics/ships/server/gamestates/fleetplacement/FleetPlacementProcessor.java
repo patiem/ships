@@ -21,9 +21,9 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 class FleetPlacementProcessor {
 
   private final CommunicationBus communicationBus;
+  private final FleetGenerator fleetGenerator;
   private Target logger = new SharedLogger(FleetPlacementProcessor.class);
   private MessageReceiver messageReceiver;
-  private final FleetGenerator fleetGenerator;
 
   FleetPlacementProcessor(final CommunicationBus communicationBus,
                           final FleetGenerator fleetGenerator) {

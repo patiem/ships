@@ -22,8 +22,7 @@ public class JsonDecoder implements Decoder<JsonElement> {
    * Converts a JsonElement instance into a BaseMessage
    * instance.
    *
-   * @param jsonElement a JsonElement instance representing
-   *                    a BaseMessage.
+   * @param jsonElement a JsonElement instance representing a BaseMessage.
    * @return BaseMessage a result of conversion of JsonElement into BaseMessage
    */
   @Override

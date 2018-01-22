@@ -1,13 +1,14 @@
 package pl.korotkevics.ships.shared.infra.logging.core;
 
-import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
 
 /**
  * Logger shared across modules. A Log4J2 wrapper.
  * Log4J2 can be configured with log4j2.xml.
  * A short manual is present within the XML file.
+ *
  * @author Sandor Korotkevics
  * @see Target
  * @since 2017-12-10

@@ -1,12 +1,13 @@
 package pl.korotkevics.ships.client;
 
+import javafx.application.Application;
 import pl.korotkevics.ships.client.gui.GuiMain;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
-import javafx.application.Application;
 
 /**
  * Main class of client application.
+ *
  * @author Magdalena Aarsman
  * @since 2017-12-14
  */

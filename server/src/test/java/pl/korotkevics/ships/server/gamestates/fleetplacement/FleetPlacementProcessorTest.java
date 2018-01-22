@@ -11,7 +11,9 @@ import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @Test
 public class FleetPlacementProcessorTest {

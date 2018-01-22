@@ -12,15 +12,15 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
  * Represents a state in which player is waiting for an opponent.
  *
  * @author Piotr Czyż
- * @since 2018-01-02
  * @see GameState
+ * @since 2018-01-02
  */
 public class WaitingForPlayersState implements GameState {
   private final Target logger = new SharedLogger(WaitingForPlayersState.class);
   private CommunicationBus communicationBus;
 
   /**
-   * @param communicationBus client server communication bus
+   * @param communicationBus client server communication bus.
    */
   public WaitingForPlayersState(final CommunicationBus communicationBus) {
     this.communicationBus = communicationBus;
@@ -29,8 +29,8 @@ public class WaitingForPlayersState implements GameState {
   /**
    * Transfer to fleet placement state.
    *
+   * @return GameState - FleetPlacementState.
    * @see FleetPlacementState
-   * @return GameState - FleetPlacementState
    */
   @Override
   public GameState process() {

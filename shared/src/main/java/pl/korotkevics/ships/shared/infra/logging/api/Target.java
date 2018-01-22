@@ -4,6 +4,7 @@ package pl.korotkevics.ships.shared.infra.logging.api;
  * An implementing class has to ensure
  * it is possible to direct given messages
  * to a configurable target.
+ *
  * @author Sandor Korotkevics
  * @since 2017-12-10
  */

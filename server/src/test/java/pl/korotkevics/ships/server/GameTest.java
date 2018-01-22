@@ -3,7 +3,10 @@ package pl.korotkevics.ships.server;
 import org.testng.annotations.Test;
 import pl.korotkevics.ships.server.gamestates.GameState;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @Test
 public class GameTest {
