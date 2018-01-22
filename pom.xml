@@ -430,6 +430,7 @@
                             <report>summary</report>
                             <report>index</report>
                             <report>dependencies</report>
+                            <report>dependency-convergence</report>
                             <report>project-team</report>
                             <report>cim</report>
                             <report>issue-tracking</report>
