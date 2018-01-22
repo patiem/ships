@@ -12,6 +12,7 @@ import java.util.Set;
 
 /**
  * Ship consisting of masts.
+ *
  * @author Piotr Czyż, Sandor Korotkevics
  * @see Mast
  * @since 2017-12-19

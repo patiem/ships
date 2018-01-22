@@ -2,6 +2,7 @@ package pl.korotkevics.ships.client.validators;
 
 /**
  * Enables validation of a port number.
+ *
  * @author Magdalena Aarsman
  * @since 2017-12-16
  */
@@ -9,6 +10,7 @@ public class PortValidator {
 
   /**
    * Validate the port number, returns port as Integer when it is valid.
+   *
    * @param providedPort - port provided by user as a String
    * @return - port number
    * @throws IllegalArgumentException if port is invalid.

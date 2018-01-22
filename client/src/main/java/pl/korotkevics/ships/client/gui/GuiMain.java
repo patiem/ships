@@ -25,24 +25,24 @@ public class GuiMain extends Application {
     final String windowTitle = "Battleships";
     final boolean clientShouldRun = true;
     final Client client = new Client(new MessageHandlerBuilder().withEnumMap()
-                                         .withDefaultSetsOfTriggers().build(), clientShouldRun);
+        .withDefaultSetsOfTriggers().build(), clientShouldRun);
     final int sceneWidth = 600;
     final int sceneHeight = 400;
-    
+
     FXMLLoader rootLoader = new FXMLLoader(getClass().getResource(fxmlMainWindowPath));
     Parent root = rootLoader.load();
     MainController mainController = rootLoader.getController();
     mainController.initialize(client);
-    
+
     primaryStage.setTitle(windowTitle);
     primaryStage.setScene(new Scene(root, sceneWidth, sceneHeight));
     primaryStage.setResizable(false);
     primaryStage.show();
-    
+
     primaryStage.setOnHiding((WindowEvent event) -> {
       client.closeClient();
       Platform.exit();
     });
   }
-  
+
 }

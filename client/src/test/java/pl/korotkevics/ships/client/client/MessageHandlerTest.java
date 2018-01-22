@@ -1,15 +1,15 @@
 package pl.korotkevics.ships.client.client;
 
-import pl.korotkevics.ships.client.JavaFxInitializer;
-import pl.korotkevics.ships.shared.infra.communication.api.Message;
-import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
-import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
 import javafx.scene.control.Button;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pl.korotkevics.ships.client.JavaFxInitializer;
+import pl.korotkevics.ships.shared.infra.communication.api.Message;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
+import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -23,14 +23,14 @@ public class MessageHandlerTest {
 
   @BeforeClass
   public void setUp() throws InterruptedException {
-    if(!JavaFxInitializer.isLaunched()) {
+    if (!JavaFxInitializer.isLaunched()) {
       JavaFxInitializer.initialize();
     }
   }
 
   @BeforeMethod
   public void skipTestIfThereIsNoGraphicsSupport() {
-    if (!JavaFxInitializer.isEnable()){
+    if (!JavaFxInitializer.isEnable()) {
       throw new SkipException("skipping test because of lack of support for graphics");
     }
   }

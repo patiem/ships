@@ -29,7 +29,7 @@ public class WaitingForPlayersState implements GameState {
   /**
    * Transfer to fleet placement state.
    *
-   * @return GameState - FleetPlacementState
+   * @return GameState - FleetPlacementState.
    * @see FleetPlacementState
    */
   @Override

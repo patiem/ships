@@ -22,19 +22,17 @@ import java.util.Map;
 @RequiredArgsConstructor(staticName = "fleet", access = AccessLevel.PRIVATE)
 @ToString
 public class Fleet {
-  
+
   private final Map<Mast, Ship> fleet;
-  
+
   private Fleet() {
     this.fleet = Collections.emptyMap();
   }
-  
+
   /**
    * Static factory method.
    *
-   * @param ships
-   *     - list of ships.
-   *
+   * @param ships - list of ships.
    * @return Fleet.
    */
   public static Fleet ofShips(final List<Ship> ships) {
@@ -42,25 +40,23 @@ public class Fleet {
     ships.forEach(ship -> ship.getMasts().forEach(mast -> fleet.put(mast, ship)));
     return new Fleet(fleet);
   }
-  
+
   public static Fleet empty() {
     return new Fleet();
   }
-  
+
   /**
    * @return true if a fleet is defeated.
    */
   public boolean isDefeated() {
     return this.fleet.isEmpty();
   }
-  
+
   /**
    * Handles an attack
    * returning an output of such.
    *
-   * @param mast
-   *     attacked.
-   *
+   * @param mast attacked.
    * @return Damage caused.
    */
   public Damage handleDamage(final Mast mast) {
@@ -74,7 +70,7 @@ public class Fleet {
     }
     return Damage.HIT;
   }
-  
+
   /**
    * Produces a list representation of Fleet.
    *

@@ -16,6 +16,7 @@ import java.util.Scanner;
 
 /**
  * Receives a message from an input stream.
+ *
  * @author Piotr Czyż, Magda Aarsman, Sandor Korotkevics
  * @see Receiver
  * @see JsonReceiver
@@ -27,9 +28,9 @@ import java.util.Scanner;
 
 public class JsonReceiver implements Receiver {
 
+  private static final String CHARSET_NAME = "UTF-8";
   private final InputStream inputStream;
 
-  private static final String CHARSET_NAME = "UTF-8";
   /**
    * @param inputStream to read from.
    */

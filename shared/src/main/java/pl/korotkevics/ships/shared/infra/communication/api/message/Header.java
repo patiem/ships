@@ -1,12 +1,12 @@
 package pl.korotkevics.ships.shared.infra.communication.api.message;
 
 /**
+ * It represents a message header defining
+ *      a message content (main subject/what a
+ *      message has inside).
+ *
  * @author Sandor Korotkevics
  * @since 2017-12-22
- *
- * It represents a message header defining
- * a message content (main subject/what a
- * message has inside).
  */
 
 public enum Header {

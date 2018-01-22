@@ -33,39 +33,39 @@ import java.util.ResourceBundle;
  * @since 2017-12-14
  */
 public class ConnectWindowController implements Initializable {
-  
+
   private static final Target logger = new SharedLogger(Client.class);
-  
+
   private Client client;
-  
+
   @FXML
   private GridPane gridPane;
-  
+
   @FXML
   private ImageView imCannon;
-  
+
   @FXML
   private VBox vbWheel;
-  
+
   @FXML
   private TextField textFieldServerAddress;
-  
+
   @FXML
   private TextField textFieldServerPort;
-  
+
   @FXML
   private AnchorPane mainAnchorPane;
-  
+
   @FXML
   private Label labelInvalidPort;
-  
+
   @FXML
   private Button eventButton;
-  
+
   private PortValidator portValidator;
-  
+
   private ResourceBundle resourceBundle;
-  
+
   @FXML
   private void onConnectPressed() {
     try {
@@ -74,10 +74,10 @@ public class ConnectWindowController implements Initializable {
       logger.error(e.getMessage());
       return;
     }
-    
+
     final String serverAddress = textFieldServerAddress.getText();
     logger.info("server address: " + serverAddress);
-    
+
     int port;
     try {
       port = portValidator.asInt(textFieldServerPort.getText());
@@ -86,10 +86,10 @@ public class ConnectWindowController implements Initializable {
       return;
     }
     logger.info("server port: " + port);
-    
+
     showLoadingWheel();
     final boolean isConnected = client.connect(serverAddress, port, new Socket());
-    
+
     if (!isConnected) {
       loadServerNotResponseView();
     } else {
@@ -97,7 +97,7 @@ public class ConnectWindowController implements Initializable {
       clientThread.start();
     }
   }
-  
+
   private void initializeClient() {
     final MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
     this.client = mainController.getClient();
@@ -107,21 +107,21 @@ public class ConnectWindowController implements Initializable {
     this.client.setEventTrigger(eventButton);
     mainController.disableLocalizationButtons();
   }
-  
+
   private void showLoadingWheel() {
     final double opacity = 0.4;
-    
+
     gridPane.setDisable(true);
     gridPane.setOpacity(opacity);
     imCannon.setOpacity(opacity);
     vbWheel.setVisible(true);
   }
-  
+
   private void loadServerNotResponseView() {
     try {
       final String serverNotRespondingUrl = "/fxml/serverNotResponding.fxml";
-      final FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource
-                                                                         (serverNotRespondingUrl));
+      final FXMLLoader notResponseLoader = new FXMLLoader(getClass()
+          .getResource(serverNotRespondingUrl));
       notResponseLoader.setResources(this.resourceBundle);
       final Parent notResponse = notResponseLoader.load();
       final Pane mainPane = (Pane) mainAnchorPane.getParent();
@@ -131,29 +131,29 @@ public class ConnectWindowController implements Initializable {
       logger.error(e.getMessage());
     }
   }
-  
+
   @Override
   public void initialize(final URL location, final ResourceBundle resourceBundle) {
     this.resourceBundle = resourceBundle;
-    
+
     textFieldServerPort.textProperty().addListener((observableValue, s1, t1) -> {
       if (!labelInvalidPort.getText().isEmpty()) {
         labelInvalidPort.setText("");
       }
     });
-    
+
     portValidator = new PortValidator();
     eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED, event ->
-                                                                               loadFleetPlacementWindow());
-    
+        loadFleetPlacementWindow());
+
     final String defaultHost = "127.0.0.1";
     final String defaultPort = "8189";
-    
+
     textFieldServerAddress.setText(defaultHost);
     textFieldServerPort.setText(defaultPort);
-    
+
   }
-  
+
   private void loadFleetPlacementWindow() {
     try {
       final String gameWindowUrl = "/fxml/fleetPlacement.fxml";
@@ -161,26 +161,26 @@ public class ConnectWindowController implements Initializable {
       gameWindowLoader.setResources(this.resourceBundle);
       final Parent gameWindow = gameWindowLoader.load();
       final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();
-      
+
       Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-      
+
       Stage stage = (Stage) mainPane.getScene().getWindow();
       final int shrinkSize = 300;
       stage.setMinHeight(screenBounds.getHeight() - shrinkSize);
       stage.setMinWidth(screenBounds.getWidth() - shrinkSize);
-      
+
       mainPane.getChildren().clear();
       mainPane.getChildren().setAll(gameWindow);
-      
+
       FleetPlacementController fleetPlacementController = gameWindowLoader.getController();
       fleetPlacementController.initializeClient();
-      
+
       final double margin = 0.0;
       AnchorPane.setTopAnchor(gameWindow, margin);
       AnchorPane.setBottomAnchor(gameWindow, margin);
       AnchorPane.setLeftAnchor(gameWindow, margin);
       AnchorPane.setRightAnchor(gameWindow, margin);
-      
+
     } catch (IOException e) {
       logger.error(e.getMessage());
     }

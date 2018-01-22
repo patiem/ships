@@ -16,7 +16,7 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import java.util.List;
 
 /**
- * SeverMain class where the play goes.
+ * Main class where the play goes.
  *
  * @author Piotr Czyż
  * @see MessageReceiver
@@ -50,7 +50,7 @@ public class PlayState implements GameState {
    * Processing game until it has a winner.
    *
    * @return GameState which can be either game end with walkover
-   *     or game end with end depending on a game flow.
+   *    or game end with end depending on a game flow.
    * @see GameEndWithWalkoverState
    * @see GameEndWithWinState
    */
