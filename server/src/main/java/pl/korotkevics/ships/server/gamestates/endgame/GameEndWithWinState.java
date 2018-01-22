@@ -63,7 +63,7 @@ public class GameEndWithWinState implements GameState {
   }
 
   private void rest() {
-    final int restTime = 100;
+    final int restTime = 5000;
     try {
       Thread.sleep(restTime);
     } catch (InterruptedException e) {

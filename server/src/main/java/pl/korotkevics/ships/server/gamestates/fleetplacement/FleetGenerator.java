@@ -32,6 +32,8 @@ class FleetGenerator {
       THREE_MAST_SHIP, TWO_MAST_SHIP, TWO_MAST_SHIP, TWO_MAST_SHIP, ONE_MAST_SHIP, ONE_MAST_SHIP,
       ONE_MAST_SHIP, ONE_MAST_SHIP);
   private Map<Integer, FieldState> gameBoard;
+  private static final int FIRST_FIELD_INDEX = 0;
+  private static final int LAST_FIELD_INDEX = 100;
 
   FleetGenerator() {
     this.gameBoard = new HashMap<>();
@@ -45,9 +47,7 @@ class FleetGenerator {
   }
 
   private void fillGameBoard() {
-    final int firstFieldIndex = 0;
-    final int lastFieldIndex = 100;
-    IntStream.range(firstFieldIndex, lastFieldIndex)
+    IntStream.range(FIRST_FIELD_INDEX, LAST_FIELD_INDEX)
         .forEach(i -> gameBoard.put(i, FieldState.EMPTY));
   }
 
