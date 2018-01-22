@@ -42,37 +42,32 @@ public class FleetPlacementProcessorTest {
     WrappedClient wrappedClient = mock(WrappedClient.class);
     FleetGenerator fleetGenerator = mock(FleetGenerator.class);
     Fleet fleet = mock(Fleet.class);
-    Message message = new MessageBuilder()
-        .withAuthor(Author.CLIENT)
-        .withHeader(Header.RANDOM_PLACEMENT)
-        .build();
+    Message askForRandomPlacement = prepareClientMessage(Header.RANDOM_PLACEMENT);
 
-    Message ready = manualPlacementMessage();
+    Message ready = prepareClientMessage(Header.MANUAL_PLACEMENT);
 
-    Message randomFleet = new MessageBuilder()
+    Message randomFleetMessage = new MessageBuilder()
         .withAuthor(Author.SERVER)
         .withHeader(Header.RANDOM_PLACEMENT)
         .withStatus(Status.OK)
         .withFleet(fleet)
         .build();
 
-    when(communicationBus.receive(wrappedClient)).thenReturn(message, ready);
+    when(communicationBus.receive(wrappedClient)).thenReturn(askForRandomPlacement, ready);
     when(fleetGenerator.generateFleet()).thenReturn(fleet);
     FleetPlacementProcessor fleetPlacementProcessor = new FleetPlacementProcessor(communicationBus,
         fleetGenerator);
     //when
     fleetPlacementProcessor.placeFleet(wrappedClient);
     //then
-    verify(communicationBus).send(wrappedClient, randomFleet);
+    verify(communicationBus).send(wrappedClient, randomFleetMessage);
   }
 
-
-  private Message manualPlacementMessage() {
+  private Message prepareClientMessage(final Header randomPlacement) {
     return new MessageBuilder()
         .withAuthor(Author.CLIENT)
-        .withHeader(Header.MANUAL_PLACEMENT)
+        .withHeader(randomPlacement)
         .build();
   }
-
 
 }

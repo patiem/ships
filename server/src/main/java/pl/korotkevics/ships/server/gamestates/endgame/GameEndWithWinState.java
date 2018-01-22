@@ -9,7 +9,7 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 /**
- * Represents game state where game have a winner.
+ * Represents game state in which game has a winner.
  *
  * @author Piotr Czyż
  * @since 2018-01-02
@@ -63,7 +63,7 @@ public class GameEndWithWinState implements GameState {
   }
 
   private void rest() {
-    final int restTime = 100;
+    final int restTime = 5000;
     try {
       Thread.sleep(restTime);
     } catch (InterruptedException e) {

@@ -1,7 +1,7 @@
 package pl.korotkevics.ships.server;
 
 /**
- * Changes player's turn.
+ * Changes players' turns.
  *
  * @author Piotr Czyż
  * @since 2017-12-20

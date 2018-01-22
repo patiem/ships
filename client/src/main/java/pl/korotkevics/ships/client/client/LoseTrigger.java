@@ -1,6 +1,6 @@
 package pl.korotkevics.ships.client.client;
 
-import pl.korotkevics.ships.client.gui.events.LooseEvent;
+import pl.korotkevics.ships.client.gui.events.LossEvent;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
@@ -15,6 +15,6 @@ class LoseTrigger implements EventTrigger {
 
   @Override
   public void fire(final Button button, final Message message) {
-    Platform.runLater(() -> button.fireEvent(new LooseEvent()));
+    Platform.runLater(() -> button.fireEvent(new LossEvent()));
   }
 }

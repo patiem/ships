@@ -4,7 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventType;
 
 /**
- * Event firing when turn has to be changed.
+ * Event firing when a turn has to be changed (toggled).
  *
  * @author Magdalena Aarsman
  * @since 2017-12-18

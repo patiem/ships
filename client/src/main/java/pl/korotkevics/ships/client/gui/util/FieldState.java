@@ -1,7 +1,7 @@
 package pl.korotkevics.ships.client.gui.util;
 
 /**
- * Enum represents state of board field.
+ * Board field state representations.
  *
  * @author Magdalena Aarsman
  * @since 2018-01-01

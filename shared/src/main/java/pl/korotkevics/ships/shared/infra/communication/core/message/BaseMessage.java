@@ -32,7 +32,7 @@ public class BaseMessage implements Message {
   private Fleet fleet;
 
   /**
-   * It is declared explicitly to
+   * Declared explicitly in order to
    * limit its access to MessageBuilder only.
    */
   BaseMessage() {
