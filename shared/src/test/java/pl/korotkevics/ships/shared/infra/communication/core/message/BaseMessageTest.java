@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertTrue;
 
 @Test
@@ -27,7 +29,24 @@ public class BaseMessageTest {
                                          "statement=Hello World, fleet=Fleet(fleet={}))");
   }
   
-  public void equalsWorksAsExpected() {
+  public void defaultMessagesAreEqual() {
+    //given
+    Message firstMessageToCompare = new MessageBuilder().build();
+    Message secondMessageToCompare = new MessageBuilder().build();
+    //when - then
+    assertEquals(firstMessageToCompare, secondMessageToCompare);
+  }
+  
+  
+  public void defaultMessagesHaveSameHashcode() {
+    //given
+    Message firstMessageToCompare = new MessageBuilder().build();
+    Message secondMessageToCompare = new MessageBuilder().build();
+    //when - then
+    assertTrue(firstMessageToCompare.hashCode()==secondMessageToCompare.hashCode());
+  }
+  
+  public void equalsWorksAsExpectedForSameMessages() {
     //given - when
     Message firstMessageToCompare = new MessageBuilder()
                                         .withFleet(this.produceFleet())
@@ -46,7 +65,23 @@ public class BaseMessageTest {
     assertEquals(firstMessageToCompare, secondMessageToCompare);
   }
   
-  public void hashCodeWorksAsExpected() {
+  public void equalsWorksAsExpectedForDifferentMessages() {
+    //given - when
+    Message firstMessageToCompare = new MessageBuilder()
+                                        .withFleet(this.produceFleet())
+                                        .withHeader(Header.RANDOM_PLACEMENT)
+                                        .build();
+    
+    Message secondMessageToCompare = new MessageBuilder()
+                                         .withFleet(this.produceFleet())
+                                         .withHeader(Header.MANUAL_PLACEMENT)
+                                         .withStatement("Yeah")
+                                         .build();
+    //then
+    assertNotEquals(firstMessageToCompare, secondMessageToCompare);
+  }
+  
+  public void hashCodesAreEqualForSameMessages() {
     //given - when
     Message firstMessageToCompare = new MessageBuilder()
                                         .withFleet(this.produceFleet())
@@ -64,6 +99,25 @@ public class BaseMessageTest {
     //then
     assertTrue(firstMessageToCompare.hashCode() == secondMessageToCompare.hashCode());
   }
+  
+  public void hashCodesAreNotEqualForDifferentMessages() {
+    //given - when
+    Message firstMessageToCompare = new MessageBuilder()
+                                        .withFleet(this.produceFleet())
+                                        .withAuthor(Author.SERVER)
+                                        .withHeader(Header.MANUAL_PLACEMENT)
+                                        .withStatement("SCALA")
+                                        .build();
+    
+    Message secondMessageToCompare = new MessageBuilder()
+                                         .withFleet(this.produceFleet())
+                                         .withHeader(Header.MANUAL_PLACEMENT)
+                                         .withStatement("OPENJDK")
+                                         .build();
+    //then
+    assertFalse(firstMessageToCompare.hashCode() == secondMessageToCompare.hashCode());
+  }
+  
   
   private Fleet produceFleet() {
     List<Ship> ships = Arrays.asList(Ship.ofMasts(Mast.ofIndex("5")),
