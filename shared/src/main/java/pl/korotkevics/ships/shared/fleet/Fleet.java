@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,7 +22,7 @@ import java.util.Map;
 @EqualsAndHashCode
 @RequiredArgsConstructor(staticName = "fleet", access = AccessLevel.PRIVATE)
 @ToString
-public class Fleet {
+public class Fleet implements Serializable {
 
   private final Map<Mast, Ship> fleet;
 

@@ -120,15 +120,6 @@ public class FleetPlacementController implements Initializable {
         event.consume();
       };
 
-  private EventHandler<DragEvent> shipOnDragEntered =
-      event -> {
-        for (Node child : ((Group) event.getSource()).getChildren()) {
-          Rectangle rec = (Rectangle) child;
-          rec.setFill(Color.RED);
-        }
-        event.consume();
-      };
-
   private EventHandler<MouseEvent> shipOnDragDetected =
       event -> {
         Dragboard db = ((Group) event.getSource()).startDragAndDrop(TransferMode.COPY);
