@@ -56,7 +56,7 @@
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
-                                        <Main-Class>pl.korotkevics.ships.server.Main</Main-Class>
+                                        <Main-Class>pl.korotkevics.ships.server.SeverMain</Main-Class>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
