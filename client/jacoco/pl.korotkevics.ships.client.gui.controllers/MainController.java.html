@@ -29,110 +29,109 @@ import java.util.ResourceBundle;
  */
 
 <span class="nc" id="L31">public class MainController {</span>
-  
+
 <span class="nc" id="L33">  private static final Target logger = new SharedLogger(Client.class);</span>
-  
+
   private static final String DICTIONARY = &quot;dict&quot;;
-  
+
   @FXML
   private Label gameTitle;
-  
+
   @FXML
   private Button russianButton;
-  
+
   @FXML
   private Pane mainPane;
-  
+
 <span class="nc" id="L46">  @Getter</span>
   private Client client;
-  
+
   @FXML
   private Button polishButton;
-  
+
   @FXML
   private Button englishButton;
-  
+
   private ResourceBundle resourceBundle;
-  
+
   /**
    * Initialize main controller.
    *
-   * @param client
-   *     - Instance of Client, which communicate with server.
+   * @param client - Instance of Client, which communicate with server.
    */
   @FXML
   public void initialize(final Client client) {
-<span class="nc" id="L65">    this.client = client;</span>
-<span class="nc" id="L66">    this.loadDefaultView();</span>
+<span class="nc" id="L64">    this.client = client;</span>
+<span class="nc" id="L65">    this.loadDefaultView();</span>
 
-<span class="nc" id="L68">  }</span>
-  
+<span class="nc" id="L67">  }</span>
+
   private void loadDefaultView() {
-<span class="nc" id="L71">    this.reloadView();</span>
-<span class="nc" id="L72">  }</span>
-  
+<span class="nc" id="L70">    this.reloadView();</span>
+<span class="nc" id="L71">  }</span>
+
   private void reloadView() {
-<span class="nc" id="L75">    final FXMLLoader fxmlLoader = this.prepareFxmlLoader();</span>
-<span class="nc" id="L76">    this.gameTitle.setText(this.resourceBundle.getString(&quot;gameTitle&quot;));</span>
+<span class="nc" id="L74">    final FXMLLoader fxmlLoader = this.prepareFxmlLoader();</span>
+<span class="nc" id="L75">    this.gameTitle.setText(this.resourceBundle.getString(&quot;gameTitle&quot;));</span>
     try {
-<span class="nc" id="L78">      this.addToMainPane(fxmlLoader.load());</span>
-<span class="nc" id="L79">    } catch (IOException e) {</span>
-<span class="nc" id="L80">      logger.error(e.getMessage());</span>
-<span class="nc" id="L81">    }</span>
-<span class="nc" id="L82">  }</span>
-  
+<span class="nc" id="L77">      this.addToMainPane(fxmlLoader.load());</span>
+<span class="nc" id="L78">    } catch (IOException e) {</span>
+<span class="nc" id="L79">      logger.error(e.getMessage());</span>
+<span class="nc" id="L80">    }</span>
+<span class="nc" id="L81">  }</span>
+
   private FXMLLoader prepareFxmlLoader() {
-<span class="nc" id="L85">    final String url = &quot;/fxml/connectWindow.fxml&quot;;</span>
-<span class="nc" id="L86">    final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(url));</span>
-<span class="nc" id="L87">    this.resourceBundle = ResourceBundle.getBundle(DICTIONARY, new UTF8Control());</span>
-<span class="nc" id="L88">    fxmlLoader.setResources(this.resourceBundle);</span>
-<span class="nc" id="L89">    return fxmlLoader;</span>
+<span class="nc" id="L84">    final String url = &quot;/fxml/connectWindow.fxml&quot;;</span>
+<span class="nc" id="L85">    final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(url));</span>
+<span class="nc" id="L86">    this.resourceBundle = ResourceBundle.getBundle(DICTIONARY, new UTF8Control());</span>
+<span class="nc" id="L87">    fxmlLoader.setResources(this.resourceBundle);</span>
+<span class="nc" id="L88">    return fxmlLoader;</span>
   }
-  
+
   private void addToMainPane(final Parent parent) {
-<span class="nc" id="L93">    this.mainPane.getChildren().clear();</span>
-<span class="nc" id="L94">    this.mainPane.getChildren().add(parent);</span>
-<span class="nc" id="L95">  }</span>
-  
+<span class="nc" id="L92">    this.mainPane.getChildren().clear();</span>
+<span class="nc" id="L93">    this.mainPane.getChildren().add(parent);</span>
+<span class="nc" id="L94">  }</span>
+
   @FXML
   void triggerPolishVersion(final ActionEvent event) {
-<span class="nc" id="L99">    logger.info(&quot;The language is set to &quot; + OurLocale.POLISH);</span>
-<span class="nc" id="L100">    Locale.setDefault(new Locale(OurLocale.POLISH.toString()));</span>
-<span class="nc" id="L101">    this.reloadView();</span>
-<span class="nc" id="L102">    this.changeTitleLabel();</span>
-<span class="nc" id="L103">  }</span>
+<span class="nc" id="L98">    logger.info(&quot;The language is set to &quot; + OurLocale.POLISH);</span>
+<span class="nc" id="L99">    Locale.setDefault(new Locale(OurLocale.POLISH.toString()));</span>
+<span class="nc" id="L100">    this.reloadView();</span>
+<span class="nc" id="L101">    this.changeTitleLabel();</span>
+<span class="nc" id="L102">  }</span>
 
   private void changeTitleLabel() {
-<span class="nc" id="L106">    Scene scene = mainPane.getScene();</span>
-<span class="nc" id="L107">    Stage stage = (Stage) scene.getWindow();</span>
-<span class="nc" id="L108">    stage.setTitle(this.resourceBundle.getString(&quot;gameTitle&quot;));</span>
-<span class="nc" id="L109">  }</span>
+<span class="nc" id="L105">    Scene scene = mainPane.getScene();</span>
+<span class="nc" id="L106">    Stage stage = (Stage) scene.getWindow();</span>
+<span class="nc" id="L107">    stage.setTitle(this.resourceBundle.getString(&quot;gameTitle&quot;));</span>
+<span class="nc" id="L108">  }</span>
 
   @FXML
   void triggerEnglishVersion(final ActionEvent event) {
-<span class="nc" id="L113">    logger.info(&quot;The language is set to &quot; + OurLocale.ENGLISH);</span>
-<span class="nc" id="L114">    Locale.setDefault(new Locale(OurLocale.ENGLISH.toString()));</span>
-<span class="nc" id="L115">    this.reloadView();</span>
-<span class="nc" id="L116">    this.changeTitleLabel();</span>
-<span class="nc" id="L117">  }</span>
-  
+<span class="nc" id="L112">    logger.info(&quot;The language is set to &quot; + OurLocale.ENGLISH);</span>
+<span class="nc" id="L113">    Locale.setDefault(new Locale(OurLocale.ENGLISH.toString()));</span>
+<span class="nc" id="L114">    this.reloadView();</span>
+<span class="nc" id="L115">    this.changeTitleLabel();</span>
+<span class="nc" id="L116">  }</span>
+
   @FXML
   void triggerRussianVersion(final ActionEvent event) {
-<span class="nc" id="L121">    logger.info(&quot;The language is set to &quot; + OurLocale.RUSSIAN);</span>
-<span class="nc" id="L122">    Locale.setDefault(new Locale(OurLocale.RUSSIAN.toString()));</span>
-<span class="nc" id="L123">    this.reloadView();</span>
-<span class="nc" id="L124">    this.changeTitleLabel();</span>
-<span class="nc" id="L125">  }</span>
-  
+<span class="nc" id="L120">    logger.info(&quot;The language is set to &quot; + OurLocale.RUSSIAN);</span>
+<span class="nc" id="L121">    Locale.setDefault(new Locale(OurLocale.RUSSIAN.toString()));</span>
+<span class="nc" id="L122">    this.reloadView();</span>
+<span class="nc" id="L123">    this.changeTitleLabel();</span>
+<span class="nc" id="L124">  }</span>
+
   void disableLocalizationButtons() {
-<span class="nc" id="L128">    this.hideButton(this.polishButton);</span>
-<span class="nc" id="L129">    this.hideButton(this.englishButton);</span>
-<span class="nc" id="L130">    this.hideButton(this.russianButton);</span>
-<span class="nc" id="L131">  }</span>
-  
+<span class="nc" id="L127">    this.hideButton(this.polishButton);</span>
+<span class="nc" id="L128">    this.hideButton(this.englishButton);</span>
+<span class="nc" id="L129">    this.hideButton(this.russianButton);</span>
+<span class="nc" id="L130">  }</span>
+
   private void hideButton(Button button) {
-<span class="nc" id="L134">    button.setDisable(true);</span>
-<span class="nc" id="L135">    button.setVisible(false);</span>
-<span class="nc" id="L136">  }</span>
+<span class="nc" id="L133">    button.setDisable(true);</span>
+<span class="nc" id="L134">    button.setVisible(false);</span>
+<span class="nc" id="L135">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

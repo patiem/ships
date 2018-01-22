@@ -11,10 +11,10 @@
 <span class="sourceLineNo">003</span>import lombok.AccessLevel;<a name="line.3"></a>
 <span class="sourceLineNo">004</span>import lombok.AllArgsConstructor;<a name="line.4"></a>
 <span class="sourceLineNo">005</span>import lombok.EqualsAndHashCode;<a name="line.5"></a>
-<span class="sourceLineNo">006</span>import lombok.ToString;<a name="line.6"></a>
-<span class="sourceLineNo">007</span><a name="line.7"></a>
-<span class="sourceLineNo">008</span>/**<a name="line.8"></a>
-<span class="sourceLineNo">009</span> * Mast of a ship.<a name="line.9"></a>
+<span class="sourceLineNo">006</span><a name="line.6"></a>
+<span class="sourceLineNo">007</span>/**<a name="line.7"></a>
+<span class="sourceLineNo">008</span> * Mast of a ship.<a name="line.8"></a>
+<span class="sourceLineNo">009</span> *<a name="line.9"></a>
 <span class="sourceLineNo">010</span> * @author Piotr Czyż, Sandor Korotkevics<a name="line.10"></a>
 <span class="sourceLineNo">011</span> * @see Ship<a name="line.11"></a>
 <span class="sourceLineNo">012</span> * @since 2017-12-19<a name="line.12"></a>
@@ -23,7 +23,7 @@
 <span class="sourceLineNo">015</span>@AllArgsConstructor(access = AccessLevel.PRIVATE)<a name="line.15"></a>
 <span class="sourceLineNo">016</span>public class Mast {<a name="line.16"></a>
 <span class="sourceLineNo">017</span>  private String index;<a name="line.17"></a>
-<span class="sourceLineNo">018</span>  <a name="line.18"></a>
+<span class="sourceLineNo">018</span><a name="line.18"></a>
 <span class="sourceLineNo">019</span>  /**<a name="line.19"></a>
 <span class="sourceLineNo">020</span>   * Creates a Mast based on an index value.<a name="line.20"></a>
 <span class="sourceLineNo">021</span>   *<a name="line.21"></a>
@@ -33,16 +33,17 @@
 <span class="sourceLineNo">025</span>  public static Mast ofIndex(final String index) {<a name="line.25"></a>
 <span class="sourceLineNo">026</span>    return new Mast(index);<a name="line.26"></a>
 <span class="sourceLineNo">027</span>  }<a name="line.27"></a>
-<span class="sourceLineNo">028</span>  <a name="line.28"></a>
+<span class="sourceLineNo">028</span><a name="line.28"></a>
 <span class="sourceLineNo">029</span>  /**<a name="line.29"></a>
 <span class="sourceLineNo">030</span>   * Not a subject to change.<a name="line.30"></a>
-<span class="sourceLineNo">031</span>   * @return a String representation of Mast which is its actual index.<a name="line.31"></a>
-<span class="sourceLineNo">032</span>   */<a name="line.32"></a>
-<span class="sourceLineNo">033</span>  @Override<a name="line.33"></a>
-<span class="sourceLineNo">034</span>  public String toString() {<a name="line.34"></a>
-<span class="sourceLineNo">035</span>    return this.index;<a name="line.35"></a>
-<span class="sourceLineNo">036</span>  }<a name="line.36"></a>
-<span class="sourceLineNo">037</span>}<a name="line.37"></a>
+<span class="sourceLineNo">031</span>   *<a name="line.31"></a>
+<span class="sourceLineNo">032</span>   * @return a String representation of Mast which is its actual index.<a name="line.32"></a>
+<span class="sourceLineNo">033</span>   */<a name="line.33"></a>
+<span class="sourceLineNo">034</span>  @Override<a name="line.34"></a>
+<span class="sourceLineNo">035</span>  public String toString() {<a name="line.35"></a>
+<span class="sourceLineNo">036</span>    return this.index;<a name="line.36"></a>
+<span class="sourceLineNo">037</span>  }<a name="line.37"></a>
+<span class="sourceLineNo">038</span>}<a name="line.38"></a>
 
 
 

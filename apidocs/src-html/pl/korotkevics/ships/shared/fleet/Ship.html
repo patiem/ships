@@ -20,27 +20,28 @@
 <span class="sourceLineNo">012</span><a name="line.12"></a>
 <span class="sourceLineNo">013</span>/**<a name="line.13"></a>
 <span class="sourceLineNo">014</span> * Ship consisting of masts.<a name="line.14"></a>
-<span class="sourceLineNo">015</span> * @author Piotr Czyż, Sandor Korotkevics<a name="line.15"></a>
-<span class="sourceLineNo">016</span> * @see Mast<a name="line.16"></a>
-<span class="sourceLineNo">017</span> * @since 2017-12-19<a name="line.17"></a>
-<span class="sourceLineNo">018</span> */<a name="line.18"></a>
-<span class="sourceLineNo">019</span>@EqualsAndHashCode<a name="line.19"></a>
-<span class="sourceLineNo">020</span>@AllArgsConstructor(access = AccessLevel.PRIVATE)<a name="line.20"></a>
-<span class="sourceLineNo">021</span>@ToString<a name="line.21"></a>
-<span class="sourceLineNo">022</span>public class Ship {<a name="line.22"></a>
-<span class="sourceLineNo">023</span>  @Getter(AccessLevel.PACKAGE)<a name="line.23"></a>
-<span class="sourceLineNo">024</span>  private final Set&lt;Mast&gt; masts;<a name="line.24"></a>
-<span class="sourceLineNo">025</span><a name="line.25"></a>
-<span class="sourceLineNo">026</span>  /**<a name="line.26"></a>
-<span class="sourceLineNo">027</span>   * Static factory method.<a name="line.27"></a>
-<span class="sourceLineNo">028</span>   *<a name="line.28"></a>
-<span class="sourceLineNo">029</span>   * @param masts of ship<a name="line.29"></a>
-<span class="sourceLineNo">030</span>   * @return Ship<a name="line.30"></a>
-<span class="sourceLineNo">031</span>   */<a name="line.31"></a>
-<span class="sourceLineNo">032</span>  public static Ship ofMasts(Mast... masts) {<a name="line.32"></a>
-<span class="sourceLineNo">033</span>    return new Ship(new HashSet&lt;&gt;(Arrays.asList(masts)));<a name="line.33"></a>
-<span class="sourceLineNo">034</span>  }<a name="line.34"></a>
-<span class="sourceLineNo">035</span>}<a name="line.35"></a>
+<span class="sourceLineNo">015</span> *<a name="line.15"></a>
+<span class="sourceLineNo">016</span> * @author Piotr Czyż, Sandor Korotkevics<a name="line.16"></a>
+<span class="sourceLineNo">017</span> * @see Mast<a name="line.17"></a>
+<span class="sourceLineNo">018</span> * @since 2017-12-19<a name="line.18"></a>
+<span class="sourceLineNo">019</span> */<a name="line.19"></a>
+<span class="sourceLineNo">020</span>@EqualsAndHashCode<a name="line.20"></a>
+<span class="sourceLineNo">021</span>@AllArgsConstructor(access = AccessLevel.PRIVATE)<a name="line.21"></a>
+<span class="sourceLineNo">022</span>@ToString<a name="line.22"></a>
+<span class="sourceLineNo">023</span>public class Ship {<a name="line.23"></a>
+<span class="sourceLineNo">024</span>  @Getter(AccessLevel.PACKAGE)<a name="line.24"></a>
+<span class="sourceLineNo">025</span>  private final Set&lt;Mast&gt; masts;<a name="line.25"></a>
+<span class="sourceLineNo">026</span><a name="line.26"></a>
+<span class="sourceLineNo">027</span>  /**<a name="line.27"></a>
+<span class="sourceLineNo">028</span>   * Static factory method.<a name="line.28"></a>
+<span class="sourceLineNo">029</span>   *<a name="line.29"></a>
+<span class="sourceLineNo">030</span>   * @param masts of ship<a name="line.30"></a>
+<span class="sourceLineNo">031</span>   * @return Ship<a name="line.31"></a>
+<span class="sourceLineNo">032</span>   */<a name="line.32"></a>
+<span class="sourceLineNo">033</span>  public static Ship ofMasts(Mast... masts) {<a name="line.33"></a>
+<span class="sourceLineNo">034</span>    return new Ship(new HashSet&lt;&gt;(Arrays.asList(masts)));<a name="line.34"></a>
+<span class="sourceLineNo">035</span>  }<a name="line.35"></a>
+<span class="sourceLineNo">036</span>}<a name="line.36"></a>
 
 
 

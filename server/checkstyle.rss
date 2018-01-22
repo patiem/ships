@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 23,
              Errors: 0,
-             Warnings: 3,
+             Warnings: 1,
              Infos: 0
       </title>
             <link>./index.html/checkstyle.html</link>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.MessageReceiver.java">pl/korotkevics/ships/server/MessageReceiver.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.GameState.java">pl/korotkevics/ships/server/game/gamestates/GameState.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.WrappedClient.java">pl/korotkevics/ships/server/WrappedClient.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.communication.MessageReceiver.java">pl/korotkevics/ships/server/communication/MessageReceiver.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,259 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FleetPlacementState.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementState.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.play.DamageDestroyedNotifier.java">pl/korotkevics/ships/server/game/gamestates/play/DamageDestroyedNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.fleetplacement.FleetPlacementState.java">pl/korotkevics/ships/server/game/gamestates/fleetplacement/FleetPlacementState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.communication.MessageSender.java">pl/korotkevics/ships/server/communication/MessageSender.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.fleetplacement.FleetGenerator.java">pl/korotkevics/ships/server/game/gamestates/fleetplacement/FleetGenerator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.Game.java">pl/korotkevics/ships/server/game/Game.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.endgame.GameEndWithWinState.java">pl/korotkevics/ships/server/game/gamestates/endgame/GameEndWithWinState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.communication.CommunicationBus.java">pl/korotkevics/ships/server/communication/CommunicationBus.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.communication.AppServer.java">pl/korotkevics/ships/server/communication/AppServer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.endgame.GameEndWithWalkoverState.java">pl/korotkevics/ships/server/game/gamestates/endgame/GameEndWithWalkoverState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.fleetplacement.FieldState.java">pl/korotkevics/ships/server/game/gamestates/fleetplacement/FieldState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.SeverMain.java">pl/korotkevics/ships/server/SeverMain.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.play.DamageNotifier.java">pl/korotkevics/ships/server/game/gamestates/play/DamageNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.connection.WaitingForPlayersState.java">pl/korotkevics/ships/server/game/gamestates/connection/WaitingForPlayersState.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.communication.WrappedClient.java">pl/korotkevics/ships/server/communication/WrappedClient.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.TurnManager.java">pl/korotkevics/ships/server/game/TurnManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.communication.MessageRepository.java">pl/korotkevics/ships/server/communication/MessageRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.play.DamageHitNotifier.java">pl/korotkevics/ships/server/game/gamestates/play/DamageHitNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.play.DamageMissNotifier.java">pl/korotkevics/ships/server/game/gamestates/play/DamageMissNotifier.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.play.PlayState.java">pl/korotkevics/ships/server/game/gamestates/play/PlayState.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +340,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.CommunicationBus.java">pl/korotkevics/ships/server/CommunicationBus.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.play.ShotHandler.java">pl/korotkevics/ships/server/game/gamestates/play/ShotHandler.java</a>
                 </td>
                 <td>
                   0
@@ -102,259 +354,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.MessageSender.java">pl/korotkevics/ships/server/MessageSender.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FieldState.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FieldState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.AppServer.java">pl/korotkevics/ships/server/AppServer.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.ShotHandler.java">pl/korotkevics/ships/server/gamestates/play/ShotHandler.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.TurnManager.java">pl/korotkevics/ships/server/TurnManager.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageNotifier.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.connection.WaitingForPlayersState.java">pl/korotkevics/ships/server/gamestates/connection/WaitingForPlayersState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FleetPlacementProcessor.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementProcessor.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.PlayState.java">pl/korotkevics/ships/server/gamestates/play/PlayState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.GameState.java">pl/korotkevics/ships/server/gamestates/GameState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageHitNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageHitNotifier.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.Main.java">pl/korotkevics/ships/server/Main.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWinState.java">pl/korotkevics/ships/server/gamestates/endgame/GameEndWithWinState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.MessageRepository.java">pl/korotkevics/ships/server/MessageRepository.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.endgame.GameEndWithWalkoverState.java">pl/korotkevics/ships/server/gamestates/endgame/GameEndWithWalkoverState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageDestroyedNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageDestroyedNotifier.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageMissNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageMissNotifier.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.Game.java">pl/korotkevics/ships/server/Game.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FleetGenerator.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FleetGenerator.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.game.gamestates.fleetplacement.FleetPlacementProcessor.java">pl/korotkevics/ships/server/game/gamestates/fleetplacement/FleetPlacementProcessor.java</a>
                 </td>
                 <td>
                   0

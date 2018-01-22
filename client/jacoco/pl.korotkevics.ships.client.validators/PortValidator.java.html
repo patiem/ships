@@ -2,29 +2,31 @@
 
 /**
  * Enables validation of a port number.
+ *
  * @author Magdalena Aarsman
  * @since 2017-12-16
  */
-<span class="fc" id="L8">public class PortValidator {</span>
+<span class="fc" id="L9">public class PortValidator {</span>
 
   /**
    * Validate the port number, returns port as Integer when it is valid.
+   *
    * @param providedPort - port provided by user as a String
    * @return - port number
    * @throws IllegalArgumentException if port is invalid.
    */
   public int asInt(String providedPort) {
-<span class="fc" id="L17">    int port = Integer.parseInt(providedPort);</span>
-<span class="fc" id="L18">    checkRange(port);</span>
-<span class="fc" id="L19">    return port;</span>
+<span class="fc" id="L19">    int port = Integer.parseInt(providedPort);</span>
+<span class="fc" id="L20">    checkRange(port);</span>
+<span class="fc" id="L21">    return port;</span>
   }
 
   private void checkRange(int port) {
-<span class="fc" id="L23">    final int maxValidPort = 0xFFFF;</span>
-<span class="fc" id="L24">    final int minValidPort = 1024;</span>
-<span class="fc bfc" id="L25" title="All 4 branches covered.">    if (port &lt;= minValidPort || port &gt; maxValidPort) {</span>
-<span class="fc" id="L26">      throw new IllegalArgumentException(&quot;port value is out of range&quot;);</span>
+<span class="fc" id="L25">    final int maxValidPort = 0xFFFF;</span>
+<span class="fc" id="L26">    final int minValidPort = 1024;</span>
+<span class="fc bfc" id="L27" title="All 4 branches covered.">    if (port &lt;= minValidPort || port &gt; maxValidPort) {</span>
+<span class="fc" id="L28">      throw new IllegalArgumentException(&quot;port value is out of range&quot;);</span>
     }
-<span class="fc" id="L28">  }</span>
+<span class="fc" id="L30">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

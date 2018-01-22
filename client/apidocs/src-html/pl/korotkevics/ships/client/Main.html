@@ -8,25 +8,26 @@
 <div class="sourceContainer">
 <pre><span class="sourceLineNo">001</span>package pl.korotkevics.ships.client;<a name="line.1"></a>
 <span class="sourceLineNo">002</span><a name="line.2"></a>
-<span class="sourceLineNo">003</span>import pl.korotkevics.ships.client.gui.GuiMain;<a name="line.3"></a>
-<span class="sourceLineNo">004</span>import pl.korotkevics.ships.shared.infra.logging.api.Target;<a name="line.4"></a>
-<span class="sourceLineNo">005</span>import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;<a name="line.5"></a>
-<span class="sourceLineNo">006</span>import javafx.application.Application;<a name="line.6"></a>
+<span class="sourceLineNo">003</span>import javafx.application.Application;<a name="line.3"></a>
+<span class="sourceLineNo">004</span>import pl.korotkevics.ships.client.gui.GuiMain;<a name="line.4"></a>
+<span class="sourceLineNo">005</span>import pl.korotkevics.ships.shared.infra.logging.api.Target;<a name="line.5"></a>
+<span class="sourceLineNo">006</span>import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;<a name="line.6"></a>
 <span class="sourceLineNo">007</span><a name="line.7"></a>
 <span class="sourceLineNo">008</span>/**<a name="line.8"></a>
 <span class="sourceLineNo">009</span> * Main class of client application.<a name="line.9"></a>
-<span class="sourceLineNo">010</span> * @author Magdalena Aarsman<a name="line.10"></a>
-<span class="sourceLineNo">011</span> * @since 2017-12-14<a name="line.11"></a>
-<span class="sourceLineNo">012</span> */<a name="line.12"></a>
-<span class="sourceLineNo">013</span>public class Main {<a name="line.13"></a>
-<span class="sourceLineNo">014</span>  private static final Target logger = new SharedLogger(Main.class);<a name="line.14"></a>
-<span class="sourceLineNo">015</span><a name="line.15"></a>
-<span class="sourceLineNo">016</span>  public static void main(String[] args) {<a name="line.16"></a>
-<span class="sourceLineNo">017</span>    logger.info("Client is up and running.");<a name="line.17"></a>
-<span class="sourceLineNo">018</span>    new Thread(() -&gt; Application.launch(GuiMain.class)).start();<a name="line.18"></a>
-<span class="sourceLineNo">019</span>  }<a name="line.19"></a>
-<span class="sourceLineNo">020</span>}<a name="line.20"></a>
-<span class="sourceLineNo">021</span><a name="line.21"></a>
+<span class="sourceLineNo">010</span> *<a name="line.10"></a>
+<span class="sourceLineNo">011</span> * @author Magdalena Aarsman<a name="line.11"></a>
+<span class="sourceLineNo">012</span> * @since 2017-12-14<a name="line.12"></a>
+<span class="sourceLineNo">013</span> */<a name="line.13"></a>
+<span class="sourceLineNo">014</span>public class Main {<a name="line.14"></a>
+<span class="sourceLineNo">015</span>  private static final Target logger = new SharedLogger(Main.class);<a name="line.15"></a>
+<span class="sourceLineNo">016</span><a name="line.16"></a>
+<span class="sourceLineNo">017</span>  public static void main(String[] args) {<a name="line.17"></a>
+<span class="sourceLineNo">018</span>    logger.info("Client is up and running.");<a name="line.18"></a>
+<span class="sourceLineNo">019</span>    new Thread(() -&gt; Application.launch(GuiMain.class)).start();<a name="line.19"></a>
+<span class="sourceLineNo">020</span>  }<a name="line.20"></a>
+<span class="sourceLineNo">021</span>}<a name="line.21"></a>
+<span class="sourceLineNo">022</span><a name="line.22"></a>
 
 
 

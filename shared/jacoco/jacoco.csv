@@ -12,4 +12,4 @@ Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.json.io,Json
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.json.io,JsonSender,6,36,0,0,2,10,0,2,0,2
 Ships - SHARED,pl.korotkevics.ships.shared.infra.logging.core,SharedLogger,34,9,0,0,7,4,4,1,4,1
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.message,MessageBuilder,0,69,0,0,0,23,0,7,0,7
-Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.message,BaseMessage,41,214,28,18,0,10,23,15,0,15
+Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.message,BaseMessage,39,216,27,19,0,10,22,16,0,15

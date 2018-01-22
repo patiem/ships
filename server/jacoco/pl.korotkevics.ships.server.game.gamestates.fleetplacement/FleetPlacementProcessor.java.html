@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FleetPlacementProcessor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SERVER</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.server.game.gamestates.fleetplacement</a> &gt; <span class="el_source">FleetPlacementProcessor.java</span></div><h1>FleetPlacementProcessor.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.server.game.gamestates.fleetplacement;
+
+import pl.korotkevics.ships.server.communication.CommunicationBus;
+import pl.korotkevics.ships.server.communication.MessageReceiver;
+import pl.korotkevics.ships.server.communication.MessageSender;
+import pl.korotkevics.ships.server.communication.WrappedClient;
+import pl.korotkevics.ships.shared.fleet.Fleet;
+import pl.korotkevics.ships.shared.infra.communication.api.Message;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+
+/**
+ * Bases on header it returns generated fleet or received one.
+ *
+ * @author Piotr Czyż
+ * @since 2018-01-10
+ */
+class FleetPlacementProcessor {
+
+  private final CommunicationBus communicationBus;
+  private final FleetGenerator fleetGenerator;
+<span class="fc" id="L25">  private Target logger = new SharedLogger(FleetPlacementProcessor.class);</span>
+  private MessageReceiver messageReceiver;
+
+  FleetPlacementProcessor(final CommunicationBus communicationBus,
+<span class="fc" id="L29">                          final FleetGenerator fleetGenerator) {</span>
+<span class="fc" id="L30">    this.communicationBus = communicationBus;</span>
+<span class="fc" id="L31">    this.messageReceiver = new MessageReceiver(communicationBus);</span>
+<span class="fc" id="L32">    this.fleetGenerator = fleetGenerator;</span>
+<span class="fc" id="L33">  }</span>
+
+  Fleet placeFleet(final WrappedClient wrappedClient) {
+<span class="fc" id="L36">    this.messageReceiver.receive(wrappedClient);</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">    if (this.messageReceiver.isRandomPlacement()) {</span>
+<span class="fc" id="L38">      Fleet fleet = this.fleetGenerator.generateFleet();</span>
+<span class="fc" id="L39">      this.send(wrappedClient, fleet);</span>
+<span class="fc" id="L40">      logger.info(fleet.toString());</span>
+<span class="fc" id="L41">      return this.placeFleet(wrappedClient);</span>
+    }
+<span class="fc" id="L43">    return receiveFloat();</span>
+  }
+
+  private void send(final WrappedClient wrappedClient, final Fleet fleet) {
+<span class="fc" id="L47">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
+<span class="fc" id="L48">    final Message message = new MessageBuilder()</span>
+<span class="fc" id="L49">        .withAuthor(Author.SERVER)</span>
+<span class="fc" id="L50">        .withHeader(Header.RANDOM_PLACEMENT)</span>
+<span class="fc" id="L51">        .withFleet(fleet)</span>
+<span class="fc" id="L52">        .build();</span>
+<span class="fc" id="L53">    messageSender.send(wrappedClient, message);</span>
+<span class="fc" id="L54">  }</span>
+
+  private Fleet receiveFloat() {
+<span class="fc" id="L57">    return this.messageReceiver.getMessage().getFleet();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

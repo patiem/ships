@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FleetPlacementState.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SERVER</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.server.game.gamestates.fleetplacement</a> &gt; <span class="el_source">FleetPlacementState.java</span></div><h1>FleetPlacementState.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.server.game.gamestates.fleetplacement;
+
+import pl.korotkevics.ships.server.communication.CommunicationBus;
+import pl.korotkevics.ships.server.communication.MessageSender;
+import pl.korotkevics.ships.server.game.TurnManager;
+import pl.korotkevics.ships.server.game.gamestates.GameState;
+import pl.korotkevics.ships.server.game.gamestates.endgame.GameEndWithWalkoverState;
+import pl.korotkevics.ships.server.game.gamestates.play.PlayState;
+import pl.korotkevics.ships.shared.fleet.Fleet;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * Represents state of game in which players place their fleets.
+ *
+ * @author Piotr Czyż
+ * @since 2018-01-02
+ */
+public class FleetPlacementState implements GameState {
+  private final CommunicationBus communicationBus;
+  private final FleetPlacementProcessor fleetProcessor;
+  private final TurnManager turnManager;
+<span class="fc" id="L29">  private final Target logger = new SharedLogger(FleetPlacementState.class);</span>
+  private final List&lt;Fleet&gt; fleets;
+
+  /**
+   * @param communicationBus client server communication bus.
+   */
+<span class="fc" id="L35">  public FleetPlacementState(final CommunicationBus communicationBus) {</span>
+<span class="fc" id="L36">    this.communicationBus = communicationBus;</span>
+<span class="fc" id="L37">    this.turnManager = new TurnManager(communicationBus.getFirstClient(),</span>
+<span class="fc" id="L38">        communicationBus.getSecondClient());</span>
+<span class="fc" id="L39">    this.fleetProcessor = new FleetPlacementProcessor(communicationBus, new FleetGenerator());</span>
+<span class="fc" id="L40">    fleets = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L41">  }</span>
+
+  /**
+   * Receives fleets from players, and transfers game to next state.
+   *
+   * @return GameState - PlayState
+   * @see PlayState
+   * @see GameEndWithWalkoverState
+   */
+  @Override
+  public GameState process() {
+<span class="fc" id="L52">    this.askPlayersForPlaceFleet();</span>
+<span class="fc" id="L53">    this.placeFleet();</span>
+<span class="fc" id="L54">    this.rest();</span>
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">    if (this.verifyClientsAreConnected()) {</span>
+<span class="fc" id="L56">      return new PlayState(communicationBus, fleets);</span>
+    }
+<span class="nc" id="L58">    return new GameEndWithWalkoverState(communicationBus);</span>
+  }
+
+  private boolean verifyClientsAreConnected() {
+<span class="fc" id="L62">    return this.fleets.stream().noneMatch(Fleet::isDefeated);</span>
+  }
+
+  private void placeFleet() {
+<span class="fc" id="L66">    final Map&lt;Integer, Fleet&gt; clientsFleet = new ConcurrentHashMap&lt;&gt;();</span>
+<span class="fc" id="L67">    Thread firstClientFleetPlacement = new Thread(() -&gt;</span>
+<span class="fc" id="L68">        clientsFleet.put(0, this.fleetProcessor.placeFleet(this.turnManager.getCurrentPlayer())));</span>
+<span class="fc" id="L69">    firstClientFleetPlacement.start();</span>
+<span class="fc" id="L70">    Thread secondClientFleetPlacement = new Thread(() -&gt;</span>
+<span class="fc" id="L71">        clientsFleet.put(1, this.fleetProcessor.placeFleet(this.turnManager.getOtherPlayer())));</span>
+<span class="fc" id="L72">    secondClientFleetPlacement.start();</span>
+    try {
+<span class="fc" id="L74">      firstClientFleetPlacement.join();</span>
+<span class="fc" id="L75">      secondClientFleetPlacement.join();</span>
+<span class="nc" id="L76">    } catch (InterruptedException e) {</span>
+<span class="nc" id="L77">      logger.error(e.getMessage());</span>
+<span class="fc" id="L78">    }</span>
+<span class="fc" id="L79">    this.fleets.add(clientsFleet.get(0));</span>
+<span class="fc" id="L80">    this.fleets.add(clientsFleet.get(1));</span>
+<span class="fc" id="L81">  }</span>
+
+  private void askPlayersForPlaceFleet() {
+<span class="fc" id="L84">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
+<span class="fc" id="L85">    messageSender.sendToAll(Header.MANUAL_PLACEMENT);</span>
+<span class="fc" id="L86">  }</span>
+
+  private void rest() {
+<span class="fc" id="L89">    final long restTime = 300;</span>
+    try {
+<span class="fc" id="L91">      Thread.sleep(restTime);</span>
+<span class="nc" id="L92">    } catch (final InterruptedException e) {</span>
+<span class="nc" id="L93">      logger.error(e.getMessage());</span>
+<span class="nc" id="L94">      Thread.currentThread().interrupt();</span>
+<span class="fc" id="L95">    }</span>
+<span class="fc" id="L96">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

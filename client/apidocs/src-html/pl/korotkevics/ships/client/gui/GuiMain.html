@@ -33,26 +33,26 @@
 <span class="sourceLineNo">025</span>    final String windowTitle = "Battleships";<a name="line.25"></a>
 <span class="sourceLineNo">026</span>    final boolean clientShouldRun = true;<a name="line.26"></a>
 <span class="sourceLineNo">027</span>    final Client client = new Client(new MessageHandlerBuilder().withEnumMap()<a name="line.27"></a>
-<span class="sourceLineNo">028</span>                                         .withDefaultSetsOfTriggers().build(), clientShouldRun);<a name="line.28"></a>
+<span class="sourceLineNo">028</span>        .withDefaultSetsOfTriggers().build(), clientShouldRun);<a name="line.28"></a>
 <span class="sourceLineNo">029</span>    final int sceneWidth = 600;<a name="line.29"></a>
 <span class="sourceLineNo">030</span>    final int sceneHeight = 400;<a name="line.30"></a>
-<span class="sourceLineNo">031</span>    <a name="line.31"></a>
+<span class="sourceLineNo">031</span><a name="line.31"></a>
 <span class="sourceLineNo">032</span>    FXMLLoader rootLoader = new FXMLLoader(getClass().getResource(fxmlMainWindowPath));<a name="line.32"></a>
 <span class="sourceLineNo">033</span>    Parent root = rootLoader.load();<a name="line.33"></a>
 <span class="sourceLineNo">034</span>    MainController mainController = rootLoader.getController();<a name="line.34"></a>
 <span class="sourceLineNo">035</span>    mainController.initialize(client);<a name="line.35"></a>
-<span class="sourceLineNo">036</span>    <a name="line.36"></a>
+<span class="sourceLineNo">036</span><a name="line.36"></a>
 <span class="sourceLineNo">037</span>    primaryStage.setTitle(windowTitle);<a name="line.37"></a>
 <span class="sourceLineNo">038</span>    primaryStage.setScene(new Scene(root, sceneWidth, sceneHeight));<a name="line.38"></a>
 <span class="sourceLineNo">039</span>    primaryStage.setResizable(false);<a name="line.39"></a>
 <span class="sourceLineNo">040</span>    primaryStage.show();<a name="line.40"></a>
-<span class="sourceLineNo">041</span>    <a name="line.41"></a>
+<span class="sourceLineNo">041</span><a name="line.41"></a>
 <span class="sourceLineNo">042</span>    primaryStage.setOnHiding((WindowEvent event) -&gt; {<a name="line.42"></a>
 <span class="sourceLineNo">043</span>      client.closeClient();<a name="line.43"></a>
 <span class="sourceLineNo">044</span>      Platform.exit();<a name="line.44"></a>
 <span class="sourceLineNo">045</span>    });<a name="line.45"></a>
 <span class="sourceLineNo">046</span>  }<a name="line.46"></a>
-<span class="sourceLineNo">047</span>  <a name="line.47"></a>
+<span class="sourceLineNo">047</span><a name="line.47"></a>
 <span class="sourceLineNo">048</span>}<a name="line.48"></a>
 
 

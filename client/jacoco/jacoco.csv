@@ -3,7 +3,7 @@ Ships - CLIENT,pl.korotkevics.ships.client,Main,23,0,0,0,5,0,4,0,4,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,ConnectWindowController,307,0,6,0,83,0,13,0,10,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,ServerNotRespondingController,56,0,0,0,15,0,4,0,4,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,MainController,175,0,0,0,49,0,14,0,14,0
-Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,FleetPlacementController,1182,0,64,0,268,0,82,0,50,0
+Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,FleetPlacementController,1182,0,64,0,275,0,82,0,50,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.controllers,GameWindowController,652,0,20,0,155,0,46,0,36,0
 Ships - CLIENT,pl.korotkevics.ships.client.client,LoseTrigger,13,0,0,0,3,0,3,0,3,0
 Ships - CLIENT,pl.korotkevics.ships.client.client,RandomPlacementTrigger,16,0,0,0,4,0,3,0,3,0
@@ -30,7 +30,7 @@ Ships - CLIENT,pl.korotkevics.ships.client.gui.events,HitShotEvent,11,0,0,0,3,0,
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,OpponentShotEvent,17,0,0,0,5,0,3,0,3,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,TurnChangeEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.validators,PortValidator,0,27,0,4,0,9,0,5,0,3
-Ships - CLIENT,pl.korotkevics.ships.client.validators,ShipPlacementValidator,5,567,7,87,0,66,7,84,0,44
+Ships - CLIENT,pl.korotkevics.ships.client.validators,ShipPlacementValidator,5,567,7,87,0,67,7,84,0,44
 Ships - CLIENT,pl.korotkevics.ships.client.localization,OurLocale.new OurLocale() {...},8,0,0,0,2,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.localization,OurLocale.new OurLocale() {...},8,0,0,0,2,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.localization,OurLocale.new OurLocale() {...},8,0,0,0,2,0,2,0,2,0

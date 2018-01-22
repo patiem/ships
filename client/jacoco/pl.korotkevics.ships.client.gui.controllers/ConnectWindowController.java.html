@@ -33,39 +33,39 @@ import java.util.ResourceBundle;
  * @since 2017-12-14
  */
 <span class="nc" id="L35">public class ConnectWindowController implements Initializable {</span>
-  
+
 <span class="nc" id="L37">  private static final Target logger = new SharedLogger(Client.class);</span>
-  
+
   private Client client;
-  
+
   @FXML
   private GridPane gridPane;
-  
+
   @FXML
   private ImageView imCannon;
-  
+
   @FXML
   private VBox vbWheel;
-  
+
   @FXML
   private TextField textFieldServerAddress;
-  
+
   @FXML
   private TextField textFieldServerPort;
-  
+
   @FXML
   private AnchorPane mainAnchorPane;
-  
+
   @FXML
   private Label labelInvalidPort;
-  
+
   @FXML
   private Button eventButton;
-  
+
   private PortValidator portValidator;
-  
+
   private ResourceBundle resourceBundle;
-  
+
   @FXML
   private void onConnectPressed() {
     try {
@@ -74,10 +74,10 @@ import java.util.ResourceBundle;
 <span class="nc" id="L74">      logger.error(e.getMessage());</span>
 <span class="nc" id="L75">      return;</span>
 <span class="nc" id="L76">    }</span>
-    
+
 <span class="nc" id="L78">    final String serverAddress = textFieldServerAddress.getText();</span>
 <span class="nc" id="L79">    logger.info(&quot;server address: &quot; + serverAddress);</span>
-    
+
     int port;
     try {
 <span class="nc" id="L83">      port = portValidator.asInt(textFieldServerPort.getText());</span>
@@ -86,10 +86,10 @@ import java.util.ResourceBundle;
 <span class="nc" id="L86">      return;</span>
 <span class="nc" id="L87">    }</span>
 <span class="nc" id="L88">    logger.info(&quot;server port: &quot; + port);</span>
-    
+
 <span class="nc" id="L90">    showLoadingWheel();</span>
 <span class="nc" id="L91">    final boolean isConnected = client.connect(serverAddress, port, new Socket());</span>
-    
+
 <span class="nc bnc" id="L93" title="All 2 branches missed.">    if (!isConnected) {</span>
 <span class="nc" id="L94">      loadServerNotResponseView();</span>
     } else {
@@ -97,7 +97,7 @@ import java.util.ResourceBundle;
 <span class="nc" id="L97">      clientThread.start();</span>
     }
 <span class="nc" id="L99">  }</span>
-  
+
   private void initializeClient() {
 <span class="nc" id="L102">    final MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();</span>
 <span class="nc" id="L103">    this.client = mainController.getClient();</span>
@@ -107,21 +107,21 @@ import java.util.ResourceBundle;
 <span class="nc" id="L107">    this.client.setEventTrigger(eventButton);</span>
 <span class="nc" id="L108">    mainController.disableLocalizationButtons();</span>
 <span class="nc" id="L109">  }</span>
-  
+
   private void showLoadingWheel() {
 <span class="nc" id="L112">    final double opacity = 0.4;</span>
-    
+
 <span class="nc" id="L114">    gridPane.setDisable(true);</span>
 <span class="nc" id="L115">    gridPane.setOpacity(opacity);</span>
 <span class="nc" id="L116">    imCannon.setOpacity(opacity);</span>
 <span class="nc" id="L117">    vbWheel.setVisible(true);</span>
 <span class="nc" id="L118">  }</span>
-  
+
   private void loadServerNotResponseView() {
     try {
 <span class="nc" id="L122">      final String serverNotRespondingUrl = &quot;/fxml/serverNotResponding.fxml&quot;;</span>
-<span class="nc" id="L123">      final FXMLLoader notResponseLoader = new FXMLLoader(getClass().getResource</span>
-<span class="nc" id="L124">                                                                         (serverNotRespondingUrl));</span>
+<span class="nc" id="L123">      final FXMLLoader notResponseLoader = new FXMLLoader(getClass()</span>
+<span class="nc" id="L124">          .getResource(serverNotRespondingUrl));</span>
 <span class="nc" id="L125">      notResponseLoader.setResources(this.resourceBundle);</span>
 <span class="nc" id="L126">      final Parent notResponse = notResponseLoader.load();</span>
 <span class="nc" id="L127">      final Pane mainPane = (Pane) mainAnchorPane.getParent();</span>
@@ -131,29 +131,29 @@ import java.util.ResourceBundle;
 <span class="nc" id="L131">      logger.error(e.getMessage());</span>
 <span class="nc" id="L132">    }</span>
 <span class="nc" id="L133">  }</span>
-  
+
   @Override
   public void initialize(final URL location, final ResourceBundle resourceBundle) {
 <span class="nc" id="L137">    this.resourceBundle = resourceBundle;</span>
-    
+
 <span class="nc" id="L139">    textFieldServerPort.textProperty().addListener((observableValue, s1, t1) -&gt; {</span>
 <span class="nc bnc" id="L140" title="All 2 branches missed.">      if (!labelInvalidPort.getText().isEmpty()) {</span>
 <span class="nc" id="L141">        labelInvalidPort.setText(&quot;&quot;);</span>
       }
 <span class="nc" id="L143">    });</span>
-    
+
 <span class="nc" id="L145">    portValidator = new PortValidator();</span>
 <span class="nc" id="L146">    eventButton.addEventHandler(OpponentConnectedEvent.OPPONENT_CONNECTED, event -&gt;</span>
-<span class="nc" id="L147">                                                                               loadFleetPlacementWindow());</span>
-    
+<span class="nc" id="L147">        loadFleetPlacementWindow());</span>
+
 <span class="nc" id="L149">    final String defaultHost = &quot;127.0.0.1&quot;;</span>
 <span class="nc" id="L150">    final String defaultPort = &quot;8189&quot;;</span>
-    
+
 <span class="nc" id="L152">    textFieldServerAddress.setText(defaultHost);</span>
 <span class="nc" id="L153">    textFieldServerPort.setText(defaultPort);</span>
-    
+
 <span class="nc" id="L155">  }</span>
-  
+
   private void loadFleetPlacementWindow() {
     try {
 <span class="nc" id="L159">      final String gameWindowUrl = &quot;/fxml/fleetPlacement.fxml&quot;;</span>
@@ -161,26 +161,26 @@ import java.util.ResourceBundle;
 <span class="nc" id="L161">      gameWindowLoader.setResources(this.resourceBundle);</span>
 <span class="nc" id="L162">      final Parent gameWindow = gameWindowLoader.load();</span>
 <span class="nc" id="L163">      final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();</span>
-      
+
 <span class="nc" id="L165">      Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();</span>
-      
+
 <span class="nc" id="L167">      Stage stage = (Stage) mainPane.getScene().getWindow();</span>
 <span class="nc" id="L168">      final int shrinkSize = 300;</span>
 <span class="nc" id="L169">      stage.setMinHeight(screenBounds.getHeight() - shrinkSize);</span>
 <span class="nc" id="L170">      stage.setMinWidth(screenBounds.getWidth() - shrinkSize);</span>
-      
+
 <span class="nc" id="L172">      mainPane.getChildren().clear();</span>
 <span class="nc" id="L173">      mainPane.getChildren().setAll(gameWindow);</span>
-      
+
 <span class="nc" id="L175">      FleetPlacementController fleetPlacementController = gameWindowLoader.getController();</span>
 <span class="nc" id="L176">      fleetPlacementController.initializeClient();</span>
-      
+
 <span class="nc" id="L178">      final double margin = 0.0;</span>
 <span class="nc" id="L179">      AnchorPane.setTopAnchor(gameWindow, margin);</span>
 <span class="nc" id="L180">      AnchorPane.setBottomAnchor(gameWindow, margin);</span>
 <span class="nc" id="L181">      AnchorPane.setLeftAnchor(gameWindow, margin);</span>
 <span class="nc" id="L182">      AnchorPane.setRightAnchor(gameWindow, margin);</span>
-      
+
 <span class="nc" id="L184">    } catch (IOException e) {</span>
 <span class="nc" id="L185">      logger.error(e.getMessage());</span>
 <span class="nc" id="L186">    }</span>

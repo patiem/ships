@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GameWindowController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - CLIENT</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.client.gui.controllers</a> &gt; <span class="el_source">GameWindowController.java</span></div><h1>GameWindowController.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.client.gui.controllers;
 
 import javafx.application.Platform;
-import javafx.scene.layout.StackPane;
-import pl.korotkevics.ships.client.client.Client;
-import pl.korotkevics.ships.client.gui.events.HitShotEvent;
-import pl.korotkevics.ships.client.gui.events.LossEvent;
-import pl.korotkevics.ships.client.gui.events.MissShotEvent;
-import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
-import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
-import pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent;
-import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
-import pl.korotkevics.ships.client.gui.events.WinEvent;
-import pl.korotkevics.ships.shared.infra.logging.api.Target;
-import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.fxml.FXML;
@@ -25,9 +13,21 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import pl.korotkevics.ships.client.client.Client;
+import pl.korotkevics.ships.client.gui.events.HitShotEvent;
+import pl.korotkevics.ships.client.gui.events.LossEvent;
+import pl.korotkevics.ships.client.gui.events.MissShotEvent;
+import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
+import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
+import pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent;
+import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
+import pl.korotkevics.ships.client.gui.events.WinEvent;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,13 +35,14 @@ import java.util.ResourceBundle;
 
 /**
  * Game window controller.
+ *
  * @author Magdalena Aarsman
  * @since 2017-12-15
  */
 
-<span class="nc" id="L42">public class GameWindowController implements Initializable {</span>
-  
-<span class="nc" id="L44">  private static final Target logger = new SharedLogger(Client.class);</span>
+<span class="nc" id="L43">public class GameWindowController implements Initializable {</span>
+
+<span class="nc" id="L45">  private static final Target logger = new SharedLogger(Client.class);</span>
 
   private static final int BOARD_SIZE = 10;
 
@@ -73,239 +74,239 @@ import java.util.ResourceBundle;
   private ResourceBundle resourceBundle;
   private boolean hitShot;
   private boolean shipDestroyed;
-  
+
   private void initializeTurn(final boolean myTurn) {
-<span class="nc bnc" id="L78" title="All 2 branches missed.">    if (!myTurn) {</span>
-<span class="nc" id="L79">      opponentBoard.setDisable(true);</span>
-<span class="nc" id="L80">      final double opacity = 0.4;</span>
-<span class="nc" id="L81">      opponentBoard.setOpacity(opacity);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">    if (!myTurn) {</span>
+<span class="nc" id="L80">      opponentBoard.setDisable(true);</span>
+<span class="nc" id="L81">      final double opacity = 0.4;</span>
+<span class="nc" id="L82">      opponentBoard.setOpacity(opacity);</span>
     }
-<span class="nc" id="L83">  }</span>
+<span class="nc" id="L84">  }</span>
 
   void initializeClient() {
-<span class="nc" id="L86">    getClient().setEventTrigger(eventButton);</span>
-<span class="nc" id="L87">  }</span>
+<span class="nc" id="L87">    getClient().setEventTrigger(eventButton);</span>
+<span class="nc" id="L88">  }</span>
 
   void initializeBoards(GridPane yourBoard) {
-<span class="nc" id="L90">    final int margin = 50;</span>
-<span class="nc" id="L91">    final NumberBinding allRectanglesWidth = Bindings.min(this.yourBoard.heightProperty(),</span>
-<span class="nc" id="L92">        this.yourBoard.widthProperty().add(-margin));</span>
-<span class="nc" id="L93">    final NumberBinding allRectanglesHeight = Bindings.min(this.yourBoard.heightProperty(),</span>
-<span class="nc" id="L94">        this.yourBoard.widthProperty()).add(-margin);</span>
+<span class="nc" id="L91">    final int margin = 50;</span>
+<span class="nc" id="L92">    final NumberBinding allRectanglesWidth = Bindings.min(this.yourBoard.heightProperty(),</span>
+<span class="nc" id="L93">        this.yourBoard.widthProperty().add(-margin));</span>
+<span class="nc" id="L94">    final NumberBinding allRectanglesHeight = Bindings.min(this.yourBoard.heightProperty(),</span>
+<span class="nc" id="L95">        this.yourBoard.widthProperty()).add(-margin);</span>
 
-<span class="nc bnc" id="L96" title="All 2 branches missed.">    for (int i = 0; i &lt; BOARD_SIZE; i++) {</span>
-<span class="nc bnc" id="L97" title="All 2 branches missed.">      for (int j = 0; j &lt; BOARD_SIZE; j++) {</span>
-<span class="nc" id="L98">        final int shotIndex = j * BOARD_SIZE + i;</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">    for (int i = 0; i &lt; BOARD_SIZE; i++) {</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">      for (int j = 0; j &lt; BOARD_SIZE; j++) {</span>
+<span class="nc" id="L99">        final int shotIndex = j * BOARD_SIZE + i;</span>
 
-<span class="nc" id="L100">        Rectangle yourRect = getYourRect(allRectanglesWidth, allRectanglesHeight);</span>
-<span class="nc" id="L101">        Rectangle opponentRect = getOpponentRectangle(allRectanglesWidth,</span>
+<span class="nc" id="L101">        Rectangle yourRect = getYourRect(allRectanglesWidth, allRectanglesHeight);</span>
+<span class="nc" id="L102">        Rectangle opponentRect = getOpponentRectangle(allRectanglesWidth,</span>
             allRectanglesHeight, shotIndex);
 
-<span class="nc" id="L104">        this.yourBoard.add(yourRect, i, j);</span>
-<span class="nc" id="L105">        opponentBoard.add(opponentRect, i, j);</span>
+<span class="nc" id="L105">        this.yourBoard.add(yourRect, i, j);</span>
+<span class="nc" id="L106">        opponentBoard.add(opponentRect, i, j);</span>
 
-<span class="nc" id="L107">        GridPane.setHalignment(yourRect, HPos.CENTER);</span>
-<span class="nc" id="L108">        GridPane.setHalignment(opponentRect, HPos.CENTER);</span>
+<span class="nc" id="L108">        GridPane.setHalignment(yourRect, HPos.CENTER);</span>
+<span class="nc" id="L109">        GridPane.setHalignment(opponentRect, HPos.CENTER);</span>
       }
     }
 
-<span class="nc" id="L112">    copyYourBoard(yourBoard);</span>
-<span class="nc" id="L113">  }</span>
+<span class="nc" id="L113">    copyYourBoard(yourBoard);</span>
+<span class="nc" id="L114">  }</span>
 
   private void copyYourBoard(GridPane yourBoard) {
-<span class="nc bnc" id="L116" title="All 2 branches missed.">    for (int i = 1; i &lt; yourBoard.getChildren().size(); i++) {</span>
-<span class="nc bnc" id="L117" title="All 2 branches missed.">      if (((Rectangle) yourBoard.getChildren().get(i)).getFill() == Color.GREEN) {</span>
-<span class="nc" id="L118">        ((Rectangle) this.yourBoard.getChildren().get(i)).setFill(Color.GREEN);</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">    for (int i = 1; i &lt; yourBoard.getChildren().size(); i++) {</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">      if (((Rectangle) yourBoard.getChildren().get(i)).getFill() == Color.GREEN) {</span>
+<span class="nc" id="L119">        ((Rectangle) this.yourBoard.getChildren().get(i)).setFill(Color.GREEN);</span>
       }
     }
-<span class="nc" id="L121">  }</span>
+<span class="nc" id="L122">  }</span>
 
   private Client getClient() {
-<span class="nc" id="L124">    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();</span>
-<span class="nc" id="L125">    return mainController.getClient();</span>
+<span class="nc" id="L125">    MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();</span>
+<span class="nc" id="L126">    return mainController.getClient();</span>
   }
 
   private Rectangle getYourRect(NumberBinding allRectanglesWidth,
                                 NumberBinding allRectanglesHeight) {
-<span class="nc" id="L130">    final int initialSize = 15;</span>
-<span class="nc" id="L131">    Rectangle yourRect = new Rectangle(initialSize, initialSize, Color.GRAY);</span>
-<span class="nc" id="L132">    yourRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));</span>
-<span class="nc" id="L133">    yourRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));</span>
+<span class="nc" id="L131">    final int initialSize = 15;</span>
+<span class="nc" id="L132">    Rectangle yourRect = new Rectangle(initialSize, initialSize, Color.GRAY);</span>
+<span class="nc" id="L133">    yourRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));</span>
+<span class="nc" id="L134">    yourRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));</span>
 
-<span class="nc" id="L135">    return yourRect;</span>
+<span class="nc" id="L136">    return yourRect;</span>
   }
 
   private Rectangle getOpponentRectangle(NumberBinding allRectanglesWidth,
                                          NumberBinding allRectanglesHeight,
                                          final int shotIndex) {
-<span class="nc" id="L141">    final int initialSize = 15;</span>
-<span class="nc" id="L142">    Rectangle opponentRect = new Rectangle(initialSize, initialSize, Color.GRAY);</span>
+<span class="nc" id="L142">    final int initialSize = 15;</span>
+<span class="nc" id="L143">    Rectangle opponentRect = new Rectangle(initialSize, initialSize, Color.GRAY);</span>
 
-<span class="nc" id="L144">    opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -&gt; {</span>
-<span class="nc" id="L145">      opponentBoard.setDisable(true);</span>
-<span class="nc bnc" id="L146" title="All 2 branches missed.">      if (opponentRect.getFill().equals(Color.GRAY)) {</span>
-<span class="nc" id="L147">        opponentRect.setFill(Color.BLACK);</span>
+<span class="nc" id="L145">    opponentRect.setOnMouseClicked((MouseEvent mouseEvent) -&gt; {</span>
+<span class="nc" id="L146">      opponentBoard.setDisable(true);</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">      if (opponentRect.getFill().equals(Color.GRAY)) {</span>
+<span class="nc" id="L148">        opponentRect.setFill(Color.BLACK);</span>
       }
-<span class="nc" id="L149">      this.shotIndex = shotIndex;</span>
-<span class="nc" id="L150">      getClient().sendShot(shotIndex);</span>
-<span class="nc" id="L151">    });</span>
+<span class="nc" id="L150">      this.shotIndex = shotIndex;</span>
+<span class="nc" id="L151">      getClient().sendShot(shotIndex);</span>
+<span class="nc" id="L152">    });</span>
 
-<span class="nc" id="L153">    opponentRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));</span>
-<span class="nc" id="L154">    opponentRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));</span>
+<span class="nc" id="L154">    opponentRect.widthProperty().bind(allRectanglesWidth.divide(BOARD_SIZE));</span>
+<span class="nc" id="L155">    opponentRect.heightProperty().bind(allRectanglesHeight.divide(BOARD_SIZE));</span>
 
-<span class="nc" id="L156">    return opponentRect;</span>
+<span class="nc" id="L157">    return opponentRect;</span>
   }
 
   private void opponentWithdraw() {
-<span class="nc" id="L160">    getClient().closeClient();</span>
-<span class="nc" id="L161">    loadWithdrawScreen();</span>
-<span class="nc" id="L162">  }</span>
+<span class="nc" id="L161">    getClient().closeClient();</span>
+<span class="nc" id="L162">    loadWithdrawScreen();</span>
+<span class="nc" id="L163">  }</span>
 
   private void loadWithdrawScreen() {
     try {
-<span class="nc" id="L166">      final String opponentWithdrawUrl = &quot;/fxml/opponentWithdraw.fxml&quot;;</span>
-<span class="nc" id="L167">      final FXMLLoader opponentWithdrawLoader =</span>
-<span class="nc" id="L168">          new FXMLLoader(getClass().getResource(opponentWithdrawUrl));</span>
-<span class="nc" id="L169">      opponentWithdrawLoader.setResources(this.resourceBundle);</span>
-<span class="nc" id="L170">      final Parent opponentWithdraw = opponentWithdrawLoader.load();</span>
-<span class="nc" id="L171">      final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();</span>
-<span class="nc" id="L172">      final int sceneHeight = 400;</span>
-<span class="nc" id="L173">      final int sceneWidth = 600;</span>
-<span class="nc" id="L174">      final double margin = 0.0;</span>
+<span class="nc" id="L167">      final String opponentWithdrawUrl = &quot;/fxml/opponentWithdraw.fxml&quot;;</span>
+<span class="nc" id="L168">      final FXMLLoader opponentWithdrawLoader =</span>
+<span class="nc" id="L169">          new FXMLLoader(getClass().getResource(opponentWithdrawUrl));</span>
+<span class="nc" id="L170">      opponentWithdrawLoader.setResources(this.resourceBundle);</span>
+<span class="nc" id="L171">      final Parent opponentWithdraw = opponentWithdrawLoader.load();</span>
+<span class="nc" id="L172">      final AnchorPane mainPane = (AnchorPane) mainAnchorPane.getParent();</span>
+<span class="nc" id="L173">      final int sceneHeight = 400;</span>
+<span class="nc" id="L174">      final int sceneWidth = 600;</span>
+<span class="nc" id="L175">      final double margin = 0.0;</span>
 
-<span class="nc" id="L176">      Stage stage = (Stage) mainPane.getScene().getWindow();</span>
-<span class="nc" id="L177">      stage.setHeight(sceneHeight);</span>
-<span class="nc" id="L178">      stage.setWidth(sceneWidth);</span>
+<span class="nc" id="L177">      Stage stage = (Stage) mainPane.getScene().getWindow();</span>
+<span class="nc" id="L178">      stage.setHeight(sceneHeight);</span>
+<span class="nc" id="L179">      stage.setWidth(sceneWidth);</span>
 
-<span class="nc" id="L180">      mainPane.getChildren().clear();</span>
-<span class="nc" id="L181">      mainPane.getChildren().setAll(opponentWithdraw);</span>
+<span class="nc" id="L181">      mainPane.getChildren().clear();</span>
+<span class="nc" id="L182">      mainPane.getChildren().setAll(opponentWithdraw);</span>
 
-<span class="nc" id="L183">      AnchorPane.setTopAnchor(opponentWithdraw, margin);</span>
-<span class="nc" id="L184">      AnchorPane.setBottomAnchor(opponentWithdraw, margin);</span>
-<span class="nc" id="L185">      AnchorPane.setLeftAnchor(opponentWithdraw, margin);</span>
-<span class="nc" id="L186">      AnchorPane.setRightAnchor(opponentWithdraw, margin);</span>
+<span class="nc" id="L184">      AnchorPane.setTopAnchor(opponentWithdraw, margin);</span>
+<span class="nc" id="L185">      AnchorPane.setBottomAnchor(opponentWithdraw, margin);</span>
+<span class="nc" id="L186">      AnchorPane.setLeftAnchor(opponentWithdraw, margin);</span>
+<span class="nc" id="L187">      AnchorPane.setRightAnchor(opponentWithdraw, margin);</span>
 
-<span class="nc" id="L188">    } catch (IOException e) {</span>
-<span class="nc" id="L189">      logger.error(e.getMessage());</span>
-<span class="nc" id="L190">    }</span>
-<span class="nc" id="L191">  }</span>
+<span class="nc" id="L189">    } catch (IOException e) {</span>
+<span class="nc" id="L190">      logger.error(e.getMessage());</span>
+<span class="nc" id="L191">    }</span>
+<span class="nc" id="L192">  }</span>
 
   private void setOpponentShot(final int shotIndex) {
-<span class="nc" id="L194">    final int shotIndexInGrid = convertToGridIndex(shotIndex);</span>
-<span class="nc" id="L195">    final Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndexInGrid));</span>
-<span class="nc bnc" id="L196" title="All 2 branches missed.">    if (rec.getFill() == Color.GREEN) {</span>
-<span class="nc" id="L197">      rec.setFill(Color.RED);</span>
-<span class="nc bnc" id="L198" title="All 2 branches missed.">    } else if (rec.getFill().equals(Color.GRAY)){</span>
-<span class="nc" id="L199">      rec.setFill(Color.BLACK);</span>
+<span class="nc" id="L195">    final int shotIndexInGrid = convertToGridIndex(shotIndex);</span>
+<span class="nc" id="L196">    final Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndexInGrid));</span>
+<span class="nc bnc" id="L197" title="All 2 branches missed.">    if (rec.getFill() == Color.GREEN) {</span>
+<span class="nc" id="L198">      rec.setFill(Color.RED);</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">    } else if (rec.getFill().equals(Color.GRAY)) {</span>
+<span class="nc" id="L200">      rec.setFill(Color.BLACK);</span>
     }
-<span class="nc" id="L201">  }</span>
+<span class="nc" id="L202">  }</span>
 
   private int convertToGridIndex(final int shotIndex) {
-<span class="nc" id="L204">    final int column = shotIndex / BOARD_SIZE;</span>
-<span class="nc" id="L205">    final int row = shotIndex - (column * BOARD_SIZE);</span>
-<span class="nc" id="L206">    return row * BOARD_SIZE + column + 1;</span>
+<span class="nc" id="L205">    final int column = shotIndex / BOARD_SIZE;</span>
+<span class="nc" id="L206">    final int row = shotIndex - (column * BOARD_SIZE);</span>
+<span class="nc" id="L207">    return row * BOARD_SIZE + column + 1;</span>
   }
 
   private void changeTurn() {
-<span class="nc" id="L210">    final double opacity = 0.4;</span>
-<span class="nc" id="L211">    this.opponentBoard.setDisable(true);</span>
-<span class="nc" id="L212">    this.opponentBoard.setOpacity(opacity);</span>
-<span class="nc" id="L213">    this.infoLabel.setText(this.resourceBundle.getString(&quot;youMiss&quot;)</span>
-                            + &quot; &quot;
-<span class="nc" id="L215">                            + this.resourceBundle.getString(&quot;opponentAction&quot;));</span>
-<span class="nc" id="L216">  }</span>
+<span class="nc" id="L211">    final double opacity = 0.4;</span>
+<span class="nc" id="L212">    this.opponentBoard.setDisable(true);</span>
+<span class="nc" id="L213">    this.opponentBoard.setOpacity(opacity);</span>
+<span class="nc" id="L214">    this.infoLabel.setText(this.resourceBundle.getString(&quot;youMiss&quot;)</span>
+        + &quot; &quot;
+<span class="nc" id="L216">        + this.resourceBundle.getString(&quot;opponentAction&quot;));</span>
+<span class="nc" id="L217">  }</span>
 
   private void markAsHit() {
-<span class="nc" id="L219">    final int shotIndexInGrid = this.convertToGridIndex(shotIndex);</span>
-<span class="nc" id="L220">    final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));</span>
-<span class="nc" id="L221">    rec.setFill(Color.RED);</span>
-<span class="nc" id="L222">    this.hitShot = true;</span>
-<span class="nc" id="L223">  }</span>
+<span class="nc" id="L220">    final int shotIndexInGrid = this.convertToGridIndex(shotIndex);</span>
+<span class="nc" id="L221">    final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));</span>
+<span class="nc" id="L222">    rec.setFill(Color.RED);</span>
+<span class="nc" id="L223">    this.hitShot = true;</span>
+<span class="nc" id="L224">  }</span>
 
   private void setMyTurn() {
-<span class="nc" id="L226">    final double noOpacity = 1.0;</span>
-<span class="nc" id="L227">    opponentBoard.setDisable(false);</span>
-<span class="nc" id="L228">    opponentBoard.setOpacity(noOpacity);</span>
-<span class="nc" id="L229">    this.infoLabel.setText(this.resourceBundle.getString(&quot;yourTurn&quot;));</span>
-<span class="nc bnc" id="L230" title="All 2 branches missed.">    if(this.hitShot) {</span>
-<span class="nc" id="L231">      this.infoLabel.setText(this.infoLabel.getText()</span>
+<span class="nc" id="L227">    final double noOpacity = 1.0;</span>
+<span class="nc" id="L228">    opponentBoard.setDisable(false);</span>
+<span class="nc" id="L229">    opponentBoard.setOpacity(noOpacity);</span>
+<span class="nc" id="L230">    this.infoLabel.setText(this.resourceBundle.getString(&quot;yourTurn&quot;));</span>
+<span class="nc bnc" id="L231" title="All 2 branches missed.">    if (this.hitShot) {</span>
+<span class="nc" id="L232">      this.infoLabel.setText(this.infoLabel.getText()</span>
           + &quot; &quot;
-<span class="nc" id="L233">          + this.resourceBundle.getString(&quot;youHit&quot;));</span>
-<span class="nc" id="L234">      this.hitShot = false;</span>
-<span class="nc bnc" id="L235" title="All 2 branches missed.">    } else if(this.shipDestroyed) {</span>
-<span class="nc" id="L236">      this.infoLabel.setText(this.infoLabel.getText()</span>
+<span class="nc" id="L234">          + this.resourceBundle.getString(&quot;youHit&quot;));</span>
+<span class="nc" id="L235">      this.hitShot = false;</span>
+<span class="nc bnc" id="L236" title="All 2 branches missed.">    } else if (this.shipDestroyed) {</span>
+<span class="nc" id="L237">      this.infoLabel.setText(this.infoLabel.getText()</span>
           + &quot; &quot;
-<span class="nc" id="L238">          + this.resourceBundle.getString(&quot;shipDestroyed&quot;));</span>
-<span class="nc" id="L239">      this.shipDestroyed = false;</span>
+<span class="nc" id="L239">          + this.resourceBundle.getString(&quot;shipDestroyed&quot;));</span>
+<span class="nc" id="L240">      this.shipDestroyed = false;</span>
     }
-<span class="nc" id="L241">  }</span>
-  
+<span class="nc" id="L242">  }</span>
+
   @Override
   public void initialize(final URL location, final ResourceBundle resources) {
-<span class="nc" id="L245">    this.resourceBundle = resources;</span>
-<span class="nc" id="L246">    eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,</span>
-<span class="nc" id="L247">        opponentConnectedEvent -&gt; opponentWithdraw());</span>
-<span class="nc" id="L248">    eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,</span>
-<span class="nc" id="L249">        opponentShotEvent -&gt; setOpponentShot(opponentShotEvent.getShotIndex()));</span>
-<span class="nc" id="L250">    eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -&gt; setMyTurn());</span>
-<span class="nc" id="L251">    eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -&gt; changeTurn());</span>
-<span class="nc" id="L252">    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -&gt; markAsHit());</span>
-<span class="nc" id="L253">    eventButton.addEventHandler(WinEvent.GAME_WIN, event -&gt; renderAsWin());</span>
-<span class="nc" id="L254">    eventButton.addEventHandler(LossEvent.GAME_LOSS, event -&gt; renderAsLoss());</span>
-<span class="nc" id="L255">    eventButton.addEventHandler(ShipDestroyedEvent.SHIP_DESTROYED, event -&gt; this.shipDestroyed());</span>
-<span class="nc" id="L256">    buttonEnd.setOnAction(actionEvent -&gt; this.endTheGame());</span>
-<span class="nc" id="L257">    infoLabel.setText(this.resourceBundle.getString(&quot;opponentAction&quot;));</span>
-<span class="nc" id="L258">    initializeTurn(false);</span>
-<span class="nc" id="L259">  }</span>
+<span class="nc" id="L246">    this.resourceBundle = resources;</span>
+<span class="nc" id="L247">    eventButton.addEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,</span>
+<span class="nc" id="L248">        opponentConnectedEvent -&gt; opponentWithdraw());</span>
+<span class="nc" id="L249">    eventButton.addEventHandler(OpponentShotEvent.OPPONENT_SHOT,</span>
+<span class="nc" id="L250">        opponentShotEvent -&gt; setOpponentShot(opponentShotEvent.getShotIndex()));</span>
+<span class="nc" id="L251">    eventButton.addEventHandler(TurnChangeEvent.TURN_EVENT, event -&gt; setMyTurn());</span>
+<span class="nc" id="L252">    eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -&gt; changeTurn());</span>
+<span class="nc" id="L253">    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -&gt; markAsHit());</span>
+<span class="nc" id="L254">    eventButton.addEventHandler(WinEvent.GAME_WIN, event -&gt; renderAsWin());</span>
+<span class="nc" id="L255">    eventButton.addEventHandler(LossEvent.GAME_LOSS, event -&gt; renderAsLoss());</span>
+<span class="nc" id="L256">    eventButton.addEventHandler(ShipDestroyedEvent.SHIP_DESTROYED, event -&gt; this.shipDestroyed());</span>
+<span class="nc" id="L257">    buttonEnd.setOnAction(actionEvent -&gt; this.endTheGame());</span>
+<span class="nc" id="L258">    infoLabel.setText(this.resourceBundle.getString(&quot;opponentAction&quot;));</span>
+<span class="nc" id="L259">    initializeTurn(false);</span>
+<span class="nc" id="L260">  }</span>
 
   private void shipDestroyed() {
-<span class="nc" id="L262">    final int shotIndexInGrid = this.convertToGridIndex(shotIndex);</span>
-<span class="nc" id="L263">    final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));</span>
-<span class="nc" id="L264">    rec.setFill(Color.RED);</span>
-<span class="nc" id="L265">    shipDestroyed = true;</span>
-<span class="nc" id="L266">  }</span>
+<span class="nc" id="L263">    final int shotIndexInGrid = this.convertToGridIndex(shotIndex);</span>
+<span class="nc" id="L264">    final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));</span>
+<span class="nc" id="L265">    rec.setFill(Color.RED);</span>
+<span class="nc" id="L266">    shipDestroyed = true;</span>
+<span class="nc" id="L267">  }</span>
 
   private void endTheGame() {
-<span class="nc" id="L269">    Platform.exit();</span>
-<span class="nc" id="L270">  }</span>
+<span class="nc" id="L270">    Platform.exit();</span>
+<span class="nc" id="L271">  }</span>
 
   private void renderAsWin() {
-<span class="nc" id="L273">    this.prepareToRenderAnyPossibleResult();</span>
-<span class="nc" id="L274">    this.renderSpecificResult(&quot;youWin&quot;);</span>
-<span class="nc" id="L275">    this.endStack.setVisible(true);</span>
-<span class="nc" id="L276">    this.buttonEnd.setDisable(false);</span>
-<span class="nc" id="L277">  }</span>
-  
+<span class="nc" id="L274">    this.prepareToRenderAnyPossibleResult();</span>
+<span class="nc" id="L275">    this.renderSpecificResult(&quot;youWin&quot;);</span>
+<span class="nc" id="L276">    this.endStack.setVisible(true);</span>
+<span class="nc" id="L277">    this.buttonEnd.setDisable(false);</span>
+<span class="nc" id="L278">  }</span>
+
   private void renderAsLoss() {
-<span class="nc" id="L280">    this.prepareToRenderAnyPossibleResult();</span>
-<span class="nc" id="L281">    this.renderSpecificResult(&quot;youLose&quot;);</span>
-<span class="nc" id="L282">    this.endStack.setVisible(true);</span>
-<span class="nc" id="L283">    this.buttonEnd.setDisable(false);</span>
-<span class="nc" id="L284">  }</span>
-  
+<span class="nc" id="L281">    this.prepareToRenderAnyPossibleResult();</span>
+<span class="nc" id="L282">    this.renderSpecificResult(&quot;youLose&quot;);</span>
+<span class="nc" id="L283">    this.endStack.setVisible(true);</span>
+<span class="nc" id="L284">    this.buttonEnd.setDisable(false);</span>
+<span class="nc" id="L285">  }</span>
+
   private void renderSpecificResult(String key) {
-<span class="nc" id="L287">    this.winLabel.setText(this.resourceBundle.getString(key));</span>
-<span class="nc" id="L288">  }</span>
-  
+<span class="nc" id="L288">    this.winLabel.setText(this.resourceBundle.getString(key));</span>
+<span class="nc" id="L289">  }</span>
+
   private void prepareToRenderAnyPossibleResult() {
-<span class="nc" id="L291">    this.disableWithdrawalPossibility();</span>
-<span class="nc" id="L292">    this.disableBoards();</span>
-<span class="nc" id="L293">    this.infoLabel.setText(&quot;&quot;);</span>
-<span class="nc" id="L294">  }</span>
-  
+<span class="nc" id="L292">    this.disableWithdrawalPossibility();</span>
+<span class="nc" id="L293">    this.disableBoards();</span>
+<span class="nc" id="L294">    this.infoLabel.setText(&quot;&quot;);</span>
+<span class="nc" id="L295">  }</span>
+
   private void disableBoards() {
-<span class="nc" id="L297">    final double opacity = 0.4;</span>
-<span class="nc" id="L298">    this.yourBoard.setDisable(true);</span>
-<span class="nc" id="L299">    this.yourBoard.setOpacity(opacity);</span>
-<span class="nc" id="L300">    this.opponentBoard.setDisable(true);</span>
-<span class="nc" id="L301">    this.opponentBoard.setOpacity(opacity);</span>
-<span class="nc" id="L302">    this.winLabel.setStyle(&quot;-fx-color: green&quot;);</span>
-<span class="nc" id="L303">  }</span>
-  
+<span class="nc" id="L298">    final double opacity = 0.4;</span>
+<span class="nc" id="L299">    this.yourBoard.setDisable(true);</span>
+<span class="nc" id="L300">    this.yourBoard.setOpacity(opacity);</span>
+<span class="nc" id="L301">    this.opponentBoard.setDisable(true);</span>
+<span class="nc" id="L302">    this.opponentBoard.setOpacity(opacity);</span>
+<span class="nc" id="L303">    this.winLabel.setStyle(&quot;-fx-color: green&quot;);</span>
+<span class="nc" id="L304">  }</span>
+
   private void disableWithdrawalPossibility() {
-<span class="nc" id="L306">    this.eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,</span>
-<span class="nc" id="L307">        opponentConnectedEvent -&gt; opponentWithdraw());</span>
-<span class="nc" id="L308">  }</span>
-  
+<span class="nc" id="L307">    this.eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,</span>
+<span class="nc" id="L308">        opponentConnectedEvent -&gt; opponentWithdraw());</span>
+<span class="nc" id="L309">  }</span>
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

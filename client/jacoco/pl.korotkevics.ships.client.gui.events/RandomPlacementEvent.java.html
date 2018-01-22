@@ -7,19 +7,20 @@ import pl.korotkevics.ships.shared.fleet.Fleet;
 
 /**
  * Event firing when a fleet is placed randomly.
+ *
  * @author Magdalena Aarsman
  * @since 2017-01-15
  */
 public class RandomPlacementEvent extends Event {
-<span class="nc" id="L14">  public static final EventType&lt;RandomPlacementEvent&gt; RANDOM_PLACEMENT_EVENT =</span>
+<span class="nc" id="L15">  public static final EventType&lt;RandomPlacementEvent&gt; RANDOM_PLACEMENT_EVENT =</span>
       new EventType&lt;&gt;(javafx.event.Event.ANY, &quot;RANDOM_PLACEMENT_EVENT&quot;);
 
-<span class="nc" id="L17">  @Getter</span>
+<span class="nc" id="L18">  @Getter</span>
   private final Fleet fleet;
 
   public RandomPlacementEvent(final Fleet fleet) {
-<span class="nc" id="L21">    super(RANDOM_PLACEMENT_EVENT);</span>
-<span class="nc" id="L22">    this.fleet = fleet;</span>
-<span class="nc" id="L23">  }</span>
+<span class="nc" id="L22">    super(RANDOM_PLACEMENT_EVENT);</span>
+<span class="nc" id="L23">    this.fleet = fleet;</span>
+<span class="nc" id="L24">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

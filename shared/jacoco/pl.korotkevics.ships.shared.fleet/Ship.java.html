@@ -12,15 +12,16 @@ import java.util.Set;
 
 /**
  * Ship consisting of masts.
+ *
  * @author Piotr Czyż, Sandor Korotkevics
  * @see Mast
  * @since 2017-12-19
  */
-<span class="pc bpc" id="L19" title="7 of 14 branches missed.">@EqualsAndHashCode</span>
-<span class="fc" id="L20">@AllArgsConstructor(access = AccessLevel.PRIVATE)</span>
-<span class="fc" id="L21">@ToString</span>
+<span class="pc bpc" id="L20" title="7 of 14 branches missed.">@EqualsAndHashCode</span>
+<span class="fc" id="L21">@AllArgsConstructor(access = AccessLevel.PRIVATE)</span>
+<span class="fc" id="L22">@ToString</span>
 public class Ship {
-<span class="fc" id="L23">  @Getter(AccessLevel.PACKAGE)</span>
+<span class="fc" id="L24">  @Getter(AccessLevel.PACKAGE)</span>
   private final Set&lt;Mast&gt; masts;
 
   /**
@@ -30,7 +31,7 @@ public class Ship {
    * @return Ship
    */
   public static Ship ofMasts(Mast... masts) {
-<span class="fc" id="L33">    return new Ship(new HashSet&lt;&gt;(Arrays.asList(masts)));</span>
+<span class="fc" id="L34">    return new Ship(new HashSet&lt;&gt;(Arrays.asList(masts)));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

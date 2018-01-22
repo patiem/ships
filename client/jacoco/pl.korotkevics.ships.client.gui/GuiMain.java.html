@@ -25,25 +25,25 @@ import pl.korotkevics.ships.client.gui.controllers.MainController;
 <span class="nc" id="L25">    final String windowTitle = &quot;Battleships&quot;;</span>
 <span class="nc" id="L26">    final boolean clientShouldRun = true;</span>
 <span class="nc" id="L27">    final Client client = new Client(new MessageHandlerBuilder().withEnumMap()</span>
-<span class="nc" id="L28">                                         .withDefaultSetsOfTriggers().build(), clientShouldRun);</span>
+<span class="nc" id="L28">        .withDefaultSetsOfTriggers().build(), clientShouldRun);</span>
 <span class="nc" id="L29">    final int sceneWidth = 600;</span>
 <span class="nc" id="L30">    final int sceneHeight = 400;</span>
-    
+
 <span class="nc" id="L32">    FXMLLoader rootLoader = new FXMLLoader(getClass().getResource(fxmlMainWindowPath));</span>
 <span class="nc" id="L33">    Parent root = rootLoader.load();</span>
 <span class="nc" id="L34">    MainController mainController = rootLoader.getController();</span>
 <span class="nc" id="L35">    mainController.initialize(client);</span>
-    
+
 <span class="nc" id="L37">    primaryStage.setTitle(windowTitle);</span>
 <span class="nc" id="L38">    primaryStage.setScene(new Scene(root, sceneWidth, sceneHeight));</span>
 <span class="nc" id="L39">    primaryStage.setResizable(false);</span>
 <span class="nc" id="L40">    primaryStage.show();</span>
-    
+
 <span class="nc" id="L42">    primaryStage.setOnHiding((WindowEvent event) -&gt; {</span>
 <span class="nc" id="L43">      client.closeClient();</span>
 <span class="nc" id="L44">      Platform.exit();</span>
 <span class="nc" id="L45">    });</span>
 <span class="nc" id="L46">  }</span>
-  
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

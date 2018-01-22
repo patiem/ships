@@ -3,10 +3,10 @@
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 /**
  * Mast of a ship.
+ *
  * @author Piotr Czyż, Sandor Korotkevics
  * @see Ship
  * @since 2017-12-19
@@ -15,7 +15,7 @@ import lombok.ToString;
 <span class="fc" id="L15">@AllArgsConstructor(access = AccessLevel.PRIVATE)</span>
 public class Mast {
   private String index;
-  
+
   /**
    * Creates a Mast based on an index value.
    *
@@ -25,14 +25,15 @@ public class Mast {
   public static Mast ofIndex(final String index) {
 <span class="fc" id="L26">    return new Mast(index);</span>
   }
-  
+
   /**
    * Not a subject to change.
+   *
    * @return a String representation of Mast which is its actual index.
    */
   @Override
   public String toString() {
-<span class="fc" id="L35">    return this.index;</span>
+<span class="fc" id="L36">    return this.index;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

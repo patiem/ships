@@ -21,10 +21,10 @@
 <span class="sourceLineNo">013</span> */<a name="line.13"></a>
 <span class="sourceLineNo">014</span>@RequiredArgsConstructor<a name="line.14"></a>
 <span class="sourceLineNo">015</span>public class GridToBoardConverter {<a name="line.15"></a>
-<span class="sourceLineNo">016</span>  <a name="line.16"></a>
+<span class="sourceLineNo">016</span><a name="line.16"></a>
 <span class="sourceLineNo">017</span>  private static final int BOARD_SIZE = 10;<a name="line.17"></a>
 <span class="sourceLineNo">018</span>  private final GridPane gridBoard;<a name="line.18"></a>
-<span class="sourceLineNo">019</span>  <a name="line.19"></a>
+<span class="sourceLineNo">019</span><a name="line.19"></a>
 <span class="sourceLineNo">020</span>  /**<a name="line.20"></a>
 <span class="sourceLineNo">021</span>   * Converts grid to array.<a name="line.21"></a>
 <span class="sourceLineNo">022</span>   *<a name="line.22"></a>
@@ -32,7 +32,7 @@
 <span class="sourceLineNo">024</span>   */<a name="line.24"></a>
 <span class="sourceLineNo">025</span>  public FieldState[] convert() {<a name="line.25"></a>
 <span class="sourceLineNo">026</span>    FieldState[] board = new FieldState[BOARD_SIZE * BOARD_SIZE];<a name="line.26"></a>
-<span class="sourceLineNo">027</span>    <a name="line.27"></a>
+<span class="sourceLineNo">027</span><a name="line.27"></a>
 <span class="sourceLineNo">028</span>    for (int i = 1; i &lt; gridBoard.getChildren().size(); i++) {<a name="line.28"></a>
 <span class="sourceLineNo">029</span>      if (((Rectangle) gridBoard.getChildren().get(i)).getFill().equals(Color.GREEN)) {<a name="line.29"></a>
 <span class="sourceLineNo">030</span>        board[i - 1] = FieldState.OCCUPIED;<a name="line.30"></a>
@@ -40,7 +40,7 @@
 <span class="sourceLineNo">032</span>        board[i - 1] = FieldState.EMPTY;<a name="line.32"></a>
 <span class="sourceLineNo">033</span>      }<a name="line.33"></a>
 <span class="sourceLineNo">034</span>    }<a name="line.34"></a>
-<span class="sourceLineNo">035</span>    <a name="line.35"></a>
+<span class="sourceLineNo">035</span><a name="line.35"></a>
 <span class="sourceLineNo">036</span>    return board;<a name="line.36"></a>
 <span class="sourceLineNo">037</span>  }<a name="line.37"></a>
 <span class="sourceLineNo">038</span>}<a name="line.38"></a>

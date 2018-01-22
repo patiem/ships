@@ -22,68 +22,64 @@ import java.util.Map;
 <span class="pc" id="L22">@RequiredArgsConstructor(staticName = &quot;fleet&quot;, access = AccessLevel.PRIVATE)</span>
 <span class="fc" id="L23">@ToString</span>
 public class Fleet {
-  
+
   private final Map&lt;Mast, Ship&gt; fleet;
-  
+
 <span class="fc" id="L28">  private Fleet() {</span>
 <span class="fc" id="L29">    this.fleet = Collections.emptyMap();</span>
 <span class="fc" id="L30">  }</span>
-  
+
   /**
    * Static factory method.
    *
-   * @param ships
-   *     - list of ships.
-   *
+   * @param ships - list of ships.
    * @return Fleet.
    */
   public static Fleet ofShips(final List&lt;Ship&gt; ships) {
-<span class="fc" id="L41">    Map&lt;Mast, Ship&gt; fleet = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L42">    ships.forEach(ship -&gt; ship.getMasts().forEach(mast -&gt; fleet.put(mast, ship)));</span>
-<span class="fc" id="L43">    return new Fleet(fleet);</span>
+<span class="fc" id="L39">    Map&lt;Mast, Ship&gt; fleet = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L40">    ships.forEach(ship -&gt; ship.getMasts().forEach(mast -&gt; fleet.put(mast, ship)));</span>
+<span class="fc" id="L41">    return new Fleet(fleet);</span>
   }
-  
+
   public static Fleet empty() {
-<span class="fc" id="L47">    return new Fleet();</span>
+<span class="fc" id="L45">    return new Fleet();</span>
   }
-  
+
   /**
    * @return true if a fleet is defeated.
    */
   public boolean isDefeated() {
-<span class="fc" id="L54">    return this.fleet.isEmpty();</span>
+<span class="fc" id="L52">    return this.fleet.isEmpty();</span>
   }
-  
+
   /**
    * Handles an attack
    * returning an output of such.
    *
-   * @param mast
-   *     attacked.
-   *
+   * @param mast attacked.
    * @return Damage caused.
    */
   public Damage handleDamage(final Mast mast) {
-<span class="fc bfc" id="L67" title="All 2 branches covered.">    if (!this.fleet.containsKey(mast)) {</span>
-<span class="fc" id="L68">      return Damage.MISSED;</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">    if (!this.fleet.containsKey(mast)) {</span>
+<span class="fc" id="L64">      return Damage.MISSED;</span>
     }
-<span class="fc" id="L70">    Ship shipHit = this.fleet.get(mast);</span>
-<span class="fc" id="L71">    this.fleet.remove(mast);</span>
-<span class="fc bfc" id="L72" title="All 2 branches covered.">    if (!this.fleet.containsValue(shipHit)) {</span>
-<span class="fc" id="L73">      return Damage.DESTROYED;</span>
+<span class="fc" id="L66">    Ship shipHit = this.fleet.get(mast);</span>
+<span class="fc" id="L67">    this.fleet.remove(mast);</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">    if (!this.fleet.containsValue(shipHit)) {</span>
+<span class="fc" id="L69">      return Damage.DESTROYED;</span>
     }
-<span class="fc" id="L75">    return Damage.HIT;</span>
+<span class="fc" id="L71">    return Damage.HIT;</span>
   }
-  
+
   /**
    * Produces a list representation of Fleet.
    *
    * @return a list containing indices of Masts only.
    */
   public List&lt;Integer&gt; toIntegerList() {
-<span class="fc" id="L84">    final List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L85">    this.fleet.forEach((k, v) -&gt; list.add(Integer.valueOf(k.toString())));</span>
-<span class="fc" id="L86">    return list;</span>
+<span class="fc" id="L80">    final List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L81">    this.fleet.forEach((k, v) -&gt; list.add(Integer.valueOf(k.toString())));</span>
+<span class="fc" id="L82">    return list;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

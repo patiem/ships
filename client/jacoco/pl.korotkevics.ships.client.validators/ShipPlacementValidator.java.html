@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ShipPlacementValidator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - CLIENT</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.client.validators</a> &gt; <span class="el_source">ShipPlacementValidator.java</span></div><h1>ShipPlacementValidator.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.client.validators;
 
+import lombok.RequiredArgsConstructor;
 import pl.korotkevics.ships.client.gui.util.FieldState;
 import pl.korotkevics.ships.client.gui.util.ShipOrientation;
-import lombok.RequiredArgsConstructor;
 
 import java.util.stream.IntStream;
 
 /**
  * Enables validation of ships' placement.
+ *
  * @author Magdalena Aarsman
  * @since 2017-12-31
  */
-<span class="fc" id="L14">@RequiredArgsConstructor</span>
+<span class="fc" id="L15">@RequiredArgsConstructor</span>
 public class ShipPlacementValidator {
   private static final int BOARD_SIZE = 10;
 
@@ -22,130 +23,132 @@ public class ShipPlacementValidator {
 
   /**
    * Check if ship placement is valid.
+   *
    * @return true if it is valid, false if not.
    */
   public boolean isPlacementValid() {
-<span class="fc bfc" id="L28" title="All 2 branches covered.">    return !this.isOutOfRange()</span>
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        &amp;&amp; (shipOrientation.equals(ShipOrientation.HORIZONTAL)</span>
-<span class="fc bfc" id="L30" title="All 2 branches covered.">        ? this.checkForHorizontal()</span>
-<span class="fc bfc" id="L31" title="All 2 branches covered.">        : this.checkForVertical());</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">    return !this.isOutOfRange()</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        &amp;&amp; (shipOrientation.equals(ShipOrientation.HORIZONTAL)</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        ? this.checkForHorizontal()</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        : this.checkForVertical());</span>
   }
 
   private boolean checkIfBreakingThroughBorders() {
-<span class="fc" id="L35">    int startIndexInColumn = shipStartIndex % BOARD_SIZE;</span>
-<span class="fc bfc" id="L36" title="All 2 branches covered.">    return startIndexInColumn + (mastCount - 1) &gt;= BOARD_SIZE;</span>
+<span class="fc" id="L37">    int startIndexInColumn = shipStartIndex % BOARD_SIZE;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">    return startIndexInColumn + (mastCount - 1) &gt;= BOARD_SIZE;</span>
   }
 
   private boolean checkForVertical() {
-<span class="fc bfc" id="L40" title="All 2 branches covered.">    return !this.checkIfBreakingThroughBorders()</span>
-<span class="fc bfc" id="L41" title="All 2 branches covered.">        &amp;&amp; !this.isShipOnShip()</span>
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        &amp;&amp; !this.isShipTouchOtherShip();</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">    return !this.checkIfBreakingThroughBorders()</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        &amp;&amp; !this.isShipOnShip()</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        &amp;&amp; !this.isShipTouchOtherShip();</span>
   }
 
   private boolean isOutOfRange() {
-<span class="fc bfc" id="L46" title="All 6 branches covered.">    return shipOrientation.equals(ShipOrientation.VERTICAL)</span>
+<span class="fc bfc" id="L48" title="All 6 branches covered.">    return shipOrientation.equals(ShipOrientation.VERTICAL)</span>
         ? shipStartIndex + mastCount &gt; board.length
         : shipStartIndex + (mastCount - 1) * BOARD_SIZE &gt;= board.length;
   }
 
   private boolean isShipOnShip() {
-<span class="fc" id="L52">    return IntStream</span>
-<span class="fc" id="L53">        .rangeClosed(shipStartIndex, shipStartIndex + mastCount - 1)</span>
-<span class="fc" id="L54">        .anyMatch(p -&gt; board[p].equals(FieldState.OCCUPIED));</span>
+<span class="fc" id="L54">    return IntStream</span>
+<span class="fc" id="L55">        .rangeClosed(shipStartIndex, shipStartIndex + mastCount - 1)</span>
+<span class="fc" id="L56">        .anyMatch(p -&gt; board[p].equals(FieldState.OCCUPIED));</span>
   }
 
   private boolean isShipTouchOtherShip() {
-<span class="fc bfc" id="L58" title="All 2 branches covered.">    return this.isShipAboveShip()</span>
-<span class="fc bfc" id="L59" title="All 2 branches covered.">        || this.isShipBelowShip()</span>
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        || this.isShipOnTheRight()</span>
-<span class="pc bpc" id="L61" title="1 of 2 branches missed.">        || this.isShipOnTheLeft();</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">    return this.isShipAboveShip()</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        || this.isShipBelowShip()</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        || this.isShipOnTheRight()</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">        || this.isShipOnTheLeft();</span>
   }
 
   private boolean isShipAboveShip() {
-<span class="fc" id="L65">    final int checkWidthInCell = 3;</span>
-<span class="fc bfc" id="L66" title="All 2 branches covered.">    return !this.isInLastRow()</span>
-<span class="fc" id="L67">        &amp;&amp; IntStream.iterate(shipStartIndex - BOARD_SIZE , i -&gt; i + BOARD_SIZE)</span>
-<span class="fc" id="L68">        .limit(checkWidthInCell)</span>
-<span class="fc bfc" id="L69" title="All 2 branches covered.">        .filter(i -&gt; i &gt; 0)</span>
-<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        .filter(i -&gt; i + mastCount &lt; board.length)</span>
-<span class="fc bfc" id="L71" title="All 2 branches covered.">        .anyMatch(i -&gt; board[i + mastCount].equals(FieldState.OCCUPIED));</span>
+<span class="fc" id="L67">    final int checkWidthInCell = 3;</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">    return !this.isInLastRow()</span>
+<span class="fc" id="L69">        &amp;&amp; IntStream.iterate(shipStartIndex - BOARD_SIZE, i -&gt; i + BOARD_SIZE)</span>
+<span class="fc" id="L70">        .limit(checkWidthInCell)</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        .filter(i -&gt; i &gt; 0)</span>
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">        .filter(i -&gt; i + mastCount &lt; board.length)</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        .anyMatch(i -&gt; board[i + mastCount].equals(FieldState.OCCUPIED));</span>
   }
 
   private boolean isInLastRow() {
-<span class="fc" id="L75">    final int lastRowModulo = 9;</span>
-<span class="fc bfc" id="L76" title="All 2 branches covered.">    return (shipStartIndex + (mastCount - 1)) % BOARD_SIZE == lastRowModulo;</span>
+<span class="fc" id="L77">    final int lastRowModulo = 9;</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">    return (shipStartIndex + (mastCount - 1)) % BOARD_SIZE == lastRowModulo;</span>
   }
 
   private boolean isShipBelowShip() {
-<span class="fc" id="L80">    int checkWidthInCell = 3;</span>
-<span class="pc bpc" id="L81" title="1 of 4 branches missed.">    return !this.isInFirstRow() &amp;&amp; shipStartIndex - 1 &gt; 0</span>
-<span class="fc" id="L82">        &amp;&amp; IntStream.iterate(shipStartIndex - BOARD_SIZE , i -&gt; i + BOARD_SIZE)</span>
-<span class="fc" id="L83">        .limit(checkWidthInCell)</span>
-<span class="fc bfc" id="L84" title="All 2 branches covered.">        .filter(i -&gt; i - 1 &gt; 0)</span>
-<span class="fc bfc" id="L85" title="All 2 branches covered.">        .filter(i -&gt; i &lt; board.length)</span>
-<span class="fc bfc" id="L86" title="All 2 branches covered.">        .anyMatch(i -&gt; board[i - 1].equals(FieldState.OCCUPIED));</span>
+<span class="fc" id="L82">    int checkWidthInCell = 3;</span>
+<span class="pc bpc" id="L83" title="1 of 4 branches missed.">    return !this.isInFirstRow() &amp;&amp; shipStartIndex - 1 &gt; 0</span>
+<span class="fc" id="L84">        &amp;&amp; IntStream.iterate(shipStartIndex - BOARD_SIZE, i -&gt; i + BOARD_SIZE)</span>
+<span class="fc" id="L85">        .limit(checkWidthInCell)</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        .filter(i -&gt; i - 1 &gt; 0)</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        .filter(i -&gt; i &lt; board.length)</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        .anyMatch(i -&gt; board[i - 1].equals(FieldState.OCCUPIED));</span>
   }
 
   private boolean isInFirstRow() {
-<span class="fc bfc" id="L90" title="All 2 branches covered.">    return this.shipStartIndex % BOARD_SIZE == 0;</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">    return this.shipStartIndex % BOARD_SIZE == 0;</span>
   }
 
   private boolean isShipOnTheRight() {
-<span class="fc" id="L94">    return IntStream.range(shipStartIndex, shipStartIndex + mastCount)</span>
-<span class="fc bfc" id="L95" title="All 2 branches covered.">        .filter(value -&gt; value - BOARD_SIZE &gt; 0)</span>
-<span class="fc" id="L96">        .anyMatch(value -&gt; board[value - BOARD_SIZE].equals(FieldState.OCCUPIED));</span>
+<span class="fc" id="L96">    return IntStream.range(shipStartIndex, shipStartIndex + mastCount)</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        .filter(value -&gt; value - BOARD_SIZE &gt; 0)</span>
+<span class="fc" id="L98">        .anyMatch(value -&gt; board[value - BOARD_SIZE].equals(FieldState.OCCUPIED));</span>
   }
 
   private boolean isShipOnTheLeft() {
-<span class="fc" id="L100">    return IntStream.range(shipStartIndex, shipStartIndex + mastCount)</span>
-<span class="fc bfc" id="L101" title="All 2 branches covered.">        .filter(value -&gt; value &gt; 0)</span>
-<span class="fc bfc" id="L102" title="All 2 branches covered.">        .filter(value -&gt; value + BOARD_SIZE &lt; board.length)</span>
-<span class="fc" id="L103">        .anyMatch(value -&gt; board[value + BOARD_SIZE].equals(FieldState.OCCUPIED));</span>
+<span class="fc" id="L102">    return IntStream.range(shipStartIndex, shipStartIndex + mastCount)</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">        .filter(value -&gt; value &gt; 0)</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        .filter(value -&gt; value + BOARD_SIZE &lt; board.length)</span>
+<span class="fc" id="L105">        .anyMatch(value -&gt; board[value + BOARD_SIZE].equals(FieldState.OCCUPIED));</span>
   }
 
   private boolean checkForHorizontal() {
-<span class="fc bfc" id="L107" title="All 2 branches covered.">    return !this.isShipOnShipHorizontal()</span>
-<span class="fc bfc" id="L108" title="All 2 branches covered.">        &amp;&amp; !this.isShipTouchOtherShipHorizontal();</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">    return !this.isShipOnShipHorizontal()</span>
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        &amp;&amp; !this.isShipTouchOtherShipHorizontal();</span>
   }
 
   private boolean isShipTouchOtherShipHorizontal() {
-<span class="fc bfc" id="L112" title="All 2 branches covered.">    return this.isShipBelowShipHorizontal()</span>
-<span class="fc bfc" id="L113" title="All 2 branches covered.">        || this.isShipAboveShipHorizontal()</span>
-<span class="fc bfc" id="L114" title="All 2 branches covered.">        || this.isShipOnTheRightHorizontal()</span>
-<span class="pc bpc" id="L115" title="1 of 2 branches missed.">        || this.isShipOnTheLeftHorizontal();</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">    return this.isShipBelowShipHorizontal()</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        || this.isShipAboveShipHorizontal()</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        || this.isShipOnTheRightHorizontal()</span>
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">        || this.isShipOnTheLeftHorizontal();</span>
   }
 
   private boolean isShipOnShipHorizontal() {
-<span class="fc" id="L119">    return IntStream.iterate(shipStartIndex, n -&gt; n + BOARD_SIZE)</span>
-<span class="fc" id="L120">        .limit((mastCount - 1))</span>
-<span class="fc" id="L121">        .anyMatch(n -&gt; board[n].equals(FieldState.OCCUPIED));</span>
+<span class="fc" id="L121">    return IntStream.iterate(shipStartIndex, n -&gt; n + BOARD_SIZE)</span>
+<span class="fc" id="L122">        .limit((mastCount - 1))</span>
+<span class="fc" id="L123">        .anyMatch(n -&gt; board[n].equals(FieldState.OCCUPIED));</span>
   }
 
   private boolean isShipBelowShipHorizontal() {
-<span class="fc bfc" id="L125" title="All 2 branches covered.">    return shipStartIndex % BOARD_SIZE != 9</span>
-<span class="fc" id="L126">        &amp;&amp; IntStream.iterate(shipStartIndex - BOARD_SIZE, n -&gt; n + BOARD_SIZE)</span>
-<span class="fc" id="L127">        .limit(mastCount + 2L)</span>
-<span class="fc bfc" id="L128" title="All 2 branches covered.">        .filter(n -&gt; n &gt; 0)</span>
-<span class="pc bpc" id="L129" title="1 of 2 branches missed.">        .filter(n -&gt; n + 1 &lt; board.length)</span>
-<span class="fc bfc" id="L130" title="All 2 branches covered.">        .anyMatch(n -&gt; board[n + 1].equals(FieldState.OCCUPIED));</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">    return shipStartIndex % BOARD_SIZE != 9</span>
+<span class="fc" id="L128">        &amp;&amp; IntStream.iterate(shipStartIndex - BOARD_SIZE, n -&gt; n + BOARD_SIZE)</span>
+<span class="fc" id="L129">        .limit(mastCount + 2L)</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">        .filter(n -&gt; n &gt; 0)</span>
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">        .filter(n -&gt; n + 1 &lt; board.length)</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        .anyMatch(n -&gt; board[n + 1].equals(FieldState.OCCUPIED));</span>
   }
 
   private boolean isShipAboveShipHorizontal() {
-<span class="fc bfc" id="L134" title="All 2 branches covered.">    return !this.isInFirstRow()</span>
-<span class="fc" id="L135">        &amp;&amp; IntStream.iterate(shipStartIndex - BOARD_SIZE, n -&gt; n + BOARD_SIZE)</span>
-<span class="fc" id="L136">        .limit(mastCount + 2L)</span>
-<span class="pc bpc" id="L137" title="1 of 2 branches missed.">        .filter(n -&gt; n &gt; 0)</span>
-<span class="fc bfc" id="L138" title="All 2 branches covered.">        .filter(n -&gt; n &lt; board.length)</span>
-<span class="fc bfc" id="L139" title="All 2 branches covered.">        .anyMatch(n -&gt; board[n - 1].equals(FieldState.OCCUPIED));</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">    return !this.isInFirstRow()</span>
+<span class="fc" id="L137">        &amp;&amp; IntStream.iterate(shipStartIndex - BOARD_SIZE, n -&gt; n + BOARD_SIZE)</span>
+<span class="fc" id="L138">        .limit(mastCount + 2L)</span>
+<span class="pc bpc" id="L139" title="1 of 2 branches missed.">        .filter(n -&gt; n &gt; 0)</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">        .filter(n -&gt; n &lt; board.length)</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">        .anyMatch(n -&gt; board[n - 1].equals(FieldState.OCCUPIED));</span>
   }
 
   private boolean isShipOnTheRightHorizontal() {
-<span class="fc bfc" id="L143" title="All 2 branches covered.">    return this.shipStartIndex + this.mastCount * BOARD_SIZE &lt; this.board.length</span>
-<span class="fc bfc" id="L144" title="All 2 branches covered.">        &amp;&amp; board[this.shipStartIndex + this.mastCount * BOARD_SIZE].equals(FieldState.OCCUPIED);</span>
+<span class="fc bfc" id="L145" title="All 2 branches covered.">    return this.shipStartIndex + this.mastCount * BOARD_SIZE &lt; this.board.length</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        &amp;&amp; board[this.shipStartIndex + this.mastCount * BOARD_SIZE].equals(FieldState.OCCUPIED);</span>
   }
 
   private boolean isShipOnTheLeftHorizontal() {
-<span class="pc bpc" id="L148" title="1 of 4 branches missed.">    return this.shipStartIndex - BOARD_SIZE &gt;= 1 &amp;&amp; this.board[shipStartIndex - BOARD_SIZE].equals(FieldState.OCCUPIED);</span>
+<span class="fc bfc" id="L150" title="All 2 branches covered.">    return this.shipStartIndex - BOARD_SIZE &gt;= 1 &amp;&amp; this.board[shipStartIndex - BOARD_SIZE]</span>
+<span class="pc bpc" id="L151" title="1 of 2 branches missed.">        .equals(FieldState.OCCUPIED);</span>
   }
 
 }

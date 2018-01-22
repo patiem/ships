@@ -22,15 +22,14 @@ import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
    * Converts a JsonElement instance into a BaseMessage
    * instance.
    *
-   * @param jsonElement a JsonElement instance representing
-   *                    a BaseMessage.
+   * @param jsonElement a JsonElement instance representing a BaseMessage.
    * @return BaseMessage a result of conversion of JsonElement into BaseMessage
    */
   @Override
   public Message decode(JsonElement jsonElement) {
-<span class="fc" id="L31">    Gson gson = new GsonBuilder().create();</span>
+<span class="fc" id="L30">    Gson gson = new GsonBuilder().create();</span>
 
-<span class="fc" id="L33">    return gson.fromJson(jsonElement, BaseMessage.class);</span>
+<span class="fc" id="L32">    return gson.fromJson(jsonElement, BaseMessage.class);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

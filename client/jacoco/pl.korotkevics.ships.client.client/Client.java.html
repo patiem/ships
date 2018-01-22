@@ -168,18 +168,22 @@ public class Client implements Runnable {
 <span class="nc" id="L168">    messageHandler.setCurrentEventButton(button);</span>
 <span class="nc" id="L169">  }</span>
 
+
+  /**
+   * Sending request for random fleet placement to server.
+   */
   public void askForRandomFleet() {
-<span class="nc" id="L172">    Message askForRandomFleet = new MessageBuilder()</span>
-<span class="nc" id="L173">        .withHeader(Header.RANDOM_PLACEMENT)</span>
-<span class="nc" id="L174">        .withAuthor(Author.CLIENT)</span>
-<span class="nc" id="L175">        .build();</span>
+<span class="nc" id="L176">    Message askForRandomFleet = new MessageBuilder()</span>
+<span class="nc" id="L177">        .withHeader(Header.RANDOM_PLACEMENT)</span>
+<span class="nc" id="L178">        .withAuthor(Author.CLIENT)</span>
+<span class="nc" id="L179">        .build();</span>
 
     try {
-<span class="nc" id="L178">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
-<span class="nc" id="L179">      sender.send(askForRandomFleet);</span>
-<span class="nc" id="L180">    } catch (IOException e) {</span>
-<span class="nc" id="L181">      logger.error(e.getMessage());</span>
-<span class="nc" id="L182">    }</span>
-<span class="nc" id="L183">  }</span>
+<span class="nc" id="L182">      Sender sender = new JsonSender(clientSocket.getOutputStream());</span>
+<span class="nc" id="L183">      sender.send(askForRandomFleet);</span>
+<span class="nc" id="L184">    } catch (IOException e) {</span>
+<span class="nc" id="L185">      logger.error(e.getMessage());</span>
+<span class="nc" id="L186">    }</span>
+<span class="nc" id="L187">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

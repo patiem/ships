@@ -16,6 +16,7 @@ import java.util.Scanner;
 
 /**
  * Receives a message from an input stream.
+ *
  * @author Piotr Czyż, Magda Aarsman, Sandor Korotkevics
  * @see Receiver
  * @see JsonReceiver
@@ -27,15 +28,15 @@ import java.util.Scanner;
 
 public class JsonReceiver implements Receiver {
 
+  private static final String CHARSET_NAME = &quot;UTF-8&quot;;
   private final InputStream inputStream;
 
-  private static final String CHARSET_NAME = &quot;UTF-8&quot;;
   /**
    * @param inputStream to read from.
    */
-<span class="fc" id="L36">  public JsonReceiver(InputStream inputStream) {</span>
-<span class="fc" id="L37">    this.inputStream = inputStream;</span>
-<span class="fc" id="L38">  }</span>
+<span class="fc" id="L37">  public JsonReceiver(InputStream inputStream) {</span>
+<span class="fc" id="L38">    this.inputStream = inputStream;</span>
+<span class="fc" id="L39">  }</span>
 
   /**
    * Reads from input stream, converts it first
@@ -47,21 +48,21 @@ public class JsonReceiver implements Receiver {
    */
   @Override
   public Message receive() {
-<span class="fc" id="L50">    Scanner scanner = new Scanner(inputStream, CHARSET_NAME);</span>
-<span class="fc" id="L51">    StringBuilder stringBuilder = new StringBuilder();</span>
-<span class="pc bpc" id="L52" title="1 of 2 branches missed.">    if (scanner.hasNextLine()) {</span>
-<span class="nc" id="L53">      stringBuilder.append(scanner.nextLine());</span>
+<span class="fc" id="L51">    Scanner scanner = new Scanner(inputStream, CHARSET_NAME);</span>
+<span class="fc" id="L52">    StringBuilder stringBuilder = new StringBuilder();</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">    if (scanner.hasNextLine()) {</span>
+<span class="nc" id="L54">      stringBuilder.append(scanner.nextLine());</span>
     } else {
-<span class="fc" id="L55">      return new MessageBuilder()</span>
-<span class="fc" id="L56">          .withHeader(Header.CONNECTION)</span>
-<span class="fc" id="L57">          .withStatus(Status.END)</span>
-<span class="fc" id="L58">          .withStatement(&quot;End of a message&quot;)</span>
-<span class="fc" id="L59">          .build();</span>
+<span class="fc" id="L56">      return new MessageBuilder()</span>
+<span class="fc" id="L57">          .withHeader(Header.CONNECTION)</span>
+<span class="fc" id="L58">          .withStatus(Status.END)</span>
+<span class="fc" id="L59">          .withStatement(&quot;End of a message&quot;)</span>
+<span class="fc" id="L60">          .build();</span>
     }
-<span class="nc" id="L61">    Decoder&lt;JsonElement&gt; jsonDecoder = new JsonDecoder();</span>
-<span class="nc" id="L62">    JsonParser jsonParser = new JsonParser();</span>
-<span class="nc" id="L63">    JsonElement jsonElement = jsonParser.parse(stringBuilder.toString());</span>
-<span class="nc" id="L64">    return jsonDecoder.decode(jsonElement);</span>
+<span class="nc" id="L62">    Decoder&lt;JsonElement&gt; jsonDecoder = new JsonDecoder();</span>
+<span class="nc" id="L63">    JsonParser jsonParser = new JsonParser();</span>
+<span class="nc" id="L64">    JsonElement jsonElement = jsonParser.parse(stringBuilder.toString());</span>
+<span class="nc" id="L65">    return jsonDecoder.decode(jsonElement);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

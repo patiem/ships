@@ -14,6 +14,7 @@ import java.io.UnsupportedEncodingException;
 
 /**
  * Sends a message to an output stream.
+ *
  * @author Piotr Czyż, Magda Aarsman, Sandor Korotkevics
  * @see Sender
  * @see JsonSender
@@ -27,16 +28,16 @@ public class JsonSender implements Sender {
 
   private static final String ENCODING = &quot;UTF-8&quot;;
 
-<span class="fc" id="L30">  private final Target logger = new SharedLogger(JsonSender.class);</span>
+<span class="fc" id="L31">  private final Target logger = new SharedLogger(JsonSender.class);</span>
 
   private final OutputStream outputStream;
 
   /**
    * @param outputStream to be written to.
    */
-<span class="fc" id="L37">  public JsonSender(OutputStream outputStream) {</span>
-<span class="fc" id="L38">    this.outputStream = outputStream;</span>
-<span class="fc" id="L39">  }</span>
+<span class="fc" id="L38">  public JsonSender(OutputStream outputStream) {</span>
+<span class="fc" id="L39">    this.outputStream = outputStream;</span>
+<span class="fc" id="L40">  }</span>
 
   /**
    * Converts a message into a JsonElement,
@@ -46,14 +47,14 @@ public class JsonSender implements Sender {
    */
   @Override
   public void send(Message message) {
-<span class="fc" id="L49">    PrintWriter printWriter = null;</span>
+<span class="fc" id="L50">    PrintWriter printWriter = null;</span>
     try {
-<span class="fc" id="L51">      printWriter = new PrintWriter(new OutputStreamWriter(outputStream, ENCODING), true);</span>
-<span class="fc" id="L52">      Encoder encoder = new JsonEncoder();</span>
-<span class="fc" id="L53">      printWriter.println(encoder.encode(message));</span>
-<span class="nc" id="L54">    } catch (UnsupportedEncodingException e) {</span>
-<span class="nc" id="L55">      logger.error(e.getMessage());</span>
-<span class="fc" id="L56">    }</span>
-<span class="fc" id="L57">  }</span>
+<span class="fc" id="L52">      printWriter = new PrintWriter(new OutputStreamWriter(outputStream, ENCODING), true);</span>
+<span class="fc" id="L53">      Encoder encoder = new JsonEncoder();</span>
+<span class="fc" id="L54">      printWriter.println(encoder.encode(message));</span>
+<span class="nc" id="L55">    } catch (UnsupportedEncodingException e) {</span>
+<span class="nc" id="L56">      logger.error(e.getMessage());</span>
+<span class="fc" id="L57">    }</span>
+<span class="fc" id="L58">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

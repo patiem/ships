@@ -4,8 +4,6 @@ import javafx.application.Platform;
 import javafx.scene.control.Button;
 import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
-import pl.korotkevics.ships.shared.infra.logging.api.Target;
-import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 /**
  * Enable to fire event reacting changing turn.
@@ -13,12 +11,12 @@ import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
  * @author Magdalena Aarsman
  * @since 2017-12-18
  */
-<span class="nc" id="L16">class TurnTrigger implements EventTrigger {</span>
+<span class="nc" id="L14">class TurnTrigger implements EventTrigger {</span>
   @Override
   public void fire(final Button button, final Message message) {
-<span class="nc bnc" id="L19" title="All 2 branches missed.">    if (message.getStatement().isEmpty()) {</span>
-<span class="nc" id="L20">      Platform.runLater(() -&gt; button.fireEvent(new TurnChangeEvent()));</span>
+<span class="nc bnc" id="L17" title="All 2 branches missed.">    if (message.getStatement().isEmpty()) {</span>
+<span class="nc" id="L18">      Platform.runLater(() -&gt; button.fireEvent(new TurnChangeEvent()));</span>
     }
-<span class="nc" id="L22">  }</span>
+<span class="nc" id="L20">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

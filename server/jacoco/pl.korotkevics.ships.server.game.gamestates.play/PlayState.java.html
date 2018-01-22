@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlayState.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SERVER</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.server.game.gamestates.play</a> &gt; <span class="el_source">PlayState.java</span></div><h1>PlayState.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.server.game.gamestates.play;
+
+import pl.korotkevics.ships.server.communication.CommunicationBus;
+import pl.korotkevics.ships.server.communication.MessageReceiver;
+import pl.korotkevics.ships.server.communication.MessageSender;
+import pl.korotkevics.ships.server.game.TurnManager;
+import pl.korotkevics.ships.server.game.gamestates.GameState;
+import pl.korotkevics.ships.server.game.gamestates.endgame.GameEndWithWalkoverState;
+import pl.korotkevics.ships.server.game.gamestates.endgame.GameEndWithWinState;
+import pl.korotkevics.ships.shared.fleet.Fleet;
+import pl.korotkevics.ships.shared.infra.communication.api.Message;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+
+import java.util.List;
+
+/**
+ * Main class where the play goes.
+ *
+ * @author Piotr Czyż
+ * @see MessageReceiver
+ * @see CommunicationBus
+ * @see TurnManager
+ * @see ShotHandler
+ * @since 2018-01-02
+ */
+public class PlayState implements GameState {
+  private final MessageReceiver messageReceiver;
+  private final ShotHandler shotHandler;
+<span class="fc" id="L31">  private final Target logger = new SharedLogger(PlayState.class);</span>
+  private final TurnManager turnManager;
+  private CommunicationBus communicationBus;
+  private boolean isGameWon;
+
+  /**
+   * @param communicationBus client server communication bus.
+   * @param fleets           list of clients' fleets.
+   */
+<span class="fc" id="L40">  public PlayState(final CommunicationBus communicationBus, final List&lt;Fleet&gt; fleets) {</span>
+<span class="fc" id="L41">    this.communicationBus = communicationBus;</span>
+<span class="fc" id="L42">    this.messageReceiver = new MessageReceiver(communicationBus);</span>
+<span class="fc" id="L43">    isGameWon = false;</span>
+<span class="fc" id="L44">    this.turnManager = new TurnManager(communicationBus.getFirstClient(),</span>
+<span class="fc" id="L45">        communicationBus.getSecondClient());</span>
+<span class="fc" id="L46">    this.shotHandler = new ShotHandler(communicationBus, turnManager, fleets);</span>
+<span class="fc" id="L47">  }</span>
+
+  /**
+   * Processing game until it has a winner.
+   *
+   * @return GameState which can be either game end with walkover
+   *    or game end with end depending on a game flow.
+   * @see GameEndWithWalkoverState
+   * @see GameEndWithWinState
+   */
+  @Override
+  public GameState process() {
+<span class="fc" id="L59">    sendYourTurnMessage();</span>
+<span class="fc" id="L60">    messageReceiver.receive(turnManager.getCurrentPlayer());</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">    if (messageReceiver.isAShot()) {</span>
+<span class="fc" id="L62">      Message shot = messageReceiver.getMessage();</span>
+<span class="fc" id="L63">      isGameWon = shotHandler.handle(turnManager.isCurrentPlayerFirstPlayer(), shot);</span>
+<span class="fc" id="L64">    } else {</span>
+<span class="fc" id="L65">      return new GameEndWithWalkoverState(communicationBus);</span>
+    }
+<span class="fc bfc" id="L67" title="All 2 branches covered.">    if (isGameWon) {</span>
+<span class="fc" id="L68">      return new GameEndWithWinState(communicationBus, turnManager);</span>
+    }
+<span class="fc" id="L70">    return this;</span>
+  }
+
+  private void sendYourTurnMessage() {
+<span class="fc" id="L74">    this.rest();</span>
+<span class="fc" id="L75">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
+<span class="fc" id="L76">    messageSender.send(this.turnManager.getCurrentPlayer(), Header.YOUR_TURN);</span>
+<span class="fc" id="L77">  }</span>
+
+  private void rest() {
+<span class="fc" id="L80">    final int restTime = 300;</span>
+    try {
+<span class="fc" id="L82">      Thread.sleep(restTime);</span>
+<span class="nc" id="L83">    } catch (InterruptedException e) {</span>
+<span class="nc" id="L84">      Thread.currentThread().interrupt();</span>
+<span class="nc" id="L85">      logger.error(e.getMessage());</span>
+<span class="fc" id="L86">    }</span>
+<span class="fc" id="L87">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

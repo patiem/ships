@@ -130,13 +130,18 @@ classes -&gt; /usr/lib/jvm/java-8-oracle/jre/lib/rt.jar (compact1)
    pl.korotkevics.ships.server (classes)
       -&gt; java.io                                            compact1
       -&gt; java.lang                                          compact1
+      -&gt; pl.korotkevics.ships.server.communication          classes
+      -&gt; pl.korotkevics.ships.server.game                   classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates        classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates.connection classes
+   pl.korotkevics.ships.server.communication (classes)
+      -&gt; java.io                                            compact1
+      -&gt; java.lang                                          compact1
       -&gt; java.lang.invoke                                   compact1
       -&gt; java.net                                           compact1
       -&gt; java.util                                          compact1
       -&gt; java.util.function                                 compact1
-      -&gt; pl.korotkevics.ships.server                        classes
-      -&gt; pl.korotkevics.ships.server.gamestates             classes
-      -&gt; pl.korotkevics.ships.server.gamestates.connection  classes
+      -&gt; pl.korotkevics.ships.server.communication          classes
       -&gt; pl.korotkevics.ships.shared.infra.communication.api classes
       -&gt; pl.korotkevics.ships.shared.infra.communication.api.io classes
       -&gt; pl.korotkevics.ships.shared.infra.communication.api.message classes
@@ -144,48 +149,55 @@ classes -&gt; /usr/lib/jvm/java-8-oracle/jre/lib/rt.jar (compact1)
       -&gt; pl.korotkevics.ships.shared.infra.communication.core.message classes
       -&gt; pl.korotkevics.ships.shared.infra.logging.api      classes
       -&gt; pl.korotkevics.ships.shared.infra.logging.core     classes
-   pl.korotkevics.ships.server.gamestates (classes)
+   pl.korotkevics.ships.server.game (classes)
       -&gt; java.lang                                          compact1
-   pl.korotkevics.ships.server.gamestates.connection (classes)
+      -&gt; pl.korotkevics.ships.server.communication          classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates        classes
+   pl.korotkevics.ships.server.game.gamestates (classes)
       -&gt; java.lang                                          compact1
-      -&gt; pl.korotkevics.ships.server                        classes
-      -&gt; pl.korotkevics.ships.server.gamestates             classes
-      -&gt; pl.korotkevics.ships.server.gamestates.fleetplacement classes
+   pl.korotkevics.ships.server.game.gamestates.connection (classes)
+      -&gt; java.lang                                          compact1
+      -&gt; pl.korotkevics.ships.server.communication          classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates        classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates.fleetplacement classes
       -&gt; pl.korotkevics.ships.shared.infra.communication.api.message classes
       -&gt; pl.korotkevics.ships.shared.infra.logging.api      classes
       -&gt; pl.korotkevics.ships.shared.infra.logging.core     classes
-   pl.korotkevics.ships.server.gamestates.endgame (classes)
+   pl.korotkevics.ships.server.game.gamestates.endgame (classes)
       -&gt; java.lang                                          compact1
-      -&gt; pl.korotkevics.ships.server                        classes
-      -&gt; pl.korotkevics.ships.server.gamestates             classes
+      -&gt; pl.korotkevics.ships.server.communication          classes
+      -&gt; pl.korotkevics.ships.server.game                   classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates        classes
       -&gt; pl.korotkevics.ships.shared.infra.communication.api.message classes
       -&gt; pl.korotkevics.ships.shared.infra.logging.api      classes
       -&gt; pl.korotkevics.ships.shared.infra.logging.core     classes
-   pl.korotkevics.ships.server.gamestates.fleetplacement (classes)
+   pl.korotkevics.ships.server.game.gamestates.fleetplacement (classes)
       -&gt; java.lang                                          compact1
       -&gt; java.lang.invoke                                   compact1
       -&gt; java.util                                          compact1
       -&gt; java.util.concurrent                               compact1
       -&gt; java.util.function                                 compact1
       -&gt; java.util.stream                                   compact1
-      -&gt; pl.korotkevics.ships.server                        classes
-      -&gt; pl.korotkevics.ships.server.gamestates             classes
-      -&gt; pl.korotkevics.ships.server.gamestates.endgame     classes
-      -&gt; pl.korotkevics.ships.server.gamestates.fleetplacement classes
-      -&gt; pl.korotkevics.ships.server.gamestates.play        classes
+      -&gt; pl.korotkevics.ships.server.communication          classes
+      -&gt; pl.korotkevics.ships.server.game                   classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates        classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates.endgame classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates.fleetplacement classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates.play   classes
       -&gt; pl.korotkevics.ships.shared.fleet                  classes
       -&gt; pl.korotkevics.ships.shared.infra.communication.api classes
       -&gt; pl.korotkevics.ships.shared.infra.communication.api.message classes
       -&gt; pl.korotkevics.ships.shared.infra.communication.core.message classes
       -&gt; pl.korotkevics.ships.shared.infra.logging.api      classes
       -&gt; pl.korotkevics.ships.shared.infra.logging.core     classes
-   pl.korotkevics.ships.server.gamestates.play (classes)
+   pl.korotkevics.ships.server.game.gamestates.play (classes)
       -&gt; java.lang                                          compact1
       -&gt; java.util                                          compact1
-      -&gt; pl.korotkevics.ships.server                        classes
-      -&gt; pl.korotkevics.ships.server.gamestates             classes
-      -&gt; pl.korotkevics.ships.server.gamestates.endgame     classes
-      -&gt; pl.korotkevics.ships.server.gamestates.play        classes
+      -&gt; pl.korotkevics.ships.server.communication          classes
+      -&gt; pl.korotkevics.ships.server.game                   classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates        classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates.endgame classes
+      -&gt; pl.korotkevics.ships.server.game.gamestates.play   classes
       -&gt; pl.korotkevics.ships.shared.fleet                  classes
       -&gt; pl.korotkevics.ships.shared.infra.communication.api classes
       -&gt; pl.korotkevics.ships.shared.infra.communication.api.message classes
