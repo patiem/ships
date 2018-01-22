@@ -25,6 +25,7 @@
         <checkstyleVersion>2.17</checkstyleVersion>
         <sonarSourceVersion>3.4.0.905</sonarSourceVersion>
         <jacocoVersion>0.7.9</jacocoVersion>
+        <jdependVersion>2.0</jdependVersion>
         <!--Testing-->
         <testngVersion>6.13.1</testngVersion>
         <mockitoVersion>2.13.0</mockitoVersion>
@@ -351,6 +352,11 @@
                         <failsOnError>true</failsOnError>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>jdepend-maven-plugin</artifactId>
+                    <version>${jdependVersion}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
         <!--Important: JaCoCo here also generates datafiles which
@@ -375,6 +381,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
@@ -508,6 +518,11 @@
                         </reports>
                     </reportSet>
                 </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jdepend-maven-plugin</artifactId>
+                <version>${jdependVersion}</version>
             </plugin>
         </plugins>
     </reporting>
