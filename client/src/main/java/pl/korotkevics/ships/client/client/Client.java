@@ -168,6 +168,10 @@ public class Client implements Runnable {
     messageHandler.setCurrentEventButton(button);
   }
 
+
+  /**
+   * Sending request for random fleet placement to server.
+   */
   public void askForRandomFleet() {
     Message askForRandomFleet = new MessageBuilder()
         .withHeader(Header.RANDOM_PLACEMENT)

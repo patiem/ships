@@ -1,19 +1,20 @@
 package pl.korotkevics.ships.shared.infra.communication.core.message;
 
-import pl.korotkevics.ships.shared.fleet.Fleet;
-import pl.korotkevics.ships.shared.infra.communication.api.Message;
-import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
-import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
-import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import pl.korotkevics.ships.shared.fleet.Fleet;
+import pl.korotkevics.ships.shared.infra.communication.api.Message;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 
 /**
  * Value-object used as a communication mean.
  * Setters are only available to MessageBuilder.
+ *
  * @author Sandor Korotkevics
  * @see MessageBuilder
  * @see BaseMessage

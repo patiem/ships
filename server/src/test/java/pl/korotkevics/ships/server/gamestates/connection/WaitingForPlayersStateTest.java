@@ -8,7 +8,9 @@ import pl.korotkevics.ships.server.WrappedClient;
 import pl.korotkevics.ships.server.gamestates.GameState;
 import pl.korotkevics.ships.server.gamestates.fleetplacement.FleetPlacementState;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;

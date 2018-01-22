@@ -19,11 +19,11 @@ import java.util.List;
  * Main class where the play goes.
  *
  * @author Piotr Czyż
- * @since 2018-01-02
  * @see MessageReceiver
  * @see CommunicationBus
  * @see TurnManager
  * @see ShotHandler
+ * @since 2018-01-02
  */
 public class PlayState implements GameState {
   private final MessageReceiver messageReceiver;
@@ -34,8 +34,8 @@ public class PlayState implements GameState {
   private boolean isGameWon;
 
   /**
-   * @param communicationBus client server communication bus
-   * @param fleets           list of clients' fleets
+   * @param communicationBus client server communication bus.
+   * @param fleets           list of clients' fleets.
    */
   public PlayState(final CommunicationBus communicationBus, final List<Fleet> fleets) {
     this.communicationBus = communicationBus;
@@ -49,10 +49,10 @@ public class PlayState implements GameState {
   /**
    * Processing game until it has a winner.
    *
+   * @return GameState which can be either game end with walkover
+   *    or game end with end depending on a game flow.
    * @see GameEndWithWalkoverState
    * @see GameEndWithWinState
-   * @return GameState which can be either game end with walkover
-   *         or game end with end depending on a game flow.
    */
   @Override
   public GameState process() {

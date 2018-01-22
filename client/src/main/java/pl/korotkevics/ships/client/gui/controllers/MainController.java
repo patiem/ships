@@ -29,36 +29,35 @@ import java.util.ResourceBundle;
  */
 
 public class MainController {
-  
+
   private static final Target logger = new SharedLogger(Client.class);
-  
+
   private static final String DICTIONARY = "dict";
-  
+
   @FXML
   private Label gameTitle;
-  
+
   @FXML
   private Button russianButton;
-  
+
   @FXML
   private Pane mainPane;
-  
+
   @Getter
   private Client client;
-  
+
   @FXML
   private Button polishButton;
-  
+
   @FXML
   private Button englishButton;
-  
+
   private ResourceBundle resourceBundle;
-  
+
   /**
    * Initialize main controller.
    *
-   * @param client
-   *     - Instance of Client, which communicate with server.
+   * @param client - Instance of Client, which communicate with server.
    */
   @FXML
   public void initialize(final Client client) {
@@ -66,11 +65,11 @@ public class MainController {
     this.loadDefaultView();
 
   }
-  
+
   private void loadDefaultView() {
     this.reloadView();
   }
-  
+
   private void reloadView() {
     final FXMLLoader fxmlLoader = this.prepareFxmlLoader();
     this.gameTitle.setText(this.resourceBundle.getString("gameTitle"));
@@ -80,7 +79,7 @@ public class MainController {
       logger.error(e.getMessage());
     }
   }
-  
+
   private FXMLLoader prepareFxmlLoader() {
     final String url = "/fxml/connectWindow.fxml";
     final FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(url));
@@ -88,12 +87,12 @@ public class MainController {
     fxmlLoader.setResources(this.resourceBundle);
     return fxmlLoader;
   }
-  
+
   private void addToMainPane(final Parent parent) {
     this.mainPane.getChildren().clear();
     this.mainPane.getChildren().add(parent);
   }
-  
+
   @FXML
   void triggerPolishVersion(final ActionEvent event) {
     logger.info("The language is set to " + OurLocale.POLISH);
@@ -115,7 +114,7 @@ public class MainController {
     this.reloadView();
     this.changeTitleLabel();
   }
-  
+
   @FXML
   void triggerRussianVersion(final ActionEvent event) {
     logger.info("The language is set to " + OurLocale.RUSSIAN);
@@ -123,13 +122,13 @@ public class MainController {
     this.reloadView();
     this.changeTitleLabel();
   }
-  
+
   void disableLocalizationButtons() {
     this.hideButton(this.polishButton);
     this.hideButton(this.englishButton);
     this.hideButton(this.russianButton);
   }
-  
+
   private void hideButton(Button button) {
     button.setDisable(true);
     button.setVisible(false);

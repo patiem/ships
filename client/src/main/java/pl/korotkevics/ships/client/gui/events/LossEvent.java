@@ -11,7 +11,7 @@ import javafx.event.EventType;
  */
 public class LossEvent extends Event {
   public static final EventType<LossEvent> GAME_LOSS = new EventType<>(Event.ANY, "GAME_LOSS");
-  
+
   public LossEvent() {
     super(GAME_LOSS);
   }

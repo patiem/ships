@@ -1,18 +1,6 @@
 package pl.korotkevics.ships.client.gui.controllers;
 
 import javafx.application.Platform;
-import javafx.scene.layout.StackPane;
-import pl.korotkevics.ships.client.client.Client;
-import pl.korotkevics.ships.client.gui.events.HitShotEvent;
-import pl.korotkevics.ships.client.gui.events.LossEvent;
-import pl.korotkevics.ships.client.gui.events.MissShotEvent;
-import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
-import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
-import pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent;
-import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
-import pl.korotkevics.ships.client.gui.events.WinEvent;
-import pl.korotkevics.ships.shared.infra.logging.api.Target;
-import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberBinding;
 import javafx.fxml.FXML;
@@ -25,9 +13,21 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import pl.korotkevics.ships.client.client.Client;
+import pl.korotkevics.ships.client.gui.events.HitShotEvent;
+import pl.korotkevics.ships.client.gui.events.LossEvent;
+import pl.korotkevics.ships.client.gui.events.MissShotEvent;
+import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
+import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
+import pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent;
+import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
+import pl.korotkevics.ships.client.gui.events.WinEvent;
+import pl.korotkevics.ships.shared.infra.logging.api.Target;
+import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,12 +35,13 @@ import java.util.ResourceBundle;
 
 /**
  * Game window controller.
+ *
  * @author Magdalena Aarsman
  * @since 2017-12-15
  */
 
 public class GameWindowController implements Initializable {
-  
+
   private static final Target logger = new SharedLogger(Client.class);
 
   private static final int BOARD_SIZE = 10;
@@ -73,7 +74,7 @@ public class GameWindowController implements Initializable {
   private ResourceBundle resourceBundle;
   private boolean hitShot;
   private boolean shipDestroyed;
-  
+
   private void initializeTurn(final boolean myTurn) {
     if (!myTurn) {
       opponentBoard.setDisable(true);
@@ -195,7 +196,7 @@ public class GameWindowController implements Initializable {
     final Rectangle rec = (Rectangle) (yourBoard.getChildren().get(shotIndexInGrid));
     if (rec.getFill() == Color.GREEN) {
       rec.setFill(Color.RED);
-    } else if (rec.getFill().equals(Color.GRAY)){
+    } else if (rec.getFill().equals(Color.GRAY)) {
       rec.setFill(Color.BLACK);
     }
   }
@@ -211,8 +212,8 @@ public class GameWindowController implements Initializable {
     this.opponentBoard.setDisable(true);
     this.opponentBoard.setOpacity(opacity);
     this.infoLabel.setText(this.resourceBundle.getString("youMiss")
-                            + " "
-                            + this.resourceBundle.getString("opponentAction"));
+        + " "
+        + this.resourceBundle.getString("opponentAction"));
   }
 
   private void markAsHit() {
@@ -227,19 +228,19 @@ public class GameWindowController implements Initializable {
     opponentBoard.setDisable(false);
     opponentBoard.setOpacity(noOpacity);
     this.infoLabel.setText(this.resourceBundle.getString("yourTurn"));
-    if(this.hitShot) {
+    if (this.hitShot) {
       this.infoLabel.setText(this.infoLabel.getText()
           + " "
           + this.resourceBundle.getString("youHit"));
       this.hitShot = false;
-    } else if(this.shipDestroyed) {
+    } else if (this.shipDestroyed) {
       this.infoLabel.setText(this.infoLabel.getText()
           + " "
           + this.resourceBundle.getString("shipDestroyed"));
       this.shipDestroyed = false;
     }
   }
-  
+
   @Override
   public void initialize(final URL location, final ResourceBundle resources) {
     this.resourceBundle = resources;
@@ -275,24 +276,24 @@ public class GameWindowController implements Initializable {
     this.endStack.setVisible(true);
     this.buttonEnd.setDisable(false);
   }
-  
+
   private void renderAsLoss() {
     this.prepareToRenderAnyPossibleResult();
     this.renderSpecificResult("youLose");
     this.endStack.setVisible(true);
     this.buttonEnd.setDisable(false);
   }
-  
+
   private void renderSpecificResult(String key) {
     this.winLabel.setText(this.resourceBundle.getString(key));
   }
-  
+
   private void prepareToRenderAnyPossibleResult() {
     this.disableWithdrawalPossibility();
     this.disableBoards();
     this.infoLabel.setText("");
   }
-  
+
   private void disableBoards() {
     final double opacity = 0.4;
     this.yourBoard.setDisable(true);
@@ -301,10 +302,10 @@ public class GameWindowController implements Initializable {
     this.opponentBoard.setOpacity(opacity);
     this.winLabel.setStyle("-fx-color: green");
   }
-  
+
   private void disableWithdrawalPossibility() {
     this.eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
         opponentConnectedEvent -> opponentWithdraw());
   }
-  
+
 }

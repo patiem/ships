@@ -51,7 +51,7 @@ public class FleetTest {
     //then
     assertEquals(fleet.toString(), "Fleet(fleet={1=Ship(masts=[1, 2, 3]), 2=Ship(masts=[1, 2, 3]), 3=Ship(masts=[1, 2, 3])})");
   }
-  
+
   @Test
   public void integerListRepresentationIsProper() {
     //given
