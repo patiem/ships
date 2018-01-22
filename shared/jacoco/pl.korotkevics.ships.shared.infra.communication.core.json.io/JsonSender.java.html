@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 /**
- * It sends a message to an output stream.
+ * Sends a message to an output stream.
  * @author Piotr Czyż, Magda Aarsman, Sandor Korotkevics
  * @see Sender
  * @see JsonSender
@@ -32,17 +32,17 @@ public class JsonSender implements Sender {
   private final OutputStream outputStream;
 
   /**
-   * @param outputStream it will write to this stream.
+   * @param outputStream to be written to.
    */
 <span class="fc" id="L37">  public JsonSender(OutputStream outputStream) {</span>
 <span class="fc" id="L38">    this.outputStream = outputStream;</span>
 <span class="fc" id="L39">  }</span>
 
   /**
-   * It converts a message into a JsonElement,
+   * Converts a message into a JsonElement,
    * and then sends it to an output stream.
    *
-   * @param message a message to send.
+   * @param message to send.
    */
   @Override
   public void send(Message message) {

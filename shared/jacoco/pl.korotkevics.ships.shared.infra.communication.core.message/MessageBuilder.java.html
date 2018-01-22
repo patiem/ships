@@ -7,9 +7,9 @@ import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * It builds a message with given or/and
+ * Builds a message with given or/and
  * default values.
- * Along with BaseMessage interface it allows
+ * Along with BaseMessage interface allows
  * to encapsulate BaseMessage class.
  * @author Sandor Korotkevics
  * @see BaseMessage
@@ -25,8 +25,8 @@ import org.apache.commons.lang3.StringUtils;
 <span class="fc" id="L25">  private Fleet fleet = Fleet.empty();</span>
 
   /**
-   * It builds a message (BaseMessage).
-   * It sets default values if else were not provided.
+   * Builds a message (BaseMessage).
+   * Sets default values if else were not provided.
    *
    * @return an unmodifiable BaseMessage instance.
    */
@@ -41,7 +41,7 @@ import org.apache.commons.lang3.StringUtils;
   }
 
   /**
-   * @param header Header value.
+   * @param header value.
    * @return a chain instance of MessageBuilder.
    */
   public MessageBuilder withHeader(final Header header) {
@@ -50,7 +50,7 @@ import org.apache.commons.lang3.StringUtils;
   }
 
   /**
-   * @param status Status value.
+   * @param status value.
    * @return a chain instance of MessageBuilder.
    */
   public MessageBuilder withStatus(final Status status) {
@@ -59,7 +59,7 @@ import org.apache.commons.lang3.StringUtils;
   }
 
   /**
-   * @param author Author value.
+   * @param author value.
    * @return a chain instance of MessageBuilder.
    */
   public MessageBuilder withAuthor(final Author author) {
@@ -77,7 +77,7 @@ import org.apache.commons.lang3.StringUtils;
   }
 
   /**
-   * @param fleet a Fleet object.
+   * @param fleet object.
    * @return a chain instance of MessageBuilder.
    */
   public MessageBuilder withFleet(final Fleet fleet) {

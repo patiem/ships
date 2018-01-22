@@ -19,7 +19,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /**
- * Enable communication with server side.
+ * Enables communication with server side.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-13

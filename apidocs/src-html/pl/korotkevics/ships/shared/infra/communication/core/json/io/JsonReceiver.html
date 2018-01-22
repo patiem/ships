@@ -23,7 +23,7 @@
 <span class="sourceLineNo">015</span>import java.util.Scanner;<a name="line.15"></a>
 <span class="sourceLineNo">016</span><a name="line.16"></a>
 <span class="sourceLineNo">017</span>/**<a name="line.17"></a>
-<span class="sourceLineNo">018</span> * It receives a message from an input stream.<a name="line.18"></a>
+<span class="sourceLineNo">018</span> * Receives a message from an input stream.<a name="line.18"></a>
 <span class="sourceLineNo">019</span> * @author Piotr Czyż, Magda Aarsman, Sandor Korotkevics<a name="line.19"></a>
 <span class="sourceLineNo">020</span> * @see Receiver<a name="line.20"></a>
 <span class="sourceLineNo">021</span> * @see JsonReceiver<a name="line.21"></a>
@@ -39,17 +39,17 @@
 <span class="sourceLineNo">031</span><a name="line.31"></a>
 <span class="sourceLineNo">032</span>  private static final String CHARSET_NAME = "UTF-8";<a name="line.32"></a>
 <span class="sourceLineNo">033</span>  /**<a name="line.33"></a>
-<span class="sourceLineNo">034</span>   * @param inputStream it will read from this stream.<a name="line.34"></a>
+<span class="sourceLineNo">034</span>   * @param inputStream to read from.<a name="line.34"></a>
 <span class="sourceLineNo">035</span>   */<a name="line.35"></a>
 <span class="sourceLineNo">036</span>  public JsonReceiver(InputStream inputStream) {<a name="line.36"></a>
 <span class="sourceLineNo">037</span>    this.inputStream = inputStream;<a name="line.37"></a>
 <span class="sourceLineNo">038</span>  }<a name="line.38"></a>
 <span class="sourceLineNo">039</span><a name="line.39"></a>
 <span class="sourceLineNo">040</span>  /**<a name="line.40"></a>
-<span class="sourceLineNo">041</span>   * It reads from input stream, coverts it first<a name="line.41"></a>
-<span class="sourceLineNo">042</span>   * to a JsonElement and the to a BaseMessage.<a name="line.42"></a>
+<span class="sourceLineNo">041</span>   * Reads from input stream, converts it first<a name="line.41"></a>
+<span class="sourceLineNo">042</span>   * to a JsonElement and then to a BaseMessage.<a name="line.42"></a>
 <span class="sourceLineNo">043</span>   * If there is nothing to read from an input stream,<a name="line.43"></a>
-<span class="sourceLineNo">044</span>   * it returns an corresponding BaseMessage as well.<a name="line.44"></a>
+<span class="sourceLineNo">044</span>   * a corresponding BaseMessage is returned as well.<a name="line.44"></a>
 <span class="sourceLineNo">045</span>   *<a name="line.45"></a>
 <span class="sourceLineNo">046</span>   * @return BaseMessage input interpreted as a message.<a name="line.46"></a>
 <span class="sourceLineNo">047</span>   */<a name="line.47"></a>

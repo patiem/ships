@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 /**
- * It receives a message from an input stream.
+ * Receives a message from an input stream.
  * @author Piotr Czyż, Magda Aarsman, Sandor Korotkevics
  * @see Receiver
  * @see JsonReceiver
@@ -31,17 +31,17 @@ public class JsonReceiver implements Receiver {
 
   private static final String CHARSET_NAME = &quot;UTF-8&quot;;
   /**
-   * @param inputStream it will read from this stream.
+   * @param inputStream to read from.
    */
 <span class="fc" id="L36">  public JsonReceiver(InputStream inputStream) {</span>
 <span class="fc" id="L37">    this.inputStream = inputStream;</span>
 <span class="fc" id="L38">  }</span>
 
   /**
-   * It reads from input stream, coverts it first
-   * to a JsonElement and the to a BaseMessage.
+   * Reads from input stream, converts it first
+   * to a JsonElement and then to a BaseMessage.
    * If there is nothing to read from an input stream,
-   * it returns an corresponding BaseMessage as well.
+   * a corresponding BaseMessage is returned as well.
    *
    * @return BaseMessage input interpreted as a message.
    */

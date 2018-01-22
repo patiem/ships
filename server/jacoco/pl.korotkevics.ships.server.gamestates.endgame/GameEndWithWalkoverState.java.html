@@ -6,7 +6,7 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 /**
- * Represents game state where one of players quit in the middle of game.
+ * Represents game state in which one of players quits in the middle of game.
  *
  * @author Piotr Czyż
  * @since 2018-01-02

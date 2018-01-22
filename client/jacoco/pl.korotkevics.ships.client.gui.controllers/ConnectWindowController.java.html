@@ -27,7 +27,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * Connecting window controller.
+ * Connect window controller.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-14

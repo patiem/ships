@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.stream.IntStream;
 
 /**
- * Enable validation of ships placement.
+ * Enables validation of ships' placement.
  * @author Magdalena Aarsman
  * @since 2017-12-31
  */

@@ -9,27 +9,27 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 /**
- * Represents state where player is waiting for opponent.
+ * Represents a state in which player is waiting for an opponent.
  *
  * @author Piotr Czyż
  * @since 2018-01-02
+ * @see GameState
  */
 public class WaitingForPlayersState implements GameState {
-<span class="fc" id="L18">  private final Target logger = new SharedLogger(WaitingForPlayersState.class);</span>
+<span class="fc" id="L19">  private final Target logger = new SharedLogger(WaitingForPlayersState.class);</span>
   private CommunicationBus communicationBus;
 
   /**
-   * Create instance of WaitingForPlayersState.
-   *
    * @param communicationBus client server communication bus
    */
-<span class="fc" id="L26">  public WaitingForPlayersState(final CommunicationBus communicationBus) {</span>
-<span class="fc" id="L27">    this.communicationBus = communicationBus;</span>
-<span class="fc" id="L28">  }</span>
+<span class="fc" id="L25">  public WaitingForPlayersState(final CommunicationBus communicationBus) {</span>
+<span class="fc" id="L26">    this.communicationBus = communicationBus;</span>
+<span class="fc" id="L27">  }</span>
 
   /**
-   * Process game from waiting for opponent to FleetPlacementState.
+   * Transfer to fleet placement state.
    *
+   * @see FleetPlacementState
    * @return GameState - FleetPlacementState
    */
   @Override

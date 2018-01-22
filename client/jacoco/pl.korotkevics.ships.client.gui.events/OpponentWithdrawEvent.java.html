@@ -4,7 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventType;
 
 /**
- * Event firing when opponent withdraw.
+ * Event firing when opponent withdraws.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-17

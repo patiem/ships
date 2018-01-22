@@ -6,7 +6,7 @@ import lombok.Getter;
 import pl.korotkevics.ships.shared.fleet.Fleet;
 
 /**
- * Event firing when opponent withdraw.
+ * Event firing when a fleet is placed randomly.
  * @author Magdalena Aarsman
  * @since 2017-01-15
  */

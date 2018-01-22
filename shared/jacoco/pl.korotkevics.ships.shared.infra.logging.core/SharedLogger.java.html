@@ -5,9 +5,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * A logger shared across modules.
- * It is a Log4J wrapper.
- * Log4J can be configured with log4j2.xml.
+ * Logger shared across modules. A Log4J2 wrapper.
+ * Log4J2 can be configured with log4j2.xml.
+ * A short manual is present within the XML file.
  * @author Sandor Korotkevics
  * @see Target
  * @since 2017-12-10
@@ -18,7 +18,7 @@ public class SharedLogger implements Target {
   private final Class&lt;?&gt; clazz;
 
   /**
-   * @param clazz a classname used in log messages.
+   * @param clazz class name to appear in log messages.
    */
 <span class="fc" id="L23">  public SharedLogger(final Class&lt;?&gt; clazz) {</span>
 <span class="fc" id="L24">    this.logger = LogManager.getLogger();</span>
@@ -26,49 +26,48 @@ public class SharedLogger implements Target {
 <span class="fc" id="L26">  }</span>
 
   /**
-   * It is used for logging normal (neutral)
-   * messages.
+   * Used for logging normal (neutral) messages.
    *
-   * @param message a message to be logged.
+   * @param message to be logged.
    *                Extra information will be
    *                appended (such as class name,
    *                datetime, level).
    */
   @Override
   public void info(final Object message) {
-<span class="nc" id="L39">    this.logger.info(this.prepareMessage(message));</span>
-<span class="nc" id="L40">  }</span>
+<span class="nc" id="L38">    this.logger.info(this.prepareMessage(message));</span>
+<span class="nc" id="L39">  }</span>
 
   /**
-   * It is used  for logging error messages
-   * (for example, when logging an exception
+   * Used for logging error messages
+   * (example: logging an exception
    * message).
    *
-   * @param message a message to be logged.
+   * @param message to be logged.
    *                Extra information will be
    *                appended (such as class name,
    *                datetime, level).
    */
   @Override
   public void error(final Object message) {
-<span class="nc" id="L54">    this.logger.error(this.prepareMessage(message));</span>
-<span class="nc" id="L55">  }</span>
+<span class="nc" id="L53">    this.logger.error(this.prepareMessage(message));</span>
+<span class="nc" id="L54">  }</span>
 
   /**
-   * It is used  for logging debug messages.
+   * Used for logging debug messages.
    *
-   * @param message a message to be logged.
+   * @param message to be logged.
    *                Extra information will be
    *                appended (such as class name,
    *                datetime, level).
    */
   @Override
-  public void debug(Object message) {
-<span class="nc" id="L67">    this.logger.debug(this.prepareMessage(message));</span>
-<span class="nc" id="L68">  }</span>
+  public void debug(final Object message) {
+<span class="nc" id="L66">    this.logger.debug(this.prepareMessage(message));</span>
+<span class="nc" id="L67">  }</span>
 
-  private String prepareMessage(Object message) {
-<span class="nc" id="L71">    return this.clazz.getSimpleName() + &quot;: &quot; + message;</span>
+  private String prepareMessage(final Object message) {
+<span class="nc" id="L70">    return this.clazz.getSimpleName() + &quot;: &quot; + message;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

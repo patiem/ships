@@ -4,7 +4,7 @@ import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import pl.korotkevics.ships.client.client.Client;
 import pl.korotkevics.ships.client.gui.events.HitShotEvent;
-import pl.korotkevics.ships.client.gui.events.LooseEvent;
+import pl.korotkevics.ships.client.gui.events.LossEvent;
 import pl.korotkevics.ships.client.gui.events.MissShotEvent;
 import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
 import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
@@ -251,7 +251,7 @@ import java.util.ResourceBundle;
 <span class="nc" id="L251">    eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -&gt; changeTurn());</span>
 <span class="nc" id="L252">    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -&gt; markAsHit());</span>
 <span class="nc" id="L253">    eventButton.addEventHandler(WinEvent.GAME_WIN, event -&gt; renderAsWin());</span>
-<span class="nc" id="L254">    eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -&gt; renderAsLoss());</span>
+<span class="nc" id="L254">    eventButton.addEventHandler(LossEvent.GAME_LOSS, event -&gt; renderAsLoss());</span>
 <span class="nc" id="L255">    eventButton.addEventHandler(ShipDestroyedEvent.SHIP_DESTROYED, event -&gt; this.shipDestroyed());</span>
 <span class="nc" id="L256">    buttonEnd.setOnAction(actionEvent -&gt; this.endTheGame());</span>
 <span class="nc" id="L257">    infoLabel.setText(this.resourceBundle.getString(&quot;opponentAction&quot;));</span>

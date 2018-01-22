@@ -9,18 +9,17 @@ import pl.korotkevics.ships.shared.infra.communication.api.conversion.Decoder;
 import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
 
 /**
- * It converts a JsonElement into a BaseMessage instance.
+ * Converts a JsonElement into a BaseMessage instance.
  *
  * @author Sandor Korotkevics
  * @see Decoder
- * @see Message
- * @see Message
+ * @see BaseMessage
  * @since 2017-12-10
  */
-<span class="fc" id="L20">public class JsonDecoder implements Decoder&lt;JsonElement&gt; {</span>
+<span class="fc" id="L19">public class JsonDecoder implements Decoder&lt;JsonElement&gt; {</span>
 
   /**
-   * It converts a JsonElement instance into a BaseMessage
+   * Converts a JsonElement instance into a BaseMessage
    * instance.
    *
    * @param jsonElement a JsonElement instance representing
@@ -29,9 +28,9 @@ import pl.korotkevics.ships.shared.infra.communication.core.message.BaseMessage;
    */
   @Override
   public Message decode(JsonElement jsonElement) {
-<span class="fc" id="L32">    Gson gson = new GsonBuilder().create();</span>
+<span class="fc" id="L31">    Gson gson = new GsonBuilder().create();</span>
 
-<span class="fc" id="L34">    return gson.fromJson(jsonElement, BaseMessage.class);</span>
+<span class="fc" id="L33">    return gson.fromJson(jsonElement, BaseMessage.class);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

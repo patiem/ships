@@ -13,47 +13,49 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * Represents client witch is used by CommunicationBus.
+ * Represents a wrapped client which is used
+ * by communication bus.
  *
  * @author Piotr Czyż
  * @since 2018-01-02
+ * @see CommunicationBus
  */
-<span class="nc bnc" id="L21" title="All 38 branches missed.">@EqualsAndHashCode</span>
+<span class="nc bnc" id="L23" title="All 38 branches missed.">@EqualsAndHashCode</span>
 public class WrappedClient {
 
-<span class="fc" id="L24">  private final Target logger = new SharedLogger(this.getClass());</span>
+<span class="fc" id="L26">  private final Target logger = new SharedLogger(this.getClass());</span>
   private final Socket socket;
   private Sender out;
   private Receiver in;
 
-<span class="fc" id="L29">  WrappedClient(Socket socketClient) {</span>
-<span class="fc" id="L30">    this.socket = socketClient;</span>
-<span class="fc" id="L31">    this.setUpIo();</span>
-<span class="fc" id="L32">  }</span>
+<span class="fc" id="L31">  WrappedClient(Socket socketClient) {</span>
+<span class="fc" id="L32">    this.socket = socketClient;</span>
+<span class="fc" id="L33">    this.setUpIo();</span>
+<span class="fc" id="L34">  }</span>
 
   private void setUpIo() {
     try {
-<span class="fc" id="L36">      this.out = new JsonSender(socket.getOutputStream());</span>
-<span class="fc" id="L37">      this.in = new JsonReceiver(socket.getInputStream());</span>
-<span class="nc" id="L38">    } catch (IOException e) {</span>
-<span class="nc" id="L39">      logger.error(e.getMessage());</span>
-<span class="fc" id="L40">    }</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L38">      this.out = new JsonSender(socket.getOutputStream());</span>
+<span class="fc" id="L39">      this.in = new JsonReceiver(socket.getInputStream());</span>
+<span class="nc" id="L40">    } catch (IOException e) {</span>
+<span class="nc" id="L41">      logger.error(e.getMessage());</span>
+<span class="fc" id="L42">    }</span>
+<span class="fc" id="L43">  }</span>
 
   Message receive() {
-<span class="nc" id="L44">    return this.in.receive();</span>
+<span class="nc" id="L46">    return this.in.receive();</span>
   }
 
   void close() {
     try {
-<span class="nc" id="L49">      socket.close();</span>
-<span class="nc" id="L50">    } catch (IOException e) {</span>
-<span class="nc" id="L51">      logger.error(e.getMessage());</span>
-<span class="nc" id="L52">    }</span>
-<span class="nc" id="L53">  }</span>
+<span class="nc" id="L51">      socket.close();</span>
+<span class="nc" id="L52">    } catch (IOException e) {</span>
+<span class="nc" id="L53">      logger.error(e.getMessage());</span>
+<span class="nc" id="L54">    }</span>
+<span class="nc" id="L55">  }</span>
 
   void send(final Message message) {
-<span class="fc" id="L56">    this.out.send(message);</span>
-<span class="fc" id="L57">  }</span>
+<span class="fc" id="L58">    this.out.send(message);</span>
+<span class="fc" id="L59">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

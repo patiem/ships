@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 84,
              Errors: 0,
-             Warnings: 91,
+             Warnings: 95,
              Infos: 0
       </title>
             <link>./index.html/checkstyle.html</link>
@@ -164,7 +164,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  9
+                  11
                 </td>
                 <td>
                   0
@@ -179,20 +179,6 @@ under the License.
                 </td>
                 <td>
                   2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.LooseEvent.java">pl/korotkevics/ships/client/gui/events/LooseEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   0
@@ -326,20 +312,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MessageHandler.java">pl/korotkevics/ships/client/client/MessageHandler.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.FleetPlacementController.java">pl/korotkevics/ships/client/gui/controllers/FleetPlacementController.java</a>
                 </td>
                 <td>
@@ -368,7 +340,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MessageHandler.java">pl/korotkevics/ships/client/client/MessageHandler.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.shared.infra.communication.core.json.conversion.JsonEncoder.java">pl/korotkevics/ships/shared/infra/communication/core/json/conversion/JsonEncoder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.util.FieldState.java">pl/korotkevics/ships/client/gui/util/FieldState.java</a>
                 </td>
                 <td>
                   0
@@ -389,20 +389,6 @@ under the License.
                 </td>
                 <td>
                   2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.util.FieldState.java">pl/korotkevics/ships/client/gui/util/FieldState.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
                 </td>
                 <td>
                   0
@@ -486,7 +472,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -542,7 +528,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -676,20 +662,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.Client.java">pl/korotkevics/ships/client/client/Client.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.TurnChangeEvent.java">pl/korotkevics/ships/client/gui/events/TurnChangeEvent.java</a>
                 </td>
                 <td>
@@ -711,6 +683,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.Client.java">pl/korotkevics/ships/client/client/Client.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
                 </td>
                 <td>
                   0
@@ -760,20 +746,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MissShotTrigger.java">pl/korotkevics/ships/client/client/MissShotTrigger.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.MainController.java">pl/korotkevics/ships/client/gui/controllers/MainController.java</a>
                 </td>
                 <td>
@@ -781,6 +753,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.MissShotTrigger.java">pl/korotkevics/ships/client/client/MissShotTrigger.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
                 </td>
                 <td>
                   0
@@ -844,13 +830,13 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FleetPlacementProcessor.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementProcessor.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.connection.WaitingForPlayersState.java">pl/korotkevics/ships/server/gamestates/connection/WaitingForPlayersState.java</a>
                 </td>
                 <td>
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -858,7 +844,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.connection.WaitingForPlayersState.java">pl/korotkevics/ships/server/gamestates/connection/WaitingForPlayersState.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FleetPlacementProcessor.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementProcessor.java</a>
                 </td>
                 <td>
                   0
@@ -906,7 +892,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -1117,6 +1103,20 @@ under the License.
                 </td>
                 <td>
                   1
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.events.LossEvent.java">pl/korotkevics/ships/client/gui/events/LossEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
                 </td>
                 <td>
                   0

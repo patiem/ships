@@ -4,7 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventType;
 
 /**
- * Event firing when user miss the shot.
+ * Event firing when player misses a shot.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-17

@@ -12,16 +12,16 @@
 <span class="sourceLineNo">004</span>import javafx.event.EventType;<a name="line.4"></a>
 <span class="sourceLineNo">005</span><a name="line.5"></a>
 <span class="sourceLineNo">006</span>/**<a name="line.6"></a>
-<span class="sourceLineNo">007</span> * Event firing when user lose the game.<a name="line.7"></a>
+<span class="sourceLineNo">007</span> * Event firing when player loses the game.<a name="line.7"></a>
 <span class="sourceLineNo">008</span> *<a name="line.8"></a>
 <span class="sourceLineNo">009</span> * @author Magdalena Aarsman<a name="line.9"></a>
 <span class="sourceLineNo">010</span> * @since 2017-12-19<a name="line.10"></a>
 <span class="sourceLineNo">011</span> */<a name="line.11"></a>
-<span class="sourceLineNo">012</span>public class LooseEvent extends Event {<a name="line.12"></a>
-<span class="sourceLineNo">013</span>  public static final EventType&lt;LooseEvent&gt; GAME_LOSE = new EventType&lt;&gt;(Event.ANY, "GAME_LOSE");<a name="line.13"></a>
+<span class="sourceLineNo">012</span>public class LossEvent extends Event {<a name="line.12"></a>
+<span class="sourceLineNo">013</span>  public static final EventType&lt;LossEvent&gt; GAME_LOSS = new EventType&lt;&gt;(Event.ANY, "GAME_LOSS");<a name="line.13"></a>
 <span class="sourceLineNo">014</span>  <a name="line.14"></a>
-<span class="sourceLineNo">015</span>  public LooseEvent() {<a name="line.15"></a>
-<span class="sourceLineNo">016</span>    super(GAME_LOSE);<a name="line.16"></a>
+<span class="sourceLineNo">015</span>  public LossEvent() {<a name="line.15"></a>
+<span class="sourceLineNo">016</span>    super(GAME_LOSS);<a name="line.16"></a>
 <span class="sourceLineNo">017</span>  }<a name="line.17"></a>
 <span class="sourceLineNo">018</span>}<a name="line.18"></a>
 

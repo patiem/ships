@@ -6,7 +6,7 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 /**
- * Receive message from client.
+ * Receives messages from clients.
  *
  * @author Piotr Czyż
  * @since 2018-01-02

@@ -32,22 +32,22 @@ class FleetGenerator {
 <span class="fc" id="L32">      THREE_MAST_SHIP, TWO_MAST_SHIP, TWO_MAST_SHIP, TWO_MAST_SHIP, ONE_MAST_SHIP, ONE_MAST_SHIP,</span>
 <span class="fc" id="L33">      ONE_MAST_SHIP, ONE_MAST_SHIP);</span>
   private Map&lt;Integer, FieldState&gt; gameBoard;
+  private static final int FIRST_FIELD_INDEX = 0;
+  private static final int LAST_FIELD_INDEX = 100;
 
-<span class="fc" id="L36">  FleetGenerator() {</span>
-<span class="fc" id="L37">    this.gameBoard = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L38">  }</span>
+<span class="fc" id="L38">  FleetGenerator() {</span>
+<span class="fc" id="L39">    this.gameBoard = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L40">  }</span>
 
   Fleet generateFleet() {
-<span class="fc" id="L41">    this.fillGameBoard();</span>
-<span class="fc" id="L42">    final List&lt;Ship&gt; ships = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L43">    SHIPS_TO_PLACE.forEach(i -&gt; ships.add(this.generateShip(i)));</span>
-<span class="fc" id="L44">    return Fleet.ofShips(ships);</span>
+<span class="fc" id="L43">    this.fillGameBoard();</span>
+<span class="fc" id="L44">    final List&lt;Ship&gt; ships = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L45">    SHIPS_TO_PLACE.forEach(i -&gt; ships.add(this.generateShip(i)));</span>
+<span class="fc" id="L46">    return Fleet.ofShips(ships);</span>
   }
 
   private void fillGameBoard() {
-<span class="fc" id="L48">    final int firstFieldIndex = 0;</span>
-<span class="fc" id="L49">    final int lastFieldIndex = 100;</span>
-<span class="fc" id="L50">    IntStream.range(firstFieldIndex, lastFieldIndex)</span>
+<span class="fc" id="L50">    IntStream.range(FIRST_FIELD_INDEX, LAST_FIELD_INDEX)</span>
 <span class="fc" id="L51">        .forEach(i -&gt; gameBoard.put(i, FieldState.EMPTY));</span>
 <span class="fc" id="L52">  }</span>
 

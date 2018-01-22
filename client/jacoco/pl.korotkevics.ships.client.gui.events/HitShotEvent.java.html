@@ -4,7 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventType;
 
 /**
- * Event firing when user perform shot.
+ * Event firing when player performs a shot.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-17

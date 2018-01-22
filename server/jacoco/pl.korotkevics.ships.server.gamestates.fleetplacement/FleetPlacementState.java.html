@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Represents state of game in witch players place their fleets.
+ * Represents state of game in which players place their fleets.
  *
  * @author Piotr Czyż
  * @since 2018-01-02
@@ -30,21 +30,21 @@ public class FleetPlacementState implements GameState {
   private final List&lt;Fleet&gt; fleets;
 
   /**
-   * It creates state of game in witch players place their fleets.
-   *
    * @param communicationBus client server communication bus
    */
-<span class="fc" id="L37">  public FleetPlacementState(final CommunicationBus communicationBus) {</span>
-<span class="fc" id="L38">    this.communicationBus = communicationBus;</span>
-<span class="fc" id="L39">    this.turnManager = new TurnManager(communicationBus.getFirstClient(),</span>
-<span class="fc" id="L40">        communicationBus.getSecondClient());</span>
-<span class="fc" id="L41">    this.fleetProcessor = new FleetPlacementProcessor(communicationBus, new FleetGenerator());</span>
-<span class="fc" id="L42">    fleets = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L43">  }</span>
+<span class="fc" id="L35">  public FleetPlacementState(final CommunicationBus communicationBus) {</span>
+<span class="fc" id="L36">    this.communicationBus = communicationBus;</span>
+<span class="fc" id="L37">    this.turnManager = new TurnManager(communicationBus.getFirstClient(),</span>
+<span class="fc" id="L38">        communicationBus.getSecondClient());</span>
+<span class="fc" id="L39">    this.fleetProcessor = new FleetPlacementProcessor(communicationBus, new FleetGenerator());</span>
+<span class="fc" id="L40">    fleets = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L41">  }</span>
 
   /**
-   * It receives fleets from players, and transfers game to next state.
+   * Receives fleets from players, and transfers game to next state.
    *
+   * @see PlayState
+   * @see GameEndWithWalkoverState
    * @return GameState - PlayState
    */
   @Override

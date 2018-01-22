@@ -25,17 +25,17 @@ Ships - CLIENT,pl.korotkevics.ships.client.gui.events,RandomPlacementEvent,17,0,
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,ShipDestroyedEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,OpponentConnectedEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,WinEvent,11,0,0,0,3,0,2,0,2,0
+Ships - CLIENT,pl.korotkevics.ships.client.gui.events,LossEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,HitShotEvent,11,0,0,0,3,0,2,0,2,0
-Ships - CLIENT,pl.korotkevics.ships.client.gui.events,LooseEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,OpponentShotEvent,17,0,0,0,5,0,3,0,3,0
 Ships - CLIENT,pl.korotkevics.ships.client.gui.events,TurnChangeEvent,11,0,0,0,3,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.validators,PortValidator,0,27,0,4,0,9,0,5,0,3
 Ships - CLIENT,pl.korotkevics.ships.client.validators,ShipPlacementValidator,5,567,7,87,0,66,7,84,0,44
-Ships - CLIENT,pl.korotkevics.ships.client.gui.util,GridToBoardConverter,44,0,4,0,7,0,4,0,2,0
-Ships - CLIENT,pl.korotkevics.ships.client.gui.util,ShipOrientation,9,29,0,0,0,2,2,2,2,2
-Ships - CLIENT,pl.korotkevics.ships.client.gui.util,UTF8Control,62,0,8,0,19,0,6,0,2,0
-Ships - CLIENT,pl.korotkevics.ships.client.gui.util,FieldState,9,29,0,0,0,2,2,2,2,2
 Ships - CLIENT,pl.korotkevics.ships.client.localization,OurLocale.new OurLocale() {...},8,0,0,0,2,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.localization,OurLocale.new OurLocale() {...},8,0,0,0,2,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.localization,OurLocale.new OurLocale() {...},8,0,0,0,2,0,2,0,2,0
 Ships - CLIENT,pl.korotkevics.ships.client.localization,OurLocale,48,0,0,0,4,0,4,0,4,0
+Ships - CLIENT,pl.korotkevics.ships.client.gui.util,GridToBoardConverter,44,0,4,0,7,0,4,0,2,0
+Ships - CLIENT,pl.korotkevics.ships.client.gui.util,ShipOrientation,9,29,0,0,0,2,2,2,2,2
+Ships - CLIENT,pl.korotkevics.ships.client.gui.util,UTF8Control,62,0,8,0,19,0,6,0,2,0
+Ships - CLIENT,pl.korotkevics.ships.client.gui.util,FieldState,9,29,0,0,0,2,2,2,2,2

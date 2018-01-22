@@ -20,66 +20,70 @@ import java.util.List;
  *
  * @author Piotr Czyż
  * @since 2018-01-02
+ * @see MessageReceiver
+ * @see CommunicationBus
+ * @see TurnManager
+ * @see ShotHandler
  */
 public class PlayState implements GameState {
   private final MessageReceiver messageReceiver;
   private final ShotHandler shotHandler;
-<span class="fc" id="L27">  private final Target logger = new SharedLogger(PlayState.class);</span>
+<span class="fc" id="L31">  private final Target logger = new SharedLogger(PlayState.class);</span>
   private final TurnManager turnManager;
   private CommunicationBus communicationBus;
   private boolean isGameWon;
 
   /**
-   * Creates PlayState instance.
-   *
    * @param communicationBus client server communication bus
-   * @param fleets           list of clients fleets
+   * @param fleets           list of clients' fleets
    */
-<span class="fc" id="L38">  public PlayState(final CommunicationBus communicationBus, final List&lt;Fleet&gt; fleets) {</span>
-<span class="fc" id="L39">    this.communicationBus = communicationBus;</span>
-<span class="fc" id="L40">    this.messageReceiver = new MessageReceiver(communicationBus);</span>
-<span class="fc" id="L41">    isGameWon = false;</span>
-<span class="fc" id="L42">    this.turnManager = new TurnManager(communicationBus.getFirstClient(),</span>
-<span class="fc" id="L43">        communicationBus.getSecondClient());</span>
-<span class="fc" id="L44">    this.shotHandler = new ShotHandler(communicationBus, turnManager, fleets);</span>
-<span class="fc" id="L45">  }</span>
+<span class="fc" id="L40">  public PlayState(final CommunicationBus communicationBus, final List&lt;Fleet&gt; fleets) {</span>
+<span class="fc" id="L41">    this.communicationBus = communicationBus;</span>
+<span class="fc" id="L42">    this.messageReceiver = new MessageReceiver(communicationBus);</span>
+<span class="fc" id="L43">    isGameWon = false;</span>
+<span class="fc" id="L44">    this.turnManager = new TurnManager(communicationBus.getFirstClient(),</span>
+<span class="fc" id="L45">        communicationBus.getSecondClient());</span>
+<span class="fc" id="L46">    this.shotHandler = new ShotHandler(communicationBus, turnManager, fleets);</span>
+<span class="fc" id="L47">  }</span>
 
   /**
-   * Processes gameplay until it has a winner.
+   * Processing game until it has a winner.
    *
-   * @return GameState, depends on game flow it can be GameEndWithWalkoverState
-   *         or GameEndWithWinState.
+   * @see GameEndWithWalkoverState
+   * @see GameEndWithWinState
+   * @return GameState which can be either game end with walkover
+   *         or game end with end depending on a game flow.
    */
   @Override
   public GameState process() {
-<span class="fc" id="L55">    sendYourTurnMessage();</span>
-<span class="fc" id="L56">    messageReceiver.receive(turnManager.getCurrentPlayer());</span>
-<span class="fc bfc" id="L57" title="All 2 branches covered.">    if (messageReceiver.isAShot()) {</span>
-<span class="fc" id="L58">      Message shot = messageReceiver.getMessage();</span>
-<span class="fc" id="L59">      isGameWon = shotHandler.handle(turnManager.isCurrentPlayerFirstPlayer(), shot);</span>
-<span class="fc" id="L60">    } else {</span>
-<span class="fc" id="L61">      return new GameEndWithWalkoverState(communicationBus);</span>
+<span class="fc" id="L59">    sendYourTurnMessage();</span>
+<span class="fc" id="L60">    messageReceiver.receive(turnManager.getCurrentPlayer());</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">    if (messageReceiver.isAShot()) {</span>
+<span class="fc" id="L62">      Message shot = messageReceiver.getMessage();</span>
+<span class="fc" id="L63">      isGameWon = shotHandler.handle(turnManager.isCurrentPlayerFirstPlayer(), shot);</span>
+<span class="fc" id="L64">    } else {</span>
+<span class="fc" id="L65">      return new GameEndWithWalkoverState(communicationBus);</span>
     }
-<span class="fc bfc" id="L63" title="All 2 branches covered.">    if (isGameWon) {</span>
-<span class="fc" id="L64">      return new GameEndWithWinState(communicationBus, turnManager);</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">    if (isGameWon) {</span>
+<span class="fc" id="L68">      return new GameEndWithWinState(communicationBus, turnManager);</span>
     }
-<span class="fc" id="L66">    return this;</span>
+<span class="fc" id="L70">    return this;</span>
   }
 
   private void sendYourTurnMessage() {
-<span class="fc" id="L70">    this.rest();</span>
-<span class="fc" id="L71">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
-<span class="fc" id="L72">    messageSender.send(this.turnManager.getCurrentPlayer(), Header.YOUR_TURN);</span>
-<span class="fc" id="L73">  }</span>
+<span class="fc" id="L74">    this.rest();</span>
+<span class="fc" id="L75">    MessageSender messageSender = new MessageSender(communicationBus, logger);</span>
+<span class="fc" id="L76">    messageSender.send(this.turnManager.getCurrentPlayer(), Header.YOUR_TURN);</span>
+<span class="fc" id="L77">  }</span>
 
   private void rest() {
-<span class="fc" id="L76">    final int restTime = 300;</span>
+<span class="fc" id="L80">    final int restTime = 300;</span>
     try {
-<span class="fc" id="L78">      Thread.sleep(restTime);</span>
-<span class="nc" id="L79">    } catch (InterruptedException e) {</span>
-<span class="nc" id="L80">      Thread.currentThread().interrupt();</span>
-<span class="nc" id="L81">      logger.error(e.getMessage());</span>
-<span class="fc" id="L82">    }</span>
-<span class="fc" id="L83">  }</span>
+<span class="fc" id="L82">      Thread.sleep(restTime);</span>
+<span class="nc" id="L83">    } catch (InterruptedException e) {</span>
+<span class="nc" id="L84">      Thread.currentThread().interrupt();</span>
+<span class="nc" id="L85">      logger.error(e.getMessage());</span>
+<span class="fc" id="L86">    }</span>
+<span class="fc" id="L87">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

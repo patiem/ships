@@ -18,7 +18,7 @@ import java.util.Map;
  * @see Ship
  * @since 2017-12-19
  */
-<span class="pc bpc" id="L21" title="9 of 14 branches missed.">@EqualsAndHashCode</span>
+<span class="pc bpc" id="L21" title="8 of 14 branches missed.">@EqualsAndHashCode</span>
 <span class="pc" id="L22">@RequiredArgsConstructor(staticName = &quot;fleet&quot;, access = AccessLevel.PRIVATE)</span>
 <span class="fc" id="L23">@ToString</span>
 public class Fleet {
@@ -33,9 +33,9 @@ public class Fleet {
    * Static factory method.
    *
    * @param ships
-   *     - list of ships
+   *     - list of ships.
    *
-   * @return Fleet
+   * @return Fleet.
    */
   public static Fleet ofShips(final List&lt;Ship&gt; ships) {
 <span class="fc" id="L41">    Map&lt;Mast, Ship&gt; fleet = new HashMap&lt;&gt;();</span>
@@ -55,13 +55,13 @@ public class Fleet {
   }
   
   /**
-   * It handles an attack
+   * Handles an attack
    * returning an output of such.
    *
    * @param mast
-   *     attacked
+   *     attacked.
    *
-   * @return Damage caused
+   * @return Damage caused.
    */
   public Damage handleDamage(final Mast mast) {
 <span class="fc bfc" id="L67" title="All 2 branches covered.">    if (!this.fleet.containsKey(mast)) {</span>
@@ -76,7 +76,7 @@ public class Fleet {
   }
   
   /**
-   * It produces a list representation of Fleet.
+   * Produces a list representation of Fleet.
    *
    * @return a list containing indices of Masts only.
    */

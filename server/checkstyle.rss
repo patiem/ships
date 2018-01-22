@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 23,
              Errors: 0,
-             Warnings: 0,
+             Warnings: 3,
              Infos: 0
       </title>
             <link>./index.html/checkstyle.html</link>
@@ -80,7 +80,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -116,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.AppServer.java">pl/korotkevics/ships/server/AppServer.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FieldState.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FieldState.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FieldState.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FieldState.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.AppServer.java">pl/korotkevics/ships/server/AppServer.java</a>
                 </td>
                 <td>
                   0
@@ -172,7 +172,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FleetPlacementProcessor.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementProcessor.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageNotifier.java</a>
                 </td>
                 <td>
                   0
@@ -192,7 +192,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -200,7 +200,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.play.DamageNotifier.java">pl/korotkevics/ships/server/gamestates/play/DamageNotifier.java</a>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.server.gamestates.fleetplacement.FleetPlacementProcessor.java">pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementProcessor.java</a>
                 </td>
                 <td>
                   0
@@ -220,7 +220,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0

@@ -12,7 +12,7 @@
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> javafx.scene.layout.StackPane;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.client.client.Client;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.client.gui.events.HitShotEvent;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.client.gui.events.LooseEvent;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.client.gui.events.LossEvent;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.client.gui.events.MissShotEvent;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.client.gui.events.OpponentShotEvent;
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
@@ -259,7 +259,7 @@
 <a class="jxr_linenumber" name="L251" href="#L251">251</a>     eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -&gt; changeTurn());
 <a class="jxr_linenumber" name="L252" href="#L252">252</a>     eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -&gt; markAsHit());
 <a class="jxr_linenumber" name="L253" href="#L253">253</a>     eventButton.addEventHandler(WinEvent.GAME_WIN, event -&gt; renderAsWin());
-<a class="jxr_linenumber" name="L254" href="#L254">254</a>     eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -&gt; renderAsLoss());
+<a class="jxr_linenumber" name="L254" href="#L254">254</a>     eventButton.addEventHandler(LossEvent.GAME_LOSS, event -&gt; renderAsLoss());
 <a class="jxr_linenumber" name="L255" href="#L255">255</a>     eventButton.addEventHandler(ShipDestroyedEvent.SHIP_DESTROYED, event -&gt; <strong class="jxr_keyword">this</strong>.shipDestroyed());
 <a class="jxr_linenumber" name="L256" href="#L256">256</a>     buttonEnd.setOnAction(actionEvent -&gt; <strong class="jxr_keyword">this</strong>.endTheGame());
 <a class="jxr_linenumber" name="L257" href="#L257">257</a>     infoLabel.setText(<strong class="jxr_keyword">this</strong>.resourceBundle.getString(<span class="jxr_string">"opponentAction"</span>));

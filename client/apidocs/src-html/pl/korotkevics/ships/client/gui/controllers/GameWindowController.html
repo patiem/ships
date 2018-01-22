@@ -12,7 +12,7 @@
 <span class="sourceLineNo">004</span>import javafx.scene.layout.StackPane;<a name="line.4"></a>
 <span class="sourceLineNo">005</span>import pl.korotkevics.ships.client.client.Client;<a name="line.5"></a>
 <span class="sourceLineNo">006</span>import pl.korotkevics.ships.client.gui.events.HitShotEvent;<a name="line.6"></a>
-<span class="sourceLineNo">007</span>import pl.korotkevics.ships.client.gui.events.LooseEvent;<a name="line.7"></a>
+<span class="sourceLineNo">007</span>import pl.korotkevics.ships.client.gui.events.LossEvent;<a name="line.7"></a>
 <span class="sourceLineNo">008</span>import pl.korotkevics.ships.client.gui.events.MissShotEvent;<a name="line.8"></a>
 <span class="sourceLineNo">009</span>import pl.korotkevics.ships.client.gui.events.OpponentShotEvent;<a name="line.9"></a>
 <span class="sourceLineNo">010</span>import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;<a name="line.10"></a>
@@ -259,7 +259,7 @@
 <span class="sourceLineNo">251</span>    eventButton.addEventHandler(MissShotEvent.MISS_SHOT, event -&gt; changeTurn());<a name="line.251"></a>
 <span class="sourceLineNo">252</span>    eventButton.addEventHandler(HitShotEvent.HIT_SHOT, event -&gt; markAsHit());<a name="line.252"></a>
 <span class="sourceLineNo">253</span>    eventButton.addEventHandler(WinEvent.GAME_WIN, event -&gt; renderAsWin());<a name="line.253"></a>
-<span class="sourceLineNo">254</span>    eventButton.addEventHandler(LooseEvent.GAME_LOSE, event -&gt; renderAsLoss());<a name="line.254"></a>
+<span class="sourceLineNo">254</span>    eventButton.addEventHandler(LossEvent.GAME_LOSS, event -&gt; renderAsLoss());<a name="line.254"></a>
 <span class="sourceLineNo">255</span>    eventButton.addEventHandler(ShipDestroyedEvent.SHIP_DESTROYED, event -&gt; this.shipDestroyed());<a name="line.255"></a>
 <span class="sourceLineNo">256</span>    buttonEnd.setOnAction(actionEvent -&gt; this.endTheGame());<a name="line.256"></a>
 <span class="sourceLineNo">257</span>    infoLabel.setText(this.resourceBundle.getString("opponentAction"));<a name="line.257"></a>

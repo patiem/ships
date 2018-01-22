@@ -25,7 +25,7 @@
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> java.util.concurrent.ConcurrentHashMap;
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> * Represents state of game in witch players place their fleets.</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> * Represents state of game in which players place their fleets.</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> * @author Piotr Czyż</em>
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * @since 2018-01-02</em>
@@ -38,21 +38,21 @@
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> List&lt;Fleet&gt; fleets;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>    <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">   * It creates state of game in witch players place their fleets.</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment">   *</em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment">   * @param communicationBus client server communication bus</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">   */</em>
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>    <strong class="jxr_keyword">public</strong> <a href="../../../../../../pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementState.html">FleetPlacementState</a>(<strong class="jxr_keyword">final</strong> <a href="../../../../../../pl/korotkevics/ships/server/CommunicationBus.html">CommunicationBus</a> communicationBus) {
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <strong class="jxr_keyword">this</strong>.communicationBus = communicationBus;
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>      <strong class="jxr_keyword">this</strong>.turnManager = <strong class="jxr_keyword">new</strong> <a href="../../../../../../pl/korotkevics/ships/server/TurnManager.html">TurnManager</a>(communicationBus.getFirstClient(),
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>          communicationBus.getSecondClient());
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>      <strong class="jxr_keyword">this</strong>.fleetProcessor = <strong class="jxr_keyword">new</strong> <a href="../../../../../../pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementProcessor.html">FleetPlacementProcessor</a>(communicationBus, <strong class="jxr_keyword">new</strong> <a href="../../../../../../pl/korotkevics/ships/server/gamestates/fleetplacement/FleetGenerator.html">FleetGenerator</a>());
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>      fleets = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>    }
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>    <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment">   * It receives fleets from players, and transfers game to next state.</em>
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">   * @param communicationBus client server communication bus</em>
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment">   */</em>
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>    <strong class="jxr_keyword">public</strong> <a href="../../../../../../pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementState.html">FleetPlacementState</a>(<strong class="jxr_keyword">final</strong> <a href="../../../../../../pl/korotkevics/ships/server/CommunicationBus.html">CommunicationBus</a> communicationBus) {
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <strong class="jxr_keyword">this</strong>.communicationBus = communicationBus;
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>      <strong class="jxr_keyword">this</strong>.turnManager = <strong class="jxr_keyword">new</strong> <a href="../../../../../../pl/korotkevics/ships/server/TurnManager.html">TurnManager</a>(communicationBus.getFirstClient(),
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>          communicationBus.getSecondClient());
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>      <strong class="jxr_keyword">this</strong>.fleetProcessor = <strong class="jxr_keyword">new</strong> <a href="../../../../../../pl/korotkevics/ships/server/gamestates/fleetplacement/FleetPlacementProcessor.html">FleetPlacementProcessor</a>(communicationBus, <strong class="jxr_keyword">new</strong> <a href="../../../../../../pl/korotkevics/ships/server/gamestates/fleetplacement/FleetGenerator.html">FleetGenerator</a>());
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      fleets = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>    }
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment">   * Receives fleets from players, and transfers game to next state.</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment">   *</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment">   * @see PlayState</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment">   * @see GameEndWithWalkoverState</em>
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment">   * @return GameState - PlayState</em>
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment">   */</em>
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>    @Override
