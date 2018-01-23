@@ -1,7 +1,7 @@
 package pl.korotkevics.ships.client.client;
 
-import javafx.application.Platform;
-import javafx.scene.control.Button;
+import javafx.event.Event;
+import lombok.Getter;
 import pl.korotkevics.ships.client.gui.events.OpponentConnectedEvent;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
@@ -12,9 +12,19 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
  * @since 2017-12-17
  */
 class OpponentConnectedTrigger implements EventTrigger {
+  private final OpponentConnectedEvent opponentConnectedEvent;
+
+  OpponentConnectedTrigger(OpponentConnectedEvent opponentConnectedEvent) {
+    this.opponentConnectedEvent = opponentConnectedEvent;
+  }
 
   @Override
-  public void fire(final Button button, final Message message) {
-    Platform.runLater(() -> button.fireEvent(new OpponentConnectedEvent()));
+  public void fire(final DispatcherAdapter dispatcherAdapter, final Message message) {
+    dispatcherAdapter.fireEvent(this.opponentConnectedEvent);
+  }
+
+  @Override
+  public Event getEvent() {
+    return opponentConnectedEvent;
   }
 }

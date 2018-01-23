@@ -20,27 +20,29 @@ class MessageHandler {
 
   private static final Target logger = new SharedLogger(Client.class);
   private final Map<Header, EventTrigger> triggers;
-  private Button eventButton;
+  @Getter
+  private final DispatcherAdapter dispatcherAdapter;
   @Getter
   private boolean endConnectionTriggered;
 
   /**
    * Creates an instance of MessageHandler and configures all possible triggers types.
    */
-  MessageHandler(final Map<Header, EventTrigger> triggerMap) {
+  MessageHandler(final Map<Header, EventTrigger> triggerMap, DispatcherAdapter dispatcherAdapter) {
     this.triggers = triggerMap;
+    this.dispatcherAdapter = dispatcherAdapter;
   }
 
   Button getCurrentEventButton() {
-    return eventButton;
+    return dispatcherAdapter.getEventButton();
   }
 
   void setCurrentEventButton(Button eventButton) {
-    this.eventButton = eventButton;
+    this.dispatcherAdapter.setEventButton(eventButton);
   }
 
   void handle(Message message) {
-    if (eventButton == null) {
+    if (dispatcherAdapter.getEventButton() == null) {
       throw new IllegalStateException("there is no object on which there can be fire event on");
     }
 
@@ -51,7 +53,7 @@ class MessageHandler {
       return;
     }
     checkIfEndWillBeTriggered(message);
-    triggers.get(header).fire(eventButton, message);
+    triggers.get(header).fire(dispatcherAdapter, message);
   }
 
   private void checkIfEndWillBeTriggered(final Message message) {

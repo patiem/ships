@@ -1,7 +1,7 @@
 package pl.korotkevics.ships.client.client;
 
-import javafx.application.Platform;
-import javafx.scene.control.Button;
+import javafx.event.Event;
+import lombok.Getter;
 import pl.korotkevics.ships.client.gui.events.HitShotEvent;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
@@ -12,8 +12,19 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
  * @since 2017-12-18
  */
 class HitShotTrigger implements EventTrigger {
+  private final HitShotEvent hitShotEvent;
+
+  HitShotTrigger(HitShotEvent hitShotEvent) {
+    this.hitShotEvent = hitShotEvent;
+  }
+
   @Override
-  public void fire(final Button button, final Message message) {
-    Platform.runLater(() -> button.fireEvent(new HitShotEvent()));
+  public void fire(final DispatcherAdapter dispatcherAdapter, final Message message) {
+    dispatcherAdapter.fireEvent(this.hitShotEvent);
+  }
+
+  @Override
+  public Event getEvent() {
+    return hitShotEvent;
   }
 }
