@@ -1,7 +1,7 @@
 package pl.korotkevics.ships.client.reporting;
 
 enum ReportingOption {
-  FILE;
+  FILE, SOCKET, LOGGER;
   
   @Override
   public String toString() {
