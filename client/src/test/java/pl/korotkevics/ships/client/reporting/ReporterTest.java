@@ -1,6 +1,7 @@
 package pl.korotkevics.ships.client.reporting;
 
 import org.apache.commons.lang3.StringUtils;
+import org.mockito.exceptions.misusing.UnfinishedVerificationException;
 import org.testng.annotations.Test;
 import org.testng.reporters.Files;
 
@@ -12,6 +13,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 @Test(groups = "integration")
 public class ReporterTest {
@@ -22,7 +24,9 @@ public class ReporterTest {
   
   private final String REPORTING_TO_LOGGER_CONFIG = "reportingToLogger";
   
-  private final String LOG_FILE = "reporting.log";
+  private final int PORT = 9999;
+  
+  private final String LOG_FILE = "../target/test-reporting.log";
   
   public void shouldRecognizeActiveTargetAsFile() {
     //given
@@ -78,30 +82,21 @@ public class ReporterTest {
     //given
     Reporter reporter = new Reporter(REPORTING_TO_SOCKET_CONFIG);
     //when - then
-    assertEquals(reporter.getDestinationPort(), 7777);
+    assertEquals(reporter.getDestinationPort(), PORT);
   }
   
   public void shouldReportToSocket() {
     //given
-    Reporter reporter = new Reporter(REPORTING_TO_SOCKET_CONFIG);
+    ExternalPrinterThread t = new ExternalPrinterThread(PORT);
     new Thread(() -> {
-      try (ServerSocket serverSocket = new ServerSocket(7777); Socket clientSocket = serverSocket
-                                                                                         .accept
-                                                                                              ()) {
-        Scanner scanner = new Scanner(clientSocket.getInputStream(), "UTF-8");
-        StringBuilder stringBuilder = new StringBuilder();
-        while (scanner.hasNext()) {
-          stringBuilder.append(scanner.nextLine());
-        }
-        //then
-        assertEquals(stringBuilder.toString(), "Just a casual message");
-        clientSocket.getOutputStream().write(stringBuilder.toString().getBytes());
-      } catch (final IOException e) {
-        e.printStackTrace();
-      }
+      t.run();
     }).start();
+    Reporter reporter = new Reporter(REPORTING_TO_SOCKET_CONFIG);
     //when
     reporter.report("Just a casual message");
+    //then
+    //-> assertion is within the anonymous thread, couldn't do it better,
+    //and it is not entirely reliable
   }
   
   public void shouldRecognizeActiveTargetAsLogger() {
@@ -122,5 +117,31 @@ public class ReporterTest {
     FileOutputStream writer = new FileOutputStream(LOG_FILE);
     writer.write(("").getBytes());
     writer.close();
+  }
+}
+
+class ExternalPrinterThread extends Thread {
+  
+  private final int PORT;
+  
+  ExternalPrinterThread(final int port) {PORT = port;}
+  
+  @Override
+  public void run() {
+  
+    try (ServerSocket serverSocket = new ServerSocket(PORT); Socket clientSocket = serverSocket
+                                                                                       .accept
+                                                                                            ()) {
+      Scanner scanner = new Scanner(clientSocket.getInputStream(), "UTF-8");
+      StringBuilder stringBuilder = new StringBuilder();
+      while (scanner.hasNext()) {
+        stringBuilder.append(scanner.nextLine());
+      }
+      //then
+      assertTrue("Just a casual message".equals(stringBuilder.toString()));
+      clientSocket.getOutputStream().write(stringBuilder.toString().getBytes());
+    } catch (final IOException e) {
+      e.printStackTrace();
+    }
   }
 }
