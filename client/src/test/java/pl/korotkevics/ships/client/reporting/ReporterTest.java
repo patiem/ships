@@ -55,7 +55,7 @@ public class ReporterTest {
     this.makeSureLogFileExistsAndIsEmpty();
     //when
     reporter.report("A message which should not be reported int" + "o a file since it is not the " +
-                        "" + "" + "" + "active destination.");
+                        "" + "" + "" + "" + "active destination.");
     //then
     assertEquals(Files.readFile(new File(LOG_FILE)), StringUtils.EMPTY);
   }
@@ -109,6 +109,13 @@ public class ReporterTest {
     Reporter reporter = new Reporter(REPORTING_TO_LOGGER_CONFIG);
     //when - then
     assertEquals(reporter.getCurrentDestination(), ReportingOption.LOGGER.toString());
+  }
+  
+  public void shouldRecognizeLoggerName() {
+    //given
+    Reporter reporter = new Reporter(REPORTING_TO_LOGGER_CONFIG);
+    //when - then
+    assertEquals(reporter.getDestinationLoggerName(), "Snarky Reporter");
   }
   
   private void makeSureLogFileExistsAndIsEmpty() throws IOException {

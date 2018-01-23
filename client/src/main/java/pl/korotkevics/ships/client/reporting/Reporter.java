@@ -19,17 +19,19 @@ class Reporter {
   
   private static final String PATH_SEPARATOR = ".";
   
-  private static final String DESTINATION = "destination";
-  
   private static final String TARGET = "target";
   
   private static final String OPTIONS = "options";
   
-  private static final String FILE = "file";
+  private static final String DESTINATION = "destination";
+  
+  private static final String LOGGER_OPTION = "logger";
+  
+  private static final String SOCKET_OPTION = "socket";
+  
+  private static final String FILE_OPTION = "file";
   
   private static final String NAME = "name";
-  
-  private static final String SOCKET = "socket";
   
   private static final String HOST = "host";
   
@@ -46,10 +48,11 @@ class Reporter {
   }
   
   String getDestinationFileName() {
-    return this.config.getString(OPTIONS + PATH_SEPARATOR + FILE + PATH_SEPARATOR + NAME);
+    return this.config.getString(OPTIONS + PATH_SEPARATOR + FILE_OPTION + PATH_SEPARATOR + NAME);
   }
   
   public void report(final String message) {
+    //TODO refactor to Visitor or a map based switch
     if (this.getCurrentDestination().equals(ReportingOption.FILE.toString())) {
       try {
         Files.write(Paths.get(this.getDestinationFileName()), StringUtils.defaultIfEmpty(message,
@@ -65,14 +68,20 @@ class Reporter {
       } catch (IOException e) {
         logger.error(e.getMessage());
       }
+    } else if (this.getCurrentDestination().equals(ReportingOption.LOGGER.toString())) {
+      logger.report(message, this.getDestinationLoggerName());
     }
   }
   
   String getDestinationHost() {
-    return this.config.getString(OPTIONS + PATH_SEPARATOR + SOCKET + PATH_SEPARATOR + HOST);
+    return this.config.getString(OPTIONS + PATH_SEPARATOR + SOCKET_OPTION + PATH_SEPARATOR + HOST);
   }
   
   int getDestinationPort() {
-    return this.config.getInt(OPTIONS + PATH_SEPARATOR + SOCKET + PATH_SEPARATOR + PORT);
+    return this.config.getInt(OPTIONS + PATH_SEPARATOR + SOCKET_OPTION + PATH_SEPARATOR + PORT);
+  }
+  
+  String getDestinationLoggerName() {
+    return this.config.getString(OPTIONS + PATH_SEPARATOR + LOGGER_OPTION + PATH_SEPARATOR + NAME);
   }
 }
