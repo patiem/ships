@@ -12,7 +12,7 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
  * @since 2017-12-17
  */
 class OpponentConnectedTrigger implements EventTrigger {
-
+  
   @Override
   public void fire(final Button button, final Message message) {
     Platform.runLater(() -> button.fireEvent(new OpponentConnectedEvent()));

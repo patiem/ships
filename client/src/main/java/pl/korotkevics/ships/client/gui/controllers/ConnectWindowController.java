@@ -25,6 +25,10 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Callable;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Connect window controller.
@@ -57,7 +61,7 @@ public class ConnectWindowController implements Initializable {
   private AnchorPane mainAnchorPane;
 
   @FXML
-  private Label labelInvalidPort;
+  private MessageLabel labelInvalidPort;
 
   @FXML
   private Button eventButton;
@@ -97,7 +101,7 @@ public class ConnectWindowController implements Initializable {
       clientThread.start();
     }
   }
-
+  
   private void initializeClient() {
     final MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
     this.client = mainController.getClient();
