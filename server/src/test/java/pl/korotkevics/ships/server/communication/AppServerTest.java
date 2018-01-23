@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
@@ -17,10 +18,10 @@ public class AppServerTest {
     //when
     connectClient();
     connectClient();
-    appServer.connectClients();
+    List<Socket> pairOfClients = appServer.connectClients();
 
     //then
-    assertEquals(appServer.getClientSockets().size(), 2);
+    assertEquals(pairOfClients.size(), 2);
   }
 
   private void connectClient() throws IOException, InterruptedException {
@@ -28,9 +29,7 @@ public class AppServerTest {
       try {
         Thread.sleep(10);
         new Socket("127.0.0.1", 8989);
-      } catch (final InterruptedException e) {
-        e.printStackTrace();
-      } catch (final IOException e) {
+      } catch (final InterruptedException | IOException e) {
         e.printStackTrace();
       }
     }).start();
