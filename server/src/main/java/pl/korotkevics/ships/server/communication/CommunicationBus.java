@@ -18,30 +18,26 @@ import java.util.List;
  */
 public class CommunicationBus {
 
-  private static final int SERVER_PORT = 8189;
-  private final Target logger = new SharedLogger(CommunicationBus.class);
-  private final AppServer appServer;
 
+  private final Target logger = new SharedLogger(CommunicationBus.class);
+  private final List<Socket> serverClients;
   private List<WrappedClient> clients;
 
   /**
    * Create communication bus instance.
    *
-   * @throws IOException if an I/O error occurs when opening the socket.
+   * @param serverClients List of clients sockets
    */
-  public CommunicationBus() throws IOException {
-    appServer = new AppServer(SERVER_PORT);
-    clients = new ArrayList<>();
+  public CommunicationBus(final List<Socket> serverClients) {
+    this.serverClients = serverClients;
   }
 
   /**
    * It ask AppServer for clients and then wrap them into wrapped client.
    */
   public void start() {
-    appServer.connectClients();
-    for (Socket socketClient : appServer.getClientSockets()) {
-      wrapClient(socketClient);
-    }
+    clients = new ArrayList<>();
+    serverClients.forEach(this::wrapClient);
     logger.info("Communication bus started..");
   }
 
@@ -49,9 +45,7 @@ public class CommunicationBus {
    * Close clients sockets and clear list of wrapped clients.
    */
   public void stop() {
-    for (WrappedClient c : clients) {
-      c.close();
-    }
+    clients.forEach(WrappedClient::close);
     clients.clear();
   }
 

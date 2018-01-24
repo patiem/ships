@@ -26,12 +26,14 @@ import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
 import pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent;
 import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
 import pl.korotkevics.ships.client.gui.events.WinEvent;
+import pl.korotkevics.ships.client.gui.util.GridToBoardConverter;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 /**
  * Game window controller.
@@ -264,6 +266,9 @@ public class GameWindowController implements Initializable {
     final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
     rec.setFill(Color.RED);
     shipDestroyed = true;
+    SunkenShipMarker shipDestroyer =
+        new SunkenShipMarker(new GridToBoardConverter(opponentBoard).convert(), shotIndexInGrid - 1);
+    this.destroyShip(shipDestroyer.getIndexToColor());
   }
 
   private void endTheGame() {
@@ -306,6 +311,10 @@ public class GameWindowController implements Initializable {
   private void disableWithdrawalPossibility() {
     this.eventButton.removeEventHandler(OpponentWithdrawEvent.OPPONENT_WITHDRAW,
         opponentConnectedEvent -> opponentWithdraw());
+  }
+
+  private void destroyShip(Set<Integer> indexes){
+    indexes.forEach(i -> ((Rectangle )this.opponentBoard.getChildren().get(i + 1)).setFill(Color.BLACK));
   }
 
 }

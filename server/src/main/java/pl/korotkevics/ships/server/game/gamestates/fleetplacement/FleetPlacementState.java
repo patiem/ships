@@ -64,11 +64,16 @@ public class FleetPlacementState implements GameState {
 
   private void placeFleet() {
     final Map<Integer, Fleet> clientsFleet = new ConcurrentHashMap<>();
-    Thread firstClientFleetPlacement = new Thread(() ->
-        clientsFleet.put(0, this.fleetProcessor.placeFleet(this.turnManager.getCurrentPlayer())));
+    final String parentThreadName = Thread.currentThread().getName();
+    Thread firstClientFleetPlacement = new Thread(() -> {
+      Thread.currentThread().setName(parentThreadName + " fleet 1");
+      clientsFleet.put(0, this.fleetProcessor.placeFleet(this.turnManager.getCurrentPlayer()));
+    });
     firstClientFleetPlacement.start();
-    Thread secondClientFleetPlacement = new Thread(() ->
-        clientsFleet.put(1, this.fleetProcessor.placeFleet(this.turnManager.getOtherPlayer())));
+    Thread secondClientFleetPlacement = new Thread(() -> {
+      Thread.currentThread().setName(parentThreadName + " fleet 2");
+      clientsFleet.put(1, this.fleetProcessor.placeFleet(this.turnManager.getOtherPlayer()));
+    });
     secondClientFleetPlacement.start();
     try {
       firstClientFleetPlacement.join();
