@@ -2,13 +2,13 @@ package pl.korotkevics.ships.client.reporting;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -50,25 +50,53 @@ public class Reporter {
   
   private final Config config;
   
+  private Socket socket;
+  
   public void report(final String message) {
     //TODO refactor to Visitor or a map based switch
     if (this.getCurrentDestination().equals(ReportingOption.FILE.toString())) {
-      try {
-        Files.write(Paths.get(this.getDestinationFileName()), StringUtils.defaultIfEmpty(message + System.lineSeparator(),
-            StringUtils.EMPTY).getBytes(), StandardOpenOption.APPEND);
-      } catch (IOException e) {
-        logger.error(e.getMessage());
-      }
+      this.writeToFile(message);
     } else if (this.getCurrentDestination().equals(ReportingOption.SOCKET.toString())) {
-      try (Socket socket = new Socket()) {
+      this.establishConnection();
+      this.writeToSocket(message);
+    } else if (this.getCurrentDestination().equals(ReportingOption.LOGGER.toString())) {
+      this.log(message);
+    }
+  }
+  
+  private void log(final String message) {
+    logger.report(message, this.getDestinationLoggerName());
+  }
+  
+  private void writeToFile(final String message) {
+    try {
+      Files.write(Paths.get(this.getDestinationFileName()), StringUtils.defaultIfEmpty(message
+                                                                                           +
+                                                                                           System.lineSeparator(), StringUtils.EMPTY).getBytes(), StandardOpenOption.APPEND);
+    } catch (IOException e) {
+      logger.error(e.getMessage());
+    }
+  }
+  
+  private void writeToSocket(final String message) {
+    PrintWriter printWriter;
+    try {
+      printWriter = new PrintWriter(new OutputStreamWriter(this.socket.getOutputStream(), "UTF-8"), true);
+      printWriter.println(message);
+    } catch (IOException e) {
+      logger.error(e.getMessage());
+    }
+  }
+  
+  private void establishConnection() {
+    if (this.socket == null) {
+      try {
         final InetAddress inetAddress = InetAddress.getByName(this.getDestinationHost());
-        socket.connect(new InetSocketAddress(inetAddress, getDestinationPort()));
-        socket.getOutputStream().write(message.getBytes());
+        this.socket = new Socket();
+        this.socket.connect(new InetSocketAddress(inetAddress, this.getDestinationPort()));
       } catch (IOException e) {
         logger.error(e.getMessage());
       }
-    } else if (this.getCurrentDestination().equals(ReportingOption.LOGGER.toString())) {
-      logger.report(message, this.getDestinationLoggerName());
     }
   }
   

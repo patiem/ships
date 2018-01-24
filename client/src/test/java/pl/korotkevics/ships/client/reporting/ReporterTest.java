@@ -74,7 +74,7 @@ public class ReporterTest {
     this.makeSureLogFileExistsAndIsEmpty();
     //when
     reporter.report("A message which should not be reported int" + "o a file since it is not the " +
-                        "" + "" + "" + "" + "" + "" + "active destination.");
+                        "" + "" + "" + "" + "" + "" + "" + "active destination.");
     //then
     assertEquals(Files.readFile(new File(LOG_FILE)), StringUtils.EMPTY);
   }
@@ -102,24 +102,22 @@ public class ReporterTest {
   
   public void shouldReportToSocket() throws Exception {
     //given
+    Reporter reporter = new Reporter(REPORTING_TO_SOCKET_CONFIG);
     Future<String> future = Executors.newSingleThreadExecutor().submit(() -> {
       try (ServerSocket serverSocket = new ServerSocket(PORT); Socket clientSocket = serverSocket
                                                                                          .accept
                                                                                               ()) {
         Scanner scanner = new Scanner(clientSocket.getInputStream(), "UTF-8");
         StringBuilder stringBuilder = new StringBuilder();
-        while (scanner.hasNext()) {
-          stringBuilder.append(scanner.nextLine());
-        }
+        stringBuilder.append(scanner.nextLine());
         //then
         return stringBuilder.toString();
       } catch (final IOException e) {
         throw new RuntimeException();
       }
     });
-    Reporter reporter = new Reporter(REPORTING_TO_SOCKET_CONFIG);
     
-    //whens
+    //when
     reporter.report("Hey Sandor");
     String receivedString = future.get(5, TimeUnit.SECONDS);// timeout is optional here
     
