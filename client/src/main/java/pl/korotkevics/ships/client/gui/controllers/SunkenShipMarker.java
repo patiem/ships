@@ -13,7 +13,7 @@ class SunkenShipMarker {
   private Set<Integer> indicesToSetEmpty = new HashSet<>();
   private ShipOrientation shipOrientation;
 
-  SunkenShipMarker(FieldState[] board, int lastHitIndex) {
+  SunkenShipMarker(final FieldState[] board, final int lastHitIndex) {
     this.board = board;
     this.lastHitIndex = lastHitIndex;
   }
@@ -170,7 +170,7 @@ class SunkenShipMarker {
     return true;
   }
 
-  private boolean checkMiddleOne(int i) {
+  private boolean checkMiddleOne(final int i) {
     if(i != this.lastHitIndex) {
       if(this.board[i].equals(FieldState.EMPTY)) {
         this.indicesToSetEmpty.add(i);
@@ -182,7 +182,7 @@ class SunkenShipMarker {
     return false;
   }
 
-  private boolean checkRightNeighbor(int i) {
+  private boolean checkRightNeighbor(final int i) {
     if(i + BOARD_SIZE < this.board.length ) {
       if(this.board[i + BOARD_SIZE].equals(FieldState.EMPTY)) {
         this.indicesToSetEmpty.add(i + BOARD_SIZE);
@@ -194,7 +194,7 @@ class SunkenShipMarker {
     return false;
   }
 
-  private boolean checkLeftNeighbor(int i) {
+  private boolean checkLeftNeighbor(final int i) {
     if(i - BOARD_SIZE >= 0 ) {
       if(this.board[i - BOARD_SIZE].equals(FieldState.EMPTY)) {
         this.indicesToSetEmpty.add(i - BOARD_SIZE);
