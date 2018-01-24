@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -22,6 +25,8 @@ public class ReporterTest {
   private final String REPORTING_TO_SOCKET_CONFIG = "reportingToSocket";
   
   private final String REPORTING_TO_LOGGER_CONFIG = "reportingToLogger";
+  
+  private final String REPORTING_TO_WINDOW_CONFIG = "reportingToWindow";
   
   private final int PORT = 9999;
   
@@ -83,19 +88,32 @@ public class ReporterTest {
     //when - then
     assertEquals(reporter.getDestinationPort(), PORT);
   }
-  
-  public void shouldReportToSocket() {
+ 
+  public void shouldReportToSocket() throws Exception {
     //given
-    ExternalPrinterThread t = new ExternalPrinterThread(PORT);
-    new Thread(() -> {
-      t.run();
-    }).start();
+    Future<String> future = Executors.newSingleThreadExecutor().submit(() -> {
+      try (ServerSocket serverSocket = new ServerSocket(PORT); Socket clientSocket = serverSocket
+                                                                                         .accept
+                                                                                              ()) {
+        Scanner scanner = new Scanner(clientSocket.getInputStream(), "UTF-8");
+        StringBuilder stringBuilder = new StringBuilder();
+        while (scanner.hasNext()) {
+          stringBuilder.append(scanner.nextLine());
+        }
+        //then
+        return stringBuilder.toString();
+      } catch (final IOException e) {
+        throw new RuntimeException();
+      }
+    });
     Reporter reporter = new Reporter(REPORTING_TO_SOCKET_CONFIG);
-    //when
-    reporter.report("Just a casual message");
+    
+    //whens
+    reporter.report("Hey Sandor");
+    String receivedString = future.get(5, TimeUnit.SECONDS);// timeout is optional here
+    
     //then
-    //-> assertion is within the anonymous thread, couldn't do it better,
-    //and it is not entirely reliable
+    assertEquals(receivedString, "Hey Sandor");
   }
   
   public void shouldRecognizeActiveTargetAsLogger() {
@@ -112,35 +130,16 @@ public class ReporterTest {
     assertEquals(reporter.getDestinationLoggerName(), "Snarky Reporter");
   }
   
+  public void shouldRecognizeDestinationWindowTitle() {
+    //given
+    Reporter reporter = new Reporter(REPORTING_TO_WINDOW_CONFIG);
+    //when - then
+    assertEquals(reporter.getDestinationWindowTitle(), "Snarky Reporter");
+  }
+  
   private void makeSureLogFileExistsAndIsEmpty() throws IOException {
     FileOutputStream writer = new FileOutputStream(LOG_FILE);
     writer.write(("").getBytes());
     writer.close();
-  }
-}
-
-class ExternalPrinterThread extends Thread {
-  
-  private final int PORT;
-  
-  ExternalPrinterThread(final int port) {PORT = port;}
-  
-  @Override
-  public void run() {
-  
-    try (ServerSocket serverSocket = new ServerSocket(PORT); Socket clientSocket = serverSocket
-                                                                                       .accept
-                                                                                            ()) {
-      Scanner scanner = new Scanner(clientSocket.getInputStream(), "UTF-8");
-      StringBuilder stringBuilder = new StringBuilder();
-      while (scanner.hasNext()) {
-        stringBuilder.append(scanner.nextLine());
-      }
-      //then
-      assertTrue("Just a casual message".equals(stringBuilder.toString()));
-      clientSocket.getOutputStream().write(stringBuilder.toString().getBytes());
-    } catch (final IOException e) {
-      e.printStackTrace();
-    }
   }
 }

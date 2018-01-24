@@ -31,11 +31,15 @@ class Reporter {
   
   private static final String FILE_OPTION = "file";
   
+  private static final String WINDOW_OPTION = "window";
+  
   private static final String NAME = "name";
   
   private static final String HOST = "host";
   
   private static final String PORT = "port";
+  
+  private static final String TITLE = "title";
   
   private final Config config;
   
@@ -83,5 +87,9 @@ class Reporter {
   
   String getDestinationLoggerName() {
     return this.config.getString(OPTIONS + PATH_SEPARATOR + LOGGER_OPTION + PATH_SEPARATOR + NAME);
+  }
+  
+  String getDestinationWindowTitle() {
+    return this.config.getString(OPTIONS + PATH_SEPARATOR + WINDOW_OPTION + PATH_SEPARATOR + TITLE);
   }
 }
