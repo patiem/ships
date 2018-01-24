@@ -16,4 +16,9 @@ class HitShotTrigger implements EventTrigger {
   public void fire(final Button button, final Message message) {
     Platform.runLater(() -> button.fireEvent(new HitShotEvent()));
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Oh! There is a hit. Good job.";
+  }
 }

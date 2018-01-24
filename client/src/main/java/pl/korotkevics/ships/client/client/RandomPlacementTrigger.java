@@ -17,5 +17,10 @@ class RandomPlacementTrigger implements EventTrigger {
     Platform.runLater(() ->
         button.fireEvent(new RandomPlacementEvent(message.getFleet())));
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Random fleet placement has been applied. Someone is lazy!";
+  }
 }
 

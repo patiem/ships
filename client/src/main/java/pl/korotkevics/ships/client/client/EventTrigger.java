@@ -12,4 +12,5 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
 interface EventTrigger {
   void fire(final Button button, final Message message);
+  String provideDescription();
 }
