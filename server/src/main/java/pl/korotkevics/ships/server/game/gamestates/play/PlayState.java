@@ -3,6 +3,7 @@ package pl.korotkevics.ships.server.game.gamestates.play;
 import pl.korotkevics.ships.server.communication.CommunicationBus;
 import pl.korotkevics.ships.server.communication.MessageReceiver;
 import pl.korotkevics.ships.server.communication.MessageSender;
+import pl.korotkevics.ships.server.communication.WrappedClient;
 import pl.korotkevics.ships.server.game.TurnManager;
 import pl.korotkevics.ships.server.game.gamestates.GameState;
 import pl.korotkevics.ships.server.game.gamestates.endgame.GameEndWithWalkoverState;
@@ -57,17 +58,39 @@ public class PlayState implements GameState {
   @Override
   public GameState process() {
     sendYourTurnMessage();
+    messageReceiveConfirmation(turnManager.getCurrentPlayer());
     messageReceiver.receive(turnManager.getCurrentPlayer());
+    logger.info("WAITING FOR SHOT");
     if (messageReceiver.isAShot()) {
       Message shot = messageReceiver.getMessage();
       isGameWon = shotHandler.handle(turnManager.isCurrentPlayerFirstPlayer(), shot);
-    } else {
+      logger.info("WAITING FOR CONFIRMATION");
+      this.messageReceiveConfirmation(turnManager.getCurrentPlayer());
+      this.messageReceiveConfirmation(turnManager.getOtherPlayer());
+    }
+    else {
       return new GameEndWithWalkoverState(communicationBus);
     }
     if (isGameWon) {
       return new GameEndWithWinState(communicationBus, turnManager);
     }
     return this;
+  }
+
+
+
+  private void messageReceiveConfirmation(WrappedClient wrappedClient) {
+    logger.error("sprawdzam");
+    boolean getYou = false;
+    while(!getYou) {
+      messageReceiver.receive(wrappedClient);
+      logger.error("Odebrałem wiadomość");
+      if (messageReceiver.isConfirmation()) {
+        logger.error("to było potwierdzenie");
+        getYou = true;
+      }
+    }
+    logger.info("CONFIRMED");
   }
 
   private void sendYourTurnMessage() {

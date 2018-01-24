@@ -61,4 +61,8 @@ public class MessageReceiver {
   public boolean isRandomPlacement() {
     return Header.RANDOM_PLACEMENT.equals(lastMessage.getHeader());
   }
+
+  public boolean isConfirmation() {
+    return Header.CONFIRMATION.equals(lastMessage.getHeader());
+  }
 }

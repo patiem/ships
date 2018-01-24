@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.logging.Logger;
 
 /**
  * Enables communication with server side.
@@ -98,7 +99,13 @@ public class Client implements Runnable {
         logger.info(message);
 
         messageHandler.handle(message);
-
+            if (message.getHeader().equals(Header.SHOT) || message.getHeader().equals(Header.HIT) || message.getHeader().equals(Header.SHIP_DESTROYED) ||
+                message.getHeader().equals(Header.MISS) || message.getHeader().equals(Header.YOUR_TURN)  ) {
+              JsonSender sender = new JsonSender(clientSocket.getOutputStream());
+              Message confirm = new MessageBuilder().withHeader(Header.CONFIRMATION).build();
+              sender.send(confirm);
+              logger.info(confirm);
+            }
       } catch (IOException | IllegalStateException e) {
         logger.error(e.getMessage());
       }
