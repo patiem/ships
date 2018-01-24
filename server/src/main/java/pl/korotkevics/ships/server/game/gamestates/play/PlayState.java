@@ -78,8 +78,23 @@ public class PlayState implements GameState {
       Message shot = messageReceiver.getMessage();
       isGameWon = shotHandler.handle(turnManager.isCurrentPlayerFirstPlayer(), shot);
       logger.info("WAITING FOR CONFIRMATION");
+      Future<Boolean> confirmation1 = Executors.newSingleThreadExecutor().submit(() ->
+          messageReceiveConfirmation(turnManager.getCurrentPlayer()));
+      try {
+        confirmation1.get(60, TimeUnit.SECONDS);
+      } catch (InterruptedException | ExecutionException | TimeoutException e) {
+        logger.error(e.getMessage());
+        return new GameEndWithWalkoverState(communicationBus);
+      }
       this.messageReceiveConfirmation(turnManager.getCurrentPlayer());
-      this.messageReceiveConfirmation(turnManager.getOtherPlayer());
+      Future<Boolean> confirmation2 = Executors.newSingleThreadExecutor().submit(() ->
+          messageReceiveConfirmation(turnManager.getOtherPlayer()));
+      try {
+        confirmation2.get(60, TimeUnit.SECONDS);
+      } catch (InterruptedException | ExecutionException | TimeoutException e) {
+        logger.error(e.getMessage());
+        return new GameEndWithWalkoverState(communicationBus);
+      }
     }
     else {
       return new GameEndWithWalkoverState(communicationBus);
