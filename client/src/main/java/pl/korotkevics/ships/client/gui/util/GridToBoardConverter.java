@@ -28,6 +28,8 @@ public class GridToBoardConverter {
     for (int i = 1; i < gridBoard.getChildren().size(); i++) {
       if (((Rectangle) gridBoard.getChildren().get(i)).getFill().equals(Color.GREEN)) {
         board[i - 1] = FieldState.OCCUPIED;
+      } else if (((Rectangle) gridBoard.getChildren().get(i)).getFill().equals(Color.RED)) {
+        board[i - 1] = FieldState.HIT;
       } else {
         board[i - 1] = FieldState.EMPTY;
       }
