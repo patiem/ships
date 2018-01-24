@@ -17,6 +17,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+/**
+ * @author Sandor Korotkevics
+ * @since 2018-01-24
+ * @see ReportingOption
+ *
+ * Reports game messages to a configurable target.
+ */
 public class Reporter {
   
   private static final Target logger = new SharedLogger(Reporter.class);
@@ -53,8 +60,13 @@ public class Reporter {
   
   private Socket socket;
   
+  /**
+   * Reports a game message to a configurable target.
+   * Target is configured with a .conf file.
+   *
+   * @param message from a game trigger to be reported.
+   */
   public void report(final String message) {
-    //TODO refactor to Visitor or a map based switch
     try {
       if (this.getCurrentDestination().equals(ReportingOption.FILE.toString())) {
         this.writeToFile(message);
