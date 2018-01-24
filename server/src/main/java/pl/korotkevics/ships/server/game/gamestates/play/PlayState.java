@@ -70,7 +70,7 @@ public class PlayState implements GameState {
       confirmation.get(60, TimeUnit.SECONDS);
     } catch (InterruptedException | ExecutionException | TimeoutException e) {
       logger.error(e.getMessage());
-      new GameEndWithWalkoverState(communicationBus);
+      return new GameEndWithWalkoverState(communicationBus);
     }
     messageReceiver.receive(turnManager.getCurrentPlayer());
     logger.info("WAITING FOR SHOT");
