@@ -137,6 +137,21 @@ public class ReporterTest {
     assertEquals(reporter.getDestinationWindowTitle(), "Snarky Reporter");
   }
   
+  public void shouldRecognizeDestinationWindowHeight() {
+    //given
+    Reporter reporter = new Reporter(REPORTING_TO_WINDOW_CONFIG);
+    //when - then
+    assertEquals(reporter.getDestinationWindowHeight(), 600);
+  }
+  
+  
+  public void shouldRecognizeDestinationWindowWidth() {
+    //given
+    Reporter reporter = new Reporter(REPORTING_TO_WINDOW_CONFIG);
+    //when - then
+    assertEquals(reporter.getDestinationWindowWidth(), 400);
+  }
+  
   private void makeSureLogFileExistsAndIsEmpty() throws IOException {
     FileOutputStream writer = new FileOutputStream(LOG_FILE);
     writer.write(("").getBytes());

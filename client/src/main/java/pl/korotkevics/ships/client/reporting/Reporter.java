@@ -41,19 +41,11 @@ class Reporter {
   
   private static final String TITLE = "title";
   
+  private static final String HEIGHT = "height";
+  
+  private static final String WIDTH = "width";
+  
   private final Config config;
-  
-  Reporter(final String fileName) {
-    this.config = ConfigFactory.load(fileName);
-  }
-  
-  String getCurrentDestination() {
-    return this.config.getString(DESTINATION + PATH_SEPARATOR + TARGET);
-  }
-  
-  String getDestinationFileName() {
-    return this.config.getString(OPTIONS + PATH_SEPARATOR + FILE_OPTION + PATH_SEPARATOR + NAME);
-  }
   
   public void report(final String message) {
     //TODO refactor to Visitor or a map based switch
@@ -77,19 +69,43 @@ class Reporter {
     }
   }
   
+  Reporter(final String fileName) {
+    this.config = ConfigFactory.load(fileName);
+  }
+  
+  String getCurrentDestination() {
+    return this.config.getString(DESTINATION + PATH_SEPARATOR + TARGET);
+  }
+  
+  String getDestinationFileName() {
+    return this.config.getString(this.getOptionsPath() + FILE_OPTION + PATH_SEPARATOR + NAME);
+  }
+  
   String getDestinationHost() {
-    return this.config.getString(OPTIONS + PATH_SEPARATOR + SOCKET_OPTION + PATH_SEPARATOR + HOST);
+    return this.config.getString(this.getOptionsPath() + SOCKET_OPTION + PATH_SEPARATOR + HOST);
   }
   
   int getDestinationPort() {
-    return this.config.getInt(OPTIONS + PATH_SEPARATOR + SOCKET_OPTION + PATH_SEPARATOR + PORT);
+    return this.config.getInt(this.getOptionsPath() + SOCKET_OPTION + PATH_SEPARATOR + PORT);
   }
   
   String getDestinationLoggerName() {
-    return this.config.getString(OPTIONS + PATH_SEPARATOR + LOGGER_OPTION + PATH_SEPARATOR + NAME);
+    return this.config.getString(this.getOptionsPath() + LOGGER_OPTION + PATH_SEPARATOR + NAME);
   }
   
   String getDestinationWindowTitle() {
-    return this.config.getString(OPTIONS + PATH_SEPARATOR + WINDOW_OPTION + PATH_SEPARATOR + TITLE);
+    return this.config.getString(this.getOptionsPath() + WINDOW_OPTION + PATH_SEPARATOR + TITLE);
+  }
+  
+  int getDestinationWindowHeight() {
+    return this.config.getInt(this.getOptionsPath() + WINDOW_OPTION + PATH_SEPARATOR + HEIGHT);
+  }
+  
+  int getDestinationWindowWidth() {
+    return this.config.getInt(this.getOptionsPath() + WINDOW_OPTION + PATH_SEPARATOR + WIDTH);
+  }
+  
+  private String getOptionsPath() {
+    return OPTIONS + PATH_SEPARATOR;
   }
 }
