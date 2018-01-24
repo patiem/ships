@@ -60,6 +60,9 @@ public class ConnectWindowController implements Initializable {
   private Label labelInvalidPort;
 
   @FXML
+  private TextField textFieldPlayerName;
+
+  @FXML
   private Button eventButton;
 
   private PortValidator portValidator;
@@ -87,6 +90,8 @@ public class ConnectWindowController implements Initializable {
     }
     logger.info("server port: " + port);
 
+    setPlayerName(textFieldPlayerName.getText());
+
     showLoadingWheel();
     final boolean isConnected = client.connect(serverAddress, port, new Socket());
 
@@ -106,6 +111,11 @@ public class ConnectWindowController implements Initializable {
     }
     this.client.setEventTrigger(eventButton);
     mainController.disableLocalizationButtons();
+  }
+
+  private void setPlayerName(String playerName) {
+    final MainController mainController = (MainController) mainAnchorPane.getParent().getUserData();
+    mainController.setPlayerName(playerName);
   }
 
   private void showLoadingWheel() {
