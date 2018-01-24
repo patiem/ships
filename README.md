@@ -10,15 +10,15 @@
 
 ### Dropped Features
 
-So far we have been allowed  to drop the below features,
+We were allowed to drop the below features,
 
  * Surrounding adjacent fields around sunken ships with missed hits
  * Placing partially horizontal / vertical ships
+ 
+Nevertheless, we implemented one from above,
 
-Also we'd like to negotiate the below feature,
-
- * Redirecting game messages from GUI to other outputs (file, console and such)
-
+ * Surrounding adjacent fields around sunken ships with missed hits
+ 
 We aren't really planning to deliver the extra feature: nukes. :(
 
 ## Project ships
