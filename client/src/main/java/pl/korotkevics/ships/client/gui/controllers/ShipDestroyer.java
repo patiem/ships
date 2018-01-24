@@ -33,7 +33,58 @@ public class ShipDestroyer {
   }
 
   private void sinkHorizontal() {
-    //while ()
+    int index = this.lastHitIndex;
+    //right
+    while (index >= 0 && this.board[index].equals(FieldState.HIT)) {
+      if(index % BOARD_SIZE != 0 && index -1 >=0){
+        this.indexexToSetEmpty.add(index - 1);
+      }
+
+      if(index % BOARD_SIZE != 9 && index + 1 < board.length) {
+        this.indexexToSetEmpty.add(index +1);
+      }
+
+      index = index - BOARD_SIZE;
+    }
+
+    if(index % BOARD_SIZE != 0 && index -1 >=0){
+      this.indexexToSetEmpty.add(index - 1);
+    }
+
+    if(index % BOARD_SIZE != 9 && index >= 0) {
+      this.indexexToSetEmpty.add(index +1);
+    }
+
+    if(index >= 0 && this.board[index].equals(FieldState.EMPTY)) {
+      this.indexexToSetEmpty.add(index);
+    }
+
+    index = this.lastHitIndex;
+    //left
+    while (index < board.length && this.board[index].equals(FieldState.HIT)) {
+      if(index % BOARD_SIZE != 0 && index -1 >=0){
+        this.indexexToSetEmpty.add(index - 1);
+      }
+
+      if(index % BOARD_SIZE != 9 && index + 1 < board.length) {
+        this.indexexToSetEmpty.add(index +1);
+      }
+
+      index = index + BOARD_SIZE;
+    }
+
+    if(index % BOARD_SIZE != 0 && index -1 >=0 && index < board.length){
+      this.indexexToSetEmpty.add(index - 1);
+    }
+
+    if(index % BOARD_SIZE != 9 && index + 1 < board.length) {
+      this.indexexToSetEmpty.add(index +1);
+    }
+
+    if(index < board.length && this.board[index].equals(FieldState.EMPTY)) {
+      this.indexexToSetEmpty.add(index);
+    }
+
   }
 
   private void sinkVertical() {
@@ -42,11 +93,11 @@ public class ShipDestroyer {
     while ((index < this.board.length )
     && index % BOARD_SIZE != 9 && this.board[index].equals(FieldState.HIT)) {
 
-      if(index - BOARD_SIZE > 0) {
+      if(index - BOARD_SIZE >= 0) {
         this.indexexToSetEmpty.add(index - BOARD_SIZE);
       }
 
-      if(index + BOARD_SIZE > 0) {
+      if(index + BOARD_SIZE < board.length) {
         this.indexexToSetEmpty.add(index + BOARD_SIZE);
       }
       index++;
@@ -56,7 +107,7 @@ public class ShipDestroyer {
       this.indexexToSetEmpty.add(index);
     }
 
-    if(index - BOARD_SIZE > 0) {
+    if(index - BOARD_SIZE >= 0) {
       this.indexexToSetEmpty.add(index - BOARD_SIZE);
     }
 
