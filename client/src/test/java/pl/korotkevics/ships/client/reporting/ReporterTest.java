@@ -1,7 +1,6 @@
 package pl.korotkevics.ships.client.reporting;
 
 import org.apache.commons.lang3.StringUtils;
-import org.mockito.exceptions.misusing.UnfinishedVerificationException;
 import org.testng.annotations.Test;
 import org.testng.reporters.Files;
 
