@@ -1,11 +1,14 @@
 package pl.korotkevics.ships.server;
 
+import pl.korotkevics.ships.server.communication.AppServer;
 import pl.korotkevics.ships.server.communication.CommunicationBus;
 import pl.korotkevics.ships.server.game.Game;
 import pl.korotkevics.ships.server.game.gamestates.GameState;
 import pl.korotkevics.ships.server.game.gamestates.connection.WaitingForPlayersState;
 
 import java.io.IOException;
+import java.net.Socket;
+import java.util.List;
 
 /**
  * Main class of server application.
@@ -14,6 +17,7 @@ import java.io.IOException;
  * @since 2017-12-09
  */
 public class SeverMain {
+  private static final int SERVER_PORT = 8189;
   /**
    * Main server method. It creates communication bus and starts the game.
    *
@@ -21,8 +25,8 @@ public class SeverMain {
    * @throws IOException can be thrown due to establishing a socket connection.
    */
   public static void main(String[] args) throws IOException {
-    CommunicationBus communicationBus = new CommunicationBus();
-    
+    AppServer appServer = new AppServer(SERVER_PORT);
+    int gameId = 1;
     /*
     Sonar reports an infinitive loop as a critical bug, and therefore
     we could not think of a better workaround than presenting it as a
@@ -30,8 +34,14 @@ public class SeverMain {
      */
     boolean shouldRun = true;
     while (shouldRun) {
-      GameState initialState = new WaitingForPlayersState(communicationBus);
-      new Game(initialState).play();
+      CommunicationBus communicationBus = new CommunicationBus(appServer.connectClients());
+      final int finalGameId = gameId;
+      new Thread(() -> {
+        Thread.currentThread().setName("GAME: " + finalGameId);
+        GameState initialState = new WaitingForPlayersState(communicationBus);
+        new Game(initialState).play();
+      }).start();
+      gameId++;
     }
   }
 }

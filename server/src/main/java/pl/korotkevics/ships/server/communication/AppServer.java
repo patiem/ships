@@ -15,15 +15,13 @@ import java.util.List;
  * @author Piotr Czyż, Magdalena Aarsman, Sandor Korotkevics
  * @since 2017-12-09
  */
-class AppServer {
+public class AppServer {
 
   private final Target logger = new SharedLogger(AppServer.class);
 
   private final ServerSocket serverSocket;
 
-  private List<Socket> clientSockets;
-
-  AppServer(int port) throws IOException {
+  public AppServer(int port) throws IOException {
     logger.info("Server is up and waiting for clients..");
     this.serverSocket = new ServerSocket(port);
   }
@@ -31,34 +29,29 @@ class AppServer {
   /**
    * It connects two clients.
    */
-  void connectClients() {
-    clientSockets = new ArrayList<>();
+  public List<Socket> connectClients() {
+    List<Socket> clients = new ArrayList<>();
     logger.info("Waiting for the 1st client.. ");
-    acceptClient();
+    acceptClient(clients);
     logger.info("1st client connected... ");
     logger.info("waiting for the 2nd client..");
-    acceptClient();
+    acceptClient(clients);
     logger.info("2nd client connected... ");
     logger.info("Clients are connected");
+    return clients;
   }
 
   /**
    * It accepts a client socket
    * while storing it in a list.
    */
-  private void acceptClient() {
+  private void acceptClient(List<Socket> clients) {
     try {
       Socket client = serverSocket.accept();
-      clientSockets.add(client);
+      clients.add(client);
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
   }
 
-  /**
-   * @return a list of stored client sockets.
-   */
-  List<Socket> getClientSockets() {
-    return clientSockets;
-  }
 }
