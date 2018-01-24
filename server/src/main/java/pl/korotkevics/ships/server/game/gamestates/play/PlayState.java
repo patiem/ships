@@ -15,6 +15,12 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Main class where the play goes.
@@ -58,7 +64,14 @@ public class PlayState implements GameState {
   @Override
   public GameState process() {
     sendYourTurnMessage();
-    messageReceiveConfirmation(turnManager.getCurrentPlayer());
+    Future<Boolean> confirmation = Executors.newSingleThreadExecutor().submit(() ->
+        messageReceiveConfirmation(turnManager.getCurrentPlayer()));
+    try {
+      confirmation.get(60, TimeUnit.SECONDS);
+    } catch (InterruptedException | ExecutionException | TimeoutException e) {
+      logger.error(e.getMessage());
+      new GameEndWithWalkoverState(communicationBus);
+    }
     messageReceiver.receive(turnManager.getCurrentPlayer());
     logger.info("WAITING FOR SHOT");
     if (messageReceiver.isAShot()) {
@@ -77,20 +90,16 @@ public class PlayState implements GameState {
     return this;
   }
 
-
-
-  private void messageReceiveConfirmation(WrappedClient wrappedClient) {
-    logger.error("sprawdzam");
-    boolean getYou = false;
-    while(!getYou) {
+  private boolean messageReceiveConfirmation(WrappedClient wrappedClient) {
+    boolean result = false;
+    while(!result) {
       messageReceiver.receive(wrappedClient);
-      logger.error("Odebrałem wiadomość");
       if (messageReceiver.isConfirmation()) {
-        logger.error("to było potwierdzenie");
-        getYou = true;
+        result = true;
       }
     }
     logger.info("CONFIRMED");
+    return result;
   }
 
   private void sendYourTurnMessage() {
