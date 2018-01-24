@@ -35,4 +35,15 @@ public interface Target {
    * @param message to be directed.
    */
   void debug(Object message);
+  
+  
+  /**
+   * Directs a report (game) message to
+   * a configurable target.
+   *
+   * @param message to be directed.
+   * @param destinationLoggerName
+   */
+  void report(Object message, final String destinationLoggerName);
+
 }

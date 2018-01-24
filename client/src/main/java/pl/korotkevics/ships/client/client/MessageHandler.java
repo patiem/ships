@@ -2,6 +2,7 @@ package pl.korotkevics.ships.client.client;
 
 import javafx.scene.control.Button;
 import lombok.Getter;
+import pl.korotkevics.ships.client.reporting.Reporter;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
@@ -19,7 +20,9 @@ import java.util.Map;
 class MessageHandler {
 
   private static final Target logger = new SharedLogger(Client.class);
+  
   private final Map<Header, EventTrigger> triggers;
+  private Reporter reporter;
   private Button eventButton;
   @Getter
   private boolean endConnectionTriggered;
@@ -27,8 +30,9 @@ class MessageHandler {
   /**
    * Creates an instance of MessageHandler and configures all possible triggers types.
    */
-  MessageHandler(final Map<Header, EventTrigger> triggerMap) {
+  MessageHandler(final Map<Header, EventTrigger> triggerMap, final Reporter reporter) {
     this.triggers = triggerMap;
+    this.reporter = reporter;
   }
 
   Button getCurrentEventButton() {
@@ -52,6 +56,9 @@ class MessageHandler {
     }
     checkIfEndWillBeTriggered(message);
     triggers.get(header).fire(eventButton, message);
+    if (this.reporter!=null) {
+      this.reporter.report(triggers.get(header).provideDescription());
+    }
   }
 
   private void checkIfEndWillBeTriggered(final Message message) {

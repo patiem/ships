@@ -16,4 +16,9 @@ class WinTrigger implements EventTrigger {
   public void fire(final Button button, final Message message) {
     Platform.runLater(() -> button.fireEvent(new WinEvent()));
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Victory!! Yeah";
+  }
 }

@@ -17,4 +17,10 @@ class ConnectionEndTrigger implements EventTrigger {
   public void fire(final Button button, final Message message) {
     Platform.runLater(() -> button.fireEvent(new OpponentWithdrawEvent()));
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Too bad, opponent has withdrawn from the game.";
+  }
+  
 }

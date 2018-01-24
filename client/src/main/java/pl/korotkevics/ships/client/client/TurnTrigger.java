@@ -18,4 +18,9 @@ class TurnTrigger implements EventTrigger {
       Platform.runLater(() -> button.fireEvent(new TurnChangeEvent()));
     }
   }
+  
+  @Override
+  public String provideDescription() {
+    return "A new turn...";
+  }
 }
