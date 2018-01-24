@@ -266,8 +266,8 @@ public class GameWindowController implements Initializable {
     final Rectangle rec = (Rectangle) (opponentBoard.getChildren().get(shotIndexInGrid));
     rec.setFill(Color.RED);
     shipDestroyed = true;
-    ShipDestroyer shipDestroyer =
-        new ShipDestroyer(new GridToBoardConverter(opponentBoard).convert(), shotIndexInGrid - 1);
+    SunkenShipMarker shipDestroyer =
+        new SunkenShipMarker(new GridToBoardConverter(opponentBoard).convert(), shotIndexInGrid - 1);
     this.destroyShip(shipDestroyer.getIndexToColor());
   }
 
