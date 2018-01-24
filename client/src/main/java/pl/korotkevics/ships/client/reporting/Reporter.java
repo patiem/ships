@@ -1,6 +1,7 @@
 package pl.korotkevics.ships.client.reporting;
 
 import com.typesafe.config.Config;
+import com.typesafe.config.ConfigException;
 import com.typesafe.config.ConfigFactory;
 import org.apache.commons.lang3.StringUtils;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
@@ -54,13 +55,17 @@ public class Reporter {
   
   public void report(final String message) {
     //TODO refactor to Visitor or a map based switch
-    if (this.getCurrentDestination().equals(ReportingOption.FILE.toString())) {
-      this.writeToFile(message);
-    } else if (this.getCurrentDestination().equals(ReportingOption.SOCKET.toString())) {
-      this.establishConnection();
-      this.writeToSocket(message);
-    } else if (this.getCurrentDestination().equals(ReportingOption.LOGGER.toString())) {
-      this.log(message);
+    try {
+      if (this.getCurrentDestination().equals(ReportingOption.FILE.toString())) {
+        this.writeToFile(message);
+      } else if (this.getCurrentDestination().equals(ReportingOption.SOCKET.toString())) {
+        this.establishConnection();
+        this.writeToSocket(message);
+      } else if (this.getCurrentDestination().equals(ReportingOption.LOGGER.toString())) {
+        this.log(message);
+      }
+    } catch (ConfigException e) {
+      logger.error(e.getMessage());
     }
   }
   

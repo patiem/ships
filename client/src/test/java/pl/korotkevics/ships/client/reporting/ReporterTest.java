@@ -27,7 +27,7 @@ public class ReporterTest {
   
   private final String REPORTING_TO_WINDOW_CONFIG = "reportingToWindow";
   
-  private final int PORT = 9999;
+  private final int PORT = 9919;
   
   private final String LOG_FILE = "../target/test-reporting.log";
   
@@ -70,7 +70,7 @@ public class ReporterTest {
   
   public void shouldNotReportToFile() throws IOException {
     //given
-    Reporter reporter = new Reporter(REPORTING_TO_SOCKET_CONFIG);
+    Reporter reporter = new Reporter(REPORTING_TO_WINDOW_CONFIG);
     this.makeSureLogFileExistsAndIsEmpty();
     //when
     reporter.report("A message which should not be reported int" + "o a file since it is not the " +
