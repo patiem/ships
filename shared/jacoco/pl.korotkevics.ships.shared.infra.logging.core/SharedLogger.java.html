@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SharedLogger.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SHARED</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.shared.infra.logging.core</a> &gt; <span class="el_source">SharedLogger.java</span></div><h1>SharedLogger.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.shared.infra.logging.core;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
@@ -14,61 +15,85 @@ import pl.korotkevics.ships.shared.infra.logging.api.Target;
  * @since 2017-12-10
  */
 public class SharedLogger implements Target {
-
+  
+<span class="fc" id="L19">  final Level REPORT = Level.forName(&quot;REPORT&quot;, 50);</span>
+  
   private final Logger logger;
   private final Class&lt;?&gt; clazz;
-
+  
   /**
-   * @param clazz class name to appear in log messages.
+   * @param clazz
+   *     class name to appear in log messages.
    */
-<span class="fc" id="L24">  public SharedLogger(final Class&lt;?&gt; clazz) {</span>
-<span class="fc" id="L25">    this.logger = LogManager.getLogger();</span>
-<span class="fc" id="L26">    this.clazz = clazz;</span>
-<span class="fc" id="L27">  }</span>
-
+<span class="fc" id="L28">  public SharedLogger(final Class&lt;?&gt; clazz) {</span>
+<span class="fc" id="L29">    this.logger = LogManager.getLogger();</span>
+<span class="fc" id="L30">    this.clazz = clazz;</span>
+<span class="fc" id="L31">  }</span>
+  
   /**
    * Used for logging normal (neutral) messages.
    *
-   * @param message to be logged.
-   *                Extra information will be
-   *                appended (such as class name,
-   *                datetime, level).
+   * @param message
+   *     to be logged.
+   *     Extra information will be
+   *     appended (such as class name,
+   *     datetime, level).
    */
   @Override
   public void info(final Object message) {
-<span class="nc" id="L39">    this.logger.info(this.prepareMessage(message));</span>
-<span class="nc" id="L40">  }</span>
-
+<span class="nc" id="L44">    this.logger.info(this.prepareDefaultMessage(message));</span>
+<span class="nc" id="L45">  }</span>
+  
   /**
    * Used for logging error messages
    * (example: logging an exception
    * message).
    *
-   * @param message to be logged.
-   *                Extra information will be
-   *                appended (such as class name,
-   *                datetime, level).
+   * @param message
+   *     to be logged.
+   *     Extra information will be
+   *     appended (such as class name,
+   *     datetime, level).
    */
   @Override
   public void error(final Object message) {
-<span class="nc" id="L54">    this.logger.error(this.prepareMessage(message));</span>
-<span class="nc" id="L55">  }</span>
-
+<span class="nc" id="L60">    this.logger.error(this.prepareDefaultMessage(message));</span>
+<span class="nc" id="L61">  }</span>
+  
   /**
    * Used for logging debug messages.
    *
-   * @param message to be logged.
-   *                Extra information will be
-   *                appended (such as class name,
-   *                datetime, level).
+   * @param message
+   *     to be logged.
+   *     Extra information will be
+   *     appended (such as class name,
+   *     datetime, level).
    */
   @Override
   public void debug(final Object message) {
-<span class="nc" id="L67">    this.logger.debug(this.prepareMessage(message));</span>
-<span class="nc" id="L68">  }</span>
-
-  private String prepareMessage(final Object message) {
-<span class="nc" id="L71">    return this.clazz.getSimpleName() + &quot;: &quot; + message;</span>
+<span class="nc" id="L74">    this.logger.debug(this.prepareDefaultMessage(message));</span>
+<span class="nc" id="L75">  }</span>
+  
+  
+  /**
+   * Used for logging game messages.
+   *
+   * @param message
+   *     to be logged.
+   * @param destinationLoggerName
+   *     an arbitrary logger name set with a configuration file.
+   */
+  @Override
+  public void report(final Object message, final String destinationLoggerName) {
+<span class="nc" id="L88">    this.logger.log(REPORT, this.prepareGameMessage(message, destinationLoggerName));</span>
+<span class="nc" id="L89">  }</span>
+  
+  private String prepareDefaultMessage(final Object message) {
+<span class="nc" id="L92">    return this.clazz.getSimpleName() + &quot;: &quot; + message;</span>
+  }
+  
+  private String prepareGameMessage(final Object message, final String destinationLoggerName) {
+<span class="nc" id="L96">    return destinationLoggerName + &quot;: &quot; + message;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

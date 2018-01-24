@@ -1,5 +1,7 @@
 pl.korotkevics.ships.client
 pl.korotkevics.ships.client.client
+pl.korotkevics.ships.client.gui.controllers
+pl.korotkevics.ships.client.reporting
 pl.korotkevics.ships.client.validators
 pl.korotkevics.ships.server.communication
 pl.korotkevics.ships.server.game

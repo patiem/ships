@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SeverMain.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - SERVER</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.server</a> &gt; <span class="el_source">SeverMain.java</span></div><h1>SeverMain.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.server;
 
+import pl.korotkevics.ships.server.communication.AppServer;
 import pl.korotkevics.ships.server.communication.CommunicationBus;
 import pl.korotkevics.ships.server.game.Game;
 import pl.korotkevics.ships.server.game.gamestates.GameState;
 import pl.korotkevics.ships.server.game.gamestates.connection.WaitingForPlayersState;
 
 import java.io.IOException;
+import java.net.Socket;
+import java.util.List;
 
 /**
  * Main class of server application.
@@ -13,7 +16,8 @@ import java.io.IOException;
  * @author Piotr Czyż
  * @since 2017-12-09
  */
-<span class="nc" id="L16">public class SeverMain {</span>
+<span class="nc" id="L19">public class SeverMain {</span>
+  private static final int SERVER_PORT = 8189;
   /**
    * Main server method. It creates communication bus and starts the game.
    *
@@ -21,18 +25,24 @@ import java.io.IOException;
    * @throws IOException can be thrown due to establishing a socket connection.
    */
   public static void main(String[] args) throws IOException {
-<span class="nc" id="L24">    CommunicationBus communicationBus = new CommunicationBus();</span>
-    
+<span class="nc" id="L28">    AppServer appServer = new AppServer(SERVER_PORT);</span>
+<span class="nc" id="L29">    int gameId = 1;</span>
     /*
     Sonar reports an infinitive loop as a critical bug, and therefore
     we could not think of a better workaround than presenting it as a
     an effective infinitive loop (with true extracted to a flag).
      */
-<span class="nc" id="L31">    boolean shouldRun = true;</span>
-<span class="nc bnc" id="L32" title="All 2 branches missed.">    while (shouldRun) {</span>
-<span class="nc" id="L33">      GameState initialState = new WaitingForPlayersState(communicationBus);</span>
-<span class="nc" id="L34">      new Game(initialState).play();</span>
-<span class="nc" id="L35">    }</span>
-<span class="nc" id="L36">  }</span>
+<span class="nc" id="L35">    boolean shouldRun = true;</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">    while (shouldRun) {</span>
+<span class="nc" id="L37">      CommunicationBus communicationBus = new CommunicationBus(appServer.connectClients());</span>
+<span class="nc" id="L38">      final int finalGameId = gameId;</span>
+<span class="nc" id="L39">      new Thread(() -&gt; {</span>
+<span class="nc" id="L40">        Thread.currentThread().setName(&quot;GAME: &quot; + finalGameId);</span>
+<span class="nc" id="L41">        GameState initialState = new WaitingForPlayersState(communicationBus);</span>
+<span class="nc" id="L42">        new Game(initialState).play();</span>
+<span class="nc" id="L43">      }).start();</span>
+<span class="nc" id="L44">      gameId++;</span>
+<span class="nc" id="L45">    }</span>
+<span class="nc" id="L46">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

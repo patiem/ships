@@ -1,7 +1,7 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 Ships - SHARED,pl.korotkevics.ships.shared.fleet,Fleet,18,152,8,10,0,21,8,16,1,14
 Ships - SHARED,pl.korotkevics.ships.shared.fleet,Mast,11,64,7,7,0,4,6,7,0,6
-Ships - SHARED,pl.korotkevics.ships.shared.fleet,Ship,11,80,7,7,0,5,6,8,0,7
+Ships - SHARED,pl.korotkevics.ships.shared.fleet,Ship,29,80,7,7,3,5,8,8,2,7
 Ships - SHARED,pl.korotkevics.ships.shared.fleet,Damage,9,39,0,0,0,4,2,2,2,2
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.api.message,Header,5,133,0,0,0,13,1,3,1,3
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.api.message,Status,5,33,0,0,0,3,1,3,1,3
@@ -10,6 +10,6 @@ Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.json.convers
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.json.conversion,JsonDecoder,0,14,0,0,0,3,0,2,0,2
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.json.io,JsonReceiver,23,31,1,1,5,11,1,2,0,2
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.json.io,JsonSender,6,36,0,0,2,10,0,2,0,2
-Ships - SHARED,pl.korotkevics.ships.shared.infra.logging.core,SharedLogger,34,9,0,0,7,4,4,1,4,1
+Ships - SHARED,pl.korotkevics.ships.shared.infra.logging.core,SharedLogger,55,14,0,0,10,5,6,1,6,1
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.message,MessageBuilder,0,69,0,0,0,23,0,7,0,7
 Ships - SHARED,pl.korotkevics.ships.shared.infra.communication.core.message,BaseMessage,39,216,27,19,0,10,22,16,0,15

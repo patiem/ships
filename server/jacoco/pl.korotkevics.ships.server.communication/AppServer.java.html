@@ -15,51 +15,44 @@ import java.util.List;
  * @author Piotr Czyż, Magdalena Aarsman, Sandor Korotkevics
  * @since 2017-12-09
  */
-class AppServer {
+public class AppServer {
 
 <span class="fc" id="L20">  private final Target logger = new SharedLogger(AppServer.class);</span>
 
   private final ServerSocket serverSocket;
 
-  private List&lt;Socket&gt; clientSockets;
-
-<span class="fc" id="L26">  AppServer(int port) throws IOException {</span>
-<span class="fc" id="L27">    logger.info(&quot;Server is up and waiting for clients..&quot;);</span>
-<span class="fc" id="L28">    this.serverSocket = new ServerSocket(port);</span>
-<span class="fc" id="L29">  }</span>
+<span class="fc" id="L24">  public AppServer(int port) throws IOException {</span>
+<span class="fc" id="L25">    logger.info(&quot;Server is up and waiting for clients..&quot;);</span>
+<span class="fc" id="L26">    this.serverSocket = new ServerSocket(port);</span>
+<span class="fc" id="L27">  }</span>
 
   /**
    * It connects two clients.
    */
-  void connectClients() {
-<span class="fc" id="L35">    clientSockets = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L36">    logger.info(&quot;Waiting for the 1st client.. &quot;);</span>
-<span class="fc" id="L37">    acceptClient();</span>
-<span class="fc" id="L38">    logger.info(&quot;1st client connected... &quot;);</span>
-<span class="fc" id="L39">    logger.info(&quot;waiting for the 2nd client..&quot;);</span>
-<span class="fc" id="L40">    acceptClient();</span>
-<span class="fc" id="L41">    logger.info(&quot;2nd client connected... &quot;);</span>
-<span class="fc" id="L42">    logger.info(&quot;Clients are connected&quot;);</span>
-<span class="fc" id="L43">  }</span>
+  public List&lt;Socket&gt; connectClients() {
+<span class="fc" id="L33">    List&lt;Socket&gt; clients = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L34">    logger.info(&quot;Waiting for the 1st client.. &quot;);</span>
+<span class="fc" id="L35">    acceptClient(clients);</span>
+<span class="fc" id="L36">    logger.info(&quot;1st client connected... &quot;);</span>
+<span class="fc" id="L37">    logger.info(&quot;waiting for the 2nd client..&quot;);</span>
+<span class="fc" id="L38">    acceptClient(clients);</span>
+<span class="fc" id="L39">    logger.info(&quot;2nd client connected... &quot;);</span>
+<span class="fc" id="L40">    logger.info(&quot;Clients are connected&quot;);</span>
+<span class="fc" id="L41">    return clients;</span>
+  }
 
   /**
    * It accepts a client socket
    * while storing it in a list.
    */
-  private void acceptClient() {
+  private void acceptClient(List&lt;Socket&gt; clients) {
     try {
-<span class="fc" id="L51">      Socket client = serverSocket.accept();</span>
-<span class="fc" id="L52">      clientSockets.add(client);</span>
-<span class="nc" id="L53">    } catch (IOException e) {</span>
-<span class="nc" id="L54">      logger.error(e.getMessage());</span>
-<span class="fc" id="L55">    }</span>
-<span class="fc" id="L56">  }</span>
+<span class="fc" id="L50">      Socket client = serverSocket.accept();</span>
+<span class="fc" id="L51">      clients.add(client);</span>
+<span class="nc" id="L52">    } catch (IOException e) {</span>
+<span class="nc" id="L53">      logger.error(e.getMessage());</span>
+<span class="fc" id="L54">    }</span>
+<span class="fc" id="L55">  }</span>
 
-  /**
-   * @return a list of stored client sockets.
-   */
-  List&lt;Socket&gt; getClientSockets() {
-<span class="fc" id="L62">    return clientSockets;</span>
-  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

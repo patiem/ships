@@ -33,8 +33,8 @@
 <span class="sourceLineNo">025</span>    final String windowTitle = "Battleships";<a name="line.25"></a>
 <span class="sourceLineNo">026</span>    final boolean clientShouldRun = true;<a name="line.26"></a>
 <span class="sourceLineNo">027</span>    final Client client = new Client(new MessageHandlerBuilder().withEnumMap()<a name="line.27"></a>
-<span class="sourceLineNo">028</span>        .withDefaultSetsOfTriggers().build(), clientShouldRun);<a name="line.28"></a>
-<span class="sourceLineNo">029</span>    final int sceneWidth = 600;<a name="line.29"></a>
+<span class="sourceLineNo">028</span>        .withDefaultSetsOfTriggers().withReporter().build(), clientShouldRun);<a name="line.28"></a>
+<span class="sourceLineNo">029</span>    final int sceneWidth = 800;<a name="line.29"></a>
 <span class="sourceLineNo">030</span>    final int sceneHeight = 400;<a name="line.30"></a>
 <span class="sourceLineNo">031</span><a name="line.31"></a>
 <span class="sourceLineNo">032</span>    FXMLLoader rootLoader = new FXMLLoader(getClass().getResource(fxmlMainWindowPath));<a name="line.32"></a>

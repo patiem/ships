@@ -28,12 +28,14 @@ public class GridToBoardConverter {
 <span class="nc bnc" id="L28" title="All 2 branches missed.">    for (int i = 1; i &lt; gridBoard.getChildren().size(); i++) {</span>
 <span class="nc bnc" id="L29" title="All 2 branches missed.">      if (((Rectangle) gridBoard.getChildren().get(i)).getFill().equals(Color.GREEN)) {</span>
 <span class="nc" id="L30">        board[i - 1] = FieldState.OCCUPIED;</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">      } else if (((Rectangle) gridBoard.getChildren().get(i)).getFill().equals(Color.RED)) {</span>
+<span class="nc" id="L32">        board[i - 1] = FieldState.HIT;</span>
       } else {
-<span class="nc" id="L32">        board[i - 1] = FieldState.EMPTY;</span>
+<span class="nc" id="L34">        board[i - 1] = FieldState.EMPTY;</span>
       }
     }
 
-<span class="nc" id="L36">    return board;</span>
+<span class="nc" id="L38">    return board;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

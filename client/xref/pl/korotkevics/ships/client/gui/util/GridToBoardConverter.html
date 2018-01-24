@@ -36,14 +36,16 @@
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 1; i &lt; gridBoard.getChildren().size(); i++) {
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>        <strong class="jxr_keyword">if</strong> (((Rectangle) gridBoard.getChildren().get(i)).getFill().equals(Color.GREEN)) {
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>          board[i - 1] = FieldState.OCCUPIED;
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>        } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>          board[i - 1] = FieldState.EMPTY;
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>        }
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>      }
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <strong class="jxr_keyword">return</strong> board;
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>    }
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  }
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>        } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (((Rectangle) gridBoard.getChildren().get(i)).getFill().equals(Color.RED)) {
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>          board[i - 1] = FieldState.HIT;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>        } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>          board[i - 1] = FieldState.EMPTY;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>        }
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      }
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <strong class="jxr_keyword">return</strong> board;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>    }
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2018 Java Academy. All rights reserved.</div>

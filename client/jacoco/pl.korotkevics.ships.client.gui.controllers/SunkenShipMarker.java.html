@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SunkenShipMarker.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Ships - CLIENT</a> &gt; <a href="index.source.html" class="el_package">pl.korotkevics.ships.client.gui.controllers</a> &gt; <span class="el_source">SunkenShipMarker.java</span></div><h1>SunkenShipMarker.java</h1><pre class="source lang-java linenums">package pl.korotkevics.ships.client.gui.controllers;
+
+import pl.korotkevics.ships.client.gui.util.FieldState;
+import pl.korotkevics.ships.client.gui.util.ShipOrientation;
+
+import java.util.HashSet;
+import java.util.Set;
+
+class SunkenShipMarker {
+  private final FieldState[] board;
+  private static final int BOARD_SIZE = 10;
+  private final int lastHitIndex;
+<span class="fc" id="L13">  private Set&lt;Integer&gt; indicesToSetEmpty = new HashSet&lt;&gt;();</span>
+  private ShipOrientation shipOrientation;
+
+<span class="fc" id="L16">  SunkenShipMarker(final FieldState[] board, final int lastHitIndex) {</span>
+<span class="fc" id="L17">    this.board = board;</span>
+<span class="fc" id="L18">    this.lastHitIndex = lastHitIndex;</span>
+<span class="fc" id="L19">  }</span>
+
+  Set&lt;Integer&gt; getIndexToColor() {
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">    if(this.isOneMastShip()) {</span>
+<span class="nc" id="L23">      return this.indicesToSetEmpty;</span>
+    }
+
+<span class="fc bfc" id="L26" title="All 2 branches covered.">    if(this.shipOrientation.equals(ShipOrientation.VERTICAL)) {</span>
+<span class="fc" id="L27">      this.sinkVertical();</span>
+    } else {
+<span class="fc" id="L29">      this.sinkHorizontal();</span>
+    }
+
+<span class="fc" id="L32">    return this.indicesToSetEmpty;</span>
+  }
+
+  private void sinkHorizontal() {
+<span class="fc" id="L36">    int index = this.lastHitIndex;</span>
+<span class="fc" id="L37">    markAtRight(index);</span>
+<span class="fc" id="L38">    markAtLeft(index);</span>
+<span class="fc" id="L39">  }</span>
+
+  private void markAtLeft(int index) {
+<span class="pc bpc" id="L42" title="1 of 4 branches missed.">    while (index &lt; board.length &amp;&amp; this.board[index].equals(FieldState.HIT)) {</span>
+<span class="pc bpc" id="L43" title="2 of 4 branches missed.">      if(index % BOARD_SIZE != 0 &amp;&amp; index -1 &gt;=0){</span>
+<span class="fc" id="L44">        this.indicesToSetEmpty.add(index - 1);</span>
+      }
+
+<span class="pc bpc" id="L47" title="2 of 4 branches missed.">      if(index % BOARD_SIZE != 9 &amp;&amp; index + 1 &lt; board.length) {</span>
+<span class="fc" id="L48">        this.indicesToSetEmpty.add(index +1);</span>
+      }
+
+<span class="fc" id="L51">      index = index + BOARD_SIZE;</span>
+    }
+
+<span class="pc bpc" id="L54" title="3 of 6 branches missed.">    if(index % BOARD_SIZE != 0 &amp;&amp; index -1 &gt;=0 &amp;&amp; index &lt; board.length){</span>
+<span class="fc" id="L55">      this.indicesToSetEmpty.add(index - 1);</span>
+    }
+
+<span class="pc bpc" id="L58" title="2 of 4 branches missed.">    if(index % BOARD_SIZE != 9 &amp;&amp; index + 1 &lt; board.length) {</span>
+<span class="fc" id="L59">      this.indicesToSetEmpty.add(index +1);</span>
+    }
+
+<span class="pc bpc" id="L62" title="2 of 4 branches missed.">    if(index &lt; board.length &amp;&amp; this.board[index].equals(FieldState.EMPTY)) {</span>
+<span class="fc" id="L63">      this.indicesToSetEmpty.add(index);</span>
+    }
+<span class="fc" id="L65">  }</span>
+
+  private void markAtRight(int index) {
+<span class="pc bpc" id="L68" title="1 of 4 branches missed.">    while (index &gt;= 0 &amp;&amp; this.board[index].equals(FieldState.HIT)) {</span>
+<span class="pc bpc" id="L69" title="2 of 4 branches missed.">      if(index % BOARD_SIZE != 0 &amp;&amp; index -1 &gt;=0){</span>
+<span class="fc" id="L70">        this.indicesToSetEmpty.add(index - 1);</span>
+      }
+
+<span class="pc bpc" id="L73" title="2 of 4 branches missed.">      if(index % BOARD_SIZE != 9 &amp;&amp; index + 1 &lt; board.length) {</span>
+<span class="fc" id="L74">        this.indicesToSetEmpty.add(index +1);</span>
+      }
+
+<span class="fc" id="L77">      index = index - BOARD_SIZE;</span>
+    }
+
+<span class="pc bpc" id="L80" title="2 of 4 branches missed.">    if(index % BOARD_SIZE != 0 &amp;&amp; index -1 &gt;=0){</span>
+<span class="nc" id="L81">      this.indicesToSetEmpty.add(index - 1);</span>
+    }
+
+<span class="pc bpc" id="L84" title="2 of 4 branches missed.">    if(index % BOARD_SIZE != 9 &amp;&amp; index &gt;= 0) {</span>
+<span class="nc" id="L85">      this.indicesToSetEmpty.add(index +1);</span>
+    }
+
+<span class="pc bpc" id="L88" title="3 of 4 branches missed.">    if(index &gt;= 0 &amp;&amp; this.board[index].equals(FieldState.EMPTY)) {</span>
+<span class="nc" id="L89">      this.indicesToSetEmpty.add(index);</span>
+    }
+<span class="fc" id="L91">  }</span>
+
+  private void sinkVertical() {
+    //check down
+<span class="fc" id="L95">    int index = this.lastHitIndex;</span>
+<span class="fc" id="L96">    markBelow(index);</span>
+<span class="fc" id="L97">    markAbove(index);</span>
+<span class="fc" id="L98">  }</span>
+
+  private void markAbove(int index) {
+<span class="pc bpc" id="L101" title="2 of 4 branches missed.">    while ((index &gt; 0 )</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">    &amp;&amp; index % BOARD_SIZE != 0 &amp;&amp; this.board[index].equals(FieldState.HIT)) {</span>
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">      if(index - BOARD_SIZE &gt;= 0) {</span>
+<span class="nc" id="L104">        this.indicesToSetEmpty.add(index - BOARD_SIZE);</span>
+      }
+
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">      if(index + BOARD_SIZE &lt; board.length) {</span>
+<span class="fc" id="L108">        this.indicesToSetEmpty.add(index + BOARD_SIZE);</span>
+      }
+<span class="fc" id="L110">      index--;</span>
+    }
+<span class="pc bpc" id="L112" title="2 of 4 branches missed.">    if(index &gt; 0 &amp;&amp; this.board[index].equals(FieldState.EMPTY)) {</span>
+<span class="fc" id="L113">      this.indicesToSetEmpty.add(index);</span>
+    }
+
+<span class="pc bpc" id="L116" title="1 of 2 branches missed.">    if(index - BOARD_SIZE &gt;= 0) {</span>
+<span class="nc" id="L117">      this.indicesToSetEmpty.add(index - BOARD_SIZE);</span>
+    }
+
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">    if(index + BOARD_SIZE &lt; this.board.length) {</span>
+<span class="fc" id="L121">      this.indicesToSetEmpty.add(index + BOARD_SIZE);</span>
+    }
+<span class="fc" id="L123">  }</span>
+
+  private void markBelow(int index) {
+<span class="pc bpc" id="L126" title="2 of 4 branches missed.">    while ((index &lt; this.board.length )</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">    &amp;&amp; index % BOARD_SIZE != 9 &amp;&amp; this.board[index].equals(FieldState.HIT)) {</span>
+
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">      if(index - BOARD_SIZE &gt;= 0) {</span>
+<span class="nc" id="L130">        this.indicesToSetEmpty.add(index - BOARD_SIZE);</span>
+      }
+
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">      if(index + BOARD_SIZE &lt; board.length) {</span>
+<span class="fc" id="L134">        this.indicesToSetEmpty.add(index + BOARD_SIZE);</span>
+      }
+<span class="fc" id="L136">      index++;</span>
+    }
+
+<span class="pc bpc" id="L139" title="2 of 4 branches missed.">    if(index &lt; this.board.length &amp;&amp; this.board[index].equals(FieldState.EMPTY)) {</span>
+<span class="fc" id="L140">      this.indicesToSetEmpty.add(index);</span>
+    }
+
+<span class="pc bpc" id="L143" title="1 of 2 branches missed.">    if(index - BOARD_SIZE &gt;= 0) {</span>
+<span class="nc" id="L144">      this.indicesToSetEmpty.add(index - BOARD_SIZE);</span>
+    }
+
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">    if(index + BOARD_SIZE &lt; this.board.length) {</span>
+<span class="fc" id="L148">      this.indicesToSetEmpty.add(index + BOARD_SIZE);</span>
+    }
+<span class="fc" id="L150">  }</span>
+
+  private boolean isOneMastShip() {
+
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">    final int startCheckIndex = lastHitIndex % BOARD_SIZE == 0 ? lastHitIndex : lastHitIndex - 1;</span>
+<span class="pc bpc" id="L155" title="1 of 2 branches missed.">    final int endCheckIndex = lastHitIndex % BOARD_SIZE == 9 ? lastHitIndex : lastHitIndex + 1;</span>
+
+<span class="pc bpc" id="L157" title="1 of 2 branches missed.">    for(int i = startCheckIndex; i &lt;= endCheckIndex; i++) {</span>
+<span class="pc bpc" id="L158" title="1 of 2 branches missed.">      if (checkLeftNeighbor(i)) {</span>
+<span class="nc" id="L159">        return false;</span>
+      }
+
+<span class="fc bfc" id="L162" title="All 2 branches covered.">      if (checkRightNeighbor(i)) {</span>
+<span class="fc" id="L163">        return false;</span>
+      }
+
+<span class="fc bfc" id="L166" title="All 2 branches covered.">      if (checkMiddleOne(i)) {</span>
+<span class="fc" id="L167">        return false;</span>
+      }
+    }
+<span class="nc" id="L170">    return true;</span>
+  }
+
+  private boolean checkMiddleOne(final int i) {
+<span class="fc bfc" id="L174" title="All 2 branches covered.">    if(i != this.lastHitIndex) {</span>
+<span class="fc bfc" id="L175" title="All 2 branches covered.">      if(this.board[i].equals(FieldState.EMPTY)) {</span>
+<span class="fc" id="L176">        this.indicesToSetEmpty.add(i);</span>
+      } else {
+<span class="fc" id="L178">        this.shipOrientation = ShipOrientation.VERTICAL;</span>
+<span class="fc" id="L179">        return true;</span>
+      }
+    }
+<span class="fc" id="L182">    return false;</span>
+  }
+
+  private boolean checkRightNeighbor(final int i) {
+<span class="pc bpc" id="L186" title="1 of 2 branches missed.">    if(i + BOARD_SIZE &lt; this.board.length ) {</span>
+<span class="fc bfc" id="L187" title="All 2 branches covered.">      if(this.board[i + BOARD_SIZE].equals(FieldState.EMPTY)) {</span>
+<span class="fc" id="L188">        this.indicesToSetEmpty.add(i + BOARD_SIZE);</span>
+      } else {
+<span class="fc" id="L190">        this.shipOrientation = ShipOrientation.HORIZONTAL;</span>
+<span class="fc" id="L191">        return true;</span>
+      }
+    }
+<span class="fc" id="L194">    return false;</span>
+  }
+
+  private boolean checkLeftNeighbor(final int i) {
+<span class="pc bpc" id="L198" title="1 of 2 branches missed.">    if(i - BOARD_SIZE &gt;= 0 ) {</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">      if(this.board[i - BOARD_SIZE].equals(FieldState.EMPTY)) {</span>
+<span class="nc" id="L200">        this.indicesToSetEmpty.add(i - BOARD_SIZE);</span>
+      } else {
+<span class="nc" id="L202">        this.shipOrientation = ShipOrientation.HORIZONTAL;</span>
+<span class="nc" id="L203">        return true;</span>
+      }
+    }
+<span class="fc" id="L206">    return false;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

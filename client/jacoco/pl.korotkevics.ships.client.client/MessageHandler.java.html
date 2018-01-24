@@ -2,6 +2,7 @@
 
 import javafx.scene.control.Button;
 import lombok.Getter;
+import pl.korotkevics.ships.client.reporting.Reporter;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
@@ -18,48 +19,54 @@ import java.util.Map;
  */
 class MessageHandler {
 
-<span class="fc" id="L21">  private static final Target logger = new SharedLogger(Client.class);</span>
+<span class="fc" id="L22">  private static final Target logger = new SharedLogger(Client.class);</span>
+  
   private final Map&lt;Header, EventTrigger&gt; triggers;
+  private Reporter reporter;
   private Button eventButton;
-<span class="fc" id="L24">  @Getter</span>
+<span class="fc" id="L27">  @Getter</span>
   private boolean endConnectionTriggered;
 
   /**
    * Creates an instance of MessageHandler and configures all possible triggers types.
    */
-<span class="fc" id="L30">  MessageHandler(final Map&lt;Header, EventTrigger&gt; triggerMap) {</span>
-<span class="fc" id="L31">    this.triggers = triggerMap;</span>
-<span class="fc" id="L32">  }</span>
+<span class="fc" id="L33">  MessageHandler(final Map&lt;Header, EventTrigger&gt; triggerMap, final Reporter reporter) {</span>
+<span class="fc" id="L34">    this.triggers = triggerMap;</span>
+<span class="fc" id="L35">    this.reporter = reporter;</span>
+<span class="fc" id="L36">  }</span>
 
   Button getCurrentEventButton() {
-<span class="fc" id="L35">    return eventButton;</span>
+<span class="fc" id="L39">    return eventButton;</span>
   }
 
   void setCurrentEventButton(Button eventButton) {
-<span class="fc" id="L39">    this.eventButton = eventButton;</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L43">    this.eventButton = eventButton;</span>
+<span class="fc" id="L44">  }</span>
 
   void handle(Message message) {
-<span class="pc bpc" id="L43" title="1 of 2 branches missed.">    if (eventButton == null) {</span>
-<span class="nc" id="L44">      throw new IllegalStateException(&quot;there is no object on which there can be fire event on&quot;);</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">    if (eventButton == null) {</span>
+<span class="nc" id="L48">      throw new IllegalStateException(&quot;there is no object on which there can be fire event on&quot;);</span>
     }
 
-<span class="fc" id="L47">    Header header = message.getHeader();</span>
+<span class="fc" id="L51">    Header header = message.getHeader();</span>
 
-<span class="pc bpc" id="L49" title="1 of 2 branches missed.">    if (!triggers.containsKey(header)) {</span>
-<span class="nc" id="L50">      logger.error(&quot;message header: &quot; + header + &quot; is unknown&quot;);</span>
-<span class="nc" id="L51">      return;</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">    if (!triggers.containsKey(header)) {</span>
+<span class="nc" id="L54">      logger.error(&quot;message header: &quot; + header + &quot; is unknown&quot;);</span>
+<span class="nc" id="L55">      return;</span>
     }
-<span class="fc" id="L53">    checkIfEndWillBeTriggered(message);</span>
-<span class="fc" id="L54">    triggers.get(header).fire(eventButton, message);</span>
-<span class="fc" id="L55">  }</span>
+<span class="fc" id="L57">    checkIfEndWillBeTriggered(message);</span>
+<span class="fc" id="L58">    triggers.get(header).fire(eventButton, message);</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">    if (this.reporter!=null) {</span>
+<span class="fc" id="L60">      this.reporter.report(triggers.get(header).provideDescription());</span>
+    }
+<span class="fc" id="L62">  }</span>
 
   private void checkIfEndWillBeTriggered(final Message message) {
-<span class="pc bpc" id="L58" title="1 of 2 branches missed.">    if (Status.END.equals(message.getStatus())</span>
-<span class="nc bnc" id="L59" title="All 2 branches missed.">        || Header.WIN.equals(message.getHeader())</span>
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        || Header.LOSE.equals(message.getHeader())) {</span>
-<span class="fc" id="L61">      endConnectionTriggered = true;</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">    if (Status.END.equals(message.getStatus())</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        || Header.WIN.equals(message.getHeader())</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        || Header.LOSE.equals(message.getHeader())) {</span>
+<span class="fc" id="L68">      endConnectionTriggered = true;</span>
     }
-<span class="fc" id="L63">  }</span>
+<span class="fc" id="L70">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

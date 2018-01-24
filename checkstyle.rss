@@ -25,9 +25,9 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2018 Java Academy</copyright>
     <item>
-      <title>File: 84,
+      <title>File: 87,
              Errors: 0,
-             Warnings: 4,
+             Warnings: 75,
              Infos: 0
       </title>
             <link>./index.html/checkstyle.html</link>
@@ -318,7 +318,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  2
                 </td>
                 <td>
                   0
@@ -410,6 +410,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.SunkenShipMarker.java">pl/korotkevics/ships/client/gui/controllers/SunkenShipMarker.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  50
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.gui.controllers.ServerNotRespondingController.java">pl/korotkevics/ships/client/gui/controllers/ServerNotRespondingController.java</a>
                 </td>
                 <td>
@@ -417,6 +431,20 @@ under the License.
                 </td>
                 <td>
                   0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.reporting.ReportingOption.java">pl/korotkevics/ships/client/reporting/ReportingOption.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
                 </td>
                 <td>
                   0
@@ -466,6 +494,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.reporting.Reporter.java">pl/korotkevics/ships/client/reporting/Reporter.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="./index.html/checkstyle.html#pl.korotkevics.ships.client.client.LoseTrigger.java">pl/korotkevics/ships/client/client/LoseTrigger.java</a>
                 </td>
                 <td>
@@ -500,7 +542,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  6
                 </td>
                 <td>
                   0
@@ -514,7 +556,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -626,7 +668,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -654,7 +696,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  1
                 </td>
                 <td>
                   0
@@ -892,7 +934,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  3
                 </td>
                 <td>
                   0
@@ -906,7 +948,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  2
                 </td>
                 <td>
                   0
@@ -948,7 +990,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  0
                 </td>
                 <td>
                   0
@@ -962,7 +1004,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  0
+                  2
                 </td>
                 <td>
                   0

@@ -14,49 +14,50 @@ import java.util.ResourceBundle.Control;
  * Used when instantiating ResourceBundle in order
  * to enforce UTF-8 in UI (to make Polish, Russian
  * special characters appear properly).
- *
+ * &lt;p&gt;
  * &lt;p&gt; We're thankful to the author of this code.
  * The author copied the default implementation and
  * added &quot;UTF-8&quot; when instantiating InputStreamReader. &lt;/p&gt;
  *
- * @author https://stackoverflow.com/questions/4659929/how-to-use-utf-8-in-resource-properties-with-resourcebundle
+ * @author https://stackoverflow.com/questions/4659929/how-to-use-utf-8-in-resource-properties
+ * -with-resourcebundle
  * @since 2011-01-11
  */
 
-<span class="nc" id="L26">public class UTF8Control extends Control {</span>
-
+<span class="nc" id="L27">public class UTF8Control extends Control {</span>
+  
   private static final String ENCODING = &quot;UTF-8&quot;;
-
+  
   @Override
-  public ResourceBundle newBundle(final String baseName, final Locale locale, final String format,
-                                  final ClassLoader loader, final boolean reload)
-      throws IllegalAccessException, InstantiationException, IOException {
+  public ResourceBundle newBundle(final String baseName, final Locale locale, final String
+                                                                                    format, final
+  ClassLoader loader, final boolean reload) throws IllegalAccessException, InstantiationException, IOException {
     // The below is a copy of the default implementation.
-<span class="nc" id="L35">    String bundleName = toBundleName(baseName, locale);</span>
-<span class="nc" id="L36">    String resourceName = toResourceName(bundleName, &quot;properties&quot;);</span>
-<span class="nc" id="L37">    ResourceBundle bundle = null;</span>
-<span class="nc" id="L38">    InputStream stream = null;</span>
-<span class="nc bnc" id="L39" title="All 2 branches missed.">    if (reload) {</span>
-<span class="nc" id="L40">      URL url = loader.getResource(resourceName);</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">      if (url != null) {</span>
-<span class="nc" id="L42">        URLConnection connection = url.openConnection();</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (connection != null) {</span>
-<span class="nc" id="L44">          connection.setUseCaches(false);</span>
-<span class="nc" id="L45">          stream = connection.getInputStream();</span>
+<span class="nc" id="L36">    String bundleName = toBundleName(baseName, locale);</span>
+<span class="nc" id="L37">    String resourceName = toResourceName(bundleName, &quot;properties&quot;);</span>
+<span class="nc" id="L38">    ResourceBundle bundle = null;</span>
+<span class="nc" id="L39">    InputStream stream = null;</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">    if (reload) {</span>
+<span class="nc" id="L41">      URL url = loader.getResource(resourceName);</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">      if (url != null) {</span>
+<span class="nc" id="L43">        URLConnection connection = url.openConnection();</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (connection != null) {</span>
+<span class="nc" id="L45">          connection.setUseCaches(false);</span>
+<span class="nc" id="L46">          stream = connection.getInputStream();</span>
         }
       }
-<span class="nc" id="L48">    } else {</span>
-<span class="nc" id="L49">      stream = loader.getResourceAsStream(resourceName);</span>
+<span class="nc" id="L49">    } else {</span>
+<span class="nc" id="L50">      stream = loader.getResourceAsStream(resourceName);</span>
     }
-<span class="nc bnc" id="L51" title="All 2 branches missed.">    if (stream != null) {</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">    if (stream != null) {</span>
       try {
         // Only this line is changed to make it to read properties files as UTF-8.
-<span class="nc" id="L54">        bundle = new PropertyResourceBundle(new InputStreamReader(stream, ENCODING));</span>
+<span class="nc" id="L55">        bundle = new PropertyResourceBundle(new InputStreamReader(stream, ENCODING));</span>
       } finally {
-<span class="nc" id="L56">        stream.close();</span>
-<span class="nc" id="L57">      }</span>
+<span class="nc" id="L57">        stream.close();</span>
+<span class="nc" id="L58">      }</span>
     }
-<span class="nc" id="L59">    return bundle;</span>
+<span class="nc" id="L60">    return bundle;</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

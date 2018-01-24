@@ -1,3 +1,5 @@
 pl.korotkevics.ships.client
 pl.korotkevics.ships.client.client
+pl.korotkevics.ships.client.gui.controllers
+pl.korotkevics.ships.client.reporting
 pl.korotkevics.ships.client.validators

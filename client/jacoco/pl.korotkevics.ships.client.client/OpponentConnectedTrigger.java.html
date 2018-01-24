@@ -12,10 +12,15 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
  * @since 2017-12-17
  */
 <span class="nc" id="L14">class OpponentConnectedTrigger implements EventTrigger {</span>
-
+  
   @Override
   public void fire(final Button button, final Message message) {
 <span class="nc" id="L18">    Platform.runLater(() -&gt; button.fireEvent(new OpponentConnectedEvent()));</span>
 <span class="nc" id="L19">  }</span>
+  
+  @Override
+  public String provideDescription() {
+<span class="nc" id="L23">    return &quot;An opponent has joined the game.. Let's finish him!&quot;;</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

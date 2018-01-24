@@ -16,5 +16,10 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
   public void fire(final Button button, final Message message) {
 <span class="nc" id="L17">    Platform.runLater(() -&gt; button.fireEvent(new HitShotEvent()));</span>
 <span class="nc" id="L18">  }</span>
+  
+  @Override
+  public String provideDescription() {
+<span class="nc" id="L22">    return &quot;Oh! There is a hit. Good job.&quot;;</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

@@ -17,5 +17,10 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
 <span class="nc" id="L17">    Platform.runLater(() -&gt;</span>
 <span class="nc" id="L18">        button.fireEvent(new OpponentShotEvent(Integer.valueOf(message.getStatement()))));</span>
 <span class="nc" id="L19">  }</span>
+  
+  @Override
+  public String provideDescription() {
+<span class="nc" id="L23">    return &quot;Opponent has shot..&quot;;</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

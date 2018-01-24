@@ -18,47 +18,41 @@ import java.util.List;
  */
 public class CommunicationBus {
 
-  private static final int SERVER_PORT = 8189;
-<span class="nc" id="L22">  private final Target logger = new SharedLogger(CommunicationBus.class);</span>
-  private final AppServer appServer;
 
+<span class="nc" id="L22">  private final Target logger = new SharedLogger(CommunicationBus.class);</span>
+  private final List&lt;Socket&gt; serverClients;
   private List&lt;WrappedClient&gt; clients;
 
   /**
    * Create communication bus instance.
    *
-   * @throws IOException if an I/O error occurs when opening the socket.
+   * @param serverClients List of clients sockets
    */
-<span class="nc" id="L32">  public CommunicationBus() throws IOException {</span>
-<span class="nc" id="L33">    appServer = new AppServer(SERVER_PORT);</span>
-<span class="nc" id="L34">    clients = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L35">  }</span>
+<span class="nc" id="L31">  public CommunicationBus(final List&lt;Socket&gt; serverClients) {</span>
+<span class="nc" id="L32">    this.serverClients = serverClients;</span>
+<span class="nc" id="L33">  }</span>
 
   /**
    * It ask AppServer for clients and then wrap them into wrapped client.
    */
   public void start() {
-<span class="nc" id="L41">    appServer.connectClients();</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">    for (Socket socketClient : appServer.getClientSockets()) {</span>
-<span class="nc" id="L43">      wrapClient(socketClient);</span>
-<span class="nc" id="L44">    }</span>
-<span class="nc" id="L45">    logger.info(&quot;Communication bus started..&quot;);</span>
-<span class="nc" id="L46">  }</span>
+<span class="nc" id="L39">    clients = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L40">    serverClients.forEach(this::wrapClient);</span>
+<span class="nc" id="L41">    logger.info(&quot;Communication bus started..&quot;);</span>
+<span class="nc" id="L42">  }</span>
 
   /**
    * Close clients sockets and clear list of wrapped clients.
    */
   public void stop() {
-<span class="nc bnc" id="L52" title="All 2 branches missed.">    for (WrappedClient c : clients) {</span>
-<span class="nc" id="L53">      c.close();</span>
-<span class="nc" id="L54">    }</span>
-<span class="nc" id="L55">    clients.clear();</span>
-<span class="nc" id="L56">  }</span>
+<span class="nc" id="L48">    clients.forEach(WrappedClient::close);</span>
+<span class="nc" id="L49">    clients.clear();</span>
+<span class="nc" id="L50">  }</span>
 
   private void wrapClient(final Socket socketClient) {
-<span class="nc" id="L59">    WrappedClient wrappedClient = new WrappedClient(socketClient);</span>
-<span class="nc" id="L60">    clients.add(wrappedClient);</span>
-<span class="nc" id="L61">  }</span>
+<span class="nc" id="L53">    WrappedClient wrappedClient = new WrappedClient(socketClient);</span>
+<span class="nc" id="L54">    clients.add(wrappedClient);</span>
+<span class="nc" id="L55">  }</span>
 
   /**
    * It receives message from a player.
@@ -67,7 +61,7 @@ public class CommunicationBus {
    * @return received message
    */
   public Message receive(final WrappedClient sender) {
-<span class="nc" id="L70">    return sender.receive();</span>
+<span class="nc" id="L64">    return sender.receive();</span>
   }
 
   /**
@@ -77,12 +71,12 @@ public class CommunicationBus {
    * @param response  message to send
    */
   public void send(final WrappedClient recipient, final Message response) {
-<span class="nc" id="L80">    recipient.send(response);</span>
-<span class="nc" id="L81">  }</span>
+<span class="nc" id="L74">    recipient.send(response);</span>
+<span class="nc" id="L75">  }</span>
 
   void sendToAll(final Message message) {
-<span class="nc" id="L84">    clients.forEach(wrappedClient -&gt; send(wrappedClient, message));</span>
-<span class="nc" id="L85">  }</span>
+<span class="nc" id="L78">    clients.forEach(wrappedClient -&gt; send(wrappedClient, message));</span>
+<span class="nc" id="L79">  }</span>
 
   /**
    * Gets player which was connected earlier.
@@ -90,7 +84,7 @@ public class CommunicationBus {
    * @return WrappedClient
    */
   public WrappedClient getFirstClient() {
-<span class="nc" id="L93">    return this.clients.get(0);</span>
+<span class="nc" id="L87">    return this.clients.get(0);</span>
   }
 
   /**
@@ -99,7 +93,7 @@ public class CommunicationBus {
    * @return WrappedClient
    */
   public WrappedClient getSecondClient() {
-<span class="nc" id="L102">    return this.clients.get(1);</span>
+<span class="nc" id="L96">    return this.clients.get(1);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

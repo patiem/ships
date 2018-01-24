@@ -50,7 +50,7 @@ public class PlayState implements GameState {
    * Processing game until it has a winner.
    *
    * @return GameState which can be either game end with walkover
-   *    or game end with end depending on a game flow.
+   *         or game end with end depending on a game flow.
    * @see GameEndWithWalkoverState
    * @see GameEndWithWinState
    */
