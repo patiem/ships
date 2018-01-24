@@ -61,7 +61,7 @@ public class ConnectWindowController implements Initializable {
   private AnchorPane mainAnchorPane;
 
   @FXML
-  private MessageLabel labelInvalidPort;
+  private Label labelInvalidPort;
 
   @FXML
   private Button eventButton;

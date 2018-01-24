@@ -17,4 +17,9 @@ class OpponentShotTrigger implements EventTrigger {
     Platform.runLater(() ->
         button.fireEvent(new OpponentShotEvent(Integer.valueOf(message.getStatement()))));
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Opponent has shot..";
+  }
 }

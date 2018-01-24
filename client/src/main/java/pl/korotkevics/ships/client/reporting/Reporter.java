@@ -2,18 +2,21 @@ package pl.korotkevics.ships.client.reporting;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
-class Reporter {
+public class Reporter {
   
   private static final Target logger = new SharedLogger(Reporter.class);
   
@@ -51,8 +54,8 @@ class Reporter {
     //TODO refactor to Visitor or a map based switch
     if (this.getCurrentDestination().equals(ReportingOption.FILE.toString())) {
       try {
-        Files.write(Paths.get(this.getDestinationFileName()), StringUtils.defaultIfEmpty(message,
-            StringUtils.EMPTY).getBytes());
+        Files.write(Paths.get(this.getDestinationFileName()), StringUtils.defaultIfEmpty(message + System.lineSeparator(),
+            StringUtils.EMPTY).getBytes(), StandardOpenOption.APPEND);
       } catch (IOException e) {
         logger.error(e.getMessage());
       }
@@ -69,7 +72,7 @@ class Reporter {
     }
   }
   
-  Reporter(final String fileName) {
+  public Reporter(final String fileName) {
     this.config = ConfigFactory.load(fileName);
   }
   

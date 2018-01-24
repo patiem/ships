@@ -17,4 +17,9 @@ class LoseTrigger implements EventTrigger {
   public void fire(final Button button, final Message message) {
     Platform.runLater(() -> button.fireEvent(new LossEvent()));
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Loss:( Très mal";
+  }
 }

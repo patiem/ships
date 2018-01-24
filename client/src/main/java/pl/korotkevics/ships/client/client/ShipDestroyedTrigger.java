@@ -16,4 +16,9 @@ class ShipDestroyedTrigger implements EventTrigger {
   public void fire(final Button button, final Message message) {
     Platform.runLater(() -> button.fireEvent(new ShipDestroyedEvent()));
   }
+  
+  @Override
+  public String provideDescription() {
+    return "What a luck! A ship has been destroyed. Go on!";
+  }
 }

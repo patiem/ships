@@ -15,7 +15,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 @Test(groups = "integration")
 public class ReporterTest {
@@ -57,13 +56,25 @@ public class ReporterTest {
                                                                                         ());
   }
   
+  public void shouldAppendLinesWhenReportingToFile() throws IOException {
+    //given
+    Reporter reporter = new Reporter(REPORTING_TO_FILE_CONFIG);
+    this.makeSureLogFileExistsAndIsEmpty();
+    //when
+    reporter.report("First message");
+    reporter.report("Second message");
+    //then
+    assertEquals(Files.readFile(new File(LOG_FILE)), "First message" + System.lineSeparator() +
+                                                         "Second message" + System.lineSeparator());
+  }
+  
   public void shouldNotReportToFile() throws IOException {
     //given
     Reporter reporter = new Reporter(REPORTING_TO_SOCKET_CONFIG);
     this.makeSureLogFileExistsAndIsEmpty();
     //when
     reporter.report("A message which should not be reported int" + "o a file since it is not the " +
-                        "" + "" + "" + "" + "active destination.");
+                        "" + "" + "" + "" + "" + "" + "active destination.");
     //then
     assertEquals(Files.readFile(new File(LOG_FILE)), StringUtils.EMPTY);
   }
@@ -88,7 +99,7 @@ public class ReporterTest {
     //when - then
     assertEquals(reporter.getDestinationPort(), PORT);
   }
- 
+  
   public void shouldReportToSocket() throws Exception {
     //given
     Future<String> future = Executors.newSingleThreadExecutor().submit(() -> {
@@ -143,7 +154,6 @@ public class ReporterTest {
     //when - then
     assertEquals(reporter.getDestinationWindowHeight(), 600);
   }
-  
   
   public void shouldRecognizeDestinationWindowWidth() {
     //given

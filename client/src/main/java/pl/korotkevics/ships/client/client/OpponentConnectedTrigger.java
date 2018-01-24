@@ -17,4 +17,9 @@ class OpponentConnectedTrigger implements EventTrigger {
   public void fire(final Button button, final Message message) {
     Platform.runLater(() -> button.fireEvent(new OpponentConnectedEvent()));
   }
+  
+  @Override
+  public String provideDescription() {
+    return "An opponent has joined the game.. Let's finish him!";
+  }
 }
