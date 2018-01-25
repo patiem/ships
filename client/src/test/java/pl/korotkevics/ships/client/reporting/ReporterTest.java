@@ -74,7 +74,7 @@ public class ReporterTest {
     this.makeSureLogFileExistsAndIsEmpty();
     //when
     reporter.report("A message which should not be reported int" + "o a file since it is not the " +
-                        "" + "" + "" + "" + "" + "" + "" + "active destination.");
+                        "" + "" + "" + "" + "" + "" + "" + "" + "" + "active destination.");
     //then
     assertEquals(Files.readFile(new File(LOG_FILE)), StringUtils.EMPTY);
   }
@@ -108,19 +108,16 @@ public class ReporterTest {
                                                                                          .accept
                                                                                               ()) {
         Scanner scanner = new Scanner(clientSocket.getInputStream(), "UTF-8");
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(scanner.nextLine());
         //then
-        return stringBuilder.toString();
+        return scanner.nextLine();
       } catch (final IOException e) {
         throw new RuntimeException();
       }
     });
-    
     //when
+    Thread.sleep(3000);//make sure server is started
     reporter.report("Hey Sandor");
-    String receivedString = future.get(5, TimeUnit.SECONDS);// timeout is optional here
-    
+    String receivedString = future.get(3, TimeUnit.SECONDS);//avoid ever running failed test
     //then
     assertEquals(receivedString, "Hey Sandor");
   }
