@@ -20,6 +20,7 @@ import java.util.Map;
 class MessageHandler {
 
   private static final Target logger = new SharedLogger(Client.class);
+  
   private final Map<Header, EventTrigger> triggers;
   private Reporter reporter;
   @Getter
@@ -30,14 +31,11 @@ class MessageHandler {
   /**
    * Creates an instance of MessageHandler and configures all possible triggers types.
    */
-  MessageHandler(final Map<Header, EventTrigger> triggerMap, DispatcherAdapter dispatcherAdapter, final Reporter reporter) {
+  MessageHandler(final Map<Header, EventTrigger> triggerMap, DispatcherAdapter dispatcherAdapter,
+                 final Reporter reporter) {
     this.triggers = triggerMap;
     this.dispatcherAdapter = dispatcherAdapter;
     this.reporter = reporter;
-  }
-
-  Button getCurrentEventButton() {
-    return dispatcherAdapter.getEventButton();
   }
 
   void setCurrentEventButton(Button eventButton) {
@@ -57,9 +55,17 @@ class MessageHandler {
     }
     checkIfEndWillBeTriggered(message);
     triggers.get(header).fire(dispatcherAdapter, message);
+    this.startReporter(header);
+  }
+  
+  private void startReporter(final Header header) {
+    Thread reporterThread = new Thread(()-> {
     if (this.reporter!=null) {
-      this.reporter.report(triggers.get(header).provideDescription());
-    }
+        this.reporter.report(triggers.get(header).provideDescription());
+      }
+    });
+    reporterThread.setName("Reporter");
+    reporterThread.start();
   }
 
   private void checkIfEndWillBeTriggered(final Message message) {
