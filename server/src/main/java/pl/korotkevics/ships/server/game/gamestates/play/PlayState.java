@@ -14,6 +14,7 @@ import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -64,36 +65,60 @@ public class PlayState implements GameState {
   @Override
   public GameState process() {
     sendYourTurnMessage();
-    Future<Boolean> confirmation = Executors.newSingleThreadExecutor().submit(() ->
-        messageReceiveConfirmation(turnManager.getCurrentPlayer()));
+    final boolean isOk;
     try {
-      confirmation.get(60, TimeUnit.SECONDS);
-    } catch (InterruptedException | ExecutionException | TimeoutException e) {
-      logger.error(e.getMessage());
+      isOk = turnManager.getCurrentPlayer().getSocket().getInetAddress().isReachable(30000);
+    } catch (IOException e) {
+      logger.info(e.getMessage());
       return new GameEndWithWalkoverState(communicationBus);
     }
+    if(!isOk)
+      return new GameEndWithWalkoverState(communicationBus);
+//    Future<Boolean> confirmation = Executors.newSingleThreadExecutor().submit(() ->
+//        messageReceiveConfirmation(turnManager.getCurrentPlayer()));
+//    try {
+//      confirmation.get(60, TimeUnit.SECONDS);
+//    } catch (InterruptedException | ExecutionException | TimeoutException e) {
+//      logger.error(e.getMessage());
+//      return new GameEndWithWalkoverState(communicationBus);
+//    }
     messageReceiver.receive(turnManager.getCurrentPlayer());
-    logger.info("WAITING FOR SHOT");
     if (messageReceiver.isAShot()) {
       Message shot = messageReceiver.getMessage();
       isGameWon = shotHandler.handle(turnManager.isCurrentPlayerFirstPlayer(), shot);
-      logger.info("WAITING FOR CONFIRMATION");
 
-      Future<Boolean> confirmation1 = Executors.newSingleThreadExecutor().submit(() ->
-          messageReceiveConfirmation(turnManager.getCurrentPlayer()));
+      final boolean firstClientIsReachable;
+      final boolean secondClientIsReachable;
       try {
-        confirmation1.get(60, TimeUnit.SECONDS);
-      } catch (InterruptedException | ExecutionException | TimeoutException e) {
-        logger.error(e.getMessage());
+        firstClientIsReachable = turnManager.getCurrentPlayer().getSocket().getInetAddress().isReachable(30000);
+      } catch (IOException e) {
+        logger.info(e.getMessage());
         return new GameEndWithWalkoverState(communicationBus);
       }
-
-      Future<Boolean> confirmation2 = Executors.newSingleThreadExecutor().submit(() ->
-          messageReceiveConfirmation(turnManager.getOtherPlayer()));
       try {
-        confirmation2.get(60, TimeUnit.SECONDS);
-      } catch (InterruptedException | ExecutionException | TimeoutException e) {
-        logger.error(e.getMessage());
+        secondClientIsReachable = turnManager.getCurrentPlayer().getSocket().getInetAddress().isReachable(30000);
+      } catch (IOException e) {
+        logger.info(e.getMessage());
+        return new GameEndWithWalkoverState(communicationBus);
+      }
+//      Future<Boolean> confirmation1 = Executors.newSingleThreadExecutor().submit(() ->
+//          messageReceiveConfirmation(turnManager.getCurrentPlayer()));
+//      try {
+//        confirmation1.get(60, TimeUnit.SECONDS);
+//      } catch (InterruptedException | ExecutionException | TimeoutException e) {
+//        logger.error(e.getMessage());
+//        return new GameEndWithWalkoverState(communicationBus);
+//      }
+//
+//      Future<Boolean> confirmation2 = Executors.newSingleThreadExecutor().submit(() ->
+//          messageReceiveConfirmation(turnManager.getOtherPlayer()));
+//      try {
+//        confirmation2.get(60, TimeUnit.SECONDS);
+//      } catch (InterruptedException | ExecutionException | TimeoutException e) {
+//        logger.error(e.getMessage());
+//        return new GameEndWithWalkoverState(communicationBus);
+//      }
+      if(!firstClientIsReachable || !secondClientIsReachable){
         return new GameEndWithWalkoverState(communicationBus);
       }
     } else {
@@ -105,17 +130,17 @@ public class PlayState implements GameState {
     return this;
   }
 
-  private boolean messageReceiveConfirmation(WrappedClient wrappedClient) {
-    boolean result = false;
-    while(!result) {
-      messageReceiver.receive(wrappedClient);
-      if (messageReceiver.isConfirmation()) {
-        result = true;
-      }
-    }
-    logger.info("CONFIRMED");
-    return result;
-  }
+//  private boolean messageReceiveConfirmation(WrappedClient wrappedClient) {
+//    boolean result = false;
+//    while(!result) {
+//      messageReceiver.receive(wrappedClient);
+//      if (messageReceiver.isConfirmation()) {
+//        result = true;
+//      }
+//    }
+//    logger.info("CONFIRMED");
+//    return result;
+//  }
 
   private void sendYourTurnMessage() {
     this.rest();

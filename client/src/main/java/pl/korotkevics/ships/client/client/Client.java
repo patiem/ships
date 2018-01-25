@@ -7,6 +7,7 @@ import pl.korotkevics.ships.shared.infra.communication.api.io.Receiver;
 import pl.korotkevics.ships.shared.infra.communication.api.io.Sender;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Status;
 import pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonReceiver;
 import pl.korotkevics.ships.shared.infra.communication.core.json.io.JsonSender;
 import pl.korotkevics.ships.shared.infra.communication.core.message.MessageBuilder;
@@ -99,13 +100,13 @@ public class Client implements Runnable {
         logger.info(message);
 
         messageHandler.handle(message);
-            if (message.getHeader().equals(Header.SHOT) || message.getHeader().equals(Header.HIT) || message.getHeader().equals(Header.SHIP_DESTROYED) ||
-                message.getHeader().equals(Header.MISS) || message.getHeader().equals(Header.YOUR_TURN)  ) {
-              JsonSender sender = new JsonSender(clientSocket.getOutputStream());
-              Message confirm = new MessageBuilder().withHeader(Header.CONFIRMATION).build();
-              sender.send(confirm);
-              logger.info(confirm);
-            }
+//            if (message.getHeader().equals(Header.SHOT) || message.getHeader().equals(Header.HIT) || message.getHeader().equals(Header.SHIP_DESTROYED) ||
+//                message.getHeader().equals(Header.MISS) || message.getHeader().equals(Header.YOUR_TURN)  ) {
+//              JsonSender sender = new JsonSender(clientSocket.getOutputStream());
+//              Message confirm = new MessageBuilder().withHeader(Header.CONFIRMATION).build();
+//              sender.send(confirm);
+//              logger.info(confirm);
+//            }
       } catch (IOException | IllegalStateException e) {
         logger.error(e.getMessage());
       }
@@ -142,6 +143,7 @@ public class Client implements Runnable {
           .withStatement(String.valueOf(shotIndex))
           .build();
       sender.send(shot);
+      isReachable();
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
@@ -161,6 +163,7 @@ public class Client implements Runnable {
           .withFleet(fleet)
           .build();
       sender.send(fleetMsg);
+      isReachable();
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
@@ -188,8 +191,22 @@ public class Client implements Runnable {
     try {
       Sender sender = new JsonSender(clientSocket.getOutputStream());
       sender.send(askForRandomFleet);
+      isReachable();
     } catch (IOException e) {
       logger.error(e.getMessage());
     }
   }
+
+  void isReachable() throws IOException {
+    boolean reachable = clientSocket.getInetAddress().isReachable(30000);
+    if (!reachable) {
+      Message message = new MessageBuilder()
+          .withStatus(Status.END)
+          .withHeader(Header.CONNECTION)
+          .build();
+
+      messageHandler.handle(message);
+    }
+  }
+
 }

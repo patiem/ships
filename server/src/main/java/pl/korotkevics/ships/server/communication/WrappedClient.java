@@ -54,6 +54,10 @@ public class WrappedClient {
     }
   }
 
+  public Socket getSocket() {
+    return socket;
+  }
+
   void send(final Message message) {
     this.out.send(message);
   }
