@@ -108,18 +108,16 @@ public class ReporterTest {
                                                                                          .accept
                                                                                               ()) {
         Scanner scanner = new Scanner(clientSocket.getInputStream(), "UTF-8");
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(scanner.nextLine());
         //then
-        return stringBuilder.toString();
+        return scanner.nextLine();
       } catch (final IOException e) {
         throw new RuntimeException();
       }
     });
-    
     //when
+    Thread.sleep(3000);//make sure server is started
     reporter.report("Hey Sandor");
-    String receivedString = future.get(5, TimeUnit.SECONDS);// timeout is optional here
+    String receivedString = future.get(3, TimeUnit.SECONDS);//avoid ever running failed test
     
     //then
     assertEquals(receivedString, "Hey Sandor");
