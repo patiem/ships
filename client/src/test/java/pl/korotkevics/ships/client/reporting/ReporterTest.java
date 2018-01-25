@@ -118,7 +118,6 @@ public class ReporterTest {
     Thread.sleep(3000);//make sure server is started
     reporter.report("Hey Sandor");
     String receivedString = future.get(3, TimeUnit.SECONDS);//avoid ever running failed test
-    
     //then
     assertEquals(receivedString, "Hey Sandor");
   }
