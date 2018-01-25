@@ -30,4 +30,9 @@ class LoseTrigger implements EventTrigger {
   public Event getEvent() {
     return lossEvent;
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Loss:( Très mal";
+  }
 }

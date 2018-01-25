@@ -52,6 +52,9 @@ public class MainController {
   @FXML
   private Button englishButton;
 
+  @FXML
+  private Label playerName;
+
   private ResourceBundle resourceBundle;
 
   /**
@@ -132,5 +135,9 @@ public class MainController {
   private void hideButton(Button button) {
     button.setDisable(true);
     button.setVisible(false);
+  }
+
+  public void setPlayerName(String playerName) {
+    this.playerName.setText(playerName);
   }
 }

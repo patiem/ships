@@ -3,7 +3,6 @@ package pl.korotkevics.ships.client.client;
 import javafx.event.Event;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
-
 /**
  * Trigger gui event from client listen thread.
  *
@@ -13,6 +12,6 @@ import pl.korotkevics.ships.shared.infra.communication.api.Message;
 
 interface EventTrigger {
   void fire(final DispatcherAdapter dispatcherAdapter, final Message message);
-
-   Event getEvent();
+  Event getEvent();
+  String provideDescription();
 }

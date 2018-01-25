@@ -8,6 +8,7 @@ import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
 import pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent;
 import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
 import pl.korotkevics.ships.client.gui.events.WinEvent;
+import pl.korotkevics.ships.client.reporting.Reporter;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 
 import java.util.EnumMap;
@@ -21,7 +22,12 @@ import java.util.Map;
  */
 
 public class MessageHandlerBuilder {
+
+  private final static String CONFIG_FILE = "reporting";
+  
   private Map<Header, EventTrigger> triggers;
+  
+  private Reporter reporter;
 
   /**
    * Set triggers map to be enum map with Header as key.
@@ -30,6 +36,11 @@ public class MessageHandlerBuilder {
    */
   public MessageHandlerBuilder withEnumMap() {
     triggers = new EnumMap<>(Header.class);
+    return this;
+  }
+  
+  public MessageHandlerBuilder withReporter() {
+    this.reporter = new Reporter(CONFIG_FILE);
     return this;
   }
 
@@ -58,6 +69,6 @@ public class MessageHandlerBuilder {
    * @return MessageHandler
    */
   public MessageHandler build() {
-    return new MessageHandler(triggers, new DispatcherAdapter());
+    return new MessageHandler(triggers, new DispatcherAdapter(), reporter);
   }
 }

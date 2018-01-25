@@ -15,6 +15,7 @@ import pl.korotkevics.ships.client.gui.events.OpponentWithdrawEvent;
 import pl.korotkevics.ships.client.gui.events.ShipDestroyedEvent;
 import pl.korotkevics.ships.client.gui.events.TurnChangeEvent;
 import pl.korotkevics.ships.client.gui.events.WinEvent;
+import pl.korotkevics.ships.client.reporting.Reporter;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Author;
 import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
@@ -78,7 +79,8 @@ public class MessageHandlerTest {
     Map<Header, EventTrigger> triggers = new EnumMap<>(Header.class);
     triggers.put(Header.LOSE, loseTrigger);
     DispatcherAdapter dispatcherAdapter = new DispatcherAdapter();
-    MessageHandler messageHandler = new MessageHandler(triggers, dispatcherAdapter);
+    Reporter reporter = new Reporter("");
+    MessageHandler messageHandler = new MessageHandler(triggers, dispatcherAdapter, reporter);
     messageHandler.setCurrentEventButton(eventButton);
     messageHandler.handle(message);
     //then
@@ -109,8 +111,9 @@ public class MessageHandlerTest {
 
   private MessageHandler produceMessageHandler(EventTrigger eventTrigger) {
     Map<Header, EventTrigger> triggers = new EnumMap<>(Header.class);
+    Reporter reporter = new Reporter("");
     triggers.put(Header.CONNECTION, eventTrigger);
-    MessageHandler messageHandler = new MessageHandler(triggers, new DispatcherAdapter());
+    MessageHandler messageHandler = new MessageHandler(triggers,  new DispatcherAdapter(), reporter);
     messageHandler.setCurrentEventButton(new Button());
     return messageHandler;
   }
@@ -166,8 +169,8 @@ public class MessageHandlerTest {
     DispatcherAdapter dispatcherAdapter = mock(DispatcherAdapter.class);
     Button eventButton = mock(Button.class);
     Map<Header, EventTrigger> triggers = new EnumMap<>(Header.class);
-
-    MessageHandler messageHandler = new MessageHandler(triggers, dispatcherAdapter);
+    Reporter reporter = new Reporter("");
+    MessageHandler messageHandler = new MessageHandler(triggers, dispatcherAdapter, reporter);
 
 
     triggers.put(message.getHeader(), eventTrigger);

@@ -28,4 +28,9 @@ class WinTrigger implements EventTrigger {
   public Event getEvent() {
     return winEvent;
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Victory!! Yeah";
+  }
 }

@@ -25,5 +25,10 @@ class RandomPlacementTrigger implements EventTrigger {
   public Event getEvent() {
     return null;
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Random fleet placement has been applied. Someone is lazy!";
+  }
 }
 

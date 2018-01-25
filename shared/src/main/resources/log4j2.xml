@@ -18,7 +18,7 @@
             - [m] - used to output the application supplied message associated with the logging event;
             - [n] - used to add a new line.
             -->
-            <PatternLayout pattern="%d %-5p - %m%n"/>
+            <PatternLayout pattern="%d %-5p - [%15.15t] - %m%n"/>
         </File>
         <!--
         "Console Logger":
@@ -33,7 +33,7 @@
             - [m] - used to output the application supplied message associated with the logging event;
             - [n] - used to add a new line.
             -->
-            <PatternLayout pattern="%d %-5p - %m%n"/>
+            <PatternLayout pattern="%d %-5p - [%15.15t] - %m%n"/>
         </Console>
     </appenders>
 

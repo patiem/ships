@@ -7,5 +7,5 @@ package pl.korotkevics.ships.client.gui.util;
  * @since 2018-01-01
  */
 public enum FieldState {
-  EMPTY, OCCUPIED
+  EMPTY, OCCUPIED, HIT
 }

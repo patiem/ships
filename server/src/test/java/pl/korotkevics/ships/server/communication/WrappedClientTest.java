@@ -20,8 +20,7 @@ public class WrappedClientTest {
     sendClient(port);
     dumpClient(port);
     //when
-    appServer.connectClients();
-    Scanner scanner = new Scanner(appServer.getClientSockets().get(0).getInputStream());
+    Scanner scanner = new Scanner(appServer.connectClients().get(0).getInputStream());
     String receivedMessage = scanner.nextLine();
     String expectedMessage = "{\"header\":\"DEFAULT\",\"status\":\"OK\",\"author\":\"SERVER\",\"statement\":\"\",\"fleet\":{\"fleet\":{}}}";
     //then

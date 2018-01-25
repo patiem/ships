@@ -23,4 +23,9 @@ class OpponentShotTrigger implements EventTrigger {
   public Event getEvent() {
     return null;
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Opponent has shot..";
+  }
 }

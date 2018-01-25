@@ -27,4 +27,9 @@ class HitShotTrigger implements EventTrigger {
   public Event getEvent() {
     return hitShotEvent;
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Oh! There is a hit. Good job.";
+  }
 }

@@ -24,6 +24,11 @@ class OpponentConnectedTrigger implements EventTrigger {
   }
 
   @Override
+  public String provideDescription() {
+    return "An opponent has joined the game.. Let's finish him!";
+  }
+
+  @Override
   public Event getEvent() {
     return opponentConnectedEvent;
   }

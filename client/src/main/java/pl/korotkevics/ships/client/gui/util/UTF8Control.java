@@ -14,23 +14,24 @@ import java.util.ResourceBundle.Control;
  * Used when instantiating ResourceBundle in order
  * to enforce UTF-8 in UI (to make Polish, Russian
  * special characters appear properly).
- *
+ * <p>
  * <p> We're thankful to the author of this code.
  * The author copied the default implementation and
  * added "UTF-8" when instantiating InputStreamReader. </p>
  *
- * @author https://stackoverflow.com/questions/4659929/how-to-use-utf-8-in-resource-properties-with-resourcebundle
+ * @author https://stackoverflow.com/questions/4659929/how-to-use-utf-8-in-resource-properties
+ * -with-resourcebundle
  * @since 2011-01-11
  */
 
 public class UTF8Control extends Control {
-
+  
   private static final String ENCODING = "UTF-8";
-
+  
   @Override
-  public ResourceBundle newBundle(final String baseName, final Locale locale, final String format,
-                                  final ClassLoader loader, final boolean reload)
-      throws IllegalAccessException, InstantiationException, IOException {
+  public ResourceBundle newBundle(final String baseName, final Locale locale, final String
+                                                                                    format, final
+  ClassLoader loader, final boolean reload) throws IllegalAccessException, InstantiationException, IOException {
     // The below is a copy of the default implementation.
     String bundleName = toBundleName(baseName, locale);
     String resourceName = toResourceName(bundleName, "properties");

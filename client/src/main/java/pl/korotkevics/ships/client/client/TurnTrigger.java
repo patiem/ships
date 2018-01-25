@@ -24,6 +24,11 @@ class TurnTrigger implements EventTrigger {
       dispatcherAdapter.fireEvent(this.turnChangeEvent);
     }
   }
+  
+  @Override
+  public String provideDescription() {
+    return "A new turn...";
+  }
 
   @Override
   public Event getEvent() {

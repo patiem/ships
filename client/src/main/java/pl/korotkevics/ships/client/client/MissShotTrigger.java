@@ -28,4 +28,9 @@ class MissShotTrigger implements EventTrigger {
   public Event getEvent() {
     return missShotEvent;
   }
+  
+  @Override
+  public String provideDescription() {
+    return "It is a miss. Try again!";
+  }
 }

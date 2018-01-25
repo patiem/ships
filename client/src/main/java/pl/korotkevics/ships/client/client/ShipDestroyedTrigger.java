@@ -27,4 +27,9 @@ class ShipDestroyedTrigger implements EventTrigger {
   public Event getEvent() {
     return shipDestroyedEvent;
   }
+  
+  @Override
+  public String provideDescription() {
+    return "What a luck! A ship has been destroyed. Go on!";
+  }
 }

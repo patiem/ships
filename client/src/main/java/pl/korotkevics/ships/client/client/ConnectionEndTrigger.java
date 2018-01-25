@@ -30,4 +30,10 @@ class ConnectionEndTrigger implements EventTrigger {
   public Event getEvent() {
     return opponentWithdrawEvent;
   }
+  
+  @Override
+  public String provideDescription() {
+    return "Too bad, opponent has withdrawn from the game.";
+  }
+  
 }
