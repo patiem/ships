@@ -74,7 +74,7 @@ public class ReporterTest {
     this.makeSureLogFileExistsAndIsEmpty();
     //when
     reporter.report("A message which should not be reported int" + "o a file since it is not the " +
-                        "" + "" + "" + "" + "" + "" + "" + "" + "" + "active destination.");
+                        "" + "" + "" + "" + "" + "" + "" + "active destination.");
     //then
     assertEquals(Files.readFile(new File(LOG_FILE)), StringUtils.EMPTY);
   }
