@@ -56,9 +56,12 @@ class MessageHandler {
     }
     checkIfEndWillBeTriggered(message);
     triggers.get(header).fire(eventButton, message);
+    new Thread(()-> {
     if (this.reporter!=null) {
-      this.reporter.report(triggers.get(header).provideDescription());
-    }
+        this.reporter.report(triggers.get(header).provideDescription());
+      }
+    }).start();
+    
   }
 
   private void checkIfEndWillBeTriggered(final Message message) {
