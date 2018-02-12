@@ -19,6 +19,6 @@ class WinTrigger implements EventTrigger {
   
   @Override
   public String provideDescription() {
-    return "Victory!! Yeah";
+    return "Victory!! Yeahh";
   }
 }
