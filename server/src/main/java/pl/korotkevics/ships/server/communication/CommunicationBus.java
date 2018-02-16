@@ -3,9 +3,13 @@ package pl.korotkevics.ships.server.communication;
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+import pl.korotkevics.ships.shared.persistence.SingleTranscriptDao;
+import pl.korotkevics.ships.shared.persistence.SingleTranscriptRecord;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +26,7 @@ public class CommunicationBus {
   private final Target logger = new SharedLogger(CommunicationBus.class);
   private final List<Socket> serverClients;
   private List<WrappedClient> clients;
+  private SingleTranscriptDao singleTranscriptDao = new SingleTranscriptDao();
 
   /**
    * Create communication bus instance.

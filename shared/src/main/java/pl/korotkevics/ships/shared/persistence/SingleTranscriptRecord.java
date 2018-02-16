@@ -1,5 +1,7 @@
 package pl.korotkevics.ships.shared.persistence;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,13 +10,13 @@ import java.io.Serializable;
 public class SingleTranscriptRecord implements Serializable {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(generator = "increment")
     private Long id;
     @Column(name = "message")
     private String message;
 
-    private SingleTranscriptRecord() {
-    }
+    private SingleTranscriptRecord() {}
 
     public SingleTranscriptRecord(String message) {
         this.message = message;

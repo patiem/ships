@@ -6,5 +6,7 @@ public interface Dao <T>{
     void add(T t);
     void delete(T t);
     List<T> readAll();
-    T find(T t);
+    T findById(long id);
+
+    void cleanTable(String tableName);
 }

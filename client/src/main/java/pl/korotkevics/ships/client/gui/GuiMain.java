@@ -10,6 +10,8 @@ import javafx.stage.WindowEvent;
 import pl.korotkevics.ships.client.client.Client;
 import pl.korotkevics.ships.client.client.MessageHandlerBuilder;
 import pl.korotkevics.ships.client.gui.controllers.MainController;
+import pl.korotkevics.ships.shared.persistence.SingleTranscriptDao;
+import pl.korotkevics.ships.shared.persistence.SingleTranscriptRecord;
 
 /**
  * Main class of gui to initialize and start gui thread.
@@ -37,8 +39,8 @@ public class GuiMain extends Application {
     primaryStage.setTitle(windowTitle);
     primaryStage.setScene(new Scene(root, sceneWidth, sceneHeight));
     primaryStage.setResizable(false);
+    primaryStage.setResizable(true);
     primaryStage.show();
-
     primaryStage.setOnHiding((WindowEvent event) -> {
       client.closeClient();
       Platform.exit();

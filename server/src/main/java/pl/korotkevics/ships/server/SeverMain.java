@@ -38,7 +38,7 @@ public class SeverMain {
       final int finalGameId = gameId;
       new Thread(() -> {
         Thread.currentThread().setName("GAME: " + finalGameId);
-        GameState initialState = new WaitingForPlayersState(communicationBus);
+        GameState initialState = new  WaitingForPlayersState(communicationBus);
         new Game(initialState).play();
       }).start();
       gameId++;
