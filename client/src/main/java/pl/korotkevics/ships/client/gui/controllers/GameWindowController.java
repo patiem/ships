@@ -72,6 +72,9 @@ public class GameWindowController implements Initializable {
   @FXML
   private Label infoLabel;
 
+  @FXML
+  private Button buttonTranscript;
+
   private int shotIndex;
   private ResourceBundle resourceBundle;
   private boolean hitShot;
@@ -257,6 +260,7 @@ public class GameWindowController implements Initializable {
     eventButton.addEventHandler(LossEvent.GAME_LOSS, event -> renderAsLoss());
     eventButton.addEventHandler(ShipDestroyedEvent.SHIP_DESTROYED, event -> this.shipDestroyed());
     buttonEnd.setOnAction(actionEvent -> this.endTheGame());
+
     infoLabel.setText(this.resourceBundle.getString("opponentAction"));
     initializeTurn(false);
   }

@@ -94,6 +94,7 @@ public class FleetPlacementController implements Initializable {
   @FXML
   private Button buttonClear;
 
+
   private List<Ship> ships;
   private Fleet fleet;
 

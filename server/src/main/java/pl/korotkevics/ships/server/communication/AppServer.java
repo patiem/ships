@@ -45,7 +45,8 @@ public class AppServer {
     logger.info("Clients are connected");
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     LocalDateTime now =LocalDateTime.now();
-    SingleTranscriptRecord singleTranscriptRecord = new SingleTranscriptRecord("Communication bus started.."+String.valueOf(dtf.format(now)));
+    SingleTranscriptRecord singleTranscriptRecord = new SingleTranscriptRecord("Communication bus started.."
+            +String.valueOf(dtf.format(now)));
     singleTranscriptDao.add(singleTranscriptRecord);
     return clients;
   }
