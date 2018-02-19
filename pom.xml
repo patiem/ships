@@ -128,6 +128,9 @@
                 <!--Provided because it generates code
                 which is available once compiled-->
             </dependency>
+
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -137,32 +140,32 @@
             https://github.com/korotkevics/ships/wiki/POM-Explanations
             -->
             <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <version>${enforcerVersion}</version>
-                    <executions>
-                        <execution>
-                            <id>enforce-maven</id>
-                            <goals>
-                                <goal>enforce</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <rules>
-                            <requireMavenVersion>
-                                <version>${mavenVersion}</version>
-                            </requireMavenVersion>
-                            <requireJavaVersion>
-                                <version>${maven.compiler.source}</version>
-                            </requireJavaVersion>
-                            <dependencyConvergence>
-                                <uniqueVersions>true</uniqueVersions>
-                            </dependencyConvergence>
-                        </rules>
-                    </configuration>
-                </plugin>
+                <!--<plugin>-->
+                    <!--<groupId>org.apache.maven.plugins</groupId>-->
+                    <!--<artifactId>maven-enforcer-plugin</artifactId>-->
+                    <!--<version>${enforcerVersion}</version>-->
+                    <!--<executions>-->
+                        <!--<execution>-->
+                            <!--<id>enforce-maven</id>-->
+                            <!--<goals>-->
+                                <!--<goal>enforce</goal>-->
+                            <!--</goals>-->
+                        <!--</execution>-->
+                    <!--</executions>-->
+                    <!--<configuration>-->
+                        <!--<rules>-->
+                            <!--<requireMavenVersion>-->
+                                <!--<version>${mavenVersion}</version>-->
+                            <!--</requireMavenVersion>-->
+                            <!--<requireJavaVersion>-->
+                                <!--<version>${maven.compiler.source}</version>-->
+                            <!--</requireJavaVersion>-->
+                            <!--<dependencyConvergence>-->
+                                <!--<uniqueVersions>true</uniqueVersions>-->
+                            <!--</dependencyConvergence>-->
+                        <!--</rules>-->
+                    <!--</configuration>-->
+                <!--</plugin>-->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
