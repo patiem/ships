@@ -29,6 +29,7 @@ import pl.korotkevics.ships.client.gui.events.WinEvent;
 import pl.korotkevics.ships.client.gui.util.GridToBoardConverter;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+import pl.korotkevics.ships.shared.transcript.GraphicalOutput;
 
 import java.io.IOException;
 import java.net.URL;
@@ -280,6 +281,7 @@ public class GameWindowController implements Initializable {
     this.renderSpecificResult("youWin");
     this.endStack.setVisible(true);
     this.buttonEnd.setDisable(false);
+    new GraphicalOutput();
   }
 
   private void renderAsLoss() {
@@ -287,7 +289,10 @@ public class GameWindowController implements Initializable {
     this.renderSpecificResult("youLose");
     this.endStack.setVisible(true);
     this.buttonEnd.setDisable(false);
+    new GraphicalOutput();
   }
+
+
 
   private void renderSpecificResult(String key) {
     this.winLabel.setText(this.resourceBundle.getString(key));

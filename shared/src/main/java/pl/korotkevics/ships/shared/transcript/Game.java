@@ -1,8 +1,5 @@
 package pl.korotkevics.ships.shared.transcript;
 
-
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,8 +10,7 @@ import java.util.List;
 public class Game {
 
   @Id
-  @GenericGenerator(name = "increment", strategy = "increment")
-  @GeneratedValue(generator = "increment")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column
   private int id;
 
@@ -27,12 +23,7 @@ public class Game {
   @Column(name = "date", nullable = false)
   private Date date;
 
-  @OneToMany(cascade=CascadeType.PERSIST)
-  @JoinTable(
-      name="transcripts",
-      joinColumns = @JoinColumn( name="game_id"),
-      inverseJoinColumns = @JoinColumn( name="trans_id")
-  )
+  @OneToMany(mappedBy = "game", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
   List<Transcript> transcripts = new ArrayList<>();
 
   public Game() {
@@ -81,5 +72,10 @@ public class Game {
   public void addTranscript(Transcript transcript) {
     transcripts.add(transcript);
     transcript.setGame(this);
+  }
+
+  @Override
+  public String toString() {
+    return String.format("%d. players: %s & %s, date: %s", id, playerOne, playerTwo, date);
   }
 }

@@ -1,7 +1,5 @@
 package pl.korotkevics.ships.shared.transcript;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,12 +7,11 @@ import javax.persistence.*;
 public class Transcript {
 
   @Id
-  @GenericGenerator(name = "increment", strategy = "increment")
-  @GeneratedValue(generator = "increment")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "trans_id")
   private int id;
 
-  @Column(name = "game_id", nullable = false)
+  @ManyToOne
   private Game game;
 
 

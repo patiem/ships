@@ -7,8 +7,10 @@ import java.util.List;
 
 public class DaoMaria implements Dao {
 
-  private static Session session = HibernateUtil.getSessionFactory().openSession();
+  private Session session = HibernateUtil.getSessionFactory().openSession();
 
+  public DaoMaria() {
+  }
 
   @Override
   public void addGame(Game game) {
@@ -22,6 +24,7 @@ public class DaoMaria implements Dao {
     session.beginTransaction();
     Query query = session.createQuery("from " + Game.class.getName());
     List<Game> games = query.list();
+
     session.getTransaction().commit();
     return games;
   }
@@ -31,6 +34,5 @@ public class DaoMaria implements Dao {
     session.beginTransaction();
     session.persist(game);
     session.getTransaction().commit();
-
   }
 }
