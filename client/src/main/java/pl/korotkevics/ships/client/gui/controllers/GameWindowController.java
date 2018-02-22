@@ -37,7 +37,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 /**
- * Game window controller.
+ * GameEntity window controller.
  *
  * @author Magdalena Aarsman
  * @since 2017-12-15

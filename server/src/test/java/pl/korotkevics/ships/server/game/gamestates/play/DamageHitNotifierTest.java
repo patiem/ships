@@ -34,7 +34,7 @@ public class DamageHitNotifierTest {
     new DamageHitNotifier(messageSender, turnManager).notify(message);
 
     //then
-    verify(messageSender, times(1)).send(player, Header.HIT);
+    verify(messageSender, times(1)).send(player, Header.HIT, true);
     verify(messageSender, times(1)).send(opponent, message);
   }
 }

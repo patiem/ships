@@ -3,7 +3,7 @@ package pl.korotkevics.ships.server.game;
 import pl.korotkevics.ships.server.game.gamestates.GameState;
 
 /**
- * Represents Game with states.
+ * Represents GameEntity with states.
  *
  * @author Piotr Czyż
  * @since 2017-12-13

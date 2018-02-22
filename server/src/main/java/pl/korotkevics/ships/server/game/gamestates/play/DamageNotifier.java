@@ -22,7 +22,7 @@ abstract class DamageNotifier {
   }
 
   protected void notify(final Message receivedShot) {
-    messageSender.send(turnManager.getCurrentPlayer(), header);
+    messageSender.send(turnManager.getCurrentPlayer(), header, true);
     informOpponentAboutShot(receivedShot);
   }
 

@@ -1,13 +1,16 @@
 package pl.korotkevics.ships.shared.transcript;
 
+import pl.korotkevics.ships.shared.fleet.Fleet;
+
 import javax.persistence.*;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "games")
-public class Game {
+public class GameEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +26,13 @@ public class Game {
   @Column(name = "date", nullable = false)
   private Date date;
 
-  @OneToMany(mappedBy = "game", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "game", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
   List<Transcript> transcripts = new ArrayList<>();
 
-  public Game() {
+  @OneToMany(mappedBy = "game", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+  List<FleetEntity> fleets = new ArrayList<>();
+
+  public GameEntity() {
   }
 
   public int getId() {
@@ -69,13 +75,34 @@ public class Game {
     this.transcripts = transcripts;
   }
 
+  public List<FleetEntity> getFleets() {
+    return fleets;
+  }
+
+  public void setFleets(List<FleetEntity> fleets) {
+    this.fleets = fleets;
+  }
+
   public void addTranscript(Transcript transcript) {
     transcripts.add(transcript);
     transcript.setGame(this);
   }
 
+  public void addFleet(FleetEntity fleet) {
+    fleets.add(fleet);
+    fleet.setGame(this);
+  }
+
   @Override
   public String toString() {
     return String.format("%d. players: %s & %s, date: %s", id, playerOne, playerTwo, date);
+  }
+
+  public static GameEntity build(List<Socket> serverClients) {
+     GameEntity newGame = new GameEntity();
+     newGame.setPlayerOne(serverClients.get(0).getInetAddress().toString());
+     newGame.setPlayerTwo(serverClients.get(1).getInetAddress().toString());
+     newGame.setDate(new Date());
+     return newGame;
   }
 }

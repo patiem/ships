@@ -1,10 +1,11 @@
 package pl.korotkevics.ships.server.communication;
 
 import pl.korotkevics.ships.shared.infra.communication.api.Message;
+import pl.korotkevics.ships.shared.infra.communication.api.message.Header;
 import pl.korotkevics.ships.shared.infra.logging.api.Target;
 import pl.korotkevics.ships.shared.infra.logging.core.SharedLogger;
+import pl.korotkevics.ships.shared.transcript.*;
 
-import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,9 @@ public class CommunicationBus {
   private final Target logger = new SharedLogger(CommunicationBus.class);
   private final List<Socket> serverClients;
   private List<WrappedClient> clients;
+  private GameEntity gameEntity;
+  private Repository repository;
+  private boolean isFirstPlayer = true;
 
   /**
    * Create communication bus instance.
@@ -36,8 +40,11 @@ public class CommunicationBus {
    * It ask AppServer for clients and then wrap them into wrapped client.
    */
   public void start() {
+    repository = new GameRepository();
     clients = new ArrayList<>();
     serverClients.forEach(this::wrapClient);
+    gameEntity = GameEntity.build(serverClients);
+    repository.add(gameEntity);
     logger.info("Communication bus started..");
   }
 
@@ -50,7 +57,8 @@ public class CommunicationBus {
   }
 
   private void wrapClient(final Socket socketClient) {
-    WrappedClient wrappedClient = new WrappedClient(socketClient);
+    String playerName = getPlayerName();
+    WrappedClient wrappedClient = new WrappedClient(socketClient, playerName);
     clients.add(wrappedClient);
   }
 
@@ -61,7 +69,10 @@ public class CommunicationBus {
    * @return received message
    */
   public Message receive(final WrappedClient sender) {
-    return sender.receive();
+
+    Message message = sender.receive();
+    addTranscript(sender, message);
+    return message;
   }
 
   /**
@@ -94,5 +105,21 @@ public class CommunicationBus {
    */
   public WrappedClient getSecondClient() {
     return this.clients.get(1);
+  }
+
+  private String getPlayerName() {
+    String[] names = {"pl_1", "pl_2"};
+    String name = isFirstPlayer ? names[0] : names[1];
+    isFirstPlayer = false;
+    return name;
+  }
+
+  public void addTranscript(WrappedClient player, Message message) {
+    if (message.getHeader().equals(Header.MANUAL_PLACEMENT)) {
+      gameEntity.addFleet(FleetEntity.build(message.getFleet(), player.getName()));
+    } else {
+      gameEntity.addTranscript(Transcript.build(message, player.getName()));
+    }
+    repository.add(gameEntity);
   }
 }

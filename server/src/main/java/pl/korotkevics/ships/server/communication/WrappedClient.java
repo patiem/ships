@@ -27,10 +27,16 @@ public class WrappedClient {
   private final Socket socket;
   private Sender out;
   private Receiver in;
+  private String name;
 
   WrappedClient(Socket socketClient) {
     this.socket = socketClient;
     this.setUpIo();
+  }
+
+  public WrappedClient(Socket socket, String name) {
+    this(socket);
+    this.name = name;
   }
 
   private void setUpIo() {
@@ -56,5 +62,9 @@ public class WrappedClient {
 
   void send(final Message message) {
     this.out.send(message);
+  }
+
+  public String getName() {
+    return name;
   }
 }

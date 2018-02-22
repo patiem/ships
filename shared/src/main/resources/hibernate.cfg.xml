@@ -10,14 +10,15 @@
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost:3306/ships
             ?useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="connection.username">abc</property>
         <property name="connection.password">mypass</property>
 
 
         <!--<mapping resource="blog/some/Message.hbm.xml"/>-->
-        <mapping class="pl.korotkevics.ships.shared.transcript.Game" ></mapping>
+        <mapping class="pl.korotkevics.ships.shared.transcript.GameEntity" ></mapping>
         <mapping class="pl.korotkevics.ships.shared.transcript.Transcript" ></mapping>
+        <mapping class="pl.korotkevics.ships.shared.transcript.FleetEntity" ></mapping>
 
 
     </session-factory>

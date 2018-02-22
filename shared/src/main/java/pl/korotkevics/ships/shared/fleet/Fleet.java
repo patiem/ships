@@ -5,11 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Fleet of ships.
@@ -80,5 +76,11 @@ public class Fleet {
     final List<Integer> list = new ArrayList<>();
     this.fleet.forEach((k, v) -> list.add(Integer.valueOf(k.toString())));
     return list;
+  }
+
+  public Set<Ship> extractShips() {
+    Set<Ship> ships = new HashSet<>();
+    fleet.forEach((mast, ship) -> ships.add(ship));
+    return ships;
   }
 }

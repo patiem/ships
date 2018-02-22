@@ -50,7 +50,7 @@ class FleetPlacementProcessor {
         .withHeader(Header.RANDOM_PLACEMENT)
         .withFleet(fleet)
         .build();
-    messageSender.send(wrappedClient, message);
+    messageSender.send(wrappedClient, message, true);
   }
 
   private Fleet receiveFloat() {

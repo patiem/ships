@@ -34,7 +34,7 @@ public class DamageDestroyedNotifierTest {
     new DamageDestroyedNotifier(messageSender, turnManager).notify(message);
 
     //then
-    verify(messageSender, times(1)).send(player, Header.SHIP_DESTROYED);
+    verify(messageSender, times(1)).send(player, Header.SHIP_DESTROYED, true);
     verify(messageSender, times(1)).send(opponent, message);
   }
 

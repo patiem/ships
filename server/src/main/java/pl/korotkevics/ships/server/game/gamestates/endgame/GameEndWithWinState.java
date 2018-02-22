@@ -42,7 +42,7 @@ public class GameEndWithWinState implements GameState {
   public GameState process() {
     handleEndOfGame();
     communicationBus.stop();
-    logger.info("Game ended");
+    logger.info("GameEntity ended");
     return this;
   }
 

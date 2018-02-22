@@ -58,4 +58,14 @@ public class MessageSender {
     communicationBus.sendToAll(messages.getMessage(header));
     logger.info("Send message to both players " + header);
   }
+
+  public void send(WrappedClient currentPlayer, Header header, boolean b) {
+    send(currentPlayer, header);
+    communicationBus.addTranscript(currentPlayer, messages.getMessage(header));
+  }
+
+  public void send(WrappedClient currentPlayer, Message message, boolean b) {
+    send(currentPlayer, message);
+    communicationBus.addTranscript(currentPlayer, message);
+  }
 }
