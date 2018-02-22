@@ -1,10 +1,8 @@
 package pl.korotkevics.ships.shared.transcript;
 
 import pl.korotkevics.ships.shared.fleet.Fleet;
-import pl.korotkevics.ships.shared.fleet.Ship;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "fleets")
@@ -22,7 +20,7 @@ public class FleetEntity {
   private String playerName;
 
   @Column(name = "fleet", nullable = false, columnDefinition = "longtext")
-  private List<Ship> fleet;
+  private String fleet;
 
   public FleetEntity() {
   }
@@ -61,7 +59,7 @@ public class FleetEntity {
 
   public static FleetEntity build(Fleet fleet, String playerName) {
     FleetEntity fleetEntity = new FleetEntity();
-    fleetEntity.setFleet(fleet.extractShips());
+    fleetEntity.setFleet(fleet.toString());
     fleetEntity.setPlayerName(playerName);
     return fleetEntity;
   }
