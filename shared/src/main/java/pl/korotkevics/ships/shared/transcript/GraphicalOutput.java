@@ -82,7 +82,7 @@ public class GraphicalOutput extends JFrame implements ActionListener {
   }
 
   private java.util.List<String> getFleet() {
-    return service.getFleets(indexOfGame);
+    return service.getShips(indexOfGame);
   }
 
   @Override

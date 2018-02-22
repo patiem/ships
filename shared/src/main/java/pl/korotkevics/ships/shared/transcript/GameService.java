@@ -1,5 +1,6 @@
 package pl.korotkevics.ships.shared.transcript;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,7 +36,6 @@ public class GameService {
   }
 
   String[] getGameStrings() {
-    List<GameEntity> games = repository.getAll();
     return repository.getAll().stream().map(GameEntity::toString).toArray(String[]::new);
   }
 
@@ -44,9 +44,16 @@ public class GameService {
     return transcripts.stream().map(Transcript::toString).collect(Collectors.toList());
   }
 
-  List<String> getFleets(int indexOfGame) {
-    List<FleetEntity> transcripts = repository.getById(indexOfGame + 1).getFleets();
-    return transcripts.stream().map(FleetEntity::toString).collect(Collectors.toList());
+  private List<FleetEntity> getFleets(int indexOfGame) {
+    return repository.getById(indexOfGame + 1).getFleets();
   }
 
+  List<String> getShips(int indexOfGame) {
+    List<String> shipsSt = new ArrayList<>();
+    getFleets(indexOfGame).stream().forEach(f-> {
+      shipsSt.add("Fleet for " + f.getPlayerName());
+      f.getFleet().forEach(s -> shipsSt.add(s.getShip()));
+    });
+    return shipsSt;
+  }
 }

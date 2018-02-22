@@ -19,6 +19,7 @@
         <mapping class="pl.korotkevics.ships.shared.transcript.GameEntity" ></mapping>
         <mapping class="pl.korotkevics.ships.shared.transcript.Transcript" ></mapping>
         <mapping class="pl.korotkevics.ships.shared.transcript.FleetEntity" ></mapping>
+        <mapping class="pl.korotkevics.ships.shared.transcript.ShipEntity" ></mapping>
 
 
     </session-factory>
